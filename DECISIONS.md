@@ -1,6 +1,6 @@
 # Release decisions still requiring review
 
-These items are deliberately unresolved in Phase 1 because each changes the public release contract.
+These items remain deliberately unresolved after the inventory and execution-registry phases because each changes the public release contract.
 
 ## Repository and licensing
 
@@ -24,6 +24,11 @@ These items are deliberately unresolved in Phase 1 because each changes the publ
 ## Reproduction boundary
 
 - **Method code:** decide case by case whether to redistribute a thin runner, vendor a pinned upstream snapshot, or provide an installation wrapper and upstream commit.
+- **Runner promotion:** replace partial active-dataset lists with manifest-driven entry points and record the method-local-to-final-result lineage before declaring any runner canonical.
+- **Missing TFvelo execution source:** recover an authoritative runner and revision; final H5AD outputs alone are insufficient evidence.
+- **veloVI output mode:** reconcile the manuscript-reported unspliced extraction with the canonical `without_vu` cell-level result family and the surviving runner, which uses the velovi 0.3.1 default spliced mode for `layers["velocity"]`.
+- **TSvelo execution chain:** freeze preprocessing inputs, method revision, duplicate-result selection, and bundled-asset license terms.
+- **Historical environments:** resolve ambiguous or conflicting assignments and pin upstream revisions before writing clean environment specifications; raw Conda exports are not accepted as release files.
 - **Execution tiers:** decide which workflows are required as smoke tests and which remain full HPC reproductions.
 - **Containers:** decide whether per-method Conda environments are sufficient or whether selected workflows also need container images.
 

@@ -4,7 +4,7 @@ This repository is the curated release workspace for the RNA velocity benchmark.
 
 ## Current status
 
-Phase 1 is an inventory-only scaffold. It records the paper-to-code/result mapping, data-source audit, and intended public-release boundary. It is still not runnable.
+Phases 1 and 2 provide an audited scaffold. They record the paper-to-code/result mapping, data sources, the exact 20 method configurations, candidate execution entry points, historical environment evidence, and the intended public-release boundary. The repository is still not runnable.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -51,6 +51,14 @@ benchmark_repository/
 - [`manifests/datasets.tsv`](manifests/datasets.tsv), [`manifests/publication_artifacts.tsv`](manifests/publication_artifacts.tsv), and [`manifests/path_aliases.tsv`](manifests/path_aliases.tsv) record the audited source and artifact contract.
 - [`provenance/data_source_audit.md`](provenance/data_source_audit.md) summarizes evidence and release consequences.
 
+## Phase 2 records
+
+- [`manifests/method_configurations.tsv`](manifests/method_configurations.tsv) freezes the manuscript-to-operational identity of the 20 configurations and their final output keys.
+- [`manifests/runner_inventory.tsv`](manifests/runner_inventory.tsv) records candidate runners, coverage limitations, and observed result contracts without promoting partial scripts to canonical entry points.
+- [`manifests/environments.tsv`](manifests/environments.tsv) separates manuscript-reported versions from inferred or conflicting historical Conda evidence.
+- [`methods/README.md`](methods/README.md), [`envs/README.md`](envs/README.md), and [`provenance/method_execution_audit.md`](provenance/method_execution_audit.md) define the code-curation boundary.
+- `python tests/validate_phase2_manifests.py` checks the registry contract using only the Python standard library.
+
 ## Provenance policy
 
 The working project root is not version-controlled as a whole. Therefore, a path or modification time alone is not treated as proof of provenance. A publication-facing artifact must be tied to at least one of the following:
@@ -64,4 +72,4 @@ Historical folders are excluded by default, except when a current paper panel de
 
 ## Not yet provided
 
-This Phase 1 commit is not a runnable release. Environment creation, method execution, metric reproduction, figure regeneration, data-access instructions, license files, and archival deposition are later review gates.
+This Phase 2 registry is not a runnable release. Reviewed environment creation, promotion of thin method runners, metric reproduction, figure regeneration, data-access instructions, license files, and archival deposition are later review gates.
