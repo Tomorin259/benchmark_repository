@@ -30,3 +30,7 @@ Decision values:
 - `external`: provide accession/checksum or upstream source instead of copying large/bundled content;
 - `exclude`: do not publish the working-tree material;
 - `decision_needed`: wait for an explicit scientific or licensing decision.
+
+## Audit schemas
+
+`datasets.tsv` is the dataset contract: identity, dimensions, references, source URLs, audited local inputs, checksums, relation, evidence status, and release action. `publication_artifacts.tsv` maps publication consumers to source paths and storage policy. `path_aliases.tsv` records historical-to-current path drift and evidence. All are tab-separated and use `velocity:` locators rather than absolute paths. Official source URLs identify authoritative records; audited local inputs are files inspected in the working tree. `confirmed`, `unresolved`, `mixed`, and `inference` distinguish byte-level evidence, gaps, combined source/derived content, and structural evidence.

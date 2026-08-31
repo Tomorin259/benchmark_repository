@@ -4,7 +4,7 @@ This repository is the curated release workspace for the RNA velocity benchmark.
 
 ## Current status
 
-Phase 1 is an inventory-only scaffold. It records the paper-to-code/result mapping and the intended public-release boundary. Scientific code, environments, summary results, and figure-reproduction assets will be added only after each later phase is reviewed.
+Phase 1 is an inventory-only scaffold. It records the paper-to-code/result mapping, data-source audit, and intended public-release boundary. It is still not runnable.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -48,6 +48,8 @@ benchmark_repository/
 - `manifests/release_scope.tsv` states what will be included, curated, referenced externally, or excluded from the public repository.
 - `provenance/phase1_baseline.md` freezes the source-tree and paper snapshot used for this inventory.
 - `DECISIONS.md` lists unresolved publication decisions without silently choosing them.
+- [`manifests/datasets.tsv`](manifests/datasets.tsv), [`manifests/publication_artifacts.tsv`](manifests/publication_artifacts.tsv), and [`manifests/path_aliases.tsv`](manifests/path_aliases.tsv) record the audited source and artifact contract.
+- [`provenance/data_source_audit.md`](provenance/data_source_audit.md) summarizes evidence and release consequences.
 
 ## Provenance policy
 

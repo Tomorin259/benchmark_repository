@@ -10,6 +10,13 @@ These items are deliberately unresolved in Phase 1 because each changes the publ
 
 ## Data and large artifacts
 
+- **Canonical processed-input archive:** unresolved; freeze checksum-addressed inputs.
+- **Derived-input preprocessing reconstruction:** unresolved for transformed or gene-subset H5ADs.
+- **Simulation regeneration:** unresolved until seeds, output paths, and revisions are recorded.
+- **Metric row-level input manifest:** unresolved; current entrypoint has empty `ADATA_PATHS`.
+- **DG_lamanno variant handling:** unresolved; preserve both H5AD variants pending review.
+- **Upstream source redistribution/licensing:** unresolved for processed inputs and kinetic reference tables.
+
 - **Archival host:** decide whether processed benchmark inputs and selected method outputs will be deposited in Zenodo, Figshare, an institutional repository, or referenced from original sources.
 - **Deposit granularity:** decide whether to publish only canonical processed inputs, also canonical final method outputs, or both.
 - **Checksums and accession IDs:** add only after the deposit is frozen.
