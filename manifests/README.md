@@ -5,6 +5,10 @@ All paths in the Phase 1 and Phase 2 manifests are relative to one of two roots:
 - `velocity:` — `/mnt/second19T/zhaozelin/velocity` in the audited working tree;
 - `paper:` — the frozen paper project snapshot identified in `provenance/phase1_baseline.md`.
 
+The `project:` locator is used for audited source trees that sit beside the working
+project: `project:` maps to `/mnt/second19T/zhaozelin` in the private audit
+environment. It is a provenance locator only and is not a public filesystem path.
+
 These prefixes are provenance locators, not intended public paths. Later phases will replace them with repository-relative paths or external accession URLs.
 
 ## `source_assets.tsv`
@@ -39,10 +43,10 @@ For `publication_artifacts.tsv`, `git` means a compact artifact should be copied
 
 ## Phase 2 execution schemas
 
-`method_configurations.tsv` is the exact 20-row manuscript registry. `operational_id` follows the render and metric tables; `manuscript_label` preserves Supplementary Table S1 naming. A `confirmed` configuration status confirms its identity and observed final-output contract, not that its runner is publication-ready. `conflicted` retains a confirmed result identity while flagging a material mismatch between the manuscript setting and surviving execution evidence.
+`method_configurations.tsv` is the exact 20-row manuscript registry. `operational_id` follows the render and metric tables; `manuscript_label` preserves Supplementary Table S1 naming. A `confirmed` configuration status confirms its identity and observed final-output contract, not that its runner is publication-ready. The configuration row may describe more than one output role when the method has separate cell-level and gene-level outputs; veloVI records its spliced cell-level output and its additional unspliced gene-level output in this way.
 
-`runner_inventory.tsv` records one audited candidate row per configuration. Status values are `candidate`, `partial`, `ambiguous`, and `missing`. Candidate and partial scripts require review before copying; `recover_before_release` means the execution chain must be recovered rather than inferred from outputs.
+`runner_inventory.tsv` records one audited candidate row per configuration. Status values are `candidate`, `partial`, `ambiguous`, and `missing`. `missing` is reserved for a configuration for which no authoritative execution source has been located; an empty method subdirectory does not imply missing source when an external project locator is documented. Candidate and partial scripts require curation before publication. `recover_before_release` is reserved for a genuinely absent execution chain; a partial method-specific script uses `curate_after_review`. A final-result copy or rename may be manual and is recorded as provenance when the artifact is released.
 
-`environments.tsv` records one row per distinct audited Conda assignment. Absolute paths are allowed only in `audited_conda_path` because they are private provenance evidence, not public commands. Status values distinguish `partial`, `ambiguous`, `conflicted`, and `missing` evidence. These rows must not be converted mechanically into lock files.
+`environments.tsv` records one row per distinct audited Conda assignment. Absolute paths are allowed only in `audited_conda_path` because they are private provenance evidence, not public commands. `evidence_status` describes the strength or limitations of the historical assignment evidence. `runtime_status` records only the observed package/entry-point import smoke result, with values `import_smoke_passed`, `import_smoke_passed_with_warning`, and `import_smoke_failed`; it is not evidence of a completed model run. `release_spec_status` records whether a clean public environment specification has been curated, with values `not_yet_curated`, `curation_required`, and `reviewed_clean`. These fields are intentionally independent: an environment can pass import smoke while still requiring release curation. These rows must not be converted mechanically into lock files.
 
 Run `python tests/validate_phase2_manifests.py` after editing any Phase 2 registry.

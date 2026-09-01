@@ -2,9 +2,9 @@
 
 ## Scope
 
-Phase 2 reconciles the 20 manuscript configurations with Supplementary Table S1, Figure 6, the 280-row cell-level render manifest, candidate method runners, final result paths, and surviving Conda-environment evidence. No scientific method was run and no large result or environment was copied.
+This audit reconciles the 20 manuscript configurations with Supplementary Table S1, Figure 6, the 280-row cell-level render manifest, candidate method runners, final result paths, and surviving Conda-environment evidence. This pass reviewed source files, result paths, SHA-256 hashes, and import smoke tests; it did not rerun model training or regenerate scientific results.
 
-The audit was completed on 2026-09-01 against the unversioned working root recorded in `phase1_baseline.md`, paper source `merged.tex` with SHA-256 `172bf2d84af52d8b7f005f588fbe81a44dc11f962bc4ccb5d6c35f7827b9f13a`, and release-repository base commit `ba9cf4abaaba1c3759831d6703653e29d85b6e26`.
+The audit was completed on 2026-09-01 against the unversioned working root recorded in `phase1_baseline.md`, paper source `merged.tex` with SHA-256 `172bf2d84af52d8b7f005f588fbe81a44dc11f962bc4ccb5d6c35f7827b9f13a`, and release-repository base commit `7ad5c4d6afbf75707df93bd46d8a6d85720a0edc`.
 
 ## Confirmed configuration and result contracts
 
@@ -13,29 +13,32 @@ The audit was completed on 2026-09-01 against the unversioned working root recor
 - After applying the 12 owner-confirmed TIvelo path aliases, every render-manifest result path resolves to an existing H5AD.
 - Method-specific final velocity layers and embedding keys are recorded in `method_configurations.tsv`.
 - The gene-level nine-method subset, Dynamo metabolic-labeling positive control, and RowGeometricMedian-4 utility are separate analysis roles and are not additional method configurations.
+- For C10 (TFvelo), the source is located at `project:TFvelo-main`. The chain is `TFvelo_run_demo.py` (preprocessing and recovery) followed by `TFvelo_analysis_demo.py` (analysis and final H5AD output). The 14 files in `velocity:results/TFvelo/` are byte-identical to the corresponding files in the original TFvelo result tree; their transfer and rename are recorded as owner-confirmed manual curation.
+- For C12 (veloVI), the cell-level canonical family is `velocity:results/veloVI/veloVI_without_vu/veloVI_*_all.h5ad` and stores the default spliced `get_velocity` output in `velocity`. The gene-level family is the root `velocity:results/veloVI/veloVI_*_all.h5ad` and additionally stores the explicit `velo_mode="unspliced"` output in `velocity_u`. The two roles are compatible with the observed code and results; the configuration status is confirmed.
+- For C14 (TSvelo), `velocity:methods/TSvelo/TSvelo_run.py` calls the preprocessing and branch-model chain in `TSvelo_pp.py` before concatenating or renaming the final output. The 14 paths referenced by the current render manifest are the canonical benchmark outputs; `*_ori`, `*_1`, and `results_old` are historical variants rather than unresolved candidates.
 
 ## Candidate runners, not yet canonical runners
 
-The working project contains plausible entry points for 19 configurations, but many have partial active lists, dataset-specific wrappers, stale path aliases, or no frozen method-local-to-final-result copy step. The TFvelo result set exists while its local runner directory is empty. TSvelo has unresolved preprocessing provenance and duplicate result choices. These limitations are recorded row by row in `runner_inventory.tsv`.
+The working project contains plausible entry points for the 20 configurations, but many have partial active lists, dataset-specific wrappers, or stale path aliases. The registry therefore records one method-specific candidate per configuration and does not promote partial scripts to canonical public runners. A manual method-local-to-final-result copy or rename is acceptable when its provenance is recorded for the released artifact. These limitations are recorded row by row in `runner_inventory.tsv`.
 
 Known alternates excluded from the primary registry include partial or incompatible DeepKINET, cell2fate, GraphVelo, veloVI, veloAE, TSvelo, cellDancer, MultiVelo, and Dynamo scripts. They remain in the private working tree but are not silently promoted to public entry points.
 
-For veloVI, Supplementary Table S1 reports extraction with `velo_mode="unspliced"`, whereas the candidate runner associated with the canonical `without_vu` cell-level result family calls `get_velocity(n_samples=25, velo_statistic="mean")` without that argument. The audited velovi 0.3.1 signature defaults `velo_mode` to `spliced`. The result family remains confirmed as the benchmark input, but its exact generating invocation is therefore marked as conflicted pending reconciliation.
+For veloVI, the cell-level runner associated with the canonical `without_vu` result family calls `get_velocity(n_samples=25, velo_statistic="mean")`, whose velovi 0.3.1 default is `spliced`. The gene-level runner additionally calls `get_velocity(..., velo_mode="unspliced")` and stores `velocity_u`. The previously apparent manuscript/runner conflict is therefore a distinction between output roles, not an unresolved result identity.
 
 ## Environment evidence
 
-The manuscript versions are well defined except for TFvelo, TSvelo, and DeepVelo_scVelo. Historical Conda assignments are mostly inferred. No clean upstream commit is recorded for the Table S1 method set. DeepKINET has a dirty nested repository and conflicts between its checked specification and current environment; veloAE and DeepVelo_scVelo show conflicting installed metadata. The release therefore records environment evidence without generating misleading lock files.
+The manuscript versions are well defined except for TFvelo, TSvelo, and DeepVelo_scVelo. Historical Conda assignments are mostly inferred. The import smoke audit found an importable candidate for all 16 configuration environments, but these checks did not execute model training. DeepVelo GCN imports with a NumPy/SciPy compatibility warning. The original SDEvelo environment fails during scVelo import because its Python 3.8/scVelo 0.3.3 combination is incompatible; the `sdevelo_py310` environment passes the smoke test and is now the C17 audited candidate. DeepKINET has a dirty nested repository and a specification that differs from the working environment; veloAE and DeepVelo_scVelo retain historical metadata or revision-cleanliness issues. The release therefore records runtime evidence separately from clean-spec readiness and does not generate misleading lock files.
 
 ## Remaining contract gaps
 
-- Recover or reconstruct the TFvelo runner from an authoritative source.
-- Reconcile the manuscript-reported veloVI velocity mode with the canonical cell-level result family and surviving runner evidence.
-- Replace partial dataset lists with one manifest-driven invocation per configuration.
-- Freeze the exact TSvelo preprocessing and duplicate-result selection.
-- Record the curation link from method-local output to each final root result.
+- Curate the located TFvelo and TSvelo sources into method-specific scripts with explicit dataset selectors or mappings.
+- Replace partial active lists with explicit supported-dataset mappings as each method is promoted; a shared universal runner is not required.
+- Freeze the exact TSvelo preprocessing inputs, method revision, and bundled-asset licensing terms.
+- Record manual curation and checksums for method-local outputs when those outputs are redistributed.
+- Produce clean public environment specifications, including the audited SDEvelo candidate and the local-state cleanup required by DeepKINET.
 - Resolve upstream revisions and redistribution terms before copying any method code or bundled databases.
 - Rebuild the cell-metric input mapping because `all_metrics_main.py` currently has an empty `ADATA_PATHS` mapping.
 
 ## Release consequence
 
-Phase 2 provides a reviewable execution registry, not a claim of all-20 one-command reproduction. The next code-curation phase should promote configurations in small reviewed groups, beginning with runners whose 14-dataset mappings are already explicit, while leaving unresolved configurations documented rather than guessed.
+Phase 2 provides a reviewable execution registry, not a claim of all-20 one-command reproduction. The next code-curation phase should promote method-specific runners in small reviewed groups, beginning with entries whose dataset mappings and output contracts are explicit, while leaving remaining release work documented rather than guessed.

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Validate the Phase 2 method, runner, and environment registries."""
+"""Validate the Phase 2 method, runner, and environment registries.
+
+The environment registry keeps historical evidence, import smoke results, and
+public-specification readiness as separate contracts.
+"""
 
 from __future__ import annotations
 
@@ -90,6 +94,8 @@ ENVIRONMENT_COLUMNS = {
     "release_action",
     "evidence_status",
     "notes",
+    "runtime_status",
+    "release_spec_status",
 }
 
 ALLOWED_CONFIG_RELEASE = {"curate_thin_runner", "recover_runner"}
@@ -106,6 +112,12 @@ ALLOWED_ENV_ASSIGNMENT = {
 }
 ALLOWED_ENV_RELEASE = {"create_reviewed_spec_later", "resolve_evidence_first"}
 ALLOWED_ENV_STATUS = {"partial", "ambiguous", "conflicted", "missing"}
+ALLOWED_ENV_RUNTIME = {
+    "import_smoke_passed",
+    "import_smoke_passed_with_warning",
+    "import_smoke_failed",
+}
+ALLOWED_ENV_SPEC = {"not_yet_curated", "curation_required", "reviewed_clean"}
 
 
 class ValidationError(RuntimeError):
@@ -228,6 +240,52 @@ def main() -> int:
                     f"{row['config_id']}: a missing runner must use missing/recover_runner states"
                 )
 
+    special_runner_checks = {
+        "C10": {
+            "candidate_prefix": "project:TFvelo-main/",
+            "required_supplemental": "project:TFvelo-main/TFvelo_analysis_demo.py",
+            "status": "partial",
+            "release_action": "curate_after_review",
+        },
+        "C12": {
+            "candidate": "velocity:methods/veloVI/veloVI_main_ori.py",
+            "required_supplemental": "velocity:methods/veloVI/veloVI_main.py",
+            "status": "partial",
+            "release_action": "curate_after_review",
+        },
+        "C14": {
+            "candidate": "velocity:methods/TSvelo/TSvelo_run.py",
+            "status": "partial",
+            "release_action": "curate_after_review",
+        },
+    }
+    for config_id, expected in special_runner_checks.items():
+        runner = runner_rows_by_config[config_id]
+        if "candidate" in expected and runner["candidate_runner"] != expected["candidate"]:
+            raise ValidationError(
+                f"{config_id}: candidate_runner does not match the audited entry point"
+            )
+        if "candidate_prefix" in expected and not runner["candidate_runner"].startswith(
+            expected["candidate_prefix"]
+        ):
+            raise ValidationError(
+                f"{config_id}: candidate_runner must use the project: provenance locator"
+            )
+        if "required_supplemental" in expected and expected["required_supplemental"] not in runner[
+            "supplemental_runners"
+        ]:
+            raise ValidationError(
+                f"{config_id}: required supplemental runner is not recorded"
+            )
+        if runner["evidence_status"] != expected["status"]:
+            raise ValidationError(
+                f"{config_id}: runner evidence_status must be {expected['status']}"
+            )
+        if runner["release_action"] != expected["release_action"]:
+            raise ValidationError(
+                f"{config_id}: runner release_action must be {expected['release_action']}"
+            )
+
     environment_ids = {row["environment_id"] for row in environments}
     require_unique(environments, "audited_conda_path", "environments.tsv")
     missing_environment_refs = sorted(
@@ -287,6 +345,25 @@ def main() -> int:
     check_vocab(
         environments, "evidence_status", ALLOWED_ENV_STATUS, "environments.tsv"
     )
+    check_vocab(
+        environments, "runtime_status", ALLOWED_ENV_RUNTIME, "environments.tsv"
+    )
+    check_vocab(
+        environments, "release_spec_status", ALLOWED_ENV_SPEC, "environments.tsv"
+    )
+
+    environment_by_id = {row["environment_id"]: row for row in environments}
+    sdevelo = environment_by_id.get("env_sdevelo")
+    if sdevelo is None:
+        raise ValidationError("environments.tsv: env_sdevelo row is required")
+    if not sdevelo["audited_conda_path"].endswith("/sdevelo_py310"):
+        raise ValidationError(
+            "environments.tsv: C17 must use the audited sdevelo_py310 candidate"
+        )
+    if sdevelo["runtime_status"] != "import_smoke_passed":
+        raise ValidationError(
+            "environments.tsv: sdevelo_py310 must be marked import_smoke_passed"
+        )
 
     check_absolute_paths("method_configurations.tsv", configs)
     check_absolute_paths("runner_inventory.tsv", runners)

@@ -4,7 +4,7 @@ This repository is the curated release workspace for the RNA velocity benchmark.
 
 ## Current status
 
-Phases 1 and 2 provide an audited scaffold. They record the paper-to-code/result mapping, data sources, the exact 20 method configurations, candidate execution entry points, historical environment evidence, and the intended public-release boundary. The repository is still not runnable.
+Phases 1 and 2 provide an audited scaffold. They record the paper-to-code/result mapping, data sources, the exact 20 method configurations, candidate execution entry points, historical environment evidence, and the intended public-release boundary. The repository is still not a one-command runnable release: Phase 2 records import smoke results separately from the work still required to prepare clean public specifications and runners.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -54,8 +54,8 @@ benchmark_repository/
 ## Phase 2 records
 
 - [`manifests/method_configurations.tsv`](manifests/method_configurations.tsv) freezes the manuscript-to-operational identity of the 20 configurations and their final output keys.
-- [`manifests/runner_inventory.tsv`](manifests/runner_inventory.tsv) records candidate runners, coverage limitations, and observed result contracts without promoting partial scripts to canonical entry points.
-- [`manifests/environments.tsv`](manifests/environments.tsv) separates manuscript-reported versions from inferred or conflicting historical Conda evidence.
+- [`manifests/runner_inventory.tsv`](manifests/runner_inventory.tsv) records candidate runners, coverage limitations, and observed result contracts without promoting partial scripts to canonical entry points. A method may have its own release script; a universal runner is not required.
+- [`manifests/environments.tsv`](manifests/environments.tsv) separates manuscript-reported versions and provenance evidence from `runtime_status` import smoke results and `release_spec_status` public-specification readiness.
 - [`methods/README.md`](methods/README.md), [`envs/README.md`](envs/README.md), and [`provenance/method_execution_audit.md`](provenance/method_execution_audit.md) define the code-curation boundary.
 - `python tests/validate_phase2_manifests.py` checks the registry contract using only the Python standard library.
 
@@ -68,7 +68,7 @@ The working project root is not version-controlled as a whole. Therefore, a path
 3. a direct result manifest used by the plotting code;
 4. a documented manual assembly step backed by canonical source assets.
 
-Historical folders are excluded by default, except when a current paper panel demonstrably uses an asset stored there (currently Figure 5A).
+Historical folders are excluded by default, except when a current paper panel demonstrably uses an asset stored there (currently Figure 5A). Manual result copying or renaming is recorded as provenance when relevant; it is not treated as an automatic-runner requirement.
 
 ## Not yet provided
 

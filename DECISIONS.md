@@ -24,10 +24,10 @@ These items remain deliberately unresolved after the inventory and execution-reg
 ## Reproduction boundary
 
 - **Method code:** decide case by case whether to redistribute a thin runner, vendor a pinned upstream snapshot, or provide an installation wrapper and upstream commit.
-- **Runner promotion:** replace partial active-dataset lists with manifest-driven entry points and record the method-local-to-final-result lineage before declaring any runner canonical.
-- **Missing TFvelo execution source:** recover an authoritative runner and revision; final H5AD outputs alone are insufficient evidence.
-- **veloVI output mode:** reconcile the manuscript-reported unspliced extraction with the canonical `without_vu` cell-level result family and the surviving runner, which uses the velovi 0.3.1 default spliced mode for `layers["velocity"]`.
-- **TSvelo execution chain:** freeze preprocessing inputs, method revision, duplicate-result selection, and bundled-asset license terms.
+- **Runner promotion:** curate one method-specific script at a time with an explicit dataset selector or mapping, output contract, and reviewed environment specification. A shared universal runner is not required, and a documented manual copy or rename of final outputs is acceptable.
+- **TFvelo release curation:** the source tree is located at `project:TFvelo-main`, and the 14 canonical result files match the original result tree by SHA-256. The remaining decisions are the thin-runner interface, upstream revision, and redistribution terms.
+- **veloVI release contract:** the cell-level `without_vu` family is confirmed as the default spliced `get_velocity` output, while the gene-level family additionally stores the explicit unspliced output as `velocity_u`. The remaining work is to curate the two runner roles and their clean environment specification; there is no unresolved output-mode conflict.
+- **TSvelo release curation:** the current render-manifest paths are the canonical 14 outputs; `*_ori`, `*_1`, and `results_old` are historical output variants. The remaining decisions are the preprocessing/input mapping, method revision, and bundled-asset license terms.
 - **Historical environments:** resolve ambiguous or conflicting assignments and pin upstream revisions before writing clean environment specifications; raw Conda exports are not accepted as release files.
 - **Execution tiers:** decide which workflows are required as smoke tests and which remain full HPC reproductions.
 - **Containers:** decide whether per-method Conda environments are sufficient or whether selected workflows also need container images.
