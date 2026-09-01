@@ -50,3 +50,28 @@ For `publication_artifacts.tsv`, `git` means a compact artifact should be copied
 `environments.tsv` records one row per distinct audited Conda assignment. Absolute paths are allowed only in `audited_conda_path` because they are private provenance evidence, not public commands. `evidence_status` describes the strength or limitations of the historical assignment evidence. `runtime_status` records only the observed package/entry-point import smoke result, with values `import_smoke_passed`, `import_smoke_passed_with_warning`, and `import_smoke_failed`; it is not evidence of a completed model run. `release_spec_status` records whether a clean public environment specification has been curated, with values `not_yet_curated`, `curation_required`, and `reviewed_clean`. These fields are intentionally independent: an environment can pass import smoke while still requiring release curation. These rows must not be converted mechanically into lock files.
 
 Run `python tests/validate_phase2_manifests.py` after editing any Phase 2 registry.
+
+## Phase 3A cell-level result manifest
+
+`manifests/cell_result_inputs.tsv` is the frozen 280-row (20 configurations ×
+14 datasets) result-input manifest. Its primary key is `(config_id,
+dataset_id)`, with `operational_id` and `evaluation_dataset` retaining the
+names used by the published metric table. `source_result_path` preserves the
+render-manifest path, while `result_path` identifies the current canonical
+file. Twelve owner-confirmed TIvelo moves are represented explicitly by
+`path_resolution=owner_confirmed_move`; all other rows are `direct`.
+
+Each row also records the velocity layer, source and velocity embedding keys,
+effective evaluation embedding, alignment mode and dimensions, non-finite
+value diagnostics, positive file size, and a 64-character SHA-256 digest. The
+exact schema and allowed `velocity:` locators are documented in
+[`evaluation/cell/README.md`](../evaluation/cell/README.md).
+The companion `results_summary/cell_metrics/all_metrics.csv` keeps the source
+header `dataset,method,consistency,cbdir,iccoh,batc` and must have the same
+280-key set with four finite metrics. It is a frozen byte-identical baseline,
+not a Phase 3A recalculation.
+
+Run `python tests/validate_cell_contract.py` for the standard-library checks.
+It does not open H5AD/AnnData files.  Pass `--working-root PATH` for optional
+file existence and size checks, and add `--verify-hashes` for SHA-256 checks;
+the default invocation has no private working-tree path dependency.

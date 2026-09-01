@@ -4,7 +4,7 @@ This repository is the curated release workspace for the RNA velocity benchmark.
 
 ## Current status
 
-Phases 1 and 2 provide an audited scaffold. They record the paper-to-code/result mapping, data sources, the exact 20 method configurations, candidate execution entry points, historical environment evidence, and the intended public-release boundary. The repository is still not a one-command runnable release: Phase 2 records import smoke results separately from the work still required to prepare clean public specifications and runners.
+Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. The repository is still not a one-command runnable release: metrics were not recomputed in Phase 3A, and clean public method environments and runners remain later gates.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -59,6 +59,14 @@ benchmark_repository/
 - [`methods/README.md`](methods/README.md), [`envs/README.md`](envs/README.md), and [`provenance/method_execution_audit.md`](provenance/method_execution_audit.md) define the code-curation boundary.
 - `python tests/validate_phase2_manifests.py` checks the registry contract using only the Python standard library.
 
+## Phase 3A cell-level contract
+
+- [`evaluation/cell/dataset_config.json`](evaluation/cell/dataset_config.json) freezes the 14 dataset defaults, label-source rules, BATC bins, and method embedding overrides extracted from the current cell metric source.
+- [`manifests/cell_result_inputs.tsv`](manifests/cell_result_inputs.tsv) identifies the canonical 20-by-14 cell-level result set with file sizes, SHA-256 digests, output keys, and alignment evidence.
+- [`results_summary/cell_metrics/all_metrics.csv`](results_summary/cell_metrics/all_metrics.csv) is a byte-identical copy of the audited 280-row metric baseline; no metric was recalculated in Phase 3A.
+- [`provenance/cell_metric_baseline.md`](provenance/cell_metric_baseline.md) records source hashes, path-alias resolution, H5AD-key checks, and known alignment exceptions.
+- `python tests/validate_cell_contract.py --require-artifacts` validates the frozen contract using only the Python standard library; optional private-tree file and checksum verification remains explicit.
+
 ## Provenance policy
 
 The working project root is not version-controlled as a whole. Therefore, a path or modification time alone is not treated as proof of provenance. A publication-facing artifact must be tied to at least one of the following:
@@ -72,4 +80,4 @@ Historical folders are excluded by default, except when a current paper panel de
 
 ## Not yet provided
 
-This Phase 2 registry is not a runnable release. Reviewed environment creation, promotion of thin method runners, metric reproduction, figure regeneration, data-access instructions, license files, and archival deposition are later review gates.
+This Phase 3A snapshot is not yet a runnable release. Cell-metric code curation and numerical reproduction, reviewed environment creation, promotion of thin method runners, figure regeneration, data-access instructions, license files, and archival deposition are later review gates.
