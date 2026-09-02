@@ -4,7 +4,7 @@ This repository is the curated release workspace for the RNA velocity benchmark.
 
 ## Current status
 
-Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. The repository is still not a one-command runnable release: metrics were not recomputed in Phase 3A, and clean public method environments and runners remain later gates.
+Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. Phase 3B now curates the Case 3 kinetic-parameter evaluation contract, including the two scEU-seq systems, source-generation states, a safe evaluator, and the frozen Figure 6 component baseline. The repository is still not a one-command runnable release: clean public method environments and runners remain later gates.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -67,6 +67,14 @@ benchmark_repository/
 - [`provenance/cell_metric_baseline.md`](provenance/cell_metric_baseline.md) records source hashes, path-alias resolution, H5AD-key checks, and known alignment exceptions.
 - `python tests/validate_cell_contract.py --require-artifacts` validates the frozen contract using only the Python standard library; optional private-tree file and checksum verification remains explicit.
 
+## Phase 3B Case 3 metrics
+
+- [evaluation/kinetic/data/case3.json](evaluation/kinetic/data/case3.json) is the small direct-result map: external references, existing method H5ADs, layers, and the method-specific Dynamo/TSvelo extraction rules.
+- [evaluation/kinetic/metrics.py](evaluation/kinetic/metrics.py) performs all RPE1/organoid processing, per-gene metrics, and Figure 6 style summaries.
+- [evaluation/kinetic/plots.py](evaluation/kinetic/plots.py) converts one metrics output bundle into Figure 5/6 quantitative review panels and plot tables without reopening H5AD files.
+- The Case 3 layer deliberately contains no data preparation or method training code. It reuses the existing result objects produced by the method and cell-level workflows.
+- Run python evaluation/kinetic/metrics.py --working-root PATH --check-only before a full metrics run.
+
 ## Provenance policy
 
 The working project root is not version-controlled as a whole. Therefore, a path or modification time alone is not treated as proof of provenance. A publication-facing artifact must be tied to at least one of the following:
@@ -80,4 +88,7 @@ Historical folders are excluded by default, except when a current paper panel de
 
 ## Not yet provided
 
-This Phase 3A snapshot is not yet a runnable release. Cell-metric code curation and numerical reproduction, reviewed environment creation, promotion of thin method runners, figure regeneration, data-access instructions, license files, and archival deposition are later review gates.
+This Phase 3A/3B snapshot is not yet a runnable release. Cell-metric code
+curation and numerical reproduction, reviewed environment creation, final
+Case 3 result selection, figure regeneration, data-access instructions, license
+files, and archival deposition are later review gates.

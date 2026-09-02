@@ -314,6 +314,25 @@ indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candida
 indicators/gene/kinetic_analyze/run.py
 ```
 
+### Case 3 kinetic-parameter evaluation
+
+Case 3 直接读取既有方法结果，不再复制数据准备或方法训练步骤。入口为：
+
+~~~text
+benchmark_repository/evaluation/kinetic/data/case3.json
+benchmark_repository/evaluation/kinetic/metrics.py
+~~~
+
+case3.json 只维护参考表、结果 H5AD 路径、参数 layer 映射和必要的
+方法特异提取规则；
+metrics.py 负责 RPE1 与 organoid 的轨迹处理、逐基因 Spearman/cosine、
+component means 和 Figure 6 的 equal-system summary。cellDancer、
+DeepVelo 与 DeepKINET 直接引用现有 H5AD；Dynamo 和 TSvelo 直接引用
+各自专用 H5AD：Dynamo 从带标记结果的 sparse cell_wise_alpha 提取，
+TSvelo 从两个 lineage H5AD 的 alpha 合并提取。二者的历史 CSV 仅用于
+数值回归，不是运行输入。plots.py 只读取 metrics 输出并生成
+Figure 5/6 的定量 review panels 与绘图表，不重复读取或处理上游数据。
+
 ### Figure 6：方法属性与跨层级表现汇总
 
 当前直接数值来源：

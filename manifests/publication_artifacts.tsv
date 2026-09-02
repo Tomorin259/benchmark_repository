@@ -36,9 +36,9 @@ final_genes_dentategyrus_lamanno	gene	final_gene_scores	velocity:plot/final_gene
 final_genes_retina	gene	final_gene_scores	velocity:plot/final_genes/retina/score.txt	Figure 4 and Figure S2	git	confirmed_collection_manual_assembly	Current compact score table.
 kinetic_reference_rpe1	kinetic	reference_table	velocity:indicators/gene/scEU_rpe1_analyze/aax3072_table-s1.csv	kinetic reference	decision_needed	decision_needed	Redistribution and license review required.
 kinetic_reference_organoid	kinetic	reference_table	velocity:indicators/gene/scEU_organoid_analyze/aax3072_table-s4.csv	kinetic reference	decision_needed	decision_needed	Redistribution and license review required.
-kinetic_input_rpe1	kinetic	input	velocity:indicators/gene/scEU_rpe1_analyze/rpe1_preprocessed.h5ad	multiple profiles	external_archive	mixed	-
-kinetic_input_organoid	kinetic	input	velocity:indicators/gene/scEU_organoid_analyze/data/organoid.h5ad	multiple profiles	external_archive	mixed	-
-kinetic_pipeline	kinetic	pipeline	velocity:indicators/gene/kinetic_analyze	kinetic-parameter evaluation	git	confirmed	Curate the canonical entry point and required helpers in the evaluation phase.
+kinetic_data_map	kinetic	input_map	evaluation/kinetic/data/case3.json	Case 3 references, direct result objects, and parameter layers	git	confirmed	One small map; no copied dataset-preparation pipeline.
+kinetic_metrics	kinetic	pipeline	evaluation/kinetic/metrics.py	RPE1/organoid processing, per-gene metrics, and Figure 6 summaries	git	confirmed	Consumes only the configured result objects and writes a fresh metric bundle.
+kinetic_plots	kinetic	figure_pipeline	evaluation/kinetic/plots.py	Figure 5/6 quantitative panel data and review rendering	git	confirmed	Consumes a metrics bundle only; stream panels remain method-specific.
 figure6_summary_csvs	gene	plot_input	velocity:plot/fig2_gene_metric_values/fig2_gene_metric_wps_values.csv;velocity:plot/fig2_gene_metric_values/fig2_gene_metric_summary.csv;velocity:plot/fig2_gene_metric_values/fig2_gene_metric_dataset_means.csv;velocity:plot/fig2_gene_metric_values/fig2_kinetic_component_means.csv	Figure 6	git	builder_missing	The four compact numerical inputs are current; no complete final-figure builder was found.
 ensemble_code	cell	code	velocity:transition_ensemble	commit de47402ea8c5625f765c595b279d8d53a4594cec	git	confirmed	Import reviewed tracked source without nested Git history.
 ensemble_inputs_mapping	cell	input_mapping	velocity:transition_ensemble/benchmark.py	four-method input and reference mapping	git	confirmed	-
