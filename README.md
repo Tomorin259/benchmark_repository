@@ -5,6 +5,15 @@ understand and reproduce the RNA velocity benchmark. Large datasets, method
 result H5AD files, checkpoints, environments, logs, and exploratory outputs
 remain in external storage.
 
+## Current status
+
+As of 2026-09-04, the paper-aligned repository skeleton is complete. The only
+evaluation module currently implemented as runnable code is
+`evaluation/parameter_recovery/`. The cell, gene, summary, method-reproduction,
+environment, and ensemble areas currently contain only the audited material or
+structural placeholders needed for their later curation; their presence must
+not be read as implementation completion.
+
 ## Repository path
 
 ```text
@@ -56,10 +65,10 @@ only that metrics bundle.
 
 Only methods that genuinely require raw counts select the corresponding
 `_counts.h5ad` artifact and perform its method-specific checks. DeepKINET and
-cell2fate document the four special datasets, cell/gene alignment, finite and
-non-negative count checks, integer-valued checks, and lossless dtype conversion
-inside their own method scripts. Methods that do not require counts do not use
-this path.
+cell2fate will document the four special datasets, cell/gene alignment, finite
+and non-negative count checks, integer-valued checks, and lossless dtype
+conversion inside their own method scripts when those scripts are curated.
+Methods that do not require counts do not use this path.
 
 ## Private audit material
 

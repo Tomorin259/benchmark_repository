@@ -489,13 +489,21 @@ frozen public design.
 
 ## Implementation order
 
-1. Freeze and retain the current private audit baseline.
-2. Curate `evaluation/parameter_recovery/` as the first complete public module.
-3. Use that module as the direct template for cell- and gene-level evaluation.
-4. Curate method scripts and reviewed environments one method at a time.
-5. Freeze canonical processed inputs and result H5AD files externally.
-6. Commit compact module-owned results and selected reproducible panels.
-7. Create the clean-history public repository and complete citation/license
-   metadata.
+Status recorded on 2026-09-04:
+
+| Order | Work package | Status |
+| ---: | --- | --- |
+| 0 | Establish the paper-aligned repository skeleton | Complete |
+| 1 | Freeze and retain the private audit baseline | Complete |
+| 2 | Curate `evaluation/parameter_recovery/` as the first runnable evaluation module | Implemented; final result promotion and release packaging remain |
+| 3 | Use the same module ownership pattern for cell- and gene-level evaluation | Not started; existing audit metadata and compact tables are source material only |
+| 4 | Curate direct method scripts and reviewed environments one method at a time | Not started |
+| 5 | Freeze canonical processed inputs and result H5AD files externally | Not started; `artifacts.tsv` is an incomplete placeholder index |
+| 6 | Commit compact module-owned results and selected reproducible panels | Not started outside the existing audited cell metric table |
+| 7 | Create the clean-history public release and complete citation/license metadata | Not started; the current GitHub repository remains private curation space |
+
+The next implementation targets are cell- and gene-level evaluation. Their
+relative order can follow the paper-curation workflow. Status changes update
+this table; they do not reopen the frozen top-level architecture.
 
 No later implementation phase reopens the repository's top-level design.
