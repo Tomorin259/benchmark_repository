@@ -1,6 +1,6 @@
 # Cell-level evaluation contract
 
-`dataset_config.json` is the Phase 3A machine-readable extraction of the
+`config.json` is the Phase 3A machine-readable extraction of the
 current effective `indicators/cell/all_metrics_main.py` source.  The source
 symbols used for the extraction are recorded in the JSON metadata; this file
 does not copy or depend on a private absolute path.
@@ -28,7 +28,7 @@ The `datasets` object has exactly 14 keys, preserving the dataset names used by
 | `rpe1_gen` | `rpe1_gen` | `umap` | `clusters` | 20 |
 
 The `dataset_id` values must resolve to the cell-level rows in
-`manifests/datasets.tsv`.  `rpe1_gen` is not present in the source
+`data/datasets.tsv`.  `rpe1_gen` is not present in the source
 `BATC_N_BINS_BY_DATASET` map, so its effective value is the extracted
 `DEFAULT_BATC_N_BINS` value of 20.  Every `cluster_edges` entry is a two-item
 array; string and integer endpoints are preserved exactly, including the
@@ -82,7 +82,8 @@ as a second default in this contract.
 
 ## Frozen result-input manifest
 
-`manifests/cell_result_inputs.tsv` uses this exact header and contains one row
+The private audit file `manifests/cell_result_inputs.tsv` uses this exact header
+and contains one row
 for every `(config_id, dataset_id)` pair (20 × 14 = 280 rows):
 
 ```text
@@ -90,24 +91,23 @@ config_id\toperational_id\tdataset_id\tevaluation_dataset\tsource_result_path\tr
 ```
 
 `config_id` and `operational_id` are foreign keys to
-`manifests/method_configurations.tsv`; `dataset_id` is a foreign key to
-`manifests/datasets.tsv`. `evaluation_dataset` and `operational_id` form the
+`methods/configurations.tsv`; `dataset_id` is a foreign key to
+`data/datasets.tsv`. `evaluation_dataset` and `operational_id` form the
 key used by the copied metric table. The three layer/embedding fields and the
 effective evaluation embedding were inspected against the original H5AD files
 during the Phase 3A audit.
 
 `source_result_path` preserves the path stored by the source render manifest.
-`result_path` is the current canonical `velocity:` locator. A direct row keeps
-the same path; the 12 moved TIvelo rows use
-`path_resolution=owner_confirmed_move` and must match
-`manifests/path_aliases.tsv`. Absolute or private paths are not part of the
-contract. `file_size_bytes` is a positive decimal integer and `sha256` is the
-digest of the canonical file bytes. Alignment fields are evidence copied from
-the render manifest, not newly calculated trajectory metrics.
+`result_path` is a private audit locator. The public release replaces it with
+an artifact ID from the root `artifacts.tsv`; absolute or server-specific paths
+are not part of the public contract. `file_size_bytes` is a positive decimal
+integer and `sha256` is the digest of the canonical file bytes. Alignment fields
+are evidence copied from the render manifest, not newly calculated trajectory
+metrics.
 
 ## Metric table
 
-`results_summary/cell_metrics/all_metrics.csv` uses the source
+`results/all_metrics.csv` uses the source
 header:
 
 ```text

@@ -116,7 +116,7 @@
     "cellDancer": {
       "rpe1": {
         "reader": "layers",
-        "result": "method-results/kinetics/celldancer/rpe1.h5ad",
+        "result": "method-results/parameter_recovery/celldancer/rpe1.h5ad",
         "layers": {
           "alpha": "celldancer_alpha",
           "gamma": "celldancer_gamma"
@@ -124,7 +124,7 @@
       },
       "organoid": {
         "reader": "layers",
-        "result": "method-results/kinetics/celldancer/organoid.h5ad",
+        "result": "method-results/parameter_recovery/celldancer/organoid.h5ad",
         "layers": {
           "alpha": "celldancer_alpha",
           "gamma": "celldancer_gamma"
@@ -134,7 +134,7 @@
     "DeepVelo": {
       "rpe1": {
         "reader": "layers",
-        "result": "method-results/kinetics/deepvelo/rpe1_unspliced.h5ad",
+        "result": "method-results/parameter_recovery/deepvelo/rpe1_unspliced.h5ad",
         "required_layers": ["velocity_unspliced"],
         "clip_negative": true,
         "layers": {
@@ -144,7 +144,7 @@
       },
       "organoid": {
         "reader": "layers",
-        "result": "method-results/kinetics/deepvelo/organoid_unspliced.h5ad",
+        "result": "method-results/parameter_recovery/deepvelo/organoid_unspliced.h5ad",
         "required_layers": ["velocity_unspliced"],
         "layers": {
           "alpha": "cell_specific_alpha",
@@ -155,14 +155,14 @@
     "DeepKINET": {
       "rpe1": {
         "reader": "layers",
-        "result": "method-results/kinetics/deepkinet/rpe1.h5ad",
+        "result": "method-results/parameter_recovery/deepkinet/rpe1.h5ad",
         "layers": {
           "gamma": "degradation_rate"
         }
       },
       "organoid": {
         "reader": "layers",
-        "result": "method-results/kinetics/deepkinet/organoid.h5ad",
+        "result": "method-results/parameter_recovery/deepkinet/organoid.h5ad",
         "layers": {
           "gamma": "degradation_rate"
         }
@@ -171,7 +171,7 @@
     "Dynamo": {
       "rpe1": {
         "reader": "dynamo_csr",
-        "result": "method-results/kinetics/dynamo/rpe1_labelled.h5ad",
+        "result": "method-results/parameter_recovery/dynamo/rpe1_labelled.h5ad",
         "layer": "cell_wise_alpha",
         "position_key": "Cell_cycle_possition"
       }
@@ -180,8 +180,8 @@
       "rpe1": {
         "reader": "tsvelo_lineages",
         "results": [
-          "method-results/kinetics/tsvelo/rpe1_lineage0.h5ad",
-          "method-results/kinetics/tsvelo/rpe1_lineage1.h5ad"
+          "method-results/parameter_recovery/tsvelo/rpe1_lineage0.h5ad",
+          "method-results/parameter_recovery/tsvelo/rpe1_lineage1.h5ad"
         ],
         "layer": "alpha",
         "position_key": "Cell_cycle_possition"

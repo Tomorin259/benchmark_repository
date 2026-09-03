@@ -20,11 +20,11 @@ from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "evaluation" / "cell" / "dataset_config.json"
+CONFIG_PATH = ROOT / "evaluation" / "cell" / "config.json"
 DATASET_MANIFEST_PATH = ROOT / "manifests" / "datasets.tsv"
 METHOD_MANIFEST_PATH = ROOT / "manifests" / "method_configurations.tsv"
 INPUT_MANIFEST_PATH = ROOT / "manifests" / "cell_result_inputs.tsv"
-RESULTS_PATH = ROOT / "results_summary" / "cell_metrics" / "all_metrics.csv"
+RESULTS_PATH = ROOT / "evaluation" / "cell" / "results" / "all_metrics.csv"
 PATH_ALIASES_PATH = ROOT / "manifests" / "path_aliases.tsv"
 
 EXPECTED_ROW_COUNT = 280
@@ -251,13 +251,13 @@ def _validate_config(config: dict, dataset_manifest: list[dict[str, str]], metho
     source = config.get("source")
     _require(isinstance(source, dict), "dataset_config.json: source must be an object")
     source_path = source.get("path")
-    _require(source_path == "velocity:indicators/cell/all_metrics_main.py", "dataset_config.json: unexpected source path")
+    _require(source_path == "external:cell-level-source", "config.json: unexpected source path")
     _reject_private_path(source_path, "dataset_config.json source.path")
     _require(source.get("sha256") == EXPECTED_CONFIG_SOURCE_SHA256, "dataset_config.json: unexpected source sha256")
     _require(isinstance(source.get("symbols"), list) and source["symbols"], "dataset_config.json: source.symbols must be non-empty")
 
-    _require(config.get("dataset_manifest") == "manifests/datasets.tsv", "dataset_config.json: unexpected dataset_manifest")
-    _require(config.get("method_manifest") == "manifests/method_configurations.tsv", "dataset_config.json: unexpected method_manifest")
+    _require(config.get("dataset_manifest") == "data/datasets.tsv", "config.json: unexpected dataset_manifest")
+    _require(config.get("method_manifest") == "methods/configurations.tsv", "config.json: unexpected method_manifest")
     _require(_is_non_bool_int(config.get("batc_default_n_bins")), "dataset_config.json: batc_default_n_bins must be an integer")
     _require(config["batc_default_n_bins"] > 0, "dataset_config.json: batc_default_n_bins must be positive")
 

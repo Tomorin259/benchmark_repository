@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": {
-    "path": "velocity:indicators/cell/all_metrics_main.py",
+    "path": "external:cell-level-source",
     "sha256": "c79929214882afc5d8dcb5e219b8a8f16785eb5a7938143f6e1e5c43d1885c50",
     "symbols": [
       "DATASET_CONFIGS",
@@ -13,8 +13,8 @@
     ],
     "extraction_note": "The values in this file are an explicit contract extracted from the current effective source. It contains no private absolute paths."
   },
-  "dataset_manifest": "manifests/datasets.tsv",
-  "method_manifest": "manifests/method_configurations.tsv",
+  "dataset_manifest": "data/datasets.tsv",
+  "method_manifest": "methods/configurations.tsv",
   "batc_default_n_bins": 20,
   "datasets": {
     "bonemarrow": {

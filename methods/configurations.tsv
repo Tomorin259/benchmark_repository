@@ -1,0 +1,21 @@
+config_id	operational_id	manuscript_name	software	model_or_method	version	hardware	options	official_source	velocity_layer	embedding	release_status	notes
+C01	scvelo_deterministic	scVelo_deterministic (Velocyto model)	scVelo	Steady-state linear regression	scvelo 0.3.3	CPU	mode=deterministic	scVelo documentation	velocity	X_umap	curate	Velocyto is the model label, not a separate package.
+C02	scvelo_stochastic	scVelo_stochastic	scVelo	Stochastic model using second-order moments	scvelo 0.3.3	CPU	mode=stochastic	scVelo documentation	velocity	X_umap	curate	Shares the reviewed scVelo environment with the other scVelo modes.
+C03	scvelo_dynamic	scVelo_dynamic	scVelo	Dynamical model with EM and analytical solution	scvelo 0.3.3	CPU	recover_dynamics;mode=dynamical	scVelo documentation	velocity	X_umap	curate	Explicit kinetic parameters are available from the dynamical model.
+C04	multivelo	Multivelo_dynamic (RNA_only)	MultiVelo	Coupled chromatin-RNA ODEs	multivelo 0.1.0	CPU	rna_only=true	MultiVelo documentation	velocity	X_umap	curate	The benchmark configuration uses RNA only.
+C05	unitvelo	UniTVelo	UniTVelo	Unified-time model	unitvelo 0.2.5.2	GPU	FIT_OPTION=1	UniTVelo tutorial	velocity	X_umap	curate	-
+C06	unitvelo_mode2	UniTVelo(mode2)	UniTVelo	Independent-time model	unitvelo 0.2.5.2	GPU	FIT_OPTION=2	UniTVelo tutorial	velocity	X_umap	curate	-
+C07	dynamo	Dynamo (RNA_seq)	Dynamo	RNA velocity with SparseVFC	dynamo-release 1.4.1	CPU	u-s version	Dynamo documentation	velocity_S	X_umap_ori	curate	The metabolic-labeling positive control is a separate evaluation role.
+C08	TIvelo	TIvelo	TIvelo	Trajectory-guided velocity inference	tivelo 0.1.4	GPU	default	TIvelo tutorial	velocity	X_umap	curate	-
+C09	cell2fate	cell2fate	cell2fate	Bayesian linearized ODE in Pyro	cell2fate 0.1a0	GPU	default	cell2fate tutorial	velocity	X_umap	curate	Raw-count input rules are documented in the method script.
+C10	TFvelo	TFvelo	TFvelo	Gene regulatory network with generalized EM	version to be reviewed	CPU	default	TFvelo documentation	velocity	X_umap	curate	Upstream source and bundled assets require release review.
+C11	veloae	veloAE	veloAE	Autoencoder representation learning	veloae 0.2.0	GPU	default	veloAE documentation	new_velocity	X_umap	curate	Operational identifier is lowercase veloae.
+C12	velovi	veloVI	veloVI	Deep generative model	velovi 0.3.1	GPU	cell=mean;gene=unspliced	veloVI documentation	velocity	X_umap	curate	Gene-level evaluation uses the unspliced velocity mode.
+C13	deepkinet	DeepKINET	DeepKINET	Deep generative kinetic model	deepkinet 0.0.1	GPU	official tutorial defaults	DeepKINET documentation	DeepKINET_velocity	X_umap	curate	Raw-count input rules are documented in the method script.
+C14	tsvelo	TSvelo	TSvelo	Neural ordinary differential equation	version to be reviewed	GPU	default	TSvelo documentation	velocity	X_umap	curate	-
+C15	celldancer	cellDancer	cellDancer	Deep neural network	cellDancer 1.1.7	CPU	default	cellDancer documentation	velocity	X_umap	curate	Forebrain uses the configured PCA projection where required.
+C16	deepvelo	Deepvelo(GCN)	DeepVelo	Graph convolutional network	deepvelo 0.2.8	GPU	pred_unspliced=true	DeepVelo documentation	velocity	X_umap	curate	Distinct from the DeepVelo scVelo reconstruction configuration.
+C17	SDEvelo	SDEvelo	SDEvelo	Stochastic differential equation	sdevelo 0.2.12	GPU	default	SDEvelo documentation	velocity	X_umap	curate	Environment and dataset coverage require final review.
+C18	deepvelo2022	Deepvelo_scVelo	DeepVelo	Neural ODE and VAE reconstruction	version to be reviewed	GPU	existing_velocity_input	DeepVelo documentation	velocity_reconstructed	X_umap	curate	Distinct operational alias for the reconstruction configuration.
+C19	graphvelo_scv	Graphvelo_scVelo	GraphVelo	Tangent-space projection with kNN correction	graphvelo 0.1.11	CPU	precalculated_scvelo_input	GraphVelo documentation	velocity_gv	X_umap	curate	Input-specific configuration.
+C20	graphvelo_dynamo	Graphvelo_Dynamo	GraphVelo	Tangent-space projection with kNN correction	graphvelo 0.1.11	CPU	precalculated_dynamo_input	GraphVelo documentation	velocity_gv	X_umap	curate	Input-specific configuration.

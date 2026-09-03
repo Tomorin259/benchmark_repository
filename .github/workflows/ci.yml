@@ -1,0 +1,25 @@
+name: repository checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check JSON files
+        run: |
+          python -m json.tool evaluation/cell/config.json >/dev/null
+          python -m json.tool evaluation/parameter_recovery/config.json >/dev/null
+      - name: Compile Python entry points
+        run: |
+          python -m py_compile evaluation/parameter_recovery/metrics.py
+          python -m py_compile evaluation/parameter_recovery/plots.py
+          python -m py_compile tests/test_parameter_recovery.py
+      - name: Check whitespace
+        run: git diff --check
