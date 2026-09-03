@@ -14,7 +14,6 @@ import argparse
 import json
 import warnings
 from pathlib import Path
-from typing import Any
 
 import anndata as ad
 import h5py
@@ -26,16 +25,6 @@ from scipy.stats import spearmanr
 
 MODULE_DIR = Path(__file__).resolve().parent
 DEFAULT_CONFIG = MODULE_DIR / "config.json"
-
-
-def dense(matrix: Any) -> np.ndarray:
-    """Return a dense NumPy array for a dense or sparse AnnData layer."""
-    return matrix.toarray() if sparse.issparse(matrix) else np.asarray(matrix)
-
-
-def read_config(path: Path) -> dict:
-    with path.open(encoding="utf-8") as handle:
-        return json.load(handle)
 
 
 def source_path(artifact_root: Path, relative_path: str) -> Path:
@@ -56,14 +45,6 @@ def read_rpe1_reference(path: Path, parameter: str) -> pd.DataFrame:
     values = table.loc[:, columns]
     values.columns = range(values.shape[1])
     return values.apply(pd.to_numeric, errors="coerce")
-
-
-def read_gene_subset(path: Path) -> pd.Index:
-    """Read the fixed RPE1 alpha gene selection."""
-    values = pd.read_csv(path, index_col=0)
-    if values.index.has_duplicates:
-        raise ValueError(f"{path}: the gene subset contains duplicate names")
-    return pd.Index(values.index)
 
 
 def read_organoid_reference(path: Path, branch: str, parameter: str) -> pd.DataFrame:
@@ -151,8 +132,11 @@ def validate_standard_result(
 
 
 def layer_frame(adata: ad.AnnData, layer: str) -> pd.DataFrame:
+    values = adata.layers[layer]
+    if sparse.issparse(values):
+        values = values.toarray()
     return pd.DataFrame(
-        dense(adata.layers[layer]), index=adata.obs_names, columns=adata.var_names
+        np.asarray(values), index=adata.obs_names, columns=adata.var_names
     )
 
 
@@ -219,22 +203,15 @@ def process_organoid(raw: pd.DataFrame, settings: dict) -> pd.DataFrame:
     return smoothed.div(baseline + settings["epsilon"], axis=0)
 
 
-def decode_h5_strings(values: Any) -> pd.Index:
-    decoded = [
-        value.decode("utf-8") if isinstance(value, bytes) else str(value)
-        for value in np.asarray(values)
-    ]
-    return pd.Index(decoded)
-
-
-def read_csr_layer(
-    path: Path, layer: str, position_key: str
-) -> tuple[sparse.csr_matrix, pd.Index, pd.Series]:
-    """Read a sparse cell-wise alpha layer and its labels from HDF5."""
+def dynamo_rpe1_raw(
+    source: dict, reference: pd.DataFrame, settings: dict, artifact_root: Path
+) -> pd.DataFrame:
+    """Extract Dynamo alpha from its labelled sparse RPE1 H5AD."""
+    path = source_path(artifact_root, source["result"])
     with h5py.File(path, "r") as handle:
-        layer_group = handle["layers"][layer]
+        layer_group = handle["layers"][source["layer"]]
         if layer_group.attrs.get("encoding-type") != "csr_matrix":
-            raise ValueError(f"{path}: layers/{layer} is not stored as CSR")
+            raise ValueError(f"{path}: layers/{source['layer']} is not stored as CSR")
         shape = tuple(int(value) for value in layer_group.attrs["shape"])
         matrix = sparse.csr_matrix(
             (
@@ -244,23 +221,19 @@ def read_csr_layer(
             ),
             shape=shape,
         )
-        var_names = decode_h5_strings(handle["var"]["_index"])
+        var_names = pd.Index(
+            [
+                value.decode("utf-8") if isinstance(value, bytes) else str(value)
+                for value in np.asarray(handle["var"]["_index"])
+            ]
+        )
         positions = pd.Series(
-            np.asarray(handle["obs"][position_key]), dtype=float, name=position_key
+            np.asarray(handle["obs"][source["position_key"]]),
+            dtype=float,
+            name=source["position_key"],
         )
     if matrix.shape[1] != len(var_names):
         raise ValueError(f"{path}: layer and var index have incompatible dimensions")
-    return matrix, var_names, positions
-
-
-def dynamo_rpe1_raw(
-    source: dict, reference: pd.DataFrame, settings: dict, artifact_root: Path
-) -> pd.DataFrame:
-    """Extract Dynamo alpha from its labelled sparse RPE1 H5AD."""
-    path = source_path(artifact_root, source["result"])
-    matrix, var_names, positions = read_csr_layer(
-        path, source["layer"], source["position_key"]
-    )
     if matrix.shape[0] != settings["n_obs"]:
         raise ValueError(
             f"Dynamo RPE1: expected {settings['n_obs']} cells, found {matrix.shape[0]}"
@@ -282,17 +255,14 @@ def dynamo_rpe1_raw(
         include_lowest=True,
     )
     raw = values.groupby(bins, observed=True).mean().T
-    if source.get("drop_all_zero_genes", False):
-        raw = raw.loc[~(raw == 0).all(axis=1)]
-    return raw
+    # Dynamo's labelled alpha export contains genes with no observed alpha.
+    return raw.loc[~(raw == 0).all(axis=1)]
 
 
 def tsvelo_rpe1_raw(
     source: dict, reference: pd.DataFrame, settings: dict, artifact_root: Path
 ) -> pd.DataFrame:
     """Extract and merge alpha from the two lineage-specific TSvelo H5ADs."""
-    if source.get("duplicate_cell_aggregation", "mean") != "mean":
-        raise ValueError("TSvelo RPE1: duplicate cells must be aggregated by mean")
     alpha_frames = []
     positions = []
     for relative_path in source["results"]:
@@ -312,6 +282,7 @@ def tsvelo_rpe1_raw(
         )
 
     combined = pd.concat(alpha_frames)
+    # The two lineage files overlap in cells; the benchmark uses their mean.
     merged_alpha = combined.groupby(level=0).mean()
     merged_positions = pd.concat(positions)
     merged_positions = merged_positions[
@@ -357,42 +328,6 @@ def score_component(
     return component, metrics
 
 
-def write_matrix(
-    output_dir: Path,
-    kind: str,
-    dataset: str,
-    branch: str | None,
-    filename: str,
-    values: pd.DataFrame,
-) -> None:
-    directory = output_dir / kind / dataset
-    if branch is not None:
-        directory /= f"branch{branch}"
-    directory.mkdir(parents=True, exist_ok=True)
-    values.to_csv(directory / filename)
-
-
-def write_references(
-    output_dir: Path,
-    rpe1_references: dict[str, pd.DataFrame],
-    organoid_references: dict[str, dict[str, pd.DataFrame]],
-) -> None:
-    for parameter, values in rpe1_references.items():
-        write_matrix(
-            output_dir, "matrices", "rpe1", None, f"reference_{parameter}.csv", values
-        )
-    for branch, branch_values in organoid_references.items():
-        for parameter, values in branch_values.items():
-            write_matrix(
-                output_dir,
-                "matrices",
-                "organoid",
-                branch,
-                f"reference_{parameter}.csv",
-                values,
-            )
-
-
 def save_parameter_matrices(
     output_dir: Path | None,
     dataset: str,
@@ -404,22 +339,15 @@ def save_parameter_matrices(
 ) -> None:
     if output_dir is None:
         return
-    write_matrix(
-        output_dir,
-        "matrices",
-        dataset,
-        branch,
-        f"{method}_{parameter}_raw.csv",
-        raw,
-    )
-    write_matrix(
-        output_dir,
-        "trajectories",
-        dataset,
-        branch,
-        f"{method}_{parameter}.csv",
-        processed,
-    )
+    matrix_directory = output_dir / "matrices" / dataset
+    trajectory_directory = output_dir / "trajectories" / dataset
+    if branch is not None:
+        matrix_directory /= f"branch{branch}"
+        trajectory_directory /= f"branch{branch}"
+    matrix_directory.mkdir(parents=True, exist_ok=True)
+    trajectory_directory.mkdir(parents=True, exist_ok=True)
+    raw.to_csv(matrix_directory / f"{method}_{parameter}_raw.csv")
+    processed.to_csv(trajectory_directory / f"{method}_{parameter}.csv")
 
 
 def evaluate_rpe1(
@@ -552,9 +480,12 @@ def load_references(
 ) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, pd.DataFrame]]]:
     rpe1_reference_path = source_path(artifact_root, settings["rpe1"]["reference"])
     full_rpe1_alpha = read_rpe1_reference(rpe1_reference_path, "alpha")
-    alpha_gene_subset = read_gene_subset(
-        source_path(artifact_root, settings["rpe1"]["alpha_gene_subset"])
+    alpha_gene_path = source_path(
+        artifact_root, settings["rpe1"]["alpha_gene_subset"]
     )
+    alpha_gene_subset = pd.Index(pd.read_csv(alpha_gene_path, index_col=0).index)
+    if alpha_gene_subset.has_duplicates:
+        raise ValueError(f"{alpha_gene_path}: the gene subset contains duplicate names")
     missing_alpha_genes = alpha_gene_subset.difference(full_rpe1_alpha.index)
     if not missing_alpha_genes.empty:
         raise ValueError(
@@ -597,7 +528,8 @@ def main() -> None:
     if args.check_only == (args.output is not None):
         parser.error("use exactly one of --output or --check-only")
 
-    settings = read_config(args.config)
+    with args.config.open(encoding="utf-8") as handle:
+        settings = json.load(handle)
     methods = args.methods or list(settings["methods"])
     unknown = [method for method in methods if method not in settings["methods"]]
     if unknown:
@@ -612,7 +544,15 @@ def main() -> None:
         artifact_root, settings["datasets"]
     )
     if output is not None:
-        write_references(output, rpe1_references, organoid_references)
+        rpe1_directory = output / "matrices" / "rpe1"
+        rpe1_directory.mkdir(parents=True, exist_ok=True)
+        for parameter, values in rpe1_references.items():
+            values.to_csv(rpe1_directory / f"reference_{parameter}.csv")
+        for branch, branch_values in organoid_references.items():
+            directory = output / "matrices" / "organoid" / f"branch{branch}"
+            directory.mkdir(parents=True, exist_ok=True)
+            for parameter, values in branch_values.items():
+                values.to_csv(directory / f"reference_{parameter}.csv")
 
     components = []
     gene_metrics = []
