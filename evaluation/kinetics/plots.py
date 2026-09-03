@@ -367,7 +367,7 @@ def draw_boxplot(
         axis.set_visible(False)
         return
     box = axis.boxplot(
-        values, tick_labels=methods, patch_artist=True, showfliers=False
+        values, labels=methods, patch_artist=True, showfliers=False
     )
     for patch, method in zip(box["boxes"], methods):
         patch.set_facecolor(COLORS.get(method, "0.7"))
