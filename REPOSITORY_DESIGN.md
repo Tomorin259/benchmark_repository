@@ -32,6 +32,136 @@ large data and H5AD files       live outside GitHub
 Complexity is allowed when it comes from the scientific experiment. Complexity
 introduced only by repository curation is not part of the public design.
 
+## Development reading rule
+
+Before modifying a method, preprocessing, evaluation, simulation, or ensemble
+script, the developer must read this document and the README for the module being
+changed. The existing entry point must then be read from input to output before
+new helpers, files, configuration options, or abstractions are proposed.
+
+The private curation repository keeps this requirement in its root `AGENTS.md` so
+that automated development sessions encounter it before editing. The durable rule
+is this document; `AGENTS.md` is only its short development entry point.
+
+## Scientific-script coding standard
+
+The repository contains research reproduction and data-analysis scripts. They are
+not production services, security-critical model-serving code, or a reusable
+benchmark framework. Code should therefore resemble a carefully reviewed analysis:
+the data source, scientific transformations, metric calculation, and written
+outputs should be visible in execution order.
+
+### Start direct
+
+Begin with the shortest sequential implementation that exposes the scientific
+workflow. A dataset-level or figure-level function may own a complete analysis when
+that makes the experiment easier to read. Do not begin by designing classes,
+interfaces, runners, adapters, registries, factories, dependency injection, or a
+universal execution framework.
+
+Plain Python functions, dictionaries, pandas objects, NumPy arrays, and AnnData
+objects are the default vocabulary. A class is justified only when the analysis has
+real persistent state or a resource lifecycle that is clearer as an object; grouping
+stateless helper functions is not sufficient justification.
+
+### A function must earn the split
+
+Extract a function when at least one of these is true:
+
+1. it names a scientific operation that should be understood or tested on its own;
+2. it is used in more than one meaningful place;
+3. it translates a genuinely different external file or method-result format;
+4. it enforces an invariant that would otherwise be duplicated or easy to miss;
+5. keeping it inline would make the owning experimental step materially harder to
+   read.
+
+A function used once is not automatically wrong, but a single-use function that
+only renames one expression, forwards arguments, reads one JSON/CSV file, converts
+one array, or constructs one path should normally be inlined. Do not split one
+linear analysis into a chain of mechanical helpers that must all be opened to learn
+what happens.
+
+Method- or dataset-specific duplication is acceptable when the two workflows have
+different scientific meanings. Do not merge RPE1 and organoid processing, or two
+method-specific storage formats, merely because a few statements look similar.
+
+### Keep configuration scientific
+
+`config.json` contains paths, dataset keys, method layer mappings, gene sets, and
+parameters that define or select the experiment. It must not become an inventory of
+private implementation details.
+
+Do not add a configurable strategy, mode, aggregation rule, reader type, or boolean
+for hypothetical flexibility. If the code supports exactly one behavior and that
+behavior is an established method-specific rule, implement it directly and explain
+it in the module README. Keep a config field only when a current dataset or method
+actually varies, or when changing the value is a legitimate experiment choice.
+
+### Preserve visible scientific flow
+
+For method scripts, the upstream tutorial sequence should remain recognizable in
+the main execution path. For evaluation scripts, a reader should be able to follow:
+
+```text
+read inputs -> extract quantities -> dataset-specific processing
+-> align references -> calculate metrics -> summarize -> write outputs
+```
+
+Names should describe scientific meaning, such as `process_rpe1`,
+`select_organoid_branch`, or `calculate_metrics`. Avoid generic names such as
+`Manager`, `Handler`, `Processor`, `Service`, or `run_step` when they conceal which
+analysis is being performed.
+
+Input validation should protect reproducibility claims: required keys, shapes,
+identifiers, finite values, count properties, and assumptions used by the metric.
+Do not add enterprise-style validation layers, custom exception hierarchies, or
+defensive branches for states that the script cannot receive through its documented
+interface.
+
+### Keep I/O and effects obvious
+
+File reads and writes should remain close to the experimental step that owns them,
+or behind one small helper when a repeated naming convention or path invariant is
+being enforced. Avoid multi-stage writer/helper chains and output registries.
+
+Outputs have deterministic names documented in the module README. Public scripts
+do not create timestamps, manifests, provenance objects, run classes, or logging
+frameworks unless a publication contract explicitly requires them. A few clear
+`print` statements are sufficient for long-running scientific scripts.
+
+### Test behavior, not helper choreography
+
+Tests should protect publication-relevant behavior through the script entry point
+or through a small number of genuine scientific transformations. Do not retain or
+export a helper solely because a test imports it. Tests must not require the
+implementation to stay fragmented into the same call sequence.
+
+Full GPU workflows remain outside CI. Small synthetic arrays or AnnData files are
+preferred for extraction, alignment, normalization, and metric regression checks.
+
+### Refactoring acceptance rule
+
+Before simplifying a working script, record the observable contract: output files,
+matrix shapes and labels, selected cells and genes, transformation parameters, and
+reported metrics. After the change, compare those outputs rather than private
+function calls.
+
+The default refactor must leave the final module the same size or smaller in total
+files, functions, and lines. An increase is accepted only for a present scientific
+capability, a real external-format boundary, or a regression check that protects a
+paper claim. “Cleaner architecture”, future flexibility, and consistency with a
+software framework are not sufficient reasons.
+
+During review, ask:
+
+- Can the scientific sequence be understood without jumping through mechanical
+  helpers?
+- Which single-use wrappers can be inlined?
+- Does every config option have a current second value or a real user choice?
+- Does every abstraction remove more reader burden than it adds?
+- Can obsolete compatibility, audit, or output-writing scaffolding be deleted?
+- Did the change preserve the numerical and file-output contract?
+
 ## Four reader-facing layers
 
 ```text
