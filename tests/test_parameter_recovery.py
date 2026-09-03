@@ -16,7 +16,7 @@ from scipy import sparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from evaluation.kinetics.metrics import (
+from evaluation.parameter_recovery.metrics import (
     calculate_metrics,
     dynamo_rpe1_raw,
     organoid_raw_from_layer,

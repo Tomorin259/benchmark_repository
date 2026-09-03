@@ -56,7 +56,7 @@ method-specific rules, not configurable alternatives.
 Validate all configured inputs:
 
 ~~~bash
-python evaluation/kinetics/metrics.py \
+python evaluation/parameter_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --check-only
 ~~~
@@ -64,7 +64,7 @@ python evaluation/kinetics/metrics.py \
 Write a fresh metrics output directory:
 
 ~~~bash
-python evaluation/kinetics/metrics.py \
+python evaluation/parameter_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --output /path/to/metrics
 ~~~
@@ -72,7 +72,7 @@ python evaluation/kinetics/metrics.py \
 Render figures and plot-specific tables:
 
 ~~~bash
-python evaluation/kinetics/plots.py \
+python evaluation/parameter_recovery/plots.py \
   --metrics /path/to/metrics \
   --output /path/to/figures
 ~~~
