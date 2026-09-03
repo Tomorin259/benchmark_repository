@@ -42,11 +42,6 @@ def ensure_output(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
-def read_json(path: Path) -> dict:
-    with path.open(encoding="utf-8") as handle:
-        return json.load(handle)
-
-
 def read_inputs(metrics_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     gene_path = metrics_dir / "gene_metrics.csv"
     summary_path = metrics_dir / "method_summary.csv"
@@ -80,53 +75,6 @@ def ordered_methods(values) -> list[str]:
     )
 
 
-def matrix_path(
-    metrics_dir: Path,
-    kind: str,
-    dataset: str,
-    branch: str | None,
-    method: str | None,
-    parameter: str,
-) -> Path:
-    directory = metrics_dir / kind / dataset
-    if branch is not None:
-        directory /= f"branch{branch}"
-    filename = (
-        f"reference_{parameter}.csv"
-        if method is None
-        else f"{method}_{parameter}.csv"
-    )
-    return directory / filename
-
-
-def processed_matrix_paths(
-    metrics_dir: Path,
-    gene_metrics: pd.DataFrame,
-    dataset: str,
-    branch: str | None,
-    parameter: str,
-) -> dict[str, Path]:
-    subset = gene_metrics[
-        gene_metrics["Dataset"].eq(dataset)
-        & gene_metrics["Parameter"].eq(parameter)
-    ]
-    if branch is None:
-        subset = subset[subset["Branch"].isna()]
-    else:
-        subset = subset[
-            pd.to_numeric(subset["Branch"], errors="coerce").eq(int(branch))
-        ]
-
-    paths = {}
-    for method in ordered_methods(subset["Method"]):
-        path = matrix_path(
-            metrics_dir, "trajectories", dataset, branch, method, parameter
-        )
-        if path.is_file():
-            paths[method] = path
-    return paths
-
-
 def zscore(values) -> np.ndarray:
     series = pd.Series(values, dtype=float)
     std = series.std()
@@ -144,14 +92,20 @@ def plot_rpe1_trajectories(
 ) -> pd.DataFrame:
     """Plot configured RPE1 genes with display-only per-curve z-scores."""
     truth = read_matrix(
-        matrix_path(metrics_dir, "matrices", "rpe1", None, None, parameter)
+        metrics_dir / "matrices" / "rpe1" / f"reference_{parameter}.csv"
     )
-    method_frames = {
-        method: read_matrix(path)
-        for method, path in processed_matrix_paths(
-            metrics_dir, gene_metrics, "rpe1", None, parameter
-        ).items()
-    }
+    methods = ordered_methods(
+        gene_metrics.loc[
+            gene_metrics["Dataset"].eq("rpe1")
+            & gene_metrics["Parameter"].eq(parameter),
+            "Method",
+        ]
+    )
+    method_frames = {}
+    for method in methods:
+        path = metrics_dir / "trajectories" / "rpe1" / f"{method}_{parameter}.csv"
+        if path.is_file():
+            method_frames[method] = read_matrix(path)
     methods = ordered_methods(method_frames)
     genes = [gene for gene in figure_genes if gene in truth.index]
     if not genes:
@@ -359,14 +313,15 @@ def plot_kinetic_classes(
     """Compare reference and method kinetic classes for one method."""
     truth = {
         parameter: read_matrix(
-            matrix_path(metrics_dir, "matrices", "rpe1", None, None, parameter)
+            metrics_dir / "matrices" / "rpe1" / f"reference_{parameter}.csv"
         )
         for parameter in ("alpha", "gamma")
     }
     paths = {
-        parameter: matrix_path(
-            metrics_dir, "trajectories", "rpe1", None, method, parameter
-        )
+        parameter: metrics_dir
+        / "trajectories"
+        / "rpe1"
+        / f"{method}_{parameter}.csv"
         for parameter in ("alpha", "gamma")
     }
     if any(not path.is_file() for path in paths.values()):
@@ -506,7 +461,8 @@ def main() -> None:
     metrics_dir = args.metrics.resolve()
     output = args.output.resolve()
     ensure_output(output)
-    config = read_json(args.config)
+    with args.config.open(encoding="utf-8") as handle:
+        config = json.load(handle)
     gene_metrics, summary = read_inputs(metrics_dir)
     plot_data = output / "plot_data"
     plot_data.mkdir()

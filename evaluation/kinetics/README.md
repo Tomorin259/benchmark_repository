@@ -27,8 +27,8 @@ repository.
 | cellDancer | RPE1, organoid | celldancer_alpha, celldancer_gamma | Direct layers |
 | DeepVelo | RPE1, organoid | cell_specific_alpha, cell_specific_gamma | Uses the unspliced-result family and checks velocity_unspliced |
 | DeepKINET | RPE1, organoid | degradation_rate as gamma | Direct layer |
-| Dynamo | RPE1 | cell_wise_alpha | Read from sparse CSR storage and bin by cycle position |
-| TSvelo | RPE1 | alpha | Read from two lineage H5AD files, average duplicate cells |
+| Dynamo | RPE1 | cell_wise_alpha | Read from sparse CSR storage, bin by cycle position, and remove all-zero genes |
+| TSvelo | RPE1 | alpha | Read from two lineage H5AD files and average overlapping cells |
 
 ## Processing and scoring
 
@@ -47,6 +47,9 @@ correlation, cosine similarity, and the number of valid samples. Component
 means are aggregated to system means and then to equal-system method means.
 The display-only z-score used by the RPE1 trajectory plots is not used for
 benchmark scores.
+
+The Dynamo all-zero-gene removal and TSvelo overlapping-cell mean are fixed
+method-specific rules, not configurable alternatives.
 
 ## Run
 

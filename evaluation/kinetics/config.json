@@ -173,8 +173,7 @@
         "reader": "dynamo_csr",
         "result": "method-results/kinetics/dynamo/rpe1_labelled.h5ad",
         "layer": "cell_wise_alpha",
-        "position_key": "Cell_cycle_possition",
-        "drop_all_zero_genes": true
+        "position_key": "Cell_cycle_possition"
       }
     },
     "TSvelo": {
@@ -185,8 +184,7 @@
           "method-results/kinetics/tsvelo/rpe1_lineage1.h5ad"
         ],
         "layer": "alpha",
-        "position_key": "Cell_cycle_possition",
-        "duplicate_cell_aggregation": "mean"
+        "position_key": "Cell_cycle_possition"
       }
     }
   }
