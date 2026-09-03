@@ -2,6 +2,14 @@
 
 This repository is the curated release workspace for the RNA velocity benchmark. It is intentionally separate from the working project tree, which contains large datasets, method installations, checkpoints, exploratory analyses, and historical outputs.
 
+## Frozen publication design
+
+The reader-facing repository architecture is now fixed in
+[`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md). This private repository remains
+the audit baseline used to curate that clean public release; its phase records
+and historical path evidence are not themselves part of the future public
+interface.
+
 ## Current status
 
 Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. Phase 3B now curates the Case 3 kinetic-parameter evaluation contract, including the two scEU-seq systems, source-generation states, a safe evaluator, and the frozen Figure 6 component baseline. The repository is still not a one-command runnable release: clean public method environments and runners remain later gates.
