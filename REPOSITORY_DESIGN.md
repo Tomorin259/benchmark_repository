@@ -1,10 +1,10 @@
-# Frozen publication-repository design
+# Final publication-repository design
 
-**Status:** frozen baseline, 2026-09-03
+**Status:** final and frozen, 2026-09-03
 
 **Scope:** final public repository for the RNA velocity benchmark
 
-**Internal baseline:** private audit repository at commit `5284bdd`
+**Internal baseline:** private audit repository at commit `8cff281`
 
 This document fixes the repository architecture for the remainder of the
 publication-code curation. The top-level design is no longer an open question.
@@ -22,11 +22,10 @@ framework.
 The governing contract is:
 
 ```text
-methods/                         produce method-result H5AD files
-evaluation/ and ensemble/       consume those result files
-results/                         contains compact canonical paper results
-figures/                         contains generated publication artifacts only
-large data and H5AD files       live outside GitHub
+methods/                         reproduce method-native result H5AD files
+evaluation/ and ensemble/       own each experiment's analysis, compact results, and panels
+artifacts.tsv                    locates and verifies large external inputs and result H5AD files
+data/ and docs/                  contain cross-cutting dataset metadata and documentation
 ```
 
 Complexity is allowed when it comes from the scientific experiment. Complexity
@@ -34,7 +33,7 @@ introduced only by repository curation is not part of the public design.
 
 ## Development reading rule
 
-Before modifying a method, preprocessing, evaluation, simulation, or ensemble
+Before modifying a method, data-preparation, evaluation, simulation, or ensemble
 script, the developer must read this document and the README for the module being
 changed. The existing entry point must then be read from input to output before
 new helpers, files, configuration options, or abstractions are proposed.
@@ -162,28 +161,27 @@ During review, ask:
 - Can obsolete compatibility, audit, or output-writing scaffolding be deleted?
 - Did the change preserve the numerical and file-output contract?
 
-## Four reader-facing layers
+## Paper-aligned reader path
 
 ```text
 1. Method reproduction
    methods/
    envs/
-   preprocessing/
 
 2. Benchmark evaluation
    evaluation/cell/
    evaluation/gene/
-   evaluation/kinetics/
-   simulation/
+   evaluation/gene/simulation/
+   evaluation/parameter_recovery/
+   evaluation/summary/
 
 3. Added utility
    ensemble/
 
-4. Publication artifacts
-   results/
-   figures/
+4. Cross-cutting records
    data/
    docs/
+   artifacts.tsv
 ```
 
 A reader should be able to answer four questions immediately:
@@ -191,7 +189,10 @@ A reader should be able to answer four questions immediately:
 - How were method results produced? `methods/`
 - How were those results evaluated? `evaluation/`
 - What is the optional post-hoc ensemble? `ensemble/`
-- Where are the reported numerical results? `results/`
+- Where are the reported values and panels? Beside the experiment that owns
+  them, under its `results/` and `figures/` subdirectories.
+- Where are large inputs and method-result H5AD files? In external storage,
+  indexed by `artifacts.tsv`.
 
 ## Final public layout
 
@@ -201,15 +202,11 @@ rna-velocity-benchmark/
 ├── LICENSE
 ├── CITATION.cff
 ├── .gitignore
+├── artifacts.tsv
 │
 ├── data/
 │   ├── README.md
 │   └── datasets.tsv
-│
-├── preprocessing/
-│   ├── README.md
-│   ├── prepare_counts_inputs.py
-│   └── <only preprocessing scripts actually used by the paper>
 │
 ├── methods/
 │   ├── README.md
@@ -237,43 +234,49 @@ rna-velocity-benchmark/
 │   └── <one reviewed environment per dependency-compatible method group>
 │
 ├── evaluation/
+│   ├── README.md
 │   ├── cell/
 │   │   ├── README.md
 │   │   ├── config.json
 │   │   ├── metrics.py
-│   │   └── plots.py
+│   │   ├── plots.py
+│   │   ├── results/
+│   │   └── figures/
 │   ├── gene/
 │   │   ├── README.md
 │   │   ├── config.json
 │   │   ├── metrics.py
-│   │   └── plots.py
-│   └── kinetics/
+│   │   ├── plots.py
+│   │   ├── simulation/
+│   │   │   ├── README.md
+│   │   │   ├── config.json
+│   │   │   └── generate.py
+│   │   ├── results/
+│   │   │   ├── simulation/
+│   │   │   └── real/
+│   │   └── figures/
+│   ├── parameter_recovery/
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── metrics.py
+│   │   ├── plots.py
+│   │   ├── results/
+│   │   └── figures/
+│   └── summary/
 │       ├── README.md
-│       ├── config.json
-│       ├── metrics.py
-│       └── plots.py
-│
-├── simulation/
-│   ├── README.md
-│   ├── config.json
-│   └── generate.py
+│       ├── build.py
+│       ├── results/
+│       └── figures/
 │
 ├── ensemble/
 │   ├── README.md
 │   ├── config.json
-│   └── ensemble.py
-│
-├── results/
-│   ├── README.md
-│   ├── cell/
-│   ├── gene/
-│   ├── kinetics/
-│   └── ensemble/
-│
-├── figures/
-│   ├── README.md
-│   ├── main/
-│   └── supplementary/
+│   ├── geometric_median.py
+│   ├── ensemble.py
+│   ├── benchmark.py
+│   ├── plots.py
+│   ├── results/
+│   └── figures/
 │
 ├── docs/
 │   ├── benchmark_design.md
@@ -283,7 +286,9 @@ rna-velocity-benchmark/
 │
 ├── tests/
 │   ├── test_metadata.py
-│   └── test_kinetics_evaluation.py
+│   ├── test_cell_evaluation.py
+│   ├── test_gene_evaluation.py
+│   └── test_parameter_recovery.py
 │
 └── .github/
     └── workflows/
@@ -308,12 +313,18 @@ Each method script must:
 4. validate the result keys needed by downstream evaluation;
 5. write a method-native H5AD result.
 
+A method that requires raw counts must additionally make that requirement
+visible in its own script and README. For DeepKINET and cell2fate this includes
+selecting the count-bearing input, documenting any dataset-specific mapping,
+checking count invariants, and preventing accidental repeated preprocessing.
+Methods that do not require raw counts do not inherit this machinery.
+
 The public repository does not contain `BaseRunner`, plugin, registry,
 provider, workflow, or universal-runner layers. It also does not vendor full
 upstream repositories. A helper or additional method file is allowed only
 when it owns a real upstream or scientific distinction.
 
-## Input and preprocessing contract
+## Data and method-input contract
 
 `data/README.md` explains access. `data/datasets.tsv` records the dataset ID,
 paper label, role, accession or stable source, canonical processed input, and
@@ -327,21 +338,26 @@ archive is limited to:
 2. canonical method-result H5AD files;
 3. reference or intermediate data without a stable substitute.
 
+The root `artifacts.tsv` is the portable index for those external files. It
+records a stable artifact ID, dataset or method, role, external URI, checksum,
+and the H5AD keys required by the consuming script. It must not contain a
+server-specific working path.
+
 It is not intended to become a complete data lake. Raw server trees, Conda
 installations, logs, exploratory outputs, obsolete result generations, and
 checkpoints that are not required for a publication claim remain remote-only.
 
-For count-requiring methods, `prepare_counts_inputs.py` owns the shared input
-contract. In particular, `capo_pre`, `mousebrain`, `scnt_neuron`, and
-`rpe1_gen` retain the benchmark cell/gene/metadata contract while their
-`spliced` and `unspliced` layers are aligned from native integer counts. These
-fixed objects are not passed through a second
-`scv.pp.filter_and_normalize()` call. Inputs beginning from full raw matrices
-receive the declared HVG preprocessing at most once.
+There is no shared `preprocessing/` package and no generic
+`prepare_counts_inputs.py`. Data preparation that belongs to an upstream
+method remains in that method's script, where its order relative to the
+official tutorial is visible.
 
-Before an integer dtype conversion, the script reports and checks finite,
-non-negative, integer-valued counts. The conversion must preserve every
-value. Count inputs use the `_counts.h5ad` suffix.
+Each method that requires raw counts owns its count-bearing input selection,
+dataset-specific alignment, finite/non-negative/integer checks, lossless dtype
+conversion, and protection against repeated preprocessing. The affected
+datasets and key mappings are documented beside that method rather than imposed
+on methods that do not consume counts. Count-bearing inputs use the
+`_counts.h5ad` suffix and remain external artifacts indexed by `artifacts.tsv`.
 
 ## Result-H5AD boundary
 
@@ -352,16 +368,18 @@ through a small explicit mapping in `config.json`.
 
 At minimum, a canonical result preserves cell and gene identifiers and stores
 the method-specific quantities consumed by the corresponding evaluation.
-Large canonical result files are distributed externally; compact numerical
-tables used in the paper are committed under `results/`.
+Large canonical result files are distributed externally and indexed in the
+root `artifacts.tsv`, including their URI, checksum, and required keys. Compact
+numerical tables are committed under the `results/` directory of the
+evaluation or ensemble module that owns them.
 
-## Kinetic-parameter recovery module
+## Parameter-recovery module
 
 The public repository does not use the internal name `Case 3`. Its final name
 and layout are fixed as:
 
 ```text
-evaluation/kinetics/
+evaluation/parameter_recovery/
 ├── README.md
 ├── config.json
 ├── metrics.py
@@ -399,22 +417,26 @@ paths. `validate_historical_extraction.py` stays in the private audit history
 and is not a public runtime entry point. Its enduring claims are covered by a
 small synthetic regression test.
 
-`plots.py` consumes metric outputs and writes plot-ready CSV files and
-descriptively named panels such as `rpe1_trajectories.png` or
-`organoid_branch1_boxplot.png`. It does not write another manifest and does not
-claim to assemble an exact manuscript Figure PDF unless it actually does so.
+`plots.py` consumes metric outputs and writes plot-ready CSV files to the
+module's `results/` directory and descriptively named panels such as
+`rpe1_trajectories.png` or `organoid_branch1_boxplot.png` to its `figures/`
+directory. It does not write another manifest and does not claim to assemble an
+exact manuscript Figure PDF unless it actually does so.
 
-## Results and figures
+## Module-owned results and figures
 
-`results/` contains only compact, canonical, machine-readable values reported
-or directly plotted in the paper. Full method H5ADs and large intermediate
-matrices are external artifacts.
+There is no repository-wide `results/` or `figures/` directory. Each evaluation
+or ensemble module owns the compact, canonical, machine-readable values and
+generated panels for its scientific question. This keeps extraction,
+processing, metric definitions, numerical outputs, and visualization together.
 
-`figures/` is an output directory, not a code layer. Plotting logic stays with
-the experiment that owns it in `evaluation/*/plots.py` or `ensemble.py`.
-Final main and supplementary figures may be committed when they are genuine
-outputs of the documented workflow. Manual assembly, where unavoidable, is
-stated in `docs/figure_map.md`.
+Full method H5ADs and large intermediate matrices remain external. Compact CSV
+files and selected reproducible panels may be committed. Large exploratory
+PNGs, redundant format variants, and manually assembled manuscript composites
+are not required repository contents. Cross-module manuscript assembly, such
+as Figure 5 panels and the Figure 6 summary, is recorded in
+`docs/figure_map.md`; `evaluation/summary/` owns the code and compact outputs
+for integrated benchmark summaries.
 
 ## Documentation boundary
 
@@ -433,8 +455,8 @@ documentation hierarchy is recreated.
 
 Tests protect cheap, high-value publication contracts; they are not a software
 product coverage programme. The baseline suite checks metadata consistency,
-absence of private absolute paths, and the heterogeneous kinetic extraction
-and numerical processing on synthetic data.
+absence of private absolute paths, and the heterogeneous cell-, gene-, and
+parameter-recovery extraction and numerical processing on synthetic data.
 
 CI runs only these lightweight checks. GPU training, all-method environment
 creation, and complete benchmark execution remain documented HPC workflows
@@ -468,11 +490,11 @@ frozen public design.
 ## Implementation order
 
 1. Freeze and retain the current private audit baseline.
-2. Curate `evaluation/kinetics/` as the first complete public module.
+2. Curate `evaluation/parameter_recovery/` as the first complete public module.
 3. Use that module as the direct template for cell- and gene-level evaluation.
 4. Curate method scripts and reviewed environments one method at a time.
 5. Freeze canonical processed inputs and result H5AD files externally.
-6. Commit compact results and publication figures.
+6. Commit compact module-owned results and selected reproducible panels.
 7. Create the clean-history public repository and complete citation/license
    metadata.
 
