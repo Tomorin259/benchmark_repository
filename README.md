@@ -12,7 +12,7 @@ interface.
 
 ## Current status
 
-Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. Phase 3B now curates the Case 3 kinetic-parameter evaluation contract, including the two scEU-seq systems, source-generation states, a safe evaluator, and the frozen Figure 6 component baseline. The repository is still not a one-command runnable release: clean public method environments and runners remain later gates.
+Phases 1 and 2 provide the audited scaffold for data, methods, environments, and publication artifacts. Phase 3A additionally freezes the complete 280-row cell-level result-input contract and the existing 280-row metric baseline. The kinetic-parameter recovery module now provides the complete RPE1/organoid evaluation contract and a relocatable evaluator. The repository is still not a one-command runnable release: clean public method environments and runners remain later gates.
 
 No raw data, processed AnnData objects, trained checkpoints, or bulk method-result directories are included at this stage.
 
@@ -35,7 +35,7 @@ benchmark_repository/
 ├── evaluation/
 │   ├── cell/                      # Cell-level metrics
 │   ├── gene/                      # Gene-level metrics
-│   └── kinetic/                   # Kinetic-parameter metrics
+│   └── kinetics/                  # Kinetic-parameter metrics
 ├── simulation/                    # Simulation generation and evaluation
 ├── figure_reproduction/
 │   ├── main_figures/
@@ -75,13 +75,13 @@ benchmark_repository/
 - [`provenance/cell_metric_baseline.md`](provenance/cell_metric_baseline.md) records source hashes, path-alias resolution, H5AD-key checks, and known alignment exceptions.
 - `python tests/validate_cell_contract.py --require-artifacts` validates the frozen contract using only the Python standard library; optional private-tree file and checksum verification remains explicit.
 
-## Phase 3B Case 3 metrics
+## Kinetic-parameter recovery
 
-- [evaluation/kinetic/data/case3.json](evaluation/kinetic/data/case3.json) is the small direct-result map: external references, existing method H5ADs, layers, and the method-specific Dynamo/TSvelo extraction rules.
-- [evaluation/kinetic/metrics.py](evaluation/kinetic/metrics.py) performs all RPE1/organoid processing, per-gene metrics, and Figure 6 style summaries.
-- [evaluation/kinetic/plots.py](evaluation/kinetic/plots.py) converts one metrics output bundle into Figure 5/6 quantitative review panels and plot tables without reopening H5AD files.
-- The Case 3 layer deliberately contains no data preparation or method training code. It reuses the existing result objects produced by the method and cell-level workflows.
-- Run python evaluation/kinetic/metrics.py --working-root PATH --check-only before a full metrics run.
+- [evaluation/kinetics/config.json](evaluation/kinetics/config.json) defines the external reference tables, method-result H5AD paths, layer mappings, branch rules, and fixed display gene lists.
+- [evaluation/kinetics/metrics.py](evaluation/kinetics/metrics.py) performs parameter extraction, RPE1/organoid processing, per-gene metrics, and component/system/method summaries.
+- [evaluation/kinetics/plots.py](evaluation/kinetics/plots.py) renders figures and plot-specific tables from a metrics output directory without reopening H5AD files.
+- The module deliberately contains no data preparation or method training code. It consumes the canonical result objects produced by the method workflows.
+- Run python evaluation/kinetics/metrics.py --artifact-root PATH --check-only before a full metrics run.
 
 ## Provenance policy
 
@@ -98,5 +98,5 @@ Historical folders are excluded by default, except when a current paper panel de
 
 This Phase 3A/3B snapshot is not yet a runnable release. Cell-metric code
 curation and numerical reproduction, reviewed environment creation, final
-Case 3 result selection, figure regeneration, data-access instructions, license
+kinetic result selection, figure regeneration, data-access instructions, license
 files, and archival deposition are later review gates.

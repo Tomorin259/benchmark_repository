@@ -1,0 +1,193 @@
+{
+  "datasets": {
+    "rpe1": {
+      "reference": "references/kinetics/rpe1_table_s1.csv",
+      "alpha_gene_subset": "references/kinetics/rpe1_alpha_genes.csv",
+      "obs_key": "Cell_cycle_possition",
+      "n_obs": 2793,
+      "positions": 301,
+      "smooth_window": 20,
+      "epsilon": 1e-06
+    },
+    "organoid": {
+      "reference": "references/kinetics/organoid_table_s4.csv",
+      "branch_key": "monocle_branch_id",
+      "cluster_key": "som_cluster_id",
+      "pseudotime_key": "monocle_pseudotime",
+      "n_obs": 3831,
+      "bins": 200,
+      "smooth_window": 5,
+      "baseline_bins": 50,
+      "epsilon": 1e-06,
+      "branches": {
+        "1": {
+          "clusters": ["4", "6", "8", "9", "10", "11"],
+          "start": 3.5,
+          "reverse_time": true
+        },
+        "2": {
+          "clusters": ["1", "2", "6", "7", "8", "11"],
+          "start": 6.5,
+          "reverse_time": false
+        }
+      }
+    }
+  },
+  "figures": {
+    "trajectory_genes": [
+      "KIF20B",
+      "KIF18A",
+      "KIF22",
+      "TGFB2",
+      "KITLG",
+      "POLA1",
+      "CENPE",
+      "KIF11",
+      "UBE2C",
+      "TOP2A",
+      "KIF2C",
+      "CDK1",
+      "PCNA",
+      "POLD3",
+      "LIG1",
+      "BRCA1",
+      "RMI1",
+      "MELK",
+      "UNG"
+    ],
+    "heatmap_genes": [
+      "KIF5B",
+      "KIF20B",
+      "KIF18A",
+      "KIF22",
+      "LIF",
+      "TGFB2",
+      "KITLG",
+      "POLA1",
+      "PLK1",
+      "CENPE",
+      "KIF11",
+      "UBE2C",
+      "TOP2A",
+      "KIF2C",
+      "CDK1",
+      "TTK",
+      "PCNA",
+      "MCM4",
+      "POLD3",
+      "LIG1",
+      "BRCA1",
+      "MRE11",
+      "RMI1",
+      "VRK1",
+      "MELK",
+      "PAK1",
+      "MCM6",
+      "UNG",
+      "MCM3",
+      "RFC1",
+      "MCM2",
+      "RFC4"
+    ],
+    "branch_genes": {
+      "1": [
+        "Defa24",
+        "Defa17",
+        "Spdef",
+        "Rnase4",
+        "Lyz1",
+        "Ern2",
+        "Pla2g2a",
+        "Rap1gap"
+      ],
+      "2": [
+        "Ephx2",
+        "Cyp3a25",
+        "Gstm3",
+        "Apoa1",
+        "Adh1",
+        "Ces2e",
+        "Lypd8",
+        "Muc3"
+      ]
+    }
+  },
+  "methods": {
+    "cellDancer": {
+      "rpe1": {
+        "reader": "layers",
+        "result": "method-results/kinetics/celldancer/rpe1.h5ad",
+        "layers": {
+          "alpha": "celldancer_alpha",
+          "gamma": "celldancer_gamma"
+        }
+      },
+      "organoid": {
+        "reader": "layers",
+        "result": "method-results/kinetics/celldancer/organoid.h5ad",
+        "layers": {
+          "alpha": "celldancer_alpha",
+          "gamma": "celldancer_gamma"
+        }
+      }
+    },
+    "DeepVelo": {
+      "rpe1": {
+        "reader": "layers",
+        "result": "method-results/kinetics/deepvelo/rpe1_unspliced.h5ad",
+        "required_layers": ["velocity_unspliced"],
+        "clip_negative": true,
+        "layers": {
+          "alpha": "cell_specific_alpha",
+          "gamma": "cell_specific_gamma"
+        }
+      },
+      "organoid": {
+        "reader": "layers",
+        "result": "method-results/kinetics/deepvelo/organoid_unspliced.h5ad",
+        "required_layers": ["velocity_unspliced"],
+        "layers": {
+          "alpha": "cell_specific_alpha",
+          "gamma": "cell_specific_gamma"
+        }
+      }
+    },
+    "DeepKINET": {
+      "rpe1": {
+        "reader": "layers",
+        "result": "method-results/kinetics/deepkinet/rpe1.h5ad",
+        "layers": {
+          "gamma": "degradation_rate"
+        }
+      },
+      "organoid": {
+        "reader": "layers",
+        "result": "method-results/kinetics/deepkinet/organoid.h5ad",
+        "layers": {
+          "gamma": "degradation_rate"
+        }
+      }
+    },
+    "Dynamo": {
+      "rpe1": {
+        "reader": "dynamo_csr",
+        "result": "method-results/kinetics/dynamo/rpe1_labelled.h5ad",
+        "layer": "cell_wise_alpha",
+        "position_key": "Cell_cycle_possition",
+        "drop_all_zero_genes": true
+      }
+    },
+    "TSvelo": {
+      "rpe1": {
+        "reader": "tsvelo_lineages",
+        "results": [
+          "method-results/kinetics/tsvelo/rpe1_lineage0.h5ad",
+          "method-results/kinetics/tsvelo/rpe1_lineage1.h5ad"
+        ],
+        "layer": "alpha",
+        "position_key": "Cell_cycle_possition",
+        "duplicate_cell_aggregation": "mean"
+      }
+    }
+  }
+}

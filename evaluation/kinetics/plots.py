@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Render Case 3 parameter-recovery figures from one metrics output bundle.
+"""Render kinetic-parameter recovery figures from one metrics output bundle.
 
-This script never reopens method H5AD files. It uses the extracted matrices,
-processed trajectories, and per-gene scores produced by metrics.py, keeping
-method-specific H5AD decoding out of the visualization layer.
+The plotting layer consumes only the CSV files written by metrics.py. It does
+not reopen method-result H5AD files or recompute benchmark metrics.
 """
 
 from __future__ import annotations
@@ -23,7 +22,7 @@ import pandas as pd
 
 
 MODULE_DIR = Path(__file__).resolve().parent
-DEFAULT_CONFIG = MODULE_DIR / "data" / "case3.json"
+DEFAULT_CONFIG = MODULE_DIR / "config.json"
 
 METHOD_ORDER = ["Dynamo", "DeepVelo", "cellDancer", "TSvelo", "DeepKINET"]
 COLORS = {
@@ -48,28 +47,24 @@ def read_json(path: Path) -> dict:
         return json.load(handle)
 
 
-def read_inputs(metrics_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+def read_inputs(metrics_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     gene_path = metrics_dir / "gene_metrics.csv"
     summary_path = metrics_dir / "method_summary.csv"
-    manifest_path = metrics_dir / "manifest.json"
-    required = [path for path in (gene_path, summary_path, manifest_path) if not path.is_file()]
+    required = [path for path in (gene_path, summary_path) if not path.is_file()]
     if required:
         raise FileNotFoundError(
-            "Expected gene_metrics.csv, method_summary.csv, and manifest.json in "
-            f"{metrics_dir}; rerun metrics.py first."
+            "Expected gene_metrics.csv and method_summary.csv in "
+            f"{metrics_dir}; run metrics.py first."
         )
     genes = pd.read_csv(gene_path)
     summary = pd.read_csv(summary_path)
-    manifest = read_json(manifest_path)
     required_genes = {"Method", "Dataset", "Parameter", "Spearman_Corr"}
     required_summary = {"Method", "Parameter", "Mean"}
     if missing := required_genes - set(genes.columns):
         raise ValueError(f"gene_metrics.csv is missing {sorted(missing)}")
     if missing := required_summary - set(summary.columns):
         raise ValueError(f"method_summary.csv is missing {sorted(missing)}")
-    if "parameter_matrices" not in manifest or "reference_matrices" not in manifest:
-        raise ValueError("manifest.json does not describe the matrices from metrics.py")
-    return genes, summary, manifest
+    return genes, summary
 
 
 def read_matrix(path: Path) -> pd.DataFrame:
@@ -85,27 +80,51 @@ def ordered_methods(values) -> list[str]:
     )
 
 
-def processed_matrix_paths(
-    metrics_dir: Path, manifest: dict, dataset: str, branch: str | None, parameter: str
-) -> dict[str, Path]:
-    paths = {}
-    for record in manifest["parameter_matrices"]:
-        if (
-            record["dataset"] == dataset
-            and record["branch"] == branch
-            and record["parameter"] == parameter
-        ):
-            paths[record["method"]] = metrics_dir / record["processed"]
-    return paths
-
-
-def reference_path(
-    metrics_dir: Path, manifest: dict, dataset: str, branch: str | None, parameter: str
+def matrix_path(
+    metrics_dir: Path,
+    kind: str,
+    dataset: str,
+    branch: str | None,
+    method: str | None,
+    parameter: str,
 ) -> Path:
-    references = manifest["reference_matrices"][dataset]
+    directory = metrics_dir / kind / dataset
     if branch is not None:
-        references = references[branch]
-    return metrics_dir / references[parameter]
+        directory /= f"branch{branch}"
+    filename = (
+        f"reference_{parameter}.csv"
+        if method is None
+        else f"{method}_{parameter}.csv"
+    )
+    return directory / filename
+
+
+def processed_matrix_paths(
+    metrics_dir: Path,
+    gene_metrics: pd.DataFrame,
+    dataset: str,
+    branch: str | None,
+    parameter: str,
+) -> dict[str, Path]:
+    subset = gene_metrics[
+        gene_metrics["Dataset"].eq(dataset)
+        & gene_metrics["Parameter"].eq(parameter)
+    ]
+    if branch is None:
+        subset = subset[subset["Branch"].isna()]
+    else:
+        subset = subset[
+            pd.to_numeric(subset["Branch"], errors="coerce").eq(int(branch))
+        ]
+
+    paths = {}
+    for method in ordered_methods(subset["Method"]):
+        path = matrix_path(
+            metrics_dir, "trajectories", dataset, branch, method, parameter
+        )
+        if path.is_file():
+            paths[method] = path
+    return paths
 
 
 def zscore(values) -> np.ndarray:
@@ -118,17 +137,19 @@ def zscore(values) -> np.ndarray:
 
 def plot_rpe1_trajectories(
     metrics_dir: Path,
-    manifest: dict,
+    gene_metrics: pd.DataFrame,
     figure_genes: list[str],
     parameter: str,
     output: Path,
 ) -> pd.DataFrame:
-    """Plot the configured RPE1 genes with display-only per-curve z-scores."""
-    truth = read_matrix(reference_path(metrics_dir, manifest, "rpe1", None, parameter))
+    """Plot configured RPE1 genes with display-only per-curve z-scores."""
+    truth = read_matrix(
+        matrix_path(metrics_dir, "matrices", "rpe1", None, None, parameter)
+    )
     method_frames = {
         method: read_matrix(path)
         for method, path in processed_matrix_paths(
-            metrics_dir, manifest, "rpe1", None, parameter
+            metrics_dir, gene_metrics, "rpe1", None, parameter
         ).items()
     }
     methods = ordered_methods(method_frames)
@@ -205,7 +226,7 @@ def plot_rpe1_trajectories(
     )
     figure.tight_layout(rect=(0, 0.06, 1, 1))
     figure.savefig(
-        output / f"figure5_rpe1_{parameter}_trajectories.png",
+        output / f"rpe1_{parameter}_trajectories.png",
         dpi=300,
         bbox_inches="tight",
     )
@@ -259,14 +280,16 @@ def plot_rpe1_heatmap(
                     )
         axis.set_title(f"RPE1 {parameter}", fontweight="bold")
         axis.set_yticks(range(len(matrix.index)), matrix.index)
-        axis.set_xticks(range(len(matrix.columns)), matrix.columns, rotation=45, ha="right")
+        axis.set_xticks(
+            range(len(matrix.columns)), matrix.columns, rotation=45, ha="right"
+        )
         axis.set_xlabel("Gene")
         axis.set_ylabel("Method")
     figure.subplots_adjust(left=0.04, right=0.89, bottom=0.27, top=0.88, wspace=0.15)
     colorbar_axis = figure.add_axes([0.92, 0.27, 0.012, 0.55])
     figure.colorbar(image, cax=colorbar_axis, label="Spearman correlation")
     figure.savefig(
-        output / "figure5_rpe1_alpha_gamma_heatmap.png",
+        output / "rpe1_alpha_gamma_heatmap.png",
         dpi=300,
         bbox_inches="tight",
     )
@@ -298,9 +321,13 @@ def cosine_classes(alpha: pd.DataFrame, gamma: pd.DataFrame) -> dict[str, set[st
 
 
 def draw_set_overlap(
-    axis: plt.Axes, title: str, reference: set[str], prediction: set[str]
+    axis: plt.Axes,
+    title: str,
+    reference: set[str],
+    prediction: set[str],
+    prediction_label: str,
 ) -> dict[str, int]:
-    """Draw a dependency-free two-set overlap panel for the Figure 5 class check."""
+    """Draw a dependency-free two-set overlap panel."""
     reference_only = len(reference - prediction)
     prediction_only = len(prediction - reference)
     intersection = len(reference & prediction)
@@ -312,35 +339,41 @@ def draw_set_overlap(
     axis.text(0.70, 0.5, str(prediction_only), ha="center", va="center", fontsize=14)
     axis.text(0.50, 0.5, str(intersection), ha="center", va="center", fontsize=14)
     axis.text(0.31, 0.17, "scEU-seq", ha="center", fontsize=9)
-    axis.text(0.69, 0.17, "DeepVelo", ha="center", fontsize=9)
+    axis.text(0.69, 0.17, prediction_label, ha="center", fontsize=9)
     axis.set_title(title, fontsize=10, fontweight="bold")
     axis.set_xlim(0, 1)
     axis.set_ylim(0, 1)
     axis.axis("off")
     return {
         "scEU_only": reference_only,
-        "DeepVelo_only": prediction_only,
+        f"{prediction_label}_only": prediction_only,
         "intersection": intersection,
     }
 
 
-def plot_deepvelo_classes(metrics_dir: Path, manifest: dict, output: Path) -> pd.DataFrame:
+def plot_kinetic_classes(
+    method: str,
+    metrics_dir: Path,
+    output: Path,
+) -> pd.DataFrame:
+    """Compare reference and method kinetic classes for one method."""
     truth = {
         parameter: read_matrix(
-            reference_path(metrics_dir, manifest, "rpe1", None, parameter)
+            matrix_path(metrics_dir, "matrices", "rpe1", None, None, parameter)
         )
         for parameter in ("alpha", "gamma")
     }
     paths = {
-        parameter: processed_matrix_paths(
-            metrics_dir, manifest, "rpe1", None, parameter
-        ).get("DeepVelo")
+        parameter: matrix_path(
+            metrics_dir, "trajectories", "rpe1", None, method, parameter
+        )
         for parameter in ("alpha", "gamma")
     }
-    if any(path is None for path in paths.values()):
+    if any(not path.is_file() for path in paths.values()):
         return pd.DataFrame(
-            columns=["Class", "scEU_only", "DeepVelo_only", "intersection"]
+            columns=["Class", "scEU_only", f"{method}_only", "intersection"]
         )
+
     prediction = {parameter: read_matrix(path) for parameter, path in paths.items()}
     truth_classes = cosine_classes(truth["alpha"], truth["gamma"])
     predicted_classes = cosine_classes(prediction["alpha"], prediction["gamma"])
@@ -349,12 +382,16 @@ def plot_deepvelo_classes(metrics_dir: Path, manifest: dict, output: Path) -> pd
     rows = []
     for axis, name in zip(axes, ("Cooperative", "Neutral", "Destabilizing")):
         counts = draw_set_overlap(
-            axis, name, truth_classes[name], predicted_classes[name]
+            axis,
+            name,
+            truth_classes[name],
+            predicted_classes[name],
+            method,
         )
         rows.append({"Class": name, **counts})
     figure.tight_layout()
     figure.savefig(
-        output / "figure5_rpe1_deepvelo_kinetic_classes.png",
+        output / f"rpe1_{method.lower()}_kinetic_classes.png",
         dpi=300,
         bbox_inches="tight",
     )
@@ -374,7 +411,9 @@ def draw_boxplot(
     if not methods:
         axis.set_visible(False)
         return
-    box = axis.boxplot(values, labels=methods, patch_artist=True, showfliers=False)
+    box = axis.boxplot(
+        values, tick_labels=methods, patch_artist=True, showfliers=False
+    )
     for patch, method in zip(box["boxes"], methods):
         patch.set_facecolor(COLORS.get(method, "0.7"))
         patch.set_alpha(0.55)
@@ -406,7 +445,7 @@ def draw_boxplot(
 def plot_organoid_branches(
     gene_metrics: pd.DataFrame, branch_genes: dict[str, list[str]], output: Path
 ) -> dict[str, pd.DataFrame]:
-    """Render the two curated organoid branch comparisons used for Figure 5."""
+    """Render the curated organoid branch comparisons."""
     selected_tables = {}
     for branch, genes in branch_genes.items():
         subset = gene_metrics[
@@ -421,7 +460,7 @@ def plot_organoid_branches(
         figure.suptitle(f"Organoid branch {branch}", fontweight="bold")
         figure.tight_layout()
         figure.savefig(
-            output / f"figure5_organoid_branch{branch}_boxplot.png",
+            output / f"organoid_branch{branch}_boxplot.png",
             dpi=300,
             bbox_inches="tight",
         )
@@ -429,9 +468,13 @@ def plot_organoid_branches(
     return selected_tables
 
 
-def plot_figure6(summary: pd.DataFrame, output: Path) -> None:
+def plot_kinetic_summary(summary: pd.DataFrame, output: Path) -> None:
     methods = ordered_methods(summary["Method"])
-    parameters = [parameter for parameter in ("alpha", "gamma") if parameter in set(summary["Parameter"])]
+    parameters = [
+        parameter
+        for parameter in ("alpha", "gamma")
+        if parameter in set(summary["Parameter"])
+    ]
     positions = np.arange(len(methods))
     width = 0.7 / max(1, len(parameters))
     figure, axis = plt.subplots(figsize=(max(6, len(methods) * 1.2), 4.5))
@@ -446,10 +489,10 @@ def plot_figure6(summary: pd.DataFrame, output: Path) -> None:
     axis.axhline(0, color="0.6", linewidth=0.8)
     axis.set_xticks(positions, methods, rotation=30)
     axis.set_ylabel("Equal-system mean Spearman")
-    axis.set_title("Case 3 kinetic-parameter recovery")
+    axis.set_title("Kinetic-parameter recovery summary")
     axis.legend(title="Parameter")
     figure.tight_layout()
-    figure.savefig(output / "figure6_kinetic_summary.png", dpi=300)
+    figure.savefig(output / "kinetic_summary.png", dpi=300)
     plt.close(figure)
 
 
@@ -464,54 +507,45 @@ def main() -> None:
     output = args.output.resolve()
     ensure_output(output)
     config = read_json(args.config)
-    gene_metrics, summary, manifest = read_inputs(metrics_dir)
-
-    rpe1 = gene_metrics[gene_metrics["Dataset"].eq("rpe1")]
-    organoid = gene_metrics[gene_metrics["Dataset"].eq("organoid")]
-    rpe1.to_csv(output / "figure5_rpe1_gene_metrics.csv", index=False)
-    organoid.to_csv(output / "figure5_organoid_gene_metrics.csv", index=False)
-    summary.to_csv(output / "figure6_kinetic_summary.csv", index=False)
+    gene_metrics, summary = read_inputs(metrics_dir)
+    plot_data = output / "plot_data"
+    plot_data.mkdir()
 
     for parameter in ("alpha", "gamma"):
         trajectories = plot_rpe1_trajectories(
             metrics_dir,
-            manifest,
+            gene_metrics,
             config["figures"]["trajectory_genes"],
             parameter,
             output,
         )
         trajectories.to_csv(
-            output / f"figure5_rpe1_{parameter}_trajectory_values.csv", index=False
+            plot_data / f"rpe1_{parameter}_trajectories.csv", index=False
         )
 
     heatmaps = plot_rpe1_heatmap(
         gene_metrics, config["figures"]["heatmap_genes"], output
     )
     for parameter, values in heatmaps.items():
-        values.to_csv(output / f"figure5_rpe1_{parameter}_heatmap.csv")
+        values.to_csv(plot_data / f"rpe1_{parameter}_heatmap.csv")
 
-    classes = plot_deepvelo_classes(metrics_dir, manifest, output)
-    classes.to_csv(output / "figure5_rpe1_deepvelo_kinetic_classes.csv", index=False)
+    for method in ("DeepVelo", "cellDancer"):
+        classes = plot_kinetic_classes(method, metrics_dir, output)
+        if not classes.empty:
+            classes.to_csv(
+                plot_data / f"rpe1_{method.lower()}_kinetic_classes.csv", index=False
+            )
 
     branches = plot_organoid_branches(
         gene_metrics, config["figures"]["branch_genes"], output
     )
     for branch, values in branches.items():
-        values.to_csv(output / f"figure5_organoid_branch{branch}_gene_metrics.csv", index=False)
+        values.to_csv(
+            plot_data / f"organoid_branch{branch}_gene_metrics.csv", index=False
+        )
 
-    plot_figure6(summary, output)
-    (output / "manifest.json").write_text(
-        json.dumps(
-            {
-                "metrics": str(metrics_dir),
-                "config": str(args.config.resolve()),
-                "files": sorted(path.name for path in output.iterdir()),
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
-    print(f"Wrote Case 3 figures and plot tables to {output}")
+    plot_kinetic_summary(summary, output)
+    print(f"Wrote kinetic-parameter figures to {output}")
 
 
 if __name__ == "__main__":

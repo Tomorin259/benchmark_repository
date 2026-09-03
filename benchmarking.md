@@ -319,8 +319,8 @@ indicators/gene/kinetic_analyze/run.py
 Case 3 直接读取既有方法结果，不再复制数据准备或方法训练步骤。入口为：
 
 ~~~text
-benchmark_repository/evaluation/kinetic/data/case3.json
-benchmark_repository/evaluation/kinetic/metrics.py
+benchmark_repository/evaluation/kinetics/config.json
+benchmark_repository/evaluation/kinetics/metrics.py
 ~~~
 
 case3.json 只维护参考表、结果 H5AD 路径、参数 layer 映射和必要的

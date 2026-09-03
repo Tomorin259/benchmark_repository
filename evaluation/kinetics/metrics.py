@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Rebuild and evaluate the Case 3 kinetic-parameter experiment.
+"""Evaluate kinetic-parameter recovery from saved method-result H5AD files.
 
-The script consumes saved method result H5AD objects; it neither prepares data
-nor trains a velocity model. Most methods expose parameter layers directly.
-Dynamo and TSvelo are explicit exceptions: their historical alpha CSVs were
-derived from method-specific H5AD layouts, so this script reproduces those
-extractions before applying the shared RPE1 evaluation transform.
+This module owns the kinetic experiment from method-result H5AD input through
+parameter extraction, dataset-specific trajectory processing, numerical
+scoring, and compact CSV output. It does not prepare datasets or train
+methods. Method-specific H5AD layouts are handled explicitly at this input
+boundary because they are part of the scientific result contract.
 """
 
 from __future__ import annotations
@@ -13,8 +13,8 @@ from __future__ import annotations
 import argparse
 import json
 import warnings
-from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 import anndata as ad
 import h5py
@@ -25,10 +25,10 @@ from scipy.stats import spearmanr
 
 
 MODULE_DIR = Path(__file__).resolve().parent
-DEFAULT_CONFIG = MODULE_DIR / "data" / "case3.json"
+DEFAULT_CONFIG = MODULE_DIR / "config.json"
 
 
-def dense(matrix):
+def dense(matrix: Any) -> np.ndarray:
     """Return a dense NumPy array for a dense or sparse AnnData layer."""
     return matrix.toarray() if sparse.issparse(matrix) else np.asarray(matrix)
 
@@ -38,23 +38,28 @@ def read_config(path: Path) -> dict:
         return json.load(handle)
 
 
-def source_path(working_root: Path, relative_path: str) -> Path:
-    path = working_root / relative_path
-    if not path.is_file():
-        raise FileNotFoundError(f"Required source does not exist: {path}")
-    return path
+def source_path(artifact_root: Path, relative_path: str) -> Path:
+    """Resolve one config path while keeping the public config relocatable."""
+    path = Path(relative_path)
+    if path.is_absolute() or ".." in path.parts:
+        raise ValueError(f"Config paths must be relative to artifact root: {relative_path}")
+    resolved = artifact_root / path
+    if not resolved.is_file():
+        raise FileNotFoundError(f"Required source does not exist: {resolved}")
+    return resolved
 
 
 def read_rpe1_reference(path: Path, parameter: str) -> pd.DataFrame:
     table = pd.read_csv(path, skiprows=1).set_index("gene_symbol")
     prefix = "norm_kappa_" if parameter == "alpha" else "norm_gamma_"
-    values = table.loc[:, [name for name in table.columns if name.startswith(prefix)]]
+    columns = [name for name in table.columns if name.startswith(prefix)]
+    values = table.loc[:, columns]
     values.columns = range(values.shape[1])
     return values.apply(pd.to_numeric, errors="coerce")
 
 
 def read_gene_subset(path: Path) -> pd.Index:
-    """Read the legacy RPE1 alpha gene selection, not its derived values."""
+    """Read the fixed RPE1 alpha gene selection."""
     values = pd.read_csv(path, index_col=0)
     if values.index.has_duplicates:
         raise ValueError(f"{path}: the gene subset contains duplicate names")
@@ -75,7 +80,7 @@ def read_organoid_reference(path: Path, branch: str, parameter: str) -> pd.DataF
 def calculate_metrics(
     prediction: pd.DataFrame, reference: pd.DataFrame
 ) -> pd.DataFrame:
-    """Calculate a per-gene score after aligning genes and timepoints."""
+    """Calculate per-gene Spearman and cosine scores after alignment."""
     genes = reference.index.intersection(prediction.index, sort=False)
     timepoints = reference.columns.intersection(prediction.columns, sort=False)
     prediction = prediction.loc[genes, timepoints]
@@ -116,7 +121,7 @@ def calculate_metrics(
 def validate_standard_result(
     adata: ad.AnnData, dataset: str, settings: dict, source: dict
 ) -> None:
-    """Check only the fields used by the direct-layer extraction path."""
+    """Validate only the fields consumed by direct layer extraction."""
     expected_cells = settings[dataset]["n_obs"]
     if adata.n_obs != expected_cells:
         raise ValueError(
@@ -137,7 +142,7 @@ def validate_standard_result(
     if missing_obs:
         raise KeyError(f"{dataset}: missing obs fields {missing_obs}")
 
-    required_layers = list(source["layers"].values()) + source.get(
+    required_layers = list(source.get("layers", {}).values()) + source.get(
         "required_layers", []
     )
     missing_layers = [name for name in required_layers if name not in adata.layers]
@@ -154,14 +159,14 @@ def layer_frame(adata: ad.AnnData, layer: str) -> pd.DataFrame:
 def rpe1_raw_from_layer(
     adata: ad.AnnData, layer: str, settings: dict
 ) -> pd.DataFrame:
-    """Average a direct cell-by-gene layer at each fixed RPE1 position."""
+    """Average a cell-by-gene layer at each fixed RPE1 cycle position."""
     values = layer_frame(adata, layer)
     positions = pd.to_numeric(adata.obs[settings["obs_key"]], errors="raise")
     return values.groupby(positions).mean().reindex(range(settings["positions"])).T
 
 
 def process_rpe1(raw: pd.DataFrame, settings: dict, clip_negative: bool) -> pd.DataFrame:
-    """Apply the historical shared RPE1 smoothing, normalization, and log2 step."""
+    """Apply RPE1 smoothing, median normalization, and log2 transformation."""
     if clip_negative:
         raw = raw.clip(lower=0)
     original_nan = raw.isna()
@@ -197,7 +202,7 @@ def select_organoid_branch(
 def organoid_raw_from_layer(
     adata: ad.AnnData, aligned_time: pd.Series, layer: str, settings: dict
 ) -> pd.DataFrame:
-    """Average a direct organoid layer in the fixed 200 pseudotime bins."""
+    """Average a cell-by-gene layer in the fixed organoid time bins."""
     values = layer_frame(adata, layer)
     bins = pd.cut(
         aligned_time, bins=settings["bins"], labels=False, include_lowest=True
@@ -206,7 +211,7 @@ def organoid_raw_from_layer(
 
 
 def process_organoid(raw: pd.DataFrame, settings: dict) -> pd.DataFrame:
-    """Apply the historical organoid smoothing and early-bin normalization."""
+    """Apply organoid smoothing and early-bin baseline normalization."""
     smoothed = raw.T.rolling(
         settings["smooth_window"], center=True, min_periods=1
     ).mean().T
@@ -214,8 +219,7 @@ def process_organoid(raw: pd.DataFrame, settings: dict) -> pd.DataFrame:
     return smoothed.div(baseline + settings["epsilon"], axis=0)
 
 
-def decode_h5_strings(values) -> pd.Index:
-    """Decode an HDF5 string vector without loading the complete AnnData object."""
+def decode_h5_strings(values: Any) -> pd.Index:
     decoded = [
         value.decode("utf-8") if isinstance(value, bytes) else str(value)
         for value in np.asarray(values)
@@ -226,7 +230,7 @@ def decode_h5_strings(values) -> pd.Index:
 def read_csr_layer(
     path: Path, layer: str, position_key: str
 ) -> tuple[sparse.csr_matrix, pd.Index, pd.Series]:
-    """Read Dynamo's sparse cell-wise alpha layer and its labels directly."""
+    """Read a sparse cell-wise alpha layer and its labels from HDF5."""
     with h5py.File(path, "r") as handle:
         layer_group = handle["layers"][layer]
         if layer_group.attrs.get("encoding-type") != "csr_matrix":
@@ -250,15 +254,10 @@ def read_csr_layer(
 
 
 def dynamo_rpe1_raw(
-    source: dict, reference: pd.DataFrame, settings: dict, working_root: Path
+    source: dict, reference: pd.DataFrame, settings: dict, artifact_root: Path
 ) -> pd.DataFrame:
-    """Rebuild the historical Dynamo alpha matrix from its labelled H5AD.
-
-    The historical CSV used the sparse cell-wise alpha layer, binned positions
-    with pd.cut(range(0, 302)), retained reference genes, and dropped genes that
-    were zero at every observed bin. This executable path replaces that CSV.
-    """
-    path = source_path(working_root, source["result"])
+    """Extract Dynamo alpha from its labelled sparse RPE1 H5AD."""
+    path = source_path(artifact_root, source["result"])
     matrix, var_names, positions = read_csr_layer(
         path, source["layer"], source["position_key"]
     )
@@ -269,9 +268,8 @@ def dynamo_rpe1_raw(
     if positions.shape[0] != matrix.shape[0]:
         raise ValueError("Dynamo RPE1: position vector does not match cell count")
     if not np.isfinite(positions).all():
-        raise ValueError("Dynamo RPE1: Cell_cycle_possition contains non-finite values")
+        raise ValueError("Dynamo RPE1: cycle positions contain non-finite values")
 
-    # Preserve the source H5AD's gene order, matching the original CSV script.
     genes = var_names.intersection(reference.index, sort=False)
     column_indices = var_names.get_indexer(genes)
     values = pd.DataFrame(
@@ -290,13 +288,15 @@ def dynamo_rpe1_raw(
 
 
 def tsvelo_rpe1_raw(
-    source: dict, reference: pd.DataFrame, settings: dict, working_root: Path
+    source: dict, reference: pd.DataFrame, settings: dict, artifact_root: Path
 ) -> pd.DataFrame:
-    """Rebuild the historical TSvelo alpha matrix from its two lineage H5ADs."""
+    """Extract and merge alpha from the two lineage-specific TSvelo H5ADs."""
+    if source.get("duplicate_cell_aggregation", "mean") != "mean":
+        raise ValueError("TSvelo RPE1: duplicate cells must be aggregated by mean")
     alpha_frames = []
     positions = []
     for relative_path in source["results"]:
-        path = source_path(working_root, relative_path)
+        path = source_path(artifact_root, relative_path)
         adata = ad.read_h5ad(path)
         if adata.obs_names.has_duplicates or adata.var_names.has_duplicates:
             raise ValueError(f"{path}: obs_names and var_names must be unique")
@@ -311,7 +311,6 @@ def tsvelo_rpe1_raw(
             ).rename(source["position_key"])
         )
 
-    # Repeated cells belong to both lineages: average alpha and retain first label.
     combined = pd.concat(alpha_frames)
     merged_alpha = combined.groupby(level=0).mean()
     merged_positions = pd.concat(positions)
@@ -358,60 +357,43 @@ def score_component(
     return component, metrics
 
 
-def write_csv(
+def write_matrix(
     output_dir: Path,
+    kind: str,
     dataset: str,
     branch: str | None,
     filename: str,
     values: pd.DataFrame,
-    kind: str,
-) -> str:
-    """Persist a plot-ready matrix, separating raw extraction from processing."""
-    path = output_dir / kind / dataset
+) -> None:
+    directory = output_dir / kind / dataset
     if branch is not None:
-        path = path / f"branch{branch}"
-    path.mkdir(parents=True, exist_ok=True)
-    file_path = path / filename
-    values.to_csv(file_path)
-    return str(file_path.relative_to(output_dir))
+        directory /= f"branch{branch}"
+    directory.mkdir(parents=True, exist_ok=True)
+    values.to_csv(directory / filename)
 
 
-def write_rpe1_references(
-    output_dir: Path, references: dict[str, pd.DataFrame]
-) -> dict[str, str]:
-    return {
-        parameter: write_csv(
-            output_dir,
-            "rpe1",
-            None,
-            f"reference_{parameter}.csv",
-            values,
-            "matrices",
+def write_references(
+    output_dir: Path,
+    rpe1_references: dict[str, pd.DataFrame],
+    organoid_references: dict[str, dict[str, pd.DataFrame]],
+) -> None:
+    for parameter, values in rpe1_references.items():
+        write_matrix(
+            output_dir, "matrices", "rpe1", None, f"reference_{parameter}.csv", values
         )
-        for parameter, values in references.items()
-    }
-
-
-def write_organoid_references(
-    output_dir: Path, references: dict[str, dict[str, pd.DataFrame]]
-) -> dict[str, dict[str, str]]:
-    return {
-        branch: {
-            parameter: write_csv(
+    for branch, branch_values in organoid_references.items():
+        for parameter, values in branch_values.items():
+            write_matrix(
                 output_dir,
+                "matrices",
                 "organoid",
                 branch,
                 f"reference_{parameter}.csv",
                 values,
-                "matrices",
             )
-            for parameter, values in branch_values.items()
-        }
-        for branch, branch_values in references.items()
-    }
 
 
-def record_matrices(
+def save_parameter_matrices(
     output_dir: Path | None,
     dataset: str,
     branch: str | None,
@@ -419,31 +401,25 @@ def record_matrices(
     parameter: str,
     raw: pd.DataFrame,
     processed: pd.DataFrame,
-) -> dict | None:
+) -> None:
     if output_dir is None:
-        return None
-    return {
-        "method": method,
-        "dataset": dataset,
-        "branch": branch,
-        "parameter": parameter,
-        "raw": write_csv(
-            output_dir,
-            dataset,
-            branch,
-            f"{method}_{parameter}_raw.csv",
-            raw,
-            "matrices",
-        ),
-        "processed": write_csv(
-            output_dir,
-            dataset,
-            branch,
-            f"{method}_{parameter}.csv",
-            processed,
-            "trajectories",
-        ),
-    }
+        return
+    write_matrix(
+        output_dir,
+        "matrices",
+        dataset,
+        branch,
+        f"{method}_{parameter}_raw.csv",
+        raw,
+    )
+    write_matrix(
+        output_dir,
+        "trajectories",
+        dataset,
+        branch,
+        f"{method}_{parameter}.csv",
+        processed,
+    )
 
 
 def evaluate_rpe1(
@@ -451,37 +427,35 @@ def evaluate_rpe1(
     source: dict,
     settings: dict,
     references: dict[str, pd.DataFrame],
-    working_root: Path,
+    artifact_root: Path,
     output_dir: Path | None,
-) -> tuple[list[dict], list[pd.DataFrame], list[dict]]:
-    """Extract RPE1 parameters from each method's actual result layout."""
-    adapter = source["adapter"]
-    raw_by_parameter: dict[str, pd.DataFrame]
-    if adapter == "h5ad_layers":
-        adata = ad.read_h5ad(source_path(working_root, source["result"]))
+) -> tuple[list[dict], list[pd.DataFrame]]:
+    """Extract and score the configured RPE1 parameters for one method."""
+    reader = source["reader"]
+    if reader == "layers":
+        adata = ad.read_h5ad(source_path(artifact_root, source["result"]))
         validate_standard_result(adata, "rpe1", settings, source)
         raw_by_parameter = {
             parameter: rpe1_raw_from_layer(adata, layer, settings["rpe1"])
             for parameter, layer in source["layers"].items()
         }
-    elif adapter == "dynamo_labelled_alpha":
+    elif reader == "dynamo_csr":
         raw_by_parameter = {
             "alpha": dynamo_rpe1_raw(
-                source, references["alpha"], settings["rpe1"], working_root
+                source, references["alpha"], settings["rpe1"], artifact_root
             )
         }
-    elif adapter == "tsvelo_lineage_alpha":
+    elif reader == "tsvelo_lineages":
         raw_by_parameter = {
             "alpha": tsvelo_rpe1_raw(
-                source, references["alpha"], settings["rpe1"], working_root
+                source, references["alpha"], settings["rpe1"], artifact_root
             )
         }
     else:
-        raise ValueError(f"{method} RPE1: unsupported adapter {adapter!r}")
+        raise ValueError(f"{method} RPE1: unsupported reader {reader!r}")
 
     components = []
     gene_metrics = []
-    matrices = []
     for parameter, raw in raw_by_parameter.items():
         processed = process_rpe1(
             raw, settings["rpe1"], source.get("clip_negative", False)
@@ -491,12 +465,10 @@ def evaluate_rpe1(
         )
         components.append(component)
         gene_metrics.append(metrics)
-        record = record_matrices(
+        save_parameter_matrices(
             output_dir, "rpe1", None, method, parameter, raw, processed
         )
-        if record is not None:
-            matrices.append(record)
-    return components, gene_metrics, matrices
+    return components, gene_metrics
 
 
 def evaluate_organoid(
@@ -504,17 +476,16 @@ def evaluate_organoid(
     source: dict,
     settings: dict,
     references: dict[str, dict[str, pd.DataFrame]],
-    working_root: Path,
+    artifact_root: Path,
     output_dir: Path | None,
-) -> tuple[list[dict], list[pd.DataFrame], list[dict]]:
-    if source["adapter"] != "h5ad_layers":
-        raise ValueError(f"{method} organoid: unsupported adapter {source['adapter']!r}")
-    adata = ad.read_h5ad(source_path(working_root, source["result"]))
+) -> tuple[list[dict], list[pd.DataFrame]]:
+    if source["reader"] != "layers":
+        raise ValueError(f"{method} organoid: unsupported reader {source['reader']!r}")
+    adata = ad.read_h5ad(source_path(artifact_root, source["result"]))
     validate_standard_result(adata, "organoid", settings, source)
 
     components = []
     gene_metrics = []
-    matrices = []
     for branch in settings["organoid"]["branches"]:
         selected, aligned_time = select_organoid_branch(
             adata, settings["organoid"], branch
@@ -534,18 +505,10 @@ def evaluate_organoid(
             )
             components.append(component)
             gene_metrics.append(metrics)
-            record = record_matrices(
-                output_dir,
-                "organoid",
-                branch,
-                method,
-                parameter,
-                raw,
-                processed,
+            save_parameter_matrices(
+                output_dir, "organoid", branch, method, parameter, raw, processed
             )
-            if record is not None:
-                matrices.append(record)
-    return components, gene_metrics, matrices
+    return components, gene_metrics
 
 
 def summarize(components: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -584,9 +547,48 @@ def ensure_output(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
+def load_references(
+    artifact_root: Path, settings: dict
+) -> tuple[dict[str, pd.DataFrame], dict[str, dict[str, pd.DataFrame]]]:
+    rpe1_reference_path = source_path(artifact_root, settings["rpe1"]["reference"])
+    full_rpe1_alpha = read_rpe1_reference(rpe1_reference_path, "alpha")
+    alpha_gene_subset = read_gene_subset(
+        source_path(artifact_root, settings["rpe1"]["alpha_gene_subset"])
+    )
+    missing_alpha_genes = alpha_gene_subset.difference(full_rpe1_alpha.index)
+    if not missing_alpha_genes.empty:
+        raise ValueError(
+            "RPE1 alpha gene subset is not contained in the reference table: "
+            f"{', '.join(missing_alpha_genes[:5])}"
+        )
+    rpe1_references = {
+        "alpha": full_rpe1_alpha.loc[alpha_gene_subset],
+        "gamma": read_rpe1_reference(rpe1_reference_path, "gamma"),
+    }
+
+    organoid_reference_path = source_path(
+        artifact_root, settings["organoid"]["reference"]
+    )
+    organoid_references = {
+        branch: {
+            parameter: read_organoid_reference(
+                organoid_reference_path, branch, parameter
+            )
+            for parameter in ("alpha", "gamma")
+        }
+        for branch in settings["organoid"]["branches"]
+    }
+    return rpe1_references, organoid_references
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--working-root", type=Path, required=True)
+    parser.add_argument(
+        "--artifact-root",
+        type=Path,
+        required=True,
+        help="Root containing the relative reference and method-result paths in config.json.",
+    )
     parser.add_argument("--output", type=Path)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--methods", nargs="*")
@@ -601,75 +603,43 @@ def main() -> None:
     if unknown:
         parser.error(f"unknown methods: {', '.join(unknown)}")
 
+    artifact_root = args.artifact_root.resolve()
     output = None if args.check_only else args.output.resolve()
     if output is not None:
         ensure_output(output)
-    working_root = args.working_root.resolve()
 
-    rpe1_reference_path = source_path(working_root, settings["rpe1"]["reference"])
-    full_rpe1_alpha = read_rpe1_reference(rpe1_reference_path, "alpha")
-    alpha_gene_subset = read_gene_subset(
-        source_path(working_root, settings["rpe1"]["alpha_gene_subset"])
+    rpe1_references, organoid_references = load_references(
+        artifact_root, settings["datasets"]
     )
-    missing_alpha_genes = alpha_gene_subset.difference(full_rpe1_alpha.index)
-    if not missing_alpha_genes.empty:
-        raise ValueError(
-            "RPE1 alpha gene subset is not contained in Table S1: "
-            f"{', '.join(missing_alpha_genes[:5])}"
-        )
-    rpe1_references = {
-        "alpha": full_rpe1_alpha.loc[alpha_gene_subset],
-        "gamma": read_rpe1_reference(rpe1_reference_path, "gamma"),
-    }
-    organoid_reference_path = source_path(
-        working_root, settings["organoid"]["reference"]
-    )
-    organoid_references = {
-        branch: {
-            parameter: read_organoid_reference(
-                organoid_reference_path, branch, parameter
-            )
-            for parameter in ("alpha", "gamma")
-        }
-        for branch in settings["organoid"]["branches"]
-    }
-
-    reference_files = {}
     if output is not None:
-        reference_files = {
-            "rpe1": write_rpe1_references(output, rpe1_references),
-            "organoid": write_organoid_references(output, organoid_references),
-        }
+        write_references(output, rpe1_references, organoid_references)
 
     components = []
     gene_metrics = []
-    matrices = []
     for method in methods:
         method_sources = settings["methods"][method]
         if "rpe1" in method_sources:
-            rows, metrics, files = evaluate_rpe1(
+            rows, metrics = evaluate_rpe1(
                 method,
                 method_sources["rpe1"],
-                settings,
+                settings["datasets"],
                 rpe1_references,
-                working_root,
+                artifact_root,
                 output,
             )
             components.extend(rows)
             gene_metrics.extend(metrics)
-            matrices.extend(files)
         if "organoid" in method_sources:
-            rows, metrics, files = evaluate_organoid(
+            rows, metrics = evaluate_organoid(
                 method,
                 method_sources["organoid"],
-                settings,
+                settings["datasets"],
                 organoid_references,
-                working_root,
+                artifact_root,
                 output,
             )
             components.extend(rows)
             gene_metrics.extend(metrics)
-            matrices.extend(files)
 
     component_frame = pd.DataFrame(components).sort_values(
         ["Parameter", "Method", "Dataset", "Branch"], na_position="first"
@@ -684,24 +654,8 @@ def main() -> None:
     metrics_frame.to_csv(output / "gene_metrics.csv", index=False)
     systems.to_csv(output / "system_means.csv", index=False)
     methods_summary.to_csv(output / "method_summary.csv", index=False)
-    (output / "manifest.json").write_text(
-        json.dumps(
-            {
-                "created_at": datetime.now(timezone.utc).isoformat(),
-                "config": str(args.config.resolve()),
-                "methods": methods,
-                "method_sources": {
-                    method: settings["methods"][method] for method in methods
-                },
-                "reference_matrices": reference_files,
-                "parameter_matrices": matrices,
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
     print(component_frame.to_string(index=False))
-    print(f"Wrote Case 3 metrics to {output}")
+    print(f"Wrote kinetic-parameter metrics to {output}")
 
 
 if __name__ == "__main__":
