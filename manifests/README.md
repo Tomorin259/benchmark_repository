@@ -45,13 +45,19 @@ For `publication_artifacts.tsv`, `git` means a compact artifact should be copied
 
 `method_configurations.tsv` is the exact 20-row manuscript registry. `operational_id` follows the render and metric tables; `manuscript_label` preserves Supplementary Table S1 naming. A `confirmed` configuration status confirms its identity and observed final-output contract, not that its runner is publication-ready. The configuration row may describe more than one output role when the method has separate cell-level and gene-level outputs; veloVI records its spliced cell-level output and its additional unspliced gene-level output in this way.
 
-`runner_inventory.tsv` records one audited candidate row per configuration. Status values are `candidate`, `partial`, `ambiguous`, and `missing`. `missing` is reserved for a configuration for which no authoritative execution source has been located; an empty method subdirectory does not imply missing source when an external project locator is documented. Candidate and partial scripts require curation before publication. `recover_before_release` is reserved for a genuinely absent execution chain; a partial method-specific script uses `curate_after_review`. A final-result copy or rename may be manual and is recorded as provenance when the artifact is released.
+`runner_inventory.tsv` records one audited candidate row per configuration. Status values are `candidate`, `source_backed`, `partial`, `ambiguous`, and `missing`. `source_backed` identifies a repository launcher that invokes an external official source checkout while recording its input contract. `missing` is reserved for a configuration for which no authoritative execution source has been located; an empty method subdirectory does not imply missing source when an external project locator is documented. Candidate, source-backed, and partial scripts require curation before publication. `recover_before_release` is reserved for a genuinely absent execution chain; a partial method-specific script uses `curate_after_review`. A final-result copy or rename may be manual and is recorded as provenance when the artifact is released.
 
 `environments.tsv` records one row per distinct audited Conda assignment. Absolute paths are allowed only in `audited_conda_path` because they are private provenance evidence, not public commands. `evidence_status` describes the strength or limitations of the historical assignment evidence. `runtime_status` records only the observed package/entry-point import smoke result, with values `import_smoke_passed`, `import_smoke_passed_with_warning`, and `import_smoke_failed`; it is not evidence of a completed model run. `release_spec_status` records whether a clean public environment specification has been curated, with values `not_yet_curated`, `curation_required`, and `reviewed_clean`. These fields are intentionally independent: an environment can pass import smoke while still requiring release curation. These rows must not be converted mechanically into lock files.
 
 Run `python tests/validate_phase2_manifests.py` after editing any Phase 2 registry.
 
 ## Phase 3A cell-level result manifest
+
+The publication-facing cell evaluator consumes
+`evaluation/cell/result_inputs.tsv`, whose paths are relative to an external
+artifact root. The table below describes the separate private audit manifest;
+it is retained for result provenance and contract checks, not as the runtime
+evaluation input.
 
 `manifests/cell_result_inputs.tsv` is the frozen 280-row (20 configurations ×
 14 datasets) result-input manifest. Its primary key is `(config_id,
@@ -66,26 +72,27 @@ effective evaluation embedding, alignment mode and dimensions, non-finite
 value diagnostics, positive file size, and a 64-character SHA-256 digest. The
 exact schema and allowed `velocity:` locators are documented in
 [`evaluation/cell/README.md`](../evaluation/cell/README.md).
-The companion `results_summary/cell_metrics/all_metrics.csv` keeps the source
-header `dataset,method,consistency,cbdir,iccoh,batc` and must have the same
-280-key set with four finite metrics. It is a frozen byte-identical baseline,
-not a Phase 3A recalculation.
+The companion `evaluation/cell/results/all_metrics.csv` keeps the source
+header `dataset,method,consistency,cbdir,iccoh,batc` and has the same 280-key
+set with four finite metrics. `evaluation/cell/results/transprob.csv` is the
+companion 280-row TransProb table. These are compact publication results,
+whereas the audit manifest remains a private locator record.
 
-Run `python tests/validate_cell_contract.py` for the standard-library checks.
+Run `python manifests/validate_cell_contract.py` for the standard-library checks.
 It does not open H5AD/AnnData files.  Pass `--working-root PATH` for optional
 file existence and size checks, and add `--verify-hashes` for SHA-256 checks;
 the default invocation has no private working-tree path dependency.
 
-## Kinetic-parameter recovery
+## Kinetics-recovery
 
-evaluation/parameter_recovery/config.json is the direct input map for the
+evaluation/kinetics_recovery/config.json is the direct input map for the
 kinetic-parameter recovery experiment. It contains reference-table paths,
 canonical method H5AD paths, parameter-layer mappings, and the explicit
 Dynamo/TSvelo H5AD extraction rules. Method
 execution and dataset preparation remain outside this release layer; historical
 method-specific CSVs are regression baselines rather than evaluator inputs.
 
-evaluation/parameter_recovery/metrics.py is the single metrics entry point. It writes
+evaluation/kinetics_recovery/metrics.py is the single metrics entry point. It writes
 processed trajectories, per-gene metrics, component means, and equal-system
 summaries to a new output directory. Use --check-only to validate direct
 inputs before producing metrics. Future Figure 5/6 scripts should consume

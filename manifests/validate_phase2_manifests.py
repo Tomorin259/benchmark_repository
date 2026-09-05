@@ -99,9 +99,9 @@ ENVIRONMENT_COLUMNS = {
 }
 
 ALLOWED_CONFIG_RELEASE = {"curate_thin_runner", "recover_runner"}
-ALLOWED_CONFIG_STATUS = {"confirmed", "conflicted"}
+ALLOWED_CONFIG_STATUS = {"confirmed", "source_backed", "conflicted"}
 ALLOWED_RUNNER_RELEASE = {"curate_after_review", "recover_before_release"}
-ALLOWED_RUNNER_STATUS = {"candidate", "partial", "ambiguous", "missing"}
+ALLOWED_RUNNER_STATUS = {"candidate", "source_backed", "partial", "ambiguous", "missing"}
 ALLOWED_ENV_ASSIGNMENT = {
     "inferred",
     "ambiguous",
@@ -242,9 +242,9 @@ def main() -> int:
 
     special_runner_checks = {
         "C10": {
-            "candidate_prefix": "project:TFvelo-main/",
+            "candidate": "benchmark_repository/methods/tfvelo.py",
             "required_supplemental": "project:TFvelo-main/TFvelo_analysis_demo.py",
-            "status": "partial",
+            "status": "source_backed",
             "release_action": "curate_after_review",
         },
         "C12": {
@@ -254,8 +254,9 @@ def main() -> int:
             "release_action": "curate_after_review",
         },
         "C14": {
-            "candidate": "velocity:methods/TSvelo/TSvelo_run.py",
-            "status": "partial",
+            "candidate": "benchmark_repository/methods/tsvelo.py",
+            "required_supplemental": "velocity:methods/TSvelo/TSvelo/TSvelo_pp.py",
+            "status": "source_backed",
             "release_action": "curate_after_review",
         },
     }
@@ -264,12 +265,6 @@ def main() -> int:
         if "candidate" in expected and runner["candidate_runner"] != expected["candidate"]:
             raise ValidationError(
                 f"{config_id}: candidate_runner does not match the audited entry point"
-            )
-        if "candidate_prefix" in expected and not runner["candidate_runner"].startswith(
-            expected["candidate_prefix"]
-        ):
-            raise ValidationError(
-                f"{config_id}: candidate_runner must use the project: provenance locator"
             )
         if "required_supplemental" in expected and expected["required_supplemental"] not in runner[
             "supplemental_runners"

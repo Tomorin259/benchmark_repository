@@ -20,7 +20,7 @@ from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = ROOT / "evaluation" / "cell" / "config.json"
+CONFIG_PATH = ROOT / "provenance" / "cell_phase3a_contract.json"
 DATASET_MANIFEST_PATH = ROOT / "manifests" / "datasets.tsv"
 METHOD_MANIFEST_PATH = ROOT / "manifests" / "method_configurations.tsv"
 INPUT_MANIFEST_PATH = ROOT / "manifests" / "cell_result_inputs.tsv"

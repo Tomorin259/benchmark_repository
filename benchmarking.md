@@ -98,32 +98,35 @@ plot/unified_velocity_stream/results/render_manifest.csv
 绘图脚本：
 
 ```text
-plot/cell_metrics_5panel/plot_cell_metric_panels.py
+evaluation/cell/plots.py
 ```
 
 直接输入：
 
 ```text
-indicators/cell/all_metrics/all_metrics.csv
-indicators/cell/all_metrics/transprob.csv
+evaluation/cell/results/all_metrics.csv
+evaluation/cell/results/transprob.csv
 ```
 
 最终组合图：
 
 ```text
-plot/cell_metrics_5panel/fig2_cell_metrics_5panel.pdf
-plot/cell_metrics_5panel/fig2_cell_metrics_5panel.png
-plot/cell_metrics_5panel/fig2_cell_metrics_5panel.svg
+evaluation/cell/figures/final_seed123/fig2_cell_metrics_5panel.pdf
+evaluation/cell/figures/final_seed123/fig2_cell_metrics_5panel.png
+evaluation/cell/figures/final_seed123/fig2_cell_metrics_5panel.svg
 ```
 
 相关计算入口包括：
 
 ```text
-indicators/cell/all_metrics_main.py
-indicators/cell/transprob_main.py
+evaluation/cell/metrics.py
+evaluation/cell/transprob.py
 ```
 
-版本注意：`all_metrics_main.py` 的修改时间晚于当前 CSV，因此复核 Figure 2 数值时应先以成图直接读取的 CSV 为准，再检查当前脚本是否仍能复现。
+运行时结果映射位于 `evaluation/cell/result_inputs.tsv`。它与
+`manifests/cell_result_inputs.tsv` 的流线图审计映射分开维护；例如
+DeepVelo 的 cell metrics 使用 metric-result 文件族，而统一流线图可以使用
+`results_with_vu` 文件族。
 
 明确未使用的旧版：
 
@@ -257,26 +260,26 @@ plot/archive_old_versions_20260613/rpe1/scvelo__stream2_tsvelo.png
 #### Panel B：RPE1 alpha/gamma trajectory curves
 
 ```text
-evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_trajectories.png
-evaluation/parameter_recovery/figures/final_seed123/rpe1_gamma_trajectories.png
+evaluation/kinetics_recovery/figures/final_seed123/rpe1_alpha_trajectories.png
+evaluation/kinetics_recovery/figures/final_seed123/rpe1_gamma_trajectories.png
 ```
 
 生成脚本：
 
 ```text
-evaluation/parameter_recovery/plots.py
+evaluation/kinetics_recovery/plots.py
 ```
 
 #### Panel C：RPE1 alpha/gamma heatmap
 
 ```text
-evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
+evaluation/kinetics_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
 ```
 
 它与下列文件的 SHA-256 完全一致：
 
 ```text
-evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
+evaluation/kinetics_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
 ```
 
 #### Panel D：kinetic-class Venn diagrams
@@ -296,9 +299,9 @@ plot/figure5_panel_e_original_style/plot_organoid_original_celldancer_style.py
 当前素材：
 
 ```text
-evaluation/parameter_recovery/figures/final_seed123/organoid_streams/celldancer_organoid_stream_title_removed.png
-evaluation/parameter_recovery/figures/final_seed123/organoid_streams/DeepKINET_organoid_stream_title_removed.png
-evaluation/parameter_recovery/figures/final_seed123/organoid_streams/deepvelo_organoid_stream_title_removed.png
+evaluation/kinetics_recovery/figures/final_seed123/organoid_streams/celldancer_organoid_stream_title_removed.png
+evaluation/kinetics_recovery/figures/final_seed123/organoid_streams/DeepKINET_organoid_stream_title_removed.png
+evaluation/kinetics_recovery/figures/final_seed123/organoid_streams/deepvelo_organoid_stream_title_removed.png
 ```
 
 DeepKINET 的最终 H5AD 不预存 velocity graph；重画时在流线图前按
@@ -307,14 +310,14 @@ DeepKINET 的最终 H5AD 不预存 velocity graph；重画时在流线图前按
 #### Panel F：organoid branch-specific boxplots
 
 ```text
-evaluation/parameter_recovery/figures/final_seed123/organoid_branch1_boxplot.png
-evaluation/parameter_recovery/figures/final_seed123/organoid_branch2_boxplot.png
+evaluation/kinetics_recovery/figures/final_seed123/organoid_branch1_boxplot.png
+evaluation/kinetics_recovery/figures/final_seed123/organoid_branch2_boxplot.png
 ```
 
 上游 DeepVelo kinetic 数据由以下统一入口生成：
 
 ```text
-evaluation/parameter_recovery/metrics.py
+evaluation/kinetics_recovery/metrics.py
 ```
 
 ### Case 3 kinetic-parameter evaluation
@@ -322,8 +325,8 @@ evaluation/parameter_recovery/metrics.py
 Case 3 直接读取既有方法结果，不再复制数据准备或方法训练步骤。入口为：
 
 ~~~text
-evaluation/parameter_recovery/config.json
-evaluation/parameter_recovery/metrics.py
+evaluation/kinetics_recovery/config.json
+evaluation/kinetics_recovery/metrics.py
 ~~~
 
 case3.json 只维护参考表、结果 H5AD 路径、参数 layer 映射和必要的
@@ -477,11 +480,11 @@ git log -5 --oneline
 2. `before_gene_cbdir_rerun_20260613_013621/final_genes/` 是旧版；
 3. 对最终 PDF 有疑问时，应比较图中显示分数与两个 `score.txt`，而不是比较目录时间戳。
 
-### Kinetic-parameter analysis
+### Kinetics analysis
 
-1. 当前 release 统一结果位于 `evaluation/parameter_recovery/results/final_seed123/`；
+1. 当前 release 统一结果位于 `evaluation/kinetics_recovery/results/final_seed123/`；
 2. DeepKINET 的正式结果使用 seed 123，参数恢复只读取 `degradation_rate` 作为 gamma；
-3. Figure 5B–F 的可复现候选素材位于 `evaluation/parameter_recovery/figures/final_seed123/`；
+3. Figure 5B–F 的可复现候选素材位于 `evaluation/kinetics_recovery/figures/final_seed123/`；
 4. Figure 5A 仍是人工选择的 RPE1 流线素材，暂不纳入本次 seed123 更新。
 
 ### Ensemble

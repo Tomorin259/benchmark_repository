@@ -1,340 +1,487 @@
 {
   "schema_version": 1,
-  "source": {
-    "path": "external:cell-level-source",
-    "sha256": "c79929214882afc5d8dcb5e219b8a8f16785eb5a7938143f6e1e5c43d1885c50",
-    "symbols": [
-      "DATASET_CONFIGS",
-      "BATC_N_BINS_BY_DATASET",
-      "DEFAULT_BATC_N_BINS",
-      "METHOD_EMB_OVERRIDES",
-      "prepare_clusters",
-      "CELL_MAPPER_ORGANOID"
-    ],
-    "extraction_note": "The values in this file are an explicit contract extracted from the current effective source. It contains no private absolute paths."
+  "result_inputs": "result_inputs.tsv",
+  "outputs": {
+    "metrics": "results/all_metrics.csv",
+    "transprob": "results/transprob.csv",
+    "figures": "figures/"
   },
-  "dataset_manifest": "data/datasets.tsv",
-  "method_manifest": "methods/configurations.tsv",
-  "batc_default_n_bins": 20,
+  "labels": {
+    "fallback_sources": [
+      "celltype",
+      "Clusters",
+      "phase",
+      "Annotation",
+      "cell_type"
+    ],
+    "dataset_specific_sources": {
+      "rpe1": "cell_cycle_phase",
+      "retina": "Annotation",
+      "neuron": "time_str",
+      "hematopoiesis": "cell_type",
+      "forebrain": "Clusters",
+      "gastrulation": "celltype"
+    }
+  },
+  "metrics": {
+    "n_neighbors": 30,
+    "batch_size": 500,
+    "velocity_graph_n_jobs": 8
+  },
   "datasets": {
     "bonemarrow": {
       "dataset_id": "bonemarrow",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["HSC_1", "Ery_1"],
-        ["HSC_1", "HSC_2"],
-        ["Ery_1", "Ery_2"]
+        [
+          "HSC_1",
+          "Ery_1"
+        ],
+        [
+          "HSC_1",
+          "HSC_2"
+        ],
+        [
+          "Ery_1",
+          "Ery_2"
+        ]
       ],
       "batc_n_bins": 30,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "capofibro": {
       "dataset_id": "capo_pre",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["G1", "S"],
-        ["S", "G2M"],
-        ["G2M", "G1"]
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
       ],
       "batc_n_bins": 5,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "DentateGyrus_lamanno": {
       "dataset_id": "dentategyrus_lamanno",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["nIPC", "GlialProg"],
-        ["GlialProg", "ImmAstro"],
-        ["GlialProg", "OPC"],
-        ["Nbl1", "Nbl2"],
-        ["Nbl2", "ImmGranule1"],
-        ["ImmGranule1", "ImmGranule2"],
-        ["ImmGranule2", "Granule"],
-        ["Nbl2", "CA"],
-        ["CA", "CA1-Sub"],
-        ["CA", "CA2-3-4"]
+        [
+          "nIPC",
+          "GlialProg"
+        ],
+        [
+          "GlialProg",
+          "ImmAstro"
+        ],
+        [
+          "GlialProg",
+          "OPC"
+        ],
+        [
+          "Nbl1",
+          "Nbl2"
+        ],
+        [
+          "Nbl2",
+          "ImmGranule1"
+        ],
+        [
+          "ImmGranule1",
+          "ImmGranule2"
+        ],
+        [
+          "ImmGranule2",
+          "Granule"
+        ],
+        [
+          "Nbl2",
+          "CA"
+        ],
+        [
+          "CA",
+          "CA1-Sub"
+        ],
+        [
+          "CA",
+          "CA2-3-4"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "dentategyrus": {
       "dataset_id": "dentategyrus",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["nIPC", "Neuroblast"],
-        ["Neuroblast", "Granule immature"],
-        ["Granule immature", "Granule mature"],
-        ["Radial Glia-like", "Astrocytes"],
-        ["OPC", "OL"]
+        [
+          "nIPC",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "Granule immature"
+        ],
+        [
+          "Granule immature",
+          "Granule mature"
+        ],
+        [
+          "Radial Glia-like",
+          "Astrocytes"
+        ],
+        [
+          "OPC",
+          "OL"
+        ]
       ],
       "batc_n_bins": 30,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "forebrain": {
       "dataset_id": "forebrain",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [4, 5],
-        [5, 6]
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "Clusters",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": true
       }
     },
     "gastrulation": {
       "dataset_id": "gastrulation",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["Blood progenitors 1", "Blood progenitors 2"],
-        ["Blood progenitors 2", "Erythroid1"],
-        ["Erythroid1", "Erythroid2"],
-        ["Erythroid2", "Erythroid3"]
+        [
+          "Blood progenitors 1",
+          "Blood progenitors 2"
+        ],
+        [
+          "Blood progenitors 2",
+          "Erythroid1"
+        ],
+        [
+          "Erythroid1",
+          "Erythroid2"
+        ],
+        [
+          "Erythroid2",
+          "Erythroid3"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "celltype",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "hematopoiesis": {
       "dataset_id": "hematopoiesis",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["HSC", "GMP-like"],
-        ["HSC", "MEP-like"],
-        ["GMP-like", "Neu"],
-        ["GMP-like", "Mon"],
-        ["MEP-like", "Ery"],
-        ["MEP-like", "Meg"],
-        ["MEP-like", "Bas"]
+        [
+          "HSC",
+          "GMP-like"
+        ],
+        [
+          "HSC",
+          "MEP-like"
+        ],
+        [
+          "GMP-like",
+          "Neu"
+        ],
+        [
+          "GMP-like",
+          "Mon"
+        ],
+        [
+          "MEP-like",
+          "Ery"
+        ],
+        [
+          "MEP-like",
+          "Meg"
+        ],
+        [
+          "MEP-like",
+          "Bas"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "cell_type",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "mousebrain": {
       "dataset_id": "mousebrain",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["RG, Astro, OPC", "IPC"],
-        ["IPC", "V-SVZ"],
-        ["V-SVZ", "Upper Layer"],
-        ["Upper Layer", "Deeper Layer"]
+        [
+          "RG, Astro, OPC",
+          "IPC"
+        ],
+        [
+          "IPC",
+          "V-SVZ"
+        ],
+        [
+          "V-SVZ",
+          "Upper Layer"
+        ],
+        [
+          "Upper Layer",
+          "Deeper Layer"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "neuron": {
       "dataset_id": "scnt_neuron",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["0", "15"],
-        ["15", "30"],
-        ["30", "60"],
-        ["60", "120"]
+        [
+          "0",
+          "15"
+        ],
+        [
+          "15",
+          "30"
+        ],
+        [
+          "30",
+          "60"
+        ],
+        [
+          "60",
+          "120"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "time_str",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "organoid": {
       "dataset_id": "sceu_organoid",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "cell_type",
       "cluster_edges": [
-        ["Stem cells", "TA cells"],
-        ["Stem cells", "Goblet cells"]
+        [
+          "Stem cells",
+          "TA cells"
+        ],
+        [
+          "Stem cells",
+          "Goblet cells"
+        ]
       ],
       "batc_n_bins": 40,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "cell_type",
-        "strategy": "preexisting_target_only",
-        "dataset_specific_source": null,
-        "fallback_sources": [],
-        "legacy_mapper": {
-          "name": "CELL_MAPPER_ORGANOID",
-          "source_column": "som_cluster_id",
-          "target_column": "cell_type",
-          "status": "legacy_defined_but_not_applied",
-          "legacy_defined_but_not_applied": true,
-          "applies_at_runtime": false,
-          "mapping": {
-            "1": "Enterocytes",
-            "2": "Enterocytes",
-            "3": "Enteroendocrine",
-            "4": "Enteroendocrine progenitor",
-            "5": "Tuft cells",
-            "6": "TA cells",
-            "7": "TA cells",
-            "8": "Stem cells",
-            "9": "Paneth cells",
-            "10": "Goblet cells",
-            "11": "Stem cells"
-          }
-        }
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "pancreas": {
       "dataset_id": "pancreas",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["Ductal", "Ngn3 low EP"],
-        ["Ngn3 low EP", "Ngn3 high EP"],
-        ["Ngn3 high EP", "Pre-endocrine"],
-        ["Pre-endocrine", "Beta"],
-        ["Pre-endocrine", "Alpha"],
-        ["Pre-endocrine", "Delta"],
-        ["Pre-endocrine", "Epsilon"]
+        [
+          "Ductal",
+          "Ngn3 low EP"
+        ],
+        [
+          "Ngn3 low EP",
+          "Ngn3 high EP"
+        ],
+        [
+          "Ngn3 high EP",
+          "Pre-endocrine"
+        ],
+        [
+          "Pre-endocrine",
+          "Beta"
+        ],
+        [
+          "Pre-endocrine",
+          "Alpha"
+        ],
+        [
+          "Pre-endocrine",
+          "Delta"
+        ],
+        [
+          "Pre-endocrine",
+          "Epsilon"
+        ]
       ],
       "batc_n_bins": 30,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "retina": {
       "dataset_id": "retina",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["Progenitor", "Neuroblast"],
-        ["Neuroblast", "PR"],
-        ["Neuroblast", "AC/HC"],
-        ["Neuroblast", "RGC"]
+        [
+          "Progenitor",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "PR"
+        ],
+        [
+          "Neuroblast",
+          "AC/HC"
+        ],
+        [
+          "Neuroblast",
+          "RGC"
+        ]
       ],
       "batc_n_bins": 40,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "Annotation",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "rpe1": {
       "dataset_id": "sceu_rpe1",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["M", "M-G1"],
-        ["M-G1", "G1-S"],
-        ["G1-S", "S"],
-        ["S", "G2-M"]
+        [
+          "M",
+          "M-G1"
+        ],
+        [
+          "M-G1",
+          "G1-S"
+        ],
+        [
+          "G1-S",
+          "S"
+        ],
+        [
+          "S",
+          "G2-M"
+        ]
       ],
       "batc_n_bins": 10,
-      "batc_n_bins_source": "BATC_N_BINS_BY_DATASET",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "dataset_specific_then_generic_fallback",
-        "dataset_specific_source": "cell_cycle_phase",
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     },
     "rpe1_gen": {
       "dataset_id": "rpe1_gen",
-      "emb": "umap",
+      "embedding": "umap",
       "label": "clusters",
       "cluster_edges": [
-        ["G1", "S"],
-        ["S", "G2M"],
-        ["G2M", "G1"]
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
       ],
       "batc_n_bins": 20,
-      "batc_n_bins_source": "DEFAULT_BATC_N_BINS",
-      "label_source": {
-        "target": "clusters",
-        "strategy": "generic_fallback_if_target_missing",
-        "dataset_specific_source": null,
-        "fallback_sources": ["celltype", "Clusters", "phase", "Annotation", "cell_type"]
+      "batc": {
+        "embedding": "umap",
+        "recompute_embedding": false
       }
     }
   },
-  "method_embedding_overrides": {
-    "cell2fate": "umap",
-    "celldancer": "umap",
-    "deepkinet": "umap",
-    "deepvelo": "umap",
-    "deepvelo2022": "umap",
-    "dynamo": "umap_ori",
-    "graphvelo_dynamo": "umap",
-    "graphvelo_scv": "umap",
-    "multivelo": "umap",
-    "scvelo_deterministic": "umap",
-    "scvelo_dynamic": "umap",
-    "scvelo_stochastic": "umap",
-    "sdevelo": "umap",
-    "TFvelo": "umap",
-    "tivelo": "umap",
-    "tsvelo": "umap",
-    "unitvelo": "umap",
-    "unitvelo_mode2": "umap",
-    "veloae": "umap",
-    "velovi": "umap"
-  }
+  "method_order": [
+    "scvelo_deterministic",
+    "scvelo_stochastic",
+    "scvelo_dynamic",
+    "multivelo",
+    "unitvelo",
+    "unitvelo_mode2",
+    "dynamo",
+    "TIvelo",
+    "cell2fate",
+    "TFvelo",
+    "veloae",
+    "veloVI",
+    "DeepKINET",
+    "TSvelo",
+    "celldancer",
+    "deepvelo",
+    "SDEvelo",
+    "deepvelo2022",
+    "graphvelo_scv",
+    "graphvelo_dynamo"
+  ]
 }

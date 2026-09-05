@@ -5,7 +5,7 @@ definition:
 
 - cell-level panels come from `evaluation/cell/`;
 - gene-level real and simulation panels come from `evaluation/gene/`;
-- parameter-recovery panels come from `evaluation/parameter_recovery/`; and
+- kinetics-recovery panels come from `evaluation/kinetics_recovery/`; and
 - integrated summaries such as Figure 6 come from `evaluation/summary/`.
 
 When a manuscript figure combines panels from multiple modules, this file

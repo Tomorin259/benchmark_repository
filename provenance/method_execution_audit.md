@@ -13,13 +13,13 @@ The audit was completed on 2026-09-01 against the unversioned working root recor
 - After applying the 12 owner-confirmed TIvelo path aliases, every render-manifest result path resolves to an existing H5AD.
 - Method-specific final velocity layers and embedding keys are recorded in `method_configurations.tsv`.
 - The gene-level nine-method subset, Dynamo metabolic-labeling positive control, and RowGeometricMedian-4 utility are separate analysis roles and are not additional method configurations.
-- For C10 (TFvelo), the source is located at `project:TFvelo-main`. The chain is `TFvelo_run_demo.py` (preprocessing and recovery) followed by `TFvelo_analysis_demo.py` (analysis and final H5AD output). The 14 files in `velocity:results/TFvelo/` are byte-identical to the corresponding files in the original TFvelo result tree; their transfer and rename are recorded as owner-confirmed manual curation.
+- For C10 (TFvelo), the official source is available at `/mnt/second19T/zhaozelin/TFvelo-main`. The chain is `TFvelo_run_demo.py` (preprocessing and recovery) followed by `TFvelo_analysis_demo.py` (analysis and final H5AD output). The new source-backed launcher records the 14 manual input overrides, stages the official relative paths, and patches only the analysis script's hard-coded hematopoiesis input in a temporary copy. The 14 files in `velocity:results/TFvelo/` are byte-identical to the corresponding files in the original TFvelo result tree.
 - For C12 (veloVI), the cell-level canonical family is `velocity:results/veloVI/veloVI_without_vu/veloVI_*_all.h5ad` and stores the default spliced `get_velocity` output in `velocity`. The gene-level family is the root `velocity:results/veloVI/veloVI_*_all.h5ad` and additionally stores the explicit `velo_mode="unspliced"` output in `velocity_u`. The two roles are compatible with the observed code and results; the configuration status is confirmed.
-- For C14 (TSvelo), `velocity:methods/TSvelo/TSvelo_run.py` calls the preprocessing and branch-model chain in `TSvelo_pp.py` before concatenating or renaming the final output. The 14 paths referenced by the current render manifest are the canonical benchmark outputs; `*_ori`, `*_1`, and `results_old` are historical variants rather than unresolved candidates.
+- For C14 (TSvelo), the official source is available at `/mnt/second19T/zhaozelin/velocity/methods/TSvelo`. `TSvelo_run.py` calls the preprocessing and branch-model chain in `TSvelo_pp.py` before concatenating or renaming the final output. The source-backed launcher records all 14 manual input overrides and invokes the original entry point in an isolated compatibility tree. The mousebrain result intentionally uses the same biological dataset through a 4881-cell multiome loom, yielding 3653 cells after TSvelo preprocessing; cell-level evaluation aligns those cells to the common 3365-cell benchmark panel.
 
 ## Candidate runners, not yet canonical runners
 
-The working project contains plausible entry points for the 20 configurations, but many have partial active lists, dataset-specific wrappers, or stale path aliases. The registry therefore records one method-specific candidate per configuration and does not promote partial scripts to canonical public runners. A manual method-local-to-final-result copy or rename is acceptable when its provenance is recorded for the released artifact. These limitations are recorded row by row in `runner_inventory.tsv`.
+The working project contains method-specific entry points for the 20 configurations. The registry records one runner per configuration and keeps source-backed launchers separate from the external upstream implementation. A manual method-local-to-final-result copy or rename is acceptable when its provenance is recorded for the released artifact. Historical path aliases and remaining environment limitations are recorded row by row in `runner_inventory.tsv`.
 
 Known alternates excluded from the primary registry include partial or incompatible DeepKINET, cell2fate, GraphVelo, veloVI, veloAE, TSvelo, cellDancer, MultiVelo, and Dynamo scripts. They remain in the private working tree but are not silently promoted to public entry points.
 
@@ -37,8 +37,8 @@ path. The seed is a benchmark reproducibility control, not an upstream tutorial
 default.
 
 The C13 cell-level rows in the compact metric table and the RPE1/organoid
-parameter-recovery outputs were refreshed from this final result family. The
-parameter-recovery contract uses `degradation_rate` as DeepKINET gamma and
+kinetics-recovery outputs were refreshed from this final result family. The
+kinetics-recovery contract uses `degradation_rate` as DeepKINET gamma and
 does not infer an alpha result that the H5AD does not provide.
 
 ## Environment evidence
@@ -47,7 +47,7 @@ The manuscript versions are well defined except for TFvelo, TSvelo, and DeepVelo
 
 ## Remaining contract gaps
 
-- Curate the located TFvelo and TSvelo sources into method-specific scripts with explicit dataset selectors or mappings.
+- Run the new TFvelo and TSvelo launchers on one ordinary and one special dataset, then compare their output contracts with the existing formal artifacts before any full rerun.
 - Replace partial active lists with explicit supported-dataset mappings as each method is promoted; a shared universal runner is not required.
 - Freeze the exact TSvelo preprocessing inputs, method revision, and bundled-asset licensing terms.
 - Record manual curation and checksums for method-local outputs when those outputs are redistributed.

@@ -1,4 +1,4 @@
-# Kinetic-parameter recovery
+# Kinetics-recovery
 
 This module evaluates method-estimated kinetic parameters against the scEU-seq
 reference tables for RPE1 and organoid systems. It consumes saved method-result
@@ -60,7 +60,7 @@ method-specific rules, not configurable alternatives.
 Validate all configured inputs:
 
 ~~~bash
-python evaluation/parameter_recovery/metrics.py \
+python evaluation/kinetics_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --check-only
 ~~~
@@ -68,7 +68,7 @@ python evaluation/parameter_recovery/metrics.py \
 Write a fresh metrics output directory:
 
 ~~~bash
-python evaluation/parameter_recovery/metrics.py \
+python evaluation/kinetics_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --output /path/to/metrics
 ~~~
@@ -76,7 +76,7 @@ python evaluation/parameter_recovery/metrics.py \
 Render figures and plot-specific tables:
 
 ~~~bash
-python evaluation/parameter_recovery/plots.py \
+python evaluation/kinetics_recovery/plots.py \
   --metrics /path/to/metrics \
   --output /path/to/figures
 ~~~

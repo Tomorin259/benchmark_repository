@@ -15,11 +15,24 @@ jobs:
       - name: Check JSON files
         run: |
           python -m json.tool evaluation/cell/config.json >/dev/null
-          python -m json.tool evaluation/parameter_recovery/config.json >/dev/null
+          python -m json.tool evaluation/kinetics_recovery/config.json >/dev/null
       - name: Compile Python entry points
         run: |
-          python -m py_compile evaluation/parameter_recovery/metrics.py
-          python -m py_compile evaluation/parameter_recovery/plots.py
-          python -m py_compile tests/test_parameter_recovery.py
+          python -m py_compile evaluation/cell/metrics.py
+          python -m py_compile evaluation/cell/transprob.py
+          python -m py_compile evaluation/cell/plots.py
+          python -m py_compile evaluation/cell/batc.py
+          python -m py_compile evaluation/kinetics_recovery/metrics.py
+          python -m py_compile evaluation/kinetics_recovery/plots.py
+          python -m py_compile tests/test_cell_evaluation.py
+          python -m py_compile tests/test_kinetics_recovery.py
+      - name: Install test dependencies
+        run: python -m pip install numpy pandas scipy h5py anndata
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate manifests
+        run: |
+          python manifests/validate_phase2_manifests.py
+          python manifests/validate_cell_contract.py
       - name: Check whitespace
         run: git diff --check

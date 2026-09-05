@@ -172,7 +172,7 @@ During review, ask:
    evaluation/cell/
    evaluation/gene/
    evaluation/gene/simulation/
-   evaluation/parameter_recovery/
+   evaluation/kinetics_recovery/
    evaluation/summary/
 
 3. Added utility
@@ -255,7 +255,7 @@ rna-velocity-benchmark/
 │   │   │   ├── simulation/
 │   │   │   └── real/
 │   │   └── figures/
-│   ├── parameter_recovery/
+│   ├── kinetics_recovery/
 │   │   ├── README.md
 │   │   ├── config.json
 │   │   ├── metrics.py
@@ -288,7 +288,7 @@ rna-velocity-benchmark/
 │   ├── test_metadata.py
 │   ├── test_cell_evaluation.py
 │   ├── test_gene_evaluation.py
-│   └── test_parameter_recovery.py
+│   └── test_kinetics_recovery.py
 │
 └── .github/
     └── workflows/
@@ -379,7 +379,7 @@ The public repository does not use the internal name `Case 3`. Its final name
 and layout are fixed as:
 
 ```text
-evaluation/parameter_recovery/
+evaluation/kinetics_recovery/
 ├── README.md
 ├── config.json
 ├── metrics.py
@@ -456,7 +456,7 @@ documentation hierarchy is recreated.
 Tests protect cheap, high-value publication contracts; they are not a software
 product coverage programme. The baseline suite checks metadata consistency,
 absence of private absolute paths, and the heterogeneous cell-, gene-, and
-parameter-recovery extraction and numerical processing on synthetic data.
+kinetics-recovery extraction and numerical processing on synthetic data.
 
 CI runs only these lightweight checks. GPU training, all-method environment
 creation, and complete benchmark execution remain documented HPC workflows
@@ -495,7 +495,7 @@ Status recorded on 2026-09-04:
 | ---: | --- | --- |
 | 0 | Establish the paper-aligned repository skeleton | Complete |
 | 1 | Freeze and retain the private audit baseline | Complete |
-| 2 | Curate `evaluation/parameter_recovery/` as the first runnable evaluation module | Implemented; final result promotion and release packaging remain |
+| 2 | Curate `evaluation/kinetics_recovery/` as the first runnable evaluation module | Implemented; final result promotion and release packaging remain |
 | 3 | Use the same module ownership pattern for cell- and gene-level evaluation | Not started; existing audit metadata and compact tables are source material only |
 | 4 | Curate direct method scripts and reviewed environments one method at a time | Not started |
 | 5 | Freeze canonical processed inputs and result H5AD files externally | Not started; `artifacts.tsv` is an incomplete placeholder index |

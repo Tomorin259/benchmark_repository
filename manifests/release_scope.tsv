@@ -11,7 +11,7 @@ velocity:indicators/cell metric code	evaluation/cell/	curate	3	Publish canonical
 velocity:indicators/cell/all_metrics/*.csv	results_summary/cell_metrics/	include	3	Small tables directly support Figure 2 and supplementary result tables
 velocity:indicators/gene/simulation code	simulation/ and evaluation/gene/	curate	3	Separate simulation generation from metric evaluation and remove diagnostics
 velocity:indicators/gene real-data metric code	evaluation/gene/	curate	3	Publish canonical real MURK and branching evaluation paths
-velocity:indicators/gene kinetic code	evaluation/parameter_recovery/	curate	3	Publish canonical parameter-recovery evaluation paths
+velocity:indicators/gene kinetic code	evaluation/kinetics_recovery/	curate	3	Publish canonical kinetics-recovery evaluation paths
 velocity:indicators/** bulk intermediate results	-	exclude	3	Keep only compact publication tables and selected figure inputs
 velocity:plot current plotting scripts	figure_reproduction/	curate	5	Organize by paper figure and replace working-tree paths with manifest-driven inputs
 velocity:plot current plot data	figure_reproduction/plot_data/	curate	5	Include small canonical CSV TXT JSON and selected raster/vector inputs

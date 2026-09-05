@@ -444,7 +444,7 @@ def plot_kinetic_summary(summary: pd.DataFrame, output: Path) -> None:
     axis.axhline(0, color="0.6", linewidth=0.8)
     axis.set_xticks(positions, methods, rotation=30)
     axis.set_ylabel("Equal-system mean Spearman")
-    axis.set_title("Kinetic-parameter recovery summary")
+    axis.set_title("Kinetics-recovery summary")
     axis.legend(title="Parameter")
     figure.tight_layout()
     figure.savefig(output / "kinetic_summary.png", dpi=300)

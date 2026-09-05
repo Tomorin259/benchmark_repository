@@ -1,7 +1,7 @@
 {
   "result_generation": "final_seed123",
-  "evaluator": "evaluation/parameter_recovery/metrics.py",
-  "plotter": "evaluation/parameter_recovery/plots.py",
+  "evaluator": "evaluation/kinetics_recovery/metrics.py",
+  "plotter": "evaluation/kinetics_recovery/plots.py",
   "deepkinet": {
     "seed": 123,
     "runner": "methods/deepkinet.py",

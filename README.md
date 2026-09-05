@@ -8,12 +8,11 @@ remain in external storage.
 ## Current status
 
 As of 2026-09-05, the paper-aligned repository contains the final seed-123
-DeepKINET runner, refreshed cell-level compact tables, and a runnable
-parameter-recovery bundle for the current DeepKINET result. The cell module
-has frozen compact results but still needs a clean public evaluator; gene and
-integrated summary evaluators remain structural placeholders or curated data
-packages. The presence of a directory must not be read as implementation
-completion.
+DeepKINET runner, a runnable cell-level evaluator, refreshed compact tables,
+and a runnable kinetics-recovery bundle for the current DeepKINET result. The
+gene and integrated summary evaluators remain structural placeholders or
+curated data packages. The presence of a directory must not be read as full
+all-20 benchmark completion.
 
 ## Repository path
 
@@ -22,7 +21,7 @@ methods/                         method-specific reproduction scripts
 envs/                            reviewed software specifications
 evaluation/cell/                 cell-level evaluation and panels
 evaluation/gene/                 gene-level evaluation and simulation
-evaluation/parameter_recovery/  kinetic-parameter recovery (paper Case 3)
+evaluation/kinetics_recovery/  kinetic-parameter recovery (paper Case 3)
 evaluation/summary/              cross-experiment summaries such as Figure 6
 ensemble/                        optional post-hoc signed-transition utility
 data/                            dataset metadata and access information
@@ -37,22 +36,22 @@ method script that requires it; evaluation processing, compact results, and
 generated panels stay together in the evaluation module that owns the
 scientific question.
 
-## Running parameter recovery
+## Running kinetics-recovery
 
-The parameter-recovery module consumes saved method-result H5AD files and the
+The kinetics-recovery module consumes saved method-result H5AD files and the
 scEU-seq reference tables. It does not train methods or prepare the benchmark
 datasets.
 
 ```bash
-python evaluation/parameter_recovery/metrics.py \
+python evaluation/kinetics_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --check-only
 
-python evaluation/parameter_recovery/metrics.py \
+python evaluation/kinetics_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --output /path/to/metrics
 
-python evaluation/parameter_recovery/plots.py \
+python evaluation/kinetics_recovery/plots.py \
   --metrics /path/to/metrics \
   --output /path/to/figures
 ```
