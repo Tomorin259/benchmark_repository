@@ -25,6 +25,22 @@ Known alternates excluded from the primary registry include partial or incompati
 
 For veloVI, the cell-level runner associated with the canonical `without_vu` result family calls `get_velocity(n_samples=25, velo_statistic="mean")`, whose velovi 0.3.1 default is `spliced`. The gene-level runner additionally calls `get_velocity(..., velo_mode="unspliced")` and stores `velocity_u`. The previously apparent manuscript/runner conflict is therefore a distinction between output roles, not an unresolved result identity.
 
+## Final result update
+
+The formal C13 result was subsequently frozen with benchmark seed 123. The
+seeded runner resets Python, NumPy, and PyTorch/CUDA state before each dataset,
+enables deterministic PyTorch algorithms, and preserves the upstream model
+settings (`epoch=2000`, `loss_mode="poisson"`, `batch_key=None`). The 14
+seed-123 H5AD outputs were reproduced in a shuffled dataset order with exact
+core-layer equality; the only expected difference was the embedded checkpoint
+path. The seed is a benchmark reproducibility control, not an upstream tutorial
+default.
+
+The C13 cell-level rows in the compact metric table and the RPE1/organoid
+parameter-recovery outputs were refreshed from this final result family. The
+parameter-recovery contract uses `degradation_rate` as DeepKINET gamma and
+does not infer an alpha result that the H5AD does not provide.
+
 ## Environment evidence
 
 The manuscript versions are well defined except for TFvelo, TSvelo, and DeepVelo_scVelo. Historical Conda assignments are mostly inferred. The import smoke audit found an importable candidate for all 16 configuration environments, but these checks did not execute model training. DeepVelo GCN imports with a NumPy/SciPy compatibility warning. The original SDEvelo environment fails during scVelo import because its Python 3.8/scVelo 0.3.3 combination is incompatible; the `sdevelo_py310` environment passes the smoke test and is now the C17 audited candidate. DeepKINET has a dirty nested repository and a specification that differs from the working environment; veloAE and DeepVelo_scVelo retain historical metadata or revision-cleanliness issues. The release therefore records runtime evidence separately from clean-spec readiness and does not generate misleading lock files.

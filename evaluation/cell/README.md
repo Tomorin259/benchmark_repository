@@ -120,6 +120,10 @@ Its 280 unique `(dataset, method)` keys must equal
 parse as finite floating-point values. The file is copied byte for byte from
 the audited working result and was not recalculated in Phase 3A.
 
+`results/transprob.csv` is the companion 280-row table for the TransCosine
+metric. It uses the header `dataset,method,transprob` and the same key set as
+`all_metrics.csv`.
+
 Run the standard-library validator from the repository root:
 
 ```bash

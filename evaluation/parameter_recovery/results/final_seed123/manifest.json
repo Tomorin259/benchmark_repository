@@ -1,0 +1,24 @@
+{
+  "result_generation": "final_seed123",
+  "evaluator": "evaluation/parameter_recovery/metrics.py",
+  "plotter": "evaluation/parameter_recovery/plots.py",
+  "deepkinet": {
+    "seed": 123,
+    "runner": "methods/deepkinet.py",
+    "rpe1_layer": "degradation_rate",
+    "organoid_layer": "degradation_rate",
+    "parameter": "gamma",
+    "numpy_split_seed_in_official_package": 42,
+    "data_loader_num_workers": 2,
+    "data_loader_shuffle": true,
+    "epoch": 2000,
+    "loss_mode": "poisson",
+    "batch_key": null
+  },
+  "outputs": [
+    "component_means.csv",
+    "gene_metrics.csv",
+    "method_summary.csv",
+    "system_means.csv"
+  ]
+}

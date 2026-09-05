@@ -257,26 +257,26 @@ plot/archive_old_versions_20260613/rpe1/scvelo__stream2_tsvelo.png
 #### Panel B：RPE1 alpha/gamma trajectory curves
 
 ```text
-indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candidates/rpe1_alpha_trajectories.png
-indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candidates/rpe1_gamma_trajectories.png
+evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_trajectories.png
+evaluation/parameter_recovery/figures/final_seed123/rpe1_gamma_trajectories.png
 ```
 
 生成脚本：
 
 ```text
-indicators/gene/kinetic_analyze/plot_figure5_candidates.py
+evaluation/parameter_recovery/plots.py
 ```
 
 #### Panel C：RPE1 alpha/gamma heatmap
 
 ```text
-indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candidates/rpe1_alpha_gamma_heatmap.png
+evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
 ```
 
 它与下列文件的 SHA-256 完全一致：
 
 ```text
-indicators/gene/scEU_rpe1_analyze/gene_boxplots/gene_heatmap_alpha_gamma_combined.png
+evaluation/parameter_recovery/figures/final_seed123/rpe1_alpha_gamma_heatmap.png
 ```
 
 #### Panel D：kinetic-class Venn diagrams
@@ -296,22 +296,25 @@ plot/figure5_panel_e_original_style/plot_organoid_original_celldancer_style.py
 当前素材：
 
 ```text
-plot/figure5_panel_e_original_style/results/celldancer_organoid_stream_title_removed.png
-plot/figure5_panel_e_original_style/results/DeepKINET_organoid_stream_title_removed.png
-plot/figure5_panel_e_original_style/results/deepvelo_organoid_stream_title_removed.png
+evaluation/parameter_recovery/figures/final_seed123/organoid_streams/celldancer_organoid_stream_title_removed.png
+evaluation/parameter_recovery/figures/final_seed123/organoid_streams/DeepKINET_organoid_stream_title_removed.png
+evaluation/parameter_recovery/figures/final_seed123/organoid_streams/deepvelo_organoid_stream_title_removed.png
 ```
+
+DeepKINET 的最终 H5AD 不预存 velocity graph；重画时在流线图前按
+`DeepKINET_velocity` 显式重算 graph。
 
 #### Panel F：organoid branch-specific boxplots
 
 ```text
-indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candidates/organoid_branch1_boxplot.png
-indicators/gene/kinetic_analyze/results/deepvelo/current_results/figure5_candidates/organoid_branch2_boxplot.png
+evaluation/parameter_recovery/figures/final_seed123/organoid_branch1_boxplot.png
+evaluation/parameter_recovery/figures/final_seed123/organoid_branch2_boxplot.png
 ```
 
 上游 DeepVelo kinetic 数据由以下统一入口生成：
 
 ```text
-indicators/gene/kinetic_analyze/run.py
+evaluation/parameter_recovery/metrics.py
 ```
 
 ### Case 3 kinetic-parameter evaluation
@@ -319,8 +322,8 @@ indicators/gene/kinetic_analyze/run.py
 Case 3 直接读取既有方法结果，不再复制数据准备或方法训练步骤。入口为：
 
 ~~~text
-benchmark_repository/evaluation/kinetics/config.json
-benchmark_repository/evaluation/kinetics/metrics.py
+evaluation/parameter_recovery/config.json
+evaluation/parameter_recovery/metrics.py
 ~~~
 
 case3.json 只维护参考表、结果 H5AD 路径、参数 layer 映射和必要的
@@ -338,16 +341,16 @@ Figure 5/6 的定量 review panels 与绘图表，不重复读取或处理上游
 当前直接数值来源：
 
 ```text
-plot/fig2_gene_metric_values/fig2_gene_metric_wps_values.csv
-plot/fig2_gene_metric_values/fig2_gene_metric_summary.csv
-plot/fig2_gene_metric_values/fig2_gene_metric_dataset_means.csv
-plot/fig2_gene_metric_values/fig2_kinetic_component_means.csv
+evaluation/summary/results/figure6_summary/fig2_gene_metric_wps_values.csv
+evaluation/summary/results/figure6_summary/fig2_gene_metric_summary.csv
+evaluation/summary/results/figure6_summary/fig2_gene_metric_dataset_means.csv
+evaluation/summary/results/figure6_summary/fig2_kinetic_component_means.csv
 ```
 
 当前可找到的重建脚本：
 
 ```text
-plot/fig2_gene_metric_values/rebuild_kinetic_spearman_split.py
+evaluation/summary/README.md
 ```
 
 该脚本负责 kinetic Spearman 的 alpha/gamma 分离、跨 system 汇总和展示值 `+1` 转换，但它不是整张 Figure 6 的完整生成程序。
@@ -476,10 +479,10 @@ git log -5 --oneline
 
 ### Kinetic-parameter analysis
 
-1. DeepVelo 当前统一结果位于 `indicators/gene/kinetic_analyze/results/deepvelo/current_results/`；
-2. `legacy_reproduction/` 用于历史流程复现和差异比较；
-3. Figure 5B–F 主要采用 `figure5_candidates/` 和 2026-07-01 重画的 organoid 图；
-4. Figure 5A 是唯一仍放在 `plot/archive_old_versions_20260613/` 中的当前素材。
+1. 当前 release 统一结果位于 `evaluation/parameter_recovery/results/final_seed123/`；
+2. DeepKINET 的正式结果使用 seed 123，参数恢复只读取 `degradation_rate` 作为 gamma；
+3. Figure 5B–F 的可复现候选素材位于 `evaluation/parameter_recovery/figures/final_seed123/`；
+4. Figure 5A 仍是人工选择的 RPE1 流线素材，暂不纳入本次 seed123 更新。
 
 ### Ensemble
 

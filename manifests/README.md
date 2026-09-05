@@ -78,14 +78,14 @@ the default invocation has no private working-tree path dependency.
 
 ## Kinetic-parameter recovery
 
-evaluation/kinetics/config.json is the direct input map for the
+evaluation/parameter_recovery/config.json is the direct input map for the
 kinetic-parameter recovery experiment. It contains reference-table paths,
 canonical method H5AD paths, parameter-layer mappings, and the explicit
 Dynamo/TSvelo H5AD extraction rules. Method
 execution and dataset preparation remain outside this release layer; historical
 method-specific CSVs are regression baselines rather than evaluator inputs.
 
-evaluation/kinetics/metrics.py is the single metrics entry point. It writes
+evaluation/parameter_recovery/metrics.py is the single metrics entry point. It writes
 processed trajectories, per-gene metrics, component means, and equal-system
 summaries to a new output directory. Use --check-only to validate direct
 inputs before producing metrics. Future Figure 5/6 scripts should consume

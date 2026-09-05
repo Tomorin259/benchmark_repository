@@ -153,6 +153,18 @@
       }
     },
     "DeepKINET": {
+      "provenance": {
+        "result_generation": "final_seed123",
+        "seed": 123,
+        "numpy_split_seed_in_official_package": 42,
+        "runner": "methods/deepkinet.py",
+        "deterministic_torch": true,
+        "data_loader_num_workers": 2,
+        "data_loader_shuffle": true,
+        "epoch": 2000,
+        "loss_mode": "poisson",
+        "batch_key": null
+      },
       "rpe1": {
         "reader": "layers",
         "result": "method-results/parameter_recovery/deepkinet/rpe1.h5ad",

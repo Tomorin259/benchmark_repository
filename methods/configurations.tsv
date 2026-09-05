@@ -11,7 +11,7 @@ C09	cell2fate	cell2fate	cell2fate	Bayesian linearized ODE in Pyro	cell2fate 0.1a
 C10	TFvelo	TFvelo	TFvelo	Gene regulatory network with generalized EM	version to be reviewed	CPU	default	TFvelo documentation	velocity	X_umap	curate	Upstream source and bundled assets require release review.
 C11	veloae	veloAE	veloAE	Autoencoder representation learning	veloae 0.2.0	GPU	default	veloAE documentation	new_velocity	X_umap	curate	Operational identifier is lowercase veloae.
 C12	velovi	veloVI	veloVI	Deep generative model	velovi 0.3.1	GPU	cell=mean;gene=unspliced	veloVI documentation	velocity	X_umap	curate	Gene-level evaluation uses the unspliced velocity mode.
-C13	deepkinet	DeepKINET	DeepKINET	Deep generative kinetic model	deepkinet 0.0.1	GPU	official tutorial defaults	DeepKINET documentation	DeepKINET_velocity	X_umap	curate	Raw-count input rules are documented in the method script.
+C13	deepkinet	DeepKINET	DeepKINET	Deep generative kinetic model	deepkinet 0.0.1	GPU	seed=123; deterministic_torch=true; epoch=2000; loss_mode=poisson; batch_key=None	DeepKINET documentation	DeepKINET_velocity	X_umap	curate	Raw-count input rules are documented in the method script; formal result uses benchmark seed 123.
 C14	tsvelo	TSvelo	TSvelo	Neural ordinary differential equation	version to be reviewed	GPU	default	TSvelo documentation	velocity	X_umap	curate	-
 C15	celldancer	cellDancer	cellDancer	Deep neural network	cellDancer 1.1.7	CPU	default	cellDancer documentation	velocity	X_umap	curate	Forebrain uses the configured PCA projection where required.
 C16	deepvelo	Deepvelo(GCN)	DeepVelo	Graph convolutional network	deepvelo 0.2.8	GPU	pred_unspliced=true	DeepVelo documentation	velocity	X_umap	curate	Distinct from the DeepVelo scVelo reconstruction configuration.
