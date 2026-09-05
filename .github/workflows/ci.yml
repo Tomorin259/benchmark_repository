@@ -23,7 +23,7 @@ jobs:
           python -m py_compile evaluation/cell/plots.py
           python -m py_compile evaluation/cell/batc.py
           python -m py_compile evaluation/kinetics_recovery/metrics.py
-          python -m py_compile evaluation/kinetics_recovery/plots.py
+          python -m py_compile evaluation/kinetics_recovery/plotting/figure5.py
           python -m py_compile tests/test_cell_evaluation.py
           python -m py_compile tests/test_kinetics_recovery.py
       - name: Install test dependencies
