@@ -366,6 +366,14 @@ does not rewrite every result into a synthetic universal schema. Each
 evaluation module translates the heterogeneous keys at its own input boundary
 through a small explicit mapping in `config.json`.
 
+## Naming contract
+
+New manuscript-facing tables, figures, captions, and plot labels follow the
+canonical mapping in [`manifests/naming_conventions.md`](manifests/naming_conventions.md).
+Operational IDs and result paths remain stable; normalization is applied only
+at the display boundary. Any renderer-local mapping must exactly match this
+contract; documented historical snapshots may retain their original labels.
+
 At minimum, a canonical result preserves cell and gene identifiers and stores
 the method-specific quantities consumed by the corresponding evaluation.
 Large canonical result files are distributed externally and indexed in the

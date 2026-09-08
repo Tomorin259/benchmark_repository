@@ -2,18 +2,18 @@ artifact_id	task	role	source_path	consumer_or_evidence	storage_policy	evidence_s
 dataset_inputs	all	canonical_data_input	manifests/datasets.tsv#dataset_id	14 real-data inputs and 3 generated simulations	external_archive	mixed	One row per dataset; unresolved variants and transformation gaps are retained explicitly.
 dataset_pancreas	cell	canonical_data_input	manifests/datasets.tsv#pancreas	Pancreas	external_archive	confirmed	-
 dataset_gastrulation	cell	canonical_data_input	manifests/datasets.tsv#gastrulation	Gastrulation	external_archive	confirmed	-
-dataset_forebrain	cell	canonical_data_input	manifests/datasets.tsv#forebrain	Forebrain	external_archive	mixed	-
-dataset_dentategyrus_lamanno	cell	canonical_data_input	manifests/datasets.tsv#dentategyrus_lamanno	DG variants	external_archive	mixed	-
+dataset_forebrain	cell	canonical_data_input	manifests/datasets.tsv#forebrain	ForebrainGlut	external_archive	mixed	-
+dataset_dentategyrus_lamanno	cell	canonical_data_input	manifests/datasets.tsv#dentategyrus_lamanno	Dentategyrus_lamanno	external_archive	mixed	-
 dataset_dentategyrus	cell	canonical_data_input	manifests/datasets.tsv#dentategyrus	Dentategyrus	external_archive	confirmed	-
 dataset_retina	cell	canonical_data_input	manifests/datasets.tsv#retina	Mouse retina	external_archive	mixed	-
-dataset_mousebrain	cell	canonical_data_input	manifests/datasets.tsv#mousebrain	Mousebrain	external_archive	mixed	-
-dataset_hematopoiesis	cell	canonical_data_input	manifests/datasets.tsv#hematopoiesis	Hematopoiesis	external_archive	confirmed	-
-dataset_bonemarrow	cell	canonical_data_input	manifests/datasets.tsv#bonemarrow	Bonemarrow	external_archive	confirmed	-
-dataset_sceu_rpe1	cell	canonical_data_input	manifests/datasets.tsv#sceu_rpe1	scEU_rpe1	external_archive	mixed	-
-dataset_sceu_organoid	cell	canonical_data_input	manifests/datasets.tsv#sceu_organoid	scEU_organoid	external_archive	mixed	-
+dataset_mousebrain	cell	canonical_data_input	manifests/datasets.tsv#mousebrain	mousebrain	external_archive	mixed	-
+dataset_hematopoiesis	cell	canonical_data_input	manifests/datasets.tsv#hematopoiesis	Human hematopoiesis	external_archive	confirmed	-
+dataset_bonemarrow	cell	canonical_data_input	manifests/datasets.tsv#bonemarrow	Human bone marrow	external_archive	confirmed	-
+dataset_sceu_rpe1	cell	canonical_data_input	manifests/datasets.tsv#sceu_rpe1	rpe1	external_archive	mixed	-
+dataset_sceu_organoid	cell	canonical_data_input	manifests/datasets.tsv#sceu_organoid	organoid	external_archive	mixed	-
 dataset_scnt_neuron	cell	canonical_data_input	manifests/datasets.tsv#scnt_neuron	scNT_neuron	external_archive	inference	-
-dataset_capo_pre	cell	canonical_data_input	manifests/datasets.tsv#capo_pre	capo_pre	external_archive	mixed	-
-dataset_rpe1_gen	cell	canonical_data_input	manifests/datasets.tsv#rpe1_gen	rpe1_gen	external_archive	mixed	-
+dataset_capo_pre	cell	canonical_data_input	manifests/datasets.tsv#capo_pre	capofibro (VeloCycle)	external_archive	mixed	-
+dataset_rpe1_gen	cell	canonical_data_input	manifests/datasets.tsv#rpe1_gen	rpe1 (VeloCycle)	external_archive	mixed	-
 cell_render_manifest	cell	render_manifest	velocity:plot/unified_velocity_stream/results/render_manifest.csv	280 rows (14x20), including 12 historical TIvelo paths normalized by path_aliases.tsv	git	confirmed	Compact publication input; normalize aliases before release.
 all_metrics	cell	metric_table	evaluation/cell/results/all_metrics.csv	280x6; Figure 2C and ensemble comparison	git	unresolved	Current 280-row compact table; runtime method/dataset inputs are evaluation/cell/result_inputs.tsv.
 transprob	cell	metric_table	evaluation/cell/results/transprob.csv	280x3; Figure 2C	git	unresolved	Current 280-row TransProb table; uses the same runtime input map and graph contract.

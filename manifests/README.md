@@ -11,6 +11,10 @@ environment. It is a provenance locator only and is not a public filesystem path
 
 These prefixes are provenance locators, not intended public paths. Later phases will replace them with repository-relative paths or external accession URLs.
 
+## Naming contract
+
+[`naming_conventions.md`](naming_conventions.md) is the single source of truth for manuscript-facing method and dataset labels. Operational IDs, historical aliases, result paths, and source filenames remain unchanged; figures, captions, tables, and prose must use the canonical display labels defined there. Any renderer-local mapping must exactly match the canonical contract.
+
 ## `source_assets.tsv`
 
 Each row describes one paper panel or one unsplit figure. Repeated paper hashes are expected because several panels are embedded in one final PDF.
@@ -43,7 +47,7 @@ For `publication_artifacts.tsv`, `git` means a compact artifact should be copied
 
 ## Phase 2 execution schemas
 
-`method_configurations.tsv` is the exact 20-row manuscript registry. `operational_id` follows the render and metric tables; `manuscript_label` preserves Supplementary Table S1 naming. A `confirmed` configuration status confirms its identity and observed final-output contract, not that its runner is publication-ready. The configuration row may describe more than one output role when the method has separate cell-level and gene-level outputs; veloVI records its spliced cell-level output and its additional unspliced gene-level output in this way.
+`method_configurations.tsv` is the exact 20-row manuscript registry. `operational_id` follows the render and metric tables; `manuscript_label` follows the canonical labels in `naming_conventions.md`. A `confirmed` configuration status confirms its identity and observed final-output contract, not that its runner is publication-ready. The configuration row may describe more than one output role when the method has separate cell-level and gene-level outputs; veloVI records its spliced cell-level output and its additional unspliced gene-level output in this way.
 
 `runner_inventory.tsv` records one audited candidate row per configuration. Status values are `candidate`, `source_backed`, `partial`, `ambiguous`, and `missing`. `source_backed` identifies a repository launcher that invokes an external official source checkout while recording its input contract. `missing` is reserved for a configuration for which no authoritative execution source has been located; an empty method subdirectory does not imply missing source when an external project locator is documented. Candidate, source-backed, and partial scripts require curation before publication. `recover_before_release` is reserved for a genuinely absent execution chain; a partial method-specific script uses `curate_after_review`. A final-result copy or rename may be manual and is recorded as provenance when the artifact is released.
 

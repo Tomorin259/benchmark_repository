@@ -15,19 +15,19 @@ Six upstream relations were verified at byte or checksum level:
 | Pancreas | Local SHA-256 equals the scVelo tutorial H5AD. |
 | Gastrulation | Local SHA-256 equals Figshare file `27686871`. |
 | Dentategyrus | Local SHA-256 equals the scVelo tutorial H5AD. |
-| Bonemarrow | Local SHA-256 equals Figshare file `27686835`. |
-| Hematopoiesis | Local MD5 `c738b0ea2246d733440ca11b2b87674d` equals Dynamo Figshare v2 file `47439626`. |
-| Mousebrain source loom | Local SHA-256 equals public file `54153947`; the benchmark H5AD derived from it is not byte-identical and its transform is not frozen. |
+| Human bone marrow | Local SHA-256 equals Figshare file `27686835`. |
+| Human hematopoiesis | Local MD5 `c738b0ea2246d733440ca11b2b87674d` equals Dynamo Figshare v2 file `47439626`. |
+| mousebrain source loom | Local SHA-256 equals public file `54153947`; the benchmark H5AD derived from it is not byte-identical and its transform is not frozen. |
 
 All exact hashes and URLs are recorded in `manifests/datasets.tsv`.
 
 ## Confirmed source with unresolved local transformation
 
-- **Forebrain:** SRP129388 and the scVelo/velocyto loom endpoint are confirmed, but the endpoint now returns HTML rather than the historical loom. The local loom must therefore be frozen by checksum in the external archive.
+- **ForebrainGlut:** SRP129388 and the scVelo/velocyto loom endpoint are confirmed, but the endpoint now returns HTML rather than the historical loom. The local loom must therefore be frozen by checksum in the external archive.
 - **Dentategyrus_lamanno:** GSE104323 is the developing-dentate-gyrus source used by La Manno et al. The historical loom endpoint and conversion code are identifiable, but endpoint byte identity is no longer testable. Both benchmark H5AD variants remain in scope because different runners reference them.
-- **Retina:** GSM3466902/GSE122466 is the source record. The audited input has 2,726 cells, whereas the GEO sample title reports 2,675; the exact local transformation is missing.
-- **Mousebrain:** the 10x E18 source loom is exact, but the 3,365-cell, 936-gene benchmark H5AD transformation is not frozen.
-- **scEU_rpe1 and scEU_organoid:** the biological sources and corresponding Dynamo Figshare v2 processed files are identified; local serialization or downstream transformation is not fully reconstructed.
+- **Mouse retina:** GSM3466902/GSE122466 is the source record. The audited input has 2,726 cells, whereas the GEO sample title reports 2,675; the exact local transformation is missing.
+- **mousebrain:** the 10x E18 source loom is exact, but the 3,365-cell, 936-gene benchmark H5AD transformation is not frozen.
+- **rpe1 () and organoid ():** the biological sources and corresponding Dynamo Figshare v2 processed files are identified; local serialization or downstream transformation is not fully reconstructed.
 - **capo_pre and rpe1_gen:** the VeloCycle Zenodo files have the same cell identifiers as the local inputs. The local files are 2,000-gene processed subsets, and the exact subset/preprocessing commands are missing.
 - **scNT_neuron:** the Dynamo neuron-splicing source is the best-supported origin, but the local 3,066-cell excitatory time-course subset and 2,000-gene transform remain an inference.
 

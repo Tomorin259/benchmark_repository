@@ -495,38 +495,11 @@ git log -5 --oneline
 4. 发布仓库中统一图件命名时，必须同时修改构建脚本并进行 PDF 视觉核验；
 5. 重跑或引用前先确认 Git 工作区和具体 commit。
 
-## 8. 数据集标识和常见别名
+## 8. 方法与数据集命名契约
 
-不同脚本对同一数据集使用了不同标识，匹配路径时需要特别注意：
+论文正文、图、图注和表格中的方法名与数据集名，统一以 `manifests/naming_conventions.md` 为唯一规范。运行脚本、结果路径和历史记录继续使用 operational ID 或旧别名，不据此修改文件路径。
 
-| 常用名称 | 可能出现的标识 |
-|---|---|
-| Capolupo fibroblasts | `capofibro`、`capo_pre`、`capolupo_fibroblasts` |
-| Dentate Gyrus, La Manno | `dentate_lamanno`、`DentateGyrus_lamanno` |
-| RPE1 | `rpe1`、`scEU_rpe1` |
-| Pancreas | `pancreas`、`Pancreas` |
-| Gastrulation | `gastrulation`、`Gastrulation` |
-
-ensemble 中常见的 14 个规范化标识为：
-
-```text
-bonemarrow
-capofibro
-dentate_lamanno
-dentategyrus
-forebrain
-gastrulation
-hematopoiesis
-mousebrain
-neuron
-organoid
-pancreas
-retina
-rpe1
-rpe1_gen
-```
-
-不要仅通过大小写或文件名前缀认定两个结果不同；应同时核对细胞条形码、矩阵形状、关键层和 manifest。
+特别注意：`rpe1`（Battich scEU-seq）与 `rpe1_gen`（展示名 `rpe1 (VeloCycle)`）是两个不同数据集，不能合并或互作别名。绘图脚本如需本地映射，必须与该规范逐项一致，不得引入冲突别名。
 
 ## 9. 已知 provenance 风险
 
