@@ -8,8 +8,8 @@ jobs:
   static-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Check JSON files
@@ -35,14 +35,21 @@ jobs:
           python -m py_compile evaluation/kinetics_recovery/plotting/figure5.py
           python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
           python -m py_compile evaluation/gene/plotting/phase_portrait.py
+          python -m py_compile ensemble/core.py
+          python -m py_compile ensemble/metrics.py
+          python -m py_compile ensemble/benchmark.py
           python -m py_compile tests/test_gene_phase_plotting.py
           python -m py_compile tests/test_cell_evaluation.py
           python -m py_compile tests/test_kinetics_recovery.py
           python -m py_compile tests/test_source_backed_method_launchers.py
+          python -m py_compile tests/test_ensemble.py
+          python -m py_compile tests/test_artifacts.py
       - name: Install test dependencies
-        run: python -m pip install numpy pandas scipy h5py anndata matplotlib matplotlib-venn scikit-learn seaborn
+        run: python -m pip install numpy pandas scipy h5py anndata matplotlib matplotlib-venn scikit-learn seaborn pytest scvelo==0.3.4
       - name: Run unit tests
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s tests -v
+          python -m pytest tests/test_artifacts.py -q
       - name: Validate evaluation results
         run: |
           python evaluation/cell/validate_results.py
