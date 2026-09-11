@@ -11,6 +11,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -76,17 +77,14 @@ def load_values(base_csv: Path, ensemble_csv: Path) -> pd.DataFrame:
     return pd.concat(rows, ignore_index=True)
 
 
-def common_order(values: pd.DataFrame) -> list[str]:
-    base = values[values["method"] != ENSEMBLE_ID]
-    metric_ranks = []
-    for metric in METRICS:
-        means = base[base["metric"] == metric].groupby("method")["score"].mean()
-        metric_ranks.append(means.rank(method="average", ascending=False))
-    average_rank = pd.concat(metric_ranks, axis=1).mean(axis=1).sort_values(kind="stable")
-    return [ENSEMBLE_ID, *average_rank.index.tolist()]
+def metric_order(values: pd.DataFrame, metric: str) -> list[str]:
+    frame = values[values["metric"] == metric]
+    means = frame.groupby("method", sort=False)["score"].mean()
+    return means.sort_values(ascending=False, kind="stable").index.tolist()
 
 
-def plot_metric(values: pd.DataFrame, metric: str, order: list[str], output_dir: Path) -> None:
+def plot_metric(values: pd.DataFrame, metric: str, output_dir: Path) -> None:
+    order = metric_order(values, metric)
     display_names = {}
     colors = {}
     for method in order:
@@ -96,7 +94,7 @@ def plot_metric(values: pd.DataFrame, metric: str, order: list[str], output_dir:
             continue
         label = values.loc[values["method"] == method, "method_label"].iloc[0]
         if method in CONSTITUENTS:
-            label = f"{label} *"
+            label = rf"{label} $\bigstar$"
         display_names[method] = label
         source_label = values.loc[values["method"] == method, "method_label"].iloc[0]
         colors[label] = BENCHMARK_COLORS.get(source_label, "#777777")
@@ -107,17 +105,25 @@ def plot_metric(values: pd.DataFrame, metric: str, order: list[str], output_dir:
     means = frame.groupby("plot_method")["score"].mean()
 
     sns.set_theme(style="ticks", rc={
-        "axes.grid": True, "grid.linestyle": "--", "grid.alpha": 0.5,
         "font.family": "sans-serif",
         "font.sans-serif": ["Arial", "Liberation Sans", "DejaVu Sans"],
+        "axes.facecolor": "white",
+        "figure.facecolor": "white",
     })
     plt.rcParams["svg.fonttype"] = "none"
     plt.rcParams["svg.hashsalt"] = "supfig09-centerweighted4"
     plt.rcParams["pdf.fonttype"] = 42
     plt.rcParams["ps.fonttype"] = 42
-    fig, ax = plt.subplots(figsize=(11, 15.2))
+    fig, ax = plt.subplots(figsize=(13.8, 15.2))
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
+    ensemble_row = plot_order.index(ENSEMBLE_LABEL)
+    ax.axhspan(
+        ensemble_row - 0.5,
+        ensemble_row + 0.5,
+        color="#f8edef",
+        zorder=0,
+    )
     sns.boxplot(y="plot_method", x="score", data=frame, hue="plot_method", palette=colors,
                 order=plot_order, dodge=False, legend=False, width=0.4, linewidth=1.5,
                 showfliers=False, boxprops={"alpha": 0.6}, ax=ax)
@@ -128,28 +134,62 @@ def plot_metric(values: pd.DataFrame, metric: str, order: list[str], output_dir:
     for row_id, label in enumerate(plot_order):
         ax.scatter(means[label], row_id, color="#FFD700", s=100, marker="D",
                    edgecolor="black", linewidth=1.2, zorder=10)
-    ax.axvline(0, color="gray", linestyle="-", linewidth=2, zorder=0, alpha=0.6)
+    ax.axvline(0, color="#8f969d", linestyle="--", linewidth=1.2, zorder=0, alpha=0.8)
     ax.set_title(METRICS[metric], fontsize=18, fontweight="bold", pad=10)
     ax.set_xlabel("Score", fontsize=14)
     ax.set_ylabel("")
     ax.tick_params(axis="y", labelsize=14, length=0)
     ax.set_xlim(-1.05, 1.05)
     ax.set_xticks(np.linspace(-1.0, 1.0, 5))
+    ax.tick_params(axis="x", labelsize=11)
+    ax.grid(axis="x", linestyle="--", alpha=0.5)
+    ax.grid(axis="y", visible=False)
     sns.despine(ax=ax, trim=True, left=True, offset=5)
     for tick in ax.get_yticklabels():
         if tick.get_text() == ENSEMBLE_LABEL:
             tick.set_fontweight("bold")
+            tick.set_color("#9c4054")
+
+    legend_handles = [
+        Line2D(
+            [0], [0], marker="o", linestyle="none", markerfacecolor="#777777",
+            markeredgecolor="black", markersize=6,
+            label=r"Individual dataset ($n=14$)",
+        ),
+        Line2D(
+            [0], [0], marker="D", linestyle="none", markerfacecolor="#FFD700",
+            markeredgecolor="black", markersize=7, label="Macro-average",
+        ),
+        Line2D(
+            [0], [0], marker=r"$\bigstar$", linestyle="none", color="#262626",
+            markersize=10, label="Constituent method",
+        ),
+    ]
+    fig.legend(
+        handles=legend_handles,
+        loc="lower left",
+        bbox_to_anchor=(0.80, 0.035),
+        frameon=False,
+        fontsize=11,
+        handletextpad=0.7,
+        labelspacing=1.0,
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
     stem = output_dir / PANEL_STEMS[metric]
-    fig.tight_layout()
+    fig.subplots_adjust(left=0.17, right=0.78, top=0.947, bottom=0.05)
+    svg_path = stem.with_suffix(".svg")
     fig.savefig(
-        stem.with_suffix(".svg"),
+        svg_path,
         format="svg",
         dpi=600,
         facecolor="white",
         metadata={"Date": None},
     )
     plt.close(fig)
+    svg_path.write_text(
+        "\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n",
+        encoding="utf-8",
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -168,9 +208,8 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
     values = load_values(args.base_csv, args.ensemble_csv)
-    order = common_order(values)
     for metric in METRICS:
-        plot_metric(values, metric, order, args.output_dir)
+        plot_metric(values, metric, args.output_dir)
     return 0
 
 

@@ -63,4 +63,4 @@ the portable protocol and relative result-file paths.
 The reproducible SupFig9 CBDir and BATC panels are rendered by
 [`plot_supfig9.py`](plot_supfig9.py) from the canonical Cell and ensemble score
 tables into `figures/assembly/suppfig09`; both SVG panels use the same
-21-method display order.
+21 methods, ordered independently by each metric's macro-average score.
