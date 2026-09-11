@@ -204,6 +204,12 @@ rna-velocity-benchmark/
 ├── .gitignore
 ├── artifacts.tsv
 │
+├── figures/
+│   ├── README.md
+│   ├── figTwo.pdf
+│   ├── figFive.pdf
+│   └── figSix.pdf
+│
 ├── data/
 │   ├── README.md
 │   └── datasets.tsv
@@ -259,7 +265,10 @@ rna-velocity-benchmark/
 │   │   ├── README.md
 │   │   ├── config.json
 │   │   ├── metrics.py
-│   │   ├── plots.py
+│   │   ├── plotting/
+│   │   │   ├── figure5.py
+│   │   │   ├── streams.py
+│   │   │   └── stream_config.json
 │   │   ├── results/
 │   │   └── figures/
 │   └── summary/
@@ -298,9 +307,31 @@ rna-velocity-benchmark/
 Directories are added only when they contain release material. Empty
 `.gitkeep` scaffolding is not part of the final repository.
 
+## Benchmark and comparator contract
+
+The benchmark contains exactly 20 method configurations. The sole public
+20-method registry is methods/configurations.tsv: it has exactly 20 unique
+config_id values and 20 unique operational_id values. Ensemble variants are
+not registry entries or method configurations.
+
+Mean-4 is an independent baseline comparator and CenterWeighted-4 is an
+independent formal ensemble comparator. Each is ranked against the 20 methods
+in its own comparison, and the two comparators are not ranked against each
+other. Mean-4 uses the arithmetic mean of four signed edge values;
+CenterWeighted-4 sorts those values and applies order-statistic weights 1:2:2:1.
+For each dataset and metric, rank is 1 plus the count of strictly higher scores
+among the 20 Cell methods; exact method ties use competition rank and are
+reported separately. The ensemble is participant 21, and no cross-variant or
+cross-dataset ranking is performed. Both implementations live in ensemble/;
+they consume the shared
+evaluation/cell/ evaluation contract and evaluation/cell/reference_neighbors/
+fixed-neighbor assets. Formal fixed-neighbor all-14 ensemble results are
+complete and registered in `artifacts.tsv`; the canonical scores, summary, and
+ranking files are owned by `ensemble/results/`.
+
 ## Method-reproduction contract
 
-The sixteen method scripts represent the twenty benchmark configurations.
+The method scripts represent the twenty benchmark configurations.
 Multiple configurations of the same software remain command-line modes of one
 script when they share the same official implementation, for example the
 three scVelo modes, two UniTVelo modes, and two GraphVelo input variants.
@@ -369,7 +400,7 @@ through a small explicit mapping in `config.json`.
 ## Naming contract
 
 New manuscript-facing tables, figures, captions, and plot labels follow the
-canonical mapping in [`manifests/naming_conventions.md`](manifests/naming_conventions.md).
+canonical mapping in [`docs/naming_conventions.md`](docs/naming_conventions.md).
 Operational IDs and result paths remain stable; normalization is applied only
 at the display boundary. Any renderer-local mapping must exactly match this
 contract; documented historical snapshots may retain their original labels.
@@ -431,11 +462,19 @@ module's `results/` directory and descriptively named panels such as
 directory. It does not write another manifest and does not claim to assemble an
 exact manuscript Figure PDF unless it actually does so.
 
+Every evaluation module owns a plotting/ directory beside its metrics code
+when it contributes a manuscript panel. That module declares the plot inputs,
+method-specific keys, fixed visual parameters, and output names. The final
+paper composite may still be assembled manually, but its source panels must be
+generated from these module-owned entries.
+
 ## Module-owned results and figures
 
-There is no repository-wide `results/` or `figures/` directory. Each evaluation
-or ensemble module owns the compact, canonical, machine-readable values and
-generated panels for its scientific question. This keeps extraction,
+The repository-level `figures/` directory contains only confirmed paper-level
+composite PDFs. Each evaluation or ensemble module owns the compact,
+canonical, machine-readable values and panel assets for its scientific
+question under its own figure-specific `figures/<figure-id>/` directory (for
+example, kinetics uses `figures/fig5/`). This keeps extraction,
 processing, metric definitions, numerical outputs, and visualization together.
 
 Full method H5ADs and large intermediate matrices remain external. Compact CSV
@@ -478,8 +517,8 @@ to establish the public result. Those materials are evidence for curation, not
 the public execution interface.
 
 The final public repository is created from a clean history. It must not
-contain `/mnt/...`, `/Users/...`, `velocity:`, `project:`, rerun directory
-names, local environment prefixes, or historical result locations.
+contain private absolute paths, server-specific locators, rerun directory names,
+local environment prefixes, or historical result locations.
 
 ## Allowed future changes
 

@@ -1,9 +1,29 @@
 # RNA velocity benchmark reproduction repository
 
 This repository curates the code and compact numerical outputs needed to
-understand and reproduce the RNA velocity benchmark. Large datasets, method
-result H5AD files, checkpoints, environments, logs, and exploratory outputs
-remain in external storage.
+understand and reproduce the RNA velocity benchmark. The benchmark has 20
+method configurations, registered only in
+methods/configurations.tsv. Large datasets, method result H5AD files,
+checkpoints, environments, logs, and exploratory outputs remain in external
+storage.
+
+The two post-hoc comparators are separate from those 20 methods: Mean-4 is a
+baseline and CenterWeighted-4 is the formal ensemble. Each is ranked against
+the 20 methods separately; the two comparators are not ranked against each
+other. Mean-4 is the arithmetic mean of the four signed transition values on
+each common edge; CenterWeighted-4 sorts those values and applies weights
+1:2:2:1. For each dataset and metric, each variant is ranked independently
+against the 20 Cell methods: rank is 1 plus the number of strictly higher method
+scores, with exact method ties reported using competition-rank tie counts; the
+ensemble is participant 21 and variants are never candidates for one another.
+Their implementations are in ensemble/, using the shared
+evaluation/cell/reference_neighbors/ contract and shared evaluation/cell and
+reference-neighbor inputs. Formal fixed-neighbor all-14 ensemble results are
+complete and registered in `artifacts.tsv`. The canonical scores, summaries, and
+independent rankings are [`ensemble/results/scores.csv`](ensemble/results/scores.csv),
+[`ensemble/results/summary.md`](ensemble/results/summary.md),
+[`ensemble/results/rankings_vs_20.csv`](ensemble/results/rankings_vs_20.csv), and
+[`ensemble/results/ranking_summary.md`](ensemble/results/ranking_summary.md).
 
 ## Current status
 
@@ -21,20 +41,23 @@ methods/                         method-specific reproduction scripts
 envs/                            reviewed software specifications
 evaluation/cell/                 cell-level evaluation and panels
 evaluation/gene/                 gene-level evaluation and simulation
-evaluation/kinetics_recovery/  kinetic-parameter recovery (paper Case 3)
+evaluation/kinetics_recovery/  kinetic-parameter recovery and its plotting module
 evaluation/summary/              cross-experiment summaries such as Figure 6
 ensemble/                        optional post-hoc signed-transition utility
 data/                            dataset metadata and access information
 artifacts.tsv                    portable index of external artifacts
+figures/                         confirmed paper-level composite PDFs
 docs/                            cross-module documentation and figure map
 tests/                           lightweight publication-contract checks
 ```
 
-There is intentionally no shared top-level preprocessing package, results
-directory, or figures directory. Method-specific preprocessing stays in the
-method script that requires it; evaluation processing, compact results, and
-generated panels stay together in the evaluation module that owns the
+There is intentionally no shared top-level preprocessing package or results
+directory. The top-level figures directory contains only confirmed paper-level
+composite PDFs; panel assets stay in the evaluation module that owns the
 scientific question.
+
+Method names shown in public tables use veloVI spelling. Dataset IDs identify
+the biological input and evaluation panel, not methods or ensemble variants.
 
 ## Running kinetics-recovery
 
@@ -51,7 +74,7 @@ python evaluation/kinetics_recovery/metrics.py \
   --artifact-root /path/to/artifacts \
   --output /path/to/metrics
 
-python evaluation/kinetics_recovery/plots.py \
+python evaluation/kinetics_recovery/plotting/figure5.py \
   --metrics /path/to/metrics \
   --output /path/to/figures
 ```
@@ -71,12 +94,8 @@ inside their own method scripts. DeepKINET additionally records the seed-123
 deterministic benchmark setting used by the formal result.
 Methods that do not require counts do not use this path.
 
-## Private audit material
+## Public artifact index
 
-The current private repository also retains `manifests/` and `provenance/` as
-the evidence trail for curation. These directories are not part of the clean
-public release interface. The public-facing artifact index is the root
-`artifacts.tsv`; it must not expose server-specific working paths.
+The public-facing artifact index is the root artifacts.tsv; it must not expose server-specific working paths.
 
-Read [`AGENTS.md`](AGENTS.md) and [`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md)
-before changing a script or module.
+Read AGENTS.md and REPOSITORY_DESIGN.md before changing a script or module.

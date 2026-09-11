@@ -1,0 +1,1353 @@
+{
+  "datasets": [
+    "bonemarrow",
+    "capofibro",
+    "dentategyrus",
+    "dentate_lamanno",
+    "forebrain",
+    "gastrulation",
+    "hematopoiesis",
+    "mousebrain",
+    "neuron",
+    "organoid",
+    "pancreas",
+    "retina",
+    "rpe1",
+    "rpe1_gen"
+  ],
+  "n_jobs": 8,
+  "protocol": {
+    "fixed_neighbors": {
+      "asset_role": "dataset-level fixed reference graph",
+      "metric": "euclidean",
+      "n_neighbors": 30,
+      "n_pcs": 30,
+      "random_state": 0,
+      "use_rep": "X_pca"
+    },
+    "scvelo_version": "0.3.4",
+    "transition_matrix": {
+      "n_neighbors": null,
+      "scale": 10,
+      "self_transitions": true,
+      "use_negative_cosines": true,
+      "weight_diffusion": 0
+    },
+    "velocity_embedding": {
+      "autoscale": true,
+      "basis": "umap",
+      "explicit_transition_operator": true
+    },
+    "velocity_graph": {
+      "approx": null,
+      "mode_neighbors": "distances",
+      "n_neighbors": null,
+      "n_recurse_neighbors": null,
+      "sqrt_transform": null,
+      "vkey": "velocity",
+      "xkey": "Ms"
+    }
+  },
+  "result_files": {
+    "ranking_summary": "ranking_summary.md",
+    "rankings": "rankings_vs_20.csv",
+    "scores": "scores.csv",
+    "summary": "summary.md"
+  },
+  "runs": [
+    {
+      "dataset": "bonemarrow",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_bonemarrow.h5ad",
+            "sha256": "067ca3be9ca549af1d22e3b32c5b307a831168fd42e100ef0cb672c377cc2ee6"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_bonemarrow.h5ad",
+            "sha256": "d0e7498c2cc18272866a8b82e3ffa0b16f52b16165f8b5fe9bad4a1d1b37feef"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_bonemarrow.h5ad",
+            "sha256": "3a53621b7e47dac019b6af581833860fb814d8e6d3ae2b2bf0d0db85e363f38a"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_bonemarrow_all.h5ad",
+            "sha256": "4b323e1a268ccdb1ada50ccf6f709717564ebae3291b87c5394ae3973b6ea564"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_bonemarrow.h5ad",
+          "sha256": "f7ec3aed8c0e1eed09197bba2edc6d1b024ed006bb3df8036e1c2ca474a24511"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 255996,
+        "distances_nnz": 167620,
+        "indices_shape": [
+          5780,
+          30
+        ],
+        "n_obs": 5780,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.5348954169001267,
+            "invalid_embedded_values": 0,
+            "n_edges": 1547334,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.4651045830998734
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.3065963535490813,
+            "cbdir": 0.19608292922435167
+          },
+          "output_locator": "ensemble:centerweighted4/bonemarrow"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.5985516848851332,
+            "invalid_embedded_values": 0,
+            "n_edges": 1547334,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.4014483151148668
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.3013879092716051,
+            "cbdir": 0.1812031081992602
+          },
+          "output_locator": "ensemble:mean4/bonemarrow"
+        }
+      }
+    },
+    {
+      "dataset": "capofibro",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_capo_pre.h5ad",
+            "sha256": "93443fde201550a52a237409099ed6b9cfe8ee88503762e6ab253d6701a2dc55"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_capo_pre.h5ad",
+            "sha256": "7e7e74dcf6d00456bea37a32cdc7759b0dda98b3ee95b2a7c535edb9c2681ddb"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_capo_pre.h5ad",
+            "sha256": "f3651687ce6f48aa89919a8645d3ec97ae3a8b982a005be9be276950ef04765f"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_capo_pre_all.h5ad",
+            "sha256": "f1a4a03cb455150819d7eca0208d581fc68bc7aff1283512ab9456f7b2baae06"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_capo_pre.h5ad",
+          "sha256": "6727349da34d602954f97440f5f5af0982ca9f596e19e648407e755455c0a1cd"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 50466,
+        "distances_nnz": 35438,
+        "indices_shape": [
+          1222,
+          30
+        ],
+        "n_obs": 1222,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6684978686172908,
+            "invalid_embedded_values": 0,
+            "n_edges": 247849,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3315021313827093
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.3954151487858461,
+            "cbdir": 0.371964024797869
+          },
+          "output_locator": "ensemble:centerweighted4/capofibro"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7775189387880773,
+            "invalid_embedded_values": 0,
+            "n_edges": 247849,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.22248106121192263
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.3798589701351213,
+            "cbdir": 0.3390175915244096
+          },
+          "output_locator": "ensemble:mean4/capofibro"
+        }
+      }
+    },
+    {
+      "dataset": "dentategyrus",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_dentategyrus.h5ad",
+            "sha256": "1c0312efcf833b85052ce97fbf22e9a94b14355ed0bea84d922b6cc8931a5289"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_dentategyrus.h5ad",
+            "sha256": "e800f7dcb317a7905c43468d42947131cd0e3909b8641d0f7723cf93fa46ff03"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_dentategyrus.h5ad",
+            "sha256": "b9ac0bf7735178f470d43fe81ba27deaf51efe0d6eb4af2d782549a7aa4e0769"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_dentategyrus_all.h5ad",
+            "sha256": "0b12971dcd2fd9a8c08875d3f6d484da0c92b78473d91d1506915b0dde80c6e4"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_dentategyrus.h5ad",
+          "sha256": "43857b57a8c7d76b2c6cd1a1400673baa08d361002a0843192e8d1a0c38159b7"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 126382,
+        "distances_nnz": 84970,
+        "indices_shape": [
+          2930,
+          30
+        ],
+        "n_obs": 2930,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.0816681711721685e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6400736569018878,
+            "invalid_embedded_values": 0,
+            "n_edges": 631891,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.35992634309811217
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.8032852744970305,
+            "cbdir": 0.4841902209321855
+          },
+          "output_locator": "ensemble:centerweighted4/dentategyrus"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6519417482733229,
+            "invalid_embedded_values": 0,
+            "n_edges": 631891,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3480582517266772
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.7845439612329812,
+            "cbdir": 0.4648053295883874
+          },
+          "output_locator": "ensemble:mean4/dentategyrus"
+        }
+      }
+    },
+    {
+      "dataset": "dentate_lamanno",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_DentateGyrus_lamanno.h5ad",
+            "sha256": "ade003bdde101698dd2eb0311fbdfbf055678ac23188cd816cc3aded03825459"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+            "sha256": "b6bb0deeb3a79f4c429037ba6b38598f2c8efc1d6c8a9a8e418ce6eedd8d6859"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_DentateGyrus_lamanno.h5ad",
+            "sha256": "7c53787df3e1546150a93ea6c22ae188c8c3250c2da1a8389f00ab16f1f5bced"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_DentateGyrus_lamanno_all.h5ad",
+            "sha256": "2cf19a540a7b810d44c78e146bbc25eaf2635175993c0e57c22143c0a68a0d62"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_DentateGyrus_lamanno.h5ad",
+          "sha256": "84430424ceb231c62647502804e88c68e28ac8b8c3d913b1736ff979d3e63dda"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 772932,
+        "distances_nnz": 528177,
+        "indices_shape": [
+          18213,
+          30
+        ],
+        "n_obs": 18213,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7310096066181677,
+            "invalid_embedded_values": 0,
+            "n_edges": 4725912,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.2689903933818323
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.8009509468465305,
+            "cbdir": 0.6892347340391162
+          },
+          "output_locator": "ensemble:centerweighted4/dentate_lamanno"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7799766675762104,
+            "invalid_embedded_values": 0,
+            "n_edges": 4725912,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.22002333242378946
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.8015230145545004,
+            "cbdir": 0.6878759207851217
+          },
+          "output_locator": "ensemble:mean4/dentate_lamanno"
+        }
+      }
+    },
+    {
+      "dataset": "forebrain",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_ForebrainGlut.h5ad",
+            "sha256": "04eeec72c6c7278eaa16b439c4489e5b37bd052c7487853d3d7bcf0a27c08043"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_ForebrainGlut.h5ad",
+            "sha256": "b8a8a4a6c72d8f1164d1e02da10aecafc5eb4ca0b7bab180d49d96f891469b14"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_ForebrainGlut.h5ad",
+            "sha256": "d7aa1aea0fef024802dfa77d4a6824f63ff7eda06a24c5e6cd87cc690c9aede1"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_ForebrainGlut_all.h5ad",
+            "sha256": "7eb24cc5462f0020c4002df89105393ce3475526e3cee2d96d2081dbb137d633"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_ForebrainGlut.h5ad",
+          "sha256": "2046315f96f7c50619502558a1d74647abb67dbf611cdc47f2dc5f140fb9e413"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 74972,
+        "distances_nnz": 49880,
+        "indices_shape": [
+          1720,
+          30
+        ],
+        "n_obs": 1720,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6440642280646918,
+            "invalid_embedded_values": 0,
+            "n_edges": 325661,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3559357719353082
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.13947789809370953,
+            "cbdir": 0.14905998094284992
+          },
+          "output_locator": "ensemble:centerweighted4/forebrain"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6826661124325165,
+            "invalid_embedded_values": 0,
+            "n_edges": 325661,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.31733388756748343
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.1114258175981791,
+            "cbdir": 0.12152483981412941
+          },
+          "output_locator": "ensemble:mean4/forebrain"
+        }
+      }
+    },
+    {
+      "dataset": "gastrulation",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_Gastrulation.h5ad",
+            "sha256": "1d04f02d56997bf9c7a6c108d1e995f8f3d799fc17347217170ffaa2e81fcb89"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_Gastrulation.h5ad",
+            "sha256": "82f4ad0cb1b7873f5f9d890fa9da262fd8ed6600fe35a7ceba83e2b69b0cad51"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_Gastrulation.h5ad",
+            "sha256": "8f6e9542bd770fca58a4ee559af0849c3ff167e59f6d9fe78fd92bc68fb28734"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_Gastrulation_all.h5ad",
+            "sha256": "9f379e46a02e1db2bb85b5a11165cd6d014f8f743925014374863360ea5af7ab"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_Gastrulation.h5ad",
+          "sha256": "fe16938478e70419c4e997e3ba8130e3a2596b73aa6b038228d4a02d9289b8ae"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 441204,
+        "distances_nnz": 284635,
+        "indices_shape": [
+          9815,
+          30
+        ],
+        "n_obs": 9815,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 1.3877787807814457e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6790718065856202,
+            "invalid_embedded_values": 0,
+            "n_edges": 2812102,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.32092819341437984
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.9376600007319249,
+            "cbdir": 0.7635020946389315
+          },
+          "output_locator": "ensemble:centerweighted4/gastrulation"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7425428223892383,
+            "invalid_embedded_values": 0,
+            "n_edges": 2812102,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.2574571776107617
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.9370434785088659,
+            "cbdir": 0.7620148417062793
+          },
+          "output_locator": "ensemble:mean4/gastrulation"
+        }
+      }
+    },
+    {
+      "dataset": "hematopoiesis",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_hematopoiesis_dynamo.h5ad",
+            "sha256": "cdc508b1da1533ea06a6bdf57d71a5ead8da50eed545259f966e9f7ac0389288"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_hematopoiesis_dynamo.h5ad",
+            "sha256": "d5349ec161af60769d78a666f554dd007dd8bd0c45d8c534a846daa57887696e"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_hematopoiesis_dynamo.h5ad",
+            "sha256": "cdf9a454d9c208ac7d5a53808b13b72fbf6eacc40bb54f0ce572cb124fe327f0"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_hematopoiesis_dynamo_all.h5ad",
+            "sha256": "b4c78e3c57b82e59c45d78aa44b126f7d3c4c9fde91ef5f19065787348278dc7"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_hematopoiesis_dynamo.h5ad",
+          "sha256": "a883cfb821614ee7d90f3a4971bc998c8782671f651481c40d2aa871ed78248f"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 89166,
+        "distances_nnz": 56463,
+        "indices_shape": [
+          1947,
+          30
+        ],
+        "n_obs": 1947,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6063345583033845,
+            "invalid_embedded_values": 0,
+            "n_edges": 393740,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3936654416966155
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.4426281887001264,
+            "cbdir": -0.2601012419693562
+          },
+          "output_locator": "ensemble:centerweighted4/hematopoiesis"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6937114748416557,
+            "invalid_embedded_values": 0,
+            "n_edges": 393740,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3062885251583443
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.4322222535784658,
+            "cbdir": -0.26298573124068764
+          },
+          "output_locator": "ensemble:mean4/hematopoiesis"
+        }
+      }
+    },
+    {
+      "dataset": "mousebrain",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_mousebrain.h5ad",
+            "sha256": "8f2fc58ee00055c6b7e7bf3529eed5c7cb39e73f9fc05ca4ccf7115e46fdf0c8"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_mousebrain.h5ad",
+            "sha256": "4fe056c528ea5a33a366fc502b5cc932e51a629e7531efe612ccc05875db34de"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_mousebrain.h5ad",
+            "sha256": "33f7b81cc48066cb1ff562bcb7fb5d51c0fe83629d8845e677c3680d55bed02d"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_mousebrain_all.h5ad",
+            "sha256": "cad73683e68ed887431a4401f7c24196346694e1e38b1f6fd9da4950461e4c78"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_mousebrain.h5ad",
+          "sha256": "d941b1ed4f187c72c6e2edfbe1129d3debe7241dd175f11152fe04be8259af4a"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 139576,
+        "distances_nnz": 97585,
+        "indices_shape": [
+          3365,
+          30
+        ],
+        "n_obs": 3365,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6491922808362102,
+            "invalid_embedded_values": 0,
+            "n_edges": 768917,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.35080771916378983
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.6339471966727307,
+            "cbdir": 0.5627318912949031
+          },
+          "output_locator": "ensemble:centerweighted4/mousebrain"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7251035016153089,
+            "invalid_embedded_values": 0,
+            "n_edges": 768917,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.2748964983846912
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.6227081368849646,
+            "cbdir": 0.5581436940470418
+          },
+          "output_locator": "ensemble:mean4/mousebrain"
+        }
+      }
+    },
+    {
+      "dataset": "neuron",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_neuron.h5ad",
+            "sha256": "23b9f13760344861c20415e967859c82c130a444c87978bbbc204c2f38b4491c"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_neuron.h5ad",
+            "sha256": "2f5ad87d5cf453ec7a80fb28e4986f2c4b1404e540f1838b5effd6f149003af2"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_neuron.h5ad",
+            "sha256": "5b1c6612c575c9706c48cd29db08f06b816ce111103ec2a3ddf060960ea84469"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_neuron_all.h5ad",
+            "sha256": "8920ab26814a81c24e407ebb47eed5b4f53a33031d3c0ff5122384ba4d5c2b62"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_neuron.h5ad",
+          "sha256": "0e943a3f62f201ea3723721c516cddfc534ed654dc7e1b89bd97558de004f23f"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 132376,
+        "distances_nnz": 88914,
+        "indices_shape": [
+          3066,
+          30
+        ],
+        "n_obs": 3066,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.0816681711721685e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6574124753599608,
+            "invalid_embedded_values": 0,
+            "n_edges": 880071,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.34258752464003916
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.557041463085643,
+            "cbdir": 0.4784695660656481
+          },
+          "output_locator": "ensemble:centerweighted4/neuron"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7894894175636695,
+            "invalid_embedded_values": 0,
+            "n_edges": 880071,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.21051058243633033
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.5566306986497097,
+            "cbdir": 0.47617045330866115
+          },
+          "output_locator": "ensemble:mean4/neuron"
+        }
+      }
+    },
+    {
+      "dataset": "organoid",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_organoid.h5ad",
+            "sha256": "c23b1404ef65f7717fe52becd7864a7b8cd56f7a457ea4677e5ab6af43dd7d8f"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_organoid.h5ad",
+            "sha256": "9d9c0c8bcb32ef74508dd6a5541681b6c9881e1051d2722931f39b91a7801759"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_organoid.h5ad",
+            "sha256": "2920510983085a2c692192b07d642e04cee0e44c4373f3e2a353c80cd23a6d4e"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_organoid_pre_all.h5ad",
+            "sha256": "81cd614ca4c9ae0a9bbfa679cca417864ba4f59c0fdb7ff0ff8dce57c0cfce36"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_organoid.h5ad",
+          "sha256": "9da4a4e029d1c69287dc54e99794999d80ebfcdfe7fcf92752f7dc824aeeaae4"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 181032,
+        "distances_nnz": 111099,
+        "indices_shape": [
+          3831,
+          30
+        ],
+        "n_obs": 3831,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 1.3877787807814457e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6387495515526526,
+            "invalid_embedded_values": 0,
+            "n_edges": 1164177,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.36125044844734755
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.6273030805249917,
+            "cbdir": 0.3244774083150475
+          },
+          "output_locator": "ensemble:centerweighted4/organoid"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7054602693480936,
+            "invalid_embedded_values": 0,
+            "n_edges": 1164177,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.2945397306519065
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.6271189288819394,
+            "cbdir": 0.3565707023220202
+          },
+          "output_locator": "ensemble:mean4/organoid"
+        }
+      }
+    },
+    {
+      "dataset": "pancreas",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_Pancreas.h5ad",
+            "sha256": "5847458a2a5cf38b8b18733f52789edf4596f7a5417fd1935e2bfd1af8480d33"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_Pancreas.h5ad",
+            "sha256": "6130f6163e861dcb6eeb5ddc4ca991f7f67e4c8abedb35396adeea89b9a57c4c"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_Pancreas.h5ad",
+            "sha256": "e370160df055e0d60757478ecbb3d5420eaf8ae2ca55c0ffa35178a885fb26a3"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_Pancreas_all.h5ad",
+            "sha256": "149bd8cfca26993a78d48fdcb613fd1138d665f09ece1713c28ffa81d350f7e2"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_Pancreas.h5ad",
+          "sha256": "c91c6ba14a77d48c1a3369265e9d135c4a28dfc82d702a4f2b14c1ec96029cc1"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 151464,
+        "distances_nnz": 107184,
+        "indices_shape": [
+          3696,
+          30
+        ],
+        "n_obs": 3696,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7751244740669506,
+            "invalid_embedded_values": 0,
+            "n_edges": 678365,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.22487552593304933
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.6512631919216385,
+            "cbdir": 0.563327002470914
+          },
+          "output_locator": "ensemble:centerweighted4/pancreas"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.8184143842636386,
+            "invalid_embedded_values": 0,
+            "n_edges": 678365,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.18158561573636153
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.6150922290730639,
+            "cbdir": 0.5562310952828139
+          },
+          "output_locator": "ensemble:mean4/pancreas"
+        }
+      }
+    },
+    {
+      "dataset": "retina",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_retina.h5ad",
+            "sha256": "c3b1d91e590d3d3dda2ad55f8275015a64d0964dbc10656cdd4a0cd592732ca4"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_retina.h5ad",
+            "sha256": "7c0c3369e38a3671c0b67df543942a0fb2feb1f500db6e9bc00120a913e8e100"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_retina.h5ad",
+            "sha256": "6fa1229fee71bee65df29295c4d6205655b8d731faf0ea6db54c3b43053543e9"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_retina_full_all.h5ad",
+            "sha256": "4575c6b54e905b7e2825d1f92223c32cc872ffb6a05ed6a9e4cf6ef0b993e239"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_retina.h5ad",
+          "sha256": "76228f408e2bc43649617fc503522eadf876718823f05c4e37dfca96ce5947e1"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 114512,
+        "distances_nnz": 79054,
+        "indices_shape": [
+          2726,
+          30
+        ],
+        "n_obs": 2726,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 1.3877787807814457e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7481597085821888,
+            "invalid_embedded_values": 0,
+            "n_edges": 477617,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.25184029141781117
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.12251372344817163,
+            "cbdir": 0.5138963007762726
+          },
+          "output_locator": "ensemble:centerweighted4/retina"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7919627389484207,
+            "invalid_embedded_values": 0,
+            "n_edges": 477617,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.20803726105157921
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.12379584668231547,
+            "cbdir": 0.5166578930852862
+          },
+          "output_locator": "ensemble:mean4/retina"
+        }
+      }
+    },
+    {
+      "dataset": "rpe1",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_rpe1.h5ad",
+            "sha256": "2c77556c9cb955ad2b7e95e3bbe47879c914646db6f2be29aa9736a3877503e4"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_rpe1.h5ad",
+            "sha256": "b4f99eb6532f9bb4a3c87e96e05ddc60d50866f784f80431ed8b7239259b509e"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_rpe1.h5ad",
+            "sha256": "1d06affd9109a92fb1336a099aac8982edb9e0c1fbef3c920e79674dec7e8348"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_rpe1_all.h5ad",
+            "sha256": "63fe2f14fa03465fbfe016e77d217e0e8dcec63ac91cb7cec04bdb8bc9c51622"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_rpe1.h5ad",
+          "sha256": "f309161a86f0025319c625ab325da73c6a312a04e6dc8656ac1dd58f13b5404c"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 128012,
+        "distances_nnz": 80997,
+        "indices_shape": [
+          2793,
+          30
+        ],
+        "n_obs": 2793,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7327146885575282,
+            "invalid_embedded_values": 0,
+            "n_edges": 804831,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.26728531144247186
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.474289204212238,
+            "cbdir": 0.08539397675741169
+          },
+          "output_locator": "ensemble:centerweighted4/rpe1"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.8089132219805393,
+            "invalid_embedded_values": 0,
+            "n_edges": 804831,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.1910867780194607
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.404639170825012,
+            "cbdir": 0.09945461938549119
+          },
+          "output_locator": "ensemble:mean4/rpe1"
+        }
+      }
+    },
+    {
+      "dataset": "rpe1_gen",
+      "inputs": {
+        "methods": {
+          "DeepVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/deepvelo/deepvelo_rpe1_gen.h5ad",
+            "sha256": "8b9d68e3ba2d8fa00fa8cec228bf93c97243be9089bb57f4aafa0c5cf56bdd6a"
+          },
+          "TIvelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/TIvelo/tivelo_rpe1_gen.h5ad",
+            "sha256": "89e0d0d033f1194abc3cfcbd0bed29e119e1773c403396a418083a0d8ab45864"
+          },
+          "UniTVelo": {
+            "layer": "velocity",
+            "locator": "velocity:results/unitvelo/unitvelo_rpe1_gen.h5ad",
+            "sha256": "4c33ce35104becfbaeab9fadc43119076da9a4adf77ad6e47c507015cd3ffae4"
+          },
+          "veloVI": {
+            "layer": "velocity",
+            "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_rpe1_gen_all.h5ad",
+            "sha256": "c2e85233115cbce911f3d4541d3eef06d3f04e6bd142c474bfdcdbe36dda92a9"
+          }
+        },
+        "reference": {
+          "layer": "Ms",
+          "locator": "velocity:results/scvelo_stochastic/scv_stochastic_rpe1_gen.h5ad",
+          "sha256": "e1ceb5df82701ad6fcf50c56d22e3009409257bbd98e1dde12764928055c952f"
+        }
+      },
+      "reference_neighbor": {
+        "connectivities_nnz": 145502,
+        "distances_nnz": 97266,
+        "indices_shape": [
+          3354,
+          30
+        ],
+        "n_obs": 3354,
+        "parameters": {
+          "asset_role": "dataset-level fixed reference graph",
+          "metric": "euclidean",
+          "n_neighbors": 30,
+          "n_pcs": 30,
+          "random_state": 0,
+          "use_rep": "X_pca"
+        }
+      },
+      "variants": {
+        "signed_t_centerweighted4": {
+          "aggregate": {
+            "max_identity_error": 2.7755575615628914e-17,
+            "n_methods": 4,
+            "rule": "order-statistic weights 1:2:2:1"
+          },
+          "completion": {
+            "directional_mass_mean": 0.6110449768309897,
+            "invalid_embedded_values": 0,
+            "n_edges": 863071,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.3889550231690103
+          },
+          "definition": "Sort four signed-T entries on each edge and use order-statistic weights 1:2:2:1.",
+          "label": "CenterWeighted-4",
+          "metrics": {
+            "batc": 0.11680187145384412,
+            "cbdir": 0.16269027735541583
+          },
+          "output_locator": "ensemble:centerweighted4/rpe1_gen"
+        },
+        "signed_t_mean4": {
+          "aggregate": {
+            "n_methods": 4,
+            "rule": "arithmetic mean"
+          },
+          "completion": {
+            "directional_mass_mean": 0.7055345571036551,
+            "invalid_embedded_values": 0,
+            "n_edges": 863071,
+            "n_rows_rescaled": 0,
+            "neutral_mass_mean": 0.29446544289634485
+          },
+          "definition": "Arithmetic mean of four signed-T entries.",
+          "label": "Mean-4",
+          "metrics": {
+            "batc": 0.09777255244201709,
+            "cbdir": 0.09605544150093932
+          },
+          "output_locator": "ensemble:mean4/rpe1_gen"
+        }
+      }
+    }
+  ],
+  "schema_version": 1,
+  "status": "formal-all14-complete",
+  "variants": [
+    "signed_t_mean4",
+    "signed_t_centerweighted4"
+  ]
+}

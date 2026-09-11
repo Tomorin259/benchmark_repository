@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "TIvelo",
+    "veloVI",
+    "DeepVelo",
+    "UniTVelo"
+  ],
+  "reference_neighbors": "evaluation/cell/reference_neighbors",
+  "protocol": {
+    "scvelo_version": "0.3.4",
+    "velocity_graph": {
+      "vkey": "velocity",
+      "xkey": "Ms",
+      "n_neighbors": null,
+      "n_recurse_neighbors": null,
+      "sqrt_transform": null,
+      "approx": null,
+      "mode_neighbors": "distances"
+    },
+    "transition_matrix": {
+      "scale": 10,
+      "self_transitions": true,
+      "use_negative_cosines": true,
+      "weight_diffusion": 0,
+      "n_neighbors": null
+    },
+    "velocity_embedding": {
+      "basis": "umap",
+      "autoscale": true,
+      "explicit_transition_operator": true
+    }
+  },
+  "datasets": {
+    "bonemarrow": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_bonemarrow.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_bonemarrow.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_bonemarrow_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_bonemarrow.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_bonemarrow.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["HSC_1", "Ery_1"], ["HSC_1", "HSC_2"], ["Ery_1", "Ery_2"]],
+      "batc_n_bins": 30,
+      "reference_neighbor_file": "bonemarrow.npz"
+    },
+    "capofibro": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_capo_pre.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_capo_pre.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_capo_pre_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_capo_pre.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_capo_pre.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["G1", "S"], ["S", "G2M"], ["G2M", "G1"]],
+      "batc_n_bins": 5,
+      "reference_neighbor_file": "capofibro.npz"
+    },
+    "dentategyrus": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_dentategyrus.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_dentategyrus.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_dentategyrus_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_dentategyrus.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_dentategyrus.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["nIPC", "Neuroblast"], ["Neuroblast", "Granule immature"], ["Granule immature", "Granule mature"], ["Radial Glia-like", "Astrocytes"], ["OPC", "OL"]],
+      "batc_n_bins": 30,
+      "reference_neighbor_file": "dentategyrus.npz"
+    },
+    "dentate_lamanno": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_DentateGyrus_lamanno.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_DentateGyrus_lamanno_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_DentateGyrus_lamanno.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_DentateGyrus_lamanno.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["nIPC", "GlialProg"], ["GlialProg", "ImmAstro"], ["GlialProg", "OPC"], ["Nbl1", "Nbl2"], ["Nbl2", "ImmGranule1"], ["ImmGranule1", "ImmGranule2"], ["ImmGranule2", "Granule"], ["Nbl2", "CA"], ["CA", "CA1-Sub"], ["CA", "CA2-3-4"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "DentateGyrus_lamanno.npz"
+    },
+    "forebrain": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_ForebrainGlut.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_ForebrainGlut.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_ForebrainGlut_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_ForebrainGlut.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_ForebrainGlut.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["0", "1"], ["1", "2"], ["2", "3"], ["3", "4"], ["4", "5"], ["5", "6"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "forebrain.npz"
+    },
+    "gastrulation": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_Gastrulation.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_Gastrulation.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_Gastrulation_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_Gastrulation.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_Gastrulation.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["Blood progenitors 1", "Blood progenitors 2"], ["Blood progenitors 2", "Erythroid1"], ["Erythroid1", "Erythroid2"], ["Erythroid2", "Erythroid3"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "gastrulation.npz"
+    },
+    "hematopoiesis": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_hematopoiesis_dynamo.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_hematopoiesis_dynamo.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_hematopoiesis_dynamo_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_hematopoiesis_dynamo.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_hematopoiesis_dynamo.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["HSC", "GMP-like"], ["HSC", "MEP-like"], ["GMP-like", "Neu"], ["GMP-like", "Mon"], ["MEP-like", "Ery"], ["MEP-like", "Meg"], ["MEP-like", "Bas"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "hematopoiesis.npz"
+    },
+    "mousebrain": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_mousebrain.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_mousebrain.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_mousebrain_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_mousebrain.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_mousebrain.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["RG, Astro, OPC", "IPC"], ["IPC", "V-SVZ"], ["V-SVZ", "Upper Layer"], ["Upper Layer", "Deeper Layer"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "mousebrain.npz"
+    },
+    "neuron": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_neuron.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_neuron.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_neuron_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_neuron.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_neuron.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["0", "15"], ["15", "30"], ["30", "60"], ["60", "120"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "neuron.npz"
+    },
+    "organoid": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_organoid.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_organoid.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_organoid_pre_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_organoid.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_organoid.h5ad"
+      },
+      "label": "cell_type",
+      "edges": [["Stem cells", "TA cells"], ["Stem cells", "Goblet cells"]],
+      "batc_n_bins": 40,
+      "reference_neighbor_file": "organoid.npz"
+    },
+    "pancreas": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_Pancreas.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_Pancreas.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_Pancreas_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_Pancreas.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_Pancreas.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["Ductal", "Ngn3 low EP"], ["Ngn3 low EP", "Ngn3 high EP"], ["Ngn3 high EP", "Pre-endocrine"], ["Pre-endocrine", "Beta"], ["Pre-endocrine", "Alpha"], ["Pre-endocrine", "Delta"], ["Pre-endocrine", "Epsilon"]],
+      "batc_n_bins": 30,
+      "reference_neighbor_file": "pancreas.npz"
+    },
+    "retina": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_retina.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_retina.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_retina_full_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_retina.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_retina.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["Progenitor", "Neuroblast"], ["Neuroblast", "PR"], ["Neuroblast", "AC/HC"], ["Neuroblast", "RGC"]],
+      "batc_n_bins": 40,
+      "reference_neighbor_file": "retina.npz"
+    },
+    "rpe1": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_rpe1.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_rpe1.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_rpe1_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_rpe1.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_rpe1.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["M", "M-G1"], ["M-G1", "G1-S"], ["G1-S", "S"], ["S", "G2-M"]],
+      "batc_n_bins": 10,
+      "reference_neighbor_file": "rpe1.npz"
+    },
+    "rpe1_gen": {
+      "reference": "results/scvelo_stochastic/scv_stochastic_rpe1_gen.h5ad",
+      "methods": {
+        "TIvelo": "results/TIvelo/tivelo_rpe1_gen.h5ad",
+        "veloVI": "results/veloVI/veloVI_without_vu/veloVI_rpe1_gen_all.h5ad",
+        "DeepVelo": "results/deepvelo/deepvelo_rpe1_gen.h5ad",
+        "UniTVelo": "results/unitvelo/unitvelo_rpe1_gen.h5ad"
+      },
+      "label": "clusters",
+      "edges": [["G1", "S"], ["S", "G2M"], ["G2M", "G1"]],
+      "batc_n_bins": 20,
+      "reference_neighbor_file": "rpe1_gen.npz"
+    }
+  }
+}
