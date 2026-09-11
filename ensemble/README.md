@@ -59,3 +59,8 @@ When `evaluation/cell/results/cell_metrics.csv` exists after a complete run, `be
 [`results/rankings_vs_20.csv`](results/rankings_vs_20.csv), and
 [`results/ranking_summary.md`](results/ranking_summary.md); `metadata.json` records
 the portable protocol and relative result-file paths.
+
+The reproducible SupFig9 CBDir and BATC panels are rendered by
+[`plot_supfig9.py`](plot_supfig9.py) from the canonical Cell and ensemble score
+tables into `figures/assembly/suppfig09`; both SVG panels use the same
+21-method display order.

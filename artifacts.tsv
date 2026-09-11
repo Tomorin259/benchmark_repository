@@ -74,7 +74,7 @@ summary-fig2-kinetic-component-means	summary-result	evaluation/summary/results/f
 figure-figfive	figure-pdf	figures/figFive.pdf	0f48c88234b9c7c9edd79b2275e78aea46490cd620e9fc78271691515b202627	available		Confirmed paper-level composite PDF.
 figure-figsix	figure-pdf	figures/figSix.pdf	e2de1a0a932169bcb72cbe17bf55b4351788424092b06189786285369ac85f3f	available		Confirmed paper-level composite PDF.
 figure-figtwo	figure-pdf	figures/figTwo.pdf	81fdd2ad575af2841edca15060f0156d718082818b2988ce91a525e9b298fbe1	available		Confirmed paper-level composite PDF.
-figure-assembly	figure-assembly	figures/assembly/assembly_manifest.tsv	5294dc1967dfec8f3193334eb5cc73b80e39cd46f8e9515cdc4f56af29142160	available		Collection entry: manifest covers 112 assembly items and validates every materialized panel; missing sources remain explicit in the manifest.
+figure-assembly	figure-assembly	figures/assembly/assembly_manifest.tsv	590eb91afcfd1ac779f0934d1ea00f89d5c2ab8ac340f4946d19b377cdec324f	available		Collection entry: manifest covers 113 assembly items and validates every materialized panel; missing sources remain explicit in the manifest.
 dataset-pancreas	external-input			external		real_cell input; accession GSE132188; Zenodo URI待发布。
 dataset-gastrulation	external-input			external		real_cell input; accession E-MTAB-6967; Zenodo URI待发布。
 dataset-forebrain	external-input			external		real_cell input; accession SRP129388; Zenodo URI待发布。

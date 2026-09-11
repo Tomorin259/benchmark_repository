@@ -38,6 +38,7 @@ jobs:
           python -m py_compile ensemble/core.py
           python -m py_compile ensemble/metrics.py
           python -m py_compile ensemble/benchmark.py
+          python -m py_compile ensemble/plot_supfig9.py
           python -m py_compile tests/test_gene_phase_plotting.py
           python -m py_compile tests/test_cell_evaluation.py
           python -m py_compile tests/test_kinetics_recovery.py
