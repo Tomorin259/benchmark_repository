@@ -1,0 +1,9 @@
+panel	dataset	genes	evidence
+Figure3_B	murk	OneSidedBoost_0	All nine original per-method CBDir/CosSim annotations matched score_rerun_results.txt.
+Figure3_C	branching	MultiForward_1; BoostALL_5	Both original C-row annotation sets matched score_rerun_results.txt.
+Figure4_B	gastrulation	Abcg2	All nine original CBDir annotations matched the original score.txt.
+Figure4_A	gastrulation	Abcg2; Alas2; Bpgm; Cdc25b; Dhrs11; Fam210b; Fech; Gclm; Gpx1; Gypa; Hba-x; Hbb-bh1; Hbb-y; Hemgn; Klf3; Mllt3; Ncf4; Rhag	Raw single-gene panel matches the original Figure 4A layout and labels.
+Figure4_E	DentateGyrus_lamanno	Ncald; Diaph3; Dab1; Malat1; Nnat	Raw single-gene panel matches the original Figure 4E labels.
+Figure4_E	retina	Anks1b; Celf4; Myt1l; Slc17a6; Snap25	Raw single-gene panel matches the original Figure 4E labels.
+Figure4_F	DentateGyrus_lamanno	Ncald	All nine original CBDir annotations matched the original score.txt.
+Figure4_G	retina	Snap25	All nine original CBDir annotations matched the original score.txt.

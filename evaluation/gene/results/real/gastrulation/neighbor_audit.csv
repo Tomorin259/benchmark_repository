@@ -1,0 +1,10 @@
+dataset,method,source_h5ad,reference_neighbor_asset,native_neighbor_jaccard,label_source,n_cells,n_reference_neighbors
+gastrulation,cellDancer,artifact://velocity/results/celldancer/celldancer_Gastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,0.4040751878259315,reference_clusters,9815,30
+gastrulation,DeepVelo,artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,1.0,reference_clusters,9815,30
+gastrulation,DeepVelo_scv,artifact://velocity/results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,1.0,reference_clusters,9815,30
+gastrulation,Graphvelo_scv,artifact://velocity/results/graphvelo_scv/graphveloGastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,0.5367318647178785,reference_clusters,9815,30
+gastrulation,MultiVelo,artifact://velocity/results/multivelo/multivelo_Gastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,,reference_clusters,9815,30
+gastrulation,scVelo_dyn,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,1.0,reference_clusters,9815,30
+gastrulation,TIvelo,artifact://velocity/results/TIvelo/tivelo_Gastrulation.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,0.934828943879926,reference_clusters,9815,30
+gastrulation,UniTVelo,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,1.0,reference_clusters,9815,30
+gastrulation,veloVI,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,evaluation/gene/results/reference_neighbors/gastrulation.npz,,reference_clusters,9815,30

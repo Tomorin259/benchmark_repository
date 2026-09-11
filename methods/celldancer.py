@@ -223,6 +223,7 @@ def run_dataset(dataset):
     # Official cellDancer input boundary: Ms/Mu, a label column, and the first
     # two dimensions of the declared embedding are written as a dataframe.
     output_dir.mkdir(parents=True, exist_ok=True)
+    fit_dir.mkdir(parents=True, exist_ok=True)
     cell_dancer_df = cd.adata_to_df_with_embed(
         adata,
         us_para=["Mu", "Ms"],

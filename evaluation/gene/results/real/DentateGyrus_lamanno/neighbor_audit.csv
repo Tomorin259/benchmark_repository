@@ -1,0 +1,10 @@
+dataset,method,source_h5ad,reference_neighbor_asset,native_neighbor_jaccard,label_source,n_cells,n_reference_neighbors
+DentateGyrus_lamanno,cellDancer,artifact://velocity/results/celldancer/celldancer_DentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,1.0,reference_clusters,18213,30
+DentateGyrus_lamanno,DeepVelo,artifact://velocity/results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,0.9999681191917154,reference_clusters,18213,30
+DentateGyrus_lamanno,DeepVelo_scv,artifact://velocity/results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,0.9999964576879684,reference_clusters,18213,30
+DentateGyrus_lamanno,Graphvelo_scv,artifact://velocity/results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,0.5537513625317974,reference_clusters,18213,30
+DentateGyrus_lamanno,MultiVelo,artifact://velocity/results/multivelo/multivelo_DentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,,reference_clusters,18213,30
+DentateGyrus_lamanno,scVelo_dyn,artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,1.0,reference_clusters,18213,30
+DentateGyrus_lamanno,TIvelo,artifact://velocity/results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,0.9346566606012624,reference_clusters,18213,30
+DentateGyrus_lamanno,UniTVelo,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,1.0,reference_clusters,18213,30
+DentateGyrus_lamanno,veloVI,artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad,evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz,,reference_clusters,18213,30

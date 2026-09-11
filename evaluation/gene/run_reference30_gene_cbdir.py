@@ -1,0 +1,787 @@
+#!/usr/bin/env python3
+"""Recalculate main-figure gene-level CBDir with controlled 30-NN graphs.
+
+The method-native Ms/Mu coordinates and velocity values are never replaced.
+Only the neighbor index collection used to identify cross-cluster boundary
+cells is replaced. Method-native coordinates and velocity values remain in
+memory unchanged.
+"""
+
+from __future__ import annotations
+
+import argparse
+import ast
+import csv
+import hashlib
+import json
+import os
+import shutil
+from pathlib import Path
+
+import numpy as np
+import scanpy as sc
+import scvelo as scv
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy import sparse
+
+
+HERE = Path(__file__).resolve()
+REPOSITORY_ROOT = HERE.parents[2]
+ARTIFACT_ROOT = None
+DEFAULT_OUTPUT = REPOSITORY_ROOT / "evaluation" / "gene" / "results"
+REFERENCE_NEIGHBOR_ROOT = None
+
+METHOD_ORDER = [
+    "cellDancer", "DeepVelo", "DeepVelo_scv", "Graphvelo_scv", "MultiVelo",
+    "scVelo_dyn", "TIvelo", "UniTVelo", "veloVI",
+]
+METHOD_KEYS = {
+    "cellDancer": "celldancer",
+    "DeepVelo": "deepvelo",
+    "DeepVelo_scv": "deepvelo2022",
+    "Graphvelo_scv": "graphvelo_scv",
+    "MultiVelo": "multivelo",
+    "scVelo_dyn": "scvelo_dyn",
+    "TIvelo": "tivelo",
+    "UniTVelo": "unitvelo_with_vu",
+    "veloVI": "veloVI",
+}
+SIM_METHOD_KEYS = {
+    "cellDancer": "celldancer",
+    "DeepVelo": "deepvelo",
+    "DeepVelo_scv": "deepvelo2022",
+    "Graphvelo_scv": "graphvelo",
+    "MultiVelo": "multivelo",
+    "scVelo_dyn": "scvelo",
+    "TIvelo": "tivelo",
+    "UniTVelo": "unitvelo",
+    "veloVI": "velovi",
+}
+
+VELOCITY_KEYS = {
+    "cellDancer": ("velocity", "velocity_u"),
+    "DeepVelo": ("velocity", "velocity_unspliced"),
+    "DeepVelo_scv": ("velocity_reconstructed", "velocity_u"),
+    "Graphvelo_scv": ("velocity_gv", "velocity_u"),
+    "MultiVelo": ("velo_s", "velo_u"),
+    "scVelo_dyn": ("velocity", "velocity_u"),
+    "TIvelo": ("velocity", "velocity_u"),
+    "UniTVelo": ("velocity", "velocity_u"),
+    "veloVI": ("velocity", "velocity_u"),
+}
+
+REAL_CONFIGS = {
+    "retina": {
+        "neighbor_asset": "retina.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_retina.h5ad",
+        "genes": ["Anks1b", "Cacna1b", "Calm2", "Celf4", "Hcn1", "Myt1l", "Rasgef1b", "Slc17a6", "Snap25", "Zfhx3"],
+        "edges": [("Neuroblast", "PR"), ("Neuroblast", "AC/HC"), ("Neuroblast", "RGC")],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_retina.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_retina.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_retina_full_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphveloretina.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_retina.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_retina.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_retina.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_retina_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_retina_full_all.h5ad",
+        },
+    },
+    "DentateGyrus_lamanno": {
+        "neighbor_asset": "DentateGyrus_lamanno.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+        "genes": ["Gpm6b", "Ncald", "Diaph3", "Dab1", "Dpp6", "Malat1", "Nnat", "Tubb3", "Plppr4", "Mmd2"],
+        "edges": [
+            ("nIPC", "GlialProg"), ("GlialProg", "ImmAstro"), ("GlialProg", "OPC"),
+            ("Nbl1", "Nbl2"), ("Nbl2", "ImmGranule1"),
+            ("ImmGranule1", "ImmGranule2"), ("ImmGranule2", "Granule"),
+            ("Nbl2", "CA"), ("CA", "CA1-Sub"), ("CA", "CA2-3-4"),
+        ],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad",
+        },
+    },
+    "gastrulation": {
+        "neighbor_asset": "gastrulation.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+        "genes": [
+            "Abcg2", "Alas2", "Bpgm", "Cdc25b", "Dhrs11", "Fam210b", "Fech",
+            "Gclm", "Gpx1", "Gypa", "Hba-x", "Hbb-bh1", "Hbb-y", "Hemgn",
+            "Klf3", "Mllt3", "Ncf4", "Rhag",
+        ],
+        "edges": [
+            ("Blood progenitors 1", "Blood progenitors 2"),
+            ("Blood progenitors 2", "Erythroid1"),
+            ("Erythroid1", "Erythroid2"),
+            ("Erythroid2", "Erythroid3"),
+        ],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_Gastrulation.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphveloGastrulation.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_Gastrulation.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_Gastrulation.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_Gastrulation_all.h5ad",
+        },
+    },
+    "capo_pre": {
+        "neighbor_asset": "capofibro.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+        "genes": ["ALPK2", "C4orf21", "C19orf48", "CLSPN", "DEK", "E2F7", "FAM111A"],
+        "edges": [("G1", "S"), ("S", "G2M"), ("G2M", "G1")],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_capo_pre.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_capo_pre_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphvelocapo_pre.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_capo_pre.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_capo_pre.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_capo_pre_all.h5ad",
+        },
+    },
+    "bonemarrow": {
+        "neighbor_asset": "bonemarrow.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad",
+        "genes": ["FAM178B", "LMNA", "REXO2"],
+        "edges": [("HSC_1", "Ery_1"), ("HSC_1", "HSC_2"), ("Ery_1", "Ery_2")],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_bonemarrow.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphvelobonemarrow.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_bonemarrow.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_bonemarrow.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_bonemarrow_all.h5ad",
+        },
+    },
+    "mousebrain": {
+        "neighbor_asset": "mousebrain.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad",
+        "genes": ["Adcy1", "Cacna1e", "Flrt2", "Gria2"],
+        "edges": [
+            ("RG, Astro, OPC", "IPC"), ("IPC", "V-SVZ"),
+            ("V-SVZ", "Upper Layer"), ("Upper Layer", "Deeper Layer"),
+        ],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_mousebrain.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_mousebrain_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphvelomousebrain.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_mousebrain.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_mousebrain.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_mousebrain_all.h5ad",
+        },
+    },
+    "pancreas": {
+        "neighbor_asset": "pancreas.npz",
+        "label_reference": "results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad",
+        "genes": ["Atp2a2", "Chst8", "Emb", "G6pc2", "Igf1r", "Nxph1", "Rbbp7"],
+        "edges": [
+            ("Ductal", "Ngn3 low EP"), ("Ngn3 low EP", "Ngn3 high EP"),
+            ("Ngn3 high EP", "Pre-endocrine"), ("Pre-endocrine", "Beta"),
+            ("Pre-endocrine", "Alpha"), ("Pre-endocrine", "Delta"),
+            ("Pre-endocrine", "Epsilon"),
+        ],
+        "paths": {
+            "cellDancer": "results/celldancer/celldancer_Pancreas.h5ad",
+            "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad",
+            "DeepVelo_scv": "results/deepvelo2022/deepvelo_Pancreas_recon.h5ad",
+            "Graphvelo_scv": "results/graphvelo_scv/graphveloPancreas.h5ad",
+            "MultiVelo": "results/multivelo/multivelo_Pancreas.h5ad",
+            "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_Pancreas.h5ad",
+            "TIvelo": "results/TIvelo/tivelo_Pancreas.h5ad",
+            "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad",
+            "veloVI": "results/veloVI/veloVI_Pancreas_all.h5ad",
+        },
+    },
+}
+
+SIM_CONFIGS = {
+    "branching": {
+        "reference_source": "indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+        "genes": [f"MultiForward_{i}" for i in range(10)] + [f"BoostALL_{i}" for i in range(10)],
+        "edges": [(f"BranchA_{i}", f"BranchA_{i + 1}") for i in range(9)] + [(f"BranchB_{i}", f"BranchB_{i + 1}") for i in range(9)],
+    },
+    "murk": {
+        "reference_source": "indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+        "genes": [f"OneSidedBoost_{i}" for i in range(10)],
+        "edges": [(f"BranchB_{i}", f"BranchB_{i + 1}") for i in range(9)],
+    },
+    "all": {
+        "reference_source": "indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+        "genes": (
+            [f"MultiForward_{i}" for i in range(10)]
+            + [f"BoostALL_{i}" for i in range(10)]
+            + [f"OneSidedBoost_{i}" for i in range(10)]
+            + [f"OneSidedBoost2_{i}" for i in range(10)]
+        ),
+        "edges": [(f"BranchA_{i}", f"BranchA_{i + 1}") for i in range(9)] + [(f"BranchB_{i}", f"BranchB_{i + 1}") for i in range(9)],
+    },
+}
+SIM_PATHS = {
+    "branching": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_branching.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_branching.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_branching_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_branching.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_branching.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_branching.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_branching.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_branching.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad",
+    },
+    "murk": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_murk.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_murk.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_murk_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_murk.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_murk.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_murk.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_murk.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_murk.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_murk.h5ad",
+    },
+    "all": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_all.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_all.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_all_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_all.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_all.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_all.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_all.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad",
+    },
+}
+
+
+def sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def resolve_artifact_root(value):
+    raw_value = value or os.environ.get("VELOCITY_ARTIFACT_ROOT")
+    if not raw_value:
+        raise SystemExit(
+            "Provide --artifact-root or set VELOCITY_ARTIFACT_ROOT to the "
+            "external velocity artifact directory."
+        )
+    return Path(raw_value).expanduser().resolve()
+
+
+def public_locator(path):
+    """Return a repository-relative or logical external-artifact locator."""
+    path = Path(path)
+    if not path.is_absolute():
+        return path.as_posix()
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(REPOSITORY_ROOT.resolve()).as_posix()
+    except ValueError:
+        pass
+    if ARTIFACT_ROOT is not None:
+        try:
+            relative = resolved.relative_to(ARTIFACT_ROOT.resolve())
+        except ValueError:
+            relative = None
+        if relative is not None:
+            return f"artifact://velocity/{relative.as_posix()}"
+    return f"artifact://external/{resolved.name}"
+
+
+def dense_values(values):
+    if sparse.issparse(values):
+        values = values.toarray()
+    return np.asarray(values)
+
+
+def read_reference_asset(path):
+    with np.load(path, allow_pickle=False) as data:
+        return np.asarray(data["obs_names"]).astype(str), np.asarray(data["indices"], dtype=np.int64)
+
+
+def build_simulation_reference(dataset, config, output_path):
+    source = ARTIFACT_ROOT / config["reference_source"]
+    if output_path.is_file():
+        names, indices = read_reference_asset(output_path)
+        return {
+            "source": public_locator(source),
+            "path": public_locator(output_path),
+            "n_obs": len(names),
+            "n_neighbors": int(indices.shape[1]),
+            "reused": True,
+        }
+    adata = sc.read_h5ad(source)
+    if adata.X is None:
+        adata.X = adata.layers["spliced"].copy()
+    n_top_genes = min(2000, adata.n_vars)
+    scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=n_top_genes, log=True)
+    scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
+    scv.pp.neighbors(adata, n_neighbors=30, n_pcs=30, use_rep="X_pca", metric="euclidean", random_state=0)
+    indices = np.asarray(adata.uns["neighbors"]["indices"], dtype=np.int64)
+    if indices.ndim != 2 or indices.shape[1] != 30:
+        raise RuntimeError(f"{dataset}: invalid simulation reference neighbor shape {indices.shape}")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    metadata = {
+        "dataset": dataset,
+        "source": public_locator(source),
+        "source_sha256": sha256(source),
+        "scvelo_version": scv.__version__,
+        "filter_and_normalize": {"min_shared_counts": 20, "n_top_genes": n_top_genes, "log": True},
+        "neighbors": {"n_neighbors": 30, "n_pcs": 30, "use_rep": "X_pca", "metric": "euclidean", "random_state": 0},
+        "n_vars_after_filter": int(adata.n_vars),
+    }
+    np.savez_compressed(output_path, obs_names=np.asarray(adata.obs_names).astype(str), indices=indices, metadata=np.asarray(json.dumps(metadata, sort_keys=True)))
+    return {
+        "source": public_locator(source),
+        "path": public_locator(output_path),
+        "n_obs": int(adata.n_obs),
+        "n_neighbors": 30,
+        "reused": False,
+        "metadata": metadata,
+    }
+
+
+def copy_real_reference_asset(dataset, asset_name, output_path):
+    source = REFERENCE_NEIGHBOR_ROOT / asset_name
+    if not source.is_file():
+        raise FileNotFoundError(source)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not output_path.is_file() or sha256(output_path) != sha256(source):
+        shutil.copy2(source, output_path)
+    names, indices = read_reference_asset(output_path)
+    return {
+        "source": public_locator(source),
+        "path": public_locator(output_path),
+        "source_sha256": sha256(source),
+        "n_obs": len(names),
+        "n_neighbors": int(indices.shape[1]),
+        "reused": True,
+    }
+
+
+def align_reference_neighbors(adata, reference_names, reference_indices):
+    names = np.asarray(adata.obs_names).astype(str)
+    if len(names) != len(reference_names) or set(names) != set(reference_names):
+        raise ValueError("method cell identifiers do not match reference neighbor asset")
+    reference_position = {name: position for position, name in enumerate(reference_names)}
+    row_order = np.asarray([reference_position[name] for name in names], dtype=np.int64)
+    method_position = np.empty(len(row_order), dtype=np.int64)
+    method_position[row_order] = np.arange(len(row_order), dtype=np.int64)
+    return method_position[reference_indices[row_order]]
+
+
+def native_neighbor_jaccard(adata, reference_names, reference_indices):
+    if "neighbors" not in adata.uns:
+        return None
+    native = adata.uns["neighbors"].get("indices")
+    if native is None:
+        return None
+    native = np.asarray(native, dtype=np.int64)
+    if native.ndim != 2 or native.shape[0] != adata.n_obs:
+        return None
+    expected = align_reference_neighbors(adata, reference_names, reference_indices)
+    scores = []
+    for left, right in zip(native, expected):
+        a, b = set(left), set(right)
+        scores.append(len(a & b) / len(a | b))
+    return float(np.mean(scores))
+
+
+def native_neighbor_indices(adata, k=30):
+    if "neighbors" in adata.uns and "indices" in adata.uns["neighbors"]:
+        indices = np.asarray(adata.uns["neighbors"]["indices"], dtype=np.int64)
+        if indices.ndim == 2:
+            return indices
+    if "connectivities" in adata.obsp:
+        conn = adata.obsp["connectivities"]
+        if sparse.issparse(conn):
+            conn = conn.tocsr()
+            result = []
+            for position in range(conn.shape[0]):
+                start, end = conn.indptr[position], conn.indptr[position + 1]
+                indices = conn.indices[start:end]
+                values = conn.data[start:end]
+                keep = indices != position
+                indices = indices[keep]
+                values = values[keep]
+                result.append(indices[np.argsort(values)[::-1]][:k])
+            return result
+    raise KeyError("native H5AD does not contain neighbors indices or connectivities")
+
+
+def label_vector(adata, names, reference_label_path=None, preferred_key=None):
+    if reference_label_path is not None:
+        reference = sc.read_h5ad(reference_label_path, backed="r")
+        try:
+            labels = np.asarray(reference.obs["clusters"].reindex(names).astype(str))
+        finally:
+            reference.file.close()
+        if np.any(labels == "nan"):
+            raise ValueError("reference cluster labels do not cover all method cells")
+        return labels, "reference_clusters"
+    if preferred_key is not None and preferred_key in adata.obs:
+        key = preferred_key
+    else:
+        key = "clusters" if "clusters" in adata.obs else "bin" if "bin" in adata.obs else None
+    if key is None:
+        raise KeyError("simulation result lacks clusters/bin labels")
+    return np.asarray(adata.obs[key].astype(str)), key
+
+
+def velocity_matrix(adata, method, gene_indices):
+    velocity_s_key, velocity_u_key = VELOCITY_KEYS[method]
+    if velocity_s_key not in adata.layers:
+        raise KeyError(f"missing layers/{velocity_s_key}")
+    spliced_velocity = dense_values(adata.layers[velocity_s_key][:, gene_indices]).astype(np.float64, copy=False)
+    if velocity_u_key is None:
+        unspliced_velocity = np.zeros_like(spliced_velocity)
+    else:
+        if velocity_u_key not in adata.layers:
+            raise KeyError(f"missing layers/{velocity_u_key}")
+        unspliced_velocity = dense_values(adata.layers[velocity_u_key][:, gene_indices]).astype(np.float64, copy=False)
+    invalid = int(np.size(spliced_velocity) - np.count_nonzero(np.isfinite(spliced_velocity)))
+    invalid += int(np.size(unspliced_velocity) - np.count_nonzero(np.isfinite(unspliced_velocity)))
+    # This is the old evaluator's in-memory cleanup; source H5AD values remain untouched.
+    spliced_velocity = np.clip(np.nan_to_num(spliced_velocity, nan=0.0, posinf=0.0, neginf=0.0), -1e10, 1e10)
+    unspliced_velocity = np.clip(np.nan_to_num(unspliced_velocity, nan=0.0, posinf=0.0, neginf=0.0), -1e10, 1e10)
+    return spliced_velocity, unspliced_velocity, invalid
+
+
+def parse_old_score_file(path, method_map):
+    records = {}
+    if not path.is_file():
+        return records
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            line = line.strip()
+            if not line or line.startswith("#") or "ERROR" in line:
+                continue
+            try:
+                parts = line.split("|")
+                prefix = parts[0].strip().split(":", 2)
+                if len(prefix) != 3:
+                    continue
+                raw_key, gene, score = prefix
+                method = method_map.get(raw_key.strip())
+                if method is None:
+                    continue
+                old_edges = {}
+                raw_text = next((part.split("Raw_Scores:", 1)[1].strip() for part in parts if "Raw_Scores:" in part), "{}")
+                parsed = ast.literal_eval(raw_text)
+                for edge, value in parsed.items():
+                    old_edges[f"{edge[0]}->{edge[1]}"] = float(value)
+                cossim = None
+                for part in parts:
+                    if "CosSim:" in part:
+                        cossim = float(part.split("CosSim:", 1)[1].strip())
+                records[(method, gene.strip())] = {"old_cbdir": float(score.strip()), "old_edges": old_edges, "old_cossim": cossim}
+            except Exception:
+                continue
+    return records
+
+
+def score_gene(ms, mu, velocity_s, velocity_u, labels, neighbors, edges):
+    phase = np.stack([ms, mu], axis=1)
+    velocity = np.stack([velocity_s, velocity_u], axis=1)
+    edge_rows = []
+    edge_means = []
+    evaluable_source_cells = 0
+    for source, target in edges:
+        source_scores = []
+        for cell_index in np.flatnonzero(labels == source):
+            target_neighbors = neighbors[cell_index]
+            target_neighbors = target_neighbors[labels[target_neighbors] == target]
+            if target_neighbors.size == 0:
+                continue
+            displacement = phase[target_neighbors] - phase[cell_index]
+            current_velocity = velocity[cell_index]
+            if np.all(current_velocity == 0):
+                mean_score = 0.0
+            else:
+                mean_score = float(np.mean(cosine_similarity(displacement, current_velocity.reshape(1, -1)).ravel()))
+            source_scores.append(mean_score)
+        if source_scores:
+            edge_score = float(np.mean(source_scores))
+            edge_means.append(edge_score)
+            evaluable_source_cells += len(source_scores)
+        else:
+            edge_score = float("nan")
+        edge_rows.append({"source": source, "target": target, "score": edge_score, "evaluable_source_cells": len(source_scores)})
+    global_score = float(np.mean(edge_means)) if edge_means else float("nan")
+    return global_score, edge_rows, len(edge_means), evaluable_source_cells
+
+
+def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_asset_path, reference_label_path=None, simulation=False, neighbor_mode="reference"):
+    reference_names, reference_indices = read_reference_asset(reference_asset_path)
+    neighbor_rows = []
+    score_rows = []
+    edge_rows = []
+    for method in METHOD_ORDER:
+        path = ARTIFACT_ROOT / paths[method]
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        print(f"[{dataset}] reading {method}: {path}", flush=True)
+        adata = sc.read_h5ad(path)
+        if neighbor_mode == "native":
+            neighbors = native_neighbor_indices(adata)
+        else:
+            neighbors = align_reference_neighbors(adata, reference_names, reference_indices)
+        names = np.asarray(adata.obs_names).astype(str)
+        labels, label_source = label_vector(
+            adata,
+            names,
+            reference_label_path=reference_label_path,
+            preferred_key="bin" if simulation else None,
+        )
+        native_jaccard = native_neighbor_jaccard(adata, reference_names, reference_indices)
+        neighbor_rows.append(
+            {
+                "dataset": dataset,
+                "method": method,
+                "source_h5ad": public_locator(path),
+                "reference_neighbor_asset": public_locator(reference_asset_path),
+                "native_neighbor_jaccard": native_jaccard,
+                "label_source": label_source,
+                "n_cells": int(adata.n_obs),
+                "n_reference_neighbors": int(reference_indices.shape[1]),
+            }
+        )
+        gene_positions = {str(name): position for position, name in enumerate(adata.var_names.astype(str))}
+        selected = [gene for gene in config["genes"] if gene in gene_positions]
+        if not selected:
+            for gene in config["genes"]:
+                score_rows.append({"dataset": dataset, "method": method, "gene": gene, "new_cbdir": float("nan"), "old_cbdir": old_scores.get((method, gene), {}).get("old_cbdir", float("nan")), "delta": float("nan"), "status": "gene_missing"})
+            continue
+        positions = np.asarray([gene_positions[gene] for gene in selected], dtype=np.int64)
+        ms_matrix = dense_values(adata.layers["Ms"][:, positions]).astype(np.float64, copy=False) if "Ms" in adata.layers else None
+        mu_matrix = dense_values(adata.layers["Mu"][:, positions]).astype(np.float64, copy=False) if "Mu" in adata.layers else None
+        if ms_matrix is None or mu_matrix is None:
+            raise KeyError(f"{method}/{dataset}: native Ms/Mu are required")
+        velocity_s_matrix, velocity_u_matrix, invalid_velocity = velocity_matrix(adata, method, positions)
+        for column, gene in enumerate(selected):
+            new_score, gene_edges, n_edges, n_cells = score_gene(ms_matrix[:, column], mu_matrix[:, column], velocity_s_matrix[:, column], velocity_u_matrix[:, column], labels, neighbors, config["edges"])
+            old = old_scores.get((method, gene), {})
+            old_score = old.get("old_cbdir", float("nan"))
+            delta = float(new_score - old_score) if np.isfinite(new_score) and np.isfinite(old_score) else float("nan")
+            status = "ok" if np.isfinite(new_score) else "no_evaluable_edges"
+            score_rows.append(
+                {
+                    "dataset": dataset,
+                    "method": method,
+                    "gene": gene,
+                    "new_cbdir": new_score,
+                    "old_cbdir": old_score,
+                    "delta": delta,
+                    "absolute_delta": abs(delta)
+                    if np.isfinite(delta)
+                    else float("nan"),
+                    "n_evaluable_edges": n_edges,
+                    "n_evaluable_source_cells": n_cells,
+                    "invalid_velocity_values_cleaned_in_memory": invalid_velocity,
+                    "status": status,
+                    "source_h5ad": public_locator(path),
+                    "velocity_s_key": VELOCITY_KEYS[method][0],
+                    "velocity_u_key": VELOCITY_KEYS[method][1],
+                }
+            )
+            for edge in gene_edges:
+                old_edge = old.get("old_edges", {}).get(f"{edge['source']}->{edge['target']}", float("nan"))
+                edge_rows.append({"dataset": dataset, "method": method, "gene": gene, "source": edge["source"], "target": edge["target"], "new_edge_score": edge["score"], "old_edge_score": old_edge, "edge_delta": edge["score"] - old_edge if np.isfinite(edge["score"]) and np.isfinite(old_edge) else float("nan"), "evaluable_source_cells": edge["evaluable_source_cells"]})
+        for gene in config["genes"]:
+            if gene not in selected:
+                old = old_scores.get((method, gene), {})
+                score_rows.append({"dataset": dataset, "method": method, "gene": gene, "new_cbdir": float("nan"), "old_cbdir": old.get("old_cbdir", float("nan")), "delta": float("nan"), "absolute_delta": float("nan"), "status": "gene_missing"})
+    return score_rows, edge_rows, neighbor_rows
+
+
+def write_csv(path, rows):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not rows:
+        return
+    fields = list(rows[0])
+    for row in rows[1:]:
+        for field in row:
+            if field not in fields:
+                fields.append(field)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_change_summaries(output_root, rows):
+    grouped = {}
+    for row in rows:
+        try:
+            delta = float(row.get("delta", "nan"))
+            old_score = float(row.get("old_cbdir", "nan"))
+            new_score = float(row.get("new_cbdir", "nan"))
+        except (TypeError, ValueError):
+            continue
+        if not (np.isfinite(delta) and np.isfinite(old_score) and np.isfinite(new_score)):
+            continue
+        grouped.setdefault((row["dataset"], row["method"]), []).append((old_score, new_score, delta))
+
+    by_dataset_method = []
+    for (dataset, method), values in sorted(grouped.items()):
+        old_values, new_values, deltas = map(np.asarray, zip(*values))
+        by_dataset_method.append({
+            "dataset": dataset,
+            "method": method,
+            "n_genes": int(len(deltas)),
+            "old_mean": float(np.mean(old_values)),
+            "new_mean": float(np.mean(new_values)),
+            "mean_delta": float(np.mean(deltas)),
+            "mean_absolute_delta": float(np.mean(np.abs(deltas))),
+            "max_absolute_delta": float(np.max(np.abs(deltas))),
+            "n_material_changes_abs_delta_gt_1e-4": int(np.sum(np.abs(deltas) > 1e-4)),
+        })
+    write_csv(output_root / "gene_cbdir_summary_by_dataset_method.csv", by_dataset_method)
+
+    method_groups = {}
+    for row in by_dataset_method:
+        method_groups.setdefault(row["method"], []).append(row)
+    by_method = []
+    for method, entries in sorted(method_groups.items()):
+        weights = np.asarray([entry["n_genes"] for entry in entries], dtype=float)
+        mean_deltas = np.asarray([entry["mean_delta"] for entry in entries], dtype=float)
+        mean_abs = np.asarray([entry["mean_absolute_delta"] for entry in entries], dtype=float)
+        by_method.append({
+            "method": method,
+            "n_dataset_or_scenario": int(len(entries)),
+            "n_genes": int(np.sum(weights)),
+            "weighted_mean_delta": float(np.average(mean_deltas, weights=weights)),
+            "weighted_mean_absolute_delta": float(np.average(mean_abs, weights=weights)),
+            "max_absolute_delta": float(max(entry["max_absolute_delta"] for entry in entries)),
+            "n_material_changes_abs_delta_gt_1e-4": int(sum(entry["n_material_changes_abs_delta_gt_1e-4"] for entry in entries)),
+        })
+    write_csv(output_root / "gene_cbdir_summary_by_method.csv", by_method)
+
+    ranked = sorted(
+        [row for row in rows if row.get("absolute_delta") not in (None, "", "nan")],
+        key=lambda row: float(row["absolute_delta"]),
+        reverse=True,
+    )
+    write_csv(output_root / "gene_cbdir_top_changes.csv", ranked[:100])
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--artifact-root",
+        type=Path,
+        default=None,
+        help="External velocity artifact directory (or VELOCITY_ARTIFACT_ROOT).",
+    )
+    parser.add_argument("--neighbor-mode", choices=["reference", "native"], default="reference")
+    parser.add_argument("--datasets", nargs="+", default=["retina", "DentateGyrus_lamanno", "branching", "murk", "all"])
+    args = parser.parse_args()
+    global ARTIFACT_ROOT, REFERENCE_NEIGHBOR_ROOT
+    ARTIFACT_ROOT = resolve_artifact_root(args.artifact_root)
+    REFERENCE_NEIGHBOR_ROOT = ARTIFACT_ROOT / "indicators" / "cell" / "reference_neighbors"
+    output_root = args.output_root if args.output_root.is_absolute() else REPOSITORY_ROOT / args.output_root
+    output_root.mkdir(parents=True, exist_ok=True)
+    neighbor_root = output_root / "reference_neighbors"
+    neighbor_root.mkdir(parents=True, exist_ok=True)
+    all_scores, all_edges, all_neighbors = [], [], []
+    provenance = {
+        "artifact_root": "artifact://velocity",
+        "script": "evaluation/gene/run_reference30_gene_cbdir.py",
+        "script_sha256": sha256(HERE),
+        "scvelo_version": scv.__version__,
+        "scanpy_version": sc.__version__,
+        "neighbor_mode": args.neighbor_mode,
+        "only_neighbor_replaced": args.neighbor_mode == "reference",
+        "native_layers_preserved": [
+            "Ms", "Mu", "method_spliced_velocity", "method_unspliced_velocity"
+        ],
+        "reference_neighbor_spec": {
+            "n_neighbors": 30,
+            "n_pcs": 30,
+            "use_rep": "X_pca",
+            "metric": "euclidean",
+            "random_state": 0,
+        },
+        "datasets": {},
+    }
+    for dataset in args.datasets:
+        if dataset in REAL_CONFIGS:
+            config = REAL_CONFIGS[dataset]
+            asset_path = neighbor_root / dataset
+            asset_path = asset_path.with_suffix(".npz")
+            reference_info = copy_real_reference_asset(dataset, config["neighbor_asset"], asset_path)
+            old_path = ARTIFACT_ROOT / "plot" / "final_genes" / dataset / "score.txt"
+            old_scores = parse_old_score_file(
+                old_path, {value: key for key, value in METHOD_KEYS.items()}
+            )
+            score_rows, edge_rows, neighbor_rows = evaluate_dataset(dataset, config, config["paths"], old_scores, output_root, asset_path, reference_label_path=ARTIFACT_ROOT / config["label_reference"], simulation=False, neighbor_mode=args.neighbor_mode)
+            scope_dir = output_root / "real" / dataset
+        elif dataset in SIM_CONFIGS:
+            config = SIM_CONFIGS[dataset]
+            asset_path = neighbor_root / f"simulation_{dataset}.npz"
+            reference_info = build_simulation_reference(dataset, config, asset_path)
+            old_path = ARTIFACT_ROOT / "indicators" / "gene" / "simulation" / ("sim_all_analyze" if dataset == "all" else f"{dataset}_analyze") / "results_new" / "score_rerun_results.txt"
+            old_scores = parse_old_score_file(
+                old_path, {value: key for key, value in SIM_METHOD_KEYS.items()}
+            )
+            score_rows, edge_rows, neighbor_rows = evaluate_dataset(dataset, config, SIM_PATHS[dataset], old_scores, output_root, asset_path, simulation=True, neighbor_mode=args.neighbor_mode)
+            scope_dir = output_root / "simulation" / dataset
+        else:
+            raise ValueError(f"unknown dataset/scenario: {dataset}")
+        write_csv(scope_dir / "gene_cbdir_reference30.csv", score_rows)
+        write_csv(scope_dir / "gene_cbdir_edge_details_reference30.csv", edge_rows)
+        write_csv(scope_dir / "neighbor_audit.csv", neighbor_rows)
+        all_scores.extend(score_rows)
+        all_edges.extend(edge_rows)
+        all_neighbors.extend(neighbor_rows)
+        provenance["datasets"][dataset] = {
+            "reference": reference_info,
+            "old_score_path": public_locator(old_path),
+            "old_score_sha256": sha256(old_path) if old_path.is_file() else None,
+            "n_score_rows": len(score_rows),
+            "n_edge_rows": len(edge_rows),
+            "method_artifact_ids": {
+                method: f"gene_h5ad_{dataset}_{method}"
+                for method in (REAL_CONFIGS[dataset]["paths"] if dataset in REAL_CONFIGS else SIM_PATHS[dataset])
+            },
+            "method_paths": (REAL_CONFIGS[dataset]["paths"] if dataset in REAL_CONFIGS else SIM_PATHS[dataset]),
+        }
+    write_csv(output_root / "gene_cbdir_reference30_all.csv", all_scores)
+    write_csv(output_root / "gene_cbdir_edge_details_reference30_all.csv", all_edges)
+    write_csv(output_root / "neighbor_audit_all.csv", all_neighbors)
+    comparison_rows = []
+    for row in all_scores:
+        comparison_rows.append({**row, "comparison": "new_reference30_vs_old_native_neighbor"})
+    write_csv(output_root / "old_vs_reference30_gene_cbdir.csv", comparison_rows)
+    write_change_summaries(output_root, all_scores)
+    provenance["counts"] = {"score_rows": int(len(all_scores)), "edge_rows": int(len(all_edges)), "neighbor_rows": int(len(all_neighbors)), "finite_new_scores": int(sum(np.isfinite(float(row["new_cbdir"])) for row in all_scores if row.get("new_cbdir") not in (None, ""))), "changed_scores": int(sum(np.isfinite(float(row["delta"])) and abs(float(row["delta"])) > 1e-12 for row in all_scores if row.get("delta") not in (None, "")))}
+    (output_root / "provenance.json").write_text(json.dumps(provenance, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
+    print(json.dumps(provenance["counts"], indent=2), flush=True)
+
+
+if __name__ == "__main__":
+    main()

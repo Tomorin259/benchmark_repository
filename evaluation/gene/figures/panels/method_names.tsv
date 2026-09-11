@@ -1,0 +1,21 @@
+internal_id	display_name	paper_order
+scvelo_deterministic	scVelo_deterministic	1
+scvelo_stochastic	scVelo_stochastic	2
+scvelo_dynamic	scVelo_dynamic	3
+multivelo	MultiVelo (RNA_only)	4
+unitvelo	UniTVelo	5
+unitvelo_mode2	UniTVelo(mode2)	6
+dynamo	Dynamo(RNA_seq)	7
+TIvelo	TIvelo	8
+cell2fate	cell2fate	9
+TFvelo	TFvelo	10
+veloae	veloAE	11
+veloVI	veloVI	12
+DeepKINET	DeepKINET	13
+TSvelo	TSvelo	14
+celldancer	cellDancer	15
+deepvelo	DeepVelo	16
+SDEvelo	SDEvelo	17
+deepvelo2022	DeepVelo_scv	18
+graphvelo_scv	GraphVelo_scv	19
+graphvelo_dynamo	GraphVelo_dyn	20

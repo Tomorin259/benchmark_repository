@@ -1,9 +1,11 @@
 # Method reproduction
 
 This directory contains one direct reproduction script per method or shared
-official implementation. The 20 benchmark configurations remain explicit in
-[configurations.tsv](configurations.tsv); configurations that share an
-implementation are listed in visible top-level mode constants in one script.
+official implementation. The 20-method benchmark configurations remain
+explicit in configurations.tsv, the sole 20-method registry. It has exactly
+20 unique config_id values and 20 unique operational_id values; ensemble
+variants are not entries. Configurations that share an implementation are
+listed in visible top-level mode constants in one script.
 
 Each script begins with visible input/output paths and the dataset/configuration
 list to edit for a focused run. It keeps the upstream tutorial sequence
@@ -34,5 +36,33 @@ The script must not depend on a universal runner, adapter registry, plugin
 system, or editable checkout of an upstream repository. A helper is justified
 only by a real scientific operation, input-format boundary, or invariant.
 
-The current configuration-by-configuration migration and lightweight runtime
-validation record is in [MIGRATION_STATUS.md](MIGRATION_STATUS.md).
+Public names use veloVI spelling. DeepVelo's C16 graph-convolutional
+configuration and C18 reconstruction configuration remain distinct, as do
+the C19 scVelo-input and C20 Dynamo-input GraphVelo configurations. Their
+scientific settings are kept in configurations.tsv.
+
+Mean-4 and CenterWeighted-4 are independent comparators beside the
+20-method benchmark, not methods in this directory. Each is ranked against
+the 20 methods separately and the two comparators are not compared with one
+another. Their implementations are in ensemble/, which shares evaluation/cell/
+and evaluation/cell/reference_neighbors/; formal fixed-neighbor all-14
+ensemble results are available under ensemble/results.
+
+DeepVelo (C16) requires an explicit paper analysis role and an empty output
+directory.  Use `--evaluation-role cell` for the cell-level default run; this
+sets `pred_unspliced=False`.  The gene and kinetics roles set it to `True` and
+remain separate from the cell result family.  For example:
+
+```bash
+python methods/deepvelo.py \
+  --evaluation-role cell \
+  --output-root /path/to/results/deepvelo/results_default_cell
+```
+
+To reproduce the historical launcher’s RNG scope, add
+`--reset-seed-per-dataset`; this resets seed 123 immediately before each
+dataset and records the choice in `run_config.json`.
+The canonical historical cell-level input used by the published cell metrics
+is the existing central no-vu family `results/deepvelo/deepvelo_*.h5ad`;
+newly generated role-specific outputs should be kept in a separate audit
+directory until promoted.

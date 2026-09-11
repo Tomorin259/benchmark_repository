@@ -2,6 +2,10 @@
 Thumbs.db
 
 __pycache__/
+**/__pycache__/
+*.pyc
+*.orig
+*.rej
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
@@ -12,7 +16,6 @@ __pycache__/
 venv/
 env/
 
-*.h5ad
 *.loom
 *.h5
 *.hdf5
@@ -22,6 +25,11 @@ env/
 *.pth
 
 checkpoints/
+staging/
+smoke/
+archive/
+velocity/
+**/runs/
 cache/
 logs/
 tmp/
@@ -29,3 +37,5 @@ outputs/
 
 data/raw/
 data/processed/
+
+*.h5ad

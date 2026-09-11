@@ -1,10 +1,7 @@
 {
   "schema_version": 1,
-  "result_inputs": "result_inputs.tsv",
-  "outputs": {
-    "metrics": "results/all_metrics.csv",
-    "transprob": "results/transprob.csv",
-    "figures": "figures/"
+  "runtime": {
+    "input_manifest": "inputs.tsv"
   },
   "labels": {
     "fallback_sources": [
@@ -24,9 +21,45 @@
     }
   },
   "metrics": {
-    "n_neighbors": 30,
-    "batch_size": 500,
     "velocity_graph_n_jobs": 8
+  },
+  "reference": {
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "use_rep": "X_pca",
+    "metric": "euclidean",
+    "random_state": 0,
+    "n_recurse_neighbors": 1,
+    "mode_neighbors": "distances"
+  },
+  "result_tables": {
+    "primary": [
+      "dataset",
+      "method",
+      "consistency",
+      "iccoh",
+      "cbdir",
+      "transcosine",
+      "batc"
+    ],
+    "supplementary": [
+      "dataset",
+      "method",
+      "highdim_cbdir",
+      "transcosine_evaluable_edges",
+      "transcosine_evaluable_source_cells",
+      "highdim_cbdir_evaluable_edges",
+      "highdim_cbdir_evaluable_source_cells"
+    ],
+    "audit": [
+      "dataset",
+      "method",
+      "result_path",
+      "result_sha256",
+      "velocity_layer_key",
+      "invalid_velocity_values_replaced_with_zero",
+      "status"
+    ]
   },
   "datasets": {
     "bonemarrow": {

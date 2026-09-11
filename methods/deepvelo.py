@@ -8,7 +8,19 @@ left to the shell environment; this script never overwrites
 ``CUDA_VISIBLE_DEVICES``.
 """
 
+import argparse
+import json
+import sys
+from datetime import datetime, timezone
 from pathlib import Path
+
+# When this file is executed directly, Python puts ``methods/`` first on
+# sys.path and shadows the installed DeepVelo package with this script.
+# Remove only that script directory; the package must come from the audited
+# environment.
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) in sys.path:
+    sys.path.remove(str(SCRIPT_DIR))
 
 import numpy as np
 import scanpy as sc
@@ -22,7 +34,6 @@ from deepvelo.utils.preprocess import autoset_coeff_s
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
-OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "deepvelo"
 
 # Edit this list for a focused rerun.  The explicit seed below is part of the
 # benchmark's historical DeepVelo configuration, rather than an added
@@ -141,10 +152,49 @@ SEED = 123
 N_JOBS = 8
 
 
-def run_dataset(dataset):
+def seed_everything():
+    """Reset all RNGs used by the historical per-dataset launcher."""
+    torch.manual_seed(SEED)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    np.random.seed(SEED)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--evaluation-role",
+        choices=("cell", "gene", "kinetics"),
+        required=True,
+        help="paper analysis role; this controls the DeepVelo output head",
+    )
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        required=True,
+        help="empty directory receiving H5AD files, plots, and training logs",
+    )
+    parser.add_argument(
+        "--dataset",
+        dest="datasets",
+        action="append",
+        choices=sorted(DATASETS),
+        help="run one dataset; repeat for a focused run (default: all 14)",
+    )
+    parser.add_argument(
+        "--reset-seed-per-dataset",
+        action="store_true",
+        help="reset seed=123 at the start of every dataset, matching the historical launcher",
+    )
+    return parser.parse_args()
+
+
+def run_dataset(dataset, output_root, pred_unspliced, evaluation_role, reset_seed_per_dataset):
+    if reset_seed_per_dataset:
+        seed_everything()
     config = DATASETS[dataset]
     input_path = DATA_ROOT / config["input"]
-    output_dir = OUTPUT_ROOT / dataset
+    output_dir = output_root / dataset
     output_path = output_dir / f"deepvelo_{dataset}.h5ad"
 
     print(f"\n=== DeepVelo: {dataset} ===", flush=True)
@@ -187,10 +237,10 @@ def run_dataset(dataset):
             raise KeyError(f"{dataset}: preprocessing did not provide X_pca for the benchmark embedding")
         adata.obsm["X_umap"] = adata.obsm["X_pca"].copy()
 
-    # These are the C16 settings used for the current formal result contract:
-    # two 64-unit graph-convolution layers and an additional unspliced-velocity
-    # head.  The isolated save directory changes only where logs/checkpoints
-    # are written, not the model or optimization parameters.
+    # These are the audited C16 settings.  The output head is selected by the
+    # paper analysis role instead of being silently shared by cell/gene runs.
+    # The isolated output directory changes only where logs/checkpoints are
+    # written, not the model or optimization parameters.
     configs = {
         "name": "DeepVelo",
         "loss": {"args": {"coeff_s": autoset_coeff_s(adata)}},
@@ -200,7 +250,7 @@ def run_dataset(dataset):
                 "layers": [64, 64],
                 "dropout": 0.2,
                 "fc_layer": False,
-                "pred_unspliced": True,
+                "pred_unspliced": pred_unspliced,
             },
         },
     }
@@ -229,12 +279,12 @@ def run_dataset(dataset):
         "Ms",
         "Mu",
         "velocity",
-        "velocity_unspliced",
-        "cell_specific_alpha",
         "cell_specific_beta",
         "cell_specific_gamma",
         "variance_velocity",
     }
+    if pred_unspliced:
+        required_layers.update({"velocity_unspliced", "cell_specific_alpha"})
     required_obsm = {"X_umap", "velocity_umap"}
     missing_layers = required_layers - set(adata.layers)
     missing_obsm = required_obsm - set(adata.obsm)
@@ -243,30 +293,76 @@ def run_dataset(dataset):
             f"{dataset}: incomplete DeepVelo result; missing layers={sorted(missing_layers)}, "
             f"obsm={sorted(missing_obsm)}, velocity_graph={'velocity_graph' in adata.uns}"
         )
+    if evaluation_role == "cell" and "velocity_unspliced" in adata.layers:
+        raise RuntimeError(
+            f"{dataset}: cell-level run unexpectedly produced velocity_unspliced"
+        )
 
     adata.write_h5ad(output_path)
     print(f"wrote: {output_path}", flush=True)
 
 
 def main():
+    args = parse_args()
     if scv.__version__ != "0.2.5":
         raise RuntimeError(f"scVelo 0.2.5 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    datasets = args.datasets or DATASETS_TO_RUN
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
 
-    torch.manual_seed(SEED)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    np.random.seed(SEED)
+    output_root = args.output_root.resolve()
+    if output_root.exists() and any(output_root.iterdir()):
+        raise RuntimeError(
+            f"output root is not empty: {output_root}; choose a new run directory"
+        )
+    output_root.mkdir(parents=True, exist_ok=True)
+    pred_unspliced = args.evaluation_role in {"gene", "kinetics"}
+
+    if not args.reset_seed_per_dataset:
+        seed_everything()
     scv.settings.verbosity = 3
     scv.set_figure_params("scvelo", transparent=False)
     print(f"DeepVelo source: {train.__module__}", flush=True)
     print(f"global RNG seed: {SEED} (C16 historical configuration)", flush=True)
+    print(
+        f"evaluation role: {args.evaluation_role}; "
+        f"pred_unspliced: {pred_unspliced}",
+        flush=True,
+    )
     print("GPU selection: inherited from CUDA_VISIBLE_DEVICES", flush=True)
 
-    for dataset in DATASETS_TO_RUN:
-        run_dataset(dataset)
+    run_metadata = {
+        "config_id": "C16",
+        "operational_id": "deepvelo",
+        "evaluation_role": args.evaluation_role,
+        "pred_unspliced": pred_unspliced,
+        "reset_seed_per_dataset": args.reset_seed_per_dataset,
+        "seed": SEED,
+        "n_jobs": N_JOBS,
+        "datasets": datasets,
+        "output_root": str(output_root),
+        "started_at_utc": datetime.now(timezone.utc).isoformat(),
+    }
+    (output_root / "run_config.json").write_text(
+        json.dumps(run_metadata, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    for dataset in datasets:
+        run_dataset(
+            dataset,
+            output_root,
+            pred_unspliced,
+            args.evaluation_role,
+            args.reset_seed_per_dataset,
+        )
+
+    run_metadata["finished_at_utc"] = datetime.now(timezone.utc).isoformat()
+    (output_root / "run_config.json").write_text(
+        json.dumps(run_metadata, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 if __name__ == "__main__":

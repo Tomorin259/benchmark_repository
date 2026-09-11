@@ -1,0 +1,10 @@
+dataset,method,source_h5ad,reference_neighbor_asset,native_neighbor_jaccard,label_source,n_cells,n_reference_neighbors
+all,cellDancer,artifact://velocity/indicators/gene/simulation/results_for_analyze/celldancer/celldancer_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,DeepVelo,artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,DeepVelo_scv,artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_all_recon.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,Graphvelo_scv,artifact://velocity/indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,0.6488126334675558,bin,2000,30
+all,MultiVelo,artifact://velocity/indicators/gene/simulation/results_for_analyze/multivelo/multivelo_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,,bin,2000,30
+all,scVelo_dyn,artifact://velocity/indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,TIvelo,artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,UniTVelo,artifact://velocity/indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,1.0,bin,2000,30
+all,veloVI,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad,evaluation/gene/results/reference_neighbors/simulation_all.npz,,bin,2000,30

@@ -1,0 +1,168 @@
+{
+  "contract": {
+    "metric": "euclidean",
+    "min_shared_counts": 20,
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "n_top_genes_requested": 2000,
+    "random_state": 0,
+    "use_rep": "X_pca"
+  },
+  "datasets": {
+    "DentateGyrus_lamanno": {
+      "file": "DentateGyrus_lamanno.npz",
+      "indices_shape": [
+        18213,
+        30
+      ],
+      "n_obs": 18213,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "c7510097f03fb51a64abbee9328e0dc5001840b5b8bd4538b7cc28417803981a"
+    },
+    "bonemarrow": {
+      "file": "bonemarrow.npz",
+      "indices_shape": [
+        5780,
+        30
+      ],
+      "n_obs": 5780,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "dd42d081ba1fecff923b4ce6fc1edb5b1ed15b17bb43809d18e3322d9f94ad32"
+    },
+    "capofibro": {
+      "file": "capofibro.npz",
+      "indices_shape": [
+        1222,
+        30
+      ],
+      "n_obs": 1222,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "61e6110eda842b345dd333f0019d91d0c28487dbf1aea1cc04703e8d84416940"
+    },
+    "dentategyrus": {
+      "file": "dentategyrus.npz",
+      "indices_shape": [
+        2930,
+        30
+      ],
+      "n_obs": 2930,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "6e1e15b063a0457faf2e3cbdf417990c9d596aed3531efd51f2bdb4d0f4fbf12"
+    },
+    "forebrain": {
+      "file": "forebrain.npz",
+      "indices_shape": [
+        1720,
+        30
+      ],
+      "n_obs": 1720,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2"
+    },
+    "gastrulation": {
+      "file": "gastrulation.npz",
+      "indices_shape": [
+        9815,
+        30
+      ],
+      "n_obs": 9815,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "ec31841b736d7beb56063261aa91f8fc60652de7837df89c5c246f69fe9ef4d2"
+    },
+    "hematopoiesis": {
+      "file": "hematopoiesis.npz",
+      "indices_shape": [
+        1947,
+        30
+      ],
+      "n_obs": 1947,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "0de5c1c8e5172626aee8c02995ded5e1319be0af6e9593a8e4db7a7c4e92b5b1"
+    },
+    "mousebrain": {
+      "file": "mousebrain.npz",
+      "indices_shape": [
+        3365,
+        30
+      ],
+      "n_obs": 3365,
+      "n_top_genes_used": 936,
+      "n_vars_after_filter": 775,
+      "sha256": "884e272cfa322e8906935ecd27109daceefb1c8a58e1a09e952383607baa521e"
+    },
+    "neuron": {
+      "file": "neuron.npz",
+      "indices_shape": [
+        3066,
+        30
+      ],
+      "n_obs": 3066,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "488450751b61abb85ba69034f2af33f6fbbaddd9c28c43bf13f8bbc22c362467"
+    },
+    "organoid": {
+      "file": "organoid.npz",
+      "indices_shape": [
+        3831,
+        30
+      ],
+      "n_obs": 3831,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "8b6e8d636b42acb37f199bd1a4de92cc73bc12966c4b2d681079972ae3b1b95d"
+    },
+    "pancreas": {
+      "file": "pancreas.npz",
+      "indices_shape": [
+        3696,
+        30
+      ],
+      "n_obs": 3696,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "30b7e3a2a35ab2c88310d54fc986159b57d9dddedfd647822053f0a9806d91a0"
+    },
+    "retina": {
+      "file": "retina.npz",
+      "indices_shape": [
+        2726,
+        30
+      ],
+      "n_obs": 2726,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "6639001e9fe6e87708cc502e15c5b87692929379be9f8f1a6c792dd855f20ccc"
+    },
+    "rpe1": {
+      "file": "rpe1.npz",
+      "indices_shape": [
+        2793,
+        30
+      ],
+      "n_obs": 2793,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "e5ec16a652c68a503d0e7c9b1497fe213e78a83074093eaadca7a4c8958a00c0"
+    },
+    "rpe1_gen": {
+      "file": "rpe1_gen.npz",
+      "indices_shape": [
+        3354,
+        30
+      ],
+      "n_obs": 3354,
+      "n_top_genes_used": 2000,
+      "n_vars_after_filter": 2000,
+      "sha256": "9f79f9bf521340f3695a9d1afd0a3bed290ab4390bb69899eb15ae95d4162062"
+    }
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,163 @@
+{
+  "trajectory_genes": [
+    "KIF20B",
+    "KIF18A",
+    "KIF22",
+    "TGFB2",
+    "KITLG",
+    "POLA1",
+    "CENPE",
+    "KIF11",
+    "UBE2C",
+    "TOP2A",
+    "KIF2C",
+    "CDK1",
+    "PCNA",
+    "POLD3",
+    "LIG1",
+    "BRCA1",
+    "RMI1",
+    "MELK",
+    "UNG"
+  ],
+  "heatmap_genes": [
+    "KIF5B",
+    "KIF20B",
+    "KIF18A",
+    "KIF22",
+    "LIF",
+    "TGFB2",
+    "KITLG",
+    "POLA1",
+    "PLK1",
+    "CENPE",
+    "KIF11",
+    "UBE2C",
+    "TOP2A",
+    "KIF2C",
+    "CDK1",
+    "TTK",
+    "PCNA",
+    "MCM4",
+    "POLD3",
+    "LIG1",
+    "BRCA1",
+    "MRE11",
+    "RMI1",
+    "VRK1",
+    "MELK",
+    "PAK1",
+    "MCM6",
+    "UNG",
+    "MCM3",
+    "RFC1",
+    "MCM2",
+    "RFC4"
+  ],
+  "inputs": {
+    "rpe1": {
+      "reference": {
+        "alpha": "figure5_legacy_inputs/rpe1/reference_alpha.csv",
+        "gamma": "figure5_legacy_inputs/rpe1/reference_gamma.csv"
+      },
+      "trajectories": {
+        "alpha": {
+          "DeepVelo": "figure5_legacy_inputs/rpe1/trajectory/DeepVelo_alpha.csv",
+          "cellDancer": "figure5_legacy_inputs/rpe1/trajectory/cellDancer_alpha.csv",
+          "Dynamo": "figure5_legacy_inputs/rpe1/trajectory/Dynamo_alpha.csv",
+          "TSvelo": "figure5_legacy_inputs/rpe1/trajectory/TSvelo_alpha.csv"
+        },
+        "gamma": {
+          "DeepKINET": "figure5_legacy_inputs/rpe1/trajectory/DeepKINET_gamma.csv",
+          "DeepVelo": "figure5_legacy_inputs/rpe1/trajectory/DeepVelo_gamma.csv",
+          "cellDancer": "figure5_legacy_inputs/rpe1/trajectory/cellDancer_gamma.csv"
+        }
+      },
+      "heatmap_metrics": {
+        "Alpha": {
+          "Dynamo": "figure5_legacy_inputs/rpe1/heatmap/Dynamo_alpha.csv",
+          "DeepVelo": "figure5_legacy_inputs/rpe1/heatmap/DeepVelo_alpha.csv",
+          "cellDancer": "figure5_legacy_inputs/rpe1/heatmap/cellDancer_alpha.csv",
+          "TSvelo": "figure5_legacy_inputs/rpe1/heatmap/TSvelo_alpha.csv"
+        },
+        "Gamma": {
+          "DeepKINET": "figure5_legacy_inputs/rpe1/heatmap/DeepKINET_gamma.csv",
+          "DeepVelo": "figure5_legacy_inputs/rpe1/heatmap/DeepVelo_gamma.csv",
+          "cellDancer": "figure5_legacy_inputs/rpe1/heatmap/cellDancer_gamma.csv"
+        }
+      },
+      "deepvelo_venn": {
+        "reference_alpha": "figure5_legacy_inputs/rpe1/reference_alpha.csv",
+        "reference_gamma": "figure5_legacy_inputs/rpe1/reference_gamma.csv",
+        "prediction_alpha": "figure5_legacy_inputs/rpe1/trajectory/DeepVelo_alpha.csv",
+        "prediction_gamma": "figure5_legacy_inputs/rpe1/trajectory/DeepVelo_gamma.csv"
+      },
+      "cellDancer_venn": {
+        "reference_alpha": "figure5_legacy_inputs/rpe1/reference_alpha.csv",
+        "reference_gamma": "figure5_legacy_inputs/rpe1/reference_gamma.csv",
+        "prediction_alpha": "figure5_legacy_inputs/rpe1/trajectory/cellDancer_alpha.csv",
+        "prediction_gamma": "figure5_legacy_inputs/rpe1/trajectory/cellDancer_gamma.csv"
+      }
+    },
+    "organoid": {
+      "branches": {
+        "1": {
+          "genes": [
+            "Defa24",
+            "Defa17",
+            "Spdef",
+            "Rnase4",
+            "Lyz1",
+            "Ern2",
+            "Pla2g2a",
+            "Rap1gap"
+          ],
+          "methods": {
+            "DeepVelo": {
+              "Alpha": "figure5_legacy_inputs/organoid/branch1/DeepVelo_alpha.csv",
+              "Gamma": "figure5_legacy_inputs/organoid/branch1/DeepVelo_gamma.csv",
+              "color": "#1f77b4"
+            },
+            "cellDancer": {
+              "Alpha": "figure5_legacy_inputs/organoid/branch1/cellDancer_alpha.csv",
+              "Gamma": "figure5_legacy_inputs/organoid/branch1/cellDancer_gamma.csv",
+              "color": "#ff7f0e"
+            },
+            "DeepKINET": {
+              "Gamma": "figure5_legacy_inputs/organoid/branch1/DeepKINET_gamma.csv",
+              "color": "#2ca02c"
+            }
+          }
+        },
+        "2": {
+          "genes": [
+            "Ephx2",
+            "Cyp3a25",
+            "Gstm3",
+            "Apoa1",
+            "Adh1",
+            "Ces2e",
+            "Lypd8",
+            "Muc3"
+          ],
+          "methods": {
+            "DeepVelo": {
+              "Alpha": "figure5_legacy_inputs/organoid/branch2/DeepVelo_alpha.csv",
+              "Gamma": "figure5_legacy_inputs/organoid/branch2/DeepVelo_gamma.csv",
+              "color": "#1f77b4"
+            },
+            "cellDancer": {
+              "Alpha": "figure5_legacy_inputs/organoid/branch2/cellDancer_alpha.csv",
+              "Gamma": "figure5_legacy_inputs/organoid/branch2/cellDancer_gamma.csv",
+              "color": "#ff7f0e"
+            },
+            "DeepKINET": {
+              "Gamma": "figure5_legacy_inputs/organoid/branch2/DeepKINET_gamma.csv",
+              "color": "#2ca02c"
+            }
+          }
+        }
+      }
+    }
+  }
+}

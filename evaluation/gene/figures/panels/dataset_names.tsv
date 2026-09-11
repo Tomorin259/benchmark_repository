@@ -1,0 +1,18 @@
+internal_id	display_name	manuscript_name
+gastrulation	Gastrulation	Gastrulation
+dentategyrus_lamanno	Dentategyrus_lamanno	Dentategyrus_lamanno
+dentategyrus	Dentategyrus	Dentategyrus
+bonemarrow	Human bone marrow	Human bone marrow
+capo_pre	capofibro (VeloCycle)	capofibro (VeloCycle)
+retina	Mouse retina	Mouse retina
+mousebrain	mousebrain	mousebrain
+forebrain	ForebrainGlut	ForebrainGlut
+hematopoiesis	Human hematopoiesis	Human hematopoiesis
+pancreas	Pancreas	Pancreas
+scnt_neuron	scNT_neuron	scNT neuron
+sceu_organoid	organoid	organoid
+sceu_rpe1	rpe1	rpe1
+rpe1_gen	rpe1 (VeloCycle)	rpe1 (VeloCycle)
+branching	Normal + branching	Normal + branching
+murk	Normal + MURK	Normal + MURK
+all	Hybrid (normal + MURK + branching)	Hybrid (normal + MURK + branching)

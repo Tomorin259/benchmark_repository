@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from io import StringIO
 import warnings
 from pathlib import Path
 
@@ -25,6 +26,20 @@ from scipy.stats import spearmanr
 
 MODULE_DIR = Path(__file__).resolve().parent
 DEFAULT_CONFIG = MODULE_DIR / "config.json"
+
+# The configuration and filenames keep their stable internal IDs.  Only the
+# compact result tables expose the manuscript-facing labels.
+DISPLAY_METHOD_NAMES = {
+    "cellDancer": "cellDancer",
+    "DeepVelo": "DeepVelo",
+    "DeepKINET": "DeepKINET",
+    "Dynamo": "Dynamo(label data)",
+    "TSvelo": "TSvelo",
+}
+DISPLAY_DATASET_NAMES = {
+    "rpe1": "rpe1",
+    "organoid": "organoid",
+}
 
 
 def source_path(artifact_root: Path, relative_path: str) -> Path:
@@ -58,6 +73,49 @@ def read_organoid_reference(path: Path, branch: str, parameter: str) -> pd.DataF
     return values.apply(pd.to_numeric, errors="coerce")
 
 
+def csv_roundtrip(frame: pd.DataFrame, path: Path | None = None) -> pd.DataFrame:
+    """Serialize a matrix as CSV and reload it at a historical I/O boundary."""
+    if path is None:
+        buffer = StringIO()
+        frame.to_csv(buffer)
+        buffer.seek(0)
+        reloaded = pd.read_csv(buffer, index_col=0)
+    else:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        frame.to_csv(path)
+        reloaded = pd.read_csv(path, index_col=0)
+
+    normalized_columns = []
+    for column in reloaded.columns:
+        try:
+            value = float(column)
+        except (TypeError, ValueError):
+            normalized_columns.append(column)
+        else:
+            normalized_columns.append(
+                int(value) if np.isfinite(value) and value.is_integer() else value
+            )
+    reloaded.columns = pd.Index(normalized_columns)
+    return reloaded.apply(pd.to_numeric, errors="coerce")
+
+
+def roundtrip_output(
+    frame: pd.DataFrame,
+    output_dir: Path | None,
+    dataset: str,
+    branch: str | None,
+    subdirectory: str,
+    filename: str,
+) -> pd.DataFrame:
+    """Write and reload one matrix while keeping output layout explicit."""
+    if output_dir is None:
+        return csv_roundtrip(frame)
+    directory = output_dir / subdirectory / dataset
+    if branch is not None:
+        directory /= f"branch{branch}"
+    return csv_roundtrip(frame, directory / filename)
+
+
 def calculate_metrics(
     prediction: pd.DataFrame, reference: pd.DataFrame
 ) -> pd.DataFrame:
@@ -78,7 +136,8 @@ def calculate_metrics(
         else:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                correlation = spearmanr(predicted[valid], observed[valid]).statistic
+                result = spearmanr(predicted[valid], observed[valid])
+                correlation = getattr(result, "statistic", result[0])
         if count == 0:
             cosine = np.nan
         else:
@@ -167,7 +226,7 @@ def select_organoid_branch(
     adata: ad.AnnData, settings: dict, branch: str
 ) -> tuple[ad.AnnData, pd.Series]:
     branch_settings = settings["branches"][branch]
-    branch_mask = adata.obs[settings["branch_key"]].astype(str).str.contains(branch)
+    branch_mask = adata.obs[settings["branch_key"]].astype(str).eq(str(branch))
     cluster_mask = adata.obs[settings["cluster_key"]].astype(str).isin(
         branch_settings["clusters"]
     )
@@ -308,13 +367,15 @@ def score_component(
     reference: pd.DataFrame,
 ) -> tuple[dict, pd.DataFrame]:
     metrics = calculate_metrics(prediction, reference)
+    display_method = DISPLAY_METHOD_NAMES.get(method, method)
+    display_dataset = DISPLAY_DATASET_NAMES.get(dataset, dataset)
     metrics.insert(0, "Parameter", parameter)
     metrics.insert(0, "Branch", branch if branch is not None else pd.NA)
-    metrics.insert(0, "Dataset", dataset)
-    metrics.insert(0, "Method", method)
+    metrics.insert(0, "Dataset", display_dataset)
+    metrics.insert(0, "Method", display_method)
     component = {
-        "Method": method,
-        "Dataset": dataset,
+        "Method": display_method,
+        "Dataset": display_dataset,
         "Branch": branch if branch is not None else pd.NA,
         "Parameter": parameter,
         "Component": (
@@ -326,28 +387,6 @@ def score_component(
         "N": metrics["Spearman_Corr"].notna().sum(),
     }
     return component, metrics
-
-
-def save_parameter_matrices(
-    output_dir: Path | None,
-    dataset: str,
-    branch: str | None,
-    method: str,
-    parameter: str,
-    raw: pd.DataFrame,
-    processed: pd.DataFrame,
-) -> None:
-    if output_dir is None:
-        return
-    matrix_directory = output_dir / "matrices" / dataset
-    trajectory_directory = output_dir / "trajectories" / dataset
-    if branch is not None:
-        matrix_directory /= f"branch{branch}"
-        trajectory_directory /= f"branch{branch}"
-    matrix_directory.mkdir(parents=True, exist_ok=True)
-    trajectory_directory.mkdir(parents=True, exist_ok=True)
-    raw.to_csv(matrix_directory / f"{method}_{parameter}_raw.csv")
-    processed.to_csv(trajectory_directory / f"{method}_{parameter}.csv")
 
 
 def evaluate_rpe1(
@@ -382,20 +421,51 @@ def evaluate_rpe1(
     else:
         raise ValueError(f"{method} RPE1: unsupported reader {reader!r}")
 
+    parameters = list(raw_by_parameter)
+    if not parameters:
+        raise ValueError(f"{method} RPE1: no kinetic parameter layers were configured")
+    common_genes = set.intersection(
+        *(set(raw.index) for raw in raw_by_parameter.values()),
+        *(set(references[parameter].index) for parameter in parameters),
+    )
+    ordered_genes = [
+        gene for gene in references[parameters[0]].index if gene in common_genes
+    ]
+
     components = []
     gene_metrics = []
     for parameter, raw in raw_by_parameter.items():
+        raw = raw.loc[ordered_genes]
+        raw = roundtrip_output(
+            raw,
+            output_dir,
+            "rpe1",
+            None,
+            "matrices",
+            f"{method}_{parameter}_raw.csv",
+        )
         processed = process_rpe1(
             raw, settings["rpe1"], source.get("clip_negative", False)
         )
+        reference = references[parameter]
+        genes = reference.index.intersection(processed.index, sort=False)
+        timepoints = reference.columns.intersection(processed.columns, sort=False)
+        processed = processed.loc[genes, timepoints]
+        reference = reference.loc[genes, timepoints]
+        processed = roundtrip_output(
+            processed,
+            output_dir,
+            "rpe1",
+            None,
+            "trajectories",
+            f"{method}_{parameter}.csv",
+        )
+        reference = csv_roundtrip(reference)
         component, metrics = score_component(
-            method, "rpe1", None, parameter, processed, references[parameter]
+            method, "rpe1", None, parameter, processed, reference
         )
         components.append(component)
         gene_metrics.append(metrics)
-        save_parameter_matrices(
-            output_dir, "rpe1", None, method, parameter, raw, processed
-        )
     return components, gene_metrics
 
 
@@ -423,19 +493,41 @@ def evaluate_organoid(
                 selected, aligned_time, layer, settings["organoid"]
             )
             processed = process_organoid(raw, settings["organoid"])
+            reference = references[branch][parameter]
+            genes = reference.index.intersection(processed.index, sort=False)
+            timepoints = reference.columns.intersection(
+                processed.columns, sort=False
+            )
+            raw = raw.loc[genes]
+            processed = processed.loc[genes, timepoints]
+            reference = reference.loc[genes, timepoints]
+            roundtrip_output(
+                raw,
+                output_dir,
+                "organoid",
+                branch,
+                "matrices",
+                f"{method}_{parameter}_raw.csv",
+            )
+            processed = roundtrip_output(
+                processed,
+                output_dir,
+                "organoid",
+                branch,
+                "trajectories",
+                f"{method}_{parameter}.csv",
+            )
+            reference = csv_roundtrip(reference)
             component, metrics = score_component(
                 method,
                 "organoid",
                 branch,
                 parameter,
                 processed,
-                references[branch][parameter],
+                reference,
             )
             components.append(component)
             gene_metrics.append(metrics)
-            save_parameter_matrices(
-                output_dir, "organoid", branch, method, parameter, raw, processed
-            )
     return components, gene_metrics
 
 
@@ -547,12 +639,16 @@ def main() -> None:
         rpe1_directory = output / "matrices" / "rpe1"
         rpe1_directory.mkdir(parents=True, exist_ok=True)
         for parameter, values in rpe1_references.items():
-            values.to_csv(rpe1_directory / f"reference_{parameter}.csv")
+            rpe1_references[parameter] = csv_roundtrip(
+                values, rpe1_directory / f"reference_{parameter}.csv"
+            )
         for branch, branch_values in organoid_references.items():
             directory = output / "matrices" / "organoid" / f"branch{branch}"
             directory.mkdir(parents=True, exist_ok=True)
             for parameter, values in branch_values.items():
-                values.to_csv(directory / f"reference_{parameter}.csv")
+                organoid_references[branch][parameter] = csv_roundtrip(
+                    values, directory / f"reference_{parameter}.csv"
+                )
 
     components = []
     gene_metrics = []

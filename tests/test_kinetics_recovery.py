@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from evaluation.kinetics_recovery.metrics import (
     calculate_metrics,
+    csv_roundtrip,
     dynamo_rpe1_raw,
     organoid_raw_from_layer,
     process_organoid,
@@ -42,6 +43,19 @@ def write_h5ad(path, cells, positions, values):
 
 
 class KineticsEvaluationTests(unittest.TestCase):
+    def test_csv_roundtrip_restores_numeric_timepoint_labels_and_missing_values(self):
+        frame = pd.DataFrame(
+            [[1.25, np.nan], [3.5, 4.75]],
+            index=["g1", "g2"],
+            columns=[0, 1],
+        )
+
+        reloaded = csv_roundtrip(frame)
+
+        self.assertEqual(list(reloaded.columns), [0, 1])
+        self.assertTrue(reloaded.isna().equals(frame.isna()))
+        self.assertTrue(np.allclose(reloaded.fillna(0), frame.fillna(0)))
+
     def test_rpe1_processing_and_metrics(self):
         raw = pd.DataFrame(
             [[1.0, 2.0, 4.0, 8.0], [8.0, 4.0, 2.0, 1.0]],
@@ -123,19 +137,19 @@ class KineticsEvaluationTests(unittest.TestCase):
 
     def test_organoid_branch_selection_and_processing(self):
         adata = AnnData(
-            X=np.zeros((4, 2)),
+            X=np.zeros((5, 2)),
             obs=pd.DataFrame(
                 {
-                    "monocle_branch_id": ["1", "1", "2", "2"],
-                    "som_cluster_id": ["4", "9", "1", "2"],
-                    "monocle_pseudotime": [3.5, 3.0, 6.5, 7.5],
+                    "monocle_branch_id": ["1", "1", "2", "2", "10"],
+                    "som_cluster_id": ["4", "9", "1", "2", "4"],
+                    "monocle_pseudotime": [3.5, 3.0, 6.5, 7.5, 3.5],
                 },
-                index=["c1", "c2", "c3", "c4"],
+                index=["c1", "c2", "c3", "c4", "c5"],
             ),
             var=pd.DataFrame(index=["g1", "g2"]),
         )
         adata.layers["alpha"] = np.asarray(
-            [[1.0, 2.0], [2.0, 4.0], [3.0, 6.0], [4.0, 8.0]]
+            [[1.0, 2.0], [2.0, 4.0], [3.0, 6.0], [4.0, 8.0], [9.0, 18.0]]
         )
         settings = {
             "branch_key": "monocle_branch_id",

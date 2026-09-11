@@ -24,12 +24,11 @@ into ``adata.obs``/``adata.uns`` for downstream inspection.
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Sequence, Tuple
+from typing import Dict, Sequence, Tuple
 
 import numpy as np
 from scipy.interpolate import PchipInterpolator
 from scipy.spatial import cKDTree
-import scvelo as scv
 try:  # Optional progress feedback – silently skip if tqdm is absent.
     from tqdm import tqdm
 except Exception:  # pragma: no cover - dependency not guaranteed
@@ -290,13 +289,6 @@ def compute_batc(
     float
         The BATC overall score (best-per-cell cosine mean).
     """
-    ##可视化：
-    ax = scv.pl.scatter(adata, basis=embedding_key, color=cluster_key, show=False)
-
-
-
-
-
     cluster_series = adata.obs[cluster_key].astype(str)
     X, V = _extract_embedding_and_velocity(adata, embedding_key, velocity_key)
     if X.shape != V.shape:
@@ -312,21 +304,10 @@ def compute_batc(
     iterable = edges
     if progress:
         iterable = tqdm(iterable, desc="Fitting BATC curves")
-
-
-    color_use=0
-    colors = [
-    '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe',
-    '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000',
-    '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080'
-]
-
     for src, tgt in iterable:
         src_idx = idx_by_cluster.get(src, np.empty(0, dtype=int))
         tgt_idx = idx_by_cluster.get(tgt, np.empty(0, dtype=int))
         if src_idx.size == 0 and tgt_idx.size == 0:
-            # log_verbose(f"[batc] skip edge {src}->{tgt}: no cells in either cluster", level=2)
-            print(f"[batc] skip edge {src}->{tgt}: no cells in either cluster")
             continue
         points_idx = np.concatenate([src_idx, tgt_idx])
         curve, u_sorted, order, orient = _fit_curve_pchip(
@@ -344,17 +325,6 @@ def compute_batc(
             "sorted_idx": points_idx[order],
             "orient": orient,
         }
-
-
-
-
-
-        plot_pchip_curve(curve, ax=ax,color=colors[color_use], n_sample=800,label=f'{src}->{tgt}')
-        color_use=color_use+1
-        print(colors[color_use])
-
-    ax.legend(loc='best',fontsize=5)
-
     edge_cosines: Dict[Tuple[str, str], Dict[int, float]] = {}
     for (src, tgt), fit in edge_fits.items():
         curve: ParametricCurve2D = fit["curve"]  # type: ignore[assignment]
@@ -372,27 +342,11 @@ def compute_batc(
             cos_scores[int(cell_idx)] = cos
         edge_cosines[(src, tgt)] = cos_scores
 
-    edge_mean_scores: Dict[Tuple[str, str], float] = {}
-    all_values: list[ArrayLike] = []
-    for edge, mapping in edge_cosines.items():
-        values = np.array(list(mapping.values()), dtype=float)
-        if values.size == 0:
-            edge_mean_scores[edge] = np.nan
-            continue
-        edge_mean_scores[edge] = float(np.nanmean(values))
-        all_values.append(values)
-
-    overall_cell_weighted_mean = float(np.nanmean(np.concatenate(all_values))) if all_values else np.nan
-    overall_by_edge = (
-        float(np.nanmean(list(edge_mean_scores.values()))) if edge_mean_scores else np.nan
-    )
-
     next_map: Dict[str, list[str]] = {}
     for src, tgt in edges:
         next_map.setdefault(src, []).append(tgt)
 
     best_cosine_per_cell = np.full(X.shape[0], np.nan, dtype=float)
-    best_target_per_cell = np.full(X.shape[0], "", dtype=object)
 
     for src, targets in next_map.items():
         src_indices = idx_by_cluster.get(src, np.empty(0, dtype=int))
@@ -411,8 +365,6 @@ def compute_batc(
         row_indices = np.arange(matrix.shape[1])
         best_values = matrix[best_idx, row_indices]
         best_cosine_per_cell[src_indices] = best_values
-        targets_array = np.asarray(targets, dtype=object)
-        best_target_per_cell[src_indices] = targets_array[best_idx]
 
     valid_mask = np.isfinite(best_cosine_per_cell)
     batc_overall = float(np.nanmean(best_cosine_per_cell[valid_mask])) if valid_mask.any() else np.nan
@@ -432,74 +384,3 @@ def compute_batc(
 
 
     return batc_overall
-
-
-
-
-
-
-
-
-import matplotlib.pyplot as plt
-def plot_pchip_curve(curve: 'ParametricCurve2D',
-                     ax: plt.Axes = None,
-                     n_sample: int = 300,
-                     color: str = 'black',
-                     linewidth: float = 2.5,
-                     arrow_size: int = 20,
-                     label: str = None,
-                     src:str="",
-                     tgt:str="",
-                     **plot_kw) -> plt.Axes:
-    """
-    在已有 axes 上绘制 ParametricCurve2D 曲线、起点、终点及方向箭头。
-
-    Parameters
-    ----------
-    curve : ParametricCurve2D
-        已拟合的曲线对象
-    ax : Axes, optional
-        指定坐标轴；None 则取当前轴
-    n_sample : int, optional
-        采样密度，默认 300
-    color : str, optional
-        曲线颜色
-    linewidth : float, optional
-        线宽
-    arrow_size : int, optional
-        箭头大小（matplotlib points）
-    label : str, optional
-        图例标签
-    **plot_kw :
-        传给 ax.plot 的其他关键字
-
-    Returns
-    -------
-    plt.Axes
-        画完后的 axes 对象
-    """
-    if ax is None:
-        ax = plt.gca()
-
-    # 1. 采样曲线
-    u_dense = np.linspace(0, 1, n_sample)
-    xy_dense = curve.eval(u_dense)
-
-    # 2. 画线
-    ax.plot(xy_dense[:, 0], xy_dense[:, 1],
-            color=color, linewidth=linewidth,
-            label=label, **plot_kw)
-
-    # 3. 起点 / 终点
-    start = curve.eval(0.0).ravel()
-    end = curve.eval(1.0).ravel()
-
-
-    # 4. 方向箭头
-    ax.annotate('', xy=end, xytext=start,
-                arrowprops=dict(arrowstyle='->', color=color, lw=1,
-                                mutation_scale=arrow_size))
-
-
-
-    return ax

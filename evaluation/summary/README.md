@@ -7,5 +7,6 @@ outputs owned by this module are written under its `results/` and `figures/`
 directories.
 
 The current `results/figure6_summary/` package contains the refreshed compact
-Figure 6 inputs, including the seed-123 DeepKINET gamma summaries. Full final
-figure assembly remains a documented manual step.
+Figure 6 inputs, including the seed-123 DeepKINET gamma summaries. A future
+summary plotting module will consume these inputs; full final figure assembly
+remains a documented manual step.

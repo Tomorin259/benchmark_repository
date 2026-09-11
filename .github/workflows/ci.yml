@@ -15,24 +15,36 @@ jobs:
       - name: Check JSON files
         run: |
           python -m json.tool evaluation/cell/config.json >/dev/null
+          python -m json.tool evaluation/cell/reference_neighbors/manifest.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/config.json >/dev/null
+          python -m json.tool evaluation/kinetics_recovery/plotting/figure5_config.json >/dev/null
+          python -m json.tool evaluation/kinetics_recovery/plotting/stream_config.json >/dev/null
       - name: Compile Python entry points
         run: |
-          python -m py_compile evaluation/cell/metrics.py
-          python -m py_compile evaluation/cell/transprob.py
+          python -m py_compile evaluation/cell/run_cell_metrics.py
+          python -m py_compile evaluation/cell/prepare_cell_metrics.py
+          python -m py_compile evaluation/cell/score_tivelo_metrics.py
+          python -m py_compile evaluation/cell/reference_neighbors.py
           python -m py_compile evaluation/cell/plots.py
+          python -m py_compile evaluation/cell/build_reference_union_moments.py
+          python -m py_compile evaluation/cell/preflight_reference30_inputs.py
+          python -m py_compile evaluation/cell/metrics.py
           python -m py_compile evaluation/cell/batc.py
+          python -m py_compile evaluation/cell/validate_results.py
           python -m py_compile evaluation/kinetics_recovery/metrics.py
           python -m py_compile evaluation/kinetics_recovery/plotting/figure5.py
+          python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
+          python -m py_compile evaluation/gene/plotting/phase_portrait.py
+          python -m py_compile tests/test_gene_phase_plotting.py
           python -m py_compile tests/test_cell_evaluation.py
           python -m py_compile tests/test_kinetics_recovery.py
+          python -m py_compile tests/test_source_backed_method_launchers.py
       - name: Install test dependencies
-        run: python -m pip install numpy pandas scipy h5py anndata
+        run: python -m pip install numpy pandas scipy h5py anndata matplotlib matplotlib-venn scikit-learn seaborn
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
-      - name: Validate manifests
+      - name: Validate evaluation results
         run: |
-          python manifests/validate_phase2_manifests.py
-          python manifests/validate_cell_contract.py
+          python evaluation/cell/validate_results.py
       - name: Check whitespace
         run: git diff --check
