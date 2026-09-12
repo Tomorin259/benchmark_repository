@@ -12,12 +12,14 @@ import anndata as ad
 import numpy as np
 from scipy import sparse
 
+from ensemble.benchmark import write_scores
 from ensemble.core import (
     H5AD_SCHEMA_VERSION,
     METHOD_NAMES,
     VARIANT_MEAN4,
     VARIANT_NAMES,
     VARIANT_ROW_GEOMETRIC_MEDIAN4,
+    VARIANT_SPECS,
     aggregate_offdiagonal,
     align_method_values,
     complete_signed_operator,
@@ -161,6 +163,56 @@ class EnsembleTests(unittest.TestCase):
         )
         self.assertEqual(metadata["fixed_neighbors"]["n_neighbors"], 30)
 
+    def test_scores_file_has_compact_release_contract(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "scores.csv"
+            write_scores(
+                path,
+                [{
+                    "dataset": "toy",
+                    "variant": VARIANT_MEAN4,
+                    "variant_label": "Signed-T Mean-4",
+                    "cbdir": 0.1,
+                    "batc": 0.2,
+                    "n_obs": 3,
+                }],
+            )
+            with path.open(newline="") as handle:
+                reader = csv.DictReader(handle)
+                self.assertEqual(
+                    reader.fieldnames,
+                    ["dataset", "variant", "label", "cbdir", "batc"],
+                )
+                self.assertEqual(next(reader)["label"], "Signed-T Mean-4")
+
+    def test_formal_metadata_keeps_identity_and_selection_separate(self):
+        repository_root = Path(__file__).resolve().parents[1]
+        metadata = json.loads(
+            (repository_root / "ensemble/results/metadata.json").read_text()
+        )
+        self.assertEqual(tuple(metadata["methods"]), METHOD_NAMES)
+        self.assertEqual(
+            metadata["input_selections"]["veloVI"]["result_family"],
+            "veloVI_without_vu",
+        )
+        self.assertEqual(
+            metadata["input_selections"]["DeepVelo"]["result_family"],
+            "root deepvelo_*.h5ad family (no-vu)",
+        )
+        self.assertEqual(
+            metadata["variant_definitions"],
+            {name: VARIANT_SPECS[name]["definition"] for name in VARIANT_NAMES},
+        )
+        self.assertEqual(
+            metadata["variant_weighting_semantics"],
+            {name: VARIANT_SPECS[name]["method_weight"] for name in VARIANT_NAMES},
+        )
+        fixed = metadata["protocol"]["fixed_neighbors"]
+        self.assertEqual(fixed["asset_role"], "dataset-level fixed reference graph")
+        self.assertEqual(fixed["random_state"], 0)
+        self.assertFalse(fixed["reference_pca_installed"])
+        self.assertIn("not installed", fixed["build_time_pca_note"])
+
     def test_explicit_transition_projection(self):
         data = ad.AnnData(np.asarray([
             [1.0, 0.0],
@@ -201,7 +253,7 @@ class EnsembleTests(unittest.TestCase):
             result.obsp["ensemble_transition_signed"], "projected operator"
         )
 
-    def test_no_deprecated_centerweighted_variant(self):
+    def test_no_deprecated_ensemble_variant(self):
         repository_root = Path(__file__).resolve().parents[1]
         for relative in [
             "ensemble/core.py",

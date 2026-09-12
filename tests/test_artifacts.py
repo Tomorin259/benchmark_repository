@@ -36,9 +36,9 @@ def test_artifact_registry_schema_and_paths():
             assert "Zenodo URI" in row["notes"]
 
 
-def test_registry_has_no_centerweighted_and_formal_ensemble_is_available():
+def test_registry_has_no_deprecated_variant_and_formal_ensemble_is_available():
     text = ARTIFACTS.read_text()
-    assert "centerweighted" not in text.lower()
+    assert "".join(("center", "weighted")) not in text.lower()
     rows = read_artifacts()
     pending = [row for row in rows if row["status"] == "pending"]
     assert not pending

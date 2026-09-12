@@ -385,7 +385,7 @@ def write_rankings(scores_path: Path, cell_metrics_path: Path, config_path: Path
         raise ValueError("config and Cell dataset sets do not map one-to-one")
     rows = build_rankings(scores, cell, dataset_map)
     with Path(rankings_path).open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=RANKING_FIELDS); writer.writeheader(); writer.writerows(rows)
+        writer = csv.DictWriter(handle, fieldnames=RANKING_FIELDS, lineterminator="\n"); writer.writeheader(); writer.writerows(rows)
     lines = ["# Ensemble ranking versus 20 methods", "", "Each score is ranked independently within its dataset and metric against the 20 Cell methods.", "The ensemble is the 21st participant; equal scores use competition rank.", ""]
     for variant, label in (
         ("signed_t_mean4", "Signed-T Mean-4"),

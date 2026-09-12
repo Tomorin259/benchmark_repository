@@ -4,31 +4,31 @@ Datasets: bonemarrow, capofibro, dentategyrus, dentate_lamanno, forebrain, gastr
 
 | Dataset | Variant | CBDir | BATC |
 | --- | --- | ---: | ---: |
-| bonemarrow | Mean-4 | 0.18120311 | 0.30138791 |
-| bonemarrow | CenterWeighted-4 | 0.19608293 | 0.30659635 |
-| capofibro | Mean-4 | 0.33901759 | 0.37985897 |
-| capofibro | CenterWeighted-4 | 0.37196402 | 0.39541515 |
-| dentategyrus | Mean-4 | 0.46480533 | 0.78454396 |
-| dentategyrus | CenterWeighted-4 | 0.48419022 | 0.80328527 |
-| dentate_lamanno | Mean-4 | 0.68787592 | 0.80152301 |
-| dentate_lamanno | CenterWeighted-4 | 0.68923473 | 0.80095095 |
-| forebrain | Mean-4 | 0.12152484 | 0.11142582 |
-| forebrain | CenterWeighted-4 | 0.14905998 | 0.1394779 |
-| gastrulation | Mean-4 | 0.76201484 | 0.93704348 |
-| gastrulation | CenterWeighted-4 | 0.76350209 | 0.93766 |
-| hematopoiesis | Mean-4 | -0.26298573 | 0.43222225 |
-| hematopoiesis | CenterWeighted-4 | -0.26010124 | 0.44262819 |
-| mousebrain | Mean-4 | 0.55814369 | 0.62270814 |
-| mousebrain | CenterWeighted-4 | 0.56273189 | 0.6339472 |
-| neuron | Mean-4 | 0.47617045 | 0.5566307 |
-| neuron | CenterWeighted-4 | 0.47846957 | 0.55704146 |
-| organoid | Mean-4 | 0.3565707 | 0.62711893 |
-| organoid | CenterWeighted-4 | 0.32447741 | 0.62730308 |
-| pancreas | Mean-4 | 0.5562311 | 0.61509223 |
-| pancreas | CenterWeighted-4 | 0.563327 | 0.65126319 |
-| retina | Mean-4 | 0.51665789 | 0.12379585 |
-| retina | CenterWeighted-4 | 0.5138963 | 0.12251372 |
-| rpe1 | Mean-4 | 0.099454619 | 0.40463917 |
-| rpe1 | CenterWeighted-4 | 0.085393977 | 0.4742892 |
-| rpe1_gen | Mean-4 | 0.096055442 | 0.097772552 |
-| rpe1_gen | CenterWeighted-4 | 0.16269028 | 0.11680187 |
+| bonemarrow | Signed-T Mean-4 | 0.18120311 | 0.30138791 |
+| bonemarrow | Signed-T RowGeometricMedian-4 | 0.1766511 | 0.3004108 |
+| capofibro | Signed-T Mean-4 | 0.33901761 | 0.37985898 |
+| capofibro | Signed-T RowGeometricMedian-4 | 0.40358653 | 0.41397152 |
+| dentategyrus | Signed-T Mean-4 | 0.46480533 | 0.78454396 |
+| dentategyrus | Signed-T RowGeometricMedian-4 | 0.64908797 | 0.83108113 |
+| dentate_lamanno | Signed-T Mean-4 | 0.68787592 | 0.80152301 |
+| dentate_lamanno | Signed-T RowGeometricMedian-4 | 0.69080153 | 0.79657854 |
+| forebrain | Signed-T Mean-4 | 0.067136769 | 0.11142581 |
+| forebrain | Signed-T RowGeometricMedian-4 | 0.082651074 | 0.13272103 |
+| gastrulation | Signed-T Mean-4 | 0.76201484 | 0.93704348 |
+| gastrulation | Signed-T RowGeometricMedian-4 | 0.7427277 | 0.92757406 |
+| hematopoiesis | Signed-T Mean-4 | -0.26298573 | 0.43222226 |
+| hematopoiesis | Signed-T RowGeometricMedian-4 | -0.17663191 | 0.47356232 |
+| mousebrain | Signed-T Mean-4 | 0.55814368 | 0.62270814 |
+| mousebrain | Signed-T RowGeometricMedian-4 | 0.56260253 | 0.63847071 |
+| neuron | Signed-T Mean-4 | 0.47617045 | 0.5566307 |
+| neuron | Signed-T RowGeometricMedian-4 | 0.47112636 | 0.545676 |
+| organoid | Signed-T Mean-4 | 0.3565707 | 0.62711893 |
+| organoid | Signed-T RowGeometricMedian-4 | 0.23111279 | 0.61979437 |
+| pancreas | Signed-T Mean-4 | 0.55623109 | 0.61509222 |
+| pancreas | Signed-T RowGeometricMedian-4 | 0.57193884 | 0.67541573 |
+| retina | Signed-T Mean-4 | 0.51665788 | 0.12379584 |
+| retina | Signed-T RowGeometricMedian-4 | 0.51919438 | 0.12918812 |
+| rpe1 | Signed-T Mean-4 | 0.099454619 | 0.40463917 |
+| rpe1 | Signed-T RowGeometricMedian-4 | 0.1137877 | 0.58589959 |
+| rpe1_gen | Signed-T Mean-4 | 0.096055452 | 0.097772558 |
+| rpe1_gen | Signed-T RowGeometricMedian-4 | 0.23500029 | 0.13151209 |

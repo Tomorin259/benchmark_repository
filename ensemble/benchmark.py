@@ -105,23 +105,22 @@ def logical_input(locator: str, path: Path, layer: str) -> dict:
 
 
 def write_scores(path: Path, rows: list[dict]) -> None:
-    fields = [
-        "dataset",
-        "variant",
-        "variant_label",
-        "cbdir",
-        "batc",
-        "n_obs",
-        "n_common_edges",
-        "directional_mass_mean",
-        "neutral_mass_mean",
-        "invalid_embedded_values",
+    fields = ["dataset", "variant", "label", "cbdir", "batc"]
+    output_rows = [
+        {
+            "dataset": row["dataset"],
+            "variant": row["variant"],
+            "label": row.get("label", row.get("variant_label")),
+            "cbdir": row["cbdir"],
+            "batc": row["batc"],
+        }
+        for row in rows
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(output_rows)
 
 
 def run_dataset(
@@ -246,7 +245,7 @@ def write_summary(path: Path, rows: list[dict], datasets: list[str]) -> None:
     ]
     for row in rows:
         lines.append(
-            f"| {row['dataset']} | {row['variant_label']} | "
+            f"| {row['dataset']} | {row.get('label', row.get('variant_label'))} | "
             f"{row['cbdir']:.8g} | {row['batc']:.8g} |"
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

@@ -60,6 +60,11 @@ external staging directory; H5AD files are not part of the Git module. The CLI
 stores only logical artifact paths and checksums in metadata; server-specific
 paths are not written to the public result files.
 
+The formal all-14 metadata records the upstream lineage, release-index commit,
+and clean numerical-reproduction commit as separate fields. See
+[`../provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md)
+for the corresponding evidence and macro scores.
+
 ## Independent ranking contract
 
 When `evaluation/cell/results/cell_metrics.csv` exists after a complete run, `benchmark.py` writes `results/rankings_vs_20.csv` and `results/ranking_summary.md`. For each config dataset and metric (`cbdir` or `batc`), the ensemble score is compared once with the 20 Cell methods for that same dataset. The two ensemble variants never enter each other’s candidate set. Rank is `1 + count(method score > ensemble score)`; exact method ties use competition rank and are reported in `tie_count`. The participant count is 21, and no cross-dataset averaging is used for ranking. The only config-to-Cell naming exception is the evidenced `dentate_lamanno` to `DentateGyrus_lamanno` mapping. The completed all-14 outputs are

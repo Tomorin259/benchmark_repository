@@ -19,3 +19,11 @@ default transition-neighbor count. The repository-local fixed-neighbor NPZ
 files are the public graph artifacts: their numerical arrays match the audited
 upstream assets, while their metadata is deliberately path-free and therefore
 their file SHA256 values are benchmark-specific.
+
+The ensemble result metadata keeps provenance dimensions separate:
+`lineage/current_upstream` identifies `transition_ensemble/main@4f2a621`,
+`release_index_commit` identifies the upstream release index commit, and
+`numerical_reproduction_commit` identifies the clean source used for numerical
+reproduction. These fields must not be collapsed into one `source_commit`.
+The detailed evidence is recorded in
+[`provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).

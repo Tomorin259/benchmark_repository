@@ -1,57 +1,57 @@
 dataset,variant,label,metric,score,rank,out_of,tie_count,methods_above
-bonemarrow,signed_t_mean4,Mean-4,cbdir,0.1812031081992602,7,21,0,6
-bonemarrow,signed_t_mean4,Mean-4,batc,0.3013879092716051,6,21,0,5
-bonemarrow,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.19608292922435167,6,21,0,5
-bonemarrow,signed_t_centerweighted4,CenterWeighted-4,batc,0.3065963535490813,6,21,0,5
-capofibro,signed_t_mean4,Mean-4,cbdir,0.3390175915244096,14,21,0,13
-capofibro,signed_t_mean4,Mean-4,batc,0.3798589701351213,12,21,0,11
-capofibro,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.371964024797869,14,21,0,13
-capofibro,signed_t_centerweighted4,CenterWeighted-4,batc,0.3954151487858461,12,21,0,11
-dentategyrus,signed_t_mean4,Mean-4,cbdir,0.4648053295883874,6,21,0,5
-dentategyrus,signed_t_mean4,Mean-4,batc,0.7845439612329812,2,21,0,1
-dentategyrus,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.4841902209321855,5,21,0,4
-dentategyrus,signed_t_centerweighted4,CenterWeighted-4,batc,0.8032852744970305,2,21,0,1
-dentate_lamanno,signed_t_mean4,Mean-4,cbdir,0.6878759207851217,1,21,0,0
-dentate_lamanno,signed_t_mean4,Mean-4,batc,0.8015230145545004,2,21,0,1
-dentate_lamanno,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.6892347340391162,1,21,0,0
-dentate_lamanno,signed_t_centerweighted4,CenterWeighted-4,batc,0.8009509468465305,2,21,0,1
-forebrain,signed_t_mean4,Mean-4,cbdir,0.12152483981412941,12,21,0,11
-forebrain,signed_t_mean4,Mean-4,batc,0.1114258175981791,14,21,0,13
-forebrain,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.14905998094284992,9,21,0,8
-forebrain,signed_t_centerweighted4,CenterWeighted-4,batc,0.13947789809370953,14,21,0,13
-gastrulation,signed_t_mean4,Mean-4,cbdir,0.7620148417062793,5,21,0,4
-gastrulation,signed_t_mean4,Mean-4,batc,0.9370434785088659,5,21,0,4
-gastrulation,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.7635020946389315,5,21,0,4
-gastrulation,signed_t_centerweighted4,CenterWeighted-4,batc,0.9376600007319249,5,21,0,4
-hematopoiesis,signed_t_mean4,Mean-4,cbdir,-0.26298573124068764,18,21,0,17
-hematopoiesis,signed_t_mean4,Mean-4,batc,0.4322222535784658,16,21,0,15
-hematopoiesis,signed_t_centerweighted4,CenterWeighted-4,cbdir,-0.2601012419693562,18,21,0,17
-hematopoiesis,signed_t_centerweighted4,CenterWeighted-4,batc,0.4426281887001264,15,21,0,14
-mousebrain,signed_t_mean4,Mean-4,cbdir,0.5581436940470418,2,21,0,1
-mousebrain,signed_t_mean4,Mean-4,batc,0.6227081368849646,2,21,0,1
-mousebrain,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.5627318912949031,2,21,0,1
-mousebrain,signed_t_centerweighted4,CenterWeighted-4,batc,0.6339471966727307,2,21,0,1
-neuron,signed_t_mean4,Mean-4,cbdir,0.47617045330866115,1,21,0,0
-neuron,signed_t_mean4,Mean-4,batc,0.5566306986497097,1,21,0,0
-neuron,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.4784695660656481,1,21,0,0
-neuron,signed_t_centerweighted4,CenterWeighted-4,batc,0.557041463085643,1,21,0,0
-organoid,signed_t_mean4,Mean-4,cbdir,0.3565707023220202,3,21,0,2
-organoid,signed_t_mean4,Mean-4,batc,0.6271189288819394,8,21,0,7
-organoid,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.3244774083150475,3,21,0,2
-organoid,signed_t_centerweighted4,CenterWeighted-4,batc,0.6273030805249917,8,21,0,7
-pancreas,signed_t_mean4,Mean-4,cbdir,0.5562310952828139,4,21,0,3
-pancreas,signed_t_mean4,Mean-4,batc,0.6150922290730639,12,21,0,11
-pancreas,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.563327002470914,2,21,0,1
-pancreas,signed_t_centerweighted4,CenterWeighted-4,batc,0.6512631919216385,8,21,0,7
-retina,signed_t_mean4,Mean-4,cbdir,0.5166578930852862,6,21,0,5
-retina,signed_t_mean4,Mean-4,batc,0.12379584668231547,13,21,0,12
-retina,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.5138963007762726,6,21,0,5
-retina,signed_t_centerweighted4,CenterWeighted-4,batc,0.12251372344817163,13,21,0,12
-rpe1,signed_t_mean4,Mean-4,cbdir,0.09945461938549119,14,21,0,13
-rpe1,signed_t_mean4,Mean-4,batc,0.404639170825012,11,21,0,10
-rpe1,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.08539397675741169,15,21,0,14
-rpe1,signed_t_centerweighted4,CenterWeighted-4,batc,0.474289204212238,10,21,0,9
-rpe1_gen,signed_t_mean4,Mean-4,cbdir,0.09605544150093932,13,21,0,12
-rpe1_gen,signed_t_mean4,Mean-4,batc,0.09777255244201709,3,21,0,2
-rpe1_gen,signed_t_centerweighted4,CenterWeighted-4,cbdir,0.16269027735541583,5,21,0,4
-rpe1_gen,signed_t_centerweighted4,CenterWeighted-4,batc,0.11680187145384412,3,21,0,2
+bonemarrow,signed_t_mean4,Signed-T Mean-4,cbdir,0.18120310819926022,7,21,0,6
+bonemarrow,signed_t_mean4,Signed-T Mean-4,batc,0.3013879092716051,6,21,0,5
+bonemarrow,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.17665109520203748,7,21,0,6
+bonemarrow,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.30041080480760596,6,21,0,5
+capofibro,signed_t_mean4,Signed-T Mean-4,cbdir,0.33901760566335604,14,21,0,13
+capofibro,signed_t_mean4,Signed-T Mean-4,batc,0.37985897827501447,12,21,0,11
+capofibro,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.4035865315018359,9,21,0,8
+capofibro,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.413971522012446,8,21,0,7
+dentategyrus,signed_t_mean4,Signed-T Mean-4,cbdir,0.4648053295883874,6,21,0,5
+dentategyrus,signed_t_mean4,Signed-T Mean-4,batc,0.7845439612329812,2,21,0,1
+dentategyrus,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.6490879722549192,1,21,0,0
+dentategyrus,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.831081134813887,2,21,0,1
+dentate_lamanno,signed_t_mean4,Signed-T Mean-4,cbdir,0.6878759207851217,1,21,0,0
+dentate_lamanno,signed_t_mean4,Signed-T Mean-4,batc,0.8015230145545004,2,21,0,1
+dentate_lamanno,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.6908015260539091,1,21,0,0
+dentate_lamanno,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.7965785399797225,2,21,0,1
+forebrain,signed_t_mean4,Signed-T Mean-4,cbdir,0.06713676937675803,15,21,0,14
+forebrain,signed_t_mean4,Signed-T Mean-4,batc,0.11142581276462299,14,21,0,13
+forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.08265107437660399,15,21,0,14
+forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.1327210283391841,14,21,0,13
+gastrulation,signed_t_mean4,Signed-T Mean-4,cbdir,0.7620148417062793,5,21,0,4
+gastrulation,signed_t_mean4,Signed-T Mean-4,batc,0.9370434785088659,5,21,0,4
+gastrulation,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.7427277031363375,5,21,0,4
+gastrulation,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.9275740580759191,5,21,0,4
+hematopoiesis,signed_t_mean4,Signed-T Mean-4,cbdir,-0.2629857290127959,18,21,0,17
+hematopoiesis,signed_t_mean4,Signed-T Mean-4,batc,0.4322222601432578,16,21,0,15
+hematopoiesis,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,-0.17663191298563666,18,21,0,17
+hematopoiesis,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.4735623248876203,15,21,0,14
+mousebrain,signed_t_mean4,Signed-T Mean-4,cbdir,0.5581436845032397,2,21,0,1
+mousebrain,signed_t_mean4,Signed-T Mean-4,batc,0.6227081369898391,2,21,0,1
+mousebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.5626025349785049,2,21,0,1
+mousebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.6384707097788571,2,21,0,1
+neuron,signed_t_mean4,Signed-T Mean-4,cbdir,0.47617045330866115,1,21,0,0
+neuron,signed_t_mean4,Signed-T Mean-4,batc,0.5566306986497097,1,21,0,0
+neuron,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.47112636204150404,1,21,0,0
+neuron,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.5456760019006742,1,21,0,0
+organoid,signed_t_mean4,Signed-T Mean-4,cbdir,0.3565707023220202,3,21,0,2
+organoid,signed_t_mean4,Signed-T Mean-4,batc,0.6271189288819394,8,21,0,7
+organoid,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.23111279013337657,4,21,0,3
+organoid,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.6197943685456061,10,21,0,9
+pancreas,signed_t_mean4,Signed-T Mean-4,cbdir,0.5562310924345201,4,21,0,3
+pancreas,signed_t_mean4,Signed-T Mean-4,batc,0.6150922208764814,12,21,0,11
+pancreas,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.5719388425017228,1,21,0,0
+pancreas,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.675415731721595,6,21,0,5
+retina,signed_t_mean4,Signed-T Mean-4,cbdir,0.516657875243627,6,21,0,5
+retina,signed_t_mean4,Signed-T Mean-4,batc,0.12379584061254353,13,21,0,12
+retina,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.5191943837055797,6,21,0,5
+retina,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.1291881197224896,13,21,0,12
+rpe1,signed_t_mean4,Signed-T Mean-4,cbdir,0.09945461938549119,14,21,0,13
+rpe1,signed_t_mean4,Signed-T Mean-4,batc,0.404639170825012,11,21,0,10
+rpe1,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.11378770453053672,12,21,0,11
+rpe1,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.5858995868655037,9,21,0,8
+rpe1_gen,signed_t_mean4,Signed-T Mean-4,cbdir,0.09605545227565576,13,21,0,12
+rpe1_gen,signed_t_mean4,Signed-T Mean-4,batc,0.09777255787799252,3,21,0,2
+rpe1_gen,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.235000292861809,3,21,0,2
+rpe1_gen,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.13151209275073789,3,21,0,2
