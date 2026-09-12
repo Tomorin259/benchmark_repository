@@ -11,3 +11,10 @@ the upstream model equations.
 Evaluation modules write only compact, paper-facing tables and selected panels
 to their local `results/` and `figures/` directories. Large H5AD files,
 checkpoints, intermediate matrices, and exploratory plots remain external.
+
+Ensemble H5AD artifacts use schema 6. They retain the signed-L1 transition
+operator, explicit scVelo UMAP projection, logical input identifiers and
+checksums, fixed-neighbor metadata, and aggregation diagnostics. The induced
+gene-space `ensemble_velocity = T @ Ms - Ms` exists only to satisfy scVelo's
+projection interface; it is not a gene-level aggregation of the four methods.
+Build-time PCA from a fixed-neighbor asset is not installed into the result.

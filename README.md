@@ -7,18 +7,23 @@ methods/configurations.tsv. Large datasets, method result H5AD files,
 checkpoints, environments, logs, and exploratory outputs remain in external
 storage.
 
-The two post-hoc comparators are separate from those 20 methods: Mean-4 is a
-baseline and CenterWeighted-4 is the formal ensemble. Each is ranked against
+The two post-hoc comparators are separate from those 20 methods: Signed-T
+Mean-4 is a baseline and Signed-T RowGeometricMedian-4 is the formal ensemble.
+Each is ranked against
 the 20 methods separately; the two comparators are not ranked against each
 other. Mean-4 is the arithmetic mean of the four signed transition values on
-each common edge; CenterWeighted-4 sorts those values and applies weights
-1:2:2:1. For each dataset and metric, each variant is ranked independently
+each common edge. RowGeometricMedian-4 takes the Euclidean geometric median of
+the four complete signed off-diagonal transition rows independently for each
+source cell, without post-hoc L1 renormalization. For each dataset and metric,
+each variant is ranked independently
 against the 20 Cell methods: rank is 1 plus the number of strictly higher method
 scores, with exact method ties reported using competition-rank tie counts; the
 ensemble is participant 21 and variants are never candidates for one another.
-Their implementations are in ensemble/, using the shared
-evaluation/cell/reference_neighbors/ contract and shared evaluation/cell and
-reference-neighbor inputs. Formal fixed-neighbor all-14 ensemble results are
+Their implementations are in ensemble/, using the portable fixed-neighbor
+assets in evaluation/cell/reference_neighbors/. Those assets install the
+audited candidate graph and indices, not their build-time PCA coordinates;
+cosines are still computed in each input method's native Ms/velocity space.
+Formal fixed-neighbor all-14 ensemble results are
 complete and registered in `artifacts.tsv`. The canonical scores, summaries, and
 independent rankings are [`ensemble/results/scores.csv`](ensemble/results/scores.csv),
 [`ensemble/results/summary.md`](ensemble/results/summary.md),

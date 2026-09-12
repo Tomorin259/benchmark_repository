@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the two reproducible CenterWeighted-4 SupFig9 metric panels."""
+"""Render the two reproducible RowGeometricMedian-4 SupFig9 metric panels."""
 
 from __future__ import annotations
 
@@ -20,13 +20,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from evaluation.cell.plots import BENCHMARK_COLORS, METHOD_NAME_MAPPING
 
 SEED = 123
-ENSEMBLE_ID = "signed_t_centerweighted4"
-ENSEMBLE_LABEL = "CenterWeighted-4"
+ENSEMBLE_ID = "signed_t_row_geometric_median4"
+ENSEMBLE_LABEL = "GeoMedian-4"
 CONSTITUENTS = {"TIvelo", "veloVI", "deepvelo", "unitvelo"}
 DATASET_MAPPING = {"dentate_lamanno": "DentateGyrus_lamanno"}
 BASE_DATASET_MAPPING = {"DentateGyrus_lamanno": "dentate_lamanno"}
 METRICS = {"cbdir": "CBDir", "batc": "BATC"}
-PANEL_STEMS = {"cbdir": "A_centerweighted4_cbdir", "batc": "B_centerweighted4_batc"}
+PANEL_STEMS = {
+    "cbdir": "A_row_geometric_median4_cbdir",
+    "batc": "B_row_geometric_median4_batc",
+}
 
 
 def _check_unique(frame: pd.DataFrame, keys: list[str], label: str) -> None:
@@ -58,10 +61,10 @@ def load_values(base_csv: Path, ensemble_csv: Path) -> pd.DataFrame:
 
     ensemble = ensemble[ensemble["variant"] == ENSEMBLE_ID].copy()
     if len(ensemble) != 14:
-        raise ValueError("ensemble CSV must contain exactly 14 CenterWeighted-4 rows")
+        raise ValueError("ensemble CSV must contain exactly 14 RowGeometricMedian-4 rows")
     _check_unique(ensemble, ["dataset", "variant"], "ensemble CSV")
     if set(ensemble["dataset"]) != set(base["dataset_key"]):
-        raise ValueError("base and CenterWeighted-4 dataset sets differ")
+        raise ValueError("base and RowGeometricMedian-4 dataset sets differ")
     ensemble["dataset_key"] = ensemble["dataset"]
     ensemble["dataset"] = ensemble["dataset"].replace(DATASET_MAPPING)
     ensemble["method"] = ENSEMBLE_ID
@@ -111,7 +114,7 @@ def plot_metric(values: pd.DataFrame, metric: str, output_dir: Path) -> None:
         "figure.facecolor": "white",
     })
     plt.rcParams["svg.fonttype"] = "none"
-    plt.rcParams["svg.hashsalt"] = "supfig09-centerweighted4"
+    plt.rcParams["svg.hashsalt"] = "supfig09-row-geometric-median4"
     plt.rcParams["pdf.fonttype"] = 42
     plt.rcParams["ps.fonttype"] = 42
     fig, ax = plt.subplots(figsize=(13.8, 15.2))

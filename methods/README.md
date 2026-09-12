@@ -41,7 +41,7 @@ configuration and C18 reconstruction configuration remain distinct, as do
 the C19 scVelo-input and C20 Dynamo-input GraphVelo configurations. Their
 scientific settings are kept in configurations.tsv.
 
-Mean-4 and CenterWeighted-4 are independent comparators beside the
+Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are independent comparators beside the
 20-method benchmark, not methods in this directory. Each is ranked against
 the 20 methods separately and the two comparators are not compared with one
 another. Their implementations are in ensemble/, which shares evaluation/cell/

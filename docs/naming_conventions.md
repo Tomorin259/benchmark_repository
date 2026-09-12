@@ -47,10 +47,10 @@ distinct configurations of the same software.
 Dataset IDs identify biological inputs and their evaluation panels. They are
 not method IDs, configuration IDs, or ensemble IDs.
 
-Mean-4 and CenterWeighted-4 are independent comparators, not registry rows.
-Mean-4 is the baseline; CenterWeighted-4 is the formal ensemble. Each is
+Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are independent comparators,
+not registry rows. Mean-4 is the baseline; RowGeometricMedian-4 is the formal
+ensemble. Each is
 ranked separately against the 20 registered methods and they are not compared
 with each other. Both implementations are in ensemble/. The shared
 evaluation/cell/reference_neighbors/ fixed-neighbor contract is used by the
-ensemble evaluation; formal fixed-neighbor all-14 results are currently
-pending.
+ensemble evaluation; formal fixed-neighbor all-14 results are complete.

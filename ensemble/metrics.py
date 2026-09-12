@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 from scipy.interpolate import PchipInterpolator
 from scipy.spatial import cKDTree
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 BATC_USE_BINS = True
@@ -77,16 +78,9 @@ def compute_cbdir(
             if target_ids.size == 0:
                 continue
             displacement = embedding[target_ids] - embedding[cell_id]
-            numerator = displacement @ velocity[cell_id]
-            denominator = np.linalg.norm(displacement, axis=1) * np.linalg.norm(
-                velocity[cell_id]
-            )
-            scores = np.divide(
-                numerator,
-                denominator,
-                out=np.zeros_like(numerator, dtype=np.float64),
-                where=denominator > 0,
-            )
+            scores = cosine_similarity(
+                displacement, velocity[cell_id].reshape(1, -1)
+            ).ravel()
             cell_scores.append(float(np.mean(scores)))
         key = f"{source} -> {target}"
         edge_counts[key] = len(cell_scores)
@@ -311,18 +305,21 @@ def score_global_metrics(
     )
     if embedding.ndim != 2 or velocity.shape != embedding.shape:
         raise ValueError(f"{dataset}: embedding and velocity shapes do not match")
-    if embedding.shape[1] != 2:
-        if dataset != "forebrain" or operator is None:
-            raise ValueError(f"{dataset}: BATC requires a two-dimensional UMAP")
-        embedding, velocity = _forebrain_batc_representation(adata, operator)
-
     cbdir, cbdir_details = compute_cbdir(
         labels, neighbors, embedding, velocity, dataset_config["edges"]
     )
+    batc_embedding = embedding
+    batc_velocity = velocity
+    if embedding.shape[1] != 2:
+        if dataset != "forebrain" or operator is None:
+            raise ValueError(f"{dataset}: BATC requires a two-dimensional UMAP")
+        batc_embedding, batc_velocity = _forebrain_batc_representation(
+            adata, operator
+        )
     batc, batc_details = compute_batc(
         labels,
-        embedding,
-        velocity,
+        batc_embedding,
+        batc_velocity,
         dataset_config["edges"],
         n_bins=int(dataset_config["batc_n_bins"]),
     )
@@ -351,14 +348,17 @@ def build_rankings(scores, cell_metrics, dataset_map):
     if len(methods) != 20:
         raise ValueError("Cell metrics must contain exactly 20 methods")
     score_by_key = {(row["dataset"], row["variant"]): row for row in scores}
-    expected = {(d, v) for d in dataset_map for v in ("signed_t_mean4", "signed_t_centerweighted4")}
+    expected = {(d, v) for d in dataset_map for v in ("signed_t_mean4", "signed_t_row_geometric_median4")}
     if len(score_by_key) != len(scores) or set(score_by_key) != expected:
         raise ValueError("scores must contain exactly two unique variants per dataset")
     cell_by_key = {(row["dataset"], row["method"]): row for row in cell_metrics}
     expected_cell = {(dataset_map[d], m) for d in dataset_map for m in methods}
     if len(cell_by_key) != len(cell_metrics) or set(cell_by_key) != expected_cell:
         raise ValueError("Cell metrics must contain a complete mapped 14x20 matrix")
-    labels = {"signed_t_mean4": "Mean-4", "signed_t_centerweighted4": "CenterWeighted-4"}
+    labels = {
+        "signed_t_mean4": "Signed-T Mean-4",
+        "signed_t_row_geometric_median4": "Signed-T RowGeometricMedian-4",
+    }
     rows = []
     for dataset in dataset_map:
         for variant, label in labels.items():
@@ -387,7 +387,10 @@ def write_rankings(scores_path: Path, cell_metrics_path: Path, config_path: Path
     with Path(rankings_path).open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=RANKING_FIELDS); writer.writeheader(); writer.writerows(rows)
     lines = ["# Ensemble ranking versus 20 methods", "", "Each score is ranked independently within its dataset and metric against the 20 Cell methods.", "The ensemble is the 21st participant; equal scores use competition rank.", ""]
-    for variant, label in (("signed_t_mean4", "Mean-4"), ("signed_t_centerweighted4", "CenterWeighted-4")):
+    for variant, label in (
+        ("signed_t_mean4", "Signed-T Mean-4"),
+        ("signed_t_row_geometric_median4", "Signed-T RowGeometricMedian-4"),
+    ):
         selected = [r for r in rows if r["variant"] == variant]
         average = sum(r["rank"] for r in selected) / len(selected)
         lines += [f"## {label}", "", f"First: {sum(r['rank'] == 1 for r in selected)} | Top 3: {sum(r['rank'] <= 3 for r in selected)} | Top 5: {sum(r['rank'] <= 5 for r in selected)} | Average rank: {average:.6f} (28 dataset-metric records)", "", "| Dataset | CBDir rank | BATC rank |", "| --- | ---: | ---: |"]

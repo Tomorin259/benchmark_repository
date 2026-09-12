@@ -11,12 +11,7 @@
     "scvelo_version": "0.3.4",
     "velocity_graph": {
       "vkey": "velocity",
-      "xkey": "Ms",
-      "n_neighbors": null,
-      "n_recurse_neighbors": null,
-      "sqrt_transform": null,
-      "approx": null,
-      "mode_neighbors": "distances"
+      "xkey": "Ms"
     },
     "transition_matrix": {
       "scale": 10,

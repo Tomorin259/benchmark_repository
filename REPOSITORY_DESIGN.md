@@ -314,11 +314,15 @@ The benchmark contains exactly 20 method configurations. The sole public
 config_id values and 20 unique operational_id values. Ensemble variants are
 not registry entries or method configurations.
 
-Mean-4 is an independent baseline comparator and CenterWeighted-4 is an
-independent formal ensemble comparator. Each is ranked against the 20 methods
+Signed-T Mean-4 is an independent baseline comparator and Signed-T
+RowGeometricMedian-4 is an independent formal ensemble comparator. Each is
+ranked against the 20 methods
 in its own comparison, and the two comparators are not ranked against each
-other. Mean-4 uses the arithmetic mean of four signed edge values;
-CenterWeighted-4 sorts those values and applies order-statistic weights 1:2:2:1.
+other. Mean-4 uses the arithmetic mean of four signed edge values.
+RowGeometricMedian-4 computes one Euclidean geometric median across the four
+complete signed off-diagonal rows for each source cell. It preserves the
+resulting row's native directional mass; diagonal completion stores the
+remaining signed-L1 mass, and no post-hoc row renormalization is applied.
 For each dataset and metric, rank is 1 plus the count of strictly higher scores
 among the 20 Cell methods; exact method ties use competition rank and are
 reported separately. The ensemble is participant 21, and no cross-variant or
@@ -328,6 +332,13 @@ evaluation/cell/ evaluation contract and evaluation/cell/reference_neighbors/
 fixed-neighbor assets. Formal fixed-neighbor all-14 ensemble results are
 complete and registered in `artifacts.tsv`; the canonical scores, summary, and
 ranking files are owned by `ensemble/results/`.
+
+The fixed-neighbor assets are a portable candidate-graph contract. Their
+build-time PCA determines the stored neighbors but is not installed into an
+ensemble result's `obsm['X_pca']`. The scVelo velocity graph reads candidate
+edges from the installed distance graph and computes cosines in each method's
+native `Ms`/`velocity` gene space. Ensemble H5AD outputs use schema 6 and store
+only logical artifact identifiers, checksums, and path-free provenance.
 
 ## Method-reproduction contract
 

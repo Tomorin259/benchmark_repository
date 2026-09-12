@@ -13,26 +13,28 @@ import numpy as np
 import scvelo as scv
 from scipy import sparse
 
+from .geometric_median import (
+    row_geometric_median4,
+    validate_row_geometric_median4,
+)
+
 
 MODULE_DIR = Path(__file__).resolve().parent
 DEFAULT_CONFIG = MODULE_DIR / "config.json"
 
 SCVELO_VERSION = "0.3.4"
+H5AD_SCHEMA_VERSION = 6
+FIXED_REFERENCE_NEIGHBOR_SCHEMA_VERSION = 1
 METHOD_NAMES = ("TIvelo", "veloVI", "DeepVelo", "UniTVelo")
 VARIANT_MEAN4 = "signed_t_mean4"
-VARIANT_CENTERWEIGHTED4 = "signed_t_centerweighted4"
-VARIANT_NAMES = (VARIANT_MEAN4, VARIANT_CENTERWEIGHTED4)
+VARIANT_ROW_GEOMETRIC_MEDIAN4 = "signed_t_row_geometric_median4"
+VARIANT_NAMES = (VARIANT_MEAN4, VARIANT_ROW_GEOMETRIC_MEDIAN4)
 EMBEDDING_BASIS = "umap"
 TEMPORARY_VKEY = "_ensemble_signed_input"
 
 GRAPH_KWARGS = {
     "vkey": "velocity",
     "xkey": "Ms",
-    "mode_neighbors": "distances",
-    "n_neighbors": None,
-    "n_recurse_neighbors": None,
-    "sqrt_transform": None,
-    "approx": None,
 }
 TRANSITION_KWARGS = {
     "scale": 10,
@@ -41,20 +43,35 @@ TRANSITION_KWARGS = {
     "weight_diffusion": 0,
     "n_neighbors": None,
 }
+FIXED_REFERENCE_NEIGHBOR_BUILD = {
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "use_rep": "X_pca",
+    "metric": "euclidean",
+    "random_state": 0,
+}
 
 VARIANT_SPECS = {
     VARIANT_MEAN4: {
-        "label": "Mean-4",
-        "definition": "Arithmetic mean of four signed-T entries.",
+        "label": "Signed-T Mean-4",
+        "definition": "Arithmetic mean of the four signed off-diagonal transition entries.",
+        "method_weight": "fixed equal method weights of 1/4; no learned weights",
         "directory": "mean4",
     },
-    VARIANT_CENTERWEIGHTED4: {
-        "label": "CenterWeighted-4",
+    VARIANT_ROW_GEOMETRIC_MEDIAN4: {
+        "label": "Signed-T RowGeometricMedian-4",
+        "plot_label": "GeoMedian-4",
         "definition": (
-            "Sort four signed-T entries on each edge and use order-statistic "
-            "weights 1:2:2:1."
+            "For each source cell, take the Euclidean geometric median of the "
+            "four complete signed off-diagonal transition rows; preserve its "
+            "native L1 mass without post-hoc renormalization."
         ),
-        "directory": "centerweighted4",
+        "method_weight": (
+            "no learned method-identity weights; permutation-invariant convex "
+            "solver coefficients are determined once per source cell by the "
+            "four-row geometric-median geometry"
+        ),
+        "directory": "row_geometric_median4",
     },
 }
 
@@ -70,19 +87,19 @@ def protocol_metadata() -> dict:
     return {
         "scvelo_version": SCVELO_VERSION,
         "velocity_graph": copy.deepcopy(GRAPH_KWARGS),
-        "transition_matrix": copy.deepcopy(TRANSITION_KWARGS),
+        "transition_matrix": {
+            key: "None" if value is None else copy.deepcopy(value)
+            for key, value in TRANSITION_KWARGS.items()
+        },
         "velocity_embedding": {
             "basis": EMBEDDING_BASIS,
             "autoscale": True,
             "explicit_transition_operator": True,
         },
         "fixed_neighbors": {
-            "n_neighbors": 30,
-            "n_pcs": 30,
-            "use_rep": "X_pca",
-            "metric": "euclidean",
-            "random_state": 0,
+            **FIXED_REFERENCE_NEIGHBOR_BUILD,
             "asset_role": "dataset-level fixed reference graph",
+            "reference_pca_installed": False,
         },
     }
 
@@ -127,16 +144,57 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     return config
 
 
-def _load_sparse(data, name: str) -> sparse.csr_matrix:
-    shape = tuple(int(value) for value in data[f"{name}_shape"])
-    return sparse.csr_matrix(
-        (
-            np.asarray(data[f"{name}_data"]),
-            np.asarray(data[f"{name}_indices"], dtype=np.int64),
-            np.asarray(data[f"{name}_indptr"], dtype=np.int64),
-        ),
-        shape=shape,
-    )
+def _json_scalar(value):
+    if isinstance(value, np.generic):
+        value = value.item()
+    elif isinstance(value, np.ndarray) and value.ndim == 0:
+        value = value.item()
+    if isinstance(value, bytes):
+        value = value.decode("utf-8")
+    return value
+
+
+def _canonical_dataset(value) -> str:
+    normalized = str(value).strip().lower().replace("-", "_")
+    return {"dentategyrus_lamanno": "dentate_lamanno"}.get(normalized, normalized)
+
+
+def _validate_sparse_asset(data, name: str, n_obs: int) -> sparse.csr_matrix:
+    try:
+        shape = tuple(int(value) for value in np.asarray(data[f"{name}_shape"]).ravel())
+        values = np.asarray(data[f"{name}_data"])
+        indices = np.asarray(data[f"{name}_indices"])
+        indptr = np.asarray(data[f"{name}_indptr"])
+    except KeyError as error:
+        raise ValueError(f"fixed-neighbor asset is missing CSR field {error.args[0]!r}") from error
+    if shape != (n_obs, n_obs):
+        raise ValueError(f"fixed {name} matrix has an invalid shape")
+    if values.ndim != 1 or indices.ndim != 1 or indptr.ndim != 1:
+        raise ValueError(f"fixed {name} CSR arrays must be one-dimensional")
+    if not np.issubdtype(indices.dtype, np.integer) or not np.issubdtype(indptr.dtype, np.integer):
+        raise ValueError(f"fixed {name} CSR indices must be integers")
+    if indptr.size != n_obs + 1 or indptr[0] != 0 or np.any(indptr[1:] < indptr[:-1]):
+        raise ValueError(f"fixed {name} CSR indptr is invalid")
+    if indptr[-1] != values.size or values.size != indices.size:
+        raise ValueError(f"fixed {name} CSR arrays have inconsistent lengths")
+    if np.any(indices < 0) or np.any(indices >= n_obs) or not np.isfinite(values).all():
+        raise ValueError(f"fixed {name} CSR data are invalid")
+    matrix = sparse.csr_matrix((values, indices, indptr), shape=shape)
+    matrix.sort_indices()
+    return matrix
+
+
+def _validate_neighbor_metadata(metadata: dict) -> str:
+    if not isinstance(metadata, dict) or metadata.get("dataset") is None:
+        raise ValueError("fixed-neighbor metadata must contain a dataset")
+    parameters = metadata.get("parameters")
+    if not isinstance(parameters, dict):
+        raise ValueError("fixed-neighbor metadata must contain parameters")
+    for key, expected in FIXED_REFERENCE_NEIGHBOR_BUILD.items():
+        actual = _json_scalar(parameters.get(key))
+        if type(actual) is not type(expected) or actual != expected:
+            raise ValueError(f"fixed-neighbor metadata {key!r} must be {expected!r}")
+    return _canonical_dataset(metadata["dataset"])
 
 
 def load_fixed_neighbor_asset(path: Path) -> dict:
@@ -144,32 +202,32 @@ def load_fixed_neighbor_asset(path: Path) -> dict:
     if not path.is_file():
         raise FileNotFoundError(f"missing fixed-neighbor asset: {path}")
     with np.load(path, allow_pickle=False) as data:
-        required = {
-            "obs_names",
-            "indices",
-            "distances_data",
-            "distances_indices",
-            "distances_indptr",
-            "distances_shape",
-            "connectivities_data",
-            "connectivities_indices",
-            "connectivities_indptr",
-            "connectivities_shape",
-        }
-        missing = sorted(required.difference(data.files))
-        if missing:
-            raise ValueError(f"{path}: missing fixed-neighbor fields {missing}")
-        metadata = {}
-        if "metadata" in data.files:
-            raw = data["metadata"]
-            metadata = json.loads(str(raw))
+        try:
+            obs_names = np.asarray(data["obs_names"]).astype(str)
+            indices = np.asarray(data["indices"])
+            metadata = json.loads(str(_json_scalar(data["metadata"])))
+        except KeyError as error:
+            raise ValueError(f"{path}: missing fixed-neighbor field {error.args[0]!r}") from error
+        if len(np.unique(obs_names)) != len(obs_names):
+            raise ValueError("fixed-neighbor asset has duplicate cell identifiers")
+        n_obs = len(obs_names)
+        expected_shape = (n_obs, FIXED_REFERENCE_NEIGHBOR_BUILD["n_neighbors"])
+        if indices.shape != expected_shape or not np.issubdtype(indices.dtype, np.integer):
+            raise ValueError(f"fixed-neighbor indices must have shape {expected_shape}")
+        if np.any(indices < 0) or np.any(indices >= n_obs):
+            raise ValueError("fixed-neighbor indices contain out-of-range cells")
+        if not np.array_equal(indices[:, 0], np.arange(n_obs)):
+            raise ValueError("fixed-neighbor indices must store the source cell first")
+        dataset = _validate_neighbor_metadata(metadata)
         asset = {
             "path": path,
-            "obs_names": np.asarray(data["obs_names"]).astype(str),
-            "indices": np.asarray(data["indices"], dtype=np.int64),
-            "distances": _load_sparse(data, "distances"),
-            "connectivities": _load_sparse(data, "connectivities"),
+            "dataset": dataset,
+            "obs_names": obs_names,
+            "indices": indices.astype(np.int64, copy=False),
+            "distances": _validate_sparse_asset(data, "distances", n_obs),
+            "connectivities": _validate_sparse_asset(data, "connectivities", n_obs),
             "metadata": metadata,
+            "sha256": sha256(path),
         }
     return asset
 
@@ -185,7 +243,7 @@ def install_fixed_neighbors(adata: ad.AnnData, asset: dict) -> dict:
         raise ValueError("fixed-neighbor asset cell set differs from AnnData")
     indices = np.asarray(asset["indices"], dtype=np.int64)
     n_obs = len(asset_names)
-    if indices.ndim != 2 or indices.shape[0] != n_obs:
+    if indices.shape != (n_obs, FIXED_REFERENCE_NEIGHBOR_BUILD["n_neighbors"]):
         raise ValueError("fixed-neighbor indices have an invalid shape")
     if np.any(indices < 0) or np.any(indices >= n_obs):
         raise ValueError("fixed-neighbor indices contain out-of-range cells")
@@ -215,12 +273,22 @@ def install_fixed_neighbors(adata: ad.AnnData, asset: dict) -> dict:
         "distances_key": "distances",
         "connectivities_key": "connectivities",
         "params": {
-            "n_neighbors": 30,
-            "n_pcs": 30,
-            "use_rep": "X_pca",
-            "metric": "euclidean",
-            "random_state": 0,
-            "reference_dataset": str(asset["metadata"].get("dataset", "")),
+            "method": "umap",
+            **FIXED_REFERENCE_NEIGHBOR_BUILD,
+            "reference_dataset": asset["dataset"],
+        },
+        "fixed_reference_neighbors": {
+            "schema_version": FIXED_REFERENCE_NEIGHBOR_SCHEMA_VERSION,
+            "artifact_id": f"neighbor:{asset['dataset']}",
+            "dataset": asset["dataset"],
+            "sha256": asset["sha256"],
+            "build": dict(FIXED_REFERENCE_NEIGHBOR_BUILD),
+            "reference_pca": {
+                "installed": False,
+                "semantics": (
+                    "asset reference_pca is not installed; only graph and indices are installed"
+                ),
+            },
         },
     }
     return {
@@ -229,6 +297,9 @@ def install_fixed_neighbors(adata: ad.AnnData, asset: dict) -> dict:
         "distances_nnz": int(adata.obsp["distances"].nnz),
         "connectivities_nnz": int(adata.obsp["connectivities"].nnz),
         "parameters": protocol_metadata()["fixed_neighbors"],
+        "stable_metadata": copy.deepcopy(
+            adata.uns["neighbors"]["fixed_reference_neighbors"]
+        ),
     }
 
 
@@ -397,32 +468,26 @@ def align_method_values(
 
 
 def aggregate_offdiagonal(
+    template: sparse.spmatrix,
     values: np.ndarray,
     variant: str,
 ) -> tuple[np.ndarray, dict]:
-    """Aggregate one value per method and common edge."""
+    """Aggregate four complete signed off-diagonal rows."""
+    template = sparse.csr_matrix(template)
     values = np.asarray(values, dtype=np.float64)
-    if values.ndim != 2 or values.shape[0] != len(METHOD_NAMES):
-        raise ValueError("aggregation input must have shape (4, n_edges)")
+    if values.shape != (len(METHOD_NAMES), template.nnz):
+        raise ValueError("aggregation input must have shape (4, template.nnz)")
     if not np.isfinite(values).all():
         raise ValueError("aggregation input contains NaN or infinity")
     if variant == VARIANT_MEAN4:
         aggregate = values.mean(axis=0)
         diagnostics = {"rule": "arithmetic mean", "n_methods": 4}
-    elif variant == VARIANT_CENTERWEIGHTED4:
-        ordered = np.sort(values, axis=0)
-        aggregate = (
-            ordered[0] + 2.0 * ordered[1] + 2.0 * ordered[2] + ordered[3]
-        ) / 6.0
-        median = (ordered[1] + ordered[2]) / 2.0
-        identity = (2.0 * values.mean(axis=0) + median) / 3.0
-        diagnostics = {
-            "rule": "order-statistic weights 1:2:2:1",
-            "n_methods": 4,
-            "max_identity_error": float(np.max(np.abs(aggregate - identity)))
-            if aggregate.size
-            else 0.0,
-        }
+    elif variant == VARIANT_ROW_GEOMETRIC_MEDIAN4:
+        aggregate, diagnostics, _ = row_geometric_median4(
+            template, values, return_cell_diagnostics=True
+        )
+        diagnostics["invariants"] = validate_row_geometric_median4()
+        diagnostics["n_methods"] = 4
     else:
         raise ValueError(f"unknown ensemble variant: {variant}")
     return aggregate, diagnostics
@@ -532,19 +597,36 @@ def project_with_scvelo(
         result.obsm[embedded_key] = embedded.astype(np.float32)
 
     result.uns["ensemble_signed_params"] = {
-        "schema_version": 1,
+        "schema_version": H5AD_SCHEMA_VERSION,
         "workflow": "scvelo_034_signed_t_ensemble",
         "aggregation_variant": variant,
         "aggregation_label": VARIANT_SPECS[variant]["label"],
         "aggregation_definition": VARIANT_SPECS[variant]["definition"],
         "methods": list(METHOD_NAMES),
-        "method_weights": (
-            "Mean-4 uses four equal method contributions; CenterWeighted-4 "
-            "uses edge-wise order statistics and no method identity weights."
-        ),
+        "method_weight": VARIANT_SPECS[variant]["method_weight"],
         "scvelo_protocol": protocol_metadata(),
         "diagonal_completion": "T_ii = 1 - sum_j!=i(abs(T_ij))",
-        "operator_semantics": "signed-L1 projection operator",
+        "operator_semantics": (
+            "signed L1-normalized scVelo projection operator; not a "
+            "non-negative Markov probability matrix"
+        ),
+        "compatibility_velocity": {
+            "field": "layers['ensemble_velocity']",
+            "definition": "ensemble_transition_signed @ Ms - Ms",
+            "expression_layer": "Ms",
+            "expression_source": "canonical reference",
+            "compatibility_only": True,
+            "biological_interpretation": (
+                "not an aggregation of the methods' gene-level velocity layers"
+            ),
+        },
+        "fixed_reference_neighbors": copy.deepcopy(
+            result.uns.get("neighbors", {}).get("fixed_reference_neighbors", {})
+        ),
+        "fixed_neighbor_semantics": (
+            "only distances, connectivities, and neighbor indices are installed; "
+            "the asset reference_pca is not installed into obsm['X_pca']"
+        ),
         "logical_inputs": copy.deepcopy(logical_inputs),
     }
     return result, int(invalid.sum())

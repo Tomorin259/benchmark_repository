@@ -10,3 +10,8 @@ The benchmark is organized by the scientific question reported in the paper:
 Method reproduction is kept separate from evaluation. Each evaluation module
 reads the native result files produced by the methods and translates their
 method-specific keys at the input boundary.
+
+The ensemble is not a 21st registered method. Signed-T Mean-4 is its baseline;
+Signed-T RowGeometricMedian-4 is the formal comparator. Both consume the same
+four method outputs and the public fixed-neighbor candidate graphs, and each is
+ranked separately against the 20 registered methods.

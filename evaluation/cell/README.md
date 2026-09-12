@@ -6,6 +6,12 @@ The 14 datasets and 20 registered methods use one shared neighbor contract:
 stored neighbor assets are the reproducibility boundary for Cell evaluation
 and for the later Ensemble evaluation.
 
+The PCA used to build each stored graph belongs to the asset-generation
+provenance only. Installing an asset transfers `indices`, `distances`, and
+`connectivities`; it does not replace an output H5AD's `obsm['X_pca']`.
+Ensemble velocity-graph cosines are computed separately in each method's
+native `Ms`/`velocity` space on those fixed candidate edges.
+
 ## Canonical bundle
 
 The active files live directly below this directory:

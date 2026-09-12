@@ -36,6 +36,7 @@ jobs:
           python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
           python -m py_compile evaluation/gene/plotting/phase_portrait.py
           python -m py_compile ensemble/core.py
+          python -m py_compile ensemble/geometric_median.py
           python -m py_compile ensemble/metrics.py
           python -m py_compile ensemble/benchmark.py
           python -m py_compile ensemble/plot_supfig9.py

@@ -36,9 +36,9 @@ def test_artifact_registry_schema_and_paths():
             assert "Zenodo URI" in row["notes"]
 
 
-def test_registry_has_no_rowgeom_and_formal_ensemble_is_available():
+def test_registry_has_no_centerweighted_and_formal_ensemble_is_available():
     text = ARTIFACTS.read_text()
-    assert "rowgeom" not in text.lower()
+    assert "centerweighted" not in text.lower()
     rows = read_artifacts()
     pending = [row for row in rows if row["status"] == "pending"]
     assert not pending
@@ -47,12 +47,12 @@ def test_registry_has_no_rowgeom_and_formal_ensemble_is_available():
         for row in rows
         if row["artifact_id"] in {
             "ensemble-mean-4-formal-all14",
-            "ensemble-centerweighted-4-formal-all14",
+            "ensemble-row-geometric-median-4-formal-all14",
         }
     }
     assert set(formal) == {
         "ensemble-mean-4-formal-all14",
-        "ensemble-centerweighted-4-formal-all14",
+        "ensemble-row-geometric-median-4-formal-all14",
     }
     assert all(row["status"] == "available" for row in formal.values())
     assert len({row["path"] for row in formal.values()}) == 1
@@ -72,7 +72,7 @@ def test_assembly_manifest_materialized_panels_are_verified():
     assert {row["panel"] for row in panels} == {"A", "B"}
     assert not any("workflow schematic" in row["role"] for row in panels)
     expected = {
-        "suppfig09/A_centerweighted4_cbdir.svg",
-        "suppfig09/B_centerweighted4_batc.svg",
+        "suppfig09/A_row_geometric_median4_cbdir.svg",
+        "suppfig09/B_row_geometric_median4_batc.svg",
     }
     assert {row["materialized_path"] for row in panels} == expected

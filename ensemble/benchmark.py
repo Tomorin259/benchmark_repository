@@ -167,7 +167,7 @@ def run_dataset(
     rows = []
     variant_metadata = {}
     for variant in variants:
-        aggregate, aggregate_detail = aggregate_offdiagonal(values, variant)
+        aggregate, aggregate_detail = aggregate_offdiagonal(template, values, variant)
         operator, completion_detail = complete_signed_operator(template, aggregate)
         result, invalid = project_with_scvelo(
             reference,
@@ -314,7 +314,7 @@ def main(argv: list[str] | None = None) -> int:
     (output_root / "metadata.json").write_text(
         json.dumps(
             {
-                "schema_version": 1,
+                "schema_version": 6,
                 "status": "selected-datasets",
                 "datasets": datasets,
                 "variants": list(variants),
