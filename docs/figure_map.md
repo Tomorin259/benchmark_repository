@@ -25,9 +25,10 @@ The original paper-level
 PDFs are in `figures/`. When a manuscript figure combines panels from
 multiple modules, this file records the assembly order and source panel names.
 
-The assembly manifest records three known source gaps for follow-up: the Figure 3
-simulation schematic is missing, the Figure 4 branching overview source is
-unverified, and the Figure 6 integrated panel source is missing. Supplementary
-Figure 9 now contains reproducible RowGeometricMedian-4 CBDir and BATC metric
-panels. These are documented post-release source-recovery items; no private
-path or replacement source is inferred.
+The assembly manifest records five known panel-level source gaps for follow-up:
+the Figure 1 study-design panels A and B are missing, the Figure 3 simulation
+schematic is missing, the Figure 4 branching overview source is unverified, and
+the Figure 6 integrated panel source is missing. Supplementary Figure 9 now
+contains reproducible RowGeometricMedian-4 CBDir and BATC metric panels. These
+are documented post-release source-recovery items; no private path or
+replacement source is inferred.

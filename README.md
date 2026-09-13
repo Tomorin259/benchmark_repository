@@ -32,12 +32,24 @@ independent rankings are [`ensemble/results/scores.csv`](ensemble/results/scores
 
 ## Current status
 
-As of 2026-09-05, the paper-aligned repository contains the final seed-123
-DeepKINET runner, a runnable cell-level evaluator, refreshed compact tables,
-and a runnable kinetics-recovery bundle for the current DeepKINET result. The
-gene and integrated summary evaluators remain structural placeholders or
-curated data packages. The presence of a directory must not be read as full
-all-20 benchmark completion.
+As of 2026-09-13, the repository has a complete compact Cell-level result
+package for the 14 real datasets and 20 method configurations, including the
+fixed-reference-30 contract and the formal Mean-4 and RowGeometricMedian-4
+all-14 ensemble results. Gene-level and kinetics-recovery outputs are curated
+result packages with analysis and plotting entry points, but they are not yet
+an end-to-end rebuild from public raw inputs. The integrated summary contains
+the compact Figure 6 input tables, while its final renderer is still missing.
+
+The repository is therefore suitable for result inspection and contract-level
+auditing, not yet for a clean-environment, from-scratch reproduction release.
+In particular, `envs/` contains release requirements but no reviewed Conda
+specification or lock file; `data/` and `artifacts.tsv` record dataset and
+artifact identities but the external URIs are not published; and the three
+generated simulation inputs do not yet have an in-repository generator,
+scenario configuration, seed record, or canonical-input conversion workflow.
+The figures assembly manifest records these limits and the remaining missing
+panel sources explicitly. The presence of a directory must not be read as
+full all-20 benchmark completion.
 
 ## Repository path
 

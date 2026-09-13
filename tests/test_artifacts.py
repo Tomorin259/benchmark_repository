@@ -63,7 +63,7 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 113
+    assert len(rows) == 115
     materialized = [row for row in rows if row["status"] == "materialized"]
     assert len(materialized) == 110
     panels = [row for row in rows if row["figure"] == "suppfig09"]

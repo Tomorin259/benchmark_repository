@@ -1,4 +1,6 @@
 figure	panel	role	status	source_path	materialized_path	sha256	note
+fig1	A	study design overview	missing_source				No independent final panel source is stored for the paper's study-design overview; paper-side manual artwork is not available as a repository asset.
+fig1	B	benchmark framework overview	missing_source				No independent final panel source is stored for the paper's two-level evaluation framework; paper-side manual artwork is not available as a repository asset.
 fig2	A	cell-level stream montage	materialized	evaluation/cell/figures/gastrulation_20methods_3x7_BATC.png	fig2/A_gastrulation_BATC.png	c07621f6452575b15aea3b59701987f5729142eaf592b55d96ea85f955c8a014	-
 fig2	A	vector stream montage	materialized	evaluation/cell/figures/gastrulation_20methods_3x7_BATC.svg	fig2/A_gastrulation_BATC.svg	5f394bcd5b50829141cf9a063c11ede51586ea09c859cdf6dd0a08264534ce4b	-
 fig2	B	cell-level stream montage	materialized	evaluation/cell/figures/DentateGyrus_lamanno_20methods_3x7_CBDir.png	fig2/B_DentateGyrus_lamanno_CBDir.png	9d484a6c8bcb01586ed63b4451be75175b874ae6c5fb0a9bdaef320e98aac0fe	-
