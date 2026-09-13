@@ -88,3 +88,8 @@ The sampling design is adapted from cellDancer 1.1.7, which is distributed
 under the BSD 3-Clause license. The repository implementation does not require
 cellDancer to be installed; the retained notice is in
 `plotting/THIRD_PARTY_NOTICES.md`.
+
+The audited simulation inputs have a clean regeneration entry point under
+[`simulation/`](simulation/). It uses the three frozen scenario parameter sets
+and an explicit legacy NumPy seed, but its outputs are new deterministic
+regenerations rather than replacements for the historical canonical artifacts.
