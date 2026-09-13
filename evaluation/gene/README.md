@@ -91,5 +91,5 @@ cellDancer to be installed; the retained notice is in
 
 The audited simulation inputs have a clean regeneration entry point under
 [`simulation/`](simulation/). It uses the three frozen scenario parameter sets
-and an explicit legacy NumPy seed, but its outputs are new deterministic
-regenerations rather than replacements for the historical canonical artifacts.
+without setting a random seed. Each output is therefore an independent random
+realization rather than a replacement for the historical canonical artifact.

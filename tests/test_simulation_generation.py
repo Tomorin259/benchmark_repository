@@ -30,9 +30,8 @@ class SimulationGenerationTests(unittest.TestCase):
         self.assertEqual(config["gene_parameters"]["boost_all"]["alpha2"], 4)
         self.assertEqual(config["gene_parameters"]["boost_all"]["beta2"], 2)
         self.assertEqual(config["gene_parameters"]["boost_all"]["gamma2"], 1)
-        self.assertEqual(config["validation"]["seed"], 123)
-        self.assertEqual(set(config["validation"]["output_sha256"]), {"murk", "branching", "hybrid"})
-        self.assertTrue(all(len(value) == 64 for value in config["validation"]["output_sha256"].values()))
+        self.assertEqual(config["upstream"]["rng"], "numpy.random global RandomState; no explicit seed")
+        self.assertNotIn("validation", config)
 
     def test_bins_are_ordered_and_match_branch_contract(self):
         labels, categories = _bin_labels(range(2000), [1000, 1000], "all")
@@ -91,3 +90,8 @@ class SimulationGenerationTests(unittest.TestCase):
         text = (SIM / "generate.py").read_text()
         self.assertNotIn("/mnt/", text)
         self.assertNotIn("/Users/", text)
+
+    def test_generation_entrypoint_does_not_set_or_accept_a_seed(self):
+        text = (SIM / "generate.py").read_text()
+        self.assertNotIn("np.random.seed", text)
+        self.assertNotIn('add_argument("--seed"', text)

@@ -18,20 +18,17 @@ Run from the repository root with a relative output directory:
 
 ```bash
 python evaluation/gene/simulation/generate.py \
-  --scenario branching --seed 123 --output-root outputs/simulation
+  --scenario branching --output-root outputs/simulation
 ```
 
 The output has the correct scenario-specific name (`sim_only_murk.h5ad`,
 `sim_only_branching.h5ad`, or `sim_hybrid.h5ad`) and a sidecar
-`*.invocation.json` containing the seed, config hash, shape, command, and
-canonical artifact ID. The seed makes a new run deterministic under the
-reviewed NumPy/CellDancer versions; it does not make the historical canonical
-H5AD byte-exactly reproducible.
-
-The audited environment generated each scenario twice with seed 123 and
-obtained byte-identical H5AD files. The expected hashes for that regression
-run are stored in `config.json`; every invocation sidecar records the actual
-output, configuration, generator, and dependency-version hashes or values.
+`*.invocation.json` containing its config hash, generator hash, output hash,
+shape, dependency versions, random-stream policy, and canonical artifact ID.
+No seed is set: random kinetic parameters and CellDancer simulation noise are
+part of the study design, so every invocation is an independent realization.
+Consequently a new output is not expected to be byte-identical to either a
+second run or the historical canonical H5AD.
 
 The historical inputs remain the artifacts indexed by the root
 [`artifacts.tsv`](../../../artifacts.tsv). Generated outputs from this entry

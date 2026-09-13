@@ -8,13 +8,13 @@
     "scipy_version": "1.7.2",
     "pandas_version": "1.3.4",
     "anndata_version": "0.8.0",
-    "rng": "numpy.random legacy MT19937 via np.random.seed",
+    "rng": "numpy.random global RandomState; no explicit seed",
     "audited_sources": [
       {"path": "indicators/gene/simulation/test_only_murk.py", "sha256": "86d09e45700f4edb0dd96fb1e801d58cc4e0f7ff22e751c3a2eecd86e90f1e14"},
       {"path": "indicators/gene/simulation/test_only_branching.py", "sha256": "bfdbf960032c68f1947d921ba3912a2d48f4b25cf144d0854d67437f28f18e75"},
       {"path": "indicators/gene/simulation/test_all.py", "sha256": "8146259ffc8183ad70d3924480861f17a5a63ded88f6383cc29052b9879f152d"}
     ],
-    "canonical_boundary": "Generated outputs are new deterministic regenerations; historical canonical H5AD files remain external artifacts."
+    "canonical_boundary": "Generated outputs are independent random realizations; historical canonical H5AD files remain external artifacts."
   },
   "gene_parameters": {
     "housekeeping": {"kinetic_type": "multi_forward", "alpha1": 5, "alpha2": 5, "beta1": 1, "beta2": 1, "gamma1": 0.5, "gamma2": 0.5},
@@ -23,14 +23,6 @@
     "stem_marker": {"kinetic_type": "multi_backward", "alpha1": 0, "alpha2": 0, "beta1": 1, "beta2": 1, "gamma1": 0.5, "gamma2": 0.5, "start_splice1": 5, "start_splice2": 5, "start_unsplice1": 3, "start_unsplice2": 3},
     "one_sided_quiet": {"kinetic_type": "mono", "alpha1": 0.5, "alpha2": 0.5, "beta1": 1, "beta2": 1, "gamma1": 0.5, "gamma2": 0.5, "path1_pct": 99, "path2_pct": 99},
     "one_sided_boost": {"kinetic_type": "tran_boost", "beta1": 1, "beta2": 1, "gamma1": 0.5, "gamma2": 0.5, "path1_pct": 99, "path2_pct": 90}
-  },
-  "validation": {
-    "seed": 123,
-    "output_sha256": {
-      "murk": "223490e96e14ac5738fc6eb3c045e3cb57ea12610a828f7dfebdebde03919ed7",
-      "branching": "17195bac8442154698b0a8437a54ab2740cc4eb8817ac2cca2cacb5fca3ff80f",
-      "hybrid": "33590caa502aaa8b94fdd02d5ba6a0711c86eb6bbd37d6ff076625dd5e58f596"
-    }
   },
   "scenarios": {
     "murk": {

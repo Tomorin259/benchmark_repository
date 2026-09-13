@@ -1,4 +1,4 @@
-"""Generate the three study simulation inputs with an explicit legacy seed.
+"""Generate the three study simulation inputs as independent random realizations.
 
 This module owns simulation only.  PCA, scVelo preprocessing, and plots are
 deliberately separate downstream operations and are not run here.
@@ -79,7 +79,7 @@ def _runtime_versions():
     }
 
 
-def generate(scenario_name, seed, output_root):
+def generate(scenario_name, output_root):
     import numpy as np
     config = load_config()
     if scenario_name not in config["scenarios"]:
@@ -93,8 +93,8 @@ def generate(scenario_name, seed, output_root):
     import celldancer.simulation as cs
     import pandas as pd
 
-    # CellDancer 1.1.7 calls the legacy NumPy singleton internally.
-    np.random.seed(seed)
+    # CellDancer 1.1.7 and the study parameter sampler both use NumPy's global
+    # random stream.  The study design intentionally does not initialize it.
     frames = []
     counts = scenario["genes"]
     stem = None
@@ -152,7 +152,8 @@ def generate(scenario_name, seed, output_root):
     output = output_root / scenario["output_name"]
     adata.write_h5ad(output)
     metadata = {
-        "schema_version": 1, "scenario": scenario_name, "seed": int(seed),
+        "schema_version": 1, "scenario": scenario_name,
+        "rng_initialization": "numpy.random global RandomState; no explicit seed",
         "config_sha256": _sha256(CONFIG_PATH),
         "generator_sha256": _sha256(__file__),
         "output": output.name, "shape": list(adata.shape),
@@ -160,7 +161,7 @@ def generate(scenario_name, seed, output_root):
         "runtime_versions": _runtime_versions(),
         "canonical_artifact_id": scenario["artifact_id"],
         "canonical_match_claim": False,
-        "note": "New deterministic regeneration; does not replace historical canonical input."
+        "note": "Independent random realization; does not replace historical canonical input."
     }
     (output.with_suffix(".invocation.json")).write_text(json.dumps(metadata, indent=2) + "\n")
     return output
@@ -169,10 +170,9 @@ def generate(scenario_name, seed, output_root):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--scenario", required=True, choices=sorted(load_config()["scenarios"]))
-    parser.add_argument("--seed", required=True, type=int)
     parser.add_argument("--output-root", default="outputs/simulation")
     args = parser.parse_args()
-    generate(args.scenario, args.seed, args.output_root)
+    generate(args.scenario, args.output_root)
 
 
 if __name__ == "__main__":
