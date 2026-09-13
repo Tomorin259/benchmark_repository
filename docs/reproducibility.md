@@ -27,3 +27,8 @@ The ensemble result metadata keeps provenance dimensions separate:
 reproduction. These fields must not be collapsed into one `source_commit`.
 The detailed evidence is recorded in
 [`provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).
+
+The generated simulation inputs have a separate audit record. It documents
+their canonical hashes, structural reproduction checks, and the boundary that
+prevents a byte-exact reproduction claim:
+[`provenance/simulation_reproduction_audit_20260914.md`](../provenance/simulation_reproduction_audit_20260914.md).
