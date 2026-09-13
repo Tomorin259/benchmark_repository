@@ -25,6 +25,8 @@ count-specific branch is added to methods that do not consume counts.
 The formal DeepKINET result uses seed 123 with deterministic PyTorch/CUDA
 settings. This is a benchmark reproducibility setting; it is not presented as
 an additional default from the upstream tutorial.
+The audited upstream base revision is `fd9cb5de02e9139322fdef12d1629cf9fc2929e5`;
+the dirty local checkout used during curation is not treated as the formal source.
 
 TFvelo and TSvelo retain the official no-global-seed behavior. Their
 method-specific launchers keep the 14-dataset input map at the top of each

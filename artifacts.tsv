@@ -74,7 +74,7 @@ summary-fig2-kinetic-component-means	summary-result	evaluation/summary/results/f
 figure-figfive	figure-pdf	figures/figFive.pdf	0f48c88234b9c7c9edd79b2275e78aea46490cd620e9fc78271691515b202627	available		Confirmed paper-level composite PDF.
 figure-figsix	figure-pdf	figures/figSix.pdf	e2de1a0a932169bcb72cbe17bf55b4351788424092b06189786285369ac85f3f	available		Confirmed paper-level composite PDF.
 figure-figtwo	figure-pdf	figures/figTwo.pdf	81fdd2ad575af2841edca15060f0156d718082818b2988ce91a525e9b298fbe1	available		Confirmed paper-level composite PDF.
-figure-assembly	figure-assembly	figures/assembly/assembly_manifest.tsv	7ba370aa6846589285a313d6b13272870d116a8caebdc4b968f5a55e59e29b36	available		Collection entry: manifest covers 113 assembly items and validates every materialized panel; missing sources remain explicit in the manifest.
+figure-assembly	figure-assembly	figures/assembly/assembly_manifest.tsv	73df375ee62b2ddd73b3a36cb0001143fb0cc13978a830e0d02e228e0c31e566	available		Collection entry: manifest covers 115 assembly items and validates every materialized panel; missing sources remain explicit in the manifest.
 dataset-pancreas	external-input			external		real_cell input; accession GSE132188; Zenodo URI待发布。
 dataset-gastrulation	external-input			external		real_cell input; accession E-MTAB-6967; Zenodo URI待发布。
 dataset-forebrain	external-input			external		real_cell input; accession SRP129388; Zenodo URI待发布。
@@ -89,9 +89,9 @@ dataset-sceu-organoid	external-input			external		real_cell_and_kinetic input; ac
 dataset-scnt-neuron	external-input			external		real_cell input; accession GSE141851; Zenodo URI待发布。
 dataset-capo-pre	external-input			external		real_cell input; accession 10.5281/zenodo.6245943; Zenodo URI待发布。
 dataset-rpe1-gen	external-input			external		real_cell input; accession GSE250148; Zenodo URI待发布。
-dataset-sim-only-murk	external-input			external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
-dataset-sim-only-branching	external-input			external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
-dataset-sim-hybrid	external-input			external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
+dataset-sim-only-murk	external-input		e853780b3cb28ae9941972950e0b02098f57b5f7e35908ab0d5d2473fe0e6bc3	external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
+dataset-sim-only-branching	external-input		392eccf96cd31f27e8b99327f0b061e475d78a1cfea54c75af4564ddb163fe14	external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
+dataset-sim-hybrid	external-input		9b9bebf9159e02c1bcb880d8aba323982e70b7faa67d6d92c6313db603e72ee2	external		generated_simulation input; accession internal-generated; Zenodo URI待发布。
 h5ad-scvelo-deterministic-bonemarrow	external-h5ad		4ab18ff345c2dcb39a33de4e7b9aeb468a879a65b916ca772c17fcf1d59fd37a	external		Logical method-result H5AD for scvelo_deterministic / bonemarrow; Zenodo URI待发布。
 h5ad-scvelo-deterministic-capofibro	external-h5ad		ed69046dce1be5807b9cebb62b648916dc7b1e04b96dfbedd0fee4dd0326009e	external		Logical method-result H5AD for scvelo_deterministic / capofibro; Zenodo URI待发布。
 h5ad-scvelo-deterministic-dentategyrus	external-h5ad		efcef6ccffc5491aad6a63a5889e31c7942d150b637b6342d86df80c055ddc16	external		Logical method-result H5AD for scvelo_deterministic / dentategyrus; Zenodo URI待发布。
