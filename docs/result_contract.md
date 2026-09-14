@@ -1,20 +1,25 @@
 # Result contract
 
-Method outputs remain method-native H5AD files. A released result must retain
-cell and gene identifiers and the layers or embeddings consumed by its
-evaluation module. The exact external file, checksum, and required keys are
-recorded in `artifacts.tsv`. For DeepKINET, the formal result additionally
-records the benchmark seed and deterministic-runtime settings in its method
-manifest; those settings are part of the result provenance, not a change to
-the upstream model equations.
+Method execution produces method-native H5AD files. A released result must
+retain cell and gene identifiers and every layer, embedding, graph, or metadata
+field consumed by its evaluation module.
 
-Evaluation modules write only compact, paper-facing tables and selected panels
-to their local `results/` and `figures/` directories. Large H5AD files,
-checkpoints, intermediate matrices, and exploratory plots remain external.
+Result metadata has separate authoritative locations:
 
-Ensemble H5AD artifacts use schema 6. They retain the signed-L1 transition
-operator, explicit scVelo UMAP projection, logical input identifiers and
-checksums, fixed-neighbor metadata, and aggregation diagnostics. The induced
-gene-space `ensemble_velocity = T @ Ms - Ms` exists only to satisfy scVelo's
-projection interface; it is not a gene-level aggregation of the four methods.
-Build-time PCA from a fixed-neighbor asset is not installed into the result.
+- [`../artifacts.tsv`](../artifacts.tsv) records the logical artifact ID,
+  tracked path when applicable, SHA256, release status, stable URI, and notes;
+- [`../methods/configurations.tsv`](../methods/configurations.tsv) records the
+  registered method configuration and its standard result layer and embedding;
+- evaluation input tables record the exact result file, keys, analysis role,
+  and alignment information used by that evaluation;
+- method run metadata records execution-specific settings such as a fixed seed
+  or deterministic runtime mode.
+
+Evaluation modules write compact, paper-facing tables, audit records, and
+selected panels to their local `results/` and `figures/` directories. Large
+H5AD files, checkpoints, intermediate matrices, and exploratory plots remain
+external artifacts.
+
+Specialized result schemas belong to their producing module. The signed
+transition, fixed-neighbor, projection, and diagnostic fields of ensemble H5AD
+files are defined in [`../ensemble/README.md`](../ensemble/README.md).

@@ -1,230 +1,169 @@
 # RNA velocity benchmark reproduction repository
 
-This repository curates the code and compact numerical outputs needed to
-understand and reproduce the RNA velocity benchmark. The benchmark has 20
-method configurations, registered only in
-methods/configurations.tsv. Large datasets, method result H5AD files,
-checkpoints, environments, logs, and exploratory outputs remain in external
-storage.
+This repository curates the scripts, compact numerical results, and figure
+assets needed to inspect and reproduce the RNA velocity benchmark. The
+benchmark contains 20 method configurations; their sole registry is
+[`methods/configurations.tsv`](methods/configurations.tsv). Large datasets,
+method-result H5AD files, checkpoints, environments, logs, and exploratory
+outputs remain in external storage.
 
-The two post-hoc comparators are separate from those 20 methods: Signed-T
-Mean-4 is a baseline and Signed-T RowGeometricMedian-4 is the formal ensemble.
-Each is ranked against
-the 20 methods separately; the two comparators are not ranked against each
-other. Mean-4 is the arithmetic mean of the four signed transition values on
-each common edge. RowGeometricMedian-4 takes the Euclidean geometric median of
-the four complete signed off-diagonal transition rows independently for each
-source cell, without post-hoc L1 renormalization. For each dataset and metric,
-each variant is ranked independently
-against the 20 Cell methods: rank is 1 plus the number of strictly higher method
-scores, with exact method ties reported using competition-rank tie counts; the
-ensemble is participant 21 and variants are never candidates for one another.
-Their implementations are in ensemble/, using the portable fixed-neighbor
-assets in evaluation/cell/reference_neighbors/. Those assets install the
-audited candidate graph and indices, not their build-time PCA coordinates;
-cosines are still computed in each input method's native Ms/velocity space.
-Formal fixed-neighbor all-14 ensemble results are
-complete and registered in `artifacts.tsv`. The canonical scores, summaries, and
-independent rankings are [`ensemble/results/scores.csv`](ensemble/results/scores.csv),
-[`ensemble/results/summary.md`](ensemble/results/summary.md),
-[`ensemble/results/rankings_vs_20.csv`](ensemble/results/rankings_vs_20.csv), and
-[`ensemble/results/ranking_summary.md`](ensemble/results/ranking_summary.md).
+The repository supports audit and reuse of most reported results, but it is not
+yet a clean-environment, from-public-inputs, one-command reproduction release.
 
 ## Current status
 
-As of 2026-09-14, the repository has a complete compact Cell-level result
-package for the 14 real datasets and 20 method configurations, including the
-fixed-reference-30 contract and the formal Mean-4 and RowGeometricMedian-4
-all-14 ensemble results. Gene-level and kinetics-recovery outputs are curated
-result packages with analysis and plotting entry points, but they are not yet
-an end-to-end rebuild from public raw inputs. The integrated summary contains
-the compact Figure 6 input tables, while its final renderer is still missing.
+Status as of 2026-09-14:
 
-The repository is therefore suitable for result inspection and contract-level
-auditing, not yet for a clean-environment, from-scratch reproduction release.
-In particular, `envs/` contains release requirements but no reviewed Conda
-specification or lock file, while `data/` and `artifacts.tsv` record dataset
-and artifact identities but the external URIs are not published. The three
-simulation scenarios now have an in-repository generator and audited scenario
-configuration. The generator intentionally leaves the random stream unseeded,
-so each run is an independent realization; the historical canonical H5AD
-files remain the exact paper inputs and are not claimed to be byte-exact
-regenerations. The figures assembly manifest records these limits and the
-remaining missing panel sources explicitly. The presence of a directory must
-not be read as full all-20 benchmark completion.
+| Area | Repository support | Remaining boundary |
+| --- | --- | --- |
+| Method configurations | All 20 configurations are registered and mapped to method scripts | Reviewed environments and some upstream source revisions remain pending |
+| Cell-level evaluation | Complete compact results for 14 real datasets × 20 configurations under the fixed-reference-30 contract | Large method-result inputs remain external |
+| Gene-level evaluation | Reference-30 real and simulated results, plotting code, and paper panels are available | Canonical input and method-result H5AD files remain external |
+| Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
+| Kinetics recovery | The formal seed-123 result bundle, metrics, and Figure 5 plotting entries are available | Rebuilding still requires external H5AD files and reference tables |
+| Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
+| Integrated summary | Compact Figure 6 input tables are available | The formal Figure 6 renderer is missing |
+| Paper figures | Confirmed composite PDFs and 110 materialized panels are recorded by the assembly manifest | Five panel-source or provenance gaps remain documented |
 
-## Repository path
+Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
+additional registered methods. Mean-4 is the baseline and
+RowGeometricMedian-4 is the formal ensemble; each is ranked independently
+against the same 20 methods. See [`ensemble/README.md`](ensemble/README.md) for
+the complete aggregation and ranking contract.
+
+## Where to start
+
+| Task | Documentation and entry point |
+| --- | --- |
+| Inspect or run a method configuration | [`methods/README.md`](methods/README.md) |
+| Reproduce Cell-level metrics and panels | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
+| Reproduce Gene-level metrics and phase portraits | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
+| Generate a new simulation realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
+| Reproduce kinetic-parameter recovery and Figure 5 panels | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
+| Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
+| Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
+| Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
+
+## Repository structure
 
 ```text
 methods/                         method-specific reproduction scripts
-envs/                            environment release requirements; specifications pending
-evaluation/cell/                 cell-level evaluation and panels
-evaluation/gene/                 gene-level evaluation and simulation
-evaluation/kinetics_recovery/  kinetic-parameter recovery and its plotting module
+envs/                            environment evidence and release requirements
+evaluation/cell/                 Cell-level evaluation, results, and panels
+evaluation/gene/                 Gene-level evaluation, simulation, and panels
+evaluation/kinetics_recovery/    kinetic-parameter recovery and Figure 5 panels
 evaluation/summary/              cross-experiment summaries such as Figure 6
-ensemble/                        optional post-hoc signed-transition utility
-data/                            dataset metadata and access information
-artifacts.tsv                    portable index of external artifacts
-figures/                         confirmed paper-level composite PDFs
-docs/                            cross-module documentation and figure map
+ensemble/                        post-hoc signed-transition comparators
+data/                            dataset identities and upstream access metadata
+artifacts.tsv                    logical registry for large external artifacts
+figures/                         paper composites and assembly assets
+docs/                            cross-module contracts and figure map
 tests/                           lightweight publication-contract checks
 ```
 
-There is intentionally no shared top-level preprocessing package or results
-directory. The top-level figures directory contains only confirmed paper-level
-composite PDFs; panel assets stay in the evaluation module that owns the
-scientific question.
+Method display names are defined by `manuscript_name` in
+[`methods/configurations.tsv`](methods/configurations.tsv). Dataset display
+names are defined by `paper_name` in [`data/datasets.tsv`](data/datasets.tsv).
+Operational IDs and file paths may retain shorter internal names.
 
-Method names shown in public tables use veloVI spelling. Dataset IDs identify
-the biological input and evaluation panel, not methods or ensemble variants.
+## Reproducibility boundaries
 
-## Running kinetics-recovery
+- [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
+  checksums, but stable public URIs have not yet been published.
+- [`envs/`](envs/) records environment evidence and release requirements; it
+  does not yet contain reviewed Conda specifications or lock files.
+- Simulation generation intentionally leaves the random stream unseeded. The
+  historical canonical H5AD files remain the exact paper inputs; a new run is
+  an independent realization.
+- [`figures/assembly/assembly_manifest.tsv`](figures/assembly/assembly_manifest.tsv)
+  records available panel files, SHA256 values, and unresolved source gaps.
+- CI checks lightweight publication contracts and compact results. It does not
+  train all methods, install every method environment, or download every
+  external artifact.
 
-The kinetics-recovery module consumes saved method-result H5AD files and the
-scEU-seq reference tables. It does not train methods or prepare the benchmark
-datasets.
-
-```bash
-python evaluation/kinetics_recovery/metrics.py \
-  --artifact-root /path/to/artifacts \
-  --check-only
-
-python evaluation/kinetics_recovery/metrics.py \
-  --artifact-root /path/to/artifacts \
-  --output /path/to/metrics
-
-python evaluation/kinetics_recovery/plotting/figure5.py \
-  --metrics /path/to/metrics \
-  --output /path/to/figures
-```
-
-The evaluator extracts each method's native parameter keys at its input
-boundary, applies the fixed RPE1/organoid processing rules, calculates
-per-gene and summary metrics, and writes compact CSV files. Plotting consumes
-only that metrics bundle.
-
-## Counts-specific inputs
-
-Only methods that genuinely require raw counts select the corresponding
-`_counts.h5ad` artifact and perform its method-specific checks. DeepKINET and
-cell2fate document the four special datasets, cell/gene alignment, finite and
-non-negative count checks, integer-valued checks, and lossless dtype conversion
-inside their own method scripts. DeepKINET additionally records the seed-123
-deterministic benchmark setting used by the formal result.
-Methods that do not require counts do not use this path.
-
-## Public artifact index
-
-The public-facing artifact index is the root artifacts.tsv; it must not expose server-specific working paths.
-
-Read AGENTS.md and REPOSITORY_DESIGN.md before changing a script or module.
+Read [`AGENTS.md`](AGENTS.md) and
+[`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md) before changing a script or
+module.
 
 ---
 
 # RNA velocity 基准评测复现仓库
 
-本仓库整理了理解和复核 RNA velocity 基准评测所需的代码与紧凑数值结果。
-基准评测包含 20 个方法配置，并统一登记在
-[`methods/configurations.tsv`](methods/configurations.tsv) 中。大型数据集、
-方法结果 H5AD、模型检查点、软件环境、日志和探索性输出保存在外部存储中。
+本仓库整理了检查和复现 RNA velocity 基准评测所需的脚本、紧凑数值结果和图件素材。
+基准评测包含 20 个方法配置，唯一注册表是
+[`methods/configurations.tsv`](methods/configurations.tsv)。大型数据集、方法结果
+H5AD、模型检查点、软件环境、日志和探索性输出保存在外部存储中。
 
-两个事后比较器不属于上述 20 个方法：Signed-T Mean-4 是基线，Signed-T
-RowGeometricMedian-4 是正式集成方法。二者分别与 20 个方法独立排名，彼此不参与
-对方的排名。Mean-4 对公共边上的四个有符号转移值取算术平均；
-RowGeometricMedian-4 则针对每个源细胞，分别计算四个完整有符号非对角转移行的
-欧氏几何中位数，并且不进行事后 L1 重新归一化。对每个数据集和指标，每个比较器
-都独立与 20 个 Cell 方法排名：名次等于 1 加上严格高于该分数的方法数；完全相同
-的方法分数采用竞赛排名并记录并列数量。集成方法作为第 21 个参与者，两个比较器
-不会互相作为候选方法。
-
-实现位于 [`ensemble/`](ensemble/)，并使用
-[`evaluation/cell/reference_neighbors/`](evaluation/cell/reference_neighbors/)
-中的可移植 fixed-neighbor 资源。这些资源保存经过审计的候选图和索引，而不保存
-构建时的 PCA 坐标；余弦值仍在每个输入方法自身的 `Ms`/velocity 空间中计算。
-14 个数据集的正式 fixed-neighbor 集成结果已经完成并登记在 `artifacts.tsv`。
-正式分数、汇总和独立排名分别位于：
-
-- [`ensemble/results/scores.csv`](ensemble/results/scores.csv)
-- [`ensemble/results/summary.md`](ensemble/results/summary.md)
-- [`ensemble/results/rankings_vs_20.csv`](ensemble/results/rankings_vs_20.csv)
-- [`ensemble/results/ranking_summary.md`](ensemble/results/ranking_summary.md)
+本仓库已经能够审计和复用论文中的大部分结果，但尚未达到从公开输入和干净环境
+开始、一条命令完整复现全部论文结果的发布状态。
 
 ## 当前状态
 
-截至 2026-09-14，本仓库已经形成完整、紧凑的 Cell-level 结果包，覆盖 14 个
-真实数据集和 20 个方法配置，包括 fixed-reference-30 契约，以及 Mean-4 和
-RowGeometricMedian-4 在全部 14 个数据集上的正式集成结果。Gene-level 和
-kinetics-recovery 已整理为包含分析及绘图入口的结果包，但尚不能从公开原始输入
-端到端重建。Integrated summary 已保存 Figure 6 的紧凑输入表，但正式 renderer
-仍然缺失。
+截至 2026-09-14：
 
-因此，本仓库目前适合结果检查和契约级审计，但还不是可以在干净环境中从头完整
-复现的发布版本。具体而言，`envs/` 已记录发布要求，但尚无经过审核的 Conda
-环境文件或 lock file；`data/` 和 `artifacts.tsv` 已登记数据集及 artifact 身份，
-但外部 URI 尚未发布。三个模拟场景现在已经具有仓库内生成器和经过审计的场景
-配置。生成器刻意不设置随机种子，因此每次运行都是独立随机 realization；历史
-canonical H5AD 仍作为论文使用的精确输入，本仓库不声称新生成结果可以与其
-byte-exact 一致。图件 assembly manifest 明确记录了这些边界和仍缺失的 panel
-来源。目录存在本身不代表该模块已经完成全部 20 个方法的端到端复现。
+| 模块 | 仓库现有支撑 | 当前边界 |
+| --- | --- | --- |
+| 方法配置 | 20 个配置均已注册并映射到方法脚本 | 正式环境及部分上游源码版本仍待补充 |
+| Cell-level 评估 | fixed-reference-30 契约下的 14 个真实数据集 × 20 个配置紧凑结果已完成 | 大型方法结果输入仍在外部存储 |
+| Gene-level 评估 | reference-30 真实及模拟结果、绘图代码和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
+| 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
+| 动力学参数恢复 | 正式 seed-123 结果包、指标入口和 Figure 5 绘图入口已归档 | 重建仍需外部 H5AD 和参考表 |
+| 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
+| 综合汇总 | Figure 6 的紧凑输入表已归档 | 正式 Figure 6 renderer 仍缺失 |
+| 论文图件 | 已确认的组合 PDF 和 110 个物化 panel 均由 assembly manifest 记录 | 仍有五项 panel source 或 provenance 缺口 |
+
+Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
+方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组
+20 个方法独立排名。完整的聚合及排名契约见
+[`ensemble/README.md`](ensemble/README.md)。
+
+## 从哪里开始
+
+| 任务 | 文档和入口 |
+| --- | --- |
+| 检查或运行方法配置 | [`methods/README.md`](methods/README.md) |
+| 复现 Cell-level 指标和 panel | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
+| 复现 Gene-level 指标和 phase portrait | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
+| 生成新的模拟数据 realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
+| 复现动力学参数恢复和 Figure 5 panel | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
+| 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
+| 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
+| 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
 
 ## 仓库结构
 
 ```text
 methods/                         各方法的复现脚本
-envs/                            环境发布要求；正式环境文件仍待补充
-evaluation/cell/                 细胞级评估与图件
-evaluation/gene/                 基因级评估与模拟数据
-evaluation/kinetics_recovery/    动力学参数恢复及绘图模块
+envs/                            环境证据与发布要求
+evaluation/cell/                 Cell-level 评估、结果和 panel
+evaluation/gene/                 Gene-level 评估、模拟数据和 panel
+evaluation/kinetics_recovery/    动力学参数恢复和 Figure 5 panel
 evaluation/summary/              Figure 6 等跨实验汇总
-ensemble/                        事后有符号转移集成工具
-data/                            数据集元数据与访问说明
-artifacts.tsv                    外部 artifact 的可移植索引
-figures/                         已确认的论文级组合 PDF
-docs/                            跨模块文档和论文图映射
+ensemble/                        事后有符号转移比较器
+data/                            数据集身份和上游访问信息
+artifacts.tsv                    大型外部 artifact 的逻辑注册表
+figures/                         论文组合图和 assembly 素材
+docs/                            跨模块契约和 figure map
 tests/                           轻量级论文契约检查
 ```
 
-仓库刻意不设置共享的顶层预处理包或统一 `results/` 目录。顶层 `figures/` 只保存
-已确认的论文级组合 PDF；panel 素材保存在负责相应科学问题的 evaluation 模块中。
+方法展示名称由 [`methods/configurations.tsv`](methods/configurations.tsv) 中的
+`manuscript_name` 定义；数据集展示名称由
+[`data/datasets.tsv`](data/datasets.tsv) 中的 `paper_name` 定义。运行 ID 和文件路径
+可以继续使用较短的内部名称。
 
-公开表格中的方法名称统一使用 `veloVI` 拼写。数据集 ID 表示生物学输入和评估
-panel，而不是方法或集成变体。
+## 复现边界
 
-## 运行 kinetics-recovery
-
-kinetics-recovery 模块读取已经保存的方法结果 H5AD 和 scEU-seq 参考表；它不负责
-训练方法或准备基准数据集。
-
-```bash
-python evaluation/kinetics_recovery/metrics.py \
-  --artifact-root /path/to/artifacts \
-  --check-only
-
-python evaluation/kinetics_recovery/metrics.py \
-  --artifact-root /path/to/artifacts \
-  --output /path/to/metrics
-
-python evaluation/kinetics_recovery/plotting/figure5.py \
-  --metrics /path/to/metrics \
-  --output /path/to/figures
-```
-
-评估器在输入边界提取每种方法原生的参数 key，应用固定的 RPE1/organoid 处理
-规则，计算逐基因指标和汇总指标，并写出紧凑 CSV。绘图模块只读取该 metrics
-结果包。
-
-## 需要原始 counts 的输入
-
-只有确实需要原始 counts 的方法才会选择对应的 `_counts.h5ad` artifact，并执行
-方法自身的输入检查。DeepKINET 和 cell2fate 在各自脚本中记录了四个特殊数据集、
-细胞/基因对齐、有限且非负的 count 检查、整数值检查和无损 dtype 转换。
-DeepKINET 还记录了正式结果所使用的 seed-123 确定性基准设置。不需要 counts 的
-方法不会使用这一路径。
-
-## 公开 artifact 索引
-
-面向公开发布的 artifact 索引是仓库根目录的
-[`artifacts.tsv`](artifacts.tsv)，其中不得包含服务器专用工作路径。
+- [`artifacts.tsv`](artifacts.tsv) 已记录逻辑 artifact 身份和校验和，但稳定公开 URI
+  尚未发布。
+- [`envs/`](envs/) 记录环境证据与发布要求，目前还没有经过审核的 Conda
+  specification 或 lock file。
+- 模拟数据生成器刻意不设置随机种子。历史 canonical H5AD 仍是论文使用的精确输入；
+  新运行得到的是独立随机 realization。
+- [`figures/assembly/assembly_manifest.tsv`](figures/assembly/assembly_manifest.tsv)
+  记录现有 panel 文件、SHA256 和未解决的 source 缺口。
+- CI 只检查轻量级论文契约和紧凑结果，不会训练全部方法、安装所有方法环境或下载
+  全部外部 artifact。
 
 修改脚本或模块前，请先阅读 [`AGENTS.md`](AGENTS.md) 和
 [`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md)。

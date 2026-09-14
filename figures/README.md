@@ -13,4 +13,5 @@ Fig.6 whole, while the canonical source for Fig.4D is no longer present. No
 substitute was guessed. The preserved top-level PDFs are `figTwo.pdf`,
 `figFive.pdf`, and `figSix.pdf`.
 
-Do not add intermediate panels, alternate result copies, or old
+Do not add intermediate panels, alternate result copies, or obsolete
+historical composites to this directory.

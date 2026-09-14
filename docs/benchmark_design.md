@@ -1,17 +1,17 @@
 # Benchmark design
 
-The benchmark is organized by the scientific question reported in the paper:
+The benchmark is organized by the scientific questions reported in the paper:
 
 1. cell-level trajectory inference across 14 real datasets;
 2. gene-level velocity evaluation on real and simulated data;
 3. kinetic-parameter recovery on RPE1 and organoid scEU-seq data; and
-4. an optional post-hoc signed-transition ensemble.
+4. post-hoc signed-transition ensemble evaluation.
 
-Method reproduction is kept separate from evaluation. Each evaluation module
-reads the native result files produced by the methods and translates their
-method-specific keys at the input boundary.
+Method reproduction and evaluation are separate stages. Scripts in
+[`../methods/`](../methods/) produce method-native results. Each module under
+[`../evaluation/`](../evaluation/) owns its metric definition, input mapping,
+alignment rules, compact results, and scientific panels.
 
-The ensemble is not a 21st registered method. Signed-T Mean-4 is its baseline;
-Signed-T RowGeometricMedian-4 is the formal comparator. Both consume the same
-four method outputs and the public fixed-neighbor candidate graphs, and each is
-ranked separately against the 20 registered methods.
+The ensemble consumes released method results after method execution. It is
+not an additional registered method. Its comparator definitions and evaluation
+contract are owned by [`../ensemble/`](../ensemble/).

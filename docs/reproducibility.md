@@ -1,34 +1,38 @@
 # Reproducibility policy
 
-Method scripts follow the official tutorial and reviewed environment for that
-method. The repository does not add a global seed by default. The formal
-DeepKINET benchmark result is the explicit exception: seed 123 and deterministic
-PyTorch/CUDA settings are recorded because the upstream workflow leaves the
-global RNG state unspecified and the result otherwise depends on run order.
-Environment names, local editable checkouts, server paths, and historical
-result generations are not treated as reproducibility contracts.
+Reproduction claims must identify the scientific inputs, method configuration,
+software source, randomness policy, output, and validation performed. A
+structural rerun must not be described as byte-exact reproduction.
 
-When a method requires raw counts, its own script documents the selected
-`_counts.h5ad` artifact, alignment, count checks, and any preprocessing rule.
-This requirement is local to the consuming method.
+## Method runs
 
-The ensemble pins scVelo 0.3.4 and uses its tutorial graph call with
-`vkey="velocity"` and `xkey="Ms"`. Its signed transition call explicitly uses
-`scale=10`, self transitions, negative cosines, zero diffusion weight, and the
-default transition-neighbor count. The repository-local fixed-neighbor NPZ
-files are the public graph artifacts: their numerical arrays match the audited
-upstream assets, while their metadata is deliberately path-free and therefore
-their file SHA256 values are benchmark-specific.
+Method scripts follow their audited upstream workflows. Versions, source
+references, scientific options, result layers, and embeddings are recorded in
+[`../methods/configurations.tsv`](../methods/configurations.tsv). External
+source checkouts must use a recorded release or commit before public release.
 
-The ensemble result metadata keeps provenance dimensions separate:
-`lineage/current_upstream` identifies `transition_ensemble/main@4f2a621`,
-`release_index_commit` identifies the upstream release index commit, and
-`numerical_reproduction_commit` identifies the clean source used for numerical
-reproduction. These fields must not be collapsed into one `source_commit`.
-The detailed evidence is recorded in
-[`provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).
+The repository does not impose one benchmark-wide random seed. Each launcher
+must state whether randomness is fixed or intentionally inherited from the
+upstream workflow. The formal DeepKINET configuration is the explicit
+seed-123, deterministic PyTorch/CUDA case. Raw-count selection and preprocessing
+rules remain local to the methods that consume those inputs.
 
-The generated simulation inputs have a separate audit record. It documents
-their canonical hashes, structural reproduction checks, and the boundary that
-prevents a byte-exact reproduction claim:
-[`provenance/simulation_reproduction_audit_20260914.md`](../provenance/simulation_reproduction_audit_20260914.md).
+## Data and artifacts
+
+Large inputs and method results may remain outside Git. Their logical IDs,
+checksums, publication status, and stable URIs are recorded in
+[`../artifacts.tsv`](../artifacts.tsv). Public code must resolve an artifact or
+user-supplied root and must not depend on a private server path.
+
+The archived simulation workflow is intentionally stochastic. Its scripts,
+canonical output hashes, structural checks, and non-byte-exact boundary are
+recorded in
+[`../provenance/simulation_reproduction_audit_20260914.md`](../provenance/simulation_reproduction_audit_20260914.md).
+
+## Specialized workflows
+
+Module-specific numerical settings belong with the module that executes them.
+The ensemble implementation contract is documented in
+[`../ensemble/README.md`](../ensemble/README.md). Durable evidence separating
+its upstream lineage, release index, and numerical reproduction is recorded in
+[`../provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).

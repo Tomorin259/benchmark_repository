@@ -1,56 +1,37 @@
 # Naming conventions
 
-methods/configurations.tsv is the sole 20-method benchmark registry. It
-contains exactly 20 unique configuration records. The columns have separate
-responsibilities:
+Machine-readable registries are the source of truth for names. Do not copy
+their complete contents into prose or infer public names from Python filenames.
 
-- config_id is the stable C01-C20 record identifier.
-- operational_id identifies the runnable configuration and result family.
-- manuscript_name is the public display name used in tables, figures, and
-  captions. The display spelling is veloVI, not velovi.
+## Methods
 
-## Registered configurations
+[`../methods/configurations.tsv`](../methods/configurations.tsv) is the sole
+registry of the 20 benchmark configurations:
 
-| config_id | operational_id | display name |
-| --- | --- | --- |
-| C01 | scvelo_deterministic | scVelo_deterministic |
-| C02 | scvelo_stochastic | scVelo_stochastic |
-| C03 | scvelo_dynamic | scVelo_dynamic |
-| C04 | multivelo | MultiVelo (RNA_only) |
-| C05 | unitvelo | UniTVelo |
-| C06 | unitvelo_mode2 | UniTVelo(mode2) |
-| C07 | dynamo | Dynamo(RNA_seq) |
-| C08 | TIvelo | TIvelo |
-| C09 | cell2fate | cell2fate |
-| C10 | TFvelo | TFvelo |
-| C11 | veloae | veloAE |
-| C12 | velovi | veloVI |
-| C13 | deepkinet | DeepKINET |
-| C14 | tsvelo | TSvelo |
-| C15 | celldancer | cellDancer |
-| C16 | deepvelo | DeepVelo |
-| C17 | SDEvelo | SDEvelo |
-| C18 | deepvelo2022 | DeepVelo_scv |
-| C19 | graphvelo_scv | GraphVelo_scv |
-| C20 | graphvelo_dynamo | GraphVelo_dyn |
+- `config_id` is the stable C01--C20 record identifier;
+- `operational_id` identifies the runnable configuration and result family;
+- `manuscript_name` is the display name used in paper tables, figures, and
+  prose.
 
-Names and settings follow the existing registry and paper/source evidence;
-they are not inferred from Python filenames. In particular, velovi.py is the
-implementation filename and is not changed to alter the public veloVI display
-spelling.
+Operational IDs are used for paths and joins. Presentation code must obtain
+display names from `manuscript_name` rather than maintaining a private rename
+dictionary.
 
-DeepVelo C16 is the graph-convolutional configuration. C18 is the distinct
-DeepVelo reconstruction configuration. GraphVelo C19 consumes pre-calculated
-scVelo input, while C20 consumes pre-calculated Dynamo input; these are two
-distinct configurations of the same software.
+Important distinctions retained by the registry include:
 
-Dataset IDs identify biological inputs and their evaluation panels. They are
-not method IDs, configuration IDs, or ensemble IDs.
+- `velovi` is the operational ID, while **veloVI** is the display spelling;
+- C16 DeepVelo and C18 DeepVelo_scv are distinct configurations;
+- C19 GraphVelo_scv and C20 GraphVelo_dyn differ by their upstream velocity
+  input.
 
-Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are independent comparators,
-not registry rows. Mean-4 is the baseline; RowGeometricMedian-4 is the formal
-ensemble. Each is
-ranked separately against the 20 registered methods and they are not compared
-with each other. Both implementations are in ensemble/. The shared
-evaluation/cell/reference_neighbors/ fixed-neighbor contract is used by the
-ensemble evaluation; formal fixed-neighbor all-14 results are complete.
+## Datasets
+
+[`../data/datasets.tsv`](../data/datasets.tsv) owns stable dataset IDs and
+paper-facing display names. Evaluation-specific aliases are resolved at the
+evaluation input boundary; they must not replace the registered dataset ID.
+
+## Ensemble comparators
+
+Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
+method registry rows. Their identifiers, definitions, and ranking rules are
+owned by [`../ensemble/`](../ensemble/).

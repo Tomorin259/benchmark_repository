@@ -37,6 +37,36 @@ repository cleanup changes their layout and provenance surface, not the
 14×20 scientific results. DeepVelo's `cell=no-vu` output remains the selected
 input.
 
+## BATC branch-selection policy
+
+The BATC implementation follows GRAVITY's curve fitting, tangent-cosine, and
+per-source-cell branch-maximization procedure. GRAVITY selects the best branch
+with `np.nanargmax`. The benchmark adds one explicit robustness adaptation in
+`batc.py`: branch scores that are NaN are converted to zero before taking the
+maximum. This keeps BATC defined when every configured branch score for a
+source cell is NaN. It also means that, in principle, a NaN fallback of zero
+can exceed a finite negative branch score. This is a benchmark adaptation and
+must not be attributed to the upstream GRAVITY implementation.
+
+An isolated original-policy rerun at repository commit `72d6754` used the same
+14×20 input manifest, fixed-reference-30 assets, and metric configuration. For
+278 of the 280 method/dataset pairs, upstream `np.nanargmax` completed and the
+BATC value was exactly equal to the repository value (zero differing pairs;
+maximum absolute difference 0). The upstream policy was undefined for two
+pairs because at least one source-cell column contained only NaN branch
+scores:
+
+- `bonemarrow/TSvelo`;
+- `rpe1_gen/TFvelo`.
+
+Those pairs raise `ValueError: All-NaN slice encountered` under the unmodified
+GRAVITY branch selector. The complete public Cell table therefore retains the
+documented zero fallback. The same-policy check on the 14 datasets and two
+Ensemble variants completed for all 28 scores with maximum absolute difference
+0, so this audit does not require changes to Cell or Ensemble result tables,
+rankings, or figures. The numerical record is summarized in
+[`../../provenance/fixed_neighbor_reproduction_20260912.md`](../../provenance/fixed_neighbor_reproduction_20260912.md).
+
 ## Reproduce the evaluation
 
 The large method result files, reference moments, and indicator environments
