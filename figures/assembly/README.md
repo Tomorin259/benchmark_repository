@@ -10,4 +10,10 @@ canonical source (Fig.4D), and 4 missing independent panel sources (Fig.1A,
 Fig.1B, Fig.3A, and Fig.6 whole). SupFig.09 has materialized
 RowGeometricMedian-4 CBDir and BATC metric panels. These unresolved items are recorded explicitly;
 no replacement image was inferred. The preserved top-level PDFs
-`../figTwo.pdf`, `../figFive.pdf`, and `../figSix.pdf` remain unchanged.
+`../figTwo.pdf` and `../figSix.pdf` remain unchanged; `../figFive.pdf` uses the current central-result panels.
+
+Figure 5 materialized files and hashes match the current canonical panels.
+The separately stored composite-content validation is
+`../fig5_composite_manifest.json`; matching assembly hashes alone is not proof
+of composite contents. The [kinetics workflow](../../evaluation/kinetics_recovery/README.md)
+defines the frozen inputs and rendering contract.

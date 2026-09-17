@@ -12,7 +12,7 @@ yet a clean-environment, from-public-inputs, one-command reproduction release.
 
 ## Current status
 
-Status as of 2026-09-14:
+Status as of 2026-09-17:
 
 | Area | Repository support | Remaining boundary |
 | --- | --- | --- |
@@ -20,7 +20,7 @@ Status as of 2026-09-14:
 | Cell-level evaluation | Complete compact results for 14 real datasets × 20 configurations under the fixed-reference-30 contract | Large method-result inputs remain external |
 | Gene-level evaluation | Reference-30 real and simulated results, plotting code, and paper panels are available | Canonical input and method-result H5AD files remain external |
 | Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
-| Kinetics recovery | The formal seed-123 result bundle, metrics, and Figure 5 plotting entries are available | Rebuilding still requires external H5AD files and reference tables |
+| Kinetics recovery | Frozen central-result evaluation, current Figure 5 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding still requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
 | Integrated summary | Compact Figure 6 input tables are available | The formal Figure 6 renderer is missing |
 | Paper figures | Confirmed composite PDFs and 110 materialized panels are recorded by the assembly manifest | Five panel-source or provenance gaps remain documented |
@@ -99,7 +99,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 
 ## 当前状态
 
-截至 2026-09-14：
+截至 2026-09-17：
 
 | 模块 | 仓库现有支撑 | 当前边界 |
 | --- | --- | --- |
@@ -107,7 +107,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | Cell-level 评估 | fixed-reference-30 契约下的 14 个真实数据集 × 20 个配置紧凑结果已完成 | 大型方法结果输入仍在外部存储 |
 | Gene-level 评估 | reference-30 真实及模拟结果、绘图代码和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
 | 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
-| 动力学参数恢复 | 正式 seed-123 结果包、指标入口和 Figure 5 绘图入口已归档 | 重建仍需外部 H5AD 和参考表 |
+| 动力学参数恢复 | central-results 评估、当前 Figure 5 panel/组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
 | 综合汇总 | Figure 6 的紧凑输入表已归档 | 正式 Figure 6 renderer 仍缺失 |
 | 论文图件 | 已确认的组合 PDF 和 110 个物化 panel 均由 assembly manifest 记录 | 仍有五项 panel source 或 provenance 缺口 |

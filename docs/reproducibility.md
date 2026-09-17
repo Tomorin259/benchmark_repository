@@ -36,3 +36,9 @@ The ensemble implementation contract is documented in
 [`../ensemble/README.md`](../ensemble/README.md). Durable evidence separating
 its upstream lineage, release index, and numerical reproduction is recorded in
 [`../provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).
+
+Kinetics reproduction uses the frozen central-result inputs and runtime
+versions recorded in `evaluation/kinetics_recovery/results/central_results/manifest.json`.
+DeepKINET seed identity is backed by H5AD metadata and input checksums; CSV
+byte identity is not implied; small full-table differences have an unestablished cause. Figure 5 streams reuse
+saved projections, and quantitative plots consume one evaluator output.

@@ -1,4 +1,31 @@
 {
+  "rpe1": [
+    {
+      "method": "cellDancer",
+      "output_stem": "celldancer",
+      "result": "results/celldancer/celldancer_rpe1.h5ad",
+      "velocity_layer": "velocity"
+    },
+    {
+      "method": "DeepVelo",
+      "output_stem": "deepvelo",
+      "result": "results/deepvelo/results_with_vu/deepvelo_rpe1.h5ad",
+      "velocity_layer": "velocity"
+    },
+    {
+      "method": "DeepKINET",
+      "output_stem": "deepkinet",
+      "result": "results/DeepKINET/DeepKINET_rpe1.h5ad",
+      "velocity_layer": "DeepKINET_velocity",
+      "reference": "results/scvelo_deterministic/scv_deterministic_rpe1.h5ad"
+    },
+    {
+      "method": "TSvelo",
+      "output_stem": "tsvelo",
+      "result": "results/TSvelo/rpe1/TSvelo.h5ad",
+      "velocity_layer": "velocity"
+    }
+  ],
   "organoid": [
     {
       "method": "cellDancer",
@@ -10,7 +37,8 @@
       "method": "DeepKINET",
       "output_stem": "DeepKINET",
       "result": "results/DeepKINET/DeepKINET_organoid.h5ad",
-      "velocity_layer": "DeepKINET_velocity"
+      "velocity_layer": "DeepKINET_velocity",
+      "reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad"
     },
     {
       "method": "DeepVelo",
@@ -23,27 +51,6 @@
     {
       "method": "Dynamo",
       "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/dynamo.png"
-    },
-    {
-      "method": "cellDancer",
-      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/celldancer.png"
-    },
-    {
-      "method": "DeepVelo",
-      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/deepvelo.png"
-    },
-    {
-      "method": "TSvelo",
-      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/tsvelo.png"
-    }
-  ],
-  "rpe1_deepkinet": [
-    {
-      "method": "DeepKINET",
-      "output_stem": "deepkinet",
-      "result": "results/DeepKINET/DeepKINET_rpe1.h5ad",
-      "reference": "results/scvelo_deterministic/scv_deterministic_rpe1.h5ad",
-      "velocity_layer": "DeepKINET_velocity"
     }
   ]
 }

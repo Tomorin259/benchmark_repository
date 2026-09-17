@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Render Figure 5 quantitative panels with the historical plotting code.
-
-The plotting calls, gene order, method order, and preprocessing inputs follow
-the legacy Figure 5 candidate script. Only the DeepKINET input paths are
-switched to the final seed-123 outputs through ``figure5_config.json``.
-"""
+"""Render Figure 5 quantitative panels from one kinetics evaluator output."""
 
 from __future__ import annotations
 
@@ -70,8 +65,23 @@ def read_metric(
     method: str,
     parameter: str,
     genes: list[str] | None = None,
+    dataset: str = "rpe1",
+    branch: int | None = None,
 ) -> pd.DataFrame:
     frame = pd.read_csv(path)
+    if {"Method", "Parameter", "Dataset", "Branch"}.issubset(frame.columns):
+        selected = (
+            frame["Method"].eq(DISPLAY_METHOD_NAMES.get(method, method))
+            & frame["Parameter"].str.lower().eq(parameter.lower())
+            & frame["Dataset"].eq(dataset)
+        )
+        selected &= (
+            frame["Branch"].isna() if branch is None
+            else pd.to_numeric(frame["Branch"], errors="raise").eq(branch)
+        )
+        frame = frame.loc[selected]
+    if frame.empty or frame["Gene"].duplicated().any():
+        raise ValueError(f"{path}: missing or duplicated rows for {method}/{dataset}/{branch}/{parameter}")
     correlation_column = next(
         column for column in frame.columns if "corr" in column.lower()
     )
@@ -101,11 +111,12 @@ def plot_trajectory(
     method_paths: dict[str, Path],
     genes: list[str],
     output_path: Path,
-) -> None:
-    """Use the legacy 10-column trajectory layout and display transforms."""
+) -> pd.DataFrame:
+    """Preserve the 10-column trajectory layout and export plotted values."""
     truth = read_matrix(reference_path)
     methods = {name: read_matrix(path) for name, path in method_paths.items()}
     valid_genes = [gene for gene in genes if gene in truth.index]
+    plotted_rows = []
     rows = math.ceil(len(valid_genes) / 10)
     figure, axes = plt.subplots(rows, 10, figsize=(30, 3 * rows))
     axes = np.asarray(axes).reshape(-1)
@@ -116,6 +127,10 @@ def plot_trajectory(
             continue
         gene = valid_genes[index]
         truth_values = zscore(truth.loc[gene])
+        plotted_rows.extend(
+            {"Gene": gene, "Source": "scEU-seq", "Relative_Position": t, "Display_Z": v}
+            for t, v in zip(np.linspace(0, 1, len(truth_values)), truth_values)
+        )
         axis.plot(
             np.linspace(0, 1, len(truth_values)),
             truth_values,
@@ -128,6 +143,11 @@ def plot_trajectory(
             if gene not in frame.index:
                 continue
             values = zscore(frame.loc[gene])
+            plotted_rows.extend(
+                {"Gene": gene, "Source": DISPLAY_METHOD_NAMES.get(name, name),
+                 "Relative_Position": t, "Display_Z": v}
+                for t, v in zip(np.linspace(0, 1, len(values)), values)
+            )
             axis.plot(
                 np.linspace(0, 1, len(values)),
                 values,
@@ -147,6 +167,7 @@ def plot_trajectory(
     plt.tight_layout()
     figure.savefig(output_path, dpi=600, bbox_inches="tight")
     plt.close(figure)
+    return pd.DataFrame(plotted_rows)
 
 
 def plot_heatmap(
@@ -322,7 +343,7 @@ def plot_branch(
         for parameter in ("Alpha", "Gamma"):
             path = paths.get(parameter)
             if path is not None:
-                frame = read_metric(path, method, parameter, genes)
+                frame = read_metric(path, method, parameter, genes, dataset="organoid", branch=branch_id)
                 frame["Method"] = display_method
                 frames.append(frame)
     combined = pd.concat(frames, ignore_index=True)
@@ -347,6 +368,7 @@ def plot_branch(
             medianprops=dict(color="black", linewidth=2),
             fliersize=0,
         )
+        np.random.seed(0)  # Display jitter only; scores are unchanged.
         sns.stripplot(
             x="Method",
             y="Correlation",
@@ -409,7 +431,7 @@ def main() -> None:
 
     rpe1 = config["inputs"]["rpe1"]
     for parameter in ("alpha", "gamma"):
-        plot_trajectory(
+        trajectory_data = plot_trajectory(
             parameter,
             resolve(artifact_root, rpe1["reference"][parameter]),
             {
@@ -419,6 +441,7 @@ def main() -> None:
             config["trajectory_genes"],
             output / f"rpe1_{parameter}_trajectories.png",
         )
+        trajectory_data.to_csv(plot_data / f"rpe1_{parameter}_trajectories.csv", index=False)
 
     alpha_matrix, gamma_matrix = plot_heatmap(
         {
@@ -482,7 +505,7 @@ def main() -> None:
             plot_data / f"organoid_branch{branch_id}_gene_metrics.csv", index=False
         )
 
-    print(f"Wrote legacy-style Figure 5 quantitative panels to {output}")
+    print(f"Wrote Figure 5 quantitative panels from {artifact_root} to {output}")
 
 
 if __name__ == "__main__":

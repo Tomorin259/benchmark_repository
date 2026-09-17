@@ -1,6 +1,6 @@
 # Paper figures
 
-This directory contains the confirmed paper-level composite PDFs and the
+This directory contains the current paper-level composite PDFs and the
 self-contained paper panel assembly. Every available panel in `assembly/` is a
 regular file whose bytes are recorded by SHA256 in
 `assembly/assembly_manifest.tsv`; canonical source paths are repository-relative
@@ -15,3 +15,9 @@ substitute was guessed. The preserved top-level PDFs are `figTwo.pdf`,
 
 Do not add intermediate panels, alternate result copies, or obsolete
 historical composites to this directory.
+
+Figure 5 panels, assembly copies, and the current composite are synchronized
+with the central-result evaluation. The composite has JPEG-encoded images;
+`fig5_composite_manifest.json` records its checksum, source-panel mapping,
+and content validation. Old panels/composites are archived externally.
+See the [kinetics workflow](../evaluation/kinetics_recovery/README.md).

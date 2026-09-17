@@ -1,0 +1,146 @@
+{
+  "export": "reviewed_powerpoint_export",
+  "pages": 1,
+  "panel_encoding": "JPEG",
+  "validation": "One-to-one source dimensions and reduced-raster RGB comparison, not PNG byte identity.",
+  "comparison_thumbnail_max_dimension": 1024,
+  "panels": [
+    {
+      "image": "IM10.jpg",
+      "panel": "C",
+      "mean_abs_rgb_error": 0.5384521484375,
+      "psnr_db": 45.34336844038991,
+      "runner_up_mae": null,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/rpe1_alpha_gamma_heatmap.png",
+      "source_sha256": "496685ef0125fab936666f2a738f950c170dcd0861e4ef624b371c2f1b8158d8"
+    },
+    {
+      "image": "IM16.jpg",
+      "panel": "A Dynamo labelled positive control",
+      "mean_abs_rgb_error": 0.9484906445396722,
+      "psnr_db": 41.46694396148994,
+      "runner_up_mae": 16.311272874892193,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/dynamo.png",
+      "source_sha256": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7"
+    },
+    {
+      "image": "IM17.jpg",
+      "panel": "A cellDancer",
+      "mean_abs_rgb_error": 0.9573091849935317,
+      "psnr_db": 41.361067736363395,
+      "runner_up_mae": 16.30071597738788,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/celldancer.png",
+      "source_sha256": "27cfc2c85f47fbed91f24d2125f9fa0248add8ed2343a9e90dacac3e1c97ce18"
+    },
+    {
+      "image": "IM23.jpg",
+      "panel": "A DeepVelo",
+      "mean_abs_rgb_error": 0.9417974645590772,
+      "psnr_db": 41.52736284042763,
+      "runner_up_mae": 17.718753368909013,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/deepvelo.png",
+      "source_sha256": "ac5de515944498c89e28d74ad87a8522902b10c60d8cb1793621d058781edf48"
+    },
+    {
+      "image": "IM24.jpg",
+      "panel": "A DeepKINET",
+      "mean_abs_rgb_error": 0.9160876354301424,
+      "psnr_db": 41.585153292551446,
+      "runner_up_mae": 29.647674863222296,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/deepkinet.png",
+      "source_sha256": "c04564022d29b08ddef6fc3fbb2a1045a61c50285ad993f4a95b78cf79995555"
+    },
+    {
+      "image": "IM25.jpg",
+      "panel": "A TSvelo",
+      "mean_abs_rgb_error": 0.9401707026196636,
+      "psnr_db": 41.5303243467147,
+      "runner_up_mae": 20.116636683376456,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/tsvelo.png",
+      "source_sha256": "e8c355920275030ef6356606554e73c24a8ee0f2174d488d12fe35e6fd14280b"
+    },
+    {
+      "image": "IM26.jpg",
+      "panel": "B alpha",
+      "mean_abs_rgb_error": 0.19554938892326734,
+      "psnr_db": 50.57010422886811,
+      "runner_up_mae": 16.188748904187293,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/rpe1_alpha_trajectories.png",
+      "source_sha256": "eee20f15d5e6e346cdfed68eb8b0cf0583b8a6d5fa45935201db6749701c7af4"
+    },
+    {
+      "image": "IM27.jpg",
+      "panel": "B gamma",
+      "mean_abs_rgb_error": 0.18168735818894388,
+      "psnr_db": 51.43860974224344,
+      "runner_up_mae": 16.18924846586221,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/rpe1_gamma_trajectories.png",
+      "source_sha256": "8f9cb67fa6045ed31e07d9250614de6d8a1a3b055f3d55a397c1e4951ee1c3bd"
+    },
+    {
+      "image": "IM28.jpg",
+      "panel": "D DeepVelo",
+      "mean_abs_rgb_error": 0.3293278042521994,
+      "psnr_db": 50.6534203093685,
+      "runner_up_mae": 10.182087380865104,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/rpe1_deepvelo_kinetic_classes.png",
+      "source_sha256": "7115b049295449ef540bd755ab80e810e563d5e414bee935fe26cbab55922ef7"
+    },
+    {
+      "image": "IM29.jpg",
+      "panel": "E cellDancer",
+      "mean_abs_rgb_error": 0.37919828626844615,
+      "psnr_db": 47.745952095345245,
+      "runner_up_mae": 5.4268688625759545,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/celldancer_organoid_stream_title_removed.png",
+      "source_sha256": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9"
+    },
+    {
+      "image": "IM30.jpg",
+      "panel": "E DeepKINET",
+      "mean_abs_rgb_error": 0.39316855536566847,
+      "psnr_db": 47.36870179665584,
+      "runner_up_mae": 6.334998660617404,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/DeepKINET_organoid_stream_title_removed.png",
+      "source_sha256": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862"
+    },
+    {
+      "image": "IM31.jpg",
+      "panel": "E DeepVelo",
+      "mean_abs_rgb_error": 0.3979326883951823,
+      "psnr_db": 47.25668956645491,
+      "runner_up_mae": 5.414096408420139,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/deepvelo_organoid_stream_title_removed.png",
+      "source_sha256": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3"
+    },
+    {
+      "image": "IM32.jpg",
+      "panel": "F branch 1",
+      "mean_abs_rgb_error": 0.07875438839615669,
+      "psnr_db": 56.128994560229216,
+      "runner_up_mae": 10.488536036816335,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/organoid_branch1_boxplot.png",
+      "source_sha256": "a2c087d37c0b4cf233ba9880e3f6b8e794be303d383a56086e03dfc4f179fc0c"
+    },
+    {
+      "image": "IM33.jpg",
+      "panel": "F branch 2",
+      "mean_abs_rgb_error": 0.12820396225979305,
+      "psnr_db": 54.77245726482963,
+      "runner_up_mae": 10.441534726071692,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/organoid_branch2_boxplot.png",
+      "source_sha256": "2b3d13f28ea2ccbb79c7b88d974e2628a7b2c2859e1e115f0513c2ca411c3437"
+    },
+    {
+      "image": "IM9.jpg",
+      "panel": "D cellDancer",
+      "mean_abs_rgb_error": 0.3346592818304008,
+      "psnr_db": 50.61213838189393,
+      "runner_up_mae": 10.183682528409092,
+      "source_path": "evaluation/kinetics_recovery/figures/fig5/rpe1_celldancer_kinetic_classes.png",
+      "source_sha256": "6db3ce5f59d9df7798a85efefe09f8b0cd2d019b13c36105652c40da2a2fec44"
+    }
+  ],
+  "composite_path": "figures/figFive.pdf",
+  "composite_sha256": "fc21dbe19d3292d442f32091e947d3b56698c77e9ed1ca304309f5095c3435e1"
+}

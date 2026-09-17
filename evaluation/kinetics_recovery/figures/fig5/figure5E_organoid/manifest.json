@@ -1,0 +1,55 @@
+{
+  "panel": "organoid",
+  "projection_policy": "reuse_saved_X_and_V_without_recomputation",
+  "versions": {
+    "scanpy": "1.9.6",
+    "scvelo": "0.2.5",
+    "numpy": "1.23.0",
+    "matplotlib": "3.5.3"
+  },
+  "dpi": 600,
+  "records": [
+    {
+      "method": "cellDancer",
+      "input": "results/celldancer/celldancer_organoid.h5ad",
+      "input_sha256": "ef0221f9436582155e896c56f0d72fc03f283cb9a04d0ae8671740e59637335e",
+      "n_cells": 3831,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "celldancer_organoid_stream_title_removed.png",
+      "output_sha256": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9"
+    },
+    {
+      "method": "DeepKINET",
+      "input": "results/DeepKINET/DeepKINET_organoid.h5ad",
+      "input_sha256": "738487748a9d6c7e23de71d1e820a2fddc9e704a5e2f308754ea5e65986ef054",
+      "n_cells": 3831,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "DeepKINET_velocity_umap",
+      "projection_recomputed": false,
+      "display_reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad",
+      "display_reference_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+      "reference_embedding_exact_match": true,
+      "projection_provenance_status": "benchmark_reference30_postprocessing",
+      "output": "DeepKINET_organoid_stream_title_removed.png",
+      "output_sha256": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862"
+    },
+    {
+      "method": "DeepVelo",
+      "input": "results/deepvelo/results_with_vu/deepvelo_organoid.h5ad",
+      "input_sha256": "a8c8197f8107d6382205c5226ce7ef26107f415f5100bfe8c55c48ebc886916c",
+      "n_cells": 3831,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "deepvelo_organoid_stream_title_removed.png",
+      "output_sha256": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3"
+    }
+  ]
+}

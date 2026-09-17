@@ -1,0 +1,361 @@
+{
+  "status": "promoted_canonical_central_results",
+  "recorded_utc": "2026-09-17T06:42:58.437455+00:00",
+  "base_commit": "f27a07a5c8700d56939ed11e8bb07dc5e99f1208",
+  "input_hash_capture": "after_evaluation; stream input hashes additionally checked before_and_after_rendering",
+  "method_training_rerun": false,
+  "scientific_evaluator_changed": false,
+  "central_h5ad_policy": "results_directory_except_labelled_Dynamo",
+  "inputs": [
+    {
+      "method": "cellDancer",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/celldancer/rpe1.h5ad",
+      "resolved_velocity_relative": "results/celldancer/celldancer_rpe1.h5ad",
+      "sha256": "bc7367471843bf123b5a77fade92061bbc5f79bd74f21a941df64a5b729a7c4a"
+    },
+    {
+      "method": "cellDancer",
+      "dataset": "organoid",
+      "alias": "method-results/kinetics/celldancer/organoid.h5ad",
+      "resolved_velocity_relative": "results/celldancer/celldancer_organoid.h5ad",
+      "sha256": "ef0221f9436582155e896c56f0d72fc03f283cb9a04d0ae8671740e59637335e"
+    },
+    {
+      "method": "DeepVelo",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/deepvelo/rpe1_unspliced.h5ad",
+      "resolved_velocity_relative": "results/deepvelo/results_with_vu/deepvelo_rpe1.h5ad",
+      "sha256": "6da316f70c058104dbafbebeee5acee4172281b1477e40ef035dcd8561fa6f50"
+    },
+    {
+      "method": "DeepVelo",
+      "dataset": "organoid",
+      "alias": "method-results/kinetics/deepvelo/organoid_unspliced.h5ad",
+      "resolved_velocity_relative": "results/deepvelo/results_with_vu/deepvelo_organoid.h5ad",
+      "sha256": "a8c8197f8107d6382205c5226ce7ef26107f415f5100bfe8c55c48ebc886916c"
+    },
+    {
+      "method": "DeepKINET",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/deepkinet/rpe1.h5ad",
+      "resolved_velocity_relative": "results/DeepKINET/DeepKINET_rpe1.h5ad",
+      "sha256": "36d2c34b9ba6a13c45968a896f9fb903660fa56a4e5cb80e655d15116d6072e0"
+    },
+    {
+      "method": "DeepKINET",
+      "dataset": "organoid",
+      "alias": "method-results/kinetics/deepkinet/organoid.h5ad",
+      "resolved_velocity_relative": "results/DeepKINET/DeepKINET_organoid.h5ad",
+      "sha256": "738487748a9d6c7e23de71d1e820a2fddc9e704a5e2f308754ea5e65986ef054"
+    },
+    {
+      "method": "Dynamo",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/dynamo/rpe1_labelled.h5ad",
+      "resolved_velocity_relative": "indicators/gene/scEU_rpe1_analyze/dynamo/dynamo_rpe1.h5ad",
+      "sha256": "cfa9dde78f7d6ccd51a2b0336f4e3aee9d9133aebb0900620d3d21357dbd15fe"
+    },
+    {
+      "method": "TSvelo",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/tsvelo/rpe1_lineage0.h5ad",
+      "resolved_velocity_relative": "results/TSvelo/rpe1/l0_TSvelo.h5ad",
+      "sha256": "79118398c53c7e5ad764ad5d11fc36fec2afdb33d8818b66bc567e3e63d830f9"
+    },
+    {
+      "method": "TSvelo",
+      "dataset": "rpe1",
+      "alias": "method-results/kinetics/tsvelo/rpe1_lineage1.h5ad",
+      "resolved_velocity_relative": "results/TSvelo/rpe1/l1_TSvelo.h5ad",
+      "sha256": "409e81fad6ff3b63d7a180b94d390efe294fb11ca49bacee5aaea08e25b44a0b"
+    }
+  ],
+  "references": [
+    {
+      "dataset": "rpe1",
+      "kind": "reference",
+      "artifact_relative": "references/kinetics/rpe1_table_s1.csv",
+      "sha256": "18a8d807adaaff6a69001bf6098367bc8d318ed792654cb18bcb830a78cbf837"
+    },
+    {
+      "dataset": "rpe1",
+      "kind": "alpha_gene_subset",
+      "artifact_relative": "references/kinetics/rpe1_alpha_genes.csv",
+      "sha256": "7dcd9b77d8292949734ee55688c051c5e30c74a97bd95e899f9eb97669fe8daa"
+    },
+    {
+      "dataset": "organoid",
+      "kind": "reference",
+      "artifact_relative": "references/kinetics/organoid_table_s4.csv",
+      "sha256": "831e67d038d6c1e7972388af7c42f81ac1103677670a5220b888e0e78ad5a09d"
+    }
+  ],
+  "evaluator_versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.3.1",
+    "scipy": "1.13.1",
+    "anndata": "0.10.8"
+  },
+  "quantitative_versions": {
+    "numpy": "1.23.0",
+    "pandas": "2.3.3",
+    "scipy": "1.6.2",
+    "matplotlib": "3.5.3",
+    "seaborn": "0.11.2",
+    "anndata": "0.10.9",
+    "scanpy": "1.9.6",
+    "scvelo": "0.2.5",
+    "matplotlib-venn": "1.1.2 (isolated dependency; no conda package replacement)"
+  },
+  "stream_manifests": {
+    "figure5A_rpe1": {
+      "panel": "rpe1",
+      "projection_policy": "reuse_saved_X_and_V_without_recomputation",
+      "versions": {
+        "scanpy": "1.9.6",
+        "scvelo": "0.2.5",
+        "numpy": "1.23.0",
+        "matplotlib": "3.5.3"
+      },
+      "dpi": 600,
+      "records": [
+        {
+          "method": "cellDancer",
+          "input": "results/celldancer/celldancer_rpe1.h5ad",
+          "input_sha256": "bc7367471843bf123b5a77fade92061bbc5f79bd74f21a941df64a5b729a7c4a",
+          "n_cells": 2793,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "celldancer.png",
+          "output_sha256": "27cfc2c85f47fbed91f24d2125f9fa0248add8ed2343a9e90dacac3e1c97ce18"
+        },
+        {
+          "method": "DeepVelo",
+          "input": "results/deepvelo/results_with_vu/deepvelo_rpe1.h5ad",
+          "input_sha256": "6da316f70c058104dbafbebeee5acee4172281b1477e40ef035dcd8561fa6f50",
+          "n_cells": 2793,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "deepvelo.png",
+          "output_sha256": "ac5de515944498c89e28d74ad87a8522902b10c60d8cb1793621d058781edf48"
+        },
+        {
+          "method": "DeepKINET",
+          "input": "results/DeepKINET/DeepKINET_rpe1.h5ad",
+          "input_sha256": "36d2c34b9ba6a13c45968a896f9fb903660fa56a4e5cb80e655d15116d6072e0",
+          "n_cells": 2793,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "DeepKINET_velocity_umap",
+          "projection_recomputed": false,
+          "display_reference": "results/scvelo_deterministic/scv_deterministic_rpe1.h5ad",
+          "display_reference_sha256": "a8ed4d121100487564c869c86a89f752f7ae21a48978c2e1da423381c5d19b2b",
+          "reference_embedding_exact_match": false,
+          "reference_embedding_equal_at_saved_dtype": true,
+          "reference_embedding_max_abs_difference": 2.220446049250313e-15,
+          "projection_provenance_status": "benchmark_reference30_postprocessing",
+          "output": "deepkinet.png",
+          "output_sha256": "c04564022d29b08ddef6fc3fbb2a1045a61c50285ad993f4a95b78cf79995555"
+        },
+        {
+          "method": "TSvelo",
+          "input": "results/TSvelo/rpe1/TSvelo.h5ad",
+          "input_sha256": "bc3e0ce812e592b94509a7492051a1fb7a715b808f950ef9cf36f1bcaad3bd3d",
+          "n_cells": 2793,
+          "n_genes": 166,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "tsvelo.png",
+          "output_sha256": "e8c355920275030ef6356606554e73c24a8ee0f2174d488d12fe35e6fd14280b"
+        }
+      ],
+      "savefig": {
+        "bbox_inches": "tight",
+        "pad_inches": 0.1
+      }
+    },
+    "figure5E_organoid": {
+      "panel": "organoid",
+      "projection_policy": "reuse_saved_X_and_V_without_recomputation",
+      "versions": {
+        "scanpy": "1.9.6",
+        "scvelo": "0.2.5",
+        "numpy": "1.23.0",
+        "matplotlib": "3.5.3"
+      },
+      "dpi": 600,
+      "records": [
+        {
+          "method": "cellDancer",
+          "input": "results/celldancer/celldancer_organoid.h5ad",
+          "input_sha256": "ef0221f9436582155e896c56f0d72fc03f283cb9a04d0ae8671740e59637335e",
+          "n_cells": 3831,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "celldancer_organoid_stream_title_removed.png",
+          "output_sha256": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9"
+        },
+        {
+          "method": "DeepKINET",
+          "input": "results/DeepKINET/DeepKINET_organoid.h5ad",
+          "input_sha256": "738487748a9d6c7e23de71d1e820a2fddc9e704a5e2f308754ea5e65986ef054",
+          "n_cells": 3831,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "DeepKINET_velocity_umap",
+          "projection_recomputed": false,
+          "display_reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad",
+          "display_reference_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+          "reference_embedding_exact_match": true,
+          "projection_provenance_status": "benchmark_reference30_postprocessing",
+          "output": "DeepKINET_organoid_stream_title_removed.png",
+          "output_sha256": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862"
+        },
+        {
+          "method": "DeepVelo",
+          "input": "results/deepvelo/results_with_vu/deepvelo_organoid.h5ad",
+          "input_sha256": "a8c8197f8107d6382205c5226ce7ef26107f415f5100bfe8c55c48ebc886916c",
+          "n_cells": 3831,
+          "n_genes": 2000,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "deepvelo_organoid_stream_title_removed.png",
+          "output_sha256": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3"
+        }
+      ]
+    }
+  },
+  "outputs_sha256": {
+    "evaluation/kinetics_recovery/results/central_results/component_means.csv": "2c5aa83d03afdb0651012a819fb6e8ac0731a4f5897899f9bcda1fc5278a0c53",
+    "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv": "b1e7db7adaed09b7ddfb1c8a35e4f4c2870b74e30b20282392bbca0c8a35fbd4",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepKINET_gamma_raw.csv": "7bce1c9cafcefd6a548b9fe17b2fc1791cc2f365ae37328006a89eec07fbcb9c",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepVelo_alpha_raw.csv": "382bfb9f188b8dc94a993a5d6aa3840c898421c26338b5bef1a14ed62161ce2c",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepVelo_gamma_raw.csv": "95c12ce516d050e6edfd7fa57c95e6479cc6125e5918c64f56225ebd014175d9",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/cellDancer_alpha_raw.csv": "32559a35de42f093b382515c8172c879c10cf0efe902261e8fc17b9f8eec4854",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/cellDancer_gamma_raw.csv": "01af526db06d9c700881a3d77748e9761c9c7a29183fe5d30dd5e762a9bb1fc0",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_alpha.csv": "8914f4b37b7de30187267b7129491f450687de2a82413d3887d541833ddde44a",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_gamma.csv": "dd9ae0bffdc1978a444f6782050149ce0a848834bccb65ce30bc08ee3110a10f",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepKINET_gamma_raw.csv": "1bedd3b1c421f3dfea3760214cdf00257741227b2f353714a67451d662070b7e",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepVelo_alpha_raw.csv": "edef3cb3faefc584c2188dcb698681551dcb83ced75e5828a6b5753ea6fcdca1",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepVelo_gamma_raw.csv": "69fe3ff921473b077235cbb5bc2ffb383eb5fe5b41e1072bb60088a363e31c1e",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/cellDancer_alpha_raw.csv": "066dbfd72bd52d3aea2e7c18e6bfbc50278c3824504124a3eb41a90aa1e951fd",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/cellDancer_gamma_raw.csv": "7f41832fc033b2df7ef39353c6f48bd9577fc253ca49fc731079703b425b7d68",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/reference_alpha.csv": "106cdbf9d5adfc8b54a78378a1dc0c0d4e4550865872b5e946133b83ff20acd2",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/reference_gamma.csv": "5523ec066167f2d05b558bc196ed81fb329fb400ce5be2c2be9f4de5f2f7922d",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/DeepKINET_gamma_raw.csv": "ee05ddf4d791f619af8fe68bbf7d9b665502b92b1711812a25c707172243c3e7",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/DeepVelo_alpha_raw.csv": "b67d831c2f9f7e03d9f905bfae7bf38cc21e6fe0fcf800b086fa556e250c4e8e",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/DeepVelo_gamma_raw.csv": "19996eccbc9f70c17af7ad86d0f67424f21567a53adb4b6617d031c0c92ffe45",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/Dynamo_alpha_raw.csv": "282a57ca3fb831546fd2989521e916d48c3f5267c57581936cc046ab9621166f",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/TSvelo_alpha_raw.csv": "6144006fb49870898ae2f3d88611478cfbc6486c4a074806e052d17ab1bab76a",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/cellDancer_alpha_raw.csv": "0ba8fb6c263c12b1e1e8bf4db0c9f3b8edc1fc8bd8af97112928d3909b04497e",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/cellDancer_gamma_raw.csv": "2c5398aa107d46182b36690f2d9f4bb9940910a90e72b21bba21ac847aa9ecb7",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/reference_alpha.csv": "03242137bd17a5159bba035550d1d55988f74d1886e5d786388efa716ab45ee4",
+    "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/reference_gamma.csv": "eb2f996c2c68866d67eaf50a953a161e3533c3918358678f58dc5436580f4e74",
+    "evaluation/kinetics_recovery/results/central_results/method_summary.csv": "42e259efd2294397183c6b07ce45a7a4f5ebc882ad8441432da2a6190712842d",
+    "evaluation/kinetics_recovery/results/central_results/system_means.csv": "93b5e0a8c374340c44afc99f223ec8884c0ed7942758b283605f07c62b68f221",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepKINET_gamma.csv": "04f1ce7a744a6e33284823a1093fa4f50f78cc742bd50022efa70d4abffd2487",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepVelo_alpha.csv": "ac949a855d7666e8d9eec386684fcfc54c0c7c4fbbabc11c5a5f2859d7c0b13d",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepVelo_gamma.csv": "94bb3f93bf616f280301aab1a5eb1a2377fb8386514e794743d3205f95ab2912",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/cellDancer_alpha.csv": "06efd25009d636fbb0370e3d6ff3d2607c28e52294816ca936f693febe7f7a73",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/cellDancer_gamma.csv": "1ead5a97c6613f8a4879e5100c52bb06ec1f07b8e28783d9d19ada9aecc81595",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/DeepKINET_gamma.csv": "c604e7a4971ea51bdc69e5c466b9c5b0b9cea5e9fd37d3cd6a87c861c8fddd55",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/DeepVelo_alpha.csv": "e062a3f067952fa5ea6093775b1f4b1e0bd6b14ba4ff7d2d8b952a0ae89275cb",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/DeepVelo_gamma.csv": "e1ffc95f3e9d439c5526846063490384f3d5e6f4b1f5b186d4c844b7a0359d0c",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/cellDancer_alpha.csv": "0feaf84b5df9f76918acd37988aa04807c05f9cbfcc35bd4000282264f18e229",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/cellDancer_gamma.csv": "f2f4f5453d05acfd183ca8373aee27688c216e6db50c9f3e232f6f7860260eed",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/DeepKINET_gamma.csv": "9d7a8cfc128d3fe7e4f49aef42c920240316da40525d4ce3a4cc99144878a8af",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/DeepVelo_alpha.csv": "e39475a52284f65de5bc9d988602b9c96edcf82bc32418763c06408b25b55876",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/DeepVelo_gamma.csv": "3986d72d8acb84325f4ea9b1fdaded5fa07ba42d23c80d8a0f0a4f49d2601c36",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/Dynamo_alpha.csv": "a95ca5ad82ad10fe842df28c23715a01f53bd8d85357f83086ad83bb362a3776",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/TSvelo_alpha.csv": "62b2b9a7a71107e6667d72c864d7d73fd879652e97ec2e81fdef29183e0bf641",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/cellDancer_alpha.csv": "52f7f52b10b12b52ef95a8304bbe4028133b848d6f7685654e88d8210e9e96d6",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/rpe1/cellDancer_gamma.csv": "a4dd77071d6328ff67ba9faa22af642071c8ba7fdae8135f4497b236e5979f2a",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/celldancer.png": "27cfc2c85f47fbed91f24d2125f9fa0248add8ed2343a9e90dacac3e1c97ce18",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/deepkinet.png": "c04564022d29b08ddef6fc3fbb2a1045a61c50285ad993f4a95b78cf79995555",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/deepvelo.png": "ac5de515944498c89e28d74ad87a8522902b10c60d8cb1793621d058781edf48",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/tsvelo.png": "e8c355920275030ef6356606554e73c24a8ee0f2174d488d12fe35e6fd14280b",
+    "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/DeepKINET_organoid_stream_title_removed.png": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862",
+    "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/celldancer_organoid_stream_title_removed.png": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9",
+    "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/deepvelo_organoid_stream_title_removed.png": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3",
+    "evaluation/kinetics_recovery/figures/fig5/organoid_branch1_boxplot.png": "a2c087d37c0b4cf233ba9880e3f6b8e794be303d383a56086e03dfc4f179fc0c",
+    "evaluation/kinetics_recovery/figures/fig5/organoid_branch2_boxplot.png": "2b3d13f28ea2ccbb79c7b88d974e2628a7b2c2859e1e115f0513c2ca411c3437",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch1_gene_metrics.csv": "d7f140327b1bf3ae8a09c84f61a41e766c6a7ab327b609e23df5a0cd4a8d1749",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch2_gene_metrics.csv": "e129de0455bf468d732662e90e2d029a8323f0b60b1d6fa87d0a58a17cf85188",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_alpha_heatmap.csv": "316fe12646c2cbd2259bd07d29a7dc33d3e1ff8978489c29049bfdedddbf2729",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_alpha_trajectories.csv": "1f0fe921d6910b0d5c8a5ccc00c66cc09865204843faf44c88aa6352bab44634",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_deepvelo_kinetic_class_membership.csv": "9e8e93d8cddbb1eac2aded9875f0db6b2a6464f72e1a7e4d0eef44467770ef5c",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_gamma_heatmap.csv": "cc1bae1a2911e14dd5a18779a03121963368f80876db2a87d14e6c6f8feffb09",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_gamma_trajectories.csv": "7688748edfcf60b3d6052d3abcef512a1bfb61e68a2a4bafafda4cc76c8604d2",
+    "evaluation/kinetics_recovery/figures/fig5/rpe1_alpha_gamma_heatmap.png": "496685ef0125fab936666f2a738f950c170dcd0861e4ef624b371c2f1b8158d8",
+    "evaluation/kinetics_recovery/figures/fig5/rpe1_alpha_trajectories.png": "eee20f15d5e6e346cdfed68eb8b0cf0583b8a6d5fa45935201db6749701c7af4",
+    "evaluation/kinetics_recovery/figures/fig5/rpe1_celldancer_kinetic_classes.png": "6db3ce5f59d9df7798a85efefe09f8b0cd2d019b13c36105652c40da2a2fec44",
+    "evaluation/kinetics_recovery/figures/fig5/rpe1_deepvelo_kinetic_classes.png": "7115b049295449ef540bd755ab80e810e563d5e414bee935fe26cbab55922ef7",
+    "evaluation/kinetics_recovery/figures/fig5/rpe1_gamma_trajectories.png": "8f9cb67fa6045ed31e07d9250614de6d8a1a3b055f3d55a397c1e4951ee1c3bd",
+    "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/manifest.json": "b66f82307118dbc84e9bf4376642ee033e667828ebd751a596a391dbdf26aa9d",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
+    "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
+    "figures/figFive.pdf": "fc21dbe19d3292d442f32091e947d3b56698c77e9ed1ca304309f5095c3435e1",
+    "figures/fig5_composite_manifest.json": "14e537d326ec505643cf4435d089731d699b502aeeb9b3215120819cbb262741"
+  },
+  "preserved_tracked_paths_verified_unchanged": [
+    "evaluation/kinetics_recovery/metrics.py",
+    "evaluation/kinetics_recovery/results/final_seed123/"
+  ],
+  "runtime_warning": "Existing rendering environment has SciPy 1.6.2 with NumPy 1.23.0, outside its declared <1.23.0 bound. Rendering completed; C/D and cellDancer E reproduced exact PNGs. No existing environment packages were replaced.",
+  "rpe1_export": {
+    "bbox_inches": "tight",
+    "pad_inches": 0.1,
+    "dpi": 600,
+    "canvas_pixels": [
+      3096,
+      2337
+    ],
+    "scientific_inputs_and_scores_changed": false
+  },
+  "promoted_utc": "2026-09-17T08:15:24.802541+00:00",
+  "comparison_archive": "External saved archive; current repository contains one panel version.",
+  "evaluated_code_sha256": {
+    "metrics.py": "47582db1ce218fee4e8e4dc2a7738919e0840949f654312dcc2d14390acecbef",
+    "config.json": "f6c76c516200b928036ea14258f039e635426d7a56030df740ef519b95d99d17",
+    "plotting/figure5.py": "b281ae6aeb524cc14726c06ed6143e3c820162a598fc30ab442cd275e69ca5e3",
+    "plotting/figure5_config.json": "aec083fce53c4ff1ee7b72e3239ab7e14cfd20d8e4a472c9a5516025b7fdb726",
+    "plotting/streams.py": "f9287163a66df65f6da97212ea77efa4590d9efae21791b52c8ec3dae6e4e518",
+    "plotting/stream_config.json": "085b10ab694f45b26d762a46d313de13f3f6eb8c2928c0031a97853293cfe0af",
+    "plotting/compare_figure5.py": "ef82cbed9a6da7bc72487cf8252eb5fbd36c422ffb7f36454a2a8e373d9c34aa"
+  },
+  "current_code_sha256": {
+    "evaluation/kinetics_recovery/metrics.py": "47582db1ce218fee4e8e4dc2a7738919e0840949f654312dcc2d14390acecbef",
+    "evaluation/kinetics_recovery/config.json": "f6c76c516200b928036ea14258f039e635426d7a56030df740ef519b95d99d17",
+    "evaluation/kinetics_recovery/plotting/figure5.py": "b281ae6aeb524cc14726c06ed6143e3c820162a598fc30ab442cd275e69ca5e3",
+    "evaluation/kinetics_recovery/plotting/figure5_config.json": "aec083fce53c4ff1ee7b72e3239ab7e14cfd20d8e4a472c9a5516025b7fdb726",
+    "evaluation/kinetics_recovery/plotting/streams.py": "7ee335f012bef23f7eb45f24c9a54fd123395427ec18dbe54cee3108632e84aa",
+    "evaluation/kinetics_recovery/plotting/stream_config.json": "085b10ab694f45b26d762a46d313de13f3f6eb8c2928c0031a97853293cfe0af",
+    "evaluation/kinetics_recovery/plotting/compare_figure5.py": "7bf4130472d5bea1708052b21fd94b4460d03a1454098ae07f9d3fd531da492f"
+  },
+  "historical_seed123_score_comparison": {
+    "selected_rpe1_genes": 19,
+    "selected_organoid_branch1_genes": 6,
+    "selected_organoid_branch2_genes": 8,
+    "selected_spearman_max_abs_difference": 0.0,
+    "full_deepkinet_score_rows": 790,
+    "full_spearman_max_abs_difference": 8.56320514536213e-05,
+    "cause": "Not established; different recorded evaluation runtimes. No input H5AD change."
+  }
+}
