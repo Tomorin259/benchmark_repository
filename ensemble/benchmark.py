@@ -22,6 +22,7 @@ if __package__ in {None, ""}:
         align_method_values,
         complete_signed_operator,
         compute_signed_transition,
+        DEGENERATE_ROW_TOLERANCE,
         compute_velocity_graph,
         install_fixed_neighbors,
         load_config,
@@ -44,6 +45,7 @@ else:
         align_method_values,
         complete_signed_operator,
         compute_signed_transition,
+        DEGENERATE_ROW_TOLERANCE,
         compute_velocity_graph,
         install_fixed_neighbors,
         load_config,
@@ -150,6 +152,7 @@ def run_dataset(
         "methods": {},
     }
     transitions = []
+    method_metadata = {}
     for method in METHOD_NAMES:
         locator = dataset_config["methods"][method]
         path = resolve_artifact(artifact_root, locator)
@@ -159,8 +162,14 @@ def run_dataset(
         method_adata = ad.read_h5ad(path)
         aligned = align_method(reference, method_adata, method)
         positive, negative = compute_velocity_graph(aligned, n_jobs=n_jobs)
-        transition = compute_signed_transition(aligned, positive, negative)
+        transition, fallback_rows = compute_signed_transition(
+            aligned, positive, negative, return_fallback=True
+        )
         transitions.append(offdiagonal(transition))
+        method_metadata[method] = {
+            "n_fallback_rows": int(fallback_rows.sum()),
+            "fallback_tolerance": DEGENERATE_ROW_TOLERANCE,
+        }
 
     template, values = align_method_values(transitions)
     rows = []
@@ -230,6 +239,7 @@ def run_dataset(
         "dataset": dataset,
         "reference_neighbor": reference_neighbor_detail,
         "inputs": logical_inputs,
+        "methods": method_metadata,
         "variants": variant_metadata,
     }
 

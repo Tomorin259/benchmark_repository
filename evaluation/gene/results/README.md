@@ -25,3 +25,10 @@ The metric values are copied from the fixed-neighbor results without
 recalculation. The additional edge, neighbor, and comparison columns are
 retained for supplementary inspection; manuscript summaries use the CBDir
 columns.
+
+The simulation Figure 3D source table is
+simulation/gene_cbdir_cossim_reference.csv. It contains the 630 rows from
+the three upstream results_new/score_rerun_results.txt files
+(branching: 180, murk: 90, all: 360), with columns Dataset, Gene,
+Method_raw, Method, CBDir, and CosSim. The source files remain external
+artifacts and are recorded in the gene figure assembly manifest.

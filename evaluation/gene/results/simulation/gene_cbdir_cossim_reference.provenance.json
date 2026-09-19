@@ -1,0 +1,28 @@
+{
+  "table": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
+  "source_kind": "migrated compact result",
+  "source_artifacts": {
+    "branching": "artifact://velocity/indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
+    "murk": "artifact://velocity/indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
+    "all": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/results_new/score_rerun_results.txt"
+  },
+  "row_counts": {
+    "branching": 180,
+    "murk": 90,
+    "all": 360,
+    "total": 630
+  },
+  "columns": [
+    "Dataset",
+    "Gene",
+    "Method_raw",
+    "Method",
+    "CBDir",
+    "CosSim"
+  ],
+  "consumer": "evaluation/gene/plot_current_gene_assets_from_originals.py",
+  "fallback": "If the compact table is unavailable, the plotting script parses the source score artifacts.",
+  "direct_source_locator": "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv",
+  "direct_source_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662",
+  "table_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+}

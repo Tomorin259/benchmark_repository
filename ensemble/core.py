@@ -24,6 +24,7 @@ DEFAULT_CONFIG = MODULE_DIR / "config.json"
 
 SCVELO_VERSION = "0.3.4"
 H5AD_SCHEMA_VERSION = 6
+DEGENERATE_ROW_TOLERANCE = 1e-12
 FIXED_REFERENCE_NEIGHBOR_SCHEMA_VERSION = 1
 METHOD_NAMES = ("TIvelo", "veloVI", "DeepVelo", "UniTVelo")
 VARIANT_MEAN4 = "signed_t_mean4"
@@ -390,8 +391,16 @@ def compute_signed_transition(
     adata: ad.AnnData,
     positive: sparse.spmatrix,
     negative: sparse.spmatrix,
-) -> sparse.csr_matrix:
-    """Convert signed cosine graphs through scVelo's signed transition path."""
+    *,
+    return_fallback: bool = False,
+) -> sparse.csr_matrix | tuple[sparse.csr_matrix, np.ndarray]:
+    """Convert signed cosine graphs through scVelo's signed transition path.
+
+    scVelo can return unusable rows for cells with no signed transition mass.
+    The original ensemble protocol replaces those rows with identity rows
+    before extracting off-diagonal evidence. The return_fallback option exposes
+    the row mask to benchmark metadata without changing the default API.
+    """
     validate_scvelo_runtime()
     graph_key = f"{TEMPORARY_VKEY}_graph"
     negative_key = f"{TEMPORARY_VKEY}_graph_neg"
@@ -412,7 +421,37 @@ def compute_signed_transition(
     transition.eliminate_zeros()
     if transition.shape[0] != transition.shape[1]:
         raise ValueError("signed transition matrix must be square")
+    transition, fallback_rows = complete_degenerate_signed_rows(transition)
+    if return_fallback:
+        return transition, fallback_rows
     return transition
+
+
+def complete_degenerate_signed_rows(
+    operator: sparse.spmatrix,
+    *,
+    tolerance: float = DEGENERATE_ROW_TOLERANCE,
+) -> tuple[sparse.csr_matrix, np.ndarray]:
+    """Replace nonfinite or near-zero signed transition rows by identity."""
+    if tolerance < 0:
+        raise ValueError("tolerance must be non-negative")
+    operator = sparse.csr_matrix(operator).astype(np.float64).copy()
+    if operator.shape[0] != operator.shape[1]:
+        raise ValueError("signed transition matrix must be square")
+    row_nonfinite = np.zeros(operator.shape[0], dtype=bool)
+    if operator.nnz:
+        row_ids = np.repeat(np.arange(operator.shape[0]), np.diff(operator.indptr))
+        row_nonfinite[row_ids[~np.isfinite(operator.data)]] = True
+    row_l1 = row_l1_norm(operator)
+    fallback_rows = row_nonfinite | ~np.isfinite(row_l1) | (row_l1 <= tolerance)
+    if np.any(fallback_rows):
+        completed = operator.tolil()
+        for row_id in np.flatnonzero(fallback_rows):
+            completed.rows[row_id] = [int(row_id)]
+            completed.data[row_id] = [1.0]
+        operator = completed.tocsr()
+        operator.eliminate_zeros()
+    return operator, fallback_rows
 
 
 def offdiagonal(matrix) -> sparse.csr_matrix:

@@ -23,6 +23,7 @@ from ensemble.core import (
     aggregate_offdiagonal,
     align_method_values,
     complete_signed_operator,
+    complete_degenerate_signed_rows,
     install_fixed_neighbors,
     load_config,
     load_fixed_neighbor_asset,
@@ -35,6 +36,26 @@ from ensemble.metrics import build_rankings, write_rankings
 
 
 class EnsembleTests(unittest.TestCase):
+    def test_degenerate_transition_rows_fall_back_to_identity(self):
+        operator = sparse.csr_matrix(
+            np.asarray([
+                [0.0, 0.0, 0.0],
+                [np.nan, 0.0, 0.0],
+                [0.0, 2e-13, 0.0],
+            ])
+        )
+        completed, fallback = complete_degenerate_signed_rows(operator)
+        np.testing.assert_array_equal(fallback, [True, True, True])
+        np.testing.assert_allclose(completed.toarray(), np.eye(3))
+
+    def test_non_degenerate_transition_rows_are_unchanged(self):
+        operator = sparse.csr_matrix(
+            np.asarray([[0.0, 0.25], [-0.5, 0.5]])
+        )
+        completed, fallback = complete_degenerate_signed_rows(operator)
+        np.testing.assert_array_equal(fallback, [False, False])
+        np.testing.assert_allclose(completed.toarray(), operator.toarray())
+
     def test_config_has_four_methods_and_fourteen_datasets(self):
         config = load_config()
         self.assertEqual(tuple(config["methods"]), METHOD_NAMES)

@@ -231,12 +231,25 @@ def load_scores(registry, artifact_root):
         frame = pd.read_csv(score_paths[case])
         frames.append(frame[frame["dataset"].eq(case)][["dataset", "method", "gene", "new_cbdir"]])
     scores = pd.concat(frames, ignore_index=True)
-    sim_paths = {
-        "branching": artifact_root / "indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
-        "murk": artifact_root / "indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
-        "all": artifact_root / "indicators/gene/simulation/sim_all_analyze/results_new/score_rerun_results.txt",
-    }
-    sim = pd.concat([parse_sim_scores(path, case) for case, path in sim_paths.items()], ignore_index=True)
+    compact_path = HERE / "results" / "simulation" / "gene_cbdir_cossim_reference.csv"
+    if compact_path.is_file():
+        compact = pd.read_csv(compact_path)
+        required = {"Dataset", "Gene", "Method", "CBDir", "CosSim"}
+        missing = required.difference(compact.columns)
+        if missing:
+            raise ValueError(f"Compact CosSim table is missing columns: {sorted(missing)}")
+        sim = compact.rename(columns={
+            "Dataset": "dataset", "Gene": "gene", "Method": "method",
+            "CBDir": "new_cbdir", "CosSim": "cossim",
+        })[["dataset", "method", "gene", "new_cbdir", "cossim"]]
+        sim_paths = {case: compact_path for case in SIM_CASES}
+    else:
+        sim_paths = {
+            "branching": artifact_root / "indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
+            "murk": artifact_root / "indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
+            "all": artifact_root / "indicators/gene/simulation/sim_all_analyze/results_new/score_rerun_results.txt",
+        }
+        sim = pd.concat([parse_sim_scores(path, case) for case, path in sim_paths.items()], ignore_index=True)
     scores = scores.merge(sim[["dataset", "method", "gene", "cossim"]], on=["dataset", "method", "gene"], how="left")
     return scores, {**score_paths, **sim_paths}
 

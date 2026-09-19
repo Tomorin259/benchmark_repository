@@ -36,6 +36,12 @@ aligned on a deterministic union support before aggregation:
 - Signed-T RowGeometricMedian-4: for each source cell, the Euclidean geometric
   median of the four complete signed off-diagonal rows.
 
+Before off-diagonal extraction, each method-specific transition matrix is
+checked row by row. A row containing a non-finite value or having signed-L1
+norm at or below 1e-12 is replaced by an identity row, matching the original
+transition-ensemble protocol. The per-method fallback count is recorded in
+metadata.json under each dataset run.
+
 Both rules are permutation-invariant and learn no method-identity weights. The
 geometric-median solver's convex coefficients are determined independently by
 each row's geometry and are diagnostics, not learned global weights. The
