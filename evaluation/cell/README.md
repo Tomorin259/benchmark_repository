@@ -114,3 +114,54 @@ python evaluation/cell/plots.py
 Use `--metrics`, `--supplementary-metrics`, and `--output` when rendering to a
 different location. It produces the five primary panels, the CBDir-HD panel,
 and the individual metric files.
+
+## Gene-output-matched cell comparison
+
+The canonical 14×20 Cell tables above remain the paper configuration. A
+separate, supplementary comparison evaluates the **gene-analysis H5AD outputs**
+for DeepVelo, UniTVelo, and veloVI on the seven real datasets shared with the
+Gene module. This produces 21 additional cell-score rows without replacing any
+canonical score. DeepVelo uses its `pred_unspliced=true` gene/kinetics output
+here; its canonical Cell row continues to use `pred_unspliced=false`.
+UniTVelo is the same stored spliced-velocity result with four added gene-analysis
+layers: all shared HDF5 arrays, and consequently all six Cell metrics, match
+the canonical files exactly. The DeepVelo model output head changes with
+`pred_unspliced`, so its spliced velocities also change. Both historical veloVI workflows register spliced `Ms` and unspliced
+`Mu` before training. The Cell workflow calls `vae.train()` with package
+defaults (up to 500 epochs, batch size 256), then divides its spliced
+posterior-mean velocity by the per-gene factor `20 / max(latent_time)`.
+The separately saved Gene workflow explicitly requests up to 1,000 epochs
+and a hardware-dependent batch size (64 on GPU, 32 on CPU); after training,
+it stores the unscaled spliced posterior mean and additionally calls
+`get_velocity(velo_mode="unspliced")`. In velovi 0.3.1, this mode selects
+the output of an already trained model; it is not a training switch. The
+files come from distinct training runs, so their score changes cannot be
+attributed to the extra unspliced extraction or to scaling alone. The
+DeepVelo and veloVI comparisons measure sensitivity to distinct outputs,
+not the effect of merely appending an unspliced layer. For
+veloVI/DentateGyrus_lamanno, the two 1,291-gene outputs share 1,290 genes;
+this one-gene axis difference also qualifies their direct score comparison.
+
+`gene_matched/inputs.tsv` contains the 21 scored source locators and seven
+`scvelo_deterministic` reference-only locators required for the dataset-level
+canonical UMAP. Each scored locator and spliced-velocity key is taken from the
+`source_h5ad` and `velocity_s_key` columns of
+`../gene/results/gene_cbdir_reference30_all.csv`. Cell alignment, fixed 30-NN
+assets, reference moments, preprocessing, metric formulas, and TiVelo parity
+checks are the same as in the canonical run. `gene_matched/results/` contains
+its own primary, supplementary, source-hash audit, edge-detail, and parity
+files. Its values are supplementary evidence for matched-input cross-level
+analysis and do not change the published 280-row tables or figures.
+
+```bash
+python evaluation/cell/run_cell_metrics.py \
+  --artifact-root /path/to/artifacts \
+  --inputs evaluation/cell/gene_matched/inputs.tsv \
+  --reference-moments-root /path/to/reference-moments \
+  --output-root evaluation/cell/gene_matched \
+  --indicators-python /path/to/indicators-python \
+  --tivelo-python /path/to/tivelo-python \
+  --prepare-script evaluation/cell/prepare_cell_metrics.py \
+  --official-script evaluation/cell/score_tivelo_metrics.py \
+  --method deepvelo --method unitvelo --method veloVI
+```

@@ -46,6 +46,98 @@ class CellEvaluationTests(unittest.TestCase):
             {""},
         )
 
+    def test_gene_matched_cell_inputs_follow_gene_result_sources(self):
+        root = Path(__file__).resolve().parents[1]
+        with (root / "methods/configurations.tsv").open(newline="", encoding="utf-8") as handle:
+            names = {
+                row["config_id"]: row["manuscript_name"]
+                for row in csv.DictReader(handle, delimiter="\t")
+            }
+        with (root / "evaluation/gene/results/gene_cbdir_reference30_all.csv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            gene_rows = list(csv.DictReader(handle))
+        with (root / "evaluation/cell/gene_matched/inputs.tsv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            inputs = list(csv.DictReader(handle, delimiter="\t"))
+        with (root / "evaluation/cell/inputs.tsv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            canonical = list(csv.DictReader(handle, delimiter="\t"))
+
+        reference = [row for row in inputs if row["evaluation_role"] == "reference_only"]
+        scored = [row for row in inputs if row["evaluation_role"] == "gene_matched_cell"]
+        self.assertEqual(len(reference), 7)
+        self.assertEqual(len(scored), 21)
+        self.assertEqual(len({(r["evaluation_dataset"], r["operational_id"]) for r in inputs}), 28)
+        for row in reference:
+            matches = [
+                item for item in canonical
+                if item["evaluation_dataset"] == row["evaluation_dataset"]
+                and item["operational_id"] == "scvelo_deterministic"
+            ]
+            self.assertEqual(len(matches), 1)
+            self.assertEqual(row["result_path"], matches[0]["result_path"])
+        for row in scored:
+            matches = {
+                (item["source_h5ad"], item["velocity_s_key"])
+                for item in gene_rows
+                if item["status"] == "ok"
+                and item["dataset"].casefold() == row["dataset_id"].casefold()
+                and item["method"] == names[row["config_id"]]
+            }
+            self.assertEqual(len(matches), 1)
+            source, velocity_key = matches.pop()
+            self.assertEqual(
+                row["result_path"],
+                "velocity:" + source.replace("artifact://velocity/", "", 1),
+            )
+            self.assertEqual(row["velocity_layer_key"], velocity_key)
+            if row["operational_id"] == "deepvelo":
+                self.assertEqual(row["pred_unspliced"], "true")
+
+    def test_gene_matched_cell_results_are_complete_and_audited(self):
+        root = Path(__file__).resolve().parents[1]
+        result_root = root / "evaluation/cell/gene_matched/results"
+
+        def rows(path):
+            with path.open(newline="", encoding="utf-8") as handle:
+                return list(csv.DictReader(handle))
+
+        with (root / "evaluation/cell/gene_matched/inputs.tsv").open(
+            newline="", encoding="utf-8"
+        ) as handle:
+            manifest = list(csv.DictReader(handle, delimiter="\t"))
+        sources = {
+            (row["evaluation_dataset"], row["operational_id"]): row["result_path"]
+            for row in manifest if row["evaluation_role"] == "gene_matched_cell"
+        }
+        primary = rows(result_root / "cell_metrics.csv")
+        supplementary = rows(result_root / "cell_metrics_supplementary.csv")
+        audit = rows(result_root / "cell_metrics_audit.csv")
+        parity = rows(result_root / "tivelo_parity.csv")
+        for table in (primary, supplementary, audit):
+            self.assertEqual(len(table), 21)
+            self.assertEqual({(r["dataset"], r["method"]) for r in table}, set(sources))
+        for row in audit:
+            key = row["dataset"], row["method"]
+            self.assertEqual(row["result_path"], sources[key])
+            self.assertEqual(len(row["result_sha256"]), 64)
+            self.assertEqual(row["status"], "ok")
+        self.assertEqual(len(parity), 42)
+        self.assertTrue(all(row["raw_values_match"] == "True" for row in parity))
+        self.assertTrue(all(float(row["aggregate_abs_difference"]) <= 1e-7 for row in parity))
+
+        canonical = {
+            (row["dataset"], row["method"]): row
+            for row in rows(root / "evaluation/cell/results/cell_metrics.csv")
+        }
+        for row in primary:
+            if row["method"] == "unitvelo":
+                for metric in ("consistency", "iccoh", "cbdir", "transcosine", "batc"):
+                    self.assertEqual(float(row[metric]), float(canonical[row["dataset"], row["method"]][metric]))
+
     def test_canonical_bundle_validates_tables_and_reference_assets(self):
         validate_results()
 
