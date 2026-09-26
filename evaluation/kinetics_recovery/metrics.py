@@ -62,13 +62,27 @@ def read_rpe1_reference(path: Path, parameter: str) -> pd.DataFrame:
     return values.apply(pd.to_numeric, errors="coerce")
 
 
-def read_organoid_reference(path: Path, branch: str, parameter: str) -> pd.DataFrame:
+def read_organoid_reference(
+    path: Path,
+    branch: str,
+    parameter: str,
+    reverse_time: bool = False,
+) -> pd.DataFrame:
+    """Read one organoid reference branch in the evaluator time direction.
+
+    The published Table S4 export stores Branch 1 in the opposite column
+    order to the aligned-time convention used for method trajectories. The
+    direction is therefore explicit in the dataset configuration rather than
+    being inferred from the branch ID here.
+    """
     table = pd.read_csv(path, skiprows=1).set_index("gene_symbol")
     stem = "kappa" if parameter == "alpha" else "gamma"
     columns = sorted(
         name for name in table.columns if f"norm_{stem}_branch_{branch}" in name
     )
     values = table.loc[:, columns]
+    if reverse_time:
+        values = values.iloc[:, ::-1]
     values.columns = range(values.shape[1])
     return values.apply(pd.to_numeric, errors="coerce")
 
@@ -162,7 +176,10 @@ def validate_standard_result(
     adata: ad.AnnData, dataset: str, settings: dict, source: dict
 ) -> None:
     """Validate only the fields consumed by direct layer extraction."""
-    expected_cells = settings[dataset]["n_obs"]
+    # Most direct-layer inputs contain the complete dataset.  Label-data
+    # exceptions can declare their frozen subset size explicitly in the
+    # method source while retaining the same downstream branch processing.
+    expected_cells = source.get("n_obs", settings[dataset]["n_obs"])
     if adata.n_obs != expected_cells:
         raise ValueError(
             f"{dataset}: expected {expected_cells} cells, found {adata.n_obs}"
@@ -595,7 +612,12 @@ def load_references(
     organoid_references = {
         branch: {
             parameter: read_organoid_reference(
-                organoid_reference_path, branch, parameter
+                organoid_reference_path,
+                branch,
+                parameter,
+                reverse_time=settings["organoid"]["branches"][branch].get(
+                    "reference_reverse_time", False
+                ),
             )
             for parameter in ("alpha", "gamma")
         }

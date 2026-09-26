@@ -35,6 +35,12 @@ METHOD_COLORS = {
     "DeepKINET": "#B5BD61",
 }
 
+# Organoid panels are rendered separately for each branch, so the branch
+# suffix is retained for the existing method labels.  Dynamo's full
+# ``Dynamo(label data)`` name is too wide for the boxplot x-axis; the caption
+# and README carry the label-data qualifier while the panel uses ``Dynamo``.
+ORGANOID_PLOT_METHOD_NAMES = {"Dynamo": "Dynamo"}
+
 
 def resolve(root: Path, relative_path: str) -> Path:
     path = Path(relative_path)
@@ -339,7 +345,10 @@ def plot_branch(
 ) -> pd.DataFrame:
     frames = []
     for method, paths in method_paths.items():
-        display_method = f"{DISPLAY_METHOD_NAMES.get(method, method)}_branch{branch_id}"
+        display_name = ORGANOID_PLOT_METHOD_NAMES.get(
+            method, DISPLAY_METHOD_NAMES.get(method, method)
+        )
+        display_method = f"{display_name}_branch{branch_id}"
         for parameter in ("Alpha", "Gamma"):
             path = paths.get(parameter)
             if path is not None:
@@ -350,7 +359,7 @@ def plot_branch(
 
     figure, axes = plt.subplots(1, 2, figsize=(18, 8))
     palette = {
-        f"{DISPLAY_METHOD_NAMES.get(method, method)}_branch{branch_id}": paths["color"]
+        f"{ORGANOID_PLOT_METHOD_NAMES.get(method, DISPLAY_METHOD_NAMES.get(method, method))}_branch{branch_id}": paths["color"]
         for method, paths in method_paths.items()
     }
     for axis, parameter in zip(axes, ("Alpha", "Gamma")):
@@ -389,11 +398,25 @@ def plot_branch(
         axis.set_ylim(-1.1, 1.25)
         axis.axhline(0, color="gray", linestyle="--", linewidth=1.5, alpha=0.6)
         means = subset.groupby("Method")["Correlation"].mean()
-        for position, method in enumerate(method_paths):
-            display_method = f"{DISPLAY_METHOD_NAMES.get(method, method)}_branch{branch_id}"
+        # Boxplot positions are compacted separately for Alpha and Gamma when
+        # a method has no value for one parameter (Dynamo has no Gamma here).
+        # Derive annotation positions from the categories actually drawn so a
+        # missing parameter cannot push another method's label outside the axes.
+        drawn_methods = [
+            f"{ORGANOID_PLOT_METHOD_NAMES.get(method, DISPLAY_METHOD_NAMES.get(method, method))}_branch{branch_id}"
+            for method in method_paths
+            if f"{ORGANOID_PLOT_METHOD_NAMES.get(method, DISPLAY_METHOD_NAMES.get(method, method))}_branch{branch_id}"
+            in set(subset["Method"])
+        ]
+        method_positions = {method: position for position, method in enumerate(drawn_methods)}
+        for method in method_paths:
+            display_name = ORGANOID_PLOT_METHOD_NAMES.get(
+                method, DISPLAY_METHOD_NAMES.get(method, method)
+            )
+            display_method = f"{display_name}_branch{branch_id}"
             if display_method in means:
                 axis.text(
-                    position,
+                    method_positions[display_method],
                     means[display_method] + 0.08,
                     f"{means[display_method]:.2f}",
                     ha="center",

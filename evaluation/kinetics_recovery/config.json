@@ -23,12 +23,14 @@
         "1": {
           "clusters": ["4", "6", "8", "9", "10", "11"],
           "start": 3.5,
-          "reverse_time": true
+          "reverse_time": true,
+          "reference_reverse_time": true
         },
         "2": {
           "clusters": ["1", "2", "6", "7", "8", "11"],
           "start": 6.5,
-          "reverse_time": false
+          "reverse_time": false,
+          "reference_reverse_time": false
         }
       }
     }
@@ -186,6 +188,16 @@
         "result": "method-results/kinetics/dynamo/rpe1_labelled.h5ad",
         "layer": "cell_wise_alpha",
         "position_key": "Cell_cycle_possition"
+      },
+      "organoid": {
+        "reader": "layers",
+        "result": "method-results/kinetics/dynamo/organoid_labelled.h5ad",
+        "n_obs": 1373,
+        "layers": {
+          "alpha": "cell_wise_alpha"
+        },
+        "input_subset": "Pulse, 120 min",
+        "label_data": true
       }
     },
     "TSvelo": {

@@ -1,10 +1,10 @@
 {
-  "status": "promoted_canonical_central_results",
-  "recorded_utc": "2026-09-17T06:42:58.437455+00:00",
+  "status": "promoted_canonical_dynamo_organoid_alpha_metrics",
+  "recorded_utc": "2026-09-26T16:42:48.709884+00:00",
   "base_commit": "f27a07a5c8700d56939ed11e8bb07dc5e99f1208",
   "input_hash_capture": "after_evaluation; stream input hashes additionally checked before_and_after_rendering",
   "method_training_rerun": false,
-  "scientific_evaluator_changed": false,
+  "scientific_evaluator_changed": true,
   "central_h5ad_policy": "results_directory_except_labelled_Dynamo",
   "inputs": [
     {
@@ -69,6 +69,18 @@
       "alias": "method-results/kinetics/tsvelo/rpe1_lineage1.h5ad",
       "resolved_velocity_relative": "results/TSvelo/rpe1/l1_TSvelo.h5ad",
       "sha256": "409e81fad6ff3b63d7a180b94d390efe294fb11ca49bacee5aaea08e25b44a0b"
+    },
+    {
+      "method": "Dynamo",
+      "dataset": "organoid",
+      "alias": "method-results/kinetics/dynamo/organoid_labelled.h5ad",
+      "resolved_velocity_relative": "indicators/gene/scEU_organoid_analyze/dynamo/pulse120_one_shot_corrected_20260926/dynamo_pulse120_corrected.h5ad",
+      "sha256": "9970b300c0110a9d9c53f6b2200fc02dc54052b2f93330c19403ed1b1bb6b222",
+      "n_obs": 1373,
+      "n_vars": 9157,
+      "parameters": [
+        "alpha"
+      ]
     }
   ],
   "references": [
@@ -240,15 +252,15 @@
     }
   },
   "outputs_sha256": {
-    "evaluation/kinetics_recovery/results/central_results/component_means.csv": "2c5aa83d03afdb0651012a819fb6e8ac0731a4f5897899f9bcda1fc5278a0c53",
-    "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv": "b1e7db7adaed09b7ddfb1c8a35e4f4c2870b74e30b20282392bbca0c8a35fbd4",
+    "evaluation/kinetics_recovery/results/central_results/component_means.csv": "95160d8b886b0ac8fe306c97612100974d271ab50819dbf876bd0a11597d3313",
+    "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv": "fe548433b018820a6218baf3ce379f9459a1a04f01d99e8733166ba230321088",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepKINET_gamma_raw.csv": "7bce1c9cafcefd6a548b9fe17b2fc1791cc2f365ae37328006a89eec07fbcb9c",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepVelo_alpha_raw.csv": "382bfb9f188b8dc94a993a5d6aa3840c898421c26338b5bef1a14ed62161ce2c",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/DeepVelo_gamma_raw.csv": "95c12ce516d050e6edfd7fa57c95e6479cc6125e5918c64f56225ebd014175d9",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/cellDancer_alpha_raw.csv": "32559a35de42f093b382515c8172c879c10cf0efe902261e8fc17b9f8eec4854",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/cellDancer_gamma_raw.csv": "01af526db06d9c700881a3d77748e9761c9c7a29183fe5d30dd5e762a9bb1fc0",
-    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_alpha.csv": "8914f4b37b7de30187267b7129491f450687de2a82413d3887d541833ddde44a",
-    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_gamma.csv": "dd9ae0bffdc1978a444f6782050149ce0a848834bccb65ce30bc08ee3110a10f",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_alpha.csv": "8dc3baf0930e9acf49e416aad7c8cb1e2b5fe89769ff73db36f0638a57d4b087",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/reference_gamma.csv": "1aaaa25a839eec66f5e273838e1ec43346e6e81c205cad390f5a2e20c78dc806",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepKINET_gamma_raw.csv": "1bedd3b1c421f3dfea3760214cdf00257741227b2f353714a67451d662070b7e",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepVelo_alpha_raw.csv": "edef3cb3faefc584c2188dcb698681551dcb83ced75e5828a6b5753ea6fcdca1",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/DeepVelo_gamma_raw.csv": "69fe3ff921473b077235cbb5bc2ffb383eb5fe5b41e1072bb60088a363e31c1e",
@@ -265,8 +277,8 @@
     "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/cellDancer_gamma_raw.csv": "2c5398aa107d46182b36690f2d9f4bb9940910a90e72b21bba21ac847aa9ecb7",
     "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/reference_alpha.csv": "03242137bd17a5159bba035550d1d55988f74d1886e5d786388efa716ab45ee4",
     "evaluation/kinetics_recovery/results/central_results/matrices/rpe1/reference_gamma.csv": "eb2f996c2c68866d67eaf50a953a161e3533c3918358678f58dc5436580f4e74",
-    "evaluation/kinetics_recovery/results/central_results/method_summary.csv": "42e259efd2294397183c6b07ce45a7a4f5ebc882ad8441432da2a6190712842d",
-    "evaluation/kinetics_recovery/results/central_results/system_means.csv": "93b5e0a8c374340c44afc99f223ec8884c0ed7942758b283605f07c62b68f221",
+    "evaluation/kinetics_recovery/results/central_results/method_summary.csv": "ff7b39aca60f44c7d3bb1c720c3ac0f2babade66f2627d033dd273eebd659f7f",
+    "evaluation/kinetics_recovery/results/central_results/system_means.csv": "6ff5f08684fc48c5b6c84133d79f318f6abce7142e2cf0ec19cfce653d67b8be",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepKINET_gamma.csv": "04f1ce7a744a6e33284823a1093fa4f50f78cc742bd50022efa70d4abffd2487",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepVelo_alpha.csv": "ac949a855d7666e8d9eec386684fcfc54c0c7c4fbbabc11c5a5f2859d7c0b13d",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/DeepVelo_gamma.csv": "94bb3f93bf616f280301aab1a5eb1a2377fb8386514e794743d3205f95ab2912",
@@ -291,10 +303,10 @@
     "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/DeepKINET_organoid_stream_title_removed.png": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862",
     "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/celldancer_organoid_stream_title_removed.png": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9",
     "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/deepvelo_organoid_stream_title_removed.png": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3",
-    "evaluation/kinetics_recovery/figures/fig5/organoid_branch1_boxplot.png": "a2c087d37c0b4cf233ba9880e3f6b8e794be303d383a56086e03dfc4f179fc0c",
-    "evaluation/kinetics_recovery/figures/fig5/organoid_branch2_boxplot.png": "2b3d13f28ea2ccbb79c7b88d974e2628a7b2c2859e1e115f0513c2ca411c3437",
-    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch1_gene_metrics.csv": "d7f140327b1bf3ae8a09c84f61a41e766c6a7ab327b609e23df5a0cd4a8d1749",
-    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch2_gene_metrics.csv": "e129de0455bf468d732662e90e2d029a8323f0b60b1d6fa87d0a58a17cf85188",
+    "evaluation/kinetics_recovery/figures/fig5/organoid_branch1_boxplot.png": "5d02c32c85f844fc0e57e8d5fabd96c19f66923c8f5ab27fbb5242115b24267c",
+    "evaluation/kinetics_recovery/figures/fig5/organoid_branch2_boxplot.png": "78ea658e0a560fb2981bc66ead78f59ace303bc44f7ede61b065b0e64996b76b",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch1_gene_metrics.csv": "5bc5d469018d99a3c7eb0a7e5b1ee988f9b27dd0e3f3a4e020d8cc68adc925f4",
+    "evaluation/kinetics_recovery/figures/fig5/plot_data/organoid_branch2_gene_metrics.csv": "b717605f748937ad09ff41215b3e97c2182fba10a5e1e94a1e0bf27eb0214375",
     "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_alpha_heatmap.csv": "316fe12646c2cbd2259bd07d29a7dc33d3e1ff8978489c29049bfdedddbf2729",
     "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_alpha_trajectories.csv": "1f0fe921d6910b0d5c8a5ccc00c66cc09865204843faf44c88aa6352bab44634",
     "evaluation/kinetics_recovery/figures/fig5/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
@@ -311,11 +323,14 @@
     "evaluation/kinetics_recovery/figures/fig5/figure5E_organoid/manifest.json": "b66f82307118dbc84e9bf4376642ee033e667828ebd751a596a391dbdf26aa9d",
     "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
     "evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
-    "figures/figFive.pdf": "fc21dbe19d3292d442f32091e947d3b56698c77e9ed1ca304309f5095c3435e1",
-    "figures/fig5_composite_manifest.json": "14e537d326ec505643cf4435d089731d699b502aeeb9b3215120819cbb262741"
+    "figures/figFive.pdf": "65f8ec839146e957ccbdc9b42179f0963f5f81b049b83c27b57adc665c480f0a",
+    "figures/fig5_composite_manifest.json": "6c0953a0366bf77777df4fd4dec9fa181a12e60867fc2d4802a1f1e6ef32d99d",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/Dynamo_alpha_raw.csv": "96bd0d1f4a2f146b1113295f57bea3360e6c54fcb28cd1a302499dc07239cdea",
+    "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/Dynamo_alpha_raw.csv": "773331f0e9e057dc8131835ce2f77d6de69251b4ab660e672afb95ba97d8aa7d",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/Dynamo_alpha.csv": "b6b8c1bc0e0d856ceb0a0c33fcc541aaf8419350f2b424de94cd856609b1a86b",
+    "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/Dynamo_alpha.csv": "c83affe71b477a74e37fb5863b6daf60d3784e764435a15677cafc8bea35aff7"
   },
   "preserved_tracked_paths_verified_unchanged": [
-    "evaluation/kinetics_recovery/metrics.py",
     "evaluation/kinetics_recovery/results/final_seed123/"
   ],
   "runtime_warning": "Existing rendering environment has SciPy 1.6.2 with NumPy 1.23.0, outside its declared <1.23.0 bound. Rendering completed; C/D and cellDancer E reproduced exact PNGs. No existing environment packages were replaced.",
@@ -329,22 +344,22 @@
     ],
     "scientific_inputs_and_scores_changed": false
   },
-  "promoted_utc": "2026-09-17T08:15:24.802541+00:00",
-  "comparison_archive": "External saved archive; current repository contains one panel version.",
+  "promoted_utc": "2026-09-26T16:42:48.709884+00:00",
+  "comparison_archive": "kinetics_archives/dynamo_organoid_metrics_20260927_001744/central_results_before",
   "evaluated_code_sha256": {
-    "metrics.py": "47582db1ce218fee4e8e4dc2a7738919e0840949f654312dcc2d14390acecbef",
-    "config.json": "f6c76c516200b928036ea14258f039e635426d7a56030df740ef519b95d99d17",
-    "plotting/figure5.py": "b281ae6aeb524cc14726c06ed6143e3c820162a598fc30ab442cd275e69ca5e3",
-    "plotting/figure5_config.json": "aec083fce53c4ff1ee7b72e3239ab7e14cfd20d8e4a472c9a5516025b7fdb726",
+    "metrics.py": "4a8663e4f4b6f436e77597021be3c8ac30864d3368f7a054befc86cdcd8a9721",
+    "config.json": "9d5c7239077384017ee9057a8ee1573219ab5f0de3ad50da8289424decbc847c",
+    "plotting/figure5.py": "bf923c673a1f48a6af784be79c69d1c677220dbffecb06d76341aef2fda272a1",
+    "plotting/figure5_config.json": "28bdc1c206cdf8c99f4429d0756f0fbe468cfc759a1167b724514872539f6fa3",
     "plotting/streams.py": "f9287163a66df65f6da97212ea77efa4590d9efae21791b52c8ec3dae6e4e518",
     "plotting/stream_config.json": "085b10ab694f45b26d762a46d313de13f3f6eb8c2928c0031a97853293cfe0af",
     "plotting/compare_figure5.py": "ef82cbed9a6da7bc72487cf8252eb5fbd36c422ffb7f36454a2a8e373d9c34aa"
   },
   "current_code_sha256": {
-    "evaluation/kinetics_recovery/metrics.py": "47582db1ce218fee4e8e4dc2a7738919e0840949f654312dcc2d14390acecbef",
-    "evaluation/kinetics_recovery/config.json": "f6c76c516200b928036ea14258f039e635426d7a56030df740ef519b95d99d17",
-    "evaluation/kinetics_recovery/plotting/figure5.py": "b281ae6aeb524cc14726c06ed6143e3c820162a598fc30ab442cd275e69ca5e3",
-    "evaluation/kinetics_recovery/plotting/figure5_config.json": "aec083fce53c4ff1ee7b72e3239ab7e14cfd20d8e4a472c9a5516025b7fdb726",
+    "evaluation/kinetics_recovery/metrics.py": "4a8663e4f4b6f436e77597021be3c8ac30864d3368f7a054befc86cdcd8a9721",
+    "evaluation/kinetics_recovery/config.json": "9d5c7239077384017ee9057a8ee1573219ab5f0de3ad50da8289424decbc847c",
+    "evaluation/kinetics_recovery/plotting/figure5.py": "bf923c673a1f48a6af784be79c69d1c677220dbffecb06d76341aef2fda272a1",
+    "evaluation/kinetics_recovery/plotting/figure5_config.json": "28bdc1c206cdf8c99f4429d0756f0fbe468cfc759a1167b724514872539f6fa3",
     "evaluation/kinetics_recovery/plotting/streams.py": "7ee335f012bef23f7eb45f24c9a54fd123395427ec18dbe54cee3108632e84aa",
     "evaluation/kinetics_recovery/plotting/stream_config.json": "085b10ab694f45b26d762a46d313de13f3f6eb8c2928c0031a97853293cfe0af",
     "evaluation/kinetics_recovery/plotting/compare_figure5.py": "7bf4130472d5bea1708052b21fd94b4460d03a1454098ae07f9d3fd531da492f"
@@ -357,5 +372,20 @@
     "full_deepkinet_score_rows": 790,
     "full_spearman_max_abs_difference": 8.56320514536213e-05,
     "cause": "Not established; different recorded evaluation runtimes. No input H5AD change."
+  },
+  "reference_alignment_change": {
+    "organoid_branch1": "reverse Table S4 reference columns before scoring",
+    "organoid_branch2": "unchanged",
+    "predictions": "unchanged"
+  },
+  "dynamo_organoid_exception": {
+    "label_data": true,
+    "subset": "Pulse, 120 min",
+    "n_obs": 1373,
+    "n_vars": 9157,
+    "parameters": [
+      "alpha"
+    ],
+    "gamma_available": false
   }
 }

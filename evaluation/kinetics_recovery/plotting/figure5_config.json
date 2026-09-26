@@ -105,12 +105,10 @@
           "genes": [
             "Defa24",
             "Defa17",
-            "Spdef",
             "Rnase4",
             "Lyz1",
             "Ern2",
-            "Pla2g2a",
-            "Rap1gap"
+            "Pla2g2a"
           ],
           "methods": {
             "DeepVelo": {
@@ -122,6 +120,10 @@
               "Alpha": "gene_metrics.csv",
               "Gamma": "gene_metrics.csv",
               "color": "#ff7f0e"
+            },
+            "Dynamo": {
+              "Alpha": "gene_metrics.csv",
+              "color": "#9467bd"
             },
             "DeepKINET": {
               "Gamma": "gene_metrics.csv",
@@ -150,6 +152,10 @@
               "Alpha": "gene_metrics.csv",
               "Gamma": "gene_metrics.csv",
               "color": "#ff7f0e"
+            },
+            "Dynamo": {
+              "Alpha": "gene_metrics.csv",
+              "color": "#9467bd"
             },
             "DeepKINET": {
               "Gamma": "gene_metrics.csv",
