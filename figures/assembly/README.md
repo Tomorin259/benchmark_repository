@@ -14,4 +14,7 @@ repository-baseline `../figSeven.pdf`; no independent whole-panel source is
 recorded. The old kinetics Figure 5 material is kept in the archive and has
 no active assembly aliases.
 
-Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are materialized under `suppfig10/`. Supplementary Figures 9 and 11 are recorded as unresolved final-composite sources in the manifest.
+Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are
+materialized under `suppfig10/`. Supplementary Figure 11 has two materialized
+veloAE source panels. Its manual full-page composite and Supplementary Figure 9
+remain unresolved in the manifest.

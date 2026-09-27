@@ -1,0 +1,864 @@
+{
+  "registry_name": "datasets.tsv",
+  "input_name": "veloae_ms_pca_projection_20260913",
+  "panels": [
+    {
+      "dataset_id": "dentategyrus_lamanno",
+      "paper_name": "Dentategyrus_lamanno",
+      "n_cells": 18213,
+      "n_categories": 14,
+      "categories": [
+        "CA",
+        "CA1-Sub",
+        "CA2-3-4",
+        "GlialProg",
+        "Granule",
+        "ImmAstro",
+        "ImmGranule1",
+        "ImmGranule2",
+        "Nbl1",
+        "Nbl2",
+        "OPC",
+        "RadialGlia",
+        "RadialGlia2",
+        "nIPC"
+      ],
+      "x2_range": [
+        -9.184016844243223,
+        10.477407808506639
+      ],
+      "y2_range": [
+        -1.6303307332165926,
+        1.3400833318322107
+      ],
+      "v2_range": [
+        [
+          -2.4030279700438446,
+          5.632587909242988
+        ],
+        [
+          -0.45812365737661853,
+          0.34363906539414574
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9643852420849213,
+        0.031753882057778536
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 40,
+      "arrow_scale": 0.3701469699618566,
+      "axis_limits": [
+        [
+          -9.970473830353217,
+          11.263864794616634
+        ],
+        [
+          -1.867963858420497,
+          1.577716457036115
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "eeba51fdf52620013791dc89eb061f5d5b282d86f747fc3011893181c01a257a"
+    },
+    {
+      "dataset_id": "bonemarrow",
+      "paper_name": "Human bone marrow",
+      "n_cells": 5780,
+      "n_categories": 10,
+      "categories": [
+        "HSC_1",
+        "HSC_2",
+        "Ery_1",
+        "Mono_1",
+        "Precursors",
+        "CLP",
+        "Mono_2",
+        "DCs",
+        "Ery_2",
+        "Mega"
+      ],
+      "x2_range": [
+        -20.372210579891714,
+        30.884875148958777
+      ],
+      "y2_range": [
+        -1.047062580749113,
+        3.6363568624952336
+      ],
+      "v2_range": [
+        [
+          -0.7351391926144101,
+          14.55972005693583
+        ],
+        [
+          -3.146278017915696,
+          0.4493622223260175
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9890110575475355,
+        0.010441914957377748
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 12,
+      "arrow_scale": 0.23485056322820885,
+      "axis_limits": [
+        [
+          -22.422494009045735,
+          32.9351585781128
+        ],
+        [
+          -1.4217361362086607,
+          4.011030417954782
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "db141570935f33f99cd620c4b0b41cf00147b696ff79c7bedc143fb4e119f3e7"
+    },
+    {
+      "dataset_id": "capo_pre",
+      "paper_name": "capofibro (VeloCycle)",
+      "n_cells": 1222,
+      "n_categories": 3,
+      "categories": [
+        "G1",
+        "G2M",
+        "S"
+      ],
+      "x2_range": [
+        -19.922139866170667,
+        13.338247021851878
+      ],
+      "y2_range": [
+        -1.3159188853505672,
+        0.907446808768818
+      ],
+      "v2_range": [
+        [
+          -3.3777915989922933,
+          5.091559765239081
+        ],
+        [
+          -0.7714154397514436,
+          0.47906693101337583
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9938999132740379,
+        0.0030609586162719717
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 5,
+      "arrow_scale": 2.2301622994227106,
+      "axis_limits": [
+        [
+          -21.25255534169157,
+          14.668662497372779
+        ],
+        [
+          -1.4937881408801181,
+          1.0853160642983688
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "81d1f1e61fbc590bbadea3f890e9fcc547567a5e2f136838fb56af95853004ec"
+    },
+    {
+      "dataset_id": "dentategyrus",
+      "paper_name": "Dentategyrus",
+      "n_cells": 2930,
+      "n_categories": 14,
+      "categories": [
+        "Astrocytes",
+        "Cajal Retzius",
+        "Cck-Tox",
+        "Endothelial",
+        "GABA",
+        "Granule immature",
+        "Granule mature",
+        "Microglia",
+        "Mossy",
+        "Neuroblast",
+        "OL",
+        "OPC",
+        "Radial Glia-like",
+        "nIPC"
+      ],
+      "x2_range": [
+        -9.812221957462294,
+        5.021085030573186
+      ],
+      "y2_range": [
+        -1.8232873786787713,
+        6.1293050170260175
+      ],
+      "v2_range": [
+        [
+          -0.25894214236678914,
+          0.5255313449765607
+        ],
+        [
+          -0.19731537045426054,
+          0.218305337852995
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.8159578924211066,
+        0.16875187891505655
+      ],
+      "arrow_count": 25,
+      "minimum_bin_count": 6,
+      "arrow_scale": 2.945553142318903,
+      "axis_limits": [
+        [
+          -10.405554236983713,
+          5.6144173100946055
+        ],
+        [
+          -2.4594947703351546,
+          6.765512408682401
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "d234cafa87429e3e8d0f52bc57bb23652db8169a29e1935c6a67dddc83c72b54"
+    },
+    {
+      "dataset_id": "forebrain",
+      "paper_name": "ForebrainGlut",
+      "n_cells": 1720,
+      "n_categories": 7,
+      "categories": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "x2_range": [
+        -68.70716905148561,
+        77.88561423064776
+      ],
+      "y2_range": [
+        -0.753664090777326,
+        0.611079660528889
+      ],
+      "v2_range": [
+        [
+          -0.5775157423819455,
+          1.0840420862229736
+        ],
+        [
+          -0.23001658618114162,
+          0.23511183587645668
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9999569335236345,
+        3.699740185278426e-05
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 5,
+      "arrow_scale": 15.317219289773162,
+      "axis_limits": [
+        [
+          -74.57088038277094,
+          83.74932556193309
+        ],
+        [
+          -0.8628435908818232,
+          0.7202591606333861
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "496a78ab57505d2728cdb6107952c6f1480d194488f711e79658db67fad2fd46"
+    },
+    {
+      "dataset_id": "gastrulation",
+      "paper_name": "Gastrulation",
+      "n_cells": 9815,
+      "n_categories": 5,
+      "categories": [
+        "Blood progenitors 1",
+        "Blood progenitors 2",
+        "Erythroid1",
+        "Erythroid2",
+        "Erythroid3"
+      ],
+      "x2_range": [
+        -65.11935764603429,
+        116.25933327407347
+      ],
+      "y2_range": [
+        -3.297933352309962,
+        4.409899806459287
+      ],
+      "v2_range": [
+        [
+          -0.04860893484090865,
+          0.7880425062334717
+        ],
+        [
+          -0.14538530072307806,
+          0.04078852981761965
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9987375307365516,
+        0.0011213870343737388
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 21,
+      "arrow_scale": 14.482362597012479,
+      "axis_limits": [
+        [
+          -72.3745052828386,
+          123.51448091087778
+        ],
+        [
+          -3.914560005011502,
+          5.026526459160827
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "7a3ba3802a895b3e9198cba90091f5c9af622d2f8c8c50a77483c69826e4ef89"
+    },
+    {
+      "dataset_id": "hematopoiesis",
+      "paper_name": "Human hematopoiesis",
+      "n_cells": 1947,
+      "n_categories": 8,
+      "categories": [
+        "Bas",
+        "Ery",
+        "GMP-like",
+        "HSC",
+        "MEP-like",
+        "Meg",
+        "Mon",
+        "Neu"
+      ],
+      "x2_range": [
+        -8.583651852129902,
+        3.7456792220630373
+      ],
+      "y2_range": [
+        -0.40560720116866383,
+        0.48818208120802226
+      ],
+      "v2_range": [
+        [
+          -15.150696847008772,
+          14.554932267911317
+        ],
+        [
+          -0.15154604674149771,
+          0.14861084060103863
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9828935378154597,
+        0.015365575449818156
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 5,
+      "arrow_scale": 0.04673028261105018,
+      "axis_limits": [
+        [
+          -9.07682509509762,
+          4.238852465030755
+        ],
+        [
+          -0.47711034375879874,
+          0.5596852237981571
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "2cb944a82004081d1802bc7b3ada1c7b6bb500e38184c41aa2f9eafeed5a9a6d"
+    },
+    {
+      "dataset_id": "mousebrain",
+      "paper_name": "mousebrain",
+      "n_cells": 3365,
+      "n_categories": 7,
+      "categories": [
+        "Upper Layer",
+        "Deeper Layer",
+        "V-SVZ",
+        "RG, Astro, OPC",
+        "Ependymal cells",
+        "IPC",
+        "Subplate"
+      ],
+      "x2_range": [
+        -6.247129226151005,
+        1.8405612691157518
+      ],
+      "y2_range": [
+        -0.30226348027939937,
+        0.28519560790625
+      ],
+      "v2_range": [
+        [
+          -4.2642891979599975,
+          6.110533733543591
+        ],
+        [
+          -1.9552865797955312,
+          1.6909062796351517
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9928943667719514,
+        0.005105237658119497
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 7,
+      "arrow_scale": 0.5350723643424462,
+      "axis_limits": [
+        [
+          -6.570636845961675,
+          2.164068888926422
+        ],
+        [
+          -0.34926020733425134,
+          0.33219233496110195
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "9a5b868f172eec0eb03021c61ae48461cc35919e1c319b968c540673d19f8593"
+    },
+    {
+      "dataset_id": "scnt_neuron",
+      "paper_name": "scNT_neuron",
+      "n_cells": 3066,
+      "n_categories": 5,
+      "categories": [
+        "0",
+        "15",
+        "30",
+        "60",
+        "120"
+      ],
+      "x2_range": [
+        -6.562461584335941,
+        3.9262543665302063
+      ],
+      "y2_range": [
+        -0.6123789446486203,
+        0.2757792082488082
+      ],
+      "v2_range": [
+        [
+          -0.8044646415066916,
+          1.8523322580247243
+        ],
+        [
+          -0.11863197095037818,
+          0.10751538959638283
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9919641583741391,
+        0.007379585459923362
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 6,
+      "arrow_scale": 0.39065788051955347,
+      "axis_limits": [
+        [
+          -6.9820102223705875,
+          4.345803004564853
+        ],
+        [
+          -0.6834315968804145,
+          0.3468318604806025
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "f13b7632de637f3f90c8d2bf443f8ebc88ca4891692bb4bb64dd8db6e9952429"
+    },
+    {
+      "dataset_id": "sceu_organoid",
+      "paper_name": "organoid",
+      "n_cells": 3831,
+      "n_categories": 8,
+      "categories": [
+        "Enterocytes",
+        "Enteroendocrine",
+        "Enteroendocrine progenitor",
+        "Goblet cells",
+        "Paneth cells",
+        "Stem cells",
+        "TA cells",
+        "Tuft cells"
+      ],
+      "x2_range": [
+        -0.7302977578072383,
+        4.513977475566906
+      ],
+      "y2_range": [
+        -0.28913326013471674,
+        0.16925391417239055
+      ],
+      "v2_range": [
+        [
+          -0.05413049966019995,
+          0.659639313432123
+        ],
+        [
+          -0.02609778313962809,
+          0.1038475900406751
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9927619024646115,
+        0.0034628053922633934
+      ],
+      "arrow_count": 27,
+      "minimum_bin_count": 8,
+      "arrow_scale": 0.5819625056473661,
+      "axis_limits": [
+        [
+          -0.9400687671422041,
+          4.723748484901872
+        ],
+        [
+          -0.3258042340792853,
+          0.20592488811695914
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "ccf0cef196e259753e290ac8f398c7d30926df8fc3d2ec0e2dec7747ddcdea22"
+    },
+    {
+      "dataset_id": "pancreas",
+      "paper_name": "Pancreas",
+      "n_cells": 3696,
+      "n_categories": 8,
+      "categories": [
+        "Ductal",
+        "Ngn3 low EP",
+        "Ngn3 high EP",
+        "Pre-endocrine",
+        "Beta",
+        "Alpha",
+        "Delta",
+        "Epsilon"
+      ],
+      "x2_range": [
+        -40.55490762310672,
+        93.66657739122873
+      ],
+      "y2_range": [
+        -3.200542107490723,
+        9.52200321490125
+      ],
+      "v2_range": [
+        [
+          -1.3639718561795868,
+          73.35593989880475
+        ],
+        [
+          -1.5928681389286807,
+          7.794445457880704
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9967701182473061,
+        0.002153076753066024
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 8,
+      "arrow_scale": 0.11284401724235633,
+      "axis_limits": [
+        [
+          -45.92376702368014,
+          99.03543679180214
+        ],
+        [
+          -4.218345733282081,
+          10.539806840692608
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "e31dcaa8ccc008690e4084e5e7189ddf8138e965c0665d3b3eb44e9ad066e4cb"
+    },
+    {
+      "dataset_id": "retina",
+      "paper_name": "Mouse retina",
+      "n_cells": 2726,
+      "n_categories": 5,
+      "categories": [
+        "AC/HC",
+        "Neuroblast",
+        "PR",
+        "Progenitor",
+        "RGC"
+      ],
+      "x2_range": [
+        -10.734077302738683,
+        24.971517827329542
+      ],
+      "y2_range": [
+        -5.112002765582931,
+        2.2842208868589107
+      ],
+      "v2_range": [
+        [
+          -1.0720674611787449,
+          8.875696599070599
+        ],
+        [
+          1.2731374484351272,
+          5.009808627626481
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9735230092752584,
+        0.025529520845353256
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 6,
+      "arrow_scale": 0.18160596814619032,
+      "axis_limits": [
+        [
+          -12.162301107941412,
+          26.399741632532272
+        ],
+        [
+          -5.7037006577782785,
+          2.875918779054258
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "4f44de29fe56dfaaa144e5f91d5147ec02756e38c4f7c8dbb89908a6c95bf52e"
+    },
+    {
+      "dataset_id": "sceu_rpe1",
+      "paper_name": "rpe1",
+      "n_cells": 2793,
+      "n_categories": 5,
+      "categories": [
+        "G1-S",
+        "G2-M",
+        "M",
+        "M-G1",
+        "S"
+      ],
+      "x2_range": [
+        -8.010176524978542,
+        4.270601302993581
+      ],
+      "y2_range": [
+        -0.1412720147237142,
+        0.4035433540293985
+      ],
+      "v2_range": [
+        [
+          -14.186112130532978,
+          5.832099184758728
+        ],
+        [
+          -1.145606475545974,
+          0.29994512657369565
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.9986946021453046,
+        0.001083465725761228
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 6,
+      "arrow_scale": 0.2753782089727385,
+      "axis_limits": [
+        [
+          -8.501407638097428,
+          4.761832416112466
+        ],
+        [
+          -0.1848572442239632,
+          0.4471285835296475
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "8a9d15661618de9256197068c8d26b2e6a43f12fb00c5bf1e9194b99e9e28ea4"
+    },
+    {
+      "dataset_id": "rpe1_gen",
+      "paper_name": "rpe1 (VeloCycle)",
+      "n_cells": 3354,
+      "n_categories": 3,
+      "categories": [
+        "G1",
+        "G2M",
+        "S"
+      ],
+      "x2_range": [
+        -2.3812852240327365,
+        1.9310571735667628
+      ],
+      "y2_range": [
+        -1.071992483265338,
+        0.2844821874485206
+      ],
+      "v2_range": [
+        [
+          -0.7535023269481571,
+          0.5068582755974295
+        ],
+        [
+          -0.40480550636141865,
+          0.2615075550025422
+        ]
+      ],
+      "explained_variance_ratio": [
+        0.7069845618601036,
+        0.20416175305502382
+      ],
+      "arrow_count": 28,
+      "minimum_bin_count": 7,
+      "arrow_scale": 0.7571498414015569,
+      "axis_limits": [
+        [
+          -2.5537789199367165,
+          2.1035508694707428
+        ],
+        [
+          -1.1805104569224467,
+          0.3930001611056293
+        ]
+      ],
+      "grid_bins": [
+        14,
+        10
+      ],
+      "arrow_display_cap_axes_width": 0.12,
+      "png_dpi": 300,
+      "panel_size_mm": [
+        45,
+        43
+      ],
+      "npz_sha256": "c1af90173e67e00dbcec09ce97852cfccc1aba8f30f6c581e4821b7368bce9aa"
+    }
+  ]
+}

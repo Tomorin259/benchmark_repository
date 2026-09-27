@@ -1,0 +1,37 @@
+{
+  "purpose": "two native assets for manual A4 PowerPoint layout",
+  "assets": [
+    "pca_summary",
+    "veloae_pca_velocity"
+  ],
+  "projection_layout": {
+    "columns": 5,
+    "rows": 3
+  },
+  "files": [
+    {
+      "name": "pca_summary.pdf",
+      "sha256": "2b779b525c4ebd401cb8d3f41703dc0d3143fc4531d365f1f201d0d204a49221"
+    },
+    {
+      "name": "pca_summary.png",
+      "sha256": "6612697dbb773cf4a7de4b9d46541e0e1548bae918618689bde8f9f940a3678a"
+    },
+    {
+      "name": "pca_summary.svg",
+      "sha256": "d0b60545e7c6457286e21578a2a6316e78e2e7dfb0a72e1709445d1bb991fe54"
+    },
+    {
+      "name": "veloae_pca_velocity.pdf",
+      "sha256": "6a3a276b41f5b6878fd65f21d5f7748e33a8bd20f7469ce279d770273b7571d2"
+    },
+    {
+      "name": "veloae_pca_velocity.png",
+      "sha256": "3ec74739930273a4339e2132a9f46dff5885a84a7779c69c57a8c523a1034f8a"
+    },
+    {
+      "name": "veloae_pca_velocity.svg",
+      "sha256": "23430652ba57931f9cfd4a6ca44f191ffedd619fccc055efb4f50602b7a6e23a"
+    }
+  ]
+}
