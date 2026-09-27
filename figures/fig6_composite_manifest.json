@@ -38,12 +38,12 @@
     {
       "panel": "B alpha",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
-      "source_sha256": "eee20f15d5e6e346cdfed68eb8b0cf0583b8a6d5fa45935201db6749701c7af4"
+      "source_sha256": "7587436b09ad47df0d2a7d430861b2e7e4c71229e660bc3026e96423bc5e20ab"
     },
     {
       "panel": "B gamma",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png",
-      "source_sha256": "8f9cb67fa6045ed31e07d9250614de6d8a1a3b055f3d55a397c1e4951ee1c3bd"
+      "source_sha256": "7306d813851cb82bad320fc62bcd5cfe70981ab547b83db63470c6ea2e94a08b"
     },
     {
       "panel": "D DeepVelo",
@@ -74,12 +74,12 @@
     {
       "panel": "F branch 1",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
-      "source_sha256": "5d02c32c85f844fc0e57e8d5fabd96c19f66923c8f5ab27fbb5242115b24267c"
+      "source_sha256": "6358d1abd71e45d5f36353a7184a54188df9237027db942bd8e300f537e360a6"
     },
     {
       "panel": "F branch 2",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png",
-      "source_sha256": "78ea658e0a560fb2981bc66ead78f59ace303bc44f7ede61b065b0e64996b76b"
+      "source_sha256": "037f5d1aa937aa91aa6f157928cf187f58a2f52faf4126a36996463dd24ec9f9"
     },
     {
       "panel": "D cellDancer",
