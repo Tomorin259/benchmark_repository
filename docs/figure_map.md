@@ -18,7 +18,15 @@ source and materialized paths, SHA256, and unresolved source gaps. Do not copy
 its inventory into prose; derive current panel counts and missing-source lists
 from the manifest.
 
-Figure 5 is the gene-level real-dataset evaluation. Figure 6 is the
+Figure 3 compares selected gene-level and cell-level transition cases; its
+three source panels are under `evaluation/gene/figures/panels/selected_edges/`.
+Figure 4 is the simulation evaluation, with its final D summary source under
+`evaluation/gene/figures/panels/simulation/`. Figure 5 is the real-dataset
+gene-level evaluation. Their active PDFs are `figures/figThree.pdf`,
+`figures/figFour.pdf`, and `figures/figFive.pdf`, each byte-identical to the
+corresponding online paper asset.
+
+Figure 6 is the
 scEU-seq kinetic-parameter recovery evaluation, with active source panels in
 `evaluation/kinetics_recovery/figures/fig6/`. Its B–D/F quantitative panels
 and A/E streams are mapped in the assembly manifest; E includes the

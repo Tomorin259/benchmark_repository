@@ -1,14 +1,17 @@
 # Paper figures
 
 Paper-level PDFs and assembly assets are tracked here. The assembly manifest
-maps each materialized panel to a repository source and SHA256. It also records
-unresolved independent panel sources without inventing replacements.
+maps each materialized panel to a repository source and SHA256 and records
+unresolved independent sources without inventing replacements.
 
-The current kinetic-parameter recovery composite is `figSix.pdf`; its 16
-source-panel checksums and PDF checksum are in `fig6_composite_manifest.json`.
-Figure 6 includes the Dynamo(label data) positive-control stream in organoid
-panel E. The integrated Figure 7 PDF is `figSeven.pdf`, retained from the
-repository baseline without changing its summary values. The former kinetics Figure 5 PDF is retained in `archive/kinetics/figFive.pdf`. The top-level `figFive.pdf` is pending the separate gene-level Figure 5 replacement batch.
+The current online-matched PDFs are `figThree.pdf` (selected gene/cell
+transitions), `figFour.pdf` (simulation), `figFive.pdf` (real-data gene
+kinetics), and `figSix.pdf` (scEU-seq kinetic-parameter recovery). Figure 6
+has 16 source panels, including the Dynamo(label data) organoid E stream;
+`fig6_composite_manifest.json` records their hashes and the online PDF
+checksum. `figSeven.pdf` retains the repository-baseline integrated summary
+values. The historical kinetics PDF bearing the old Figure 5 filename is
+retained in `archive/kinetics/figFive.pdf`.
 
 Do not add intermediate panels or alternate result copies to the active
 figure directory.
