@@ -91,11 +91,22 @@ class KineticsPlottingContractTests(unittest.TestCase):
         self.assertEqual(len(composite["composite_sha256"]), 64)
         self.assertEqual(len(composite["panels"]), 16)
         self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 16)
-        self.assertEqual(composite["composite_status"], "current")
-        self.assertFalse(composite["pending_panel_replacements"])
+        pending = set(composite["pending_panel_replacements"])
+        self.assertEqual(
+            composite["composite_status"],
+            "pending_panel_replacements" if pending else "current",
+        )
         for row in composite["panels"]:
             current_hash = hashlib.sha256((root / row["source_path"]).read_bytes()).hexdigest()
-            self.assertEqual(current_hash, row["source_sha256"])
+            if row["source_path"] in pending:
+                self.assertEqual(current_hash, row["pending_source_sha256"])
+                self.assertNotEqual(current_hash, row["source_sha256"])
+            else:
+                self.assertEqual(current_hash, row["source_sha256"])
+        self.assertEqual(
+            pending,
+            {row["source_path"] for row in composite["panels"] if "pending_source_sha256" in row},
+        )
         self.assertEqual(hashlib.sha256((root / composite["composite_path"]).read_bytes()).hexdigest(), composite["composite_sha256"])
 
 

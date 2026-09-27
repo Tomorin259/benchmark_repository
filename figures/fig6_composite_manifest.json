@@ -1,9 +1,9 @@
 {
   "export": "online_authoritative_pdf",
-  "composite_status": "current",
+  "composite_status": "pending_panel_replacements",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "The online merged.tex Figure 6 asset was opened in the browser and its complete A\u2013F layout visually checked; this PDF is byte-identical to that online figSix.pdf. Each source-panel path and hash is validated separately.",
+  "validation": "The online merged.tex Figure 6 asset was opened in the browser and its complete A\u2013F layout visually checked; this PDF is byte-identical to that online figSix.pdf. The two F-panel source assets have since changed; their new hashes are recorded separately and are not yet present in this PDF.",
   "panels": [
     {
       "panel": "C",
@@ -74,12 +74,14 @@
     {
       "panel": "F branch 1",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
-      "source_sha256": "6358d1abd71e45d5f36353a7184a54188df9237027db942bd8e300f537e360a6"
+      "source_sha256": "6358d1abd71e45d5f36353a7184a54188df9237027db942bd8e300f537e360a6",
+      "pending_source_sha256": "9a3765925f75e4b5bb43332529c3ad2de8f6637f8962a76613a46e16bb60aefa"
     },
     {
       "panel": "F branch 2",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png",
-      "source_sha256": "037f5d1aa937aa91aa6f157928cf187f58a2f52faf4126a36996463dd24ec9f9"
+      "source_sha256": "037f5d1aa937aa91aa6f157928cf187f58a2f52faf4126a36996463dd24ec9f9",
+      "pending_source_sha256": "826b68b57d302f077aec39555e53820c494377f1b8486cc3d063b85c58af3c3c"
     },
     {
       "panel": "D cellDancer",
@@ -89,6 +91,9 @@
   ],
   "composite_path": "figures/figSix.pdf",
   "composite_sha256": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
-  "pending_panel_replacements": [],
-  "update_note": "Figure 6 source paths normalized; Dynamo(label data) is included in A and formal organoid E; branch-specific F panels match the online composite."
+  "pending_panel_replacements": [
+    "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
+    "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png"
+  ],
+  "update_note": "Figure 6 source paths are normalized and Dynamo(label data) is included in A and E. The F-panel sources and local PPTX have newer colors than the unchanged online composite; the user will export the final PDF."
 }
