@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the two reproducible RowGeometricMedian-4 SupFig9 metric panels."""
+"""Render the two reproducible RowGeometricMedian-4 SupFig10 metric panels."""
 
 from __future__ import annotations
 
@@ -203,7 +203,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=root / "figures/assembly/suppfig09",
+        default=root / "figures/assembly/suppfig10",
     )
     return parser
 

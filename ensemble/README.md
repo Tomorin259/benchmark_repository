@@ -79,7 +79,7 @@ When `evaluation/cell/results/cell_metrics.csv` exists after a complete run, `be
 [`results/ranking_summary.md`](results/ranking_summary.md); `metadata.json` records
 the portable protocol and relative result-file paths.
 
-The reproducible SupFig9 CBDir and BATC panels are rendered by
-[`plot_supfig9.py`](plot_supfig9.py) from the canonical Cell and ensemble score
-tables into `figures/assembly/suppfig09`; both SVG panels use the same
+The reproducible SupFig10 CBDir and BATC panels are rendered by
+[`plot_supfig10.py`](plot_supfig10.py) from the canonical Cell and ensemble score
+tables into `figures/assembly/suppfig10`; both SVG panels use the same
 21 methods, ordered independently by each metric's macro-average score.

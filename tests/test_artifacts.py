@@ -63,16 +63,24 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 120
+    assert len(rows) == 122
     materialized = [row for row in rows if row["status"] == "materialized"]
     assert len(materialized) == 115
-    panels = [row for row in rows if row["figure"] == "suppfig09"]
+    panels = [row for row in rows if row["figure"] == "suppfig10"]
     assert len(panels) == 2
     assert all(row["status"] == "materialized" for row in panels)
     assert {row["panel"] for row in panels} == {"A", "B"}
     assert not any("workflow schematic" in row["role"] for row in panels)
     expected = {
-        "suppfig09/A_row_geometric_median4_cbdir.svg",
-        "suppfig09/B_row_geometric_median4_batc.svg",
+        "suppfig10/A_row_geometric_median4_cbdir.svg",
+        "suppfig10/B_row_geometric_median4_batc.svg",
     }
     assert {row["materialized_path"] for row in panels} == expected
+
+
+def test_online_supplementary_figure_gaps_are_explicit():
+    with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
+        rows = list(csv.DictReader(handle, delimiter="\t"))
+    for figure in ("suppfig09", "suppfig11"):
+        gaps = [row for row in rows if row["figure"] == figure]
+        assert len(gaps) == 1 and gaps[0]["status"] == "missing_source"

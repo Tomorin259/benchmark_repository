@@ -38,3 +38,5 @@ paths are preserved only under `evaluation/kinetics_recovery/archive/fig5/`.
 Figure 7 is the integrated method comparison. Its repository-baseline PDF is
 `figures/figSeven.pdf`; the source tables remain under
 `evaluation/summary/`, pending a separate Figure 7 audit.
+
+The online manuscript assigns matched cell/gene comparison to Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10. The Figure 10 source panels are in `figures/assembly/suppfig10/`; final composite sources for Supplementary Figures 9 and 11 remain unresolved in the assembly manifest.
