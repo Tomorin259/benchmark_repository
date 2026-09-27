@@ -31,14 +31,13 @@ DISPLAY_METHOD_NAMES = {
 }
 
 TRAJECTORY_COLORS = {
-    # Figure 6B line-specific palette: close or overlapping trajectories
-    # must remain distinguishable. Other method-colored panels use the
-    # benchmark palette below.
-    "DeepVelo": "#1f77b4",
-    "cellDancer": "#ff7f0e",
-    "Dynamo(label data)": "#2ca02c",
-    "TSvelo": "#e420ca",
-    "DeepKINET": "#B5BD61",
+    # Figure 6B follows the benchmark hues. Separate the two green methods
+    # by lightness so their overlapping trajectories remain distinguishable.
+    "DeepVelo": "#C9383B",
+    "cellDancer": "#80C46F",
+    "Dynamo(label data)": "#126B36",
+    "TSvelo": "#A05D56",
+    "DeepKINET": "#FA8F12",
 }
 
 BOXPLOT_METHOD_COLORS = {

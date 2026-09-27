@@ -14,6 +14,15 @@ PLOTTING_ROOT = (
 
 
 class KineticsPlottingContractTests(unittest.TestCase):
+    def test_trajectory_palette_separates_green_methods(self):
+        from evaluation.cell.plots import BENCHMARK_COLORS
+        from evaluation.kinetics_recovery.plotting.figure6 import TRAJECTORY_COLORS
+
+        self.assertEqual(TRAJECTORY_COLORS["Dynamo(label data)"], "#126B36")
+        self.assertEqual(TRAJECTORY_COLORS["cellDancer"], "#80C46F")
+        for method in ("DeepVelo", "DeepKINET", "TSvelo"):
+            self.assertEqual(TRAJECTORY_COLORS[method], BENCHMARK_COLORS[method])
+
     def test_organoid_boxplots_follow_benchmark_method_colors(self):
         from evaluation.cell.plots import BENCHMARK_COLORS
         from evaluation.kinetics_recovery.plotting.figure6 import BOXPLOT_METHOD_COLORS

@@ -17,6 +17,13 @@ and exact plotted rows are in `figures/fig6/`. The run manifest records selected
 H5AD/reference hashes, software versions, renderer code hashes, and output
 checksums. No methods were trained and `metrics.py` is unchanged.
 
+Figure 6B uses benchmark method hues, with darker green for
+Dynamo(label data) and lighter green for cellDancer to separate overlapping
+trajectories. The superseded line-color PNGs are retained under
+`archive/fig6_legacy_line_palette_20260927/` and are not active assembly
+sources. This is a display-only change; the plotted trajectory CSVs are
+unchanged.
+
 Quantitative panels read one common evaluator output rather than independent
 static legacy tables. Streams use saved embeddings and velocity projections
 without recomputing neighbors, moments, graphs, or embeddings. Some saved

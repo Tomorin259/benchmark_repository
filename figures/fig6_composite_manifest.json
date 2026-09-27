@@ -3,7 +3,7 @@
   "composite_status": "pending_panel_replacements",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "The online merged.tex Figure 6 asset was opened in the browser and its complete A\u2013F layout visually checked; this PDF is byte-identical to that online figSix.pdf. The two F-panel source assets have since changed; their new hashes are recorded separately and are not yet present in this PDF.",
+  "validation": "The online merged.tex Figure 6 asset was opened in the browser and its complete A\u2013F layout visually checked; this PDF is byte-identical to that online figSix.pdf. The two B-panel and two F-panel source assets have since changed; their new hashes are recorded separately and are not yet present in this PDF.",
   "panels": [
     {
       "panel": "C",
@@ -38,12 +38,14 @@
     {
       "panel": "B alpha",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
-      "source_sha256": "7587436b09ad47df0d2a7d430861b2e7e4c71229e660bc3026e96423bc5e20ab"
+      "source_sha256": "7587436b09ad47df0d2a7d430861b2e7e4c71229e660bc3026e96423bc5e20ab",
+      "pending_source_sha256": "37df3dff8bcde45b643f0b0c36b33c4bb4b8e79b3ca95ec67373b0211af0a32f"
     },
     {
       "panel": "B gamma",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png",
-      "source_sha256": "7306d813851cb82bad320fc62bcd5cfe70981ab547b83db63470c6ea2e94a08b"
+      "source_sha256": "7306d813851cb82bad320fc62bcd5cfe70981ab547b83db63470c6ea2e94a08b",
+      "pending_source_sha256": "3fe0cf6486eab89b43455b2db278493021c6156183d9bd493023892617249cd8"
     },
     {
       "panel": "D DeepVelo",
@@ -92,8 +94,10 @@
   "composite_path": "figures/figSix.pdf",
   "composite_sha256": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
   "pending_panel_replacements": [
+    "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
+    "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png",
     "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
     "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png"
   ],
-  "update_note": "Figure 6 source paths are normalized and Dynamo(label data) is included in A and E. The F-panel sources and local PPTX have newer colors than the unchanged online composite; the user will export the final PDF."
+  "update_note": "Figure 6 source paths are normalized and Dynamo(label data) is included in A and E. The B- and F-panel sources and local PPTX have newer colors than the unchanged online composite; the user will export the final PDF."
 }
