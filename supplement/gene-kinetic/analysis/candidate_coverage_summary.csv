@@ -1,0 +1,16 @@
+case,dataset,gene,source,target,expected_methods,valid_gene_methods,missing_gene_methods,cell_matched_methods,cell_match_count
+capo_e2f7,capo_pre,E2F7,G1,S,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+capo_fam111a,capo_pre,FAM111A,G1,S,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+dentate_dab1,DentateGyrus_lamanno,Dab1,CA,CA1-Sub,9,8,TIvelo,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+dentate_diaph3,DentateGyrus_lamanno,Diaph3,nIPC,Nbl1,9,8,DeepVelo_scv,,0
+dentate_ncald,DentateGyrus_lamanno,Ncald,ImmGranule1,ImmGranule2,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_alas2,gastrulation,Alas2,Erythroid2,Erythroid3,9,7,DeepVelo_scv;TIvelo,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_fam210b,gastrulation,Fam210b,Erythroid2,Erythroid3,9,8,veloVI,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_fech,gastrulation,Fech,Erythroid2,Erythroid3,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_gypa,gastrulation,Gypa,Erythroid2,Erythroid3,9,8,veloVI,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_hbax,gastrulation,Hba-x,Erythroid2,Erythroid3,9,7,DeepVelo_scv;TIvelo,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_hemgn,gastrulation,Hemgn,Erythroid2,Erythroid3,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+gastrulation_klf3,gastrulation,Klf3,Erythroid2,Erythroid3,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+mousebrain_flrt2,mousebrain,Flrt2,V-SVZ,Upper Layer,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+pancreas_g6pc2,pancreas,G6pc2,Pre-endocrine,Beta,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
+retina_celf4,retina,Celf4,Neuroblast,RGC,9,9,,DeepVelo;DeepVelo_scv;Graphvelo_scv;MultiVelo;TIvelo;UniTVelo;cellDancer;scVelo_dyn;veloVI,9
