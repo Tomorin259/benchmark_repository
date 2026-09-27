@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 
 METHODS = ('veloae', 'scvelo_stochastic', 'TIvelo')
-NAMES = ('veloAE', 'scVelo stochastic', 'TIvelo')
+NAMES = ('veloAE', 'scVelo_sto', 'TIvelo')
 COLORS = ('#C43C39', '#E17C05', '#B279A2')
 
 

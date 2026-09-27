@@ -13,7 +13,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
-from matplotlib_venn import venn2, venn2_circles
+try:
+    from matplotlib_venn import venn2, venn2_circles
+except ModuleNotFoundError:
+    venn2 = venn2_circles = None
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -40,6 +43,14 @@ METHOD_COLORS = {
 # ``Dynamo(label data)`` name is too wide for the boxplot x-axis; the caption
 # and README carry the label-data qualifier while the panel uses ``Dynamo``.
 ORGANOID_PLOT_METHOD_NAMES = {"Dynamo": "Dynamo"}
+
+# Display-only panels inherit the relative method order of Figure 7.  The
+# metric-ranked heatmap remains sorted by its own correlation values.
+PAPER_METHOD_ORDER = ("Dynamo", "DeepKINET", "TSvelo", "cellDancer", "DeepVelo")
+
+
+def paper_method_order(paths: dict) -> dict:
+    return {method: paths[method] for method in PAPER_METHOD_ORDER if method in paths}
 
 
 def resolve(root: Path, relative_path: str) -> Path:
@@ -120,7 +131,7 @@ def plot_trajectory(
 ) -> pd.DataFrame:
     """Preserve the 10-column trajectory layout and export plotted values."""
     truth = read_matrix(reference_path)
-    methods = {name: read_matrix(path) for name, path in method_paths.items()}
+    methods = {name: read_matrix(path) for name, path in paper_method_order(method_paths).items()}
     valid_genes = [gene for gene in genes if gene in truth.index]
     plotted_rows = []
     rows = math.ceil(len(valid_genes) / 10)
@@ -286,6 +297,8 @@ def plot_venn(
     prediction_label: str,
     membership_output_path: Path,
 ) -> pd.DataFrame:
+    if venn2 is None or venn2_circles is None:
+        raise RuntimeError("matplotlib-venn is required when rendering Venn panels")
     truth = cosine_classes(reference_alpha, reference_gamma)
     prediction = cosine_classes(prediction_alpha, prediction_gamma)
     titles = {
@@ -343,6 +356,7 @@ def plot_branch(
     genes: list[str],
     output_path: Path,
 ) -> pd.DataFrame:
+    method_paths = paper_method_order(method_paths)
     frames = []
     for method, paths in method_paths.items():
         display_name = ORGANOID_PLOT_METHOD_NAMES.get(
@@ -418,7 +432,7 @@ def plot_branch(
                 axis.text(
                     method_positions[display_method],
                     means[display_method] + 0.08,
-                    f"{means[display_method]:.2f}",
+                    f"{means[display_method]:.3f}",
                     ha="center",
                     color="black",
                     fontweight="bold",
@@ -438,6 +452,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--skip-venn", action="store_true",
+                        help="Redraw display panels without the unchanged Venn diagrams")
     parser.add_argument(
         "--config",
         type=Path,
@@ -481,30 +497,31 @@ def main() -> None:
     alpha_matrix.to_csv(plot_data / "rpe1_alpha_heatmap.csv")
     gamma_matrix.to_csv(plot_data / "rpe1_gamma_heatmap.csv")
 
-    venn = rpe1["deepvelo_venn"]
-    venn_rows = plot_venn(
-        resolve(artifact_root, venn["reference_alpha"]),
-        resolve(artifact_root, venn["reference_gamma"]),
-        resolve(artifact_root, venn["prediction_alpha"]),
-        resolve(artifact_root, venn["prediction_gamma"]),
-        output / "rpe1_deepvelo_kinetic_classes.png",
-        "DeepVelo",
-        plot_data / "rpe1_deepvelo_kinetic_class_membership.csv",
-    )
-    venn_rows.to_csv(plot_data / "rpe1_deepvelo_kinetic_classes.csv", index=False)
-    cell_dancer_venn = rpe1["cellDancer_venn"]
-    cell_dancer_rows = plot_venn(
-        resolve(artifact_root, cell_dancer_venn["reference_alpha"]),
-        resolve(artifact_root, cell_dancer_venn["reference_gamma"]),
-        resolve(artifact_root, cell_dancer_venn["prediction_alpha"]),
-        resolve(artifact_root, cell_dancer_venn["prediction_gamma"]),
-        output / "rpe1_celldancer_kinetic_classes.png",
-        "cellDancer",
-        plot_data / "rpe1_celldancer_kinetic_class_membership.csv",
-    )
-    cell_dancer_rows.to_csv(
-        plot_data / "rpe1_celldancer_kinetic_classes.csv", index=False
-    )
+    if not args.skip_venn:
+        venn = rpe1["deepvelo_venn"]
+        venn_rows = plot_venn(
+            resolve(artifact_root, venn["reference_alpha"]),
+            resolve(artifact_root, venn["reference_gamma"]),
+            resolve(artifact_root, venn["prediction_alpha"]),
+            resolve(artifact_root, venn["prediction_gamma"]),
+            output / "rpe1_deepvelo_kinetic_classes.png",
+            "DeepVelo",
+            plot_data / "rpe1_deepvelo_kinetic_class_membership.csv",
+        )
+        venn_rows.to_csv(plot_data / "rpe1_deepvelo_kinetic_classes.csv", index=False)
+        cell_dancer_venn = rpe1["cellDancer_venn"]
+        cell_dancer_rows = plot_venn(
+            resolve(artifact_root, cell_dancer_venn["reference_alpha"]),
+            resolve(artifact_root, cell_dancer_venn["reference_gamma"]),
+            resolve(artifact_root, cell_dancer_venn["prediction_alpha"]),
+            resolve(artifact_root, cell_dancer_venn["prediction_gamma"]),
+            output / "rpe1_celldancer_kinetic_classes.png",
+            "cellDancer",
+            plot_data / "rpe1_celldancer_kinetic_class_membership.csv",
+        )
+        cell_dancer_rows.to_csv(
+            plot_data / "rpe1_celldancer_kinetic_classes.csv", index=False
+        )
 
     for branch_id, branch_config in config["inputs"]["organoid"]["branches"].items():
         method_paths = {

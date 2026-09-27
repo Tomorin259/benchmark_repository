@@ -1,7 +1,7 @@
 internal_id	display_name	paper_order
-scvelo_deterministic	scVelo_deterministic	1
-scvelo_stochastic	scVelo_stochastic	2
-scvelo_dynamic	scVelo_dynamic	3
+scvelo_deterministic	scVelo_det	1
+scvelo_stochastic	scVelo_sto	2
+scvelo_dynamic	scVelo_dyn	3
 multivelo	MultiVelo (RNA_only)	4
 unitvelo	UniTVelo	5
 unitvelo_mode2	UniTVelo(mode2)	6

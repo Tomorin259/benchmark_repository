@@ -26,6 +26,10 @@ ORIGINAL_SIM = None
 ORIGINAL_SIM_SUMMARY = None
 DEFAULT_OUTPUT = HERE / "figures" / "panels"
 
+# Intermediate text scores are parsed by the plotting scripts. Preserve the
+# CSV-loaded float exactly; display rounding belongs in the plot renderers.
+SCORE_FILE_FORMAT = ".17g"
+
 sys.path.insert(0, str(REPOSITORY_ROOT))
 sys.path.insert(0, str(HERE))
 import run_reference30_gene_cbdir as registry  # noqa: E402
@@ -40,7 +44,7 @@ DISPLAY_NAMES = {
     "DeepVelo_scv": "DeepVelo_scv",
     "Graphvelo_scv": "GraphVelo_scv",
     "MultiVelo": "MultiVelo (RNA_only)",
-    "scVelo_dyn": "scVelo_dynamic",
+    "scVelo_dyn": "scVelo_dyn",
     "TIvelo": "TIvelo",
     "UniTVelo": "UniTVelo",
     "veloVI": "veloVI",
@@ -275,7 +279,7 @@ def write_real_score_file(path: Path, case: str, config, scores: pd.DataFrame, t
                 if row.empty or not np.isfinite(row.iloc[0]["new_cbdir"]):
                     continue
                 handle.write(
-                    f"{txt_key}:{gene}: {row.iloc[0]['new_cbdir']:.5f} | Raw_Scores: {{}}\n"
+                    f"{txt_key}:{gene}: {row.iloc[0]['new_cbdir']:{SCORE_FILE_FORMAT}} | Raw_Scores: {{}}\n"
                 )
 
 
@@ -290,8 +294,8 @@ def write_sim_score_file(path: Path, case: str, scores: pd.DataFrame):
                     continue
                 cossim = row.iloc[0]["cossim"]
                 handle.write(
-                    f"{raw_key}:{gene}: {row.iloc[0]['new_cbdir']:.5f} | "
-                    f"CosSim: {cossim:.5f} | Raw_Scores: {{}}\n"
+                    f"{raw_key}:{gene}: {row.iloc[0]['new_cbdir']:{SCORE_FILE_FORMAT}} | "
+                    f"CosSim: {cossim:{SCORE_FILE_FORMAT}} | Raw_Scores: {{}}\n"
                 )
 
 
@@ -313,6 +317,23 @@ def set_real_summary_style(real_module):
     return saved_names, saved_colors
 
 
+def plot_real_summary(real_module, config):
+    """Keep the original layout while using the manuscript metric notation."""
+    original_savefig = real_module.plt.savefig
+
+    def savefig_with_gene_label(*args, **kwargs):
+        figure = real_module.plt.gcf()
+        if figure.axes:
+            figure.axes[0].set_ylabel(r"$\mathrm{CBDir}_{\mathrm{gene}}$")
+        return original_savefig(*args, **kwargs)
+
+    real_module.plt.savefig = savefig_with_gene_label
+    try:
+        real_module.plot_score_summary_box_heatmap(config)
+    finally:
+        real_module.plt.savefig = original_savefig
+
+
 def render_real_case(real_module, case: str, scores: pd.DataFrame, output_root: Path):
     config_name = REAL_CASE_NAMES.get(case, case)
     source_config = real_module.DATASET_CONFIGS[config_name]
@@ -329,7 +350,7 @@ def render_real_case(real_module, case: str, scores: pd.DataFrame, output_root: 
     adatas = real_module.load_and_preprocess_dataset(config)
     real_module.plot_multi_method_genes(adatas, config)
     saved_names, saved_colors = set_real_summary_style(real_module)
-    real_module.plot_score_summary_box_heatmap(config)
+    plot_real_summary(real_module, config)
     real_module.METHOD_NAMES = saved_names
     real_module.BENCHMARK_COLORS = saved_colors
     summary = output_dir / "branching_combined.png"
@@ -379,7 +400,7 @@ def render_summaries_only(real_module, summary_module, real_cases, sim_cases, ou
         output_dir = output_root / "real" / case
         config = replace(source_config, output_dir=str(output_dir))
         saved_names, saved_colors = set_real_summary_style(real_module)
-        real_module.plot_score_summary_box_heatmap(config)
+        plot_real_summary(real_module, config)
         real_module.METHOD_NAMES = saved_names
         real_module.BENCHMARK_COLORS = saved_colors
         summary = output_dir / "branching_combined.png"
@@ -525,6 +546,7 @@ def main():
         "display_dataset_names": DATASET_DISPLAY_NAMES,
         "phase_plot_renderer": "evaluation/gene/plotting/phase_portrait.py",
         "phase_plot_renderer_sha256": sha256(REPOSITORY_ROOT / "evaluation/gene/plotting/phase_portrait.py"),
+        "display_precision": {"individual_gene_cbdir": 4, "aggregate_summary": 3},
         "phase_plot_contract": {
             "version": PHASE_PLOT_VERSION,
             "dpi": 600,

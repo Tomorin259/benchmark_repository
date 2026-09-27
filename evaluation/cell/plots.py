@@ -25,9 +25,9 @@ METRICS_CSV = DEFAULT_METRICS_CSV
 SUPPLEMENTARY_METRICS_CSV = DEFAULT_SUPPLEMENTARY_METRICS_CSV
 
 METHOD_NAME_MAPPING = {
-    'scvelo_deterministic': 'scVelo_deterministic',
-    'scvelo_dynamic': 'scVelo_dynamic',
-    'scvelo_stochastic': 'scVelo_stochastic',
+    'scvelo_deterministic': 'scVelo_det',
+    'scvelo_dynamic': 'scVelo_dyn',
+    'scvelo_stochastic': 'scVelo_sto',
     'unitvelo': 'UniTVelo',
     'unitvelo_mode2': 'UniTVelo(mode2)',
     'celldancer': 'cellDancer',
@@ -48,7 +48,7 @@ METHOD_NAME_MAPPING = {
 }
 
 METHOD_ORDER = [
-    'scVelo_deterministic', 'scVelo_stochastic', 'scVelo_dynamic', 'MultiVelo (RNA_only)',
+    'scVelo_det', 'scVelo_sto', 'scVelo_dyn', 'MultiVelo (RNA_only)',
     'UniTVelo', 'UniTVelo(mode2)', 'Dynamo(RNA_seq)', 'TIvelo', 'cell2fate',
     'TFvelo', 'veloAE', 'veloVI', 'DeepKINET', 'TSvelo', 'cellDancer',
     'DeepVelo', 'SDEvelo', 'DeepVelo_scv', 'GraphVelo_scv',
@@ -75,11 +75,11 @@ DATASET_NAME_MAPPING = {
 }
 
 BENCHMARK_COLORS = {
-    'scVelo_deterministic': '#1F77B4',
-    'scVelo_stochastic': '#FF7F0E',
+    'scVelo_det': '#1F77B4',
+    'scVelo_sto': '#FF7F0E',
     'Dynamo(RNA_seq)': '#2CA02C',
     'veloAE': '#D62728',
-    'scVelo_dynamic': '#9467BD',
+    'scVelo_dyn': '#9467BD',
     'MultiVelo (RNA_only)': '#8C564B',
     'UniTVelo': '#E377C2',
     'UniTVelo(mode2)': '#7F7F7F',
