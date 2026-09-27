@@ -17,10 +17,12 @@ method, dataset, parameter, and branch, then displays selected-gene means.
 DeepKINET supplies gamma only. TSvelo alpha uses two lineage files; its stream
 uses the merged result. Dynamo A and E are recorded labelled-data manual assets, with provenance stored beside the panels; neither has an automatic H5AD renderer in this module.
 
-Figure 6 uses a fixed method palette: DeepVelo `#1f77b4`, cellDancer
-`#ff7f0e`, Dynamo(label data) `#2ca02c`, DeepKINET `#B5BD61`, and TSvelo
-`#e420ca`. The renderer applies this registry to both trajectory lines and
-organoid boxplots; per-branch configuration colors must match the registry.
+Figure 6F organoid boxplots use the benchmark method colors in
+`evaluation/cell/plots.py` (`BENCHMARK_COLORS`). The labelled Dynamo control
+uses the Dynamo(RNA_seq) color. Figure 6B keeps a separate, fixed line palette
+because several benchmark colors are difficult to distinguish when the
+trajectories overlap. Its source values and method order are unchanged by this
+display exception. Figure 6A/E streams color cells by cluster, not methods.
 
 Streams validate cell IDs, finite arrays, dimensions, and any configured
 reference embedding. Exact equality after casting reference coordinates to

@@ -113,21 +113,17 @@
           "methods": {
             "DeepVelo": {
               "Alpha": "gene_metrics.csv",
-              "Gamma": "gene_metrics.csv",
-              "color": "#1f77b4"
+              "Gamma": "gene_metrics.csv"
             },
             "cellDancer": {
               "Alpha": "gene_metrics.csv",
-              "Gamma": "gene_metrics.csv",
-              "color": "#ff7f0e"
+              "Gamma": "gene_metrics.csv"
             },
             "Dynamo": {
-              "Alpha": "gene_metrics.csv",
-              "color": "#2ca02c"
+              "Alpha": "gene_metrics.csv"
             },
             "DeepKINET": {
-              "Gamma": "gene_metrics.csv",
-              "color": "#B5BD61"
+              "Gamma": "gene_metrics.csv"
             }
           }
         },
@@ -145,21 +141,17 @@
           "methods": {
             "DeepVelo": {
               "Alpha": "gene_metrics.csv",
-              "Gamma": "gene_metrics.csv",
-              "color": "#1f77b4"
+              "Gamma": "gene_metrics.csv"
             },
             "cellDancer": {
               "Alpha": "gene_metrics.csv",
-              "Gamma": "gene_metrics.csv",
-              "color": "#ff7f0e"
+              "Gamma": "gene_metrics.csv"
             },
             "Dynamo": {
-              "Alpha": "gene_metrics.csv",
-              "color": "#2ca02c"
+              "Alpha": "gene_metrics.csv"
             },
             "DeepKINET": {
-              "Gamma": "gene_metrics.csv",
-              "color": "#B5BD61"
+              "Gamma": "gene_metrics.csv"
             }
           }
         }

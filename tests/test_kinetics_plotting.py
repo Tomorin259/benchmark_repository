@@ -14,6 +14,17 @@ PLOTTING_ROOT = (
 
 
 class KineticsPlottingContractTests(unittest.TestCase):
+    def test_organoid_boxplots_follow_benchmark_method_colors(self):
+        from evaluation.cell.plots import BENCHMARK_COLORS
+        from evaluation.kinetics_recovery.plotting.figure6 import BOXPLOT_METHOD_COLORS
+
+        for method in ("DeepVelo", "cellDancer", "DeepKINET"):
+            self.assertEqual(BOXPLOT_METHOD_COLORS[method], BENCHMARK_COLORS[method])
+        self.assertEqual(
+            BOXPLOT_METHOD_COLORS["Dynamo(label data)"],
+            BENCHMARK_COLORS["Dynamo(RNA_seq)"],
+        )
+
     def test_stream_config_has_explicit_method_keys(self):
         config = json.loads((PLOTTING_ROOT / "stream_config.json").read_text())
         specs = config["organoid"]

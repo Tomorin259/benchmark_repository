@@ -30,9 +30,10 @@ DISPLAY_METHOD_NAMES = {
     "TSvelo": "TSvelo",
 }
 
-METHOD_COLORS = {
-    # Figure 6 method palette.  These colors are part of the display
-    # contract and must be reused by trajectories and organoid boxplots.
+TRAJECTORY_COLORS = {
+    # Figure 6B line-specific palette: close or overlapping trajectories
+    # must remain distinguishable. Other method-colored panels use the
+    # benchmark palette below.
     "DeepVelo": "#1f77b4",
     "cellDancer": "#ff7f0e",
     "Dynamo(label data)": "#2ca02c",
@@ -40,13 +41,22 @@ METHOD_COLORS = {
     "DeepKINET": "#B5BD61",
 }
 
+BOXPLOT_METHOD_COLORS = {
+    # Figure 6F follows evaluation.cell.plots.BENCHMARK_COLORS. The labelled
+    # Dynamo control reuses the Dynamo(RNA_seq) method color.
+    "DeepVelo": "#C9383B",
+    "cellDancer": "#5BA658",
+    "Dynamo(label data)": "#2CA02C",
+    "DeepKINET": "#FA8F12",
+}
+
 
 def canonical_method_color(method: str) -> str:
-    """Return the fixed Figure 6 color for a method key."""
+    """Return the benchmark color for a Figure 6F method key."""
     display_name = DISPLAY_METHOD_NAMES.get(method, method)
-    if display_name not in METHOD_COLORS:
-        raise KeyError(f"No canonical Figure 6 color registered for {method}")
-    return METHOD_COLORS[display_name]
+    if display_name not in BOXPLOT_METHOD_COLORS:
+        raise KeyError(f"No benchmark boxplot color registered for {method}")
+    return BOXPLOT_METHOD_COLORS[display_name]
 
 # Organoid panels are rendered separately for each branch, so the branch
 # suffix is retained for the existing method labels.  Dynamo's full
@@ -178,7 +188,7 @@ def plot_trajectory(
             axis.plot(
                 np.linspace(0, 1, len(values)),
                 values,
-                color=METHOD_COLORS[DISPLAY_METHOD_NAMES.get(name, name)],
+                color=TRAJECTORY_COLORS[DISPLAY_METHOD_NAMES.get(name, name)],
                 linewidth=1.5,
                 alpha=0.8,
                 label=name,

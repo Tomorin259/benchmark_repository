@@ -75,13 +75,13 @@
       "panel": "F branch 1",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
       "source_sha256": "6358d1abd71e45d5f36353a7184a54188df9237027db942bd8e300f537e360a6",
-      "pending_source_sha256": "9a3765925f75e4b5bb43332529c3ad2de8f6637f8962a76613a46e16bb60aefa"
+      "pending_source_sha256": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537"
     },
     {
       "panel": "F branch 2",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png",
       "source_sha256": "037f5d1aa937aa91aa6f157928cf187f58a2f52faf4126a36996463dd24ec9f9",
-      "pending_source_sha256": "826b68b57d302f077aec39555e53820c494377f1b8486cc3d063b85c58af3c3c"
+      "pending_source_sha256": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839"
     },
     {
       "panel": "D cellDancer",

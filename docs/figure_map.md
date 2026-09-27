@@ -34,6 +34,9 @@ Dynamo(label data) positive-control stream. The current Figure 6 composite
 and its checksums are `figures/figSix.pdf` and
 `figures/fig6_composite_manifest.json`. The historical kinetics `fig5`
 paths are preserved only under `evaluation/kinetics_recovery/archive/fig5/`.
+Method-colored Figure 6F boxplots inherit the benchmark palette from
+`evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
+high-contrast exception; Figure 6A/E stream colors encode cell clusters.
 
 Figure 7 is the integrated method comparison. Its repository-baseline PDF is
 `figures/figSeven.pdf`; the source tables remain under
