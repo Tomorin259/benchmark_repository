@@ -1,23 +1,14 @@
 # Paper figures
 
-This directory contains the current paper-level composite PDFs and the
-self-contained paper panel assembly. Every available panel in `assembly/` is a
-regular file whose bytes are recorded by SHA256 in
-`assembly/assembly_manifest.tsv`; canonical source paths are repository-relative
-and no assembly panel points outside the repository.
+Paper-level PDFs and assembly assets are tracked here. The assembly manifest
+maps each materialized panel to a repository source and SHA256. It also records
+unresolved independent panel sources without inventing replacements.
 
-The manifest covers the current paper panels for Figures 1–6 and SuppFig.01–09.
-It explicitly records five unresolved panel-level provenance/availability
-items: independent panel files are missing for Fig.1A, Fig.1B, Fig.3A, and
-Fig.6 whole, while the canonical source for Fig.4D is no longer present. No
-substitute was guessed. The preserved top-level PDFs are `figTwo.pdf`,
-`figFive.pdf`, and `figSix.pdf`.
+The current kinetic-parameter recovery composite is `figSix.pdf`; its 16
+source-panel checksums and PDF checksum are in `fig6_composite_manifest.json`.
+Figure 6 includes the Dynamo(label data) positive-control stream in organoid
+panel E. The integrated Figure 7 PDF is `figSeven.pdf`, retained from the
+repository baseline without changing its summary values. The former kinetics Figure 5 PDF is retained in `archive/kinetics/figFive.pdf`. The top-level `figFive.pdf` is pending the separate gene-level Figure 5 replacement batch.
 
-Do not add intermediate panels, alternate result copies, or obsolete
-historical composites to this directory.
-
-Figure 5 panels, assembly copies, and the current composite are synchronized
-with the central-result evaluation. The composite has JPEG-encoded images;
-`fig5_composite_manifest.json` records its checksum, source-panel mapping,
-and content validation. Old panels/composites are archived externally.
-See the [kinetics workflow](../evaluation/kinetics_recovery/README.md).
+Do not add intermediate panels or alternate result copies to the active
+figure directory.

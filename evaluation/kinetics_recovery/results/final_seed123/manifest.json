@@ -1,7 +1,7 @@
 {
   "result_generation": "final_seed123",
   "evaluator": "evaluation/kinetics_recovery/metrics.py",
-  "plotter": "evaluation/kinetics_recovery/plotting/figure5.py",
+  "plotter": "evaluation/kinetics_recovery/plotting/figure6.py",
   "stream_plotter": "evaluation/kinetics_recovery/plotting/streams.py",
   "input_profile": "reviewed_historical_kinetics",
   "input_artifacts": {

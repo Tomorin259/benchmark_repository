@@ -1,0 +1,15 @@
+{
+  "status": "review_only_not_manuscript_figure",
+  "renderer_base": "scVelo velocity_embedding_stream background scatter contract",
+  "scvelo_version": "0.2.5",
+  "matplotlib_version": "3.10.9",
+  "reference_h5ad": "/mnt/second19T/zhaozelin/velocity/results/deepvelo/results_with_vu/deepvelo_organoid.h5ad",
+  "dynamo_source_h5ad": "/mnt/second19T/zhaozelin/velocity/indicators/gene/scEU_organoid_analyze/dynamo/pulse120_one_shot_corrected_20260926/dynamo_pulse120_corrected.h5ad",
+  "projection_csv": "/mnt/second19T/zhaozelin/velocity/indicators/gene/scEU_organoid_analyze/dynamo/pulse120_one_shot_corrected_20260926/stream_review_20260926/velocity_umap.csv",
+  "background": "original Figure 5 UMAP: all 3831 cells, size=8*default_size, alpha=0.3, original clusters colors and on-data labels",
+  "stream": "Dynamo velocity projected from 1373 label-data cells only; stream grid computed only from these cells; subset scatter disabled",
+  "cells_background": 3831,
+  "cells_stream": 1373,
+  "coordinates": "Dynamo rows matched to original X_umap by obs_names",
+  "background_size": 250.58731401722787
+}

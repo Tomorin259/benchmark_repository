@@ -18,7 +18,15 @@ source and materialized paths, SHA256, and unresolved source gaps. Do not copy
 its inventory into prose; derive current panel counts and missing-source lists
 from the manifest.
 
-Figure 5 uses the sole canonical panel directory
-`evaluation/kinetics_recovery/figures/fig5/` and the current central-result
-evaluation. Its composite mapping and JPEG-content validation are in
-`figures/fig5_composite_manifest.json`. Archived figures are external assets.
+Figure 5 is the gene-level real-dataset evaluation. Figure 6 is the
+scEU-seq kinetic-parameter recovery evaluation, with active source panels in
+`evaluation/kinetics_recovery/figures/fig6/`. Its B–D/F quantitative panels
+and A/E streams are mapped in the assembly manifest; E includes the
+Dynamo(label data) positive-control stream. The current Figure 6 composite
+and its checksums are `figures/figSix.pdf` and
+`figures/fig6_composite_manifest.json`. The historical kinetics `fig5`
+paths are preserved only under `evaluation/kinetics_recovery/archive/fig5/`.
+
+Figure 7 is the integrated method comparison. Its repository-baseline PDF is
+`figures/figSeven.pdf`; the source tables remain under
+`evaluation/summary/`, pending a separate Figure 7 audit.

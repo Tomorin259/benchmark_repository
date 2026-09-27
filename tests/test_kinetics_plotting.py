@@ -27,6 +27,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
             ["velocity", "DeepKINET_velocity", "velocity"],
         )
         self.assertEqual([spec["method"] for spec in config["rpe1_manual"]], ["Dynamo"])
+        self.assertEqual([spec["method"] for spec in config["organoid_manual"]], ["Dynamo"])
         rpe1_specs = config["rpe1"]
         self.assertEqual([spec["method"] for spec in rpe1_specs],
                          ["cellDancer", "DeepVelo", "DeepKINET", "TSvelo"])
@@ -48,7 +49,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
 
     def test_kinetic_class_panels_use_mapped_trajectories(self):
         config = json.loads(
-            (PLOTTING_ROOT / "figure5_config.json").read_text()
+            (PLOTTING_ROOT / "figure6_config.json").read_text()
         )
         venn = config["inputs"]["rpe1"]["cellDancer_venn"]
         self.assertEqual(
@@ -67,17 +68,34 @@ class KineticsPlottingContractTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256((root / relative).read_bytes()).hexdigest(), expected, relative)
         with (root / "figures/assembly/assembly_manifest.tsv").open() as handle:
             rows = [row for row in csv.DictReader(handle, delimiter="\t")
-                    if row["figure"] == "fig5" and row["status"] == "materialized"]
-        self.assertEqual(len(rows), 15)
+                    if row["figure"] == "fig6" and row["status"] == "materialized"]
+        self.assertEqual(len(rows), 16)
+        expected_panel = {
+            "organoid_branch1_boxplot.png": "F",
+            "organoid_branch2_boxplot.png": "F",
+            "rpe1_alpha_gamma_heatmap.png": "C",
+            "rpe1_alpha_trajectories.png": "B",
+            "rpe1_gamma_trajectories.png": "B",
+            "rpe1_celldancer_kinetic_classes.png": "D",
+            "rpe1_deepvelo_kinetic_classes.png": "D",
+        }
         for row in rows:
+            if Path(row["source_path"]).name in expected_panel:
+                self.assertEqual(row["panel"], expected_panel[Path(row["source_path"]).name])
             source = (root / row["source_path"]).read_bytes()
             self.assertEqual(source, (root / "figures/assembly" / row["materialized_path"]).read_bytes())
             self.assertEqual(hashlib.sha256(source).hexdigest(), row["sha256"])
-        composite = json.loads((root / "figures/fig5_composite_manifest.json").read_text())
-        self.assertEqual(len(composite["panels"]), 15)
-        self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 15)
+        composite = json.loads((root / "figures/fig6_composite_manifest.json").read_text())
+        self.assertEqual(composite["paper_figure"], "fig6")
+        self.assertEqual(composite["export"], "online_authoritative_pdf")
+        self.assertEqual(len(composite["composite_sha256"]), 64)
+        self.assertEqual(len(composite["panels"]), 16)
+        self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 16)
+        self.assertEqual(composite["composite_status"], "current")
+        self.assertFalse(composite["pending_panel_replacements"])
         for row in composite["panels"]:
-            self.assertEqual(hashlib.sha256((root / row["source_path"]).read_bytes()).hexdigest(), row["source_sha256"])
+            current_hash = hashlib.sha256((root / row["source_path"]).read_bytes()).hexdigest()
+            self.assertEqual(current_hash, row["source_sha256"])
         self.assertEqual(hashlib.sha256((root / composite["composite_path"]).read_bytes()).hexdigest(), composite["composite_sha256"])
 
 
