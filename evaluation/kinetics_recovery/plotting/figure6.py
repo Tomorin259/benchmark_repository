@@ -31,12 +31,22 @@ DISPLAY_METHOD_NAMES = {
 }
 
 METHOD_COLORS = {
+    # Figure 6 method palette.  These colors are part of the display
+    # contract and must be reused by trajectories and organoid boxplots.
     "DeepVelo": "#1f77b4",
     "cellDancer": "#ff7f0e",
     "Dynamo(label data)": "#2ca02c",
     "TSvelo": "#e420ca",
     "DeepKINET": "#B5BD61",
 }
+
+
+def canonical_method_color(method: str) -> str:
+    """Return the fixed Figure 6 color for a method key."""
+    display_name = DISPLAY_METHOD_NAMES.get(method, method)
+    if display_name not in METHOD_COLORS:
+        raise KeyError(f"No canonical Figure 6 color registered for {method}")
+    return METHOD_COLORS[display_name]
 
 # Organoid panels are rendered separately for each branch, so the branch
 # suffix is retained for the existing method labels.  Dynamo's full
@@ -526,7 +536,7 @@ def main() -> None:
     for branch_id, branch_config in config["inputs"]["organoid"]["branches"].items():
         method_paths = {
             method: {
-                "color": values["color"],
+                "color": canonical_method_color(method),
                 **{
                     parameter: resolve(artifact_root, path)
                     for parameter, path in values.items()

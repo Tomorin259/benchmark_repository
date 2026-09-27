@@ -123,11 +123,11 @@
             },
             "Dynamo": {
               "Alpha": "gene_metrics.csv",
-              "color": "#9467bd"
+              "color": "#2ca02c"
             },
             "DeepKINET": {
               "Gamma": "gene_metrics.csv",
-              "color": "#2ca02c"
+              "color": "#B5BD61"
             }
           }
         },
@@ -155,11 +155,11 @@
             },
             "Dynamo": {
               "Alpha": "gene_metrics.csv",
-              "color": "#9467bd"
+              "color": "#2ca02c"
             },
             "DeepKINET": {
               "Gamma": "gene_metrics.csv",
-              "color": "#2ca02c"
+              "color": "#B5BD61"
             }
           }
         }

@@ -17,6 +17,11 @@ method, dataset, parameter, and branch, then displays selected-gene means.
 DeepKINET supplies gamma only. TSvelo alpha uses two lineage files; its stream
 uses the merged result. Dynamo A and E are recorded labelled-data manual assets, with provenance stored beside the panels; neither has an automatic H5AD renderer in this module.
 
+Figure 6 uses a fixed method palette: DeepVelo `#1f77b4`, cellDancer
+`#ff7f0e`, Dynamo(label data) `#2ca02c`, DeepKINET `#B5BD61`, and TSvelo
+`#e420ca`. The renderer applies this registry to both trajectory lines and
+organoid boxplots; per-branch configuration colors must match the registry.
+
 Streams validate cell IDs, finite arrays, dimensions, and any configured
 reference embedding. Exact equality after casting reference coordinates to
 the saved dtype is permitted for storage precision differences. Saved X/V
