@@ -15,7 +15,10 @@ Evaluation and plotting must not overwrite or retrain these inputs.
 The current evaluation is in `results/central_results/`; the canonical panels
 and exact plotted rows are in `figures/fig6/`. The run manifest records selected
 H5AD/reference hashes, software versions, renderer code hashes, and output
-checksums. No methods were trained and `metrics.py` is unchanged.
+checksums. The current evaluation corrected the Branch 1 reference-column
+direction and added the frozen labelled organoid Dynamo alpha input. No
+existing methods were retrained; their frozen H5AD files and prediction
+trajectories are unchanged. The evaluator's reference alignment did change.
 
 Figure 6B uses benchmark method hues, with darker green for
 Dynamo(label data) and lighter green for cellDancer to separate overlapping
@@ -38,6 +41,12 @@ and `../../figures/archive/kinetics/`, respectively. They are not active
 aliases: manuscript Figure 5 now denotes the gene-level evaluation.
 `results/final_seed123/` remains historical input provenance; the current
 evaluation and figures use `results/central_results/`.
+The pre-alignment numerical baseline is available at Git revision
+`6d0c3cf^`; `6d0c3cf` introduced the reference alignment and organoid Dynamo,
+and `d8c3b2d` moved the active figure paths to Figure 6. The archived `fig5`
+directory records the former figure numbering, not necessarily the
+pre-alignment scores. Use the input/output hashes in the current manifest,
+not a directory name or a different Git branch, to identify an evaluation.
 
 ## Selected H5AD files and panel coverage
 
@@ -183,10 +192,19 @@ The current panels use frozen central-result inputs. C contains the 19 genes
 available after evaluator intersection, not all 32 configured genes. F contains
 six genes in branch 1 and eight in branch 2; the displayed numbers are means.
 These selected-gene statistics must not be replaced by full-gene summaries.
-DeepKINET's current plotted Spearman scores agree exactly with the historical
-seed-123 bundle for all 19 RPE1 and 6/8 organoid selected genes. Complete-gene
-CSV scores differ slightly (cause not established), so seed identity must be established
-from H5AD reproducibility metadata and input checksums, not CSV byte identity.
+For each selected gene, F computes Spearman correlation on paired finite
+timepoints before taking the arithmetic mean across available genes. A
+selected-gene organoid average gives the two branch means equal weight; it
+is not a pooled mean across 14 genes or a correlation of averaged trajectories.
+The Branch 1 reference-direction correction changes current scores relative
+to the historical seed-123 evaluation even though the method trajectories
+are unchanged. Seed identity must be established from H5AD reproducibility
+metadata and input checksums, not equality of scores under different
+reference alignments.
+
+Cross-experiment summaries use all finite gene scores, not the selected
+Figure 6 genes. Their canonical input is `results/central_results/gene_metrics.csv`;
+see `../summary/README.md` for the refresh and validation command.
 
 Before replacing any future panel, freeze its inputs, render into a fresh
 directory, compare it with an explicitly supplied external archive, and validate

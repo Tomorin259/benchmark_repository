@@ -23,6 +23,7 @@ from evaluation.kinetics_recovery.metrics import (
     organoid_raw_from_layer,
     process_organoid,
     process_rpe1,
+    read_organoid_reference,
     select_organoid_branch,
     tsvelo_rpe1_raw,
 )
@@ -43,6 +44,26 @@ def write_h5ad(path, cells, positions, values):
 
 
 class KineticsEvaluationTests(unittest.TestCase):
+    def test_organoid_reference_direction_is_explicit_for_both_parameters(self):
+        frame = pd.DataFrame({
+            "gene_symbol": ["g1"],
+            "norm_kappa_branch_1_001": [2.0],
+            "norm_kappa_branch_1_000": [1.0],
+            "norm_gamma_branch_1_001": [4.0],
+            "norm_gamma_branch_1_000": [3.0],
+            "norm_kappa_branch_2_000": [5.0],
+            "norm_kappa_branch_2_001": [6.0],
+        })
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "reference.csv"
+            path.write_text("Table S4\n" + frame.to_csv(index=False))
+            for parameter, expected in [("alpha", [2.0, 1.0]), ("gamma", [4.0, 3.0])]:
+                reference = read_organoid_reference(path, "1", parameter, reverse_time=True)
+                self.assertEqual(list(reference.columns), [0, 1])
+                self.assertEqual(reference.loc["g1"].tolist(), expected)
+            reference = read_organoid_reference(path, "2", "alpha", reverse_time=False)
+            self.assertEqual(reference.loc["g1"].tolist(), [5.0, 6.0])
+
     def test_csv_roundtrip_restores_numeric_timepoint_labels_and_missing_values(self):
         frame = pd.DataFrame(
             [[1.25, np.nan], [3.5, 4.75]],
