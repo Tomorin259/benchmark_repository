@@ -1,9 +1,9 @@
 {
-  "export": "online_authoritative_pdf",
-  "composite_status": "pending_panel_replacements",
+  "export": "validated_user_export_pdf",
+  "composite_status": "current",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "The online merged.tex Figure 6 asset was opened in the browser and its complete A\u2013F layout visually checked; this PDF is byte-identical to that online figSix.pdf. The two B-panel and two F-panel source assets have since changed; their new hashes are recorded separately and are not yet present in this PDF.",
+  "validation": "The user-exported, cropped Figure 6 PDF was rendered and its complete A-F layout inspected. Both B panels and both F panels were compared with the current repository sources, accounting for PDF JPEG encoding; F panels trim 25 pixels of white margin at the top and bottom. All 12 F-panel means use four decimal places and match the exact plotted rows. Online byte identity was not independently rechecked in this update.",
   "panels": [
     {
       "panel": "C",
@@ -38,14 +38,12 @@
     {
       "panel": "B alpha",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
-      "source_sha256": "7587436b09ad47df0d2a7d430861b2e7e4c71229e660bc3026e96423bc5e20ab",
-      "pending_source_sha256": "37df3dff8bcde45b643f0b0c36b33c4bb4b8e79b3ca95ec67373b0211af0a32f"
+      "source_sha256": "37df3dff8bcde45b643f0b0c36b33c4bb4b8e79b3ca95ec67373b0211af0a32f"
     },
     {
       "panel": "B gamma",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png",
-      "source_sha256": "7306d813851cb82bad320fc62bcd5cfe70981ab547b83db63470c6ea2e94a08b",
-      "pending_source_sha256": "3fe0cf6486eab89b43455b2db278493021c6156183d9bd493023892617249cd8"
+      "source_sha256": "3fe0cf6486eab89b43455b2db278493021c6156183d9bd493023892617249cd8"
     },
     {
       "panel": "D DeepVelo",
@@ -76,14 +74,12 @@
     {
       "panel": "F branch 1",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
-      "source_sha256": "6358d1abd71e45d5f36353a7184a54188df9237027db942bd8e300f537e360a6",
-      "pending_source_sha256": "06da16dcf1af3d14c8c22a394422a3d57359c2ca8389bb19fb577ccf567e3aba"
+      "source_sha256": "06da16dcf1af3d14c8c22a394422a3d57359c2ca8389bb19fb577ccf567e3aba"
     },
     {
       "panel": "F branch 2",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png",
-      "source_sha256": "037f5d1aa937aa91aa6f157928cf187f58a2f52faf4126a36996463dd24ec9f9",
-      "pending_source_sha256": "3c17417778cc1892277a80c8c1a3411953cdd79e36f751d74080c875d6d1bfdd"
+      "source_sha256": "3c17417778cc1892277a80c8c1a3411953cdd79e36f751d74080c875d6d1bfdd"
     },
     {
       "panel": "D cellDancer",
@@ -92,12 +88,8 @@
     }
   ],
   "composite_path": "figures/figSix.pdf",
-  "composite_sha256": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
-  "pending_panel_replacements": [
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png",
-    "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
-    "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png"
-  ],
-  "update_note": "Figure 6 source paths are normalized and Dynamo(label data) is included in A and E. The B- and F-panel sources and local PPTX have newer colors than the unchanged online composite; the user will export the final PDF."
+  "composite_sha256": "6d02ee013f2189c97c0d6b8c7a54888379fb7d46c59741dc39a97bc41e7139c7",
+  "previous_composite_sha256": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
+  "pending_panel_replacements": [],
+  "update_note": "The final user export includes the current B-panel palette and F-panel colors and four-decimal means. Source inputs, plotted scores, and the numerical evaluation are unchanged."
 }

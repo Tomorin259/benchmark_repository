@@ -107,7 +107,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(source).hexdigest(), row["sha256"])
         composite = json.loads((root / "figures/fig6_composite_manifest.json").read_text())
         self.assertEqual(composite["paper_figure"], "fig6")
-        self.assertEqual(composite["export"], "online_authoritative_pdf")
+        self.assertEqual(composite["export"], "validated_user_export_pdf")
         self.assertEqual(len(composite["composite_sha256"]), 64)
         self.assertEqual(len(composite["panels"]), 16)
         self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 16)

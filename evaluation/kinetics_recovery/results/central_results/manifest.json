@@ -323,8 +323,8 @@
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/manifest.json": "9eddb3f27f3d5adecd2750eae4f3587c6d6f0f5b726fb016fbc56879a1c3f992",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
-    "figures/figSix.pdf": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
-    "figures/fig6_composite_manifest.json": "04196ba7e71fea9d94ec2359f204418a804c0bcd0eca3227e89653a32ae8d588",
+    "figures/figSix.pdf": "6d02ee013f2189c97c0d6b8c7a54888379fb7d46c59741dc39a97bc41e7139c7",
+    "figures/fig6_composite_manifest.json": "5e81f7fa1fca8e10f3ea4161e21341d79503b3d920a26fd61c04fe788deb14c4",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/Dynamo_alpha_raw.csv": "96bd0d1f4a2f146b1113295f57bea3360e6c54fcb28cd1a302499dc07239cdea",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/Dynamo_alpha_raw.csv": "773331f0e9e057dc8131835ce2f77d6de69251b4ab660e672afb95ba97d8aa7d",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/Dynamo_alpha.csv": "b6b8c1bc0e0d856ceb0a0c33fcc541aaf8419350f2b424de94cd856609b1a86b",
@@ -395,11 +395,12 @@
   "figure_display_update": {
     "score_decimal_places": 4,
     "scientific_inputs_and_scores_changed": false,
-    "composite_pdf_updated": false,
+    "composite_pdf_updated": true,
     "previous_outputs_sha256": {
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
-      "figures/fig6_composite_manifest.json": "235c26cb8452c86ac8bc76ded82afa758378f5c8495ee1c2da3d3fe6cd85a09f"
+      "figures/fig6_composite_manifest.json": "235c26cb8452c86ac8bc76ded82afa758378f5c8495ee1c2da3d3fe6cd85a09f",
+      "figures/figSix.pdf": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866"
     },
     "previous_renderer_sha256": "2f20b24b5daf68fba705787ba426160838fc7d13c33ec9f1660cfca75ce0ba78"
   },
