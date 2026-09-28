@@ -25,6 +25,13 @@ Run the same command without `--write` to check that the committed summaries
 still match the reference-30 results. This refresh does not alter simulation,
 kinetic-parameter, or cell-level metrics.
 
+Read-only validation compares unrounded Real-CBDir means and standard
+deviations with absolute tolerance `1e-12`, matching the source consistency
+check. This permits last-bit floating-point differences between Python
+versions, not displayed-score rounding. Coverage, counts, labels, other
+metrics, and four-decimal WPS-transfer fields remain exact checks. Validation
+does not rewrite the CSVs.
+
 ## Kinetic-parameter summaries
 
 The kinetic columns in the same package use

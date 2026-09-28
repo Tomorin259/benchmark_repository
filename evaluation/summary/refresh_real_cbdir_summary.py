@@ -19,6 +19,31 @@ def read_csv(path):
         return reader.fieldnames, list(reader)
 
 
+def check_summary(path, fields, expected_rows):
+    """Check content without requiring identical cross-version float repr."""
+    actual_fields, actual_rows = read_csv(path)
+    if actual_fields != fields or len(actual_rows) != len(expected_rows):
+        raise SystemExit(f"Outdated Real-CBDir summary schema or coverage: {path}")
+    for actual, expected in zip(actual_rows, expected_rows):
+        if actual.keys() != expected.keys():
+            raise SystemExit(f"Malformed Real-CBDir summary row: {path}")
+        for field in fields:
+            if actual[field] == expected[field]:
+                continue
+            if expected.get("Metric") == "Real-CBDir" and field in ("Mean", "Std"):
+                try:
+                    value, reference = float(actual[field]), float(expected[field])
+                except (TypeError, ValueError):
+                    pass
+                else:
+                    if math.isfinite(value) and math.isfinite(reference) and math.isclose(
+                        value, reference, rel_tol=0, abs_tol=1e-12
+                    ):
+                        continue
+            raise SystemExit(f"Outdated Real-CBDir summary: {path}, "
+                             f"{expected.get('Method', expected.get('Figure2_Method'))}, {field}")
+
+
 def main(write):
     with (ROOT / "data/datasets.tsv").open(newline="") as handle:
         dataset_registry = list(csv.DictReader(handle, delimiter="\t"))
@@ -106,8 +131,8 @@ def main(write):
         writer.writerows(rows)
         if write:
             path.write_text(output.getvalue())
-        elif path.read_text() != output.getvalue():
-            raise SystemExit(f"Outdated Real-CBDir summary: {path}")
+        else:
+            check_summary(path, fields, rows)
     print(f"Reference-30 Real-CBDir: {count} dataset means, 9 method summaries")
 
 
