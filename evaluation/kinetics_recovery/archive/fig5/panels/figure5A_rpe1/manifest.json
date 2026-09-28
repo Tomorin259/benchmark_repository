@@ -1,0 +1,74 @@
+{
+  "panel": "rpe1",
+  "projection_policy": "reuse_saved_X_and_V_without_recomputation",
+  "versions": {
+    "scanpy": "1.9.6",
+    "scvelo": "0.2.5",
+    "numpy": "1.23.0",
+    "matplotlib": "3.5.3"
+  },
+  "dpi": 600,
+  "records": [
+    {
+      "method": "cellDancer",
+      "input": "results/celldancer/celldancer_rpe1.h5ad",
+      "input_sha256": "bc7367471843bf123b5a77fade92061bbc5f79bd74f21a941df64a5b729a7c4a",
+      "n_cells": 2793,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "celldancer.png",
+      "output_sha256": "27cfc2c85f47fbed91f24d2125f9fa0248add8ed2343a9e90dacac3e1c97ce18"
+    },
+    {
+      "method": "DeepVelo",
+      "input": "results/deepvelo/results_with_vu/deepvelo_rpe1.h5ad",
+      "input_sha256": "6da316f70c058104dbafbebeee5acee4172281b1477e40ef035dcd8561fa6f50",
+      "n_cells": 2793,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "deepvelo.png",
+      "output_sha256": "ac5de515944498c89e28d74ad87a8522902b10c60d8cb1793621d058781edf48"
+    },
+    {
+      "method": "DeepKINET",
+      "input": "results/DeepKINET/DeepKINET_rpe1.h5ad",
+      "input_sha256": "36d2c34b9ba6a13c45968a896f9fb903660fa56a4e5cb80e655d15116d6072e0",
+      "n_cells": 2793,
+      "n_genes": 2000,
+      "embedding_key": "X_umap",
+      "projection_key": "DeepKINET_velocity_umap",
+      "projection_recomputed": false,
+      "display_reference": "results/scvelo_deterministic/scv_deterministic_rpe1.h5ad",
+      "display_reference_sha256": "a8ed4d121100487564c869c86a89f752f7ae21a48978c2e1da423381c5d19b2b",
+      "reference_embedding_exact_match": false,
+      "reference_embedding_equal_at_saved_dtype": true,
+      "reference_embedding_max_abs_difference": 2.220446049250313e-15,
+      "projection_provenance_status": "benchmark_reference30_postprocessing",
+      "output": "deepkinet.png",
+      "output_sha256": "c04564022d29b08ddef6fc3fbb2a1045a61c50285ad993f4a95b78cf79995555"
+    },
+    {
+      "method": "TSvelo",
+      "input": "results/TSvelo/rpe1/TSvelo.h5ad",
+      "input_sha256": "bc3e0ce812e592b94509a7492051a1fb7a715b808f950ef9cf36f1bcaad3bd3d",
+      "n_cells": 2793,
+      "n_genes": 166,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "tsvelo.png",
+      "output_sha256": "e8c355920275030ef6356606554e73c24a8ee0f2174d488d12fe35e6fd14280b"
+    }
+  ],
+  "savefig": {
+    "bbox_inches": "tight",
+    "pad_inches": 0.1
+  }
+}

@@ -12,7 +12,7 @@ yet a clean-environment, from-public-inputs, one-command reproduction release.
 
 ## Current status
 
-Status as of 2026-09-17:
+Status as of 2026-09-27:
 
 | Area | Repository support | Remaining boundary |
 | --- | --- | --- |
@@ -20,10 +20,10 @@ Status as of 2026-09-17:
 | Cell-level evaluation | Complete compact results for 14 real datasets × 20 configurations under the fixed-reference-30 contract | Large method-result inputs remain external |
 | Gene-level evaluation | Reference-30 real and simulated results, plotting code, and paper panels are available | Canonical input and method-result H5AD files remain external |
 | Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
-| Kinetics recovery | Frozen central-result evaluation, current Figure 5 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding still requires external H5AD files and reference tables |
+| Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
-| Integrated summary | Compact Figure 6 input tables are available | The formal Figure 6 renderer is missing |
-| Paper figures | Confirmed composite PDFs and 110 materialized panels are recorded by the assembly manifest | Five panel-source or provenance gaps remain documented |
+| Integrated summary | The repository-baseline Figure 7 PDF and compact inputs are available | The Figure 7 renderer and source-table path normalization remain to be audited |
+| Paper figures | Figures 3–6 match the online PDFs and 115 materialized panels are mapped; Figure 7 keeps the repository baseline | Independent source/provenance gaps remain documented |
 
 Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
 additional registered methods. Mean-4 is the baseline and
@@ -39,7 +39,7 @@ the complete aggregation and ranking contract.
 | Reproduce Cell-level metrics and panels | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
 | Reproduce Gene-level metrics and phase portraits | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
 | Generate a new simulation realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
-| Reproduce kinetic-parameter recovery and Figure 5 panels | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
+| Reproduce kinetic-parameter recovery and Figure 6 panels | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
 | Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
@@ -51,8 +51,8 @@ methods/                         method-specific reproduction scripts
 envs/                            environment evidence and release requirements
 evaluation/cell/                 Cell-level evaluation, results, and panels
 evaluation/gene/                 Gene-level evaluation, simulation, and panels
-evaluation/kinetics_recovery/    kinetic-parameter recovery and Figure 5 panels
-evaluation/summary/              cross-experiment summaries such as Figure 6
+evaluation/kinetics_recovery/    kinetic-parameter recovery and Figure 6 panels
+evaluation/summary/              cross-experiment summaries such as Figure 7
 ensemble/                        post-hoc signed-transition comparators
 data/                            dataset identities and upstream access metadata
 artifacts.tsv                    logical registry for large external artifacts
@@ -107,10 +107,10 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | Cell-level 评估 | fixed-reference-30 契约下的 14 个真实数据集 × 20 个配置紧凑结果已完成 | 大型方法结果输入仍在外部存储 |
 | Gene-level 评估 | reference-30 真实及模拟结果、绘图代码和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
 | 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
-| 动力学参数恢复 | central-results 评估、当前 Figure 5 panel/组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
+| 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
-| 综合汇总 | Figure 6 的紧凑输入表已归档 | 正式 Figure 6 renderer 仍缺失 |
-| 论文图件 | 已确认的组合 PDF 和 110 个物化 panel 均由 assembly manifest 记录 | 仍有五项 panel source 或 provenance 缺口 |
+| 综合汇总 | Figure 7 的仓库基线 PDF 和紧凑输入表已归档 | Figure 7 renderer 及源表路径规范化仍待审计 |
+| 论文图件 | Figure 3–6 PDF 与在线一致，115 个物化 panel 已登记；Figure 7 保留仓库基线 | 独立 source 与 provenance 缺口仍有记录 |
 
 Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
 方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组
@@ -125,7 +125,7 @@ Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于
 | 复现 Cell-level 指标和 panel | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
 | 复现 Gene-level 指标和 phase portrait | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
 | 生成新的模拟数据 realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
-| 复现动力学参数恢复和 Figure 5 panel | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
+| 复现动力学参数恢复和 Figure 6 panel | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
 | 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
@@ -137,8 +137,8 @@ methods/                         各方法的复现脚本
 envs/                            环境证据与发布要求
 evaluation/cell/                 Cell-level 评估、结果和 panel
 evaluation/gene/                 Gene-level 评估、模拟数据和 panel
-evaluation/kinetics_recovery/    动力学参数恢复和 Figure 5 panel
-evaluation/summary/              Figure 6 等跨实验汇总
+evaluation/kinetics_recovery/    动力学参数恢复和 Figure 6 panel
+evaluation/summary/              Figure 7 等跨实验汇总
 ensemble/                        事后有符号转移比较器
 data/                            数据集身份和上游访问信息
 artifacts.tsv                    大型外部 artifact 的逻辑注册表

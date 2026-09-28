@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -30,6 +31,11 @@ DETAIL_COLUMNS = [
     "evaluable_source_cells",
 ]
 QA_COLUMNS = ["dataset", "method", "metric", "raw_values_match", "aggregate_abs_difference"]
+EXTENDED_DETAIL_COLUMNS = [
+    "dataset", "method", "metric", "source", "target", "score",
+    "evaluable_source_cells", "raw_nonfinite_source_cells",
+    "branch_winner_source_cells",
+]
 
 
 def read_rows(path: Path) -> list[dict]:
@@ -112,6 +118,46 @@ def edge_records(dataset: str, method: str, official: dict) -> list[dict]:
     return records
 
 
+def extended_edge_records(dataset: str, method: str, indicators: dict) -> list[dict]:
+    records = []
+    for edge, values in indicators["metrics"]["cbdir_edge_raw"].items():
+        source, target = edge.split("->", 1)
+        nonfinite = [
+            value is None or not math.isfinite(float(value)) for value in values
+        ]
+        records.append(
+            {
+                "dataset": dataset,
+                "method": method,
+                "metric": "cbdir",
+                "source": source,
+                "target": target,
+                "score": (
+                    sum(values) / len(values)
+                    if values and not any(nonfinite) else None
+                ),
+                "evaluable_source_cells": len(values),
+                "raw_nonfinite_source_cells": sum(nonfinite),
+                "branch_winner_source_cells": "",
+            }
+        )
+    for item in indicators["metrics"]["batc_edge_details"]:
+        records.append(
+            {
+                "dataset": dataset,
+                "method": method,
+                "metric": "batc_candidate_source_mean",
+                "source": item["source"],
+                "target": item["target"],
+                "score": item["candidate_mean_source_cells"],
+                "evaluable_source_cells": item["source_cells"],
+                "raw_nonfinite_source_cells": item["candidate_nonfinite_source_cells"],
+                "branch_winner_source_cells": item["branch_winner_source_cells"],
+            }
+        )
+    return records
+
+
 def build_pair_payload(dataset: str, method: str, indicators: dict, official: dict, qa: list[dict]) -> dict:
     metadata = indicators["metadata"]
     metric = indicators["metrics"]
@@ -138,6 +184,7 @@ def build_pair_payload(dataset: str, method: str, indicators: dict, official: di
         "metadata": metadata,
         "tivelo_parity": qa,
         "edge_details": edge_records(dataset, method, official),
+        "extended_edge_details": extended_edge_records(dataset, method, indicators),
     }
 
 
@@ -158,6 +205,7 @@ def write_tables(pair_root: Path, result_root: Path, config: dict) -> None:
     supplementary_rows = []
     audit_rows = []
     details = []
+    extended_details = []
     qa_rows = []
     for payload in pairs:
         metrics = payload["metrics"]
@@ -187,6 +235,7 @@ def write_tables(pair_root: Path, result_root: Path, config: dict) -> None:
             {column: row[column] for column in config["result_tables"]["audit"]}
         )
         details.extend(payload["edge_details"])
+        extended_details.extend(payload["extended_edge_details"])
         qa_rows.extend(
             {"dataset": payload["dataset"], "method": payload["method"], **item}
             for item in payload["tivelo_parity"]
@@ -197,6 +246,7 @@ def write_tables(pair_root: Path, result_root: Path, config: dict) -> None:
         ("cell_metrics_supplementary.csv", config["result_tables"]["supplementary"], supplementary_rows),
         ("cell_metrics_audit.csv", config["result_tables"]["audit"], audit_rows),
         ("cell_metrics_edge_details.csv", DETAIL_COLUMNS, details),
+        ("cell_metrics_edge_details_extended.csv", EXTENDED_DETAIL_COLUMNS, extended_details),
         ("tivelo_parity.csv", QA_COLUMNS, qa_rows),
     ):
         with (result_root / filename).open("w", encoding="utf-8", newline="") as handle:
@@ -277,7 +327,7 @@ def main() -> None:
         pair_path = pair_root / f"{dataset}__{method}.json"
         if args.resume and pair_path.is_file():
             payload = json.loads(pair_path.read_text(encoding="utf-8"))
-            if payload.get("status") == "ok":
+            if payload.get("status") == "ok" and "extended_edge_details" in payload:
                 print(f"[{position}/{len(rows)}] skip {dataset}/{method}", flush=True)
                 return
         stem = f"{dataset}__{method}"

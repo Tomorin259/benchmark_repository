@@ -12,6 +12,7 @@ import anndata as ad
 import numpy as np
 from scipy import sparse
 
+from evaluation.cell.batc import compute_batc
 from evaluation.cell.metrics import consistency_scores, resolve_artifact
 from evaluation.cell.reference_neighbors import (
     DEFAULT_REFERENCE_NEIGHBORS_ROOT,
@@ -19,11 +20,61 @@ from evaluation.cell.reference_neighbors import (
     apply_reference_neighbors,
     load_reference_neighbors,
 )
-from evaluation.cell.run_cell_metrics import DEFAULT_INPUTS
+from evaluation.cell.run_cell_metrics import DEFAULT_INPUTS, extended_edge_records
 from evaluation.cell.validate_results import validate_results
 
 
 class CellEvaluationTests(unittest.TestCase):
+    def test_optional_batc_edge_audit_preserves_branch_max_score(self):
+        rng = np.random.default_rng(42)
+        coordinates = np.concatenate([
+            np.column_stack((np.linspace(0, 0.9, 30), 0.01 * rng.normal(size=30))),
+            np.column_stack((np.linspace(1.1, 2, 30), 0.03 + 0.01 * rng.normal(size=30))),
+            np.column_stack((
+                np.linspace(1.1, 2, 30),
+                0.2 + np.linspace(0, 1, 30) + 0.01 * rng.normal(size=30),
+            )),
+        ])
+        adata = ad.AnnData(np.zeros((len(coordinates), 1)))
+        adata.obs["clusters"] = ["A"] * 30 + ["B"] * 30 + ["C"] * 30
+        adata.obsm["X_umap"] = coordinates
+        adata.obsm["velocity_umap"] = np.tile([1.0, 0.0], (len(coordinates), 1))
+        options = dict(n_bins=5, min_per_bin=2, n_samples=80, store_in_adata=False)
+        edges = [("A", "B"), ("A", "C")]
+        score = compute_batc(adata, edges, **options)
+        detailed_score, detail = compute_batc(
+            adata, edges, return_details=True, **options
+        )
+        self.assertEqual(score, detailed_score)
+        self.assertEqual(score, detail["overall"])
+        self.assertEqual(
+            sum(item["branch_winner_source_cells"] for item in detail["edges"]), 30
+        )
+        self.assertEqual(
+            {(item["source"], item["target"]) for item in detail["edges"]},
+            set(edges),
+        )
+
+    def test_extended_edge_audit_counts_nonfinite_native_values(self):
+        indicators = {"metrics": {
+            "cbdir_edge_raw": {"A->B": [0.5, None], "B->C": []},
+            "batc_edge_details": [{
+                "source": "A", "target": "B",
+                "candidate_mean_source_cells": 0.25,
+                "source_cells": 2,
+                "candidate_nonfinite_source_cells": 1,
+                "branch_winner_source_cells": 2,
+            }],
+        }}
+        records = extended_edge_records("toy", "method", indicators)
+        self.assertEqual(len(records), 3)
+        self.assertIsNone(records[0]["score"])
+        self.assertEqual(records[0]["raw_nonfinite_source_cells"], 1)
+        self.assertEqual(records[0]["evaluable_source_cells"], 2)
+        self.assertIsNone(records[1]["score"])
+        self.assertEqual(records[2]["metric"], "batc_candidate_source_mean")
+        self.assertEqual(records[2]["branch_winner_source_cells"], 2)
+
     def test_cli_defaults_are_repository_anchored(self):
         repository_root = Path(__file__).resolve().parents[1]
         self.assertEqual(

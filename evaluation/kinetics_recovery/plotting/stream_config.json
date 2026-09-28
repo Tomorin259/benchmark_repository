@@ -50,7 +50,13 @@
   "rpe1_manual": [
     {
       "method": "Dynamo",
-      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig5/figure5A_rpe1/dynamo.png"
+      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png"
+    }
+  ],
+  "organoid_manual": [
+    {
+      "method": "Dynamo",
+      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.png"
     }
   ]
 }

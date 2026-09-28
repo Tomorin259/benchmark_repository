@@ -1,0 +1,266 @@
+{
+  "case": "gastrulation_klf3",
+  "gene": "Klf3",
+  "masked_clusters": [
+    "Erythroid1",
+    "Erythroid2",
+    "Erythroid3"
+  ],
+  "edge": [
+    "Erythroid2",
+    "Erythroid3"
+  ],
+  "methods": [
+    "cellDancer",
+    "DeepVelo",
+    "DeepVelo_scv",
+    "GraphVelo_scv",
+    "MultiVelo",
+    "scVelo_dynamic",
+    "TIvelo",
+    "UniTVelo",
+    "veloVI"
+  ],
+  "edge_scores": {
+    "cellDancer": [
+      "Erythroid1\u2192Erythroid2: -0.017",
+      "Erythroid2\u2192Erythroid3: +0.003"
+    ],
+    "DeepVelo": [
+      "Erythroid1\u2192Erythroid2: -0.029",
+      "Erythroid2\u2192Erythroid3: -0.135"
+    ],
+    "DeepVelo_scv": [
+      "Erythroid1\u2192Erythroid2: -0.118",
+      "Erythroid2\u2192Erythroid3: -0.139"
+    ],
+    "GraphVelo_scv": [
+      "Erythroid1\u2192Erythroid2: +0.123",
+      "Erythroid2\u2192Erythroid3: +0.036"
+    ],
+    "MultiVelo": [
+      "Erythroid1\u2192Erythroid2: -0.157",
+      "Erythroid2\u2192Erythroid3: -0.187"
+    ],
+    "scVelo_dynamic": [
+      "Erythroid1\u2192Erythroid2: -0.130",
+      "Erythroid2\u2192Erythroid3: -0.093"
+    ],
+    "TIvelo": [
+      "Erythroid1\u2192Erythroid2: +0.236",
+      "Erythroid2\u2192Erythroid3: +0.340"
+    ],
+    "UniTVelo": [
+      "Erythroid1\u2192Erythroid2: +0.180",
+      "Erythroid2\u2192Erythroid3: +0.206"
+    ],
+    "veloVI": [
+      "Erythroid1\u2192Erythroid2: -0.004",
+      "Erythroid2\u2192Erythroid3: +0.062"
+    ]
+  },
+  "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
+  "layout": "2 rows x 5 columns; 9 methods plus shared cluster legend",
+  "source_paths": [
+    "artifact://velocity/results/celldancer/celldancer_Gastrulation.h5ad",
+    "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+    "artifact://velocity/results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad",
+    "artifact://velocity/results/graphvelo_scv/graphveloGastrulation.h5ad",
+    "artifact://velocity/results/multivelo/multivelo_Gastrulation.h5ad",
+    "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+    "artifact://velocity/results/TIvelo/tivelo_Gastrulation.h5ad",
+    "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+    "artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad"
+  ],
+  "phase_api": "evaluation/gene/plotting/phase_portrait.py:266",
+  "phase_contract": {
+    "layer_s": "Ms",
+    "layer_u": "Mu",
+    "layer_v_s": "velocity",
+    "layer_v_u": "velocity_u",
+    "color_key": "clusters",
+    "grid": [
+      25,
+      25
+    ],
+    "density_percentile": 15,
+    "arrow_length_mode": "log1p",
+    "arrow_reference_quantile": 0.9,
+    "reference_length": 0.05,
+    "max_length": 0.1,
+    "previous_reference_length": 0.075,
+    "previous_max_length": 0.15,
+    "s": 12,
+    "alpha": 0.6,
+    "axes_hidden": true
+  },
+  "phase_diagnostics": {
+    "cellDancer": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.0772107473799288,
+      "display_magnitude_max": 0.1,
+      "capped_fraction": 0.0014854426619132501,
+      "input_magnitude_max": 0.35083718580505757
+    },
+    "DeepVelo": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.6674115613204846,
+      "display_magnitude_max": 0.08987236010254325,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 1.6525417717440656
+    },
+    "DeepVelo_scv": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.06593196415321771,
+      "display_magnitude_max": 0.06610354615486695,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.09891426535880402
+    },
+    "GraphVelo_scv": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.06860140766250204,
+      "display_magnitude_max": 0.0867979104798795,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.1599103335634842
+    },
+    "MultiVelo": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.16078683008314226,
+      "display_magnitude_max": 0.0609274833434146,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.2133844710167513
+    },
+    "scVelo_dynamic": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.08486419780655109,
+      "display_magnitude_max": 0.060327113046963546,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.11098866402754363
+    },
+    "TIvelo": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.3113381126181213,
+      "display_magnitude_max": 0.09901765682502481,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.9171698746011335
+    },
+    "UniTVelo": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 1.5462515551037768,
+      "display_magnitude_max": 0.05344384177439748,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 1.6974742706224146
+    },
+    "veloVI": {
+      "n_obs": 6732,
+      "n_velocity_valid": 6732,
+      "n_sampled": 283,
+      "n_drawn": 283,
+      "reference_magnitude": 0.1280753610650613,
+      "display_magnitude_max": 0.07080461448096273,
+      "capped_fraction": 0.0,
+      "input_magnitude_max": 0.2137087306585846
+    }
+  },
+  "preprocessing_diagnostics": {
+    "cellDancer": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "DeepVelo": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "DeepVelo_scv": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "GraphVelo_scv": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "MultiVelo": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "scVelo_dynamic": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "TIvelo": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "UniTVelo": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    },
+    "veloVI": {
+      "status": "ok",
+      "n_obs": 6732,
+      "velocity_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
+      "velocity_u_nonfinite_raw": 0,
+      "velocity_u_replaced_zero": 0
+    }
+  },
+  "edge_score_sources": [
+    "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"
+  ]
+}

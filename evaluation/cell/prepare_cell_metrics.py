@@ -605,7 +605,7 @@ def evaluate_four_native_metrics(adata: ad.AnnData, dataset: str, label: str, co
         evaluation_adata = adata[:, adata.var["velocity_genes"].astype(bool)].copy()
     output = io.StringIO()
     with redirect_stdout(output):
-        unitvelo.evaluate(
+        unitvelo_result = unitvelo.evaluate(
             evaluation_adata,
             config["datasets"][dataset]["cluster_edges"],
             label,
@@ -613,7 +613,21 @@ def evaluate_four_native_metrics(adata: ad.AnnData, dataset: str, label: str, co
             x_emb="X_umap",
         )
     cbdir, iccoh = parse_unitvelo_means(output.getvalue())
-    batc_score = compute_batc(
+    cbdir_raw = unitvelo_result["Cross-Boundary Direction Correctness (A->B)"]
+    cbdir_edge_raw = {
+        f"{source}->{target}": [float(value) for value in values]
+        for (source, target), values in cbdir_raw.items()
+    }
+    cbdir_edge_means = [np.mean(values) for values in cbdir_raw.values() if len(values)]
+    # Match UnitVelo summary_scores: exact-zero edge means are omitted.
+    cbdir_included = [value for value in cbdir_edge_means if value]
+    cbdir_from_edges = float(np.mean(cbdir_included)) if cbdir_included else float("nan")
+    if not np.isclose(cbdir, cbdir_from_edges, rtol=0.0, atol=1e-12, equal_nan=True):
+        raise ValueError(
+            "unitvelo CBDir aggregate differs from its native edge dict: "
+            f"stdout={cbdir!r}, edge_mean={cbdir_from_edges!r}"
+        )
+    batc_score, batc_details = compute_batc(
         adata,
         dataset=dataset,
         cluster_edges=config["datasets"][dataset]["cluster_edges"],
@@ -623,12 +637,19 @@ def evaluate_four_native_metrics(adata: ad.AnnData, dataset: str, label: str, co
         velocity_key="velocity",
         store_in_adata=False,
         progress=False,
+        return_details=True,
     )
+    if not np.isclose(
+        float(batc_score), float(batc_details["overall"]), rtol=0.0, atol=1e-12
+    ):
+        raise ValueError("BATC aggregate changed while collecting edge diagnostics")
     return {
         "consistency": float(np.mean(consistency)),
         "cbdir": float(cbdir),
         "iccoh": float(iccoh),
         "batc": float(np.mean(batc_score)),
+        "cbdir_edge_raw": cbdir_edge_raw,
+        "batc_edge_details": batc_details["edges"],
     }
 
 

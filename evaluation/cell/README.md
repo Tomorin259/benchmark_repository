@@ -91,6 +91,13 @@ the caller's current directory. `--reference-neighbors-root` is optional and def
 logs go under `--work-root` (or an ignored `.work` directory under the output
 root); they are not part of the public result bundle.
 
+A new full rerun also writes `results/cell_metrics_edge_details_extended.csv`.
+Its CBDir rows preserve UnitVelo's native edge values as edge means and source
+counts. Its BATC rows report each branch's pre-max source-cell candidate mean
+and branch-winner count. These diagnostics do not define a new dataset-level
+metric or change the five primary scores. Older per-pair caches without the
+extended details are recomputed when using `--resume`.
+
 The optional `preflight_reference30_inputs.py` and
 `build_reference_union_moments.py` helpers also take `--artifact-root` and
 write logical locators rather than embedding the caller's local filesystem

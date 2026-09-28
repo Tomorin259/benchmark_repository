@@ -1,7 +1,7 @@
 config_id	operational_id	manuscript_name	software	model_or_method	version	hardware	options	official_source	velocity_layer	embedding	release_status	notes
-C01	scvelo_deterministic	scVelo_deterministic	scVelo	Steady-state linear regression	scvelo 0.3.3	CPU	mode=deterministic	scVelo documentation	velocity	X_umap	curate	Velocyto is the model label, not a separate package.
-C02	scvelo_stochastic	scVelo_stochastic	scVelo	Stochastic model using second-order moments	scvelo 0.3.3	CPU	mode=stochastic	scVelo documentation	velocity	X_umap	curate	Shares the reviewed scVelo environment with the other scVelo modes.
-C03	scvelo_dynamic	scVelo_dynamic	scVelo	Dynamical model with EM and analytical solution	scvelo 0.3.3	CPU	recover_dynamics;mode=dynamical	scVelo documentation	velocity	X_umap	curate	Explicit kinetic parameters are available from the dynamical model.
+C01	scvelo_deterministic	scVelo_det	scVelo	Steady-state linear regression	scvelo 0.3.3	CPU	mode=deterministic	scVelo documentation	velocity	X_umap	curate	Velocyto is the model label, not a separate package.
+C02	scvelo_stochastic	scVelo_sto	scVelo	Stochastic model using second-order moments	scvelo 0.3.3	CPU	mode=stochastic	scVelo documentation	velocity	X_umap	curate	Shares the reviewed scVelo environment with the other scVelo modes.
+C03	scvelo_dynamic	scVelo_dyn	scVelo	Dynamical model with EM and analytical solution	scvelo 0.3.3	CPU	recover_dynamics;mode=dynamical	scVelo documentation	velocity	X_umap	curate	Explicit kinetic parameters are available from the dynamical model.
 C04	multivelo	MultiVelo (RNA_only)	MultiVelo	Coupled chromatin-RNA ODEs	multivelo 0.1.0	CPU	rna_only=true	MultiVelo documentation	velocity	X_umap	curate	The benchmark configuration uses RNA only.
 C05	unitvelo	UniTVelo	UniTVelo	Unified-time model	unitvelo 0.2.5.2	GPU	FIT_OPTION=1	UniTVelo tutorial	velocity	X_umap	curate	-
 C06	unitvelo_mode2	UniTVelo(mode2)	UniTVelo	Independent-time model	unitvelo 0.2.5.2	GPU	FIT_OPTION=2	UniTVelo tutorial	velocity	X_umap	curate	-

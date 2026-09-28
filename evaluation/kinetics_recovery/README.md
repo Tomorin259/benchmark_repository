@@ -1,4 +1,4 @@
-# Kinetics recovery and Figure 5
+# Kinetics recovery and Figure 6
 
 This module evaluates saved method-result H5AD files against the published
 scEU-seq references for RPE1 and intestinal organoid. It does not prepare
@@ -13,9 +13,19 @@ H5AD files and record their resolved paths and SHA256 before evaluation.
 Evaluation and plotting must not overwrite or retrain these inputs.
 
 The current evaluation is in `results/central_results/`; the canonical panels
-and exact plotted rows are in `figures/fig5/`. The run manifest records selected
+and exact plotted rows are in `figures/fig6/`. The run manifest records selected
 H5AD/reference hashes, software versions, renderer code hashes, and output
-checksums. No methods were trained and `metrics.py` is unchanged.
+checksums. The current evaluation corrected the Branch 1 reference-column
+direction and added the frozen labelled organoid Dynamo alpha input. No
+existing methods were retrained; their frozen H5AD files and prediction
+trajectories are unchanged. The evaluator's reference alignment did change.
+
+Figure 6B uses benchmark method hues, with darker green for
+Dynamo(label data) and lighter green for cellDancer to separate overlapping
+trajectories. The superseded line-color PNGs are retained under
+`archive/fig6_legacy_line_palette_20260927/` and are not active assembly
+sources. This is a display-only change; the plotted trajectory CSVs are
+unchanged.
 
 Quantitative panels read one common evaluator output rather than independent
 static legacy tables. Streams use saved embeddings and velocity projections
@@ -23,15 +33,20 @@ without recomputing neighbors, moments, graphs, or embeddings. Some saved
 method files lack independent projection provenance; this is disclosed in the
 stream manifests. Dynamo A is the retained labelled-data manual exception.
 
-`../../figures/figFive.pdf`, assembly copies, assembly hashes, and the public
-artifact registry are synchronized with the current panels. The composite is
-a reviewed PowerPoint export with JPEG-encoded panels, not byte-identical PNG
-embedding. `../../figures/fig5_composite_manifest.json` records its checksum,
-panel mapping, and image-content validation. Old panels, the old composite,
-and comparison materials are kept in an external saved archive, not alongside
-current figures. `results/final_seed123/` is historical provenance retained for
-the separately frozen Figure 6 input tables; it is not the current Figure 5
-evaluation source. Figure 6 was not regenerated in this update.
+Assembly copies and hashes track the 16 current Figure 6 source panels. The
+formal composite is `../../figures/figSix.pdf`, with source-panel and PDF
+checksums in `../../figures/fig6_composite_manifest.json`. The former
+kinetics Figure 5 paths and composite are archived under `archive/fig5/`
+and `../../figures/archive/kinetics/`, respectively. They are not active
+aliases: manuscript Figure 5 now denotes the gene-level evaluation.
+`results/final_seed123/` remains historical input provenance; the current
+evaluation and figures use `results/central_results/`.
+The pre-alignment numerical baseline is available at Git revision
+`6d0c3cf^`; `6d0c3cf` introduced the reference alignment and organoid Dynamo,
+and `d8c3b2d` moved the active figure paths to Figure 6. The archived `fig5`
+directory records the former figure numbering, not necessarily the
+pre-alignment scores. Use the input/output hashes in the current manifest,
+not a directory name or a different Git branch, to identify an evaluation.
 
 ## Selected H5AD files and panel coverage
 
@@ -50,12 +65,21 @@ the resolved H5AD and hash, rather than the alias name, define the input.
 | TSvelo | RPE1 alpha | `results/TSvelo/rpe1/l0_TSvelo.h5ad` and `results/TSvelo/rpe1/l1_TSvelo.h5ad` | `alpha` from both lineages | B alpha, C alpha |
 | TSvelo | RPE1 stream | `results/TSvelo/rpe1/TSvelo.h5ad` | `velocity` from the merged result | A |
 | Dynamo(label data) | RPE1 | `indicators/gene/scEU_rpe1_analyze/dynamo/dynamo_rpe1.h5ad` | `cell_wise_alpha`; labelled-data stream state | A, B alpha, C alpha |
+| Dynamo(label data) | organoid | `indicators/gene/scEU_organoid_analyze/dynamo/pulse120_one_shot_corrected_20260926/dynamo_pulse120_corrected.h5ad` (artifact alias: `method-results/kinetics/dynamo/organoid_labelled.h5ad`) | `cell_wise_alpha`; Pulse 120 min labelled-data subset; Alpha only | E, F alpha |
 
 The selected DeepVelo files must contain `velocity_unspliced`, identifying
 the unspliced-prediction result family. DeepKINET's formal seed-123 files
 supply gamma only. The merged TSvelo file has no alpha layer and cannot
-replace the two lineage files for parameter recovery. Organoid TSvelo and
-Dynamo outputs are not added to this experiment.
+replace the two lineage files for parameter recovery. Organoid TSvelo is not
+added to this experiment. Organoid Dynamo is included as a labelled-data
+Alpha-only exception using the frozen Pulse 120 min one-shot result (1,373
+cells); no comparable Gamma layer is available.
+
+The organoid Dynamo streamline source is
+`figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.png`.
+It is a formal E-panel assembly asset and part of the current Figure 6
+composite. Its source manifest records the labelled 1,373-cell stream over
+the original 3,831-cell background.
 
 Reference tables remain `references/kinetics/rpe1_table_s1.csv`,
 `references/kinetics/rpe1_alpha_genes.csv`, and
@@ -125,6 +149,15 @@ report actual available genes and counts rather than assuming all configured
 genes were scored. Current panel data contain six genes in branch 1 and
 eight in branch 2.
 
+The cell aligned-time direction follows the published convention above:
+Branch 1 is `3.5 - monocle_pseudotime` and Branch 2 is
+`monocle_pseudotime - 6.5`. Table S4's exported Branch 1 rate columns are
+stored in the opposite display order, so the evaluator reverses only the
+Branch 1 reference columns before assigning evaluator timepoints 0--199. The
+Branch 2 reference and all prediction trajectories are unchanged. This is a
+reference-table alignment step, not a change to branch selection or
+pseudotime processing.
+
 The evaluator also exports cosine similarity and valid-sample counts.
 Component scores are averaged within systems, averaging the two organoid
 branches first, and then equally averaged across available systems.
@@ -159,10 +192,19 @@ The current panels use frozen central-result inputs. C contains the 19 genes
 available after evaluator intersection, not all 32 configured genes. F contains
 six genes in branch 1 and eight in branch 2; the displayed numbers are means.
 These selected-gene statistics must not be replaced by full-gene summaries.
-DeepKINET's current plotted Spearman scores agree exactly with the historical
-seed-123 bundle for all 19 RPE1 and 6/8 organoid selected genes. Complete-gene
-CSV scores differ slightly (cause not established), so seed identity must be established
-from H5AD reproducibility metadata and input checksums, not CSV byte identity.
+For each selected gene, F computes Spearman correlation on paired finite
+timepoints before taking the arithmetic mean across available genes. A
+selected-gene organoid average gives the two branch means equal weight; it
+is not a pooled mean across 14 genes or a correlation of averaged trajectories.
+The Branch 1 reference-direction correction changes current scores relative
+to the historical seed-123 evaluation even though the method trajectories
+are unchanged. Seed identity must be established from H5AD reproducibility
+metadata and input checksums, not equality of scores under different
+reference alignments.
+
+Cross-experiment summaries use all finite gene scores, not the selected
+Figure 6 genes. Their canonical input is `results/central_results/gene_metrics.csv`;
+see `../summary/README.md` for the refresh and validation command.
 
 Before replacing any future panel, freeze its inputs, render into a fresh
 directory, compare it with an explicitly supplied external archive, and validate
@@ -181,10 +223,10 @@ directory so a reproduction cannot accidentally overwrite preserved panels.
 ~~~bash
 python evaluation/kinetics_recovery/metrics.py --artifact-root /path/to/kinetics-artifacts --check-only
 python evaluation/kinetics_recovery/metrics.py --artifact-root /path/to/kinetics-artifacts --output /path/to/fresh-kinetics-output
-python evaluation/kinetics_recovery/plotting/figure5.py --artifact-root /path/to/fresh-kinetics-output --output /path/to/fresh-quantitative-output
+python evaluation/kinetics_recovery/plotting/figure6.py --artifact-root /path/to/fresh-kinetics-output --output /path/to/fresh-quantitative-output
 python evaluation/kinetics_recovery/plotting/streams.py --artifact-root /path/to/velocity-root --panel rpe1 --output /path/to/fresh-rpe1-streams
 python evaluation/kinetics_recovery/plotting/streams.py --artifact-root /path/to/velocity-root --panel organoid --output /path/to/fresh-organoid-streams
-python evaluation/kinetics_recovery/plotting/compare_figure5.py --old /path/to/archived-fig5 --new evaluation/kinetics_recovery/figures/fig5 --output /path/to/fresh-comparison
+python evaluation/kinetics_recovery/plotting/compare_figure6.py --old evaluation/kinetics_recovery/archive/fig5/panels --new evaluation/kinetics_recovery/figures/fig6 --output /path/to/fresh-comparison
 ~~~
 
 Use the software versions recorded in the `results/central_results/manifest.json`. The quantitative

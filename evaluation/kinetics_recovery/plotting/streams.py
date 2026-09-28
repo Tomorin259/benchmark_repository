@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render Figure 5 streams from validated projections in frozen result H5ADs."""
+"""Render Figure 6 streams from validated projections in frozen result H5ADs."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 PLOTTING_ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = PLOTTING_ROOT / "stream_config.json"
 DEFAULT_ARTIFACT_ROOT = PLOTTING_ROOT.parents[3]
-DEFAULT_OUTPUT_ROOT = PLOTTING_ROOT.parent / "figures" / "fig5"
+DEFAULT_OUTPUT_ROOT = PLOTTING_ROOT.parent / "figures" / "fig6"
 
 
 def resolve(path, root):
@@ -38,7 +38,7 @@ def main():
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--output", type=Path)
     parser.add_argument(
-        "--panel", choices=("organoid", "rpe1", "rpe1_manual", "rpe1_deepkinet"),
+        "--panel", choices=("organoid", "organoid_manual", "rpe1", "rpe1_manual", "rpe1_deepkinet"),
         default="organoid",
     )
     parser.add_argument("--dpi", type=int, default=600)
@@ -50,12 +50,12 @@ def main():
     specs = config[panel]
     if args.panel == "rpe1_deepkinet":
         specs = [spec for spec in specs if spec["method"] == "DeepKINET"]
-    if panel == "rpe1_manual":
+    if panel.endswith("_manual"):
         for spec in specs:
             resolve(spec["asset"], root)
         if not args.check_only:
             raise ValueError("Dynamo is a recorded labelled-data manual panel; no renderer")
-        print("Dynamo manual asset exists; H5AD rendering provenance remains unverified")
+        print(f"{panel} manual asset exists; H5AD rendering provenance remains unverified")
         return
 
     import matplotlib
@@ -66,7 +66,7 @@ def main():
     import scvelo as scv
 
     output = args.output or DEFAULT_OUTPUT_ROOT / (
-        "figure5A_rpe1" if panel == "rpe1" else "figure5E_organoid"
+        "figure6A_rpe1" if panel == "rpe1" else "figure6E_organoid"
     )
     if not args.check_only:
         if output.exists() and any(output.iterdir()):

@@ -1,13 +1,14 @@
 Method,Parameter,System,Mean,N_components,N_genes
-DeepVelo,alpha,organoid,0.2191872137572905,2,540
+DeepVelo,alpha,organoid,0.327195644125955,2,540
 DeepVelo,alpha,rpe1,0.3028183841627223,1,250
+Dynamo(label data),alpha,organoid,0.4915451647741861,2,419
 Dynamo(label data),alpha,rpe1,0.7970731475417075,1,116
 TSvelo,alpha,rpe1,0.49267118761885603,1,65
-cellDancer,alpha,organoid,-0.004810595020969652,2,540
+cellDancer,alpha,organoid,-0.00748514660748163,2,540
 cellDancer,alpha,rpe1,-0.025293684499238297,1,250
-DeepKINET,gamma,organoid,0.02720201563938195,2,540
+DeepKINET,gamma,organoid,-0.03521725518254492,2,540
 DeepKINET,gamma,rpe1,-0.04149523078022015,1,250
-DeepVelo,gamma,organoid,0.011456018761330584,2,540
+DeepVelo,gamma,organoid,0.05916770825497149,2,540
 DeepVelo,gamma,rpe1,0.06740098068058518,1,249
-cellDancer,gamma,organoid,-0.006037304862609523,2,540
+cellDancer,gamma,organoid,-0.00644068137729237,2,540
 cellDancer,gamma,rpe1,-0.2741982659553725,1,250

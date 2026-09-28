@@ -24,7 +24,7 @@ into ``adata.obs``/``adata.uns`` for downstream inspection.
 
 from __future__ import annotations
 
-from typing import Dict, Sequence, Tuple
+from typing import Dict, Sequence, Tuple, Union
 
 import numpy as np
 from scipy.interpolate import PchipInterpolator
@@ -218,7 +218,8 @@ def compute_batc(
     store_in_adata: bool = True,
     progress: bool = False,
     dataset: str="",
-) -> float:
+    return_details: bool = False,
+) -> Union[float, Tuple[float, dict]]:
 
 
     """Compute the Branching-aware Trajectory Consistency (BATC) score.
@@ -283,11 +284,17 @@ def compute_batc(
         ``adata.obs``/``adata.uns`` containers.
     progress:
         Whether to display a progress bar over edges (requires ``tqdm``).
+    return_details:
+        If ``True``, return the unchanged overall score together with the
+        existing edge cosine and branch-max diagnostics used for audit output.
 
     Returns
     -------
-    float
-        The BATC overall score (best-per-cell cosine mean).
+    float or tuple
+        The BATC overall score (best-per-cell cosine mean), or ``(score,
+        details)`` when ``return_details`` is true. The diagnostics report
+        pre-max source-cell candidate means and branch winner counts; they do
+        not define a second BATC aggregate.
     """
     cluster_series = adata.obs[cluster_key].astype(str)
     X, V = _extract_embedding_and_velocity(adata, embedding_key, velocity_key)
@@ -347,6 +354,10 @@ def compute_batc(
         next_map.setdefault(src, []).append(tgt)
 
     best_cosine_per_cell = np.full(X.shape[0], np.nan, dtype=float)
+    branch_winner_source_cells: Dict[Tuple[str, str], int] = {
+        edge: 0 for edge in edges
+    }
+    candidate_edge_details = []
 
     for src, targets in next_map.items():
         src_indices = idx_by_cluster.get(src, np.empty(0, dtype=int))
@@ -357,6 +368,16 @@ def compute_batc(
             mapping = edge_cosines.get((src, tgt), {})
             scores = np.array([mapping.get(int(cell_idx), np.nan) for cell_idx in src_indices], dtype=float)
             stacks.append(scores)
+            candidate_values = np.nan_to_num(scores, nan=0.0)
+            candidate_edge_details.append(
+                {
+                    "source": src,
+                    "target": tgt,
+                    "candidate_mean_source_cells": float(np.mean(candidate_values)),
+                    "source_cells": int(src_indices.size),
+                    "candidate_nonfinite_source_cells": int(np.count_nonzero(~np.isfinite(scores))),
+                }
+            )
         if not stacks:
             continue
         matrix = np.vstack(stacks)
@@ -365,6 +386,30 @@ def compute_batc(
         row_indices = np.arange(matrix.shape[1])
         best_values = matrix[best_idx, row_indices]
         best_cosine_per_cell[src_indices] = best_values
+        for target_index, tgt in enumerate(targets):
+            branch_winner_source_cells[(src, tgt)] = int(
+                np.count_nonzero(best_idx == target_index)
+            )
+
+    candidate_by_edge = {
+        (item["source"], item["target"]): item for item in candidate_edge_details
+    }
+    edge_details = []
+    for src, tgt in edges:
+        item = dict(candidate_by_edge.get(
+            (src, tgt),
+            {
+                "source": src,
+                "target": tgt,
+                "candidate_mean_source_cells": None,
+                "source_cells": 0,
+                "candidate_nonfinite_source_cells": 0,
+            },
+        ))
+        item["branch_winner_source_cells"] = branch_winner_source_cells.get(
+            (src, tgt), 0
+        )
+        edge_details.append(item)
 
     valid_mask = np.isfinite(best_cosine_per_cell)
     batc_overall = float(np.nanmean(best_cosine_per_cell[valid_mask])) if valid_mask.any() else np.nan
@@ -383,4 +428,6 @@ def compute_batc(
 
 
 
+    if return_details:
+        return batc_overall, {"overall": batc_overall, "edges": edge_details}
     return batc_overall

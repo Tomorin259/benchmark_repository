@@ -1,0 +1,577 @@
+dataset,method,metric,source,target,score,evaluable_source_cells
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,CA,CA1-Sub,0.44119638568109154,330
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,CA,CA2-3-4,0.46365287420635287,357
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,GlialProg,ImmAstro,0.18223350482879663,71
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,GlialProg,OPC,0.5642456533385688,58
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.3877965913901625,1002
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,ImmGranule2,Granule,0.45085250288737155,397
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,Nbl1,Nbl2,0.6240997805381524,129
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,Nbl2,CA,0.4175878081582303,255
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,Nbl2,ImmGranule1,0.475854233191974,324
+DentateGyrus_lamanno,TIvelo,highdim_cbdir,nIPC,GlialProg,0.13414964072057373,130
+DentateGyrus_lamanno,TIvelo,transcosine,CA,CA1-Sub,0.3350224068162568,330
+DentateGyrus_lamanno,TIvelo,transcosine,CA,CA2-3-4,0.37336590562892313,357
+DentateGyrus_lamanno,TIvelo,transcosine,GlialProg,ImmAstro,0.2946331943319717,71
+DentateGyrus_lamanno,TIvelo,transcosine,GlialProg,OPC,0.5795608024144995,58
+DentateGyrus_lamanno,TIvelo,transcosine,ImmGranule1,ImmGranule2,0.31931135368472086,1002
+DentateGyrus_lamanno,TIvelo,transcosine,ImmGranule2,Granule,0.36638461667997413,397
+DentateGyrus_lamanno,TIvelo,transcosine,Nbl1,Nbl2,0.48552947491407394,129
+DentateGyrus_lamanno,TIvelo,transcosine,Nbl2,CA,0.2958545597014474,255
+DentateGyrus_lamanno,TIvelo,transcosine,Nbl2,ImmGranule1,0.36675804177368126,324
+DentateGyrus_lamanno,TIvelo,transcosine,nIPC,GlialProg,0.22178328776588807,130
+DentateGyrus_lamanno,celldancer,highdim_cbdir,CA,CA1-Sub,-0.06851261278624124,330
+DentateGyrus_lamanno,celldancer,highdim_cbdir,CA,CA2-3-4,0.028602244834887373,357
+DentateGyrus_lamanno,celldancer,highdim_cbdir,GlialProg,ImmAstro,0.047833543721058414,71
+DentateGyrus_lamanno,celldancer,highdim_cbdir,GlialProg,OPC,-0.0058580340036337416,58
+DentateGyrus_lamanno,celldancer,highdim_cbdir,ImmGranule1,ImmGranule2,-0.08343626641760689,1002
+DentateGyrus_lamanno,celldancer,highdim_cbdir,ImmGranule2,Granule,0.02246073254123264,397
+DentateGyrus_lamanno,celldancer,highdim_cbdir,Nbl1,Nbl2,0.07703299833329257,129
+DentateGyrus_lamanno,celldancer,highdim_cbdir,Nbl2,CA,0.17018386597206195,255
+DentateGyrus_lamanno,celldancer,highdim_cbdir,Nbl2,ImmGranule1,0.15131411970738254,324
+DentateGyrus_lamanno,celldancer,highdim_cbdir,nIPC,GlialProg,0.012170286458355536,130
+DentateGyrus_lamanno,celldancer,transcosine,CA,CA1-Sub,0.04841102823151177,330
+DentateGyrus_lamanno,celldancer,transcosine,CA,CA2-3-4,0.09555547385289352,357
+DentateGyrus_lamanno,celldancer,transcosine,GlialProg,ImmAstro,0.15340193225936571,71
+DentateGyrus_lamanno,celldancer,transcosine,GlialProg,OPC,0.14110906476431911,58
+DentateGyrus_lamanno,celldancer,transcosine,ImmGranule1,ImmGranule2,0.06047564396888441,1002
+DentateGyrus_lamanno,celldancer,transcosine,ImmGranule2,Granule,0.10460462482773372,397
+DentateGyrus_lamanno,celldancer,transcosine,Nbl1,Nbl2,0.1609471432084954,129
+DentateGyrus_lamanno,celldancer,transcosine,Nbl2,CA,0.2044574937057298,255
+DentateGyrus_lamanno,celldancer,transcosine,Nbl2,ImmGranule1,0.18628052554889524,324
+DentateGyrus_lamanno,celldancer,transcosine,nIPC,GlialProg,0.11570470641241767,130
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,CA,CA1-Sub,0.0824427080952685,330
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,CA,CA2-3-4,0.07132025172526686,357
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,GlialProg,ImmAstro,-0.13322034204894465,71
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,GlialProg,OPC,-0.25844487486638257,58
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.10055479254280376,1002
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,ImmGranule2,Granule,0.09556558850325013,397
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,Nbl1,Nbl2,0.16620331352539097,129
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,Nbl2,CA,0.11497594852881536,255
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,Nbl2,ImmGranule1,0.13942074888985867,324
+DentateGyrus_lamanno,deepvelo,highdim_cbdir,nIPC,GlialProg,0.13670622911069968,130
+DentateGyrus_lamanno,deepvelo,transcosine,CA,CA1-Sub,0.10191145225315157,330
+DentateGyrus_lamanno,deepvelo,transcosine,CA,CA2-3-4,0.12185802506850328,357
+DentateGyrus_lamanno,deepvelo,transcosine,GlialProg,ImmAstro,0.08190131324513907,71
+DentateGyrus_lamanno,deepvelo,transcosine,GlialProg,OPC,0.13559657595409402,58
+DentateGyrus_lamanno,deepvelo,transcosine,ImmGranule1,ImmGranule2,0.15207745039281612,1002
+DentateGyrus_lamanno,deepvelo,transcosine,ImmGranule2,Granule,0.1699936252218725,397
+DentateGyrus_lamanno,deepvelo,transcosine,Nbl1,Nbl2,0.1752666303700255,129
+DentateGyrus_lamanno,deepvelo,transcosine,Nbl2,CA,0.1300384353627177,255
+DentateGyrus_lamanno,deepvelo,transcosine,Nbl2,ImmGranule1,0.11039108554272119,324
+DentateGyrus_lamanno,deepvelo,transcosine,nIPC,GlialProg,0.06545301100346618,130
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,CA,CA1-Sub,-0.1574397536985001,330
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,CA,CA2-3-4,-0.0358116080810719,357
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,GlialProg,ImmAstro,0.01849699083504711,71
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,GlialProg,OPC,-0.02654900977994808,58
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,ImmGranule1,ImmGranule2,-0.029003499430177375,1002
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,ImmGranule2,Granule,0.1292377424437079,397
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,Nbl1,Nbl2,0.11478462140775368,129
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,Nbl2,CA,0.204124147094208,255
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,Nbl2,ImmGranule1,0.24605577788141555,324
+DentateGyrus_lamanno,deepvelo2022,highdim_cbdir,nIPC,GlialProg,-0.06990093962158654,130
+DentateGyrus_lamanno,deepvelo2022,transcosine,CA,CA1-Sub,0.05293107591366579,330
+DentateGyrus_lamanno,deepvelo2022,transcosine,CA,CA2-3-4,0.11611226318353209,357
+DentateGyrus_lamanno,deepvelo2022,transcosine,GlialProg,ImmAstro,0.2758233626438698,71
+DentateGyrus_lamanno,deepvelo2022,transcosine,GlialProg,OPC,0.22310196102901908,58
+DentateGyrus_lamanno,deepvelo2022,transcosine,ImmGranule1,ImmGranule2,0.1810612601026539,1002
+DentateGyrus_lamanno,deepvelo2022,transcosine,ImmGranule2,Granule,0.2665074915400535,397
+DentateGyrus_lamanno,deepvelo2022,transcosine,Nbl1,Nbl2,0.2839110615408741,129
+DentateGyrus_lamanno,deepvelo2022,transcosine,Nbl2,CA,0.3321395004496855,255
+DentateGyrus_lamanno,deepvelo2022,transcosine,Nbl2,ImmGranule1,0.3641627495454475,324
+DentateGyrus_lamanno,deepvelo2022,transcosine,nIPC,GlialProg,0.21463406218882972,130
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,CA,CA1-Sub,0.2684908941909357,330
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,CA,CA2-3-4,-0.06275570723355707,357
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,GlialProg,ImmAstro,0.36807153107826723,71
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,GlialProg,OPC,0.5403353253294062,58
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,ImmGranule1,ImmGranule2,0.4110726825984712,1002
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,ImmGranule2,Granule,0.4258029091818191,397
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,Nbl1,Nbl2,0.0006135502881302962,129
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,Nbl2,CA,0.23394391251101762,255
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,Nbl2,ImmGranule1,0.23125643545102204,324
+DentateGyrus_lamanno,graphvelo_scv,highdim_cbdir,nIPC,GlialProg,-0.2555263811336203,130
+DentateGyrus_lamanno,graphvelo_scv,transcosine,CA,CA1-Sub,0.3573463142129847,330
+DentateGyrus_lamanno,graphvelo_scv,transcosine,CA,CA2-3-4,0.2072158397641033,357
+DentateGyrus_lamanno,graphvelo_scv,transcosine,GlialProg,ImmAstro,0.3480802289616894,71
+DentateGyrus_lamanno,graphvelo_scv,transcosine,GlialProg,OPC,0.42748703139609306,58
+DentateGyrus_lamanno,graphvelo_scv,transcosine,ImmGranule1,ImmGranule2,0.3748161736982661,1002
+DentateGyrus_lamanno,graphvelo_scv,transcosine,ImmGranule2,Granule,0.4512613209302277,397
+DentateGyrus_lamanno,graphvelo_scv,transcosine,Nbl1,Nbl2,0.2283076388078251,129
+DentateGyrus_lamanno,graphvelo_scv,transcosine,Nbl2,CA,0.35510102558296686,255
+DentateGyrus_lamanno,graphvelo_scv,transcosine,Nbl2,ImmGranule1,0.31527520476317283,324
+DentateGyrus_lamanno,graphvelo_scv,transcosine,nIPC,GlialProg,0.2140812733174803,130
+DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA1-Sub,-0.044309802754229834,330
+DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA2-3-4,-0.030618905390884795,357
+DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,ImmAstro,0.010254725800446987,71
+DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,OPC,0.06303308811235485,58
+DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.019551369415856182,1002
+DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule2,Granule,0.08279650362997262,397
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl1,Nbl2,0.01104005435448239,129
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,CA,0.11531430230013082,255
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,ImmGranule1,0.12269712340928855,324
+DentateGyrus_lamanno,multivelo,highdim_cbdir,nIPC,GlialProg,-0.02761072340684409,130
+DentateGyrus_lamanno,multivelo,transcosine,CA,CA1-Sub,0.11595119505866684,330
+DentateGyrus_lamanno,multivelo,transcosine,CA,CA2-3-4,0.08676410067473676,357
+DentateGyrus_lamanno,multivelo,transcosine,GlialProg,ImmAstro,0.10845241815173133,71
+DentateGyrus_lamanno,multivelo,transcosine,GlialProg,OPC,0.1447986195120832,58
+DentateGyrus_lamanno,multivelo,transcosine,ImmGranule1,ImmGranule2,0.20076235632450243,1002
+DentateGyrus_lamanno,multivelo,transcosine,ImmGranule2,Granule,0.23818861382077414,397
+DentateGyrus_lamanno,multivelo,transcosine,Nbl1,Nbl2,0.20396802513029919,129
+DentateGyrus_lamanno,multivelo,transcosine,Nbl2,CA,0.1946854943464346,255
+DentateGyrus_lamanno,multivelo,transcosine,Nbl2,ImmGranule1,0.21906321928089048,324
+DentateGyrus_lamanno,multivelo,transcosine,nIPC,GlialProg,0.09244907823158428,130
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,CA,CA1-Sub,0.12022923277418937,330
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,CA,CA2-3-4,-0.006307537937872339,357
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,GlialProg,ImmAstro,0.29521200413741744,71
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,GlialProg,OPC,0.23206350377116278,58
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,ImmGranule1,ImmGranule2,0.025325246665052727,1002
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,ImmGranule2,Granule,0.05290228421891402,397
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,Nbl1,Nbl2,0.04751211261963165,129
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,Nbl2,CA,0.027730895583285977,255
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,Nbl2,ImmGranule1,-0.11172720435481134,324
+DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,nIPC,GlialProg,-0.007196165999786977,130
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,CA,CA1-Sub,0.0541715649438133,330
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,CA,CA2-3-4,0.1212675682776438,357
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,GlialProg,ImmAstro,0.26659249676994873,71
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,GlialProg,OPC,0.22221763777257553,58
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,ImmGranule1,ImmGranule2,0.1861069240760131,1002
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,ImmGranule2,Granule,0.26411671465220543,397
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,Nbl1,Nbl2,0.26848836864575804,129
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,Nbl2,CA,0.32173210175379235,255
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,Nbl2,ImmGranule1,0.35582160773287513,324
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,nIPC,GlialProg,0.2036605606500346,130
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,CA,CA1-Sub,0.03256064310042681,330
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,CA,CA2-3-4,0.029736367157870352,357
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,GlialProg,ImmAstro,0.16647142870737955,71
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,GlialProg,OPC,-0.003676312156470658,58
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.14152313149091314,1002
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,ImmGranule2,Granule,0.06530645308830053,397
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,Nbl1,Nbl2,0.16114774037384608,129
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,Nbl2,CA,-0.08513262854809774,255
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,Nbl2,ImmGranule1,-0.11926547463763308,324
+DentateGyrus_lamanno,unitvelo,highdim_cbdir,nIPC,GlialProg,0.03091016362780216,130
+DentateGyrus_lamanno,unitvelo,transcosine,CA,CA1-Sub,0.10934454583929795,330
+DentateGyrus_lamanno,unitvelo,transcosine,CA,CA2-3-4,0.09083236153211434,357
+DentateGyrus_lamanno,unitvelo,transcosine,GlialProg,ImmAstro,0.018386795189605475,71
+DentateGyrus_lamanno,unitvelo,transcosine,GlialProg,OPC,0.045009749952151686,58
+DentateGyrus_lamanno,unitvelo,transcosine,ImmGranule1,ImmGranule2,0.11363184954626593,1002
+DentateGyrus_lamanno,unitvelo,transcosine,ImmGranule2,Granule,0.15261687411133773,397
+DentateGyrus_lamanno,unitvelo,transcosine,Nbl1,Nbl2,0.17075518896720235,129
+DentateGyrus_lamanno,unitvelo,transcosine,Nbl2,CA,0.07178433028274608,255
+DentateGyrus_lamanno,unitvelo,transcosine,Nbl2,ImmGranule1,0.09092585079157782,324
+DentateGyrus_lamanno,unitvelo,transcosine,nIPC,GlialProg,0.053555559000009315,130
+DentateGyrus_lamanno,veloVI,highdim_cbdir,CA,CA1-Sub,0.06590370843542662,330
+DentateGyrus_lamanno,veloVI,highdim_cbdir,CA,CA2-3-4,0.08946538759110131,357
+DentateGyrus_lamanno,veloVI,highdim_cbdir,GlialProg,ImmAstro,0.010269874375441846,71
+DentateGyrus_lamanno,veloVI,highdim_cbdir,GlialProg,OPC,0.05040582050613246,58
+DentateGyrus_lamanno,veloVI,highdim_cbdir,ImmGranule1,ImmGranule2,0.06221316925958518,1002
+DentateGyrus_lamanno,veloVI,highdim_cbdir,ImmGranule2,Granule,0.049390534300650414,397
+DentateGyrus_lamanno,veloVI,highdim_cbdir,Nbl1,Nbl2,-0.001217726361553981,129
+DentateGyrus_lamanno,veloVI,highdim_cbdir,Nbl2,CA,0.046660041268915625,255
+DentateGyrus_lamanno,veloVI,highdim_cbdir,Nbl2,ImmGranule1,0.03219686159772657,324
+DentateGyrus_lamanno,veloVI,highdim_cbdir,nIPC,GlialProg,0.008095234625185662,130
+DentateGyrus_lamanno,veloVI,transcosine,CA,CA1-Sub,0.07633676125313452,330
+DentateGyrus_lamanno,veloVI,transcosine,CA,CA2-3-4,0.09122697930360417,357
+DentateGyrus_lamanno,veloVI,transcosine,GlialProg,ImmAstro,0.013548081192529423,71
+DentateGyrus_lamanno,veloVI,transcosine,GlialProg,OPC,0.04744255782209401,58
+DentateGyrus_lamanno,veloVI,transcosine,ImmGranule1,ImmGranule2,0.07548693004474388,1002
+DentateGyrus_lamanno,veloVI,transcosine,ImmGranule2,Granule,0.05365328331366803,397
+DentateGyrus_lamanno,veloVI,transcosine,Nbl1,Nbl2,0.026866327311984416,129
+DentateGyrus_lamanno,veloVI,transcosine,Nbl2,CA,0.06251025462851804,255
+DentateGyrus_lamanno,veloVI,transcosine,Nbl2,ImmGranule1,0.05088009618500817,324
+DentateGyrus_lamanno,veloVI,transcosine,nIPC,GlialProg,0.03922713747418199,130
+capofibro,TIvelo,highdim_cbdir,G1,S,0.20486093481444667,336
+capofibro,TIvelo,highdim_cbdir,G2M,G1,0.16385426158789393,169
+capofibro,TIvelo,highdim_cbdir,S,G2M,0.4432547799762345,113
+capofibro,TIvelo,transcosine,G1,S,0.2151373795956412,336
+capofibro,TIvelo,transcosine,G2M,G1,0.1919056093947102,169
+capofibro,TIvelo,transcosine,S,G2M,0.5199577391345417,113
+capofibro,celldancer,highdim_cbdir,G1,S,-0.08058696436786421,336
+capofibro,celldancer,highdim_cbdir,G2M,G1,0.07315600910941089,169
+capofibro,celldancer,highdim_cbdir,S,G2M,0.07855218008785093,113
+capofibro,celldancer,transcosine,G1,S,0.08565162564731768,336
+capofibro,celldancer,transcosine,G2M,G1,0.15079347870984947,169
+capofibro,celldancer,transcosine,S,G2M,0.14199850678369733,113
+capofibro,deepvelo,highdim_cbdir,G1,S,-0.017236714030015903,336
+capofibro,deepvelo,highdim_cbdir,G2M,G1,-0.09812820514366105,169
+capofibro,deepvelo,highdim_cbdir,S,G2M,0.014968694861799935,113
+capofibro,deepvelo,transcosine,G1,S,0.07894168310681812,336
+capofibro,deepvelo,transcosine,G2M,G1,0.09358381216838603,169
+capofibro,deepvelo,transcosine,S,G2M,0.09820820664393559,113
+capofibro,deepvelo2022,highdim_cbdir,G1,S,0.04149990734792072,336
+capofibro,deepvelo2022,highdim_cbdir,G2M,G1,0.006956227876078105,169
+capofibro,deepvelo2022,highdim_cbdir,S,G2M,0.29896869286577876,113
+capofibro,deepvelo2022,transcosine,G1,S,0.13280767726263593,336
+capofibro,deepvelo2022,transcosine,G2M,G1,0.14032510573322715,169
+capofibro,deepvelo2022,transcosine,S,G2M,0.3091553119464522,113
+capofibro,graphvelo_scv,highdim_cbdir,G1,S,0.1673055290920979,336
+capofibro,graphvelo_scv,highdim_cbdir,G2M,G1,0.18129707909092713,169
+capofibro,graphvelo_scv,highdim_cbdir,S,G2M,0.28537912964189976,113
+capofibro,graphvelo_scv,transcosine,G1,S,0.2697789555123087,336
+capofibro,graphvelo_scv,transcosine,G2M,G1,0.28588970243578127,169
+capofibro,graphvelo_scv,transcosine,S,G2M,0.4809743673334607,113
+capofibro,multivelo,highdim_cbdir,G1,S,0.026870805024378167,336
+capofibro,multivelo,highdim_cbdir,G2M,G1,0.016445973271226176,169
+capofibro,multivelo,highdim_cbdir,S,G2M,0.037505958989147166,113
+capofibro,multivelo,transcosine,G1,S,0.10091859889784939,336
+capofibro,multivelo,transcosine,G2M,G1,0.18292224168027998,169
+capofibro,multivelo,transcosine,S,G2M,0.21626094900137555,113
+capofibro,scvelo_dynamic,highdim_cbdir,G1,S,0.009834189202016565,336
+capofibro,scvelo_dynamic,highdim_cbdir,G2M,G1,0.022843784409511205,169
+capofibro,scvelo_dynamic,highdim_cbdir,S,G2M,-0.1077116499248602,113
+capofibro,scvelo_dynamic,transcosine,G1,S,0.12870256813559017,336
+capofibro,scvelo_dynamic,transcosine,G2M,G1,0.1332348611098356,169
+capofibro,scvelo_dynamic,transcosine,S,G2M,0.3061178608352434,113
+capofibro,unitvelo,highdim_cbdir,G1,S,-0.07718047352447496,336
+capofibro,unitvelo,highdim_cbdir,G2M,G1,-0.06881359851125098,169
+capofibro,unitvelo,highdim_cbdir,S,G2M,0.04802892380793113,113
+capofibro,unitvelo,transcosine,G1,S,0.15618441119910303,336
+capofibro,unitvelo,transcosine,G2M,G1,0.00943772640475692,169
+capofibro,unitvelo,transcosine,S,G2M,0.4352724656330801,113
+capofibro,veloVI,highdim_cbdir,G1,S,0.03537162933741839,336
+capofibro,veloVI,highdim_cbdir,G2M,G1,0.06924669321723184,169
+capofibro,veloVI,highdim_cbdir,S,G2M,0.09275112811146788,113
+capofibro,veloVI,transcosine,G1,S,0.0427694746427906,336
+capofibro,veloVI,transcosine,G2M,G1,0.07217876669901187,169
+capofibro,veloVI,transcosine,S,G2M,0.09139726984116818,113
+gastrulation,TIvelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.5030365973251214,332
+gastrulation,TIvelo,highdim_cbdir,Blood progenitors 2,Erythroid1,0.623550396996432,515
+gastrulation,TIvelo,highdim_cbdir,Erythroid1,Erythroid2,0.645771859930194,540
+gastrulation,TIvelo,highdim_cbdir,Erythroid2,Erythroid3,0.6921408593717397,423
+gastrulation,TIvelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.47097657453717595,332
+gastrulation,TIvelo,transcosine,Blood progenitors 2,Erythroid1,0.4811801754733891,515
+gastrulation,TIvelo,transcosine,Erythroid1,Erythroid2,0.4131711629616028,540
+gastrulation,TIvelo,transcosine,Erythroid2,Erythroid3,0.4082939052694515,423
+gastrulation,celldancer,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.041033585092574675,332
+gastrulation,celldancer,highdim_cbdir,Blood progenitors 2,Erythroid1,0.3731152264906093,515
+gastrulation,celldancer,highdim_cbdir,Erythroid1,Erythroid2,0.42693440175833747,540
+gastrulation,celldancer,highdim_cbdir,Erythroid2,Erythroid3,0.45852746669846717,423
+gastrulation,celldancer,transcosine,Blood progenitors 1,Blood progenitors 2,0.07342982255953297,332
+gastrulation,celldancer,transcosine,Blood progenitors 2,Erythroid1,0.4122279254950185,515
+gastrulation,celldancer,transcosine,Erythroid1,Erythroid2,0.4649494488000831,540
+gastrulation,celldancer,transcosine,Erythroid2,Erythroid3,0.49287711844414067,423
+gastrulation,deepvelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.13130730062940482,332
+gastrulation,deepvelo,highdim_cbdir,Blood progenitors 2,Erythroid1,0.08294116535353752,515
+gastrulation,deepvelo,highdim_cbdir,Erythroid1,Erythroid2,-0.018650577647119065,540
+gastrulation,deepvelo,highdim_cbdir,Erythroid2,Erythroid3,-0.1147277630016591,423
+gastrulation,deepvelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.24500072533152548,332
+gastrulation,deepvelo,transcosine,Blood progenitors 2,Erythroid1,0.2780566221177668,515
+gastrulation,deepvelo,transcosine,Erythroid1,Erythroid2,0.17886481784646296,540
+gastrulation,deepvelo,transcosine,Erythroid2,Erythroid3,0.049700625478079824,423
+gastrulation,deepvelo2022,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,-0.008296270850107259,332
+gastrulation,deepvelo2022,highdim_cbdir,Blood progenitors 2,Erythroid1,0.023964000568419755,515
+gastrulation,deepvelo2022,highdim_cbdir,Erythroid1,Erythroid2,-0.03749923168654736,540
+gastrulation,deepvelo2022,highdim_cbdir,Erythroid2,Erythroid3,-0.026065402025618186,423
+gastrulation,deepvelo2022,transcosine,Blood progenitors 1,Blood progenitors 2,0.03938093033257356,332
+gastrulation,deepvelo2022,transcosine,Blood progenitors 2,Erythroid1,0.05089359097797322,515
+gastrulation,deepvelo2022,transcosine,Erythroid1,Erythroid2,0.030918273632603275,540
+gastrulation,deepvelo2022,transcosine,Erythroid2,Erythroid3,0.025342157644279693,423
+gastrulation,graphvelo_scv,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.14282557974408167,332
+gastrulation,graphvelo_scv,highdim_cbdir,Blood progenitors 2,Erythroid1,0.48842250235836987,515
+gastrulation,graphvelo_scv,highdim_cbdir,Erythroid1,Erythroid2,0.44130198896008554,540
+gastrulation,graphvelo_scv,highdim_cbdir,Erythroid2,Erythroid3,-0.7732967903194825,423
+gastrulation,graphvelo_scv,transcosine,Blood progenitors 1,Blood progenitors 2,0.2898064140060002,332
+gastrulation,graphvelo_scv,transcosine,Blood progenitors 2,Erythroid1,0.23145978362118663,515
+gastrulation,graphvelo_scv,transcosine,Erythroid1,Erythroid2,0.2377953810962262,540
+gastrulation,graphvelo_scv,transcosine,Erythroid2,Erythroid3,0.02930294892572617,423
+gastrulation,multivelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.0327404223919935,332
+gastrulation,multivelo,highdim_cbdir,Blood progenitors 2,Erythroid1,0.031090901155702035,515
+gastrulation,multivelo,highdim_cbdir,Erythroid1,Erythroid2,-0.006826705940640738,540
+gastrulation,multivelo,highdim_cbdir,Erythroid2,Erythroid3,-0.0506868404448006,423
+gastrulation,multivelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.14644354693479386,332
+gastrulation,multivelo,transcosine,Blood progenitors 2,Erythroid1,0.1536719571929018,515
+gastrulation,multivelo,transcosine,Erythroid1,Erythroid2,0.17094158449057162,540
+gastrulation,multivelo,transcosine,Erythroid2,Erythroid3,0.09375965085866406,423
+gastrulation,scvelo_dynamic,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.03303404864905907,332
+gastrulation,scvelo_dynamic,highdim_cbdir,Blood progenitors 2,Erythroid1,0.5153219875182514,515
+gastrulation,scvelo_dynamic,highdim_cbdir,Erythroid1,Erythroid2,-0.5098874821181348,540
+gastrulation,scvelo_dynamic,highdim_cbdir,Erythroid2,Erythroid3,-0.7615917369671639,423
+gastrulation,scvelo_dynamic,transcosine,Blood progenitors 1,Blood progenitors 2,0.04101079792568512,332
+gastrulation,scvelo_dynamic,transcosine,Blood progenitors 2,Erythroid1,0.05528649912174692,515
+gastrulation,scvelo_dynamic,transcosine,Erythroid1,Erythroid2,0.02152881827482647,540
+gastrulation,scvelo_dynamic,transcosine,Erythroid2,Erythroid3,0.026327562145744318,423
+gastrulation,unitvelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.03306781925287575,332
+gastrulation,unitvelo,highdim_cbdir,Blood progenitors 2,Erythroid1,0.36999139529845426,515
+gastrulation,unitvelo,highdim_cbdir,Erythroid1,Erythroid2,-0.5619427739168651,540
+gastrulation,unitvelo,highdim_cbdir,Erythroid2,Erythroid3,-0.7441639263709156,423
+gastrulation,unitvelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.2704481967354575,332
+gastrulation,unitvelo,transcosine,Blood progenitors 2,Erythroid1,0.2403051258444569,515
+gastrulation,unitvelo,transcosine,Erythroid1,Erythroid2,0.3672350707144856,540
+gastrulation,unitvelo,transcosine,Erythroid2,Erythroid3,0.5113134340297246,423
+gastrulation,veloVI,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.05359665638342073,332
+gastrulation,veloVI,highdim_cbdir,Blood progenitors 2,Erythroid1,0.08540900678293344,515
+gastrulation,veloVI,highdim_cbdir,Erythroid1,Erythroid2,0.052471259011762215,540
+gastrulation,veloVI,highdim_cbdir,Erythroid2,Erythroid3,-0.07037102988966008,423
+gastrulation,veloVI,transcosine,Blood progenitors 1,Blood progenitors 2,0.07014093766346959,332
+gastrulation,veloVI,transcosine,Blood progenitors 2,Erythroid1,0.08875180538777641,515
+gastrulation,veloVI,transcosine,Erythroid1,Erythroid2,0.0699892616343277,540
+gastrulation,veloVI,transcosine,Erythroid2,Erythroid3,0.012238622117395695,423
+mousebrain,TIvelo,highdim_cbdir,IPC,V-SVZ,0.7118275583179674,97
+mousebrain,TIvelo,highdim_cbdir,"RG, Astro, OPC",IPC,0.41240560347178595,124
+mousebrain,TIvelo,highdim_cbdir,Upper Layer,Deeper Layer,0.23677058450209473,227
+mousebrain,TIvelo,highdim_cbdir,V-SVZ,Upper Layer,0.4877732466181846,332
+mousebrain,TIvelo,transcosine,IPC,V-SVZ,0.6159764598171735,97
+mousebrain,TIvelo,transcosine,"RG, Astro, OPC",IPC,0.3521394153395968,124
+mousebrain,TIvelo,transcosine,Upper Layer,Deeper Layer,0.21656635901500934,227
+mousebrain,TIvelo,transcosine,V-SVZ,Upper Layer,0.4215377367225038,332
+mousebrain,celldancer,highdim_cbdir,IPC,V-SVZ,0.14942684389790217,97
+mousebrain,celldancer,highdim_cbdir,"RG, Astro, OPC",IPC,0.0017874099370020285,124
+mousebrain,celldancer,highdim_cbdir,Upper Layer,Deeper Layer,-0.02387038013874351,227
+mousebrain,celldancer,highdim_cbdir,V-SVZ,Upper Layer,0.10331016545500182,332
+mousebrain,celldancer,transcosine,IPC,V-SVZ,0.15842690643345572,97
+mousebrain,celldancer,transcosine,"RG, Astro, OPC",IPC,0.05389052028242018,124
+mousebrain,celldancer,transcosine,Upper Layer,Deeper Layer,0.06350451058478378,227
+mousebrain,celldancer,transcosine,V-SVZ,Upper Layer,0.1313536835023334,332
+mousebrain,deepvelo,highdim_cbdir,IPC,V-SVZ,0.09785612096546607,97
+mousebrain,deepvelo,highdim_cbdir,"RG, Astro, OPC",IPC,-0.05729395503532426,124
+mousebrain,deepvelo,highdim_cbdir,Upper Layer,Deeper Layer,-0.0773752886919316,227
+mousebrain,deepvelo,highdim_cbdir,V-SVZ,Upper Layer,0.01749363130990371,332
+mousebrain,deepvelo,transcosine,IPC,V-SVZ,0.08168496605556112,97
+mousebrain,deepvelo,transcosine,"RG, Astro, OPC",IPC,0.012754780029706213,124
+mousebrain,deepvelo,transcosine,Upper Layer,Deeper Layer,0.016802692889837993,227
+mousebrain,deepvelo,transcosine,V-SVZ,Upper Layer,0.0208951418566993,332
+mousebrain,deepvelo2022,highdim_cbdir,IPC,V-SVZ,0.25754504491381214,97
+mousebrain,deepvelo2022,highdim_cbdir,"RG, Astro, OPC",IPC,0.09510503816855594,124
+mousebrain,deepvelo2022,highdim_cbdir,Upper Layer,Deeper Layer,0.07988806508073157,227
+mousebrain,deepvelo2022,highdim_cbdir,V-SVZ,Upper Layer,0.17974677199967035,332
+mousebrain,deepvelo2022,transcosine,IPC,V-SVZ,0.2972925644195111,97
+mousebrain,deepvelo2022,transcosine,"RG, Astro, OPC",IPC,0.14388402513671486,124
+mousebrain,deepvelo2022,transcosine,Upper Layer,Deeper Layer,0.16291991310242343,227
+mousebrain,deepvelo2022,transcosine,V-SVZ,Upper Layer,0.22009072830782733,332
+mousebrain,graphvelo_scv,highdim_cbdir,IPC,V-SVZ,0.47737509359273805,97
+mousebrain,graphvelo_scv,highdim_cbdir,"RG, Astro, OPC",IPC,0.2511820654289802,124
+mousebrain,graphvelo_scv,highdim_cbdir,Upper Layer,Deeper Layer,0.2823251042784246,227
+mousebrain,graphvelo_scv,highdim_cbdir,V-SVZ,Upper Layer,0.258674447388256,332
+mousebrain,graphvelo_scv,transcosine,IPC,V-SVZ,0.6414770585359987,97
+mousebrain,graphvelo_scv,transcosine,"RG, Astro, OPC",IPC,0.4465762149963167,124
+mousebrain,graphvelo_scv,transcosine,Upper Layer,Deeper Layer,0.37664062789916203,227
+mousebrain,graphvelo_scv,transcosine,V-SVZ,Upper Layer,0.3890441762429314,332
+mousebrain,multivelo,highdim_cbdir,IPC,V-SVZ,0.07914911142212826,97
+mousebrain,multivelo,highdim_cbdir,"RG, Astro, OPC",IPC,0.09002939241104731,124
+mousebrain,multivelo,highdim_cbdir,Upper Layer,Deeper Layer,-0.0022377786864537057,227
+mousebrain,multivelo,highdim_cbdir,V-SVZ,Upper Layer,-0.033288624551669414,332
+mousebrain,multivelo,transcosine,IPC,V-SVZ,0.1301303866857029,97
+mousebrain,multivelo,transcosine,"RG, Astro, OPC",IPC,0.08508850898860762,124
+mousebrain,multivelo,transcosine,Upper Layer,Deeper Layer,0.051839503623165153,227
+mousebrain,multivelo,transcosine,V-SVZ,Upper Layer,0.0639091568866798,332
+mousebrain,scvelo_dynamic,highdim_cbdir,IPC,V-SVZ,0.3579385036318767,97
+mousebrain,scvelo_dynamic,highdim_cbdir,"RG, Astro, OPC",IPC,0.11171668696967471,124
+mousebrain,scvelo_dynamic,highdim_cbdir,Upper Layer,Deeper Layer,0.12133750240606045,227
+mousebrain,scvelo_dynamic,highdim_cbdir,V-SVZ,Upper Layer,0.043320001355238315,332
+mousebrain,scvelo_dynamic,transcosine,IPC,V-SVZ,0.2991358634113267,97
+mousebrain,scvelo_dynamic,transcosine,"RG, Astro, OPC",IPC,0.14854680683798036,124
+mousebrain,scvelo_dynamic,transcosine,Upper Layer,Deeper Layer,0.16344311786866808,227
+mousebrain,scvelo_dynamic,transcosine,V-SVZ,Upper Layer,0.21620505232173187,332
+mousebrain,unitvelo,highdim_cbdir,IPC,V-SVZ,0.24750512658922105,97
+mousebrain,unitvelo,highdim_cbdir,"RG, Astro, OPC",IPC,0.31572266984267566,124
+mousebrain,unitvelo,highdim_cbdir,Upper Layer,Deeper Layer,0.02025795129101828,227
+mousebrain,unitvelo,highdim_cbdir,V-SVZ,Upper Layer,0.15958329261478119,332
+mousebrain,unitvelo,transcosine,IPC,V-SVZ,0.3931213817799214,97
+mousebrain,unitvelo,transcosine,"RG, Astro, OPC",IPC,0.27778666107276934,124
+mousebrain,unitvelo,transcosine,Upper Layer,Deeper Layer,0.16209759278297795,227
+mousebrain,unitvelo,transcosine,V-SVZ,Upper Layer,0.28620135850772394,332
+mousebrain,veloVI,highdim_cbdir,IPC,V-SVZ,0.15545041425594597,97
+mousebrain,veloVI,highdim_cbdir,"RG, Astro, OPC",IPC,0.04422012020868624,124
+mousebrain,veloVI,highdim_cbdir,Upper Layer,Deeper Layer,0.07107941671692462,227
+mousebrain,veloVI,highdim_cbdir,V-SVZ,Upper Layer,0.10960551095643024,332
+mousebrain,veloVI,transcosine,IPC,V-SVZ,0.15992965881194265,97
+mousebrain,veloVI,transcosine,"RG, Astro, OPC",IPC,0.060083713496081353,124
+mousebrain,veloVI,transcosine,Upper Layer,Deeper Layer,0.08848260696474791,227
+mousebrain,veloVI,transcosine,V-SVZ,Upper Layer,0.12242283837600465,332
+pancreas,TIvelo,highdim_cbdir,Ductal,Ngn3 low EP,0.27688150169280495,796
+pancreas,TIvelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.6238195672264135,95
+pancreas,TIvelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.5847263542863977,55
+pancreas,TIvelo,highdim_cbdir,Pre-endocrine,Alpha,0.40530586100289634,115
+pancreas,TIvelo,highdim_cbdir,Pre-endocrine,Beta,0.6515709614226087,140
+pancreas,TIvelo,highdim_cbdir,Pre-endocrine,Delta,0.5931082919792359,34
+pancreas,TIvelo,highdim_cbdir,Pre-endocrine,Epsilon,0.2926058340132608,59
+pancreas,TIvelo,transcosine,Ductal,Ngn3 low EP,0.18542307850977302,796
+pancreas,TIvelo,transcosine,Ngn3 high EP,Pre-endocrine,0.546073572102346,95
+pancreas,TIvelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.49572077637368983,55
+pancreas,TIvelo,transcosine,Pre-endocrine,Alpha,0.3724728335100024,115
+pancreas,TIvelo,transcosine,Pre-endocrine,Beta,0.5581091839287963,140
+pancreas,TIvelo,transcosine,Pre-endocrine,Delta,0.5601544588365975,34
+pancreas,TIvelo,transcosine,Pre-endocrine,Epsilon,0.41040538743896,59
+pancreas,celldancer,highdim_cbdir,Ductal,Ngn3 low EP,-0.018039901345566843,796
+pancreas,celldancer,highdim_cbdir,Ngn3 high EP,Pre-endocrine,-0.018556960661350288,95
+pancreas,celldancer,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,-0.00576683893408919,55
+pancreas,celldancer,highdim_cbdir,Pre-endocrine,Alpha,0.126364042127668,115
+pancreas,celldancer,highdim_cbdir,Pre-endocrine,Beta,-0.022001516090081306,140
+pancreas,celldancer,highdim_cbdir,Pre-endocrine,Delta,0.4817007854281465,34
+pancreas,celldancer,highdim_cbdir,Pre-endocrine,Epsilon,0.10078221475987457,59
+pancreas,celldancer,transcosine,Ductal,Ngn3 low EP,0.07703631480051709,796
+pancreas,celldancer,transcosine,Ngn3 high EP,Pre-endocrine,0.059043286245708405,95
+pancreas,celldancer,transcosine,Ngn3 low EP,Ngn3 high EP,0.06954462419089395,55
+pancreas,celldancer,transcosine,Pre-endocrine,Alpha,0.24005323100997053,115
+pancreas,celldancer,transcosine,Pre-endocrine,Beta,0.16284580324177764,140
+pancreas,celldancer,transcosine,Pre-endocrine,Delta,0.5027276856057784,34
+pancreas,celldancer,transcosine,Pre-endocrine,Epsilon,0.20928853010498302,59
+pancreas,deepvelo,highdim_cbdir,Ductal,Ngn3 low EP,0.0173263297978407,796
+pancreas,deepvelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.2518401944493135,95
+pancreas,deepvelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.1228755849253941,55
+pancreas,deepvelo,highdim_cbdir,Pre-endocrine,Alpha,0.03599828757211561,115
+pancreas,deepvelo,highdim_cbdir,Pre-endocrine,Beta,0.15426940186453636,140
+pancreas,deepvelo,highdim_cbdir,Pre-endocrine,Delta,-0.358059937751636,34
+pancreas,deepvelo,highdim_cbdir,Pre-endocrine,Epsilon,0.4549574534629477,59
+pancreas,deepvelo,transcosine,Ductal,Ngn3 low EP,0.06463475499810954,796
+pancreas,deepvelo,transcosine,Ngn3 high EP,Pre-endocrine,0.2040864586762741,95
+pancreas,deepvelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.1375566860491579,55
+pancreas,deepvelo,transcosine,Pre-endocrine,Alpha,0.09495593022464005,115
+pancreas,deepvelo,transcosine,Pre-endocrine,Beta,0.12994066503431115,140
+pancreas,deepvelo,transcosine,Pre-endocrine,Delta,0.10414623877252727,34
+pancreas,deepvelo,transcosine,Pre-endocrine,Epsilon,0.19862419931944145,59
+pancreas,deepvelo2022,highdim_cbdir,Ductal,Ngn3 low EP,0.015257097750289656,796
+pancreas,deepvelo2022,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.3159521428356085,95
+pancreas,deepvelo2022,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.17825939605320407,55
+pancreas,deepvelo2022,highdim_cbdir,Pre-endocrine,Alpha,0.2949016942592807,115
+pancreas,deepvelo2022,highdim_cbdir,Pre-endocrine,Beta,0.2669412841990143,140
+pancreas,deepvelo2022,highdim_cbdir,Pre-endocrine,Delta,0.11150633704633917,34
+pancreas,deepvelo2022,highdim_cbdir,Pre-endocrine,Epsilon,0.029439397845528032,59
+pancreas,deepvelo2022,transcosine,Ductal,Ngn3 low EP,0.057825431058070115,796
+pancreas,deepvelo2022,transcosine,Ngn3 high EP,Pre-endocrine,0.3611057556516148,95
+pancreas,deepvelo2022,transcosine,Ngn3 low EP,Ngn3 high EP,0.17925413718277758,55
+pancreas,deepvelo2022,transcosine,Pre-endocrine,Alpha,0.323189809286724,115
+pancreas,deepvelo2022,transcosine,Pre-endocrine,Beta,0.2987422905662762,140
+pancreas,deepvelo2022,transcosine,Pre-endocrine,Delta,0.17772971453857334,34
+pancreas,deepvelo2022,transcosine,Pre-endocrine,Epsilon,0.14413600351850867,59
+pancreas,graphvelo_scv,highdim_cbdir,Ductal,Ngn3 low EP,0.05351680863327325,796
+pancreas,graphvelo_scv,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.5997658335181127,95
+pancreas,graphvelo_scv,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.5365295370820087,55
+pancreas,graphvelo_scv,highdim_cbdir,Pre-endocrine,Alpha,0.3458466692025555,115
+pancreas,graphvelo_scv,highdim_cbdir,Pre-endocrine,Beta,0.5327157912653785,140
+pancreas,graphvelo_scv,highdim_cbdir,Pre-endocrine,Delta,0.4544512864652131,34
+pancreas,graphvelo_scv,highdim_cbdir,Pre-endocrine,Epsilon,-0.6464810721279175,59
+pancreas,graphvelo_scv,transcosine,Ductal,Ngn3 low EP,0.22796528599629806,796
+pancreas,graphvelo_scv,transcosine,Ngn3 high EP,Pre-endocrine,0.6183379179160846,95
+pancreas,graphvelo_scv,transcosine,Ngn3 low EP,Ngn3 high EP,0.5697503084486181,55
+pancreas,graphvelo_scv,transcosine,Pre-endocrine,Alpha,0.41751281285314296,115
+pancreas,graphvelo_scv,transcosine,Pre-endocrine,Beta,0.6052940737988267,140
+pancreas,graphvelo_scv,transcosine,Pre-endocrine,Delta,0.29253898248733845,34
+pancreas,graphvelo_scv,transcosine,Pre-endocrine,Epsilon,0.04781397282919389,59
+pancreas,multivelo,highdim_cbdir,Ductal,Ngn3 low EP,0.014033540947263421,796
+pancreas,multivelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.116117291993207,95
+pancreas,multivelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.003348147365176358,55
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Alpha,0.053269737697278156,115
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Beta,0.07636134165979336,140
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Delta,0.048809270647352354,34
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Epsilon,-0.0009760153289400121,59
+pancreas,multivelo,transcosine,Ductal,Ngn3 low EP,0.12576322959169708,796
+pancreas,multivelo,transcosine,Ngn3 high EP,Pre-endocrine,0.22080155085576209,95
+pancreas,multivelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.18859403133392333,55
+pancreas,multivelo,transcosine,Pre-endocrine,Alpha,0.18736687846805739,115
+pancreas,multivelo,transcosine,Pre-endocrine,Beta,0.229099536846791,140
+pancreas,multivelo,transcosine,Pre-endocrine,Delta,0.1868641025879804,34
+pancreas,multivelo,transcosine,Pre-endocrine,Epsilon,0.08959101841358816,59
+pancreas,scvelo_dynamic,highdim_cbdir,Ductal,Ngn3 low EP,-0.0018121506164661683,796
+pancreas,scvelo_dynamic,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.33485416307431837,95
+pancreas,scvelo_dynamic,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.13543829345936198,55
+pancreas,scvelo_dynamic,highdim_cbdir,Pre-endocrine,Alpha,0.23726193381307023,115
+pancreas,scvelo_dynamic,highdim_cbdir,Pre-endocrine,Beta,0.2809016340403074,140
+pancreas,scvelo_dynamic,highdim_cbdir,Pre-endocrine,Delta,0.5790501760056016,34
+pancreas,scvelo_dynamic,highdim_cbdir,Pre-endocrine,Epsilon,-0.21481653011812774,59
+pancreas,scvelo_dynamic,transcosine,Ductal,Ngn3 low EP,0.04541522703505109,796
+pancreas,scvelo_dynamic,transcosine,Ngn3 high EP,Pre-endocrine,0.3532433376230888,95
+pancreas,scvelo_dynamic,transcosine,Ngn3 low EP,Ngn3 high EP,0.19830395152623004,55
+pancreas,scvelo_dynamic,transcosine,Pre-endocrine,Alpha,0.2724158315666263,115
+pancreas,scvelo_dynamic,transcosine,Pre-endocrine,Beta,0.304203078802675,140
+pancreas,scvelo_dynamic,transcosine,Pre-endocrine,Delta,0.20283156003364744,34
+pancreas,scvelo_dynamic,transcosine,Pre-endocrine,Epsilon,0.1256567058666467,59
+pancreas,unitvelo,highdim_cbdir,Ductal,Ngn3 low EP,0.004831829534653453,796
+pancreas,unitvelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.08483320274276765,95
+pancreas,unitvelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.0710074504091273,55
+pancreas,unitvelo,highdim_cbdir,Pre-endocrine,Alpha,-0.04442677187306362,115
+pancreas,unitvelo,highdim_cbdir,Pre-endocrine,Beta,0.0017295836939660708,140
+pancreas,unitvelo,highdim_cbdir,Pre-endocrine,Delta,-0.28812212426504086,34
+pancreas,unitvelo,highdim_cbdir,Pre-endocrine,Epsilon,-0.15425163350780127,59
+pancreas,unitvelo,transcosine,Ductal,Ngn3 low EP,0.07034954952792193,796
+pancreas,unitvelo,transcosine,Ngn3 high EP,Pre-endocrine,0.3096492704543236,95
+pancreas,unitvelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.34097435528581793,55
+pancreas,unitvelo,transcosine,Pre-endocrine,Alpha,0.2980091285608385,115
+pancreas,unitvelo,transcosine,Pre-endocrine,Beta,0.48996501861672315,140
+pancreas,unitvelo,transcosine,Pre-endocrine,Delta,0.1403565880678156,34
+pancreas,unitvelo,transcosine,Pre-endocrine,Epsilon,0.08331501221884105,59
+pancreas,veloVI,highdim_cbdir,Ductal,Ngn3 low EP,0.019282912867340747,796
+pancreas,veloVI,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.14129769770883407,95
+pancreas,veloVI,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.12526069889466604,55
+pancreas,veloVI,highdim_cbdir,Pre-endocrine,Alpha,0.06755519227454311,115
+pancreas,veloVI,highdim_cbdir,Pre-endocrine,Beta,0.06196776845808337,140
+pancreas,veloVI,highdim_cbdir,Pre-endocrine,Delta,0.03204573355716808,34
+pancreas,veloVI,highdim_cbdir,Pre-endocrine,Epsilon,0.0009576458720651122,59
+pancreas,veloVI,transcosine,Ductal,Ngn3 low EP,0.037414574889294616,796
+pancreas,veloVI,transcosine,Ngn3 high EP,Pre-endocrine,0.14129955698000757,95
+pancreas,veloVI,transcosine,Ngn3 low EP,Ngn3 high EP,0.12823067219419912,55
+pancreas,veloVI,transcosine,Pre-endocrine,Alpha,0.07357137849473434,115
+pancreas,veloVI,transcosine,Pre-endocrine,Beta,0.0677401306997386,140
+pancreas,veloVI,transcosine,Pre-endocrine,Delta,0.032844780978527575,34
+pancreas,veloVI,transcosine,Pre-endocrine,Epsilon,0.008847784876460367,59
+retina,TIvelo,highdim_cbdir,Neuroblast,AC/HC,0.7232902932088093,41
+retina,TIvelo,highdim_cbdir,Neuroblast,PR,0.6177451684628478,52
+retina,TIvelo,highdim_cbdir,Neuroblast,RGC,0.7120388400450772,52
+retina,TIvelo,highdim_cbdir,Progenitor,Neuroblast,0.11313419910343994,122
+retina,TIvelo,transcosine,Neuroblast,AC/HC,0.5984000565438736,41
+retina,TIvelo,transcosine,Neuroblast,PR,0.5058123787435201,52
+retina,TIvelo,transcosine,Neuroblast,RGC,0.5724463267968252,52
+retina,TIvelo,transcosine,Progenitor,Neuroblast,0.19230851027293924,122
+retina,celldancer,highdim_cbdir,Neuroblast,AC/HC,0.11095925207392279,41
+retina,celldancer,highdim_cbdir,Neuroblast,PR,0.0525501400827261,52
+retina,celldancer,highdim_cbdir,Neuroblast,RGC,0.32144151024931855,52
+retina,celldancer,highdim_cbdir,Progenitor,Neuroblast,0.01599584314316635,122
+retina,celldancer,transcosine,Neuroblast,AC/HC,0.15447947794071784,41
+retina,celldancer,transcosine,Neuroblast,PR,0.15256203400293508,52
+retina,celldancer,transcosine,Neuroblast,RGC,0.3448102260903957,52
+retina,celldancer,transcosine,Progenitor,Neuroblast,0.0871301981196815,122
+retina,deepvelo,highdim_cbdir,Neuroblast,AC/HC,0.1734042458059713,41
+retina,deepvelo,highdim_cbdir,Neuroblast,PR,0.09729234730562467,52
+retina,deepvelo,highdim_cbdir,Neuroblast,RGC,0.22875704271984115,52
+retina,deepvelo,highdim_cbdir,Progenitor,Neuroblast,0.1496572277643009,122
+retina,deepvelo,transcosine,Neuroblast,AC/HC,0.19668252277755882,41
+retina,deepvelo,transcosine,Neuroblast,PR,0.13896072475024715,52
+retina,deepvelo,transcosine,Neuroblast,RGC,0.21103727215757737,52
+retina,deepvelo,transcosine,Progenitor,Neuroblast,0.10025243699306348,122
+retina,deepvelo2022,highdim_cbdir,Neuroblast,AC/HC,0.30029411773319215,41
+retina,deepvelo2022,highdim_cbdir,Neuroblast,PR,0.10025483616785275,52
+retina,deepvelo2022,highdim_cbdir,Neuroblast,RGC,0.4451338585991888,52
+retina,deepvelo2022,highdim_cbdir,Progenitor,Neuroblast,0.2038042357172097,122
+retina,deepvelo2022,transcosine,Neuroblast,AC/HC,0.3154446219162243,41
+retina,deepvelo2022,transcosine,Neuroblast,PR,0.13921911320917738,52
+retina,deepvelo2022,transcosine,Neuroblast,RGC,0.4620601520515405,52
+retina,deepvelo2022,transcosine,Progenitor,Neuroblast,0.21993184722501968,122
+retina,graphvelo_scv,highdim_cbdir,Neuroblast,AC/HC,0.5532491834658921,41
+retina,graphvelo_scv,highdim_cbdir,Neuroblast,PR,0.3698696464069817,52
+retina,graphvelo_scv,highdim_cbdir,Neuroblast,RGC,0.593970379070358,52
+retina,graphvelo_scv,highdim_cbdir,Progenitor,Neuroblast,0.2556397000846907,122
+retina,graphvelo_scv,transcosine,Neuroblast,AC/HC,0.6843517324546489,41
+retina,graphvelo_scv,transcosine,Neuroblast,PR,0.4957858870576064,52
+retina,graphvelo_scv,transcosine,Neuroblast,RGC,0.7238516412102259,52
+retina,graphvelo_scv,transcosine,Progenitor,Neuroblast,0.39768359785685775,122
+retina,multivelo,highdim_cbdir,Neuroblast,AC/HC,0.035631751611556156,41
+retina,multivelo,highdim_cbdir,Neuroblast,PR,0.025906761844102972,52
+retina,multivelo,highdim_cbdir,Neuroblast,RGC,0.026428050618822863,52
+retina,multivelo,highdim_cbdir,Progenitor,Neuroblast,0.030633527585911747,122
+retina,multivelo,transcosine,Neuroblast,AC/HC,0.16293805646823672,41
+retina,multivelo,transcosine,Neuroblast,PR,0.1348180829977187,52
+retina,multivelo,transcosine,Neuroblast,RGC,0.16814441982513437,52
+retina,multivelo,transcosine,Progenitor,Neuroblast,0.05629841752419989,122
+retina,scvelo_dynamic,highdim_cbdir,Neuroblast,AC/HC,0.1653590758123731,41
+retina,scvelo_dynamic,highdim_cbdir,Neuroblast,PR,0.09697601645222241,52
+retina,scvelo_dynamic,highdim_cbdir,Neuroblast,RGC,0.35880116732634687,52
+retina,scvelo_dynamic,highdim_cbdir,Progenitor,Neuroblast,0.1367768779866254,122
+retina,scvelo_dynamic,transcosine,Neuroblast,AC/HC,0.32363708589862034,41
+retina,scvelo_dynamic,transcosine,Neuroblast,PR,0.14589437376707792,52
+retina,scvelo_dynamic,transcosine,Neuroblast,RGC,0.45437868784826535,52
+retina,scvelo_dynamic,transcosine,Progenitor,Neuroblast,0.21598180995673918,122
+retina,unitvelo,highdim_cbdir,Neuroblast,AC/HC,0.28382639493273426,41
+retina,unitvelo,highdim_cbdir,Neuroblast,PR,0.06380903637019858,52
+retina,unitvelo,highdim_cbdir,Neuroblast,RGC,0.3222718864375291,52
+retina,unitvelo,highdim_cbdir,Progenitor,Neuroblast,-0.0001687250164626266,122
+retina,unitvelo,transcosine,Neuroblast,AC/HC,0.4704050450790219,41
+retina,unitvelo,transcosine,Neuroblast,PR,0.16049102392907327,52
+retina,unitvelo,transcosine,Neuroblast,RGC,0.5504978408034031,52
+retina,unitvelo,transcosine,Progenitor,Neuroblast,0.10609760298584511,122
+retina,veloVI,highdim_cbdir,Neuroblast,AC/HC,0.14894967665311928,41
+retina,veloVI,highdim_cbdir,Neuroblast,PR,0.09632559016606296,52
+retina,veloVI,highdim_cbdir,Neuroblast,RGC,0.15456047740864276,52
+retina,veloVI,highdim_cbdir,Progenitor,Neuroblast,0.14310920953588088,122
+retina,veloVI,transcosine,Neuroblast,AC/HC,0.15154425645383393,41
+retina,veloVI,transcosine,Neuroblast,PR,0.1097882438200311,52
+retina,veloVI,transcosine,Neuroblast,RGC,0.1694357802446645,52
+retina,veloVI,transcosine,Progenitor,Neuroblast,0.13627301165681394,122

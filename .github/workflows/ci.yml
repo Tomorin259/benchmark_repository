@@ -17,7 +17,7 @@ jobs:
           python -m json.tool evaluation/cell/config.json >/dev/null
           python -m json.tool evaluation/cell/reference_neighbors/manifest.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/config.json >/dev/null
-          python -m json.tool evaluation/kinetics_recovery/plotting/figure5_config.json >/dev/null
+          python -m json.tool evaluation/kinetics_recovery/plotting/figure6_config.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/plotting/stream_config.json >/dev/null
       - name: Compile Python entry points
         run: |
@@ -32,15 +32,16 @@ jobs:
           python -m py_compile evaluation/cell/batc.py
           python -m py_compile evaluation/cell/validate_results.py
           python -m py_compile evaluation/kinetics_recovery/metrics.py
-          python -m py_compile evaluation/kinetics_recovery/plotting/figure5.py
+          python -m py_compile evaluation/kinetics_recovery/plotting/figure6.py
           python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
           python -m py_compile evaluation/gene/plotting/phase_portrait.py
           python -m py_compile evaluation/gene/simulation/generate.py
+          python -m py_compile evaluation/summary/refresh_real_cbdir_summary.py
           python -m py_compile ensemble/core.py
           python -m py_compile ensemble/geometric_median.py
           python -m py_compile ensemble/metrics.py
           python -m py_compile ensemble/benchmark.py
-          python -m py_compile ensemble/plot_supfig9.py
+          python -m py_compile ensemble/plot_supfig10.py
           python -m py_compile tests/test_gene_phase_plotting.py
           python -m py_compile tests/test_cell_evaluation.py
           python -m py_compile tests/test_kinetics_recovery.py
@@ -57,5 +58,6 @@ jobs:
       - name: Validate evaluation results
         run: |
           python evaluation/cell/validate_results.py
+          python evaluation/summary/refresh_real_cbdir_summary.py
       - name: Check whitespace
         run: git diff --check

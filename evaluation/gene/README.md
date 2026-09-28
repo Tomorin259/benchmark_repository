@@ -89,6 +89,19 @@ under the BSD 3-Clause license. The repository implementation does not require
 cellDancer to be installed; the retained notice is in
 `plotting/THIRD_PARTY_NOTICES.md`.
 
+## Figure display precision
+
+Display precision is separate from the stored metric values. For gene-level
+phase portraits, individual gene CBDir-gene annotations are formatted to four
+decimal places so that values close to zero retain their sign and magnitude.
+Aggregated summaries across genes or datasets (means, standard deviations,
+and ranking panels) are formatted to three decimal places. All CSV result
+tables retain their full numeric precision and are the source of record for
+re-analysis.
+
+The same rule applies to staged and final gene-level figure regeneration:
+formatting changes must not alter the underlying CSV values.
+
 The audited simulation inputs have a clean regeneration entry point under
 [`simulation/`](simulation/). It uses the three frozen scenario parameter sets
 without setting a random seed. Each output is therefore an independent random

@@ -1,0 +1,97 @@
+{
+  "dataset": "DentateGyrus_lamanno",
+  "edges": [
+    "nIPC->Nbl1",
+    "Nbl1->Nbl2"
+  ],
+  "formula": "score_gene from evaluation/gene/run_reference30_gene_cbdir.py; cosine similarity of phase displacement to method velocity, mean over target-neighbor pairs and source cells",
+  "gene": "Diaph3",
+  "methods": [
+    "cellDancer",
+    "DeepVelo",
+    "DeepVelo_scv",
+    "Graphvelo_scv",
+    "MultiVelo",
+    "scVelo_dyn",
+    "TIvelo",
+    "UniTVelo",
+    "veloVI"
+  ],
+  "output": "supplement/gene-kinetic/results/diaph3_nipc_to_nbl1.csv",
+  "parameters": {
+    "label_source": "results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+    "n_neighbors": 30,
+    "nan_to_num": {
+      "nan": 0.0,
+      "neginf": 0.0,
+      "posinf": 0.0
+    },
+    "neighbor_asset": "evaluation/cell/reference_neighbors/DentateGyrus_lamanno.npz",
+    "neighbor_mode": "reference",
+    "phase_layers": [
+      "Ms",
+      "Mu"
+    ],
+    "velocity_clip": [
+      -10000000000.0,
+      10000000000.0
+    ],
+    "velocity_keys": {
+      "DeepVelo": [
+        "velocity",
+        "velocity_unspliced"
+      ],
+      "DeepVelo_scv": [
+        "velocity_reconstructed",
+        "velocity_u"
+      ],
+      "Graphvelo_scv": [
+        "velocity_gv",
+        "velocity_u"
+      ],
+      "MultiVelo": [
+        "velo_s",
+        "velo_u"
+      ],
+      "TIvelo": [
+        "velocity",
+        "velocity_u"
+      ],
+      "UniTVelo": [
+        "velocity",
+        "velocity_u"
+      ],
+      "cellDancer": [
+        "velocity",
+        "velocity_u"
+      ],
+      "scVelo_dyn": [
+        "velocity",
+        "velocity_u"
+      ],
+      "veloVI": [
+        "velocity",
+        "velocity_u"
+      ]
+    }
+  },
+  "rows": 18,
+  "source_h5ad": {
+    "artifact_root": "artifact://velocity",
+    "paths": {
+      "DeepVelo": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+      "DeepVelo_scv": "artifact://velocity/results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad",
+      "Graphvelo_scv": "artifact://velocity/results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad",
+      "MultiVelo": "artifact://velocity/results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
+      "TIvelo": "artifact://velocity/results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+      "UniTVelo": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+      "cellDancer": "artifact://velocity/results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
+      "scVelo_dyn": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+      "veloVI": "artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad"
+    }
+  },
+  "status_counts": {
+    "gene_missing": 2,
+    "ok": 16
+  }
+}

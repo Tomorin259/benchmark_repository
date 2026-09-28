@@ -1,18 +1,20 @@
 Method,Dataset,Branch,Parameter,Component,Mean,N
-DeepVelo,organoid,1,alpha,organoid_branch1_alpha,-0.07685912941178541,270
+DeepVelo,organoid,1,alpha,organoid_branch1_alpha,0.13915773132554354,270
 DeepVelo,organoid,2,alpha,organoid_branch2_alpha,0.5152335569263664,270
 DeepVelo,rpe1,,alpha,rpe1_alpha,0.3028183841627223,250
+Dynamo(label data),organoid,1,alpha,organoid_branch1_alpha,0.33414694552946456,211
+Dynamo(label data),organoid,2,alpha,organoid_branch2_alpha,0.6489433840189076,208
 Dynamo(label data),rpe1,,alpha,rpe1_alpha,0.7970731475417075,116
 TSvelo,rpe1,,alpha,rpe1_alpha,0.49267118761885603,65
-cellDancer,organoid,1,alpha,organoid_branch1_alpha,-0.001590105943665355,270
+cellDancer,organoid,1,alpha,organoid_branch1_alpha,-0.006939209116689311,270
 cellDancer,organoid,2,alpha,organoid_branch2_alpha,-0.008031084098273949,270
 cellDancer,rpe1,,alpha,rpe1_alpha,-0.025293684499238297,250
-DeepKINET,organoid,1,gamma,organoid_branch1_gamma,0.05124925333507984,270
+DeepKINET,organoid,1,gamma,organoid_branch1_gamma,-0.0735892883087739,270
 DeepKINET,organoid,2,gamma,organoid_branch2_gamma,0.0031547779436840568,270
 DeepKINET,rpe1,,gamma,rpe1_gamma,-0.04149523078022015,250
-DeepVelo,organoid,1,gamma,organoid_branch1_gamma,-0.03735759219779239,270
+DeepVelo,organoid,1,gamma,organoid_branch1_gamma,0.058065786789489426,270
 DeepVelo,organoid,2,gamma,organoid_branch2_gamma,0.060269629720453556,270
 DeepVelo,rpe1,,gamma,rpe1_gamma,0.06740098068058518,249
-cellDancer,organoid,1,gamma,organoid_branch1_gamma,0.0034887708028185586,270
+cellDancer,organoid,1,gamma,organoid_branch1_gamma,0.0026820177734528648,270
 cellDancer,organoid,2,gamma,organoid_branch2_gamma,-0.015563380528037605,270
 cellDancer,rpe1,,gamma,rpe1_gamma,-0.2741982659553725,250

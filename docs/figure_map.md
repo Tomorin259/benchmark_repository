@@ -18,7 +18,32 @@ source and materialized paths, SHA256, and unresolved source gaps. Do not copy
 its inventory into prose; derive current panel counts and missing-source lists
 from the manifest.
 
-Figure 5 uses the sole canonical panel directory
-`evaluation/kinetics_recovery/figures/fig5/` and the current central-result
-evaluation. Its composite mapping and JPEG-content validation are in
-`figures/fig5_composite_manifest.json`. Archived figures are external assets.
+Figure 3 compares selected gene-level and cell-level transition cases; its
+three source panels are under `evaluation/gene/figures/panels/selected_edges/`.
+Figure 4 is the simulation evaluation, with its final D summary source under
+`evaluation/gene/figures/panels/simulation/`. Figure 5 is the real-dataset
+gene-level evaluation. Their active PDFs are `figures/figThree.pdf`,
+`figures/figFour.pdf`, and `figures/figFive.pdf`, each byte-identical to the
+corresponding online paper asset.
+
+Figure 6 is the
+scEU-seq kinetic-parameter recovery evaluation, with active source panels in
+`evaluation/kinetics_recovery/figures/fig6/`. Its B–D/F quantitative panels
+and A/E streams are mapped in the assembly manifest; E includes the
+Dynamo(label data) positive-control stream. The current Figure 6 composite
+and its checksums are `figures/figSix.pdf` and
+`figures/fig6_composite_manifest.json`. The historical kinetics `fig5`
+paths are preserved only under `evaluation/kinetics_recovery/archive/fig5/`.
+Method-colored Figure 6F boxplots inherit the benchmark palette from
+`evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
+high-contrast exception; Figure 6A/E stream colors encode cell clusters.
+
+Figure 7 is the integrated method comparison. Its repository-baseline PDF is
+`figures/figSeven.pdf`; the source tables remain under
+`evaluation/summary/`, pending a separate Figure 7 audit.
+
+The online manuscript assigns the matched cell/gene comparison to
+Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.
+Figure 10 source panels are in `figures/assembly/suppfig10/`; Figure 11
+veloAE A/B source panels are in `figures/assembly/suppfig11/`. Their final
+composites remain unresolved in the assembly manifest.
