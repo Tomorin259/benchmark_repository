@@ -17,6 +17,12 @@ method, dataset, parameter, and branch, then displays selected-gene means.
 DeepKINET supplies gamma only. TSvelo alpha uses two lineage files; its stream
 uses the merged result. Dynamo A and E are recorded labelled-data manual assets, with provenance stored beside the panels; neither has an automatic H5AD renderer in this module.
 
+Individual scores and summary annotations (means, standard deviations, medians,
+macro-averages, branch averages, and differences between summary values) use
+four decimal places. Dense heatmap annotations use two; formal numerical tables
+use four. Positive scores have no leading plus sign. Raw CSV files retain full
+precision, and calculations and ranking use unrounded values.
+
 Figure 6F organoid boxplots use the benchmark method colors in
 `evaluation/cell/plots.py` (`BENCHMARK_COLORS`). The labelled Dynamo control
 uses the Dynamo(RNA_seq) color. Figure 6B keeps a separate, fixed line palette

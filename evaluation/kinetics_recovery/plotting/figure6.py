@@ -451,7 +451,7 @@ def plot_branch(
                 axis.text(
                     method_positions[display_method],
                     means[display_method] + 0.08,
-                    f"{means[display_method]:.3f}",
+                    f"{means[display_method]:.4f}",
                     ha="center",
                     color="black",
                     fontweight="bold",

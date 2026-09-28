@@ -91,13 +91,18 @@ cellDancer to be installed; the retained notice is in
 
 ## Figure display precision
 
-Display precision is separate from the stored metric values. For gene-level
-phase portraits, individual gene CBDir-gene annotations are formatted to four
-decimal places so that values close to zero retain their sign and magnitude.
-Aggregated summaries across genes or datasets (means, standard deviations,
-and ranking panels) are formatted to three decimal places. All CSV result
-tables retain their full numeric precision and are the source of record for
-re-analysis.
+Display precision is separate from the stored metric values. Individual
+method-by-dataset, method-by-gene, or method-by-transition scores are formatted
+to four decimal places, including both CBDir-gene and cell-level CBDir in a
+single-gene phase portrait. Positive scores do not carry a leading plus sign;
+negative signs are retained. Aggregated summaries across genes or datasets
+(means, standard deviations, medians, macro-averages, branch averages,
+differences between summary values, and ranking-panel score annotations) use
+four decimal places. Dense heatmap annotations use two decimal places.
+Formal manuscript numerical tables use four decimal places, including their
+summary entries. Sorting and ranking always use unrounded values. All CSV
+result tables retain their full numeric precision and are the source of
+record for re-analysis.
 
 The same rule applies to staged and final gene-level figure regeneration:
 formatting changes must not alter the underlying CSV values.

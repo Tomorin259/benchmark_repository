@@ -303,8 +303,8 @@
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/DeepKINET_organoid_stream_title_removed.png": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/celldancer_organoid_stream_title_removed.png": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/deepvelo_organoid_stream_title_removed.png": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3",
-    "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
-    "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
+    "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "06da16dcf1af3d14c8c22a394422a3d57359c2ca8389bb19fb577ccf567e3aba",
+    "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "3c17417778cc1892277a80c8c1a3411953cdd79e36f751d74080c875d6d1bfdd",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/organoid_branch1_gene_metrics.csv": "5bc5d469018d99a3c7eb0a7e5b1ee988f9b27dd0e3f3a4e020d8cc68adc925f4",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/organoid_branch2_gene_metrics.csv": "b717605f748937ad09ff41215b3e97c2182fba10a5e1e94a1e0bf27eb0214375",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_alpha_heatmap.csv": "316fe12646c2cbd2259bd07d29a7dc33d3e1ff8978489c29049bfdedddbf2729",
@@ -324,7 +324,7 @@
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
     "figures/figSix.pdf": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
-    "figures/fig6_composite_manifest.json": "235c26cb8452c86ac8bc76ded82afa758378f5c8495ee1c2da3d3fe6cd85a09f",
+    "figures/fig6_composite_manifest.json": "04196ba7e71fea9d94ec2359f204418a804c0bcd0eca3227e89653a32ae8d588",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/Dynamo_alpha_raw.csv": "96bd0d1f4a2f146b1113295f57bea3360e6c54fcb28cd1a302499dc07239cdea",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/Dynamo_alpha_raw.csv": "773331f0e9e057dc8131835ce2f77d6de69251b4ab660e672afb95ba97d8aa7d",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/Dynamo_alpha.csv": "b6b8c1bc0e0d856ceb0a0c33fcc541aaf8419350f2b424de94cd856609b1a86b",
@@ -362,7 +362,7 @@
   "current_code_sha256": {
     "evaluation/kinetics_recovery/metrics.py": "4a8663e4f4b6f436e77597021be3c8ac30864d3368f7a054befc86cdcd8a9721",
     "evaluation/kinetics_recovery/config.json": "9d5c7239077384017ee9057a8ee1573219ab5f0de3ad50da8289424decbc847c",
-    "evaluation/kinetics_recovery/plotting/figure6.py": "2f20b24b5daf68fba705787ba426160838fc7d13c33ec9f1660cfca75ce0ba78",
+    "evaluation/kinetics_recovery/plotting/figure6.py": "e358eda8cd077ffa06644102ffc1ba961054dcc3f544b6bcca877e2f80868bcf",
     "evaluation/kinetics_recovery/plotting/figure6_config.json": "8c3dadefa319be5eb0b44c70a70f1a712da1f030f6fa4c67fffec5f9155ea010",
     "evaluation/kinetics_recovery/plotting/streams.py": "4b51dc91e32cf8cd4606be9860732796cab6bb92c42b13de3e533cf364e88cea",
     "evaluation/kinetics_recovery/plotting/stream_config.json": "2d93b0457cc170374e54a73c8d3401ef4eca3c364d6c442ecc9dee2f86854285",
@@ -391,6 +391,17 @@
       "alpha"
     ],
     "gamma_available": false
+  },
+  "figure_display_update": {
+    "score_decimal_places": 4,
+    "scientific_inputs_and_scores_changed": false,
+    "composite_pdf_updated": false,
+    "previous_outputs_sha256": {
+      "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
+      "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
+      "figures/fig6_composite_manifest.json": "235c26cb8452c86ac8bc76ded82afa758378f5c8495ee1c2da3d3fe6cd85a09f"
+    },
+    "previous_renderer_sha256": "2f20b24b5daf68fba705787ba426160838fc7d13c33ec9f1660cfca75ce0ba78"
   },
   "active_figure": "fig6",
   "archive_root": "evaluation/kinetics_recovery/archive/fig5"

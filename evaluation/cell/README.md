@@ -37,6 +37,17 @@ repository cleanup changes their layout and provenance surface, not the
 14×20 scientific results. DeepVelo's `cell=no-vu` output remains the selected
 input.
 
+## Figure display precision
+
+Display formatting does not change stored results. Individual method-by-dataset
+or method-by-transition scores use four decimal places. Summary annotations
+(means, standard deviations, medians, macro-averages, branch averages, and
+differences between summary values) use four decimal places; dense heatmaps
+use two. Formal manuscript numerical
+tables use four decimal places, including summary entries. Positive scores
+have no leading plus sign, negative signs are retained, and rankings use
+unrounded values. Raw CSV files retain their full numerical precision.
+
 ## BATC branch-selection policy
 
 The BATC implementation follows GRAVITY's curve fitting, tangent-cosine, and

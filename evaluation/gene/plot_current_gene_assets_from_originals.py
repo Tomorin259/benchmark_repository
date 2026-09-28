@@ -546,7 +546,7 @@ def main():
         "display_dataset_names": DATASET_DISPLAY_NAMES,
         "phase_plot_renderer": "evaluation/gene/plotting/phase_portrait.py",
         "phase_plot_renderer_sha256": sha256(REPOSITORY_ROOT / "evaluation/gene/plotting/phase_portrait.py"),
-        "display_precision": {"individual_gene_cbdir": 4, "aggregate_summary": 3},
+        "display_precision": {"individual_gene_cbdir": 4, "aggregate_summary": 4},
         "phase_plot_contract": {
             "version": PHASE_PLOT_VERSION,
             "dpi": 600,
