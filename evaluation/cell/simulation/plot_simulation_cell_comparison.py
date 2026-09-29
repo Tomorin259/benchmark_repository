@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 from pathlib import Path
 
@@ -24,9 +25,10 @@ CATEGORIES = (
     ("hybrid: branching", "all"),
 )
 PLOT_METRICS = (
-    ("cbdir", "Cell CBDir", "#D47B3A", "D"),
-    ("batc", "BATC", "#3C9B6E", "s"),
+    ("cbdir", "CBDir", "#d9772a", "D"),
+    ("batc", "BATC", "#3a9d5d", "s"),
 )
+CROSS_LEVEL_MARKER_AREA = 10
 
 
 def gene_category(row: pd.Series) -> str | None:
@@ -152,36 +154,45 @@ def plot_cross_level(summary: pd.DataFrame, method_order: list[str],
             row = subset.loc[method]
             y = 8 - j
             ax.plot([row.gene_cbdir_mean - row.gene_cbdir_sd,
-                     row.gene_cbdir_mean + row.gene_cbdir_sd], [y + 0.10] * 2,
-                    color="#246782", lw=1.4, alpha=0.70, zorder=2)
-            ax.scatter(row.gene_cbdir_mean, y + 0.10, color="#246782", marker="o",
-                       s=22, edgecolor="white", lw=0.4, zorder=3)
-            ax.scatter(row.cell_cbdir, y - 0.10, color="#D47B3A", marker="D",
-                       s=22, edgecolor="white", lw=0.4, zorder=3)
+                     row.gene_cbdir_mean + row.gene_cbdir_sd], [y] * 2,
+                    color="#3b6ea8", lw=1.3, alpha=0.70, zorder=2)
+            ax.scatter(row.cell_batc, y, color="#3a9d5d", marker="s",
+                       s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=3)
+            ax.scatter(row.cell_cbdir, y, color="#d9772a", marker="D",
+                       s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=4)
+            ax.scatter(row.gene_cbdir_mean, y, color="#3b6ea8", marker="o",
+                       s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=5)
         ax.set_title(category.replace(": ", ":\n"), fontsize=8, weight="bold", pad=7)
     handles = [
-        plt.Line2D([], [], marker="o", color="#246782", lw=1.4, markersize=5,
+        plt.Line2D([], [], marker="o", color="#3b6ea8", lw=1.3, markersize=3.2,
                    label=r"Mean CBDir$_{gene}$ ± gene SD"),
-        plt.Line2D([], [], marker="D", color="#D47B3A", lw=0, markersize=5,
-                   label="Cell CBDir"),
+        plt.Line2D([], [], marker="D", color="#d9772a", lw=0, markersize=3.2,
+                   label="CBDir"),
+        plt.Line2D([], [], marker="s", color="#3a9d5d", lw=0, markersize=3.2,
+                   label="BATC"),
     ]
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.16, 0.985),
-               ncol=2, frameon=False, fontsize=7)
+               ncol=3, frameon=False, fontsize=7)
     fig.text(0.58, 0.055, "Directionality score", ha="center", fontsize=7)
     save(fig, out / "simulation_cross_level_cbdir")
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=HERE / "figures")
+    parser.add_argument("--cross-level-only", action="store_true")
+    args = parser.parse_args()
     plt.rcParams.update({"font.family": "DejaVu Sans", "pdf.fonttype": 42,
                          "ps.fonttype": 42, "svg.fonttype": "none"})
     cell, summary, method_order, display = load_summary()
-    out = HERE / "figures"
+    out = args.output_dir
     out.mkdir(parents=True, exist_ok=True)
-    summary.to_csv(HERE / "results/cross_level_summary.csv", index=False,
-                   float_format="%.17g")
-    plot_cell(cell, method_order, display, out)
+    if not args.cross_level_only:
+        summary.to_csv(HERE / "results/cross_level_summary.csv", index=False,
+                       float_format="%.17g")
+        plot_cell(cell, method_order, display, out)
     plot_cross_level(summary, method_order, display, out)
-    print("Wrote 36 matched summary rows and two figure sets")
+    print("Wrote cross-level figure" + ("" if args.cross_level_only else " and cell overview"))
 
 
 if __name__ == "__main__":

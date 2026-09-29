@@ -59,9 +59,9 @@ score but distinct gene-level means and gene-wise standard deviations. These
 standard deviations describe variation across the evaluated genes, not
 independent simulation runs; there is one historical realization per scenario.
 
-`figures/simulation_cell_cbdir_batc` compares the two cell directionality
-metrics across the three scenarios. `figures/simulation_cross_level_cbdir`
-compares Cell CBDir with Gene CBDir mean and gene-wise SD for the four subsets.
+`figures/simulation_cell_cbdir_batc` compares CBDir and BATC across the three
+scenarios. `figures/simulation_cross_level_cbdir` compares CBDir and BATC with
+the mean CBDir-gene and gene-wise SD for the four subsets.
 Each stem is exported as PDF, SVG, and PNG. The panels use the relative method
 order and names in `methods/configurations.tsv`; the CSV files retain full
 precision, with no ranking based on rounded display values. BATC is shown as
