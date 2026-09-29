@@ -66,6 +66,11 @@ def test_assembly_manifest_materialized_panels_are_verified():
     assert len(rows) == 124
     materialized = [row for row in rows if row["status"] == "materialized"]
     assert len(materialized) == 117
+    for row in materialized:
+        source = (ROOT / row["source_path"]).read_bytes()
+        target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()
+        assert source == target, row["materialized_path"]
+        assert hashlib.sha256(source).hexdigest() == row["sha256"], row["source_path"]
     panels = [row for row in rows if row["figure"] == "suppfig10"]
     assert len(panels) == 2
     assert all(row["status"] == "materialized" for row in panels)

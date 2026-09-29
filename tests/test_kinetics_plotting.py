@@ -67,6 +67,26 @@ class KineticsPlottingContractTests(unittest.TestCase):
                 self.assertFalse(path.is_absolute())
                 self.assertNotIn("..", path.parts)
 
+    def test_manual_stream_provenance_has_portable_input_locators(self):
+        root = PLOTTING_ROOT.parents[2]
+        manifests = {
+            "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/"
+            "dynamo_organoid_stream_title_removed.manifest.json":
+                "promoted_canonical_figure6E_label_data_stream",
+            "evaluation/kinetics_recovery/archive/fig5/panels/figure5E_organoid/"
+            "dynamo_organoid_stream_title_removed.manifest.json":
+                "review_only_not_manuscript_figure",
+        }
+        for relative, expected_status in manifests.items():
+            manifest = json.loads((root / relative).read_text())
+            self.assertEqual(manifest["status"], expected_status)
+            for key in ("reference_h5ad", "dynamo_source_h5ad", "projection_csv"):
+                locator = manifest[key]
+                self.assertTrue(locator.startswith("artifact://velocity/"), locator)
+                path = Path(locator.removeprefix("artifact://velocity/"))
+                self.assertFalse(path.is_absolute(), locator)
+                self.assertNotIn("..", path.parts, locator)
+
     def test_kinetic_class_panels_use_mapped_trajectories(self):
         config = json.loads(
             (PLOTTING_ROOT / "figure6_config.json").read_text()
@@ -83,6 +103,10 @@ class KineticsPlottingContractTests(unittest.TestCase):
     def test_promoted_figure_sources_and_assembly_match(self):
         root = PLOTTING_ROOT.parents[2]
         manifest = json.loads((PLOTTING_ROOT.parent / "results/central_results/manifest.json").read_text())
+        self.assertEqual(
+            set(manifest["stream_manifests"]),
+            {"figure6A_rpe1", "figure6E_organoid"},
+        )
         for relative, expected in manifest["outputs_sha256"].items():
             self.assertNotIn("fig5_central_results", relative)
             self.assertEqual(hashlib.sha256((root / relative).read_bytes()).hexdigest(), expected, relative)
