@@ -1,0 +1,67 @@
+{
+  "historical_file": "select_results_filtered_path2.csv",
+  "rerun_file": "PR_vs_RGC_filtered.csv",
+  "historical_sha256": "305a121a97188678a1b87cb9890cf9b7427f261c60a420c231532fb4720ea4e1",
+  "rerun_sha256": "7b44cd960c02b61dfc692d18eb67e36fbebe190bd1ed8b040c191fb56d2f5fe5",
+  "n_historical": 2264,
+  "n_rerun": 2264,
+  "n_common": 2264,
+  "missing_from_rerun": [],
+  "new_in_rerun": [],
+  "row_order_exact": false,
+  "primary_sort_column": "slope_gap",
+  "row_order_differences_only_within_equal_score_ties": true,
+  "tie_aware_primary_score_ranks_equal": true,
+  "common_gene_rank_spearman": 0.8939389779278645,
+  "top50_overlap": 50,
+  "numeric_columns": {
+    "slope_gap": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    },
+    "trend_validity": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    },
+    "slope_granule": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    },
+    "slope_pyramidal": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    },
+    "rho_granule": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    },
+    "rho_pyramidal": {
+      "n_common": 2264,
+      "n_both_finite": 2264,
+      "max_abs_difference": 0.0,
+      "n_exact_equal": 2264,
+      "n_abs_difference_le_1e_6": 2264,
+      "n_abs_difference_le_1e_4": 2264
+    }
+  }
+}

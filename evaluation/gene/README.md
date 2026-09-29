@@ -50,6 +50,15 @@ without reopening the original H5AD files. The result tables retain the
 method-specific audit columns, while the compact gene-level CBDir columns are
 the fields used by manuscript summaries.
 
+## Real-data gene selection provenance
+
+[`selection/`](selection/) preserves the recovered MURK and branching candidate
+rankings, upstream/project screening sources, and the frozen real-data evaluation
+lists. Its reconstruction checks separate historical evidence from newly run
+results and distinguish computational screening from subsequent manual selection.
+Dataset-specific configurations that have not been recovered remain documented.
+The checks do not modify the reference-30 evaluation results.
+
 ## Repository-owned phase portraits
 
 `plotting/phase_portrait.py` is the public phase-portrait renderer. It changes

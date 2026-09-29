@@ -1,0 +1,44 @@
+{
+  "rerun_column_map": {},
+  "historical_file": "Result_Neuron_vs_Glia.csv",
+  "rerun_file": "Neuron_vs_Glia_slopes.csv",
+  "historical_sha256": "e85fef6799f728d08c5c9f5154e4d97155fe51151d1679a8fd6509ba57bc69d8",
+  "rerun_sha256": "54c8b96eac0d5337d8c13ee1e0e5f5342e77adcba251e9d7d8bdf764dcd8e0d5",
+  "n_historical": 3841,
+  "n_rerun": 3841,
+  "n_common": 3841,
+  "missing_from_rerun": [],
+  "new_in_rerun": [],
+  "row_order_exact": false,
+  "primary_sort_column": "separation_gap",
+  "row_order_differences_only_within_equal_score_ties": false,
+  "tie_aware_primary_score_ranks_equal": false,
+  "common_gene_rank_spearman": 0.9860518822708112,
+  "top50_overlap": 50,
+  "numeric_columns": {
+    "separation_gap": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.02447149999999998,
+      "n_exact_equal": 924,
+      "n_abs_difference_le_1e_6": 1045,
+      "n_abs_difference_le_1e_4": 2851
+    },
+    "slope_neuron": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.06640360000000001,
+      "n_exact_equal": 10,
+      "n_abs_difference_le_1e_6": 163,
+      "n_abs_difference_le_1e_4": 2467
+    },
+    "slope_glia": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.04303239999999997,
+      "n_exact_equal": 3820,
+      "n_abs_difference_le_1e_6": 3820,
+      "n_abs_difference_le_1e_4": 3821
+    }
+  }
+}

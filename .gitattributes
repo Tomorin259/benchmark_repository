@@ -1,0 +1,2 @@
+# Historical script evidence must retain its original bytes and checksums.
+evaluation/gene/selection/historical/scripts/*.py -text whitespace=-blank-at-eol

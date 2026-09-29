@@ -1,0 +1,150 @@
+{
+  "purpose": "historical_candidate_generation_reconstruction_not_manuscript_reselection",
+  "frozen_evaluation_dataset_gene_pairs": 59,
+  "all_frozen_pairs_supported_by_recovered_candidate_tables": true,
+  "subsequently_recovered_configuration_evidence": {
+    "dataset": "DentateGyrus_lamanno",
+    "two_slope_tasks_source": "historical/scripts/branching_DentateGyrus_lamanno_20251216.py",
+    "granule_pyramidal_trend_ranks_source": "historical/scripts/branching_DentateGyrus_lamanno_pro_20260107.py",
+    "final_ten_genes_source": "historical/scripts/branching_DentateGyrus_lamanno_analyze_20260118.py",
+    "note": "Dated sources recover both DentateGyrus slope tasks and granule/pyramidal trend ranks; they do not establish exact historical input bytes or execution environment."
+  },
+  "attempts": [
+    {
+      "dataset": "DentateGyrus_lamanno",
+      "configuration_status": "groups_and_ranks_recovered_from_dated_editor_snapshots",
+      "manifest": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/manifest.json",
+      "input_id": "artifact://velocity/data/DentateGyrus_lamanno/DentateGyrus_lamanno_for_scvelo.h5ad",
+      "launch_thread_environment": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "NUMBA_NUM_THREADS": "2"
+      },
+      "all_ten_frozen_dentategyrus_genes_present_in_both_slope_tables_and_filtered_granule_table": true,
+      "checks": [
+        {
+          "status": "same_candidates_not_exact_values_or_ranking",
+          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_neuron_slopes.json",
+          "historical": "historical/branching/DentateGyrus_lamanno/Result_Neuron_vs_Glia.csv",
+          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Neuron_vs_Glia_slopes.csv",
+          "n_historical": 3841,
+          "n_rerun": 3841,
+          "n_common": 3841,
+          "candidate_set_equal": true,
+          "common_gene_numeric_fields_exact": false,
+          "row_order_exact": false,
+          "tie_aware_primary_score_ranks_equal": false,
+          "row_order_differences_only_within_equal_score_ties": false,
+          "top50_overlap": 50
+        },
+        {
+          "status": "same_candidates_not_exact_values_or_ranking",
+          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_granule_slopes.json",
+          "historical": "historical/branching/DentateGyrus_lamanno/Result_Granule_vs_Pyramidal.csv",
+          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Granule_vs_Pyramidal_slopes.csv",
+          "n_historical": 3841,
+          "n_rerun": 3841,
+          "n_common": 3841,
+          "candidate_set_equal": true,
+          "common_gene_numeric_fields_exact": false,
+          "row_order_exact": false,
+          "tie_aware_primary_score_ranks_equal": false,
+          "row_order_differences_only_within_equal_score_ties": false,
+          "top50_overlap": 50
+        },
+        {
+          "status": "same_candidates_not_exact_values_or_ranking",
+          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_granule_filtered.json",
+          "historical": "historical/branching/DentateGyrus_lamanno/select_results_filtered.csv",
+          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Granule_vs_Pyramidal_filtered.csv",
+          "n_historical": 3300,
+          "n_rerun": 3300,
+          "n_common": 3300,
+          "candidate_set_equal": true,
+          "common_gene_numeric_fields_exact": false,
+          "row_order_exact": false,
+          "tie_aware_primary_score_ranks_equal": false,
+          "row_order_differences_only_within_equal_score_ties": false,
+          "top50_overlap": 50
+        }
+      ]
+    },
+    {
+      "dataset": "retina",
+      "configuration_status": "historical_configuration_as_recovered",
+      "manifest": "reconstruction/retina_scvelo025_seed0/manifest.json",
+      "input_id": "artifact://velocity/indicators/gene/Mouse_retina_analyze/data/retina.h5ad",
+      "checks": [
+        {
+          "status": "exact_values_and_tie_aware_ranking",
+          "comparison": "reconstruction/retina_scvelo025_seed0/comparison.json",
+          "historical": "historical/branching/retina/select_results_filtered_path2.csv",
+          "rerun": "reconstruction/retina_scvelo025_seed0/PR_vs_RGC_filtered.csv",
+          "n_historical": 2264,
+          "n_rerun": 2264,
+          "n_common": 2264,
+          "candidate_set_equal": true,
+          "common_gene_numeric_fields_exact": true,
+          "row_order_exact": false,
+          "tie_aware_primary_score_ranks_equal": true,
+          "row_order_differences_only_within_equal_score_ties": true,
+          "top50_overlap": 50
+        }
+      ]
+    },
+    {
+      "dataset": "gastrulation",
+      "configuration_status": "upstream_notebook_with_available_substitute_input",
+      "manifest": "reconstruction/gastrulation_raw_scvelo025/manifest.json",
+      "input_id": "artifact://velocity/data/Gastrulation/Gastrulation.h5ad",
+      "checks": [
+        {
+          "status": "historical_candidates_contained_not_exact_values",
+          "comparison": "reconstruction/gastrulation_raw_scvelo025/comparison.json",
+          "historical": "historical/murk/gastrulation/ranked_murk_genes_correct.csv",
+          "rerun": "reconstruction/gastrulation_raw_scvelo025/ranked_murk_genes_mouse_correct.csv",
+          "n_historical": 45,
+          "n_rerun": 89,
+          "n_common": 45,
+          "candidate_set_equal": false,
+          "common_gene_numeric_fields_exact": false,
+          "row_order_exact": false,
+          "tie_aware_primary_score_ranks_equal": false,
+          "row_order_differences_only_within_equal_score_ties": false,
+          "top50_overlap": 33
+        }
+      ]
+    }
+  ],
+  "not_attempted": [
+    {
+      "dataset": "capo_pre",
+      "reason": "historical_population_comparison_configuration_not_recovered"
+    },
+    {
+      "dataset": "bonemarrow",
+      "reason": "historical_population_comparison_configuration_not_recovered"
+    },
+    {
+      "dataset": "mousebrain",
+      "reason": "historical_population_comparison_configuration_not_recovered"
+    },
+    {
+      "dataset": "Pancreas",
+      "reason": "historical_population_comparison_configuration_not_recovered"
+    }
+  ],
+  "limitations": [
+    "The historical Gastrulation input is absent; available inputs are substitutes.",
+    "DentateGyrus groups and trend ranks are recovered from dated editor snapshots; exact historical input bytes and execution environment remain unverified.",
+    "Retina preserves the recovered constant Neuroblast/RGC rank, which yields zero correlation in that branch.",
+    "No screening result changes the frozen gene lists or reference-30 evaluation results."
+  ],
+  "final_selection": {
+    "procedure": "computational_candidate_screening_followed_by_manual_phase_portrait_inspection",
+    "authority": "selected_genes.tsv; matches evaluation/gene/run_reference30_gene_cbdir.py",
+    "per_gene_decision_logs": "not_retained",
+    "automatic_final_selection_rule": "not_claimed"
+  }
+}

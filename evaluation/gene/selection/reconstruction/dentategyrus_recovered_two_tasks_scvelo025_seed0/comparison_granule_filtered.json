@@ -1,0 +1,68 @@
+{
+  "rerun_column_map": {},
+  "historical_file": "select_results_filtered.csv",
+  "rerun_file": "Granule_vs_Pyramidal_filtered.csv",
+  "historical_sha256": "1f30d0783685b6cf3ce2b0caeda15877eb23922dd55a80338a167b1813cc9c28",
+  "rerun_sha256": "a8234cf4784c6d12db61b199f5d68a045a0b0e753837110aa407cffd89813497",
+  "n_historical": 3300,
+  "n_rerun": 3300,
+  "n_common": 3300,
+  "missing_from_rerun": [],
+  "new_in_rerun": [],
+  "row_order_exact": false,
+  "primary_sort_column": "slope_gap",
+  "row_order_differences_only_within_equal_score_ties": false,
+  "tie_aware_primary_score_ranks_equal": false,
+  "common_gene_rank_spearman": 0.9622521524732756,
+  "top50_overlap": 50,
+  "numeric_columns": {
+    "slope_gap": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.032227414999999995,
+      "n_exact_equal": 1104,
+      "n_abs_difference_le_1e_6": 1119,
+      "n_abs_difference_le_1e_4": 1967
+    },
+    "trend_validity": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.0008855840261045023,
+      "n_exact_equal": 46,
+      "n_abs_difference_le_1e_6": 191,
+      "n_abs_difference_le_1e_4": 2083
+    },
+    "slope_granule": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.05277580000000004,
+      "n_exact_equal": 19,
+      "n_abs_difference_le_1e_6": 77,
+      "n_abs_difference_le_1e_4": 1432
+    },
+    "slope_pyramidal": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.06525864,
+      "n_exact_equal": 10,
+      "n_abs_difference_le_1e_6": 67,
+      "n_abs_difference_le_1e_4": 1698
+    },
+    "rho_granule": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.0009558204640593981,
+      "n_exact_equal": 41,
+      "n_abs_difference_le_1e_6": 167,
+      "n_abs_difference_le_1e_4": 1795
+    },
+    "rho_pyramidal": {
+      "n_common": 3300,
+      "n_both_finite": 3300,
+      "max_abs_difference": 0.0009423951955943033,
+      "n_exact_equal": 46,
+      "n_abs_difference_le_1e_6": 231,
+      "n_abs_difference_le_1e_4": 2223
+    }
+  }
+}

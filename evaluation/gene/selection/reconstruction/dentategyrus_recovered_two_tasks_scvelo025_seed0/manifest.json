@@ -1,0 +1,92 @@
+{
+  "status": "reconstruction_check_not_manuscript_reselection",
+  "dataset": "DentateGyrus_lamanno",
+  "input_id": "artifact://velocity/data/DentateGyrus_lamanno/DentateGyrus_lamanno_for_scvelo.h5ad",
+  "input_sha256": "a8ba9076557296c96bce39b48cb3b4678b2a83be0c791600bd875fb73eb4a192",
+  "rank_configuration_status": "groups_and_ranks_recovered_from_20260107_editor_snapshot",
+  "tasks": [
+    {
+      "task": "Granule_vs_Pyramidal",
+      "cloud_a": [
+        "Nbl2",
+        "ImmGranule1",
+        "ImmGranule2",
+        "Granule"
+      ],
+      "cloud_b": [
+        "Nbl2",
+        "CA",
+        "CA1-Sub",
+        "CA2-3-4"
+      ],
+      "configuration_status": "groups_and_ranks_recovered_from_20260107_editor_snapshot",
+      "ranks_a": {
+        "Nbl2": 1,
+        "ImmGranule1": 2,
+        "ImmGranule2": 3,
+        "Granule": 4
+      },
+      "ranks_b": {
+        "Nbl2": 1,
+        "CA": 2,
+        "CA1-Sub": 3,
+        "CA2-3-4": 3
+      },
+      "n_a": 6425,
+      "n_b": 7094,
+      "n_ranked": 3841,
+      "n_filtered": 3300
+    },
+    {
+      "task": "Neuron_vs_Glia",
+      "cloud_a": [
+        "RadialGlia",
+        "nIPC",
+        "Nbl1",
+        "Nbl2",
+        "ImmGranule1",
+        "ImmGranule2",
+        "Granule",
+        "CA",
+        "CA1-Sub",
+        "CA2-3-4"
+      ],
+      "cloud_b": [
+        "RadialGlia",
+        "GlialProg",
+        "ImmAstro",
+        "OPC"
+      ],
+      "configuration_status": "groups_recovered_from_20251216_editor_snapshot",
+      "n_a": 15208,
+      "n_b": 3660,
+      "n_ranked": 3841,
+      "trend_filter": "not_present_in_historical_task"
+    }
+  ],
+  "preprocessing": {
+    "min_mean": 0.05,
+    "min_disp": 0.1,
+    "target_sum": 10000.0,
+    "min_shared_counts": 20,
+    "n_top_genes": 2000,
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "gene_union_order": "list(set(...))"
+  },
+  "slope_interval": {
+    "t_quantile": 0.975,
+    "degrees_of_freedom": "n-2"
+  },
+  "trend_threshold_strictly_greater_than": 0.1,
+  "pythonhashseed": "0",
+  "python": "3.7.12",
+  "versions": {
+    "numpy": "1.21.6",
+    "pandas": "1.3.5",
+    "scanpy": "1.9.3",
+    "scvelo": "0.2.5",
+    "anndata": "0.8.0",
+    "scipy": "1.7.3"
+  }
+}

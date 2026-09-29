@@ -1,0 +1,166 @@
+{
+  "scientific_scope": "real-data gene selection provenance; not velocity metric recalculation",
+  "upstream": {
+    "url": "https://github.com/mebarile/Gata1_Erythroid_kinetics",
+    "commit": "1e0de6338a85a559478627927c24bdc72d2d8919",
+    "entry": "Figure_3/search_murk_mouse_fig_3d_and_rank.ipynb",
+    "local_entry": "upstream/search_murk_mouse_fig_3d_and_rank.ipynb",
+    "sha256": "7383dfc4c16d311580bd647d4256b20ccb373f86efc1aac216b9d306c6f97758",
+    "license": "GPL-3.0; upstream/LICENCE.txt"
+  },
+  "historical_files": [
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/Gastrulation/murk_genes.csv",
+      "snapshot": "historical/murk/gastrulation/murk_genes.csv",
+      "sha256": "6d51ba1f5b955283fb0e6b5f4804c590c75529bde35a741c38705b30c3d1164b",
+      "csv_has_header": false,
+      "csv_data_rows": 45
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/Gastrulation/ranked_murk_genes_correct.csv",
+      "snapshot": "historical/murk/gastrulation/ranked_murk_genes_correct.csv",
+      "sha256": "cf63fb5b5d51ebeca0e8380d2e7734d53b26aab99efd0596f1b0855fde8551e2",
+      "csv_has_header": true,
+      "csv_data_rows": 45
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/capo_pre/murk_genes.csv",
+      "snapshot": "historical/murk/capo_pre/murk_genes.csv",
+      "sha256": "654303d4fc9886d688a080e35153cc7e122f4e0bc94e5d9ca1549455fc85a0c8",
+      "csv_has_header": false,
+      "csv_data_rows": 543
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/capo_pre/ranked_murk_genes_correct.csv",
+      "snapshot": "historical/murk/capo_pre/ranked_murk_genes_correct.csv",
+      "sha256": "f65c73b4382ad658480ce560d912513e717ec72690e8096091a65355d0029015",
+      "csv_has_header": true,
+      "csv_data_rows": 543
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/bonemarrow/murk_genes.csv",
+      "snapshot": "historical/murk/bonemarrow/murk_genes.csv",
+      "sha256": "35e43515a63916e75108840d7dd14c7463b9b10df25cdd16ac9dbc26ead4e308",
+      "csv_has_header": false,
+      "csv_data_rows": 201
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/bonemarrow/ranked_murk_genes_correct.csv",
+      "snapshot": "historical/murk/bonemarrow/ranked_murk_genes_correct.csv",
+      "sha256": "9fb3df38400f76c31bcd6f55118d71439096793d7846bcf7411ffdef5650d659",
+      "csv_has_header": true,
+      "csv_data_rows": 201
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/mousebrain/murk_genes.csv",
+      "snapshot": "historical/murk/mousebrain/murk_genes.csv",
+      "sha256": "f3b02f2e01c73dbf2a9d580cc227b2ec1eb170bd531b479eca206f652ca11659",
+      "csv_has_header": false,
+      "csv_data_rows": 87
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/mousebrain/ranked_murk_genes_correct.csv",
+      "snapshot": "historical/murk/mousebrain/ranked_murk_genes_correct.csv",
+      "sha256": "017aef728fb2c1cd920adcb2ed16af9b670d6dd72cc3d8b4151b67516648624a",
+      "csv_has_header": true,
+      "csv_data_rows": 87
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/Pancreas/murk_genes.csv",
+      "snapshot": "historical/murk/pancreas/murk_genes.csv",
+      "sha256": "14fe0ed166d6f90e982895711c116d34259c62fdae8241de857943caddb2c853",
+      "csv_has_header": false,
+      "csv_data_rows": 581
+    },
+    {
+      "source_id": "artifact://velocity/MURK/gene_Set_new/Pancreas/ranked_murk_genes_correct.csv",
+      "snapshot": "historical/murk/pancreas/ranked_murk_genes_correct.csv",
+      "sha256": "b662a7799a929416e39890490fed9a1eb785553d500d1d179211504aed975bc6",
+      "csv_has_header": true,
+      "csv_data_rows": 581
+    },
+    {
+      "source_id": "artifact://velocity/data/gene_lists/MURK_selected.md",
+      "snapshot": "historical/MURK_selected.md",
+      "sha256": "cdd1531febaaf52e3faece547abd193da4a92fe737fc97d3774ea10c3e8c4f53"
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_genes/Result_Neuron_vs_Glia.csv",
+      "snapshot": "historical/branching/DentateGyrus_lamanno/Result_Neuron_vs_Glia.csv",
+      "sha256": "e85fef6799f728d08c5c9f5154e4d97155fe51151d1679a8fd6509ba57bc69d8",
+      "csv_has_header": true,
+      "csv_data_rows": 3841
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_genes/Result_Granule_vs_Pyramidal.csv",
+      "snapshot": "historical/branching/DentateGyrus_lamanno/Result_Granule_vs_Pyramidal.csv",
+      "sha256": "923032fae818fa1c7d1072c2cdb184000d24bdb842df2ffa210fb4aafd89fd79",
+      "csv_has_header": true,
+      "csv_data_rows": 3841
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_genes/select_results_filtered.csv",
+      "snapshot": "historical/branching/DentateGyrus_lamanno/select_results_filtered.csv",
+      "sha256": "1f30d0783685b6cf3ce2b0caeda15877eb23922dd55a80338a167b1813cc9c28",
+      "csv_has_header": true,
+      "csv_data_rows": 3300
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/Mouse_retina_analyze/select_results_filtered_path2.csv",
+      "snapshot": "historical/branching/retina/select_results_filtered_path2.csv",
+      "sha256": "305a121a97188678a1b87cb9890cf9b7427f261c60a420c231532fb4720ea4e1",
+      "csv_has_header": true,
+      "csv_data_rows": 2264
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_select.py",
+      "editor_history_entry": "-7a6dea03/bO1P.py",
+      "editor_history_timestamp_utc": "2025-12-16T17:40:39.428Z",
+      "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_20251216.py",
+      "sha256": "4371ba7c525391dce7e28066afe5cf0c48a2567c5ec71521181cccee3aa55b34"
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_select_pro.py",
+      "editor_history_entry": "-3db14db1/xwlW.py",
+      "editor_history_timestamp_utc": "2026-01-07T06:51:15.268Z",
+      "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_pro_20260107.py",
+      "sha256": "c0557fe764e2789181c0aab184f5ee8794fa1859b0cc191c565f87ae2bb994a5"
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_analyze.py",
+      "editor_history_entry": "57848069/vhMC.py",
+      "editor_history_timestamp_utc": "2026-01-18T10:13:30.808Z",
+      "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_analyze_20260118.py",
+      "sha256": "dd6b2cd9cd39048d6086eeb1a439a842b2ff4f133bd20f4a536fa03f75c8c690"
+    },
+    {
+      "source_id": "artifact://velocity/indicators/gene/Mouse_retina_analyze/branching_gene_select_pro.py",
+      "snapshot": "historical/scripts/branching_retina_pro.py",
+      "sha256": "695b72bb6b3b84c8441b768c7756be17e66a582d9f4ea48dc3c8279958a1355c"
+    },
+    {
+      "source_id": "artifact://velocity/test.py",
+      "source_lines": [
+        707,
+        922
+      ],
+      "source_sha256": "a5a597054ecfb902e9dbf26a740074d6e9a94356644c7e5b1052e1263d1b3c66",
+      "snapshot": "historical/scripts/gastrulation_murk_commented_excerpt.py",
+      "sha256": "b84c64cf08b99c9c380721c5f5689e9d07471b542d817b981160fe27d9cb90ef"
+    }
+  ],
+  "frozen_selection": {
+    "table": "selected_genes.tsv",
+    "rows": 59,
+    "source": "evaluation/gene/run_reference30_gene_cbdir.py",
+    "source_sha256": "96445c76390b80897a2afa4e0b81e24359b9b04204c4e451f245c12e78e06ef1"
+  },
+  "limitations": [
+    "MURK: non-Gastrulation historical population comparisons are not recovered.",
+    "Gastrulation legacy input path is no longer present; available inputs are reconstruction candidates.",
+    "DentateGyrus groups and ranks are recovered from dated editor snapshots; exact historical input bytes and execution environment are not verified.",
+    "Retina retained pro script assigns the same rank to Neuroblast and RGC.",
+    "Final gene selection followed manual phase-portrait inspection; per-gene decision logs were not retained and no automatic final-selection rule is claimed.",
+    "No candidate or reconstruction table supersedes the frozen manuscript evaluation list."
+  ]
+}

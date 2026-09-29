@@ -1,0 +1,44 @@
+{
+  "rerun_column_map": {},
+  "historical_file": "Result_Granule_vs_Pyramidal.csv",
+  "rerun_file": "Granule_vs_Pyramidal_slopes.csv",
+  "historical_sha256": "923032fae818fa1c7d1072c2cdb184000d24bdb842df2ffa210fb4aafd89fd79",
+  "rerun_sha256": "ef9c8c0e6d2cdda36d0f5104016244c6374ded70957bf16776c40f4ddf3e40ee",
+  "n_historical": 3841,
+  "n_rerun": 3841,
+  "n_common": 3841,
+  "missing_from_rerun": [],
+  "new_in_rerun": [],
+  "row_order_exact": false,
+  "primary_sort_column": "separation_gap",
+  "row_order_differences_only_within_equal_score_ties": false,
+  "tie_aware_primary_score_ranks_equal": false,
+  "common_gene_rank_spearman": 0.9553515569041847,
+  "top50_overlap": 50,
+  "numeric_columns": {
+    "separation_gap": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.032076574999999996,
+      "n_exact_equal": 1340,
+      "n_abs_difference_le_1e_6": 1355,
+      "n_abs_difference_le_1e_4": 2211
+    },
+    "slope_granule": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.05282640000000005,
+      "n_exact_equal": 21,
+      "n_abs_difference_le_1e_6": 78,
+      "n_abs_difference_le_1e_4": 1518
+    },
+    "slope_pyramidal": {
+      "n_common": 3841,
+      "n_both_finite": 3841,
+      "max_abs_difference": 0.06521500999999999,
+      "n_exact_equal": 15,
+      "n_abs_difference_le_1e_6": 94,
+      "n_abs_difference_le_1e_4": 1957
+    }
+  }
+}
