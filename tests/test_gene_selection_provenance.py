@@ -49,11 +49,14 @@ class GeneSelectionProvenanceTests(unittest.TestCase):
             self.assertNotIn('/Users/', source)
 
     def test_reconstruction_summary_matches_preserved_comparisons(self):
-        summary = json.loads((SELECTION / 'reconstruction/summary.json').read_text())
+        summary = json.loads((SELECTION / 'results/summary.json').read_text())
         self.assertEqual(summary['frozen_evaluation_dataset_gene_pairs'], 59)
         self.assertEqual(len(summary['attempts']), 3)
         self.assertEqual(summary['final_selection']['per_gene_decision_logs'], 'not_retained')
         for attempt in summary['attempts']:
+            setting = 'murk' if attempt['dataset'] == 'gastrulation' else 'branching'
+            expected_directory = Path('results') / setting / attempt['dataset']
+            self.assertEqual(Path(attempt['manifest']).parent, expected_directory)
             self.assertTrue((SELECTION / attempt['manifest']).is_file())
             for check in attempt['checks']:
                 comparison = json.loads((SELECTION / check['comparison']).read_text())

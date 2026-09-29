@@ -13,7 +13,7 @@
     {
       "dataset": "DentateGyrus_lamanno",
       "configuration_status": "groups_and_ranks_recovered_from_dated_editor_snapshots",
-      "manifest": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/manifest.json",
+      "manifest": "results/branching/DentateGyrus_lamanno/manifest.json",
       "input_id": "artifact://velocity/data/DentateGyrus_lamanno/DentateGyrus_lamanno_for_scvelo.h5ad",
       "launch_thread_environment": {
         "OPENBLAS_NUM_THREADS": "2",
@@ -25,9 +25,9 @@
       "checks": [
         {
           "status": "same_candidates_not_exact_values_or_ranking",
-          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_neuron_slopes.json",
+          "comparison": "results/branching/DentateGyrus_lamanno/comparison_neuron_slopes.json",
           "historical": "historical/branching/DentateGyrus_lamanno/Result_Neuron_vs_Glia.csv",
-          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Neuron_vs_Glia_slopes.csv",
+          "rerun": "results/branching/DentateGyrus_lamanno/Neuron_vs_Glia_slopes.csv",
           "n_historical": 3841,
           "n_rerun": 3841,
           "n_common": 3841,
@@ -40,9 +40,9 @@
         },
         {
           "status": "same_candidates_not_exact_values_or_ranking",
-          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_granule_slopes.json",
+          "comparison": "results/branching/DentateGyrus_lamanno/comparison_granule_slopes.json",
           "historical": "historical/branching/DentateGyrus_lamanno/Result_Granule_vs_Pyramidal.csv",
-          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Granule_vs_Pyramidal_slopes.csv",
+          "rerun": "results/branching/DentateGyrus_lamanno/Granule_vs_Pyramidal_slopes.csv",
           "n_historical": 3841,
           "n_rerun": 3841,
           "n_common": 3841,
@@ -55,9 +55,9 @@
         },
         {
           "status": "same_candidates_not_exact_values_or_ranking",
-          "comparison": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/comparison_granule_filtered.json",
+          "comparison": "results/branching/DentateGyrus_lamanno/comparison_granule_filtered.json",
           "historical": "historical/branching/DentateGyrus_lamanno/select_results_filtered.csv",
-          "rerun": "reconstruction/dentategyrus_recovered_two_tasks_scvelo025_seed0/Granule_vs_Pyramidal_filtered.csv",
+          "rerun": "results/branching/DentateGyrus_lamanno/Granule_vs_Pyramidal_filtered.csv",
           "n_historical": 3300,
           "n_rerun": 3300,
           "n_common": 3300,
@@ -73,14 +73,14 @@
     {
       "dataset": "retina",
       "configuration_status": "historical_configuration_as_recovered",
-      "manifest": "reconstruction/retina_scvelo025_seed0/manifest.json",
+      "manifest": "results/branching/retina/manifest.json",
       "input_id": "artifact://velocity/indicators/gene/Mouse_retina_analyze/data/retina.h5ad",
       "checks": [
         {
           "status": "exact_values_and_tie_aware_ranking",
-          "comparison": "reconstruction/retina_scvelo025_seed0/comparison.json",
+          "comparison": "results/branching/retina/comparison.json",
           "historical": "historical/branching/retina/select_results_filtered_path2.csv",
-          "rerun": "reconstruction/retina_scvelo025_seed0/PR_vs_RGC_filtered.csv",
+          "rerun": "results/branching/retina/PR_vs_RGC_filtered.csv",
           "n_historical": 2264,
           "n_rerun": 2264,
           "n_common": 2264,
@@ -96,14 +96,14 @@
     {
       "dataset": "gastrulation",
       "configuration_status": "upstream_notebook_with_available_substitute_input",
-      "manifest": "reconstruction/gastrulation_raw_scvelo025/manifest.json",
+      "manifest": "results/murk/gastrulation/manifest.json",
       "input_id": "artifact://velocity/data/Gastrulation/Gastrulation.h5ad",
       "checks": [
         {
           "status": "historical_candidates_contained_not_exact_values",
-          "comparison": "reconstruction/gastrulation_raw_scvelo025/comparison.json",
+          "comparison": "results/murk/gastrulation/comparison.json",
           "historical": "historical/murk/gastrulation/ranked_murk_genes_correct.csv",
-          "rerun": "reconstruction/gastrulation_raw_scvelo025/ranked_murk_genes_mouse_correct.csv",
+          "rerun": "results/murk/gastrulation/ranked_murk_genes_mouse_correct.csv",
           "n_historical": 45,
           "n_rerun": 89,
           "n_common": 45,

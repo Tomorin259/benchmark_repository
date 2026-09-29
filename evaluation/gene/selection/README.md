@@ -13,10 +13,26 @@ outputs do not replace the manuscript gene lists or reference-30 velocity metric
 - `selected_genes.tsv` records the 59 dataset-gene pairs evaluated by
   `../run_reference30_gene_cbdir.py`. Every pair occurs in a recovered candidate
   table. Its first-evidence row rank is not a combined ranking or top-k rule.
-- `reconstruction/` contains the retained checks, input/environment manifests,
+- `results/` contains the retained checks, input/environment manifests,
   and full-precision comparisons against the historical tables.
-  `reconstruction/summary.json` indexes these checks; each comparison JSON is
+  `results/summary.json` indexes these checks; each comparison JSON is
   the numerical record for its associated historical/rerun table pair.
+
+Results use stable gene-setting and dataset names:
+
+```text
+results/
+├── branching/
+│   ├── DentateGyrus_lamanno/
+│   └── retina/
+├── murk/
+│   └── gastrulation/
+└── summary.json
+```
+
+Package versions, hash seed, input checksums, and run settings belong in the
+manifests, not in directory names. These remain reconstruction checks rather
+than replacement benchmark results.
 
 The authors selected the final genes manually after computational screening
 and phase-portrait inspection. Per-gene decision logs were not retained.
