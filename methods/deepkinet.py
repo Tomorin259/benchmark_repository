@@ -28,6 +28,11 @@ os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
+# Direct execution must import installed packages, not same-named launchers.
+_SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPT_DIR in sys.path:
+    sys.path.remove(_SCRIPT_DIR)
+
 import numpy as np
 import scanpy as sc
 import scvelo as scv

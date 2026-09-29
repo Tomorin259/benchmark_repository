@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 """Reproduce C12 (veloVI) with the upstream tutorial workflow.
 
-The April benchmark run used velovi 0.3.1, 2,000 HVGs for raw inputs,
-1,000 maximum epochs, a batch size of 64, and 25 posterior samples.  These
-explicit benchmark settings are retained below; the calculation order follows
-the official tutorial: scVelo preprocessing, ``preprocess_data``, model setup,
-training, posterior velocity, graph, and stream plot.
+Select the historical Cell or Gene workflow explicitly. Cell uses the package
+training defaults and per-gene time scaling; Gene uses the separate historical
+training settings and exports unscaled spliced and unspliced velocities.
+Shared preprocessing and the absence of an extra global seed are retained.
 """
 
+import argparse
+from inspect import signature
 from pathlib import Path
+import sys
+
+# Direct execution must import installed packages, not same-named launchers.
+_SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPT_DIR in sys.path:
+    sys.path.remove(_SCRIPT_DIR)
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,7 +28,6 @@ from velovi import VELOVI, preprocess_data
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
-OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "velovi"
 
 # Edit this list for a focused rerun. veloVI's tutorial does not prescribe an
 # extra global seed, so none is set here.
@@ -136,21 +142,24 @@ DATASETS = {
     },
 }
 
-# Retain the published benchmark settings. The upstream tutorial's bare
-# ``vae.train()`` call uses its package defaults instead.
-MAX_EPOCHS = 1000
-BATCH_SIZE = 64
+# Gene's historical training settings. Cell retains the bare vae.train() call
+# (velovi 0.3.1 defaults: max_epochs=500, batch_size=256).
+GENE_MAX_EPOCHS = 1000
+GENE_GPU_BATCH_SIZE = 64
+GENE_CPU_BATCH_SIZE = 32
 N_POSTERIOR_SAMPLES = 25
 N_JOBS = 8
 
 
-def run_dataset(dataset):
+def run_dataset(dataset, evaluation_role, data_root, output_root):
+    if evaluation_role not in {"cell", "gene"}:
+        raise ValueError(f"unknown veloVI evaluation role: {evaluation_role}")
     config = DATASETS[dataset]
-    input_path = DATA_ROOT / config["input"]
-    output_dir = OUTPUT_ROOT / dataset
+    input_path = data_root / config["input"]
+    output_dir = output_root / dataset
     output_path = output_dir / f"veloVI_{dataset}_all.h5ad"
 
-    print(f"\n=== veloVI: {dataset} ===", flush=True)
+    print(f"\n=== veloVI {evaluation_role}: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
     adata = sc.read(input_path, cache=False)
     adata.var_names_make_unique()
@@ -194,18 +203,60 @@ def run_dataset(dataset):
     adata = preprocess_data(adata)
     VELOVI.setup_anndata(adata, spliced_layer="Ms", unspliced_layer="Mu")
     vae = VELOVI(adata)
-    vae.train(max_epochs=MAX_EPOCHS, batch_size=BATCH_SIZE)
+    if evaluation_role == "cell":
+        train_kwargs = {}
+    else:
+        train_kwargs = {
+            "max_epochs": GENE_MAX_EPOCHS,
+            "batch_size": GENE_GPU_BATCH_SIZE if torch.cuda.is_available() else GENE_CPU_BATCH_SIZE,
+        }
+    vae.train(**train_kwargs)
 
-    adata.layers["velocity"] = np.asarray(
-        vae.get_velocity(n_samples=N_POSTERIOR_SAMPLES, velo_statistic="mean")
-    )
-    adata.layers["velocity_u"] = np.asarray(
-        vae.get_velocity(
-            n_samples=N_POSTERIOR_SAMPLES,
-            velo_statistic="mean",
-            velo_mode="unspliced",
+    if evaluation_role == "cell":
+        # Preserve the historical posterior-draw order and tutorial scaling.
+        latent_time = np.asarray(vae.get_latent_time(n_samples=N_POSTERIOR_SAMPLES))
+        if latent_time.shape != adata.shape:
+            raise ValueError(f"{dataset}: latent time must have shape {adata.shape}")
+        max_time = latent_time.max(axis=0)
+        if not np.all(np.isfinite(max_time)) or np.any(max_time <= 0):
+            raise ValueError(f"{dataset}: per-gene maximum latent time must be finite and positive")
+        scaling = 20 / max_time
+        adata.layers["velocity"] = np.asarray(
+            vae.get_velocity(n_samples=N_POSTERIOR_SAMPLES, velo_statistic="mean")
+        ) / scaling
+        adata.layers["latent_time_velovi"] = latent_time
+        rates = vae.get_rates()
+        for rate in ("alpha", "beta", "gamma"):
+            adata.var[f"fit_{rate}"] = np.asarray(rates[rate]) / scaling
+        adata.var["fit_t_"] = (
+            torch.nn.functional.softplus(vae.module.switch_time_unconstr)
+            .detach().cpu().numpy()
+        ) * scaling
+        adata.layers["fit_t"] = latent_time * scaling
+        adata.var["fit_scaling"] = 1.0
+    else:
+        adata.layers["velocity"] = np.asarray(
+            vae.get_velocity(n_samples=N_POSTERIOR_SAMPLES, velo_statistic="mean")
         )
-    )
+        adata.layers["velocity_u"] = np.asarray(
+            vae.get_velocity(
+                n_samples=N_POSTERIOR_SAMPLES,
+                velo_statistic="mean",
+                velo_mode="unspliced",
+            )
+        )
+
+    defaults = signature(VELOVI.train).parameters
+    adata.uns["benchmark_run"] = {
+        "config_id": "C12",
+        "evaluation_role": evaluation_role,
+        "dataset": dataset,
+        "velovi_version": velovi.__version__,
+        "max_epochs": train_kwargs.get("max_epochs", defaults["max_epochs"].default),
+        "batch_size": train_kwargs.get("batch_size", defaults["batch_size"].default),
+        "n_posterior_samples": N_POSTERIOR_SAMPLES,
+        "velocity_scaling": "divide_by_20_over_gene_max_latent_time" if evaluation_role == "cell" else "none",
+    }
 
     scv.tl.velocity_graph(adata, vkey="velocity", n_jobs=N_JOBS)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -220,9 +271,14 @@ def run_dataset(dataset):
     )
     plt.close("all")
 
-    missing_layers = {"spliced", "unspliced", "Ms", "Mu", "velocity", "velocity_u"} - set(
-        adata.layers
-    )
+    required_layers = {"spliced", "unspliced", "Ms", "Mu", "velocity"}
+    if evaluation_role == "cell":
+        required_layers.update({"latent_time_velovi", "fit_t"})
+        if "velocity_u" in adata.layers:
+            raise RuntimeError(f"{dataset}: Cell-role output unexpectedly contains velocity_u")
+    else:
+        required_layers.add("velocity_u")
+    missing_layers = required_layers - set(adata.layers)
     missing_obsm = {"X_umap", "velocity_umap"} - set(adata.obsm)
     if missing_layers or missing_obsm or "velocity_graph" not in adata.uns:
         raise RuntimeError(
@@ -235,9 +291,20 @@ def run_dataset(dataset):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--evaluation-role", choices=("cell", "gene"), required=True)
+    parser.add_argument("--output-root", type=Path, required=True, help="empty directory for this role's run")
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    datasets = args.datasets or DATASETS_TO_RUN
+    output_root = args.output_root.expanduser().resolve()
+    if output_root.exists() and any(output_root.iterdir()):
+        raise RuntimeError(f"output root is not empty: {output_root}; choose a new run directory")
+
     if velovi.__version__ != "0.3.1":
         raise RuntimeError(f"velovi 0.3.1 is required, found {velovi.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
 
@@ -251,8 +318,8 @@ def main():
     print(f"velovi version: {velovi.__version__}", flush=True)
     print(f"device: {'cuda' if torch.cuda.is_available() else 'cpu'}", flush=True)
 
-    for dataset in DATASETS_TO_RUN:
-        run_dataset(dataset)
+    for dataset in datasets:
+        run_dataset(dataset, args.evaluation_role, args.data_root.expanduser().resolve(), output_root)
 
 
 if __name__ == "__main__":

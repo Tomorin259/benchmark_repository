@@ -8,6 +8,12 @@ the RNA-only MultiVelo fit.
 """
 
 from pathlib import Path
+import sys
+
+# Direct execution must import installed packages, not same-named launchers.
+_SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPT_DIR in sys.path:
+    sys.path.remove(_SCRIPT_DIR)
 
 import multivelo as mv
 import scanpy as sc

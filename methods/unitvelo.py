@@ -7,8 +7,14 @@ the other ten use the package's normal preprocessing path.
 """
 
 from pathlib import Path
+import sys
 
 import os
+# Direct execution must import installed packages, not same-named launchers.
+_SCRIPT_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPT_DIR in sys.path:
+    sys.path.remove(_SCRIPT_DIR)
+
 import pkg_resources
 import scanpy as sc
 import scvelo as scv
