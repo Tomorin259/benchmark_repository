@@ -10,5 +10,5 @@ does not impose a universal result schema on the methods.
 - `cell/`: cell-level trajectory metrics across the 14 real datasets.
 - `gene/`: gene-level metrics for real and simulated data.
 - `kinetics_recovery/`: RPE1 and organoid kinetic-parameter recovery, including
-  its Figure 5 plotting module.
-- `summary/`: cross-experiment tables and integrated panels such as Figure 6.
+  its Figure 6 plotting module.
+- `summary/`: cross-experiment tables and integrated panels such as Figure 7.

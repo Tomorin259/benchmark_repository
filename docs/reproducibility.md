@@ -40,5 +40,5 @@ its upstream lineage, release index, and numerical reproduction is recorded in
 Kinetics reproduction uses the frozen central-result inputs and runtime
 versions recorded in `evaluation/kinetics_recovery/results/central_results/manifest.json`.
 DeepKINET seed identity is backed by H5AD metadata and input checksums; CSV
-byte identity is not implied; small full-table differences have an unestablished cause. Figure 5 streams reuse
+byte identity is not implied; small full-table differences have an unestablished cause. Figure 6 streams reuse
 saved projections, and quantitative plots consume one evaluator output.
