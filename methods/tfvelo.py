@@ -57,7 +57,7 @@ def get_source(path):
     return Path(path).expanduser().resolve()
 
 
-def check_paths(source, data_root):
+def check_paths(source, data_root, datasets):
     required = (
         source / "TFvelo_run_demo.py",
         source / "TFvelo_analysis_demo.py",
@@ -68,7 +68,7 @@ def check_paths(source, data_root):
     missing = [str(path) for path in required if not path.exists()]
     missing += [
         str(data_root / DATASETS[dataset][0])
-        for dataset in DATASETS_TO_RUN
+        for dataset in datasets
         if not (data_root / DATASETS[dataset][0]).exists()
     ]
     if missing:
@@ -143,11 +143,11 @@ def main():
 
     source = get_source(args.source_root)
     data_root = Path(args.data_root).expanduser().resolve()
-    check_paths(source, data_root)
-    if args.check_only:
-        print(f"TFvelo configuration valid: {len(DATASETS)} datasets", flush=True)
-        return
     datasets = DATASETS_TO_RUN if args.dataset == "all" else [args.dataset]
+    check_paths(source, data_root, datasets)
+    if args.check_only:
+        print(f"TFvelo configuration valid: {len(datasets)} datasets", flush=True)
+        return
     for dataset in datasets:
         run_dataset(dataset, source, data_root, Path(args.output_root).expanduser().resolve(), args.overwrite)
 

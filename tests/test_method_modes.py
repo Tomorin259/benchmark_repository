@@ -6,6 +6,7 @@ import io
 import importlib.machinery
 import sys
 import json
+import os
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -25,6 +26,14 @@ def load_workflow(name, function_names, **namespace):
     # model boundary rather than importing or training upstream GPU packages.
     path = ROOT / "methods" / f"{name}.py"
     tree = ast.parse(path.read_text())
+    namespace["__doc__"] = ast.get_docstring(tree)
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            try:
+                value = ast.literal_eval(node.value)
+            except (ValueError, TypeError):
+                continue
+            namespace.setdefault(node.targets[0].id, value)
     tree.body = [
         node for node in tree.body
         if isinstance(node, ast.FunctionDef) and node.name in function_names
@@ -144,8 +153,6 @@ class VeloVIRoleTests(unittest.TestCase):
             DATASETS={"Pancreas": {"input": "Pancreas/Pancreas.h5ad", "label_key": "clusters",
                                   "embedding_key": None, "preprocessed": True, "expected_shape": (3, 2)}},
             DATASETS_TO_RUN=["Pancreas"], DATA_ROOT=self.root,
-            GENE_MAX_EPOCHS=1000, GENE_GPU_BATCH_SIZE=64, GENE_CPU_BATCH_SIZE=32,
-            N_POSTERIOR_SAMPLES=25, N_JOBS=8,
         )
 
     def run_role(self, role):
@@ -200,6 +207,91 @@ class VeloVIRoleTests(unittest.TestCase):
                 self.workflow.main()
         self.assertEqual(sentinel.read_text(), "existing result")
         self.workflow.sc.read.assert_not_called()
+
+
+class NativeModeTests(unittest.TestCase):
+    def test_scvelo_and_unitvelo_select_modes_and_isolate_saved_results(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name, modes in (("scvelo", ("deterministic", "stochastic", "dynamical")),
+                                ("unitvelo", ("1", "2"))):
+                for mode in modes:
+                    with self.subTest(launcher=name, mode=mode):
+                        adata = ad.AnnData(np.ones((3, 2)))
+                        for key in ("spliced", "unspliced", "Ms", "Mu"):
+                            adata.layers[key] = np.ones((3, 2))
+                        adata.obs["clusters"] = ["a", "a", "b"]
+                        adata.obsm["X_umap"] = np.zeros((3, 2))
+
+                        def velocity(adata, **kwargs):
+                            adata.layers["velocity"] = np.ones((3, 2))
+
+                        def graph(adata, **kwargs):
+                            adata.uns["velocity_graph"] = np.eye(3)
+
+                        def embedding(adata, **kwargs):
+                            adata.obsm["velocity_umap"] = np.zeros((3, 2))
+
+                        def unit_model(adata, label_key, config_file, normalize):
+                            self.assertEqual(config_file.FIT_OPTION, mode)
+                            self.assertEqual(config_file.GPU, 0)
+                            self.assertFalse(normalize)
+                            velocity(adata)
+                            return adata
+
+                        recover = Mock()
+                        velocity_call = Mock(side_effect=velocity)
+                        read = Mock(return_value=adata)
+                        workflow = load_workflow(
+                            name, {"run_dataset"}, Path=Path, os=os,
+                            sc=SimpleNamespace(read=read),
+                            scv=SimpleNamespace(
+                                __version__="0.3.3",
+                                tl=SimpleNamespace(recover_dynamics=recover, velocity=velocity_call,
+                                                   velocity_graph=graph, velocity_embedding=embedding),
+                            ),
+                            pkg_resources=SimpleNamespace(get_distribution=lambda name: SimpleNamespace(version="0.2.5.2")),
+                            utv=SimpleNamespace(config=SimpleNamespace(Configuration=SimpleNamespace), run_model=unit_model),
+                            DATASETS={"Pancreas": {"input": "Pancreas/Pancreas.h5ad", "label_key": "clusters",
+                                                  "embedding_key": None, "preprocessed": True, "expected_shape": (3, 2)}},
+                        )
+                        previous = Path.cwd()
+                        with contextlib.redirect_stdout(io.StringIO()):
+                            workflow.run_dataset("Pancreas", mode, root, root / name)
+                        self.assertEqual(Path.cwd(), previous)
+                        if name == "scvelo":
+                            velocity_call.assert_called_once_with(adata, mode=mode)
+                            self.assertEqual(recover.call_count, int(mode == "dynamical"))
+                            directory = "scvelo_dynamic" if mode == "dynamical" else f"scvelo_{mode}"
+                            filename = f"{workflow.OUTPUT_PREFIX[mode]}_Pancreas.h5ad"
+                            mode_key = "mode"
+                        else:
+                            directory = workflow.OUTPUT_DIRECTORY[mode]
+                            filename = "unitvelo_Pancreas.h5ad"
+                            mode_key = "FIT_OPTION"
+                        path = root / name / directory / filename
+                        saved = ad.read_h5ad(path)
+                        self.assertEqual(saved.uns["benchmark_run"][mode_key], mode)
+                        self.assertEqual(saved.uns["benchmark_run"]["operational_id"], directory)
+                        np.testing.assert_array_equal(saved.layers["velocity"], np.ones((3, 2)))
+                        with self.assertRaises(FileExistsError):
+                            workflow.run_dataset("Pancreas", mode, root, root / name)
+                        self.assertEqual(read.call_count, 1)
+
+    def test_command_line_selection_dispatches_only_requested_mode_and_dataset(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name, flag, mode in (("scvelo", "--mode", "dynamical"), ("unitvelo", "--fit-option", "2")):
+                run = Mock()
+                workflow = load_workflow(
+                    name, {"main"}, argparse=argparse, Path=Path, DATA_ROOT=root, OUTPUT_ROOT=root,
+                    scv=SimpleNamespace(__version__="0.3.3", settings=SimpleNamespace(), set_figure_params=Mock()),
+                    pkg_resources=SimpleNamespace(get_distribution=lambda name: SimpleNamespace(version="0.2.5.2")),
+                    run_dataset=run,
+                )
+                with patch("sys.argv", [name, flag, mode, "--dataset", "Pancreas"]), contextlib.redirect_stdout(io.StringIO()):
+                    workflow.main()
+                run.assert_called_once_with("Pancreas", mode, root.resolve(), root.resolve())
 
 
 class DeepVeloRoleTests(unittest.TestCase):

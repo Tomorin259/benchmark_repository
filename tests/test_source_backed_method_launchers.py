@@ -1,4 +1,6 @@
 import importlib.util
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -61,7 +63,7 @@ class SourceBackedLauncherTests(unittest.TestCase):
                 path = tf_data / row[0]
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.touch()
-            self.tfvelo.check_paths(tf_source, tf_data)
+            self.tfvelo.check_paths(tf_source, tf_data, self.tfvelo.DATASETS_TO_RUN)
 
             ts_source = root / "tsvelo"
             for relative in (
@@ -80,7 +82,30 @@ class SourceBackedLauncherTests(unittest.TestCase):
                 path = ts_data / row[0]
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.touch()
-            self.tsvelo.check_paths(ts_source, ts_data)
+            self.tsvelo.check_paths(ts_source, ts_data, self.tsvelo.DATASETS_TO_RUN)
+
+            for name, launcher, source, data in (
+                ("tfvelo", self.tfvelo, tf_source, tf_data),
+                ("tsvelo", self.tsvelo, ts_source, ts_data),
+            ):
+                with self.subTest(launcher=name):
+                    for dataset, row in launcher.DATASETS.items():
+                        if dataset != "Pancreas":
+                            (data / row[0]).unlink()
+                    launcher.check_paths(source, data, ["Pancreas"])
+                    with self.assertRaises(FileNotFoundError):
+                        launcher.check_paths(source, data, launcher.DATASETS_TO_RUN)
+                    result = subprocess.run(
+                        [sys.executable, "-B", str(REPOSITORY_ROOT / "methods" / f"{name}.py"),
+                         "--dataset", "Pancreas", "--source-root", str(source),
+                         "--data-root", str(data), "--check-only"],
+                        capture_output=True, text=True,
+                    )
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertIn("configuration valid: 1 datasets", result.stdout)
+                    (data / launcher.DATASETS["Pancreas"][0]).unlink()
+                    with self.assertRaises(FileNotFoundError):
+                        launcher.check_paths(source, data, ["Pancreas"])
 
 
 if __name__ == "__main__":

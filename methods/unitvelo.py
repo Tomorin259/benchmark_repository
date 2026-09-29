@@ -6,6 +6,7 @@ scVelo-preprocessed benchmark objects use UniTVelo's normalize=False path;
 the other ten use the package's normal preprocessing path.
 """
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -143,11 +144,13 @@ DATASETS = {
 }
 
 
-def run_dataset(dataset, fit_option):
+def run_dataset(dataset, fit_option, data_root, output_root):
     config = DATASETS[dataset]
-    input_path = DATA_ROOT / config["input"]
-    output_dir = OUTPUT_ROOT / OUTPUT_DIRECTORY[fit_option]
+    input_path = data_root / config["input"]
+    output_dir = output_root / OUTPUT_DIRECTORY[fit_option]
     output_path = output_dir / f"unitvelo_{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
 
     print(f"\n=== UniTVelo FIT_OPTION={fit_option}: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
@@ -221,16 +224,28 @@ def run_dataset(dataset, fit_option):
             f"velocity_graph={'velocity_graph' in adata.uns}"
         )
 
+    adata.uns["benchmark_run"] = {
+        "operational_id": OUTPUT_DIRECTORY[fit_option], "FIT_OPTION": fit_option,
+        "dataset": dataset, "unitvelo_version": pkg_resources.get_distribution("unitvelo").version,
+    }
     adata.write_h5ad(output_path)
     print(f"wrote: {output_path}", flush=True)
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    parser.add_argument("--fit-option", dest="fit_options", action="append", choices=sorted(OUTPUT_DIRECTORY))
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    args = parser.parse_args()
+    datasets = args.datasets or DATASETS_TO_RUN
+    fit_options = args.fit_options or FIT_OPTIONS_TO_RUN
     version = pkg_resources.get_distribution("unitvelo").version
     if version != "0.2.5.2":
         raise RuntimeError(f"UniTVelo 0.2.5.2 is required, found {version}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
-    unknown_options = set(FIT_OPTIONS_TO_RUN) - set(OUTPUT_DIRECTORY)
+    unknown_datasets = set(datasets) - set(DATASETS)
+    unknown_options = set(fit_options) - set(OUTPUT_DIRECTORY)
     if unknown_datasets or unknown_options:
         raise ValueError(
             f"unknown datasets={sorted(unknown_datasets)}; "
@@ -240,9 +255,9 @@ def main():
     scv.settings.verbosity = 0
     print(f"UniTVelo version: {version}", flush=True)
     print(f"scVelo version: {scv.__version__}", flush=True)
-    for fit_option in FIT_OPTIONS_TO_RUN:
-        for dataset in DATASETS_TO_RUN:
-            run_dataset(dataset, fit_option)
+    for fit_option in fit_options:
+        for dataset in datasets:
+            run_dataset(dataset, fit_option, args.data_root.expanduser().resolve(), args.output_root.expanduser().resolve())
 
 
 if __name__ == "__main__":

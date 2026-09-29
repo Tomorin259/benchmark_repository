@@ -7,6 +7,7 @@ second time; every other dataset follows scVelo's
 filter_and_normalize -> moments sequence.
 """
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -147,11 +148,14 @@ OUTPUT_PREFIX = {
 N_JOBS = 8
 
 
-def run_dataset(dataset, mode):
+def run_dataset(dataset, mode, data_root, output_root):
     config = DATASETS[dataset]
-    input_path = DATA_ROOT / config["input"]
-    output_dir = OUTPUT_ROOT / f"scvelo_{mode}"
+    input_path = data_root / config["input"]
+    operational_id = "scvelo_dynamic" if mode == "dynamical" else f"scvelo_{mode}"
+    output_dir = output_root / operational_id
     output_path = output_dir / f"{OUTPUT_PREFIX[mode]}_{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
 
     print(f"\n=== scVelo {mode}: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
@@ -208,15 +212,27 @@ def run_dataset(dataset, mode):
         )
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    adata.uns["benchmark_run"] = {
+        "operational_id": operational_id, "mode": mode, "dataset": dataset,
+        "scvelo_version": scv.__version__,
+    }
     adata.write_h5ad(output_path)
     print(f"wrote: {output_path}", flush=True)
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    parser.add_argument("--mode", dest="modes", action="append", choices=sorted(OUTPUT_PREFIX))
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    args = parser.parse_args()
+    datasets = args.datasets or DATASETS_TO_RUN
+    modes = args.modes or MODES_TO_RUN
     if scv.__version__ != "0.3.3":
         raise RuntimeError(f"scVelo 0.3.3 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
-    unknown_modes = set(MODES_TO_RUN) - set(OUTPUT_PREFIX)
+    unknown_datasets = set(datasets) - set(DATASETS)
+    unknown_modes = set(modes) - set(OUTPUT_PREFIX)
     if unknown_datasets or unknown_modes:
         raise ValueError(
             f"unknown datasets={sorted(unknown_datasets)}; unknown modes={sorted(unknown_modes)}"
@@ -228,9 +244,9 @@ def main():
     scv.settings.presenter_view = True
     scv.set_figure_params("scvelo")
     print(f"scVelo version: {scv.__version__}", flush=True)
-    for mode in MODES_TO_RUN:
-        for dataset in DATASETS_TO_RUN:
-            run_dataset(dataset, mode)
+    for mode in modes:
+        for dataset in datasets:
+            run_dataset(dataset, mode, args.data_root.expanduser().resolve(), args.output_root.expanduser().resolve())
 
 
 if __name__ == "__main__":

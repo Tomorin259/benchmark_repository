@@ -28,6 +28,34 @@ Large H5AD files, checkpoints, logs, upstream source trees, and Conda
 installations are not stored here. Released external files are identified by
 logical ID and checksum in [`../artifacts.tsv`](../artifacts.tsv).
 
+## Configuration selection
+
+- **scVelo (C01--C03):** `--mode deterministic`, `stochastic`, or `dynamical`.
+  Repeat `--mode` to select several configurations; omission uses
+  `MODES_TO_RUN`. Dynamical output uses the registered `scvelo_dynamic/`
+  directory.
+- **UniTVelo (C05--C06):** `--fit-option 1` or `2`. Repeat the option to run
+  both; omission uses `FIT_OPTIONS_TO_RUN`.
+- Both accept repeated `--dataset`, `--data-root`, and `--output-root`.
+  Omitted datasets use the top-level list. Modes write separate directories,
+  refuse existing H5AD output files, and record their selection in H5AD
+  `uns["benchmark_run"]`.
+- **TFvelo and TSvelo:** `--dataset Pancreas --check-only` validates the
+  source checkout and only that dataset's input. `--dataset all` validates
+  all 14 inputs. Actual execution uses the same selection.
+- The other launchers retain their single registered scientific configuration
+  and top-level dataset/parameter settings; veloVI and DeepVelo additionally
+  select an evaluation role as described below.
+
+For example:
+
+```bash
+python methods/scvelo.py --mode dynamical --dataset Pancreas \
+  --output-root /path/to/scvelo-run
+python methods/unitvelo.py --fit-option 2 --dataset Pancreas \
+  --output-root /path/to/unitvelo-run
+```
+
 ## Method-specific requirements
 
 - **cell2fate and DeepKINET:** these launchers select raw-count inputs where
