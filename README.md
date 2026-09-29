@@ -43,12 +43,12 @@ the complete aggregation and ranking contract.
 | Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
+| Read shared rules, environment requirements, and historical evidence | [`docs/`](docs/) |
 
 ## Repository structure
 
 ```text
 methods/                         method-specific reproduction scripts
-envs/                            environment evidence and release requirements
 evaluation/cell/                 Cell-level evaluation, results, and panels
 evaluation/gene/                 Gene-level evaluation, simulation, and panels
 evaluation/kinetics_recovery/    kinetic-parameter recovery and Figure 6 panels
@@ -57,7 +57,7 @@ ensemble/                        post-hoc signed-transition comparators
 data/                            dataset identities and upstream access metadata
 artifacts.tsv                    logical registry for large external artifacts
 figures/                         paper composites and assembly assets
-docs/                            cross-module contracts and figure map
+docs/                            shared contracts, environment requirements, figure map, and provenance
 tests/                           lightweight publication-contract checks
 ```
 
@@ -70,8 +70,9 @@ Operational IDs and file paths may retain shorter internal names.
 
 - [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
   checksums, but stable public URIs have not yet been published.
-- [`envs/`](envs/) records environment evidence and release requirements; it
-  does not yet contain reviewed Conda specifications or lock files.
+- [Environment documentation](docs/environments.md) records environment evidence
+  and release requirements. Reviewed Conda specifications and lock files have
+  not yet been published.
 - Simulation generation intentionally leaves the random stream unseeded. The
   historical canonical H5AD files remain the exact paper inputs; a new run is
   an independent realization.
@@ -129,12 +130,12 @@ Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于
 | 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
+| 阅读共用规则、环境要求和历史验证证据 | [`docs/`](docs/) |
 
 ## 仓库结构
 
 ```text
 methods/                         各方法的复现脚本
-envs/                            环境证据与发布要求
 evaluation/cell/                 Cell-level 评估、结果和 panel
 evaluation/gene/                 Gene-level 评估、模拟数据和 panel
 evaluation/kinetics_recovery/    动力学参数恢复和 Figure 6 panel
@@ -143,7 +144,7 @@ ensemble/                        事后有符号转移比较器
 data/                            数据集身份和上游访问信息
 artifacts.tsv                    大型外部 artifact 的逻辑注册表
 figures/                         论文组合图和 assembly 素材
-docs/                            跨模块契约和 figure map
+docs/                            跨模块契约、环境要求、figure map 和历史证据
 tests/                           轻量级论文契约检查
 ```
 
@@ -156,7 +157,7 @@ tests/                           轻量级论文契约检查
 
 - [`artifacts.tsv`](artifacts.tsv) 已记录逻辑 artifact 身份和校验和，但稳定公开 URI
   尚未发布。
-- [`envs/`](envs/) 记录环境证据与发布要求，目前还没有经过审核的 Conda
+- [环境说明](docs/environments.md) 记录环境证据与发布要求，目前还没有经过审核的 Conda
   specification 或 lock file。
 - 模拟数据生成器刻意不设置随机种子。历史 canonical H5AD 仍是论文使用的精确输入；
   新运行得到的是独立随机 realization。

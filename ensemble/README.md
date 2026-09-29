@@ -68,7 +68,7 @@ paths are not written to the public result files.
 
 The formal all-14 metadata records the upstream lineage, release-index commit,
 and clean numerical-reproduction commit as separate fields. See
-[`../provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md)
+[`../docs/fixed_neighbor_reproduction_20260912.md`](../docs/fixed_neighbor_reproduction_20260912.md)
 for the corresponding evidence and macro scores.
 
 ## Independent ranking contract

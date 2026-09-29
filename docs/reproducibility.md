@@ -27,7 +27,7 @@ user-supplied root and must not depend on a private server path.
 The archived simulation workflow is intentionally stochastic. Its scripts,
 canonical output hashes, structural checks, and non-byte-exact boundary are
 recorded in
-[`../provenance/simulation_reproduction_audit_20260914.md`](../provenance/simulation_reproduction_audit_20260914.md).
+[`simulation_reproduction_audit_20260914.md`](simulation_reproduction_audit_20260914.md).
 
 ## Specialized workflows
 
@@ -35,7 +35,7 @@ Module-specific numerical settings belong with the module that executes them.
 The ensemble implementation contract is documented in
 [`../ensemble/README.md`](../ensemble/README.md). Durable evidence separating
 its upstream lineage, release index, and numerical reproduction is recorded in
-[`../provenance/fixed_neighbor_reproduction_20260912.md`](../provenance/fixed_neighbor_reproduction_20260912.md).
+[`fixed_neighbor_reproduction_20260912.md`](fixed_neighbor_reproduction_20260912.md).
 
 Kinetics reproduction uses the frozen central-result inputs and runtime
 versions recorded in `evaluation/kinetics_recovery/results/central_results/manifest.json`.

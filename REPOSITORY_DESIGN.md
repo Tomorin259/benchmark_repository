@@ -35,14 +35,12 @@ Each fact should have one authoritative home.
 | --- | --- |
 | `README.md` | Public entry point, current repository capabilities, limitations, and reproduction routes |
 | `methods/` | Method registry, paper-facing names, method launchers, and method-native outputs |
-| `envs/` | Release environment definitions and installation checks when those environments are published |
 | `data/` | Dataset identity, source description, canonical-input contract, and simulation generation |
 | `artifacts.tsv` | Logical IDs, checksums, stable locations, and materialization metadata for external artifacts |
 | `evaluation/` | Metric definitions, evaluation workflows, compact results, and module-level panels |
 | `ensemble/` | Ensemble definitions, inputs, outputs, evaluation, and ensemble-specific figures |
 | `figures/` | Paper-level composite figures and deterministic assembly metadata or scripts |
-| `docs/` | Cross-module contracts and paper-to-repository maps |
-| `provenance/` | Durable historical evidence that cannot be expressed in code, registries, or artifact metadata |
+| `docs/` | Cross-module contracts, environment evidence and release requirements, paper-to-repository maps, and durable historical evidence |
 | `tests/` | Fast contract checks for names, schemas, mappings, and lightweight deterministic behavior |
 
 The owning module keeps its own compact tables and generated panels. The root `figures/` directory is reserved for paper-level composites and their assembly records; it is not a second home for module results.
@@ -156,8 +154,8 @@ Documentation is layered by responsibility:
 
 - the top-level `README.md` tells a new reader what is available now and where to start;
 - module `README.md` files describe local inputs, commands, outputs, validation, and limitations;
-- `docs/` defines shared evaluation, result, naming, reproduction, and figure-mapping contracts;
-- `provenance/` records durable evidence for exceptional historical or manual steps.
+- `docs/` contains shared evaluation, result, naming, reproduction, and figure-mapping contracts,
+  environment requirements, and dated evidence for exceptional historical or manual steps.
 
 Provenance is not a project diary. Do not commit agent notes, temporary audit reports, private absolute paths, duplicated status tables, or narratives that can be regenerated from Git history and machine-readable metadata.
 

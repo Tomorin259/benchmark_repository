@@ -76,7 +76,7 @@ documented zero fallback. The same-policy check on the 14 datasets and two
 Ensemble variants completed for all 28 scores with maximum absolute difference
 0, so this audit does not require changes to Cell or Ensemble result tables,
 rankings, or figures. The numerical record is summarized in
-[`../../provenance/fixed_neighbor_reproduction_20260912.md`](../../provenance/fixed_neighbor_reproduction_20260912.md).
+[`../../docs/fixed_neighbor_reproduction_20260912.md`](../../docs/fixed_neighbor_reproduction_20260912.md).
 
 ## Reproduce the evaluation
 
