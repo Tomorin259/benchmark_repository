@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "labels": {
+    "fallback_sources": ["bin"],
+    "dataset_specific_sources": {}
+  },
+  "metrics": {
+    "velocity_graph_n_jobs": 8
+  },
+  "reference": {
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "use_rep": "X_pca",
+    "metric": "euclidean",
+    "random_state": 0,
+    "n_recurse_neighbors": 1,
+    "mode_neighbors": "distances"
+  },
+  "result_tables": {
+    "primary": ["dataset", "method", "consistency", "iccoh", "cbdir", "transcosine", "batc"],
+    "supplementary": ["dataset", "method", "highdim_cbdir", "transcosine_evaluable_edges", "transcosine_evaluable_source_cells", "highdim_cbdir_evaluable_edges", "highdim_cbdir_evaluable_source_cells"],
+    "audit": ["dataset", "method", "result_path", "result_sha256", "velocity_layer_key", "invalid_velocity_values_replaced_with_zero", "status"]
+  },
+  "datasets": {
+    "murk": {
+      "dataset_id": "sim_only_murk",
+      "embedding": "umap",
+      "label": "bin",
+      "reference_umap_path": "velocity:indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+      "cluster_edges": [["BranchB_0", "BranchB_1"], ["BranchB_1", "BranchB_2"], ["BranchB_2", "BranchB_3"], ["BranchB_3", "BranchB_4"], ["BranchB_4", "BranchB_5"], ["BranchB_5", "BranchB_6"], ["BranchB_6", "BranchB_7"], ["BranchB_7", "BranchB_8"], ["BranchB_8", "BranchB_9"]],
+      "batc_n_bins": 20,
+      "batc": {"embedding": "umap", "recompute_embedding": false}
+    },
+    "branching": {
+      "dataset_id": "sim_only_branching",
+      "embedding": "umap",
+      "label": "bin",
+      "reference_umap_path": "velocity:indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "cluster_edges": [["BranchA_0", "BranchA_1"], ["BranchA_1", "BranchA_2"], ["BranchA_2", "BranchA_3"], ["BranchA_3", "BranchA_4"], ["BranchA_4", "BranchA_5"], ["BranchA_5", "BranchA_6"], ["BranchA_6", "BranchA_7"], ["BranchA_7", "BranchA_8"], ["BranchA_8", "BranchA_9"], ["BranchB_0", "BranchB_1"], ["BranchB_1", "BranchB_2"], ["BranchB_2", "BranchB_3"], ["BranchB_3", "BranchB_4"], ["BranchB_4", "BranchB_5"], ["BranchB_5", "BranchB_6"], ["BranchB_6", "BranchB_7"], ["BranchB_7", "BranchB_8"], ["BranchB_8", "BranchB_9"]],
+      "batc_n_bins": 20,
+      "batc": {"embedding": "umap", "recompute_embedding": false}
+    },
+    "all": {
+      "dataset_id": "sim_hybrid",
+      "embedding": "umap",
+      "label": "bin",
+      "reference_umap_path": "velocity:indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "cluster_edges": [["BranchA_0", "BranchA_1"], ["BranchA_1", "BranchA_2"], ["BranchA_2", "BranchA_3"], ["BranchA_3", "BranchA_4"], ["BranchA_4", "BranchA_5"], ["BranchA_5", "BranchA_6"], ["BranchA_6", "BranchA_7"], ["BranchA_7", "BranchA_8"], ["BranchA_8", "BranchA_9"], ["BranchB_0", "BranchB_1"], ["BranchB_1", "BranchB_2"], ["BranchB_2", "BranchB_3"], ["BranchB_3", "BranchB_4"], ["BranchB_4", "BranchB_5"], ["BranchB_5", "BranchB_6"], ["BranchB_6", "BranchB_7"], ["BranchB_7", "BranchB_8"], ["BranchB_8", "BranchB_9"]],
+      "batc_n_bins": 20,
+      "batc": {"embedding": "umap", "recompute_embedding": false}
+    }
+  }
+}

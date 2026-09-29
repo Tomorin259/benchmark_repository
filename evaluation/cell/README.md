@@ -183,3 +183,11 @@ python evaluation/cell/run_cell_metrics.py \
   --official-script evaluation/cell/score_tivelo_metrics.py \
   --method deepvelo --method unitvelo --method veloVI
 ```
+
+## Historical simulation comparison
+
+The three historical simulated datasets have a separate, nine-method
+cell-level evaluation under [`simulation/`](simulation/README.md). Its 27
+method-by-scenario scores use the same source H5ADs as the simulation Gene
+analysis and a shared fixed-30-neighbor reference. Those supplementary results
+do not enter the real-data Cell benchmark or its overall ranking.

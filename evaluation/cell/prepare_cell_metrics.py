@@ -121,13 +121,16 @@ def canonical_umap(
     artifact_root: Path,
     cache_root: Path,
     reference_neighbors_root: Path,
+    config: dict,
 ) -> dict:
-    """Load the dataset-level UMAP from the scVelo deterministic result once."""
+    """Load one registered dataset-level UMAP, not a method-specific embedding."""
     cache_root.mkdir(parents=True, exist_ok=True)
     cache_path = cache_root / f"{dataset}.npz"
-    reference = select_row(inputs, "scvelo_deterministic", dataset)
-    reference_path = resolve_source(artifact_root, reference["result_path"])
-    reference_locator = reference["result_path"]
+    reference_locator = config["datasets"][dataset].get("reference_umap_path")
+    if reference_locator is None:
+        reference = select_row(inputs, "scvelo_deterministic", dataset)
+        reference_locator = reference["result_path"]
+    reference_path = resolve_source(artifact_root, reference_locator)
     reference_neighbor_path = reference_neighbors_root / f"{dataset}.npz"
     reference_neighbor_sha = sha256(reference_neighbor_path)
 
@@ -497,7 +500,7 @@ def install_native_2d_velocity(
     native_coordinates: np.ndarray,
 ) -> dict:
     """Install a checked native 2-D velocity field in the canonical UMAP frame."""
-    if dataset == "forebrain":
+    if dataset == "forebrain" or row["alignment_mode"] == "reference_graph_projection":
         return {
             "mode": "reference_graph_projection",
             "source_velocity_embedding_key": row["velocity_embedding_key"],
@@ -761,6 +764,7 @@ def main() -> None:
         args.artifact_root,
         args.reference_umap_cache,
         args.reference_neighbors_root,
+        config,
     )
     projection = install_native_2d_velocity(
         adata, row, args.dataset, native_coordinates

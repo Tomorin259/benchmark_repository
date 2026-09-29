@@ -189,6 +189,101 @@ class CellEvaluationTests(unittest.TestCase):
                 for metric in ("consistency", "iccoh", "cbdir", "transcosine", "batc"):
                     self.assertEqual(float(row[metric]), float(canonical[row["dataset"], row["method"]][metric]))
 
+    def test_simulation_cell_results_match_gene_sources_and_reference(self):
+        root = Path(__file__).resolve().parents[1]
+        sim = root / "evaluation/cell/simulation"
+
+        def csv_rows(path, delimiter=","):
+            with path.open(newline="", encoding="utf-8") as handle:
+                return list(csv.DictReader(handle, delimiter=delimiter))
+
+        inputs = csv_rows(sim / "inputs.tsv", "\t")
+        primary = csv_rows(sim / "results/cell_metrics.csv")
+        supplementary = csv_rows(sim / "results/cell_metrics_supplementary.csv")
+        audit = csv_rows(sim / "results/cell_metrics_audit.csv")
+        parity = csv_rows(sim / "results/tivelo_parity.csv")
+        paired = csv_rows(sim / "results/cross_level_summary.csv")
+        gene = csv_rows(root / "evaluation/gene/results/gene_cbdir_reference30_all.csv")
+        registry = csv_rows(root / "methods/configurations.tsv", "\t")
+        names = {row["config_id"]: row["manuscript_name"] for row in registry}
+        gene_names = {**names, "C04": "MultiVelo", "C19": "Graphvelo_scv"}
+
+        keys = {(row["evaluation_dataset"], row["operational_id"]) for row in inputs}
+        self.assertEqual(len(inputs), len(keys))
+        self.assertEqual({dataset for dataset, _ in keys}, {"murk", "branching", "all"})
+        self.assertEqual(len(keys), 27)
+        for row in inputs:
+            matches = {
+                (item["source_h5ad"], item["velocity_s_key"])
+                for item in gene
+                if item["status"] == "ok"
+                and item["dataset"] == row["evaluation_dataset"]
+                and item["method"] == gene_names[row["config_id"]]
+            }
+            self.assertEqual(len(matches), 1)
+            source, velocity_key = matches.pop()
+            self.assertEqual(row["result_path"], source.replace("artifact://velocity/", "velocity:", 1))
+            self.assertEqual(row["velocity_layer_key"], velocity_key)
+
+        for table in (primary, supplementary, audit):
+            self.assertEqual(len(table), 27)
+            self.assertEqual({(r["dataset"], r["method"]) for r in table}, keys)
+        source_by_key = {(r["evaluation_dataset"], r["operational_id"]): r["result_path"] for r in inputs}
+        for row in audit:
+            self.assertEqual(row["result_path"], source_by_key[row["dataset"], row["method"]])
+            self.assertEqual(len(row["result_sha256"]), 64)
+            self.assertEqual(row["status"], "ok")
+            self.assertEqual(int(row["invalid_velocity_values_replaced_with_zero"]), 0)
+        for row in primary:
+            self.assertTrue(all(np.isfinite(float(row[metric])) for metric in (
+                "consistency", "iccoh", "cbdir", "transcosine", "batc"
+            )))
+        self.assertEqual(len(parity), 54)
+        self.assertTrue(all(row["raw_values_match"] == "True" for row in parity))
+        self.assertTrue(all(float(row["aggregate_abs_difference"]) <= 1e-7 for row in parity))
+
+        cell = {(r["dataset"], r["method"]): r for r in primary}
+        self.assertEqual(len(paired), 36)
+        self.assertEqual({r["category"] for r in paired}, {
+            "normal + MURK", "normal + branching", "hybrid: MURK", "hybrid: branching"
+        })
+        for row in paired:
+            method = row["operational_id"]
+            self.assertAlmostEqual(float(row["cell_cbdir"]), float(cell[row["dataset"], method]["cbdir"]), places=14)
+            self.assertAlmostEqual(float(row["cell_batc"]), float(cell[row["dataset"], method]["batc"]), places=14)
+            self.assertEqual(int(row["n_genes"]), {
+                "normal + MURK": 10, "normal + branching": 20,
+                "hybrid: MURK": 20, "hybrid: branching": 20,
+            }[row["category"]])
+            source = source_by_key[row["dataset"], method].replace(
+                "velocity:", "artifact://velocity/", 1
+            )
+            config_id = next(item["config_id"] for item in inputs
+                             if (item["evaluation_dataset"], item["operational_id"])
+                             == (row["dataset"], method))
+            matching = [item for item in gene if
+                        item["dataset"] == row["dataset"]
+                        and item["method"] == gene_names[config_id]
+                        and item["source_h5ad"] == source]
+            if row["category"] == "hybrid: MURK":
+                matching = [item for item in matching if item["gene"].startswith((
+                    "OneSidedBoost_", "OneSidedBoost2_"
+                ))]
+            elif row["category"] == "hybrid: branching":
+                matching = [item for item in matching if item["gene"].startswith((
+                    "MultiForward_", "BoostALL_"
+                ))]
+            values = np.asarray([float(item["new_cbdir"]) for item in matching])
+            self.assertEqual(len(values), int(row["n_genes"]))
+            self.assertAlmostEqual(float(row["gene_cbdir_mean"]), float(values.mean()), places=14)
+            self.assertAlmostEqual(float(row["gene_cbdir_sd"]), float(values.std(ddof=1)), places=14)
+
+        for dataset in ("murk", "branching", "all"):
+            with np.load(sim / "reference_neighbors" / f"{dataset}.npz", allow_pickle=False) as cell_ref:
+                with np.load(root / "evaluation/gene/results/reference_neighbors" / f"{dataset}.npz", allow_pickle=False) as gene_ref:
+                    np.testing.assert_array_equal(cell_ref["obs_names"], gene_ref["obs_names"])
+                    np.testing.assert_array_equal(cell_ref["indices"], gene_ref["indices"])
+
     def test_canonical_bundle_validates_tables_and_reference_assets(self):
         validate_results()
 

@@ -1,0 +1,29 @@
+{
+  "scenarios": {
+    "all": {
+      "n_obs": 2000,
+      "n_vars": 720,
+      "reference_moments_sha256": "bea112952d6f5d7534329534235f787a739e5bb99cd09a7af5f0e5b5b7b1166a",
+      "reference_neighbors_sha256": "aee49c3734ddfa884be03ada1cbb38d40eec26f5273f4211ef59fa0d379f2ac9",
+      "source": "velocity:indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "source_sha256": "9b9bebf9159e02c1bcb880d8aba323982e70b7faa67d6d92c6313db603e72ee2"
+    },
+    "branching": {
+      "n_obs": 2000,
+      "n_vars": 620,
+      "reference_moments_sha256": "078a0973e3adc4cec73f0188a2ef584715f6f1f5bb76f851f842393487e46c9f",
+      "reference_neighbors_sha256": "81b52f105b89459b8eaba847e0c770e3af4c099312d926f5ce179a12a0829077",
+      "source": "velocity:indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "source_sha256": "392eccf96cd31f27e8b99327f0b061e475d78a1cfea54c75af4564ddb163fe14"
+    },
+    "murk": {
+      "n_obs": 1000,
+      "n_vars": 650,
+      "reference_moments_sha256": "068d6d2dca16c473b150209ce84a6119e9939cc44e35c7a1512f45de0f74c7ae",
+      "reference_neighbors_sha256": "a6d0f37dc0c3231a143600aae61cf78c414d30d53831d87684fffa56dfe9926c",
+      "source": "velocity:indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+      "source_sha256": "e853780b3cb28ae9941972950e0b02098f57b5f7e35908ab0d5d2473fe0e6bc3"
+    }
+  },
+  "scvelo_version": "0.2.5"
+}
