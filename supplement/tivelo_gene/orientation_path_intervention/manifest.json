@@ -1,0 +1,6 @@
+{
+  "purpose": "Path-only TIvelo orientation audit; not a benchmark replacement",
+  "seed": 20260926,
+  "held_fixed": "mirrored simulation preprocessing and saved input layers",
+  "changed": "ordered path supplied to tivelo.direction.correct.correct_path"
+}

@@ -1,0 +1,4 @@
+scenario,raw_n_cells,raw_n_genes,preprocessed_n_cells,preprocessed_n_genes,n_velocity_genes,velocity_target_genes_selected,process_start_node,process_main_first,process_main_last,correct_start_node,correct_main_first,correct_main_last,dti_start_node,mean_score_main,median_score_main,fraction_orientation_negative,mean_score_branch_1,median_score_branch_1,n_dti_edges
+all,2000,720,2000,720,610,10,BranchA_0,BranchA_0,BranchB_9,BranchB_9,BranchB_9,BranchA_9,BranchB_9,-19.594465345665128,-19.90643597927568,0.9983606557377049,76.81829134481143,58.430287372148285,19
+branching,2000,620,2000,620,610,10,BranchA_9,BranchA_9,BranchB_9,BranchB_9,BranchB_9,BranchA_9,BranchB_9,-101.66881781984287,-121.54884970564609,0.8360655737704918,-17.91685423041246,-18.883960114283653,19
+murk,1000,650,1000,650,650,10,BranchB_3,BranchB_3,BranchB_9,BranchB_0,BranchB_0,BranchB_9,BranchB_0,40.11234302284768,33.461799094944,0.0,-26.086685383808213,-23.202029588133126,9

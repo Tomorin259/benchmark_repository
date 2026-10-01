@@ -1,0 +1,12 @@
+{
+  "purpose": "Read-only audit of TIvelo root selection before process_path",
+  "seed": 20260926,
+  "stages": [
+    "mirrored preprocessing",
+    "graph_prune",
+    "scv stochastic velocity",
+    "velocity_graph",
+    "terminal_states",
+    "get_start_node"
+  ]
+}

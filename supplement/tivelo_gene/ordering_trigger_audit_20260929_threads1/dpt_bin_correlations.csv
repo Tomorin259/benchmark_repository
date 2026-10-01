@@ -1,0 +1,9 @@
+scenario,path,root,branch,n_cells,spearman_dpt_bin
+murk,process_main,BranchB_3,BranchB,700,0.9881395288217669
+murk,single_B,BranchB_0,BranchB,1000,0.9901420418477108
+branching,process_main,BranchA_9,BranchA,800,-0.9816075751775691
+branching,process_main,BranchA_9,BranchB,800,-0.9115966886904522
+branching,single_B,BranchB_0,BranchB,1000,0.17360067064520684
+all,process_main,BranchA_0,BranchA,100,
+all,process_main,BranchA_0,BranchB,1000,0.016717003347273288
+all,single_B,BranchB_0,BranchB,1000,0.18035573418665968

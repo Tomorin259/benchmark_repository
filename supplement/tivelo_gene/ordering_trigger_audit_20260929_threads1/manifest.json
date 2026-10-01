@@ -1,0 +1,37 @@
+{
+  "purpose": "Ordering-only orientation diagnostic; no velocity fit or benchmark changes",
+  "seed": 20260926,
+  "inputs": [
+    {
+      "scenario": "murk",
+      "input": "indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+      "Mu_sha256": "2f80a614bb8c4afb3c1d951b721359d297fa2de6e5c456e11e1f1544693564dd",
+      "Ms_sha256": "a9e2c881fec549c4fddf56e88f2140d5ce0df01ee8c6994fb7fd90affd604cfc",
+      "n_selected_genes": 650
+    },
+    {
+      "scenario": "branching",
+      "input": "indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "Mu_sha256": "f7933c6841c86163d9f610547a880c01eeb25d6150725531e87e660b854d3221",
+      "Ms_sha256": "d00bb7e1bf65e2465ed486f187674b1f92124d4546353e55936a9969185a9fad",
+      "n_selected_genes": 610
+    },
+    {
+      "scenario": "all",
+      "input": "indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "Mu_sha256": "5d4b59cb114e030a1da6fab1952c8b1c387547e372e5fcf76a1eef2c1b331d5c",
+      "Ms_sha256": "d6ccd4c4288f2eb723aa7385cbc16715001c035bb204e3ec1e51e70e4ab53f95",
+      "n_selected_genes": 610
+    }
+  ],
+  "held_fixed": [
+    "cells within each paired path",
+    "Mu",
+    "Ms",
+    "selected genes",
+    "orient_score defaults"
+  ],
+  "changed": "cell ordering only",
+  "known_bin_order": "bin number, then original row index; not exact within-bin kinetic time",
+  "process_main_paths": "stage_audit/path_edges_by_stage.csv"
+}

@@ -1,0 +1,61 @@
+{
+  "purpose": "TIvelo call-chain mechanism audit; not a benchmark replacement",
+  "seed": 20260926,
+  "settings": {
+    "group_key": "bin",
+    "emb_key": "X_umap",
+    "start_mode": "stochastic",
+    "rev_stat": "mean",
+    "t1": 0.1,
+    "t2": 2,
+    "loss_fun": "mse",
+    "only_s": false,
+    "constrain": true,
+    "alpha_1": 1,
+    "alpha_2": 0.1,
+    "batch_size": 1024,
+    "n_epochs": 100,
+    "filter_genes": false
+  },
+  "inputs": [
+    {
+      "scenario": "all",
+      "locator": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "raw_shape": [
+        2000,
+        720
+      ],
+      "preprocessed_shape": [
+        2000,
+        720
+      ],
+      "n_velocity_layers": 1
+    },
+    {
+      "scenario": "branching",
+      "locator": "artifact://velocity/indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "raw_shape": [
+        2000,
+        620
+      ],
+      "preprocessed_shape": [
+        2000,
+        620
+      ],
+      "n_velocity_layers": 1
+    },
+    {
+      "scenario": "murk",
+      "locator": "artifact://velocity/indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+      "raw_shape": [
+        1000,
+        650
+      ],
+      "preprocessed_shape": [
+        1000,
+        650
+      ],
+      "n_velocity_layers": 1
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "generator_sha256": "9d71314afca4d26755b8b91e180a658c2afc5bf5152b62b4e1ba74676b67c394",
+  "native_sources": {
+    "original_root_refit": {
+      "source": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261001.h5ad",
+      "sha256": "bbf7220d8f6b82d77c9f0756d040b0d4569c873645fd5e9dd0b6522b75b4fb9c",
+      "root": "Mono_1"
+    },
+    "hsc1_root_refit": {
+      "source": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261001.h5ad",
+      "sha256": "43ca983cdd06a5c4f112868c31fb2379fd79cef67565caad89beaeb987d3d367",
+      "root": "HSC_1"
+    }
+  },
+  "paired_fit_generator_sha256": "98c0503ccc2ac6e102cc9559865f446985844400afa7e11775c3e04a9984a356",
+  "displayed_seed": 20261001,
+  "metric_seeds": [
+    20261001,
+    20261002,
+    20261003
+  ],
+  "n_cells": 5780,
+  "n_genes": 473,
+  "plotting_style_source_sha256": "0cc16be86901560b63cc2b8ad20a1c83c1fff5080b964ae95c632301dac5a21d",
+  "map_style_source_sha256": "e94006a53973cef8b676fb8d863dc941c9b37695f53664785034167da704a69b",
+  "source_hashes": {
+    "manifest.json": "13b852fe9c8d4326421a9a792209d774526587cb347b91c21a2ce3cb4d6066da",
+    "cell_scores.csv": "543e28378f93b96c1d76e7e81782362924fa56a761fb1a7b0410efe707589002",
+    "paired_summary.csv": "0b07ef4b49b3940241669e78df52759757001d0bac87f6731cf6f9cd93f60dee"
+  },
+  "coordinates": "archived t-SNE stored in X_umap; no new embedding, rotation or per-panel rescaling",
+  "background": "Each condition's native obs.dpt_pseudotime; full-data DTI ordering, not path-specific orientation DPT",
+  "dpt_column": "dpt_pseudotime",
+  "shared_color_range": [
+    0,
+    1
+  ],
+  "dpt_renormalization": false,
+  "streamlines": false,
+  "dpt_value_hashes": {
+    "original_root_refit": "0b0afd0bf51479e8e1eead9a57c7c1b578db496a9d32dc38a21e82611bda2ad3",
+    "hsc1_root_refit": "245ee45786533a393c4559f6cc7c0657644d875c06ca3cb237801b4f289a8e8d"
+  },
+  "pairing": "one-to-one optimizer seeds; not per-gene or biological replicates",
+  "aggregation": "arithmetic mean of the three paired seeds; all raw seed points retained, no significance test",
+  "displayed_cluster_labels": [
+    "HSC_1",
+    "Mono_1",
+    "Ery_2"
+  ],
+  "shared_limits": [
+    [
+      -32.21594899436969,
+      28.24852046784421
+    ],
+    [
+      -31.712000490029858,
+      28.75246897218404
+    ]
+  ],
+  "map_panel_inches": 2.16,
+  "row_inches": [
+    6.82,
+    2.71
+  ],
+  "gap_inches": 0.16,
+  "map_font_points": 6.7,
+  "metrics": [
+    "cbdir",
+    "batc"
+  ],
+  "baked_in_titles_captions_panel_letters": false
+}

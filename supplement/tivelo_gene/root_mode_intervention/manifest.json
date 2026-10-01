@@ -1,0 +1,9 @@
+{
+  "purpose": "Read-only comparison of TIvelo root-inference modes",
+  "seed": 20260926,
+  "modes": [
+    "stochastic",
+    "dynamical"
+  ],
+  "not_a_benchmark_variant": true
+}

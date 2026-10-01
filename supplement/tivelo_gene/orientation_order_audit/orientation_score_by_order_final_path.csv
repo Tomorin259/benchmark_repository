@@ -1,0 +1,10 @@
+scenario,order,gene_class,genes,mean_orientation_score,fraction_negative,n_cells
+murk,final_main_path,OneSidedBoost,OneSidedBoost_0;OneSidedBoost_1,14.396470650258184,0.0,1000
+branching,final_branch_1,MultiForward,MultiForward_0;MultiForward_1,-6.088489009767457,1.0,500
+branching,final_branch_1,BoostALL,BoostALL_0;BoostALL_1,2.053735674680966,0.5,500
+branching,final_main_path,MultiForward,MultiForward_0;MultiForward_1,-104.70983348604435,1.0,1600
+branching,final_main_path,BoostALL,BoostALL_0;BoostALL_1,-58.89975078421431,1.0,1600
+all,final_main_path,MultiForward,MultiForward_0;MultiForward_1,3.694750285499853,0.0,2000
+all,final_main_path,BoostALL,BoostALL_0;BoostALL_1,-37.428051234378714,1.0,2000
+all,final_main_path,OneSidedBoost,OneSidedBoost_0;OneSidedBoost_1,5.492812251883891,0.0,2000
+all,final_main_path,OneSidedBoost2,OneSidedBoost2_0;OneSidedBoost2_1,-7.506146346558889,0.5,2000

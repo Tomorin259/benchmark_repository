@@ -1,0 +1,10 @@
+scenario,variant,requested_root,dti_root,n_dnn_pairs,forward,reverse,same_bin,cross_branch
+all,process_path_root,BranchB_9,BranchB_9,27470,505,1222,25743,0
+all,correct_path_root,BranchA_9,BranchA_9,28031,564,1789,25531,147
+all,oracle_early_root,BranchA_0,BranchA_0,28181,2787,0,25241,153
+branching,process_path_root,BranchA_9,BranchA_9,24749,397,1236,22464,652
+branching,correct_path_root,BranchB_9,BranchB_9,25089,573,1311,22505,700
+branching,oracle_early_root,BranchA_0,BranchA_0,25323,2426,9,22306,582
+murk,process_path_root,BranchB_3,BranchB_3,14716,859,475,13382,0
+murk,correct_path_root,BranchB_0,BranchB_0,14450,1198,0,13252,0
+murk,oracle_early_root,BranchB_0,BranchB_0,14450,1198,0,13252,0

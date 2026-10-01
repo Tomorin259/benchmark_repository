@@ -1,0 +1,7 @@
+scenario,rev_stat,mean_score,median_score,fraction_positive,returned_start_node,returned_main_first,returned_main_last,n_velocity_genes
+branching,mean,-101.66881781984287,-121.54884970564609,0.16393442622950818,BranchB_9,BranchB_9,BranchA_9,610
+branching,median,-101.66881781984287,-121.54884970564609,0.16393442622950818,BranchB_9,BranchB_9,BranchA_9,610
+all,mean,-19.594465345665128,-19.90643597927568,0.001639344262295082,BranchB_9,BranchB_9,BranchA_9,610
+all,median,-19.594465345665128,-19.90643597927568,0.001639344262295082,BranchB_9,BranchB_9,BranchA_9,610
+murk,mean,40.11234302284768,33.461799094944,1.0,BranchB_0,BranchB_0,BranchB_9,650
+murk,median,40.11234302284768,33.461799094944,1.0,BranchB_0,BranchB_0,BranchB_9,650

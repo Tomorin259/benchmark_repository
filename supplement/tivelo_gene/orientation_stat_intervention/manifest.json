@@ -1,0 +1,6 @@
+{
+  "purpose": "Read-only comparison of TIvelo orientation reversal statistics",
+  "seed": 20260926,
+  "held_fixed": "mirrored preprocessing and process_path output",
+  "changed": "correct_path rev_stat only"
+}

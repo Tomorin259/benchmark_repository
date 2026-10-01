@@ -1,0 +1,20 @@
+{
+  "type": "exploratory oracle-root intervention, not a benchmark correction",
+  "method_settings": {
+    "n_epochs": 100,
+    "loss_fun": "mse",
+    "only_s": false,
+    "constrain": true,
+    "alpha_1": 1,
+    "alpha_2": 0.1,
+    "batch_size": 1024,
+    "filter_genes": false,
+    "seed_per_variant": 20260926
+  },
+  "held_fixed": "archived TIvelo-preprocessed H5AD, cell and gene set, Mu/Ms, KNN, optimizer, reference-30 neighbors and metrics",
+  "changed": "root used to construct child_dict, directed neighbors and DPT; oracle roots known from simulation",
+  "inputs": [
+    "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_branching.h5ad",
+    "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad"
+  ]
+}

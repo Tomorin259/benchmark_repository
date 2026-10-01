@@ -1,0 +1,7 @@
+# Large native results and machine-specific runtime evidence remain on the server.
+*.log
+__pycache__/
+bonemarrow_root_control_20261001/native_outputs/
+bonemarrow_root_control_20261001/evaluations/
+bonemarrow_root_control_20261001/logs/
+bonemarrow_root_control_20261001/manifest.json

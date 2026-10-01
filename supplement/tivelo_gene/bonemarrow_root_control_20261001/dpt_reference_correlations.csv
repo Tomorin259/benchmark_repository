@@ -1,0 +1,5 @@
+variant,root,lineage,n_cells,spearman_dpt_palantir
+original_root_refit,Mono_1,myeloid,4224,-0.6947110541043511
+original_root_refit,Mono_1,erythroid,2125,0.7967309284418498
+hsc1_root_refit,HSC_1,myeloid,4224,0.8911760829076831
+hsc1_root_refit,HSC_1,erythroid,2125,0.9206184206865137

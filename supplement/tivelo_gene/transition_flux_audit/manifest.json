@@ -1,0 +1,9 @@
+{
+  "purpose": "scVelo transition flux upstream of TIvelo root selection",
+  "inputs": [
+    "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_murk.h5ad",
+    "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_branching.h5ad",
+    "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad"
+  ],
+  "transition_matrix": "scvelo.tools.transition_matrix(vkey='velocity', backward=False, self_transitions=False)"
+}
