@@ -84,3 +84,13 @@ python evaluation/cell/plots.py
 Use `--metrics`, `--supplementary-metrics`, and `--output` when rendering to a
 different location. It produces the five primary panels, the CBDir-HD panel,
 and the individual metric files.
+
+## Simulated cell-level supplement
+
+The frozen cell-level scores for the three simulated scenarios used in
+Supplemental Fig. S12 and Supplemental Table S7 are stored under
+`results/simulation/`. The four-decimal CSV and LaTeX fragment are derived
+from the final material bundle; `scripts/simulation_supplement.py` validates
+the 9-method x 3-scenario x 5-metric contract without rerunning methods.
+The user-exported, cropped S12 PDF is retained at
+`figures/simulation/suppFigTwelve.pdf`.
