@@ -5,7 +5,11 @@ Every materialized panel under this directory is a regular repository file.
 materialized path, and SHA256; unresolved independent sources remain explicit.
 
 Figure 3 contains three selected gene/cell comparisons. Figure 4 contains
-simulation panels; its independent schematic source is missing. Figure 5
+simulation panels; its independent schematic source is missing. Its final D
+panel is the paired Cell/Gene comparison under `evaluation/cell/simulation/`;
+the three gene-only scenario summaries remain supporting analyses. The
+approved user-exported composite is recorded in `../fig4_composite_manifest.json`.
+Figure 5
 contains real-data gene-kinetics panels; the canonical source for its D
 overview remains unverified. Figure 6 has 16 materialized source panels,
 including Dynamo(label data) in organoid E, with its validated user-exported

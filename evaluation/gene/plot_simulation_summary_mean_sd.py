@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render Figure 4D from the current reference-30 CBDir and frozen CosSim."""
+"""Render a gene-only simulation summary, not the final paired Figure 4D."""
 from __future__ import annotations
 
 import argparse

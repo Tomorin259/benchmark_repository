@@ -1,4 +1,6 @@
 {
+  "record_scope": "historical_generation",
+  "verification_boundary": "Retained from the original materialization. Generator hashes, display settings and score-source locators describe that run, not later display-only updates. Current image hashes are recorded in assembly_manifest.tsv; refreshing them does not regenerate figures or rewrite this history.",
   "artifact_root": "artifact://velocity",
   "renderer": "evaluation/gene/plot_current_gene_assets_from_originals.py",
   "renderer_sha256": "a30eb2125c1a47c8b818164e50872cdf4197847f3cc01ca5e7c86459cd3f1731",
@@ -80,7 +82,6 @@
     "randomized_sampling": false,
     "velocity_smoothing": false
   },
-  "panel_count": 135,
   "score_sources": {
     "retina": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
     "DentateGyrus_lamanno": "evaluation/gene/results/gene_cbdir_reference30_all.csv",

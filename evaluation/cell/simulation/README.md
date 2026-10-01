@@ -81,6 +81,12 @@ order and names in `methods/configurations.tsv`; the CSV files retain full
 precision, with no ranking based on rounded display values. BATC is shown as
 a separate cell-level overview and is not treated as a gene-level score.
 
+The final Figure 4D source is registered in the root paper-assembly manifest.
+`figures/figFour.pdf` is the approved, user-exported and cropped composite;
+`figures/fig4_composite_manifest.json` records its checksum and D-panel source.
+The renderer reproduces the D panel and its summary, not the manually
+assembled whole-figure PDF.
+
 ## Reproduce
 
 ### Supplementary Figure 12 and Table 7

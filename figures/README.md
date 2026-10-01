@@ -4,8 +4,11 @@ Paper-level PDFs and assembly assets are tracked here. The assembly manifest
 maps each materialized panel to a repository source and SHA256 and records
 unresolved independent sources without inventing replacements.
 
-The online-matched PDFs are `figThree.pdf` (selected gene/cell transitions),
+The active PDFs are `figThree.pdf` (selected gene/cell transitions),
 `figFour.pdf` (simulation), and `figFive.pdf` (real-data gene kinetics).
+Figure 4 is the approved user-exported, cropped composite containing the paired
+Cell/Gene D panel. `fig4_composite_manifest.json` records its checksum, source
+panel, and manual-assembly boundary; online byte identity was not rechecked.
 `figSix.pdf` is the validated user-exported scEU-seq kinetic-parameter recovery
 composite, including the current B-panel palette and F-panel four-decimal means.
 Figure 6 has 16 source panels, including the Dynamo(label data) organoid E

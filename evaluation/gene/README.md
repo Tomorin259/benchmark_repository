@@ -93,6 +93,22 @@ python plot_current_gene_assets_from_originals.py \
 SHA256 values. The renderer records external inputs as logical artifact
 locators and never writes machine-specific paths into public metadata.
 
+After a display-only update, check or refresh the existing panel hashes from
+the repository root without importing scVelo, opening H5AD files, or redrawing:
+
+```bash
+python evaluation/gene/refresh_panel_manifest.py
+python evaluation/gene/refresh_panel_manifest.py --write
+```
+
+The refresh preserves panel references, row order, and recorded score sources;
+it changes only SHA256 fields. Shared images may have separate references for
+main and supplementary panels. `figures/panels/provenance.json` retains the
+historical generation record, not the current script or image checksums.
+Current image hashes belong to the panel manifest. Its Figure 4D scenario
+summaries are supporting gene-only analyses; the final paired Cell/Gene panel
+is owned by [`../cell/simulation/`](../cell/simulation/).
+
 The sampling design is adapted from cellDancer 1.1.7, which is distributed
 under the BSD 3-Clause license. The repository implementation does not require
 cellDancer to be installed; the retained notice is in

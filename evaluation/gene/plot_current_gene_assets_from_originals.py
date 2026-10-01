@@ -471,6 +471,8 @@ def write_manifest(output_root: Path, score_sources: dict, cases):
                     "source_kind": (
                         "phase_portrait_panel"
                         if asset == "gene_phase_raw"
+                        else "supporting_gene_summary"
+                        if panel == "Figure4_D"
                         else "score_annotated_panel"
                     ),
                 })
@@ -531,6 +533,8 @@ def main():
             render_sim_cases(sim_module, summary_module, selected_sim, scores, output_root)
 
     provenance = {
+        "record_scope": "historical_generation",
+        "verification_boundary": "Generator hashes and settings describe this rendering run. Later display-only updates are tracked by assembly_manifest.tsv without rewriting the generation history.",
         "artifact_root": "artifact://velocity",
         "renderer": "evaluation/gene/plot_current_gene_assets_from_originals.py",
         "renderer_sha256": sha256(HERE / "plot_current_gene_assets_from_originals.py"),
