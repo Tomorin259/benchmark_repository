@@ -204,6 +204,12 @@ class CellEvaluationTests(unittest.TestCase):
         parity = csv_rows(sim / "results/tivelo_parity.csv")
         paired = csv_rows(sim / "results/cross_level_summary.csv")
         gene = csv_rows(root / "evaluation/gene/results/gene_cbdir_reference30_all.csv")
+        cossim = csv_rows(root / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv")
+        cossim_by_key = {
+            (row["Dataset"], row["Gene"], row["Method"]): float(row["CosSim"])
+            for row in cossim
+        }
+        self.assertEqual(len(cossim_by_key), len(cossim))
         registry = csv_rows(root / "methods/configurations.tsv", "\t")
         names = {row["config_id"]: row["manuscript_name"] for row in registry}
         gene_names = {**names, "C04": "MultiVelo", "C19": "Graphvelo_scv"}
@@ -277,6 +283,13 @@ class CellEvaluationTests(unittest.TestCase):
             self.assertEqual(len(values), int(row["n_genes"]))
             self.assertAlmostEqual(float(row["gene_cbdir_mean"]), float(values.mean()), places=14)
             self.assertAlmostEqual(float(row["gene_cbdir_sd"]), float(values.std(ddof=1)), places=14)
+            cos_values = np.asarray([
+                cossim_by_key[item["dataset"], item["gene"], item["method"]]
+                for item in matching
+            ])
+            self.assertTrue(np.isfinite(cos_values).all())
+            self.assertAlmostEqual(float(row["gene_cossim_mean"]), float(cos_values.mean()), places=14)
+            self.assertAlmostEqual(float(row["gene_cossim_sd"]), float(cos_values.std(ddof=1)), places=14)
 
         for dataset in ("murk", "branching", "all"):
             with np.load(sim / "reference_neighbors" / f"{dataset}.npz", allow_pickle=False) as cell_ref:

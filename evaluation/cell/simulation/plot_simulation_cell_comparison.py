@@ -10,6 +10,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 import numpy as np
 import pandas as pd
 
@@ -60,12 +61,29 @@ def load_summary() -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict]:
     )
     if gene.operational_id.isna().any():
         raise ValueError("a Gene simulation source has no matched Cell input")
+    cossim = pd.read_csv(
+        REPO / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
+    ).rename(columns={"Dataset": "dataset", "Gene": "gene", "Method": "method",
+                      "CosSim": "gene_cossim"})
+    if len(cossim) != len(gene):
+        raise ValueError("CosSim and reference-30 CBDir-gene row counts must match")
+    score_keys = ["dataset", "gene", "method"]
+    gene = gene.merge(cossim[score_keys + ["gene_cossim"]], on=score_keys,
+                      how="left", validate="one_to_one", indicator=True)
+    if not gene["_merge"].eq("both").all():
+        raise ValueError("CosSim and reference-30 CBDir-gene sets must match exactly")
+    gene = gene.drop(columns="_merge")
+    if not np.isfinite(gene[["new_cbdir", "gene_cossim"]].to_numpy()).all():
+        raise ValueError("simulation gene scores must be finite")
     gene["category"] = gene.apply(gene_category, axis=1)
     if gene.category.isna().any():
         raise ValueError("unclassified simulated gene")
     summary = gene.groupby(
         ["category", "dataset", "operational_id"], sort=False
-    ).new_cbdir.agg(n_genes="count", gene_cbdir_mean="mean", gene_cbdir_sd="std").reset_index()
+    ).agg(n_genes=("new_cbdir", "count"),
+          gene_cbdir_mean=("new_cbdir", "mean"), gene_cbdir_sd=("new_cbdir", "std"),
+          gene_cossim_mean=("gene_cossim", "mean"),
+          gene_cossim_sd=("gene_cossim", "std")).reset_index()
     summary = summary.merge(
         cell[["dataset", "method", "cbdir", "batc"]],
         left_on=["dataset", "operational_id"],
@@ -92,10 +110,14 @@ def load_summary() -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict]:
     return cell, summary, method_order, display
 
 
-def style(ax, show_labels: bool, method_order: list[str], display: dict) -> None:
+def style(ax, show_labels: bool, method_order: list[str], display: dict,
+          striped: bool = False) -> None:
     ys = np.arange(len(method_order))[::-1]
-    for y in ys:
-        ax.axhline(y, color="#E9EEF1", lw=0.55, zorder=0)
+    if striped:
+        ax.set_facecolor("none")
+    else:
+        for y in ys:
+            ax.axhline(y, color="#E9EEF1", lw=0.55, zorder=0)
     ax.axvline(0, color="#9DA7AE", lw=0.8, ls=(0, (2.4, 2.4)), zorder=0)
     ax.set_xlim(-1, 1)
     ax.set_ylim(-0.55, 8.55)
@@ -109,9 +131,10 @@ def style(ax, show_labels: bool, method_order: list[str], display: dict) -> None
     ax.spines["bottom"].set_color("#86929A")
 
 
-def save(fig, stem: Path) -> None:
+def save(fig, stem: Path, png_dpi: int = 300) -> None:
     for ext in ("pdf", "svg", "png"):
-        fig.savefig(stem.with_suffix(f".{ext}"), dpi=300, facecolor="white")
+        fig.savefig(stem.with_suffix(f".{ext}"), dpi=png_dpi if ext == "png" else 300,
+                    facecolor="white")
     svg = stem.with_suffix(".svg")
     svg.write_text(
         "\n".join(line.rstrip() for line in svg.read_text(encoding="utf-8").splitlines()) + "\n",
@@ -144,37 +167,55 @@ def plot_cell(cell: pd.DataFrame, method_order: list[str], display: dict, out: P
 
 def plot_cross_level(summary: pd.DataFrame, method_order: list[str],
                      display: dict, out: Path) -> None:
-    fig, axes = plt.subplots(1, 4, figsize=(9.0, 2.8), sharey=True)
-    fig.subplots_adjust(left=0.16, right=0.992, top=0.74, bottom=0.23, wspace=0.12)
+    fig, axes = plt.subplots(1, 4, figsize=(9.0, 4.125), sharey=True)
+    fig.subplots_adjust(left=0.16, right=0.992, top=0.87, bottom=0.16, wspace=0.12)
     for i, (category, _) in enumerate(CATEGORIES):
         ax = axes[i]
-        style(ax, i == 0, method_order, display)
+        style(ax, i == 0, method_order, display, striped=True)
         subset = summary[summary.category.eq(category)].set_index("operational_id")
         for j, method in enumerate(method_order):
             row = subset.loc[method]
             y = 8 - j
             ax.plot([row.gene_cbdir_mean - row.gene_cbdir_sd,
-                     row.gene_cbdir_mean + row.gene_cbdir_sd], [y] * 2,
+                     row.gene_cbdir_mean + row.gene_cbdir_sd], [y - 0.16] * 2,
                     color="#3b6ea8", lw=1.3, alpha=0.70, zorder=2)
-            ax.scatter(row.cell_batc, y, color="#3a9d5d", marker="s",
+            ax.plot([row.gene_cossim_mean - row.gene_cossim_sd,
+                     row.gene_cossim_mean + row.gene_cossim_sd], [y - 0.28] * 2,
+                    color="#8064a2", lw=1.3, alpha=0.70, zorder=2)
+            ax.scatter(row.cell_batc, y + 0.16, color="#3a9d5d", marker="s",
                        s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=3)
-            ax.scatter(row.cell_cbdir, y, color="#d9772a", marker="D",
+            ax.scatter(row.cell_cbdir, y + 0.28, color="#d9772a", marker="D",
                        s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=4)
-            ax.scatter(row.gene_cbdir_mean, y, color="#3b6ea8", marker="o",
+            ax.scatter(row.gene_cbdir_mean, y - 0.16, color="#3b6ea8", marker="o",
+                       s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=5)
+            ax.scatter(row.gene_cossim_mean, y - 0.28, color="#8064a2", marker="^",
                        s=CROSS_LEVEL_MARKER_AREA, edgecolor="white", lw=0.2, zorder=5)
         ax.set_title(category.replace(": ", ":\n"), fontsize=8, weight="bold", pad=7)
+    left = axes[0].get_position().x0
+    right = axes[-1].get_position().x1
+    for index in range(0, len(method_order), 2):
+        center = len(method_order) - 1 - index
+        bottom, top = fig.transFigure.inverted().transform(
+            axes[0].transData.transform([[0, center - 0.46], [0, center + 0.46]])
+        )[:, 1]
+        fig.add_artist(Rectangle(
+            (left, bottom), right - left, top - bottom,
+            transform=fig.transFigure, facecolor="#F2F4F6", edgecolor="none", zorder=-1,
+        ))
     handles = [
         plt.Line2D([], [], marker="o", color="#3b6ea8", lw=1.3, markersize=3.2,
                    label=r"Mean CBDir$_{gene}$ ± gene SD"),
+        plt.Line2D([], [], marker="^", color="#8064a2", lw=1.3, markersize=3.2,
+                   label="Mean CosSim ± gene SD"),
         plt.Line2D([], [], marker="D", color="#d9772a", lw=0, markersize=3.2,
                    label="CBDir"),
         plt.Line2D([], [], marker="s", color="#3a9d5d", lw=0, markersize=3.2,
                    label="BATC"),
     ]
-    fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.16, 0.985),
-               ncol=3, frameon=False, fontsize=7)
-    fig.text(0.58, 0.055, "Directionality score", ha="center", fontsize=7)
-    save(fig, out / "simulation_cross_level_cbdir")
+    fig.legend(handles=handles, loc="lower right", bbox_to_anchor=(0.992, 0.005),
+               ncol=4, frameon=False, fontsize=7, columnspacing=1.2)
+    fig.text(0.58, 0.085, "Score", ha="center", fontsize=7)
+    save(fig, out / "simulation_cross_level_cbdir", png_dpi=600)
 
 
 def main() -> None:
@@ -187,9 +228,9 @@ def main() -> None:
     cell, summary, method_order, display = load_summary()
     out = args.output_dir
     out.mkdir(parents=True, exist_ok=True)
+    summary.to_csv(HERE / "results/cross_level_summary.csv", index=False,
+                   float_format="%.17g")
     if not args.cross_level_only:
-        summary.to_csv(HERE / "results/cross_level_summary.csv", index=False,
-                       float_format="%.17g")
         plot_cell(cell, method_order, display, out)
     plot_cross_level(summary, method_order, display, out)
     print("Wrote cross-level figure" + ("" if args.cross_level_only else " and cell overview"))

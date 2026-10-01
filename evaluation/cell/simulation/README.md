@@ -43,8 +43,13 @@ artifacts and are not committed to Git.
 Use the existing Cell definitions for Consistency, ICCoh, CBDir,
 TransCosine, and BATC; retain CBDir-HD and edge-level/evaluability audits as
 supplementary diagnostics. Keep full precision in numerical result tables.
-The principal cross-level comparison pairs cell-level CBDir with the mean
-CBDir-gene of the corresponding simulated gene set. In the hybrid scenario,
+The principal cross-level comparison pairs cell-level CBDir and BATC with the
+mean CBDir-gene and ground-truth CosSim of the corresponding simulated gene
+set. CosSim comes from
+`evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv` and is
+joined one-to-one to the reference-30 CBDir-gene results by scenario, gene,
+and method. The gene sets must match exactly; neither metric is recalculated.
+In the hybrid scenario,
 the MURK and branching gene subsets remain separate; they share the same
 scenario-level cell score. Do not merge these rows into the real-data Cell
 table or the 20-method overall ranking.
@@ -55,14 +60,23 @@ each edge table, and 54 TiVelo parity rows. All 27 primary metric quintets
 are finite; all parity checks pass. `cross_level_summary.csv` has 36 rows:
 nine methods for each of the normal + MURK, normal + branching, hybrid MURK,
 and hybrid branching gene subsets. The hybrid subsets use the same cell-level
-score but distinct gene-level means and gene-wise standard deviations. These
+score but distinct gene-level means and sample standard deviations for both
+CBDir-gene and CosSim. These
 standard deviations describe variation across the evaluated genes, not
 independent simulation runs; there is one historical realization per scenario.
 
 `figures/simulation_cell_cbdir_batc` compares CBDir and BATC across the three
 scenarios. `figures/simulation_cross_level_cbdir` compares CBDir and BATC with
-the mean CBDir-gene and gene-wise SD for the four subsets.
-Each stem is exported as PDF, SVG, and PNG. The panels use the relative method
+the mean CBDir-gene and CosSim, each with gene-wise SD, for the four subsets.
+Each method occupies one alternating light-gray/white band spanning all four
+panels and their gutters, with cell-level scores above and gene-level scores
+below. The panel canvas is 9.0 by 4.125 inches.
+Small offsets within each subrow avoid marker occlusion. Blue circles encode
+CBDir-gene, purple triangles encode CosSim, orange diamonds encode CBDir, and
+green squares encode BATC; marker shapes, colors, and sizes are unchanged.
+Each stem is exported as PDF, SVG, and PNG. The Figure 4D cross-level PNG uses
+600 dpi; its graphic contains the legend and plot labels, with explanatory
+prose reserved for the manuscript caption. The panels use the relative method
 order and names in `methods/configurations.tsv`; the CSV files retain full
 precision, with no ranking based on rounded display values. BATC is shown as
 a separate cell-level overview and is not treated as a gene-level score.
@@ -124,6 +138,9 @@ python evaluation/cell/run_cell_metrics.py \
 
 python evaluation/cell/simulation/plot_simulation_cell_comparison.py
 ```
+
+Pass `--cross-level-only` to refresh the paired summary table and Figure 4D
+replacement without regenerating the three-scenario Cell overview.
 
 The reference build uses the Gene simulation preprocessing and checks its
 cell names and 30-neighbor indices against the stored Gene reference assets.
