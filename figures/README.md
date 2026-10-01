@@ -16,3 +16,8 @@ retained in `archive/kinetics/figFive.pdf`.
 
 Do not add intermediate panels or alternate result copies to the active
 figure directory.
+
+`suppFigTwelve.pdf` is the approved user-exported, cropped simulation Cell
+composite. `suppfig12_composite_manifest.json` records its checksum and
+manual-assembly boundary; numerical results and the Supplementary Table 7
+exporter belong to `evaluation/cell/simulation/`.

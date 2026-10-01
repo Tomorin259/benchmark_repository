@@ -69,6 +69,38 @@ a separate cell-level overview and is not treated as a gene-level score.
 
 ## Reproduce
 
+### Supplementary Figure 12 and Table 7
+
+`results/cell_metrics.csv` is the full-precision source for the 27 rows and
+135 scores in Supplementary Table 7. The table CSV
+`results/simulation_cell_scores_4dp.csv` and the manuscript-ready fragment
+`results/simulation_cell_scores.tex` report raw scores, not ranks, to four
+decimal places. `results/table_manifest.json` records the source checksum,
+method order, formatting, and LaTeX dependencies. No second copy of the
+full-precision results is maintained.
+
+The table exporter reuses the final material bundle's original table script;
+its input paths and method ordering now resolve through this module's inputs
+and the repository method registry. Regenerate or check the frozen exports:
+
+```bash
+python evaluation/cell/simulation/build_score_table.py
+python evaluation/cell/simulation/build_score_table.py --check
+```
+
+These commands do not rerun velocity methods, change metric definitions, or
+regenerate the simulation. The check compares all 135 formatted scores and
+the complete LaTeX fragment against the full-precision source.
+
+The approved, user-exported and cropped Supplementary Figure 12 composite is
+stored once at `figures/suppFigTwelve.pdf` at the repository root.
+`figures/suppfig12_composite_manifest.json` records its checksum and source
+boundary. It contains the three nine-method stream rows and the five-metric
+boxplot row; the heatmap was replaced by Supplementary Table 7. The table
+exporter does not regenerate this manually assembled PDF or its stream panels.
+
+### Evaluation and comparison panels
+
 From the repository root, using the historical artifacts and compatible
 scVelo/TiVelo environments:
 

@@ -1,0 +1,13 @@
+{
+  "export": "user_exported_cropped_pdf",
+  "paper_figure": "suppfig12",
+  "composite_status": "current",
+  "composite_path": "figures/suppFigTwelve.pdf",
+  "composite_sha256": "350d17af6b3ef6082b3b035cd03f89e7d1272303ad6a8a8370e7b98954dbdefd",
+  "metric_source_path": "evaluation/cell/simulation/results/cell_metrics.csv",
+  "metric_source_sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296",
+  "supplementary_table": "S7",
+  "table_path": "evaluation/cell/simulation/results/simulation_cell_scores.tex",
+  "validation": "The imported PDF checksum matches the approved final material bundle. All 135 table scores are checked against the repository full-precision results. Online PDF byte identity and panel rendering were not independently rechecked in this synchronization.",
+  "reproduction_boundary": "The composite was manually assembled in PowerPoint and user-exported before cropping. The table exporter reproduces the numerical CSV and LaTeX fragment, not the composite or stream panels."
+}

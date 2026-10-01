@@ -1,0 +1,43 @@
+{
+  "source": "evaluation/cell/simulation/results/cell_metrics.csv",
+  "source_sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296",
+  "scenarios": [
+    "Normal + MURK",
+    "Normal + branching",
+    "Hybrid"
+  ],
+  "methods": [
+    "scvelo_dynamic",
+    "multivelo",
+    "unitvelo",
+    "TIvelo",
+    "velovi",
+    "celldancer",
+    "deepvelo",
+    "deepvelo2022",
+    "graphvelo_scv"
+  ],
+  "score_count": 135,
+  "display_format": ".4f",
+  "source_precision": "Unchanged full-precision CSV",
+  "scores_rounding_to_one_at_two_decimals": 16,
+  "scores_rounding_to_one_at_four_decimals": 2,
+  "latex_dependencies": [
+    "booktabs",
+    "multirow",
+    "graphicx"
+  ],
+  "table_label": "tab:suppSimulationCellMetrics",
+  "style_source": "Online merged.tex, Supplemental Tables, tab:tableThreeA--E",
+  "column_order": [
+    "Method",
+    "Dataset",
+    "Consistency Score",
+    "CBDir",
+    "ICCoh",
+    "TransCosine",
+    "BATC"
+  ],
+  "row_grouping": "Method; three datasets per method",
+  "encoding": "Raw scores; inline LaTeX table; no ranks, heatmap, table image or PDF export"
+}
