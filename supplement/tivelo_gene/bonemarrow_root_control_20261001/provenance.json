@@ -1,0 +1,276 @@
+{
+  "archived_path": {
+    "branch_1": [
+      "Mono_2",
+      "DCs"
+    ],
+    "main_path": [
+      "Mono_1",
+      "Mono_2",
+      "Precursors",
+      "HSC_2",
+      "HSC_1",
+      "Mega",
+      "Ery_1",
+      "Ery_2"
+    ],
+    "start_node": "Mono_1"
+  },
+  "archived_reference30_parity_absolute_differences": {
+    "batc": 0.0,
+    "cbdir": 2.7755575615628914e-17,
+    "consistency": 0.0,
+    "highdim_cbdir": 0.0,
+    "iccoh": 0.0,
+    "transcosine": 0.0
+  },
+  "changed": [
+    "DTI root",
+    "root-dependent child_dict and DPT",
+    "directed neighbors and refitted velocities"
+  ],
+  "evaluation_cases": [
+    {
+      "path": "velocity:results/TIvelo/tivelo_bonemarrow.h5ad",
+      "seed": null,
+      "stem": "archived_original",
+      "variant": "archived_original"
+    },
+    {
+      "elapsed_seconds": 59.20104544100468,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261001.h5ad",
+      "root": "Mono_1",
+      "seed": 20261001,
+      "sha256": "bbf7220d8f6b82d77c9f0756d040b0d4569c873645fd5e9dd0b6522b75b4fb9c",
+      "stem": "original_root_refit_seed20261001",
+      "variant": "original_root_refit"
+    },
+    {
+      "elapsed_seconds": 42.15655018700636,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261001.h5ad",
+      "root": "HSC_1",
+      "seed": 20261001,
+      "sha256": "43ca983cdd06a5c4f112868c31fb2379fd79cef67565caad89beaeb987d3d367",
+      "stem": "hsc1_root_refit_seed20261001",
+      "variant": "hsc1_root_refit"
+    },
+    {
+      "elapsed_seconds": 43.238272395014064,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261002.h5ad",
+      "root": "Mono_1",
+      "seed": 20261002,
+      "sha256": "57145c336af34f3568189d0997e43a5a83b357ff83eb513c7afbda27f65e9ba9",
+      "stem": "original_root_refit_seed20261002",
+      "variant": "original_root_refit"
+    },
+    {
+      "elapsed_seconds": 47.29614849499194,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261002.h5ad",
+      "root": "HSC_1",
+      "seed": 20261002,
+      "sha256": "8032ee2197ac0a536f37fd87396072150109db01e03deceb8c541b5889760359",
+      "stem": "hsc1_root_refit_seed20261002",
+      "variant": "hsc1_root_refit"
+    },
+    {
+      "elapsed_seconds": 53.24676771502709,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261003.h5ad",
+      "root": "Mono_1",
+      "seed": 20261003,
+      "sha256": "b599df90eada2925006ada30cd75d8dfc93dc3366bd556f27f2bd2923647b273",
+      "stem": "original_root_refit_seed20261003",
+      "variant": "original_root_refit"
+    },
+    {
+      "elapsed_seconds": 48.93768721399829,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261003.h5ad",
+      "root": "HSC_1",
+      "seed": 20261003,
+      "sha256": "ed89e5e1d9c83d067eac3a9f007c6be7bde5a5e3021febdf18b40dc54ee451dc",
+      "stem": "hsc1_root_refit_seed20261003",
+      "variant": "hsc1_root_refit"
+    }
+  ],
+  "fit_settings": {
+    "alpha_1": 1,
+    "alpha_2": 0.1,
+    "batch_size": 1024,
+    "constrain": true,
+    "filter_genes": false,
+    "loss_fun": "mse",
+    "n_epochs": 100,
+    "only_s": false
+  },
+  "fits": {
+    "hsc1_root_refit_seed20261001": {
+      "elapsed_seconds": 42.15655018700636,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261001.h5ad",
+      "root": "HSC_1",
+      "seed": 20261001,
+      "sha256": "43ca983cdd06a5c4f112868c31fb2379fd79cef67565caad89beaeb987d3d367",
+      "variant": "hsc1_root_refit"
+    },
+    "hsc1_root_refit_seed20261002": {
+      "elapsed_seconds": 47.29614849499194,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261002.h5ad",
+      "root": "HSC_1",
+      "seed": 20261002,
+      "sha256": "8032ee2197ac0a536f37fd87396072150109db01e03deceb8c541b5889760359",
+      "variant": "hsc1_root_refit"
+    },
+    "hsc1_root_refit_seed20261003": {
+      "elapsed_seconds": 48.93768721399829,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261003.h5ad",
+      "root": "HSC_1",
+      "seed": 20261003,
+      "sha256": "ed89e5e1d9c83d067eac3a9f007c6be7bde5a5e3021febdf18b40dc54ee451dc",
+      "variant": "hsc1_root_refit"
+    },
+    "original_root_refit_seed20261001": {
+      "elapsed_seconds": 59.20104544100468,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261001.h5ad",
+      "root": "Mono_1",
+      "seed": 20261001,
+      "sha256": "bbf7220d8f6b82d77c9f0756d040b0d4569c873645fd5e9dd0b6522b75b4fb9c",
+      "variant": "original_root_refit"
+    },
+    "original_root_refit_seed20261002": {
+      "elapsed_seconds": 43.238272395014064,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261002.h5ad",
+      "root": "Mono_1",
+      "seed": 20261002,
+      "sha256": "57145c336af34f3568189d0997e43a5a83b357ff83eb513c7afbda27f65e9ba9",
+      "variant": "original_root_refit"
+    },
+    "original_root_refit_seed20261003": {
+      "elapsed_seconds": 53.24676771502709,
+      "path": "repository:supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261003.h5ad",
+      "root": "Mono_1",
+      "seed": 20261003,
+      "sha256": "b599df90eada2925006ada30cd75d8dfc93dc3366bd556f27f2bd2923647b273",
+      "variant": "original_root_refit"
+    }
+  },
+  "graphs": {
+    "hsc1_root_refit": {
+      "child_dict": {
+        "CLP": [],
+        "DCs": [],
+        "Ery_1": [
+          "Ery_2",
+          "Mega"
+        ],
+        "Ery_2": [
+          "Ery_1"
+        ],
+        "HSC_1": [
+          "HSC_2"
+        ],
+        "HSC_2": [
+          "Precursors",
+          "CLP"
+        ],
+        "Mega": [],
+        "Mono_1": [
+          "Mono_2"
+        ],
+        "Mono_2": [
+          "Mono_1",
+          "DCs"
+        ],
+        "Precursors": []
+      },
+      "directed_neighbor_pairs": 74917,
+      "iroot": 1,
+      "original_graph_replay_exact": false,
+      "root": "HSC_1",
+      "root_cell": "Run4_120703409056541"
+    },
+    "original_root_refit": {
+      "child_dict": {
+        "CLP": [],
+        "DCs": [],
+        "Ery_1": [
+          "Ery_2",
+          "Mega"
+        ],
+        "Ery_2": [
+          "Ery_1"
+        ],
+        "HSC_1": [],
+        "HSC_2": [
+          "HSC_1",
+          "Precursors",
+          "CLP"
+        ],
+        "Mega": [],
+        "Mono_1": [
+          "Mono_2"
+        ],
+        "Mono_2": [
+          "DCs"
+        ],
+        "Precursors": [
+          "HSC_2"
+        ]
+      },
+      "directed_neighbor_pairs": 74621,
+      "iroot": 2,
+      "original_graph_replay_exact": true,
+      "root": "Mono_1",
+      "root_cell": "Run4_120703409580963"
+    }
+  },
+  "held_fixed": [
+    "cells and selected genes",
+    "Mu/Ms",
+    "undirected KNN",
+    "PAGA",
+    "diffusion map",
+    "optimizer and paired seeds",
+    "reference-30 evaluation pipeline"
+  ],
+  "input_hashes": {
+    "repository:evaluation/cell/config.json": "d4c44da965de35a669d71a488c55ef3abe223f91ce72b7938c7bea7e309a684d",
+    "repository:evaluation/cell/inputs.tsv": "fbec71fb529c6d389fd88809e08cb2cf6f3c237d451f9409fbeb6abe8bea8d4f",
+    "repository:evaluation/cell/prepare_cell_metrics.py": "a384e3f9fdbfa1a55be50f236c63d20fd80fc10dfca4ac5e0f914b019fdd6e9e",
+    "repository:evaluation/cell/reference_neighbors/bonemarrow.npz": "dd42d081ba1fecff923b4ce6fc1edb5b1ed15b17bb43809d18e3322d9f94ad32",
+    "repository:evaluation/cell/results/cell_metrics.csv": "5bd22e001d14dc0d866e19eb8492e4c45e74b2878a00c95a957aeed64c71bedd",
+    "repository:evaluation/cell/results/cell_metrics_supplementary.csv": "f9677243c1700ccc29e8ab6f7669a28876f0f69e98e0033fb88940c4da6d1462",
+    "repository:evaluation/cell/run_cell_metrics.py": "21d281aea57d2f7bed645ef6a08bcaba4ee720526c14e113ea7f9a236ef412b1",
+    "repository:evaluation/cell/score_tivelo_metrics.py": "0f0bb8837a6f18c9b3f346ffe2bcc12c7143afa073fd1731af650e0316c4cf54",
+    "velocity:indicators/cell/reference_moments_union_scvelo025_20260907/bonemarrow.npz": "8aa7bc6d4f728efe2eb0dfcc82b28f01b681593670ccc4b532be9355f2d7c648",
+    "velocity:results/TIvelo/tivelo_bonemarrow.h5ad": "d0e7498c2cc18272866a8b82e3ffa0b16f52b16165f8b5fe9bad4a1d1b37feef"
+  },
+  "input_hashes_unchanged": true,
+  "n_cells": 5780,
+  "n_genes": 473,
+  "notes": [
+    "Palantir pseudotime is an independent inferred reference, not measured time",
+    "HSC_1 is a biological-root intervention, not a new competing method",
+    "X_umap stores the archived t-SNE coordinates in this dataset",
+    "Native velocity projection regenerated before frozen-reference evaluation"
+  ],
+  "package_versions": {
+    "anndata": "0.10.8",
+    "numpy": "1.26.4",
+    "scanpy": "1.10.3",
+    "scvelo": "0.3.1",
+    "tivelo": "0.1.4",
+    "torch": "2.5.0"
+  },
+  "root_settings": {
+    "root_select": "connectivities (first cell in root cluster)",
+    "t1": 0.1,
+    "t2": 2.0
+  },
+  "script_sha256": "98c0503ccc2ac6e102cc9559865f446985844400afa7e11775c3e04a9984a356",
+  "seeds": [
+    20261001,
+    20261002,
+    20261003
+  ],
+  "status": "complete",
+  "threads": 8,
+  "type": "post-orientation root mechanism sensitivity, not benchmark correction"
+}

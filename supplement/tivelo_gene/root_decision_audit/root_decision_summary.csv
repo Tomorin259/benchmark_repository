@@ -1,0 +1,4 @@
+scenario,selected_root,top_root_bin,top_root_score,second_root_score,top_end_bin,top_end_score,selected_root_root_minus_end,n_paga_nodes,n_paga_edges
+branching,BranchA_9,BranchA_9,0.8926909215370729,0.10433958383287688,BranchB_8,0.8497785269934164,0.8926908511544671,20,19
+all,BranchB_9,BranchB_9,0.37479228296320444,0.3506113174360301,BranchB_8,0.7424356468048083,0.35499551021858267,20,19
+murk,BranchB_3,BranchB_3,0.7712646069191805,0.18026985181004115,BranchB_9,0.722939676922598,0.7712645706799225,10,9

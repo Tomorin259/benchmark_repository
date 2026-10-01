@@ -1,0 +1,9 @@
+scenario,variant,n_directed_neighbor_pairs,n_forward_bin_pairs,n_reverse_bin_pairs,n_same_bin_pairs,n_cross_branch_pairs
+branching,baseline_archived_graph,25089,573,1311,22505,700
+branching,baseline_refit,25089,573,1311,22505,700
+branching,oracle_root_BranchA_0,25401,2580,0,22306,515
+branching,oracle_root_BranchB_0,25785,2446,0,22479,860
+all,baseline_archived_graph,27470,505,1222,25743,0
+all,baseline_refit,27470,505,1222,25743,0
+all,oracle_root_BranchA_0,28181,2787,0,25241,153
+all,oracle_root_BranchB_0,28117,2822,0,25295,0

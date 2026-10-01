@@ -1,0 +1,44 @@
+{
+  "purpose": "Title-free rendering assets with full lineage coverage",
+  "generator_sha256": "e94006a53973cef8b676fb8d863dc941c9b37695f53664785034167da704a69b",
+  "main_order_csv_sha256": "1972f4998a1b3d23ebf0beeefbb30a7f8ade938fe6039189cc9a82d957ce1ada",
+  "branch_order_csv_sha256": "32a95b35b7edb4c26b448e80bdba4c92f47b102dd9fc9a021f119303a04d2c5f",
+  "datasets": [
+    {
+      "scenario": "branching",
+      "source_h5ad": "indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "known_order_colored_cells": 2000,
+      "main_dpt_colored_cells": 1600,
+      "branch_dpt_colored_cells": 500,
+      "shared_path_cells": 100,
+      "umap_float64_sha256": "6de80316c3a12d0f8b97e05435008b9e337b50c2ff64af115d51c9f84823f8c6",
+      "original_main_dpt_sha256": "c04784b0f95d9e9e343da4e228f1d940aa1f3c6b3a91bc4dcf783acab8d71b54"
+    },
+    {
+      "scenario": "all",
+      "source_h5ad": "indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "known_order_colored_cells": 2000,
+      "main_dpt_colored_cells": 1100,
+      "branch_dpt_colored_cells": 1000,
+      "shared_path_cells": 100,
+      "umap_float64_sha256": "010e375339e684419c8b4bf504088c995c9c99f339e6391621c15997d4a47dad",
+      "original_main_dpt_sha256": "7efb58c2c4ac4ae8b13977f15089ab9e9ac57a144f4ed3aac5a6f6fcf52cf2e4"
+    }
+  ],
+  "preview_rows": [
+    "branching",
+    "hybrid"
+  ],
+  "preview_columns": [
+    "states",
+    "known",
+    "main_dpt",
+    "branch_dpt"
+  ],
+  "independent_path_dpt": true,
+  "known_order": "All cells, discrete developmental bin 0-9; not exact chronological time",
+  "grey_cells_in_dpt": "Cells outside the independently analyzed path",
+  "shared_path_dpt_colorbar": true,
+  "umap_transform": "None; identical square limits within a dataset",
+  "baked_in_titles_captions_panel_letters": false
+}

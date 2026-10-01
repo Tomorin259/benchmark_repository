@@ -1,0 +1,14 @@
+{
+  "purpose": "Audit upstream stochastic scVelo direction used by TIvelo; not a benchmark replacement",
+  "seeds": [
+    20260926,
+    20260927
+  ],
+  "n_jobs": 12,
+  "held_fixed": "TIvelo simulation preprocessing and input H5ADs",
+  "stages": [
+    "scv.tl.velocity(mode='stochastic')",
+    "scv.tl.velocity_graph",
+    "scv.tl.terminal_states"
+  ]
+}

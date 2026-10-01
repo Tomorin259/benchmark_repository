@@ -1,0 +1,4 @@
+scenario,n_cells,n_genes,start_node,main_path_first,main_path_last,mean_score_main,median_score_main,child_forward,child_reverse,child_cross_branch,child_other
+murk,1000,650,BranchB_0,BranchB_0,BranchB_9,40.11234302284768,33.461799094944,9,0,0,0
+branching,2000,620,BranchB_9,BranchB_9,BranchA_9,-101.66881781984287,-121.54884970564609,8,8,3,0
+all,2000,720,BranchB_9,BranchB_9,BranchA_9,-19.594465345665128,-19.90643597927568,9,9,1,0

@@ -1,0 +1,91 @@
+{
+  "figure": "Supplementary Fig. 13",
+  "panels": [
+    {
+      "panels": "A,B",
+      "source": "supplement/tivelo_gene/figures/ab_right_legend_material.pdf",
+      "sha256": "e476b3918235e3856c38fa0203d6406ebe995bbcb7b4c088639d112937bd15b6"
+    },
+    {
+      "panels": "C",
+      "source": "supplement/tivelo_gene/figures/tivelo_root_control_gene_metrics.pdf",
+      "sha256": "379bbca10cb4d7dffac478ad4ad8dbc259878ece28b7d0a47055eaa1492c0944"
+    },
+    {
+      "panels": "D",
+      "source": "supplement/tivelo_gene/figures/bonemarrow_root_control_row.pdf",
+      "sha256": "a511c05ff19f3f318e187e26673e9ecce7e14233a674adfab51de54aaecefd6d"
+    }
+  ],
+  "assembly": [
+    {
+      "file": "supfig13.pptx",
+      "sha256": "35611db3836d54be7076a4963a02eef210aa3799784538418ceac649b1f765e5"
+    },
+    {
+      "file": "suppFigThirteen.pdf",
+      "sha256": "59a9ad72d5e24e9135eb3c11997240f6be2fd12e11f600a8160478328af2be3e"
+    }
+  ],
+  "assembly_process": "Author-approved PowerPoint assembly; exported PDF cropped without rerendering panels",
+  "external_native_outputs": [
+    {
+      "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261001",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261001.h5ad",
+      "sha256": "43ca983cdd06a5c4f112868c31fb2379fd79cef67565caad89beaeb987d3d367",
+      "availability": "external execution-host artifact; no public URI assigned"
+    },
+    {
+      "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261002",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261002.h5ad",
+      "sha256": "8032ee2197ac0a536f37fd87396072150109db01e03deceb8c541b5889760359",
+      "availability": "external execution-host artifact; no public URI assigned"
+    },
+    {
+      "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261003",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261003.h5ad",
+      "sha256": "ed89e5e1d9c83d067eac3a9f007c6be7bde5a5e3021febdf18b40dc54ee451dc",
+      "availability": "external execution-host artifact; no public URI assigned"
+    },
+    {
+      "id": "tivelo-bonemarrow-original_root_refit_seed20261001",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261001.h5ad",
+      "sha256": "bbf7220d8f6b82d77c9f0756d040b0d4569c873645fd5e9dd0b6522b75b4fb9c",
+      "availability": "external execution-host artifact; no public URI assigned"
+    },
+    {
+      "id": "tivelo-bonemarrow-original_root_refit_seed20261002",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261002.h5ad",
+      "sha256": "57145c336af34f3568189d0997e43a5a83b357ff83eb513c7afbda27f65e9ba9",
+      "availability": "external execution-host artifact; no public URI assigned"
+    },
+    {
+      "id": "tivelo-bonemarrow-original_root_refit_seed20261003",
+      "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261003.h5ad",
+      "sha256": "b599df90eada2925006ada30cd75d8dfc93dc3366bd556f27f2bd2923647b273",
+      "availability": "external execution-host artifact; no public URI assigned"
+    }
+  ],
+  "scripts": [
+    {
+      "file": "supplement/tivelo_gene/figures/scripts/assemble_ab_material.py",
+      "sha256": "03dca4db7228bc4f6d608f3bb8627208be1dd31eb886800417f84e09d27f01ee"
+    },
+    {
+      "file": "supplement/tivelo_gene/figures/scripts/plot_style.py",
+      "sha256": "481b43c4830523726bf7fffea11c38222392c40d3d3c89b30006bc0e0ef67d04"
+    },
+    {
+      "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_bonemarrow_dpt_assets.py",
+      "sha256": "4606925ba4a4bb52e1314819c2aad7eea7154a9e89c11a045fd0320d26536d24"
+    },
+    {
+      "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_compact_control.py",
+      "sha256": "b426b286179a3d21503963ecab8d9b697c76687ef9d14f7c3f769508023048d6"
+    },
+    {
+      "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_full_lineage_shared_dpt.py",
+      "sha256": "e94006a53973cef8b676fb8d863dc941c9b37695f53664785034167da704a69b"
+    }
+  ]
+}

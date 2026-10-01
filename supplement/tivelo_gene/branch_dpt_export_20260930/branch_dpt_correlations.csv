@@ -1,0 +1,4 @@
+scenario,path,branch,n_cells,spearman_dpt_bin
+branching,branch_1,BranchA,300,0.1885628558907442
+branching,branch_1,BranchB,200,-0.8495815409481706
+all,branch_1,BranchA,1000,0.9931897200425424

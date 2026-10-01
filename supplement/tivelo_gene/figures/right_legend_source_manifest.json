@@ -1,0 +1,122 @@
+{
+  "mode": "preview only; no source asset or PPT replacement",
+  "canvas_inches": [
+    7.5,
+    4.28
+  ],
+  "sources": [
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/branching_states.pdf",
+      "sha256": "a562cc52c5f876a33b055bbf960eaa51684a7cdb40f43b741719b205dac6c9db",
+      "target_points": [
+        16.560000000000002,
+        19.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/branching_known.pdf",
+      "sha256": "7ef37499cb017937f26a86b0a834c95959d75dd9bd37ab38a24b9f7c998f695e",
+      "target_points": [
+        144.72000000000003,
+        19.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/branching_main_dpt.pdf",
+      "sha256": "aaa5420f32732096f22b14abbcc2a4ef1675e23973da2c189d6387e43d051d2e",
+      "target_points": [
+        272.88,
+        19.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/branching_branch_dpt.pdf",
+      "sha256": "e596d1e97c53e39ba9bfc4429937c7f6a28fd4c29a30042f47a617e595931d89",
+      "target_points": [
+        401.04,
+        19.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/hybrid_states.pdf",
+      "sha256": "9ea4db4a5a78c5d08d6f27eeb1ee311aa8109dfc92830669703bd1599df1c230",
+      "target_points": [
+        16.560000000000002,
+        145.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/hybrid_known.pdf",
+      "sha256": "4fa79ab765082ebe47fa76db6b7c2082a9101d9f5888190569d280a8ef9e638f",
+      "target_points": [
+        144.72000000000003,
+        145.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/hybrid_main_dpt.pdf",
+      "sha256": "a17039552a487790e3ecbd72e86ba4207a9f619d684edd054b88f06df450cca8",
+      "target_points": [
+        272.88,
+        145.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/individual/hybrid_branch_dpt.pdf",
+      "sha256": "330047cf705a9fd7a8e6394666bf044af34ea04bd8233f5f39829ca05160871a",
+      "target_points": [
+        401.04,
+        145.44,
+        122.39999999999999,
+        122.39999999999999
+      ],
+      "clip_points": null
+    },
+    {
+      "source": "repository:supplement/tivelo_gene/figures/ab_assets/order_comparison_material.pdf",
+      "sha256": "895d6b1852e621e378e699f37fa737c20b22b3517e4c918f1fc5a511933beea7",
+      "target_points": [
+        334.03999999999996,
+        281.52,
+        193,
+        21
+      ],
+      "clip_points": [
+        149,
+        13,
+        342,
+        34
+      ]
+    }
+  ],
+  "data_changes": false,
+  "changes": [
+    "removed left row labels",
+    "reduced header and row whitespace",
+    "one 0--1 colorbar at bottom right without label",
+    "no panel letters"
+  ],
+  "normalization": "Known developmental bins / 9; DPT unchanged, normalized per path",
+  "colors": "Unchanged: original known Normalize(0,9) is identical to Normalize(0,1) on bin/9"
+}

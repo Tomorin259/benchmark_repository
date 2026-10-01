@@ -1,0 +1,103 @@
+{
+  "purpose": "Fixed-path branch DPT export only; no model/metric changes",
+  "seed": 20260926,
+  "source_main_csv": "ordering_trigger_audit_20260929_threads1/cell_orders.csv",
+  "path_table_sha256": "008410688619ddadca84983f10cbacdc8b0c8eda2155dfe9c491500ed08e78db",
+  "inputs": [
+    {
+      "scenario": "branching",
+      "input": "indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "Mu_sha256": "f7933c6841c86163d9f610547a880c01eeb25d6150725531e87e660b854d3221",
+      "Ms_sha256": "d00bb7e1bf65e2465ed486f187674b1f92124d4546353e55936a9969185a9fad",
+      "n_selected_genes": 610
+    },
+    {
+      "scenario": "all",
+      "input": "indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "Mu_sha256": "5d4b59cb114e030a1da6fab1952c8b1c387547e372e5fcf76a1eef2c1b331d5c",
+      "Ms_sha256": "d6ccd4c4288f2eb723aa7385cbc16715001c035bb204e3ec1e51e70e4ab53f95",
+      "n_selected_genes": 610
+    }
+  ],
+  "checks": [
+    {
+      "scenario": "branching",
+      "path": "main_path",
+      "nodes": [
+        "BranchA_9",
+        "BranchA_8",
+        "BranchA_7",
+        "BranchA_6",
+        "BranchA_5",
+        "BranchA_4",
+        "BranchA_3",
+        "BranchA_2",
+        "BranchB_2",
+        "BranchB_3",
+        "BranchB_4",
+        "BranchB_5",
+        "BranchB_6",
+        "BranchB_7",
+        "BranchB_8",
+        "BranchB_9"
+      ],
+      "root_cell": "900",
+      "n_cells": 1600,
+      "maximum_main_dpt_replay_error": 9.71445146547012e-17
+    },
+    {
+      "scenario": "branching",
+      "path": "branch_1",
+      "nodes": [
+        "BranchA_2",
+        "BranchA_1",
+        "BranchA_0",
+        "BranchB_0",
+        "BranchB_1"
+      ],
+      "root_cell": "200",
+      "n_cells": 500
+    },
+    {
+      "scenario": "all",
+      "path": "main_path",
+      "nodes": [
+        "BranchA_0",
+        "BranchB_0",
+        "BranchB_1",
+        "BranchB_2",
+        "BranchB_3",
+        "BranchB_4",
+        "BranchB_5",
+        "BranchB_6",
+        "BranchB_7",
+        "BranchB_8",
+        "BranchB_9"
+      ],
+      "root_cell": "0",
+      "n_cells": 1100,
+      "maximum_main_dpt_replay_error": 1.1102230246251565e-16
+    },
+    {
+      "scenario": "all",
+      "path": "branch_1",
+      "nodes": [
+        "BranchA_0",
+        "BranchA_1",
+        "BranchA_2",
+        "BranchA_3",
+        "BranchA_4",
+        "BranchA_5",
+        "BranchA_6",
+        "BranchA_7",
+        "BranchA_8",
+        "BranchA_9"
+      ],
+      "root_cell": "0",
+      "n_cells": 1000
+    }
+  ],
+  "root_rule": "First cell in the initial path node, as correct_path(root_select='connectivities')",
+  "independent_path_times": true,
+  "generator_sha256": "f3169cc3a08c69e0f43de7fda9e86922d05883c4b1f00eddfffcefacf8f480cc"
+}

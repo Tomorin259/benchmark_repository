@@ -1,0 +1,13 @@
+{
+  "generator_sha256": "f6939a8d40c520cd8e7bf4eb2e8ee45d05bfaf310d93cc67105ca33a49a1d69b",
+  "sources": {
+    "repository:supplement/tivelo_gene/root_stage_intervention/root_stage_gene_scores.csv": "933fe24c80a603304ebfdf2e6080e07c9823c2e07312eb4e151f9f4c17447a3a",
+    "repository:supplement/tivelo_gene/root_stage_intervention/root_stage_summary.csv": "2115fdc5c6753239115e50f696bf39f30852d740553ff6350367682829096b30"
+  },
+  "canvas_inches": [
+    6.82,
+    1.82
+  ],
+  "numerical_changes": false,
+  "new_titles_captions_panel_letters": false
+}
