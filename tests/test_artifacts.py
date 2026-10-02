@@ -70,9 +70,9 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 124
+    assert len(rows) == 126
     materialized = [row for row in rows if row["status"] == "materialized"]
-    assert len(materialized) == 117
+    assert len(materialized) == 119
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
         target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()
@@ -88,6 +88,33 @@ def test_assembly_manifest_materialized_panels_are_verified():
         "suppfig10/B_row_geometric_median4_batc.svg",
     }
     assert {row["materialized_path"] for row in panels} == expected
+
+
+def test_supplementary_figures_12_and_13_are_registered():
+    with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
+        rows = list(csv.DictReader(handle, delimiter="\t"))
+    registered = {
+        row["figure"]: row for row in rows
+        if row["figure"] in {"suppfig12", "suppfig13"}
+    }
+    assert set(registered) == {"suppfig12", "suppfig13"}
+    assert all(row["panel"] == "whole" and row["status"] == "materialized"
+               for row in registered.values())
+    s12 = registered["suppfig12"]
+    assert s12["source_path"] == "figures/suppFigTwelve.pdf"
+    assert s12["materialized_path"] == "suppfig12/suppFigTwelve.pdf"
+    assert s12["sha256"] == hashlib.sha256((ROOT / s12["source_path"]).read_bytes()).hexdigest()
+    s12_manifest = json.loads((ROOT / "figures/suppfig12_composite_manifest.json").read_text())
+    assert s12_manifest["composite_sha256"] == s12["sha256"]
+    s13 = registered["suppfig13"]
+    assert s13["source_path"] == "figures/assembly/suppfig13/suppFigThirteen.pdf"
+    assert s13["materialized_path"] == "suppfig13/suppFigThirteen.pdf"
+    assert s13["sha256"] == hashlib.sha256((ROOT / s13["source_path"]).read_bytes()).hexdigest()
+    s13_manifest = json.loads((ROOT / "figures/assembly/suppfig13/assembly_manifest.json").read_text())
+    assembly_hashes = {item["file"]: item["sha256"] for item in s13_manifest["assembly"]}
+    assert assembly_hashes["suppFigThirteen.pdf"] == s13["sha256"]
+    assert assembly_hashes["supfig13.pptx"] == hashlib.sha256(
+        (ROOT / "figures/assembly/suppfig13/supfig13.pptx").read_bytes()).hexdigest()
 
 
 def test_online_supplementary_figure_gaps_are_explicit():

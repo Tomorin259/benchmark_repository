@@ -22,3 +22,8 @@ Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are
 materialized under `suppfig10/`. Supplementary Figure 11 has two materialized
 veloAE source panels. Its manual full-page composite and Supplementary Figure 9
 remain unresolved in the manifest.
+
+Supplementary Figures 12 and 13 are registered as whole-composite materials.
+S12 is the approved simulation Cell composite with its Table 7 provenance;
+S13 is the approved TiVelo root-control composite with its editable PPTX and
+panel manifest. Their detailed provenance remains beside each composite.

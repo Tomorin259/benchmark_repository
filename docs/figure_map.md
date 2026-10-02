@@ -49,5 +49,11 @@ Figure 7 is the integrated method comparison. Its repository-baseline PDF is
 The online manuscript assigns the matched cell/gene comparison to
 Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.
 Figure 10 source panels are in `figures/assembly/suppfig10/`; Figure 11
-veloAE A/B source panels are in `figures/assembly/suppfig11/`. Their final
-composites remain unresolved in the assembly manifest.
+veloAE A/B source panels are in `figures/assembly/suppfig11/`. Supplementary
+Figure 12 is the approved simulation Cell composite at
+`figures/suppFigTwelve.pdf`, with numerical provenance in
+`figures/suppfig12_composite_manifest.json`. Supplementary Figure 13 is the
+approved TiVelo root-control composite under
+`figures/assembly/suppfig13/`, with its PDF, editable PPTX, and assembly
+manifest. Both are registered as whole composites in the root assembly
+manifest.
