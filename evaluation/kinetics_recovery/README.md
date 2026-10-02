@@ -205,6 +205,10 @@ reference alignments.
 Cross-experiment summaries use all finite gene scores, not the selected
 Figure 6 genes. Their canonical input is `results/central_results/gene_metrics.csv`;
 see `../summary/README.md` for the refresh and validation command.
+The run manifest retains the Figure 7 PDF hash observed at promotion under
+`historical_preserved_figures_sha256`, outside the kinetics outputs. Current
+Figure 7 inputs, assembly and PDF hashes belong to
+`../../figures/fig7_composite_manifest.json`.
 
 Before replacing any future panel, freeze its inputs, render into a fresh
 directory, compare it with an explicitly supplied external archive, and validate

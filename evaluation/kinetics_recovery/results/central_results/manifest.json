@@ -331,9 +331,12 @@
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/Dynamo_alpha.csv": "c83affe71b477a74e37fb5863b6daf60d3784e764435a15677cafc8bea35aff7",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.png": "090d34813efa8f2975477033434559c5ee18011f5dd5c37d80ef28ba214273ad",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.pdf": "1b23f07d45b10f0211203bac08ff2663f6ea4b133be49dde8673665b840bd1c8",
-    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.manifest.json": "209f662a2e6981d6ed1132d8f659d6082c4c0f1dab4086329205fd917ad614f3",
+    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.manifest.json": "209f662a2e6981d6ed1132d8f659d6082c4c0f1dab4086329205fd917ad614f3"
+  },
+  "historical_preserved_figures_sha256": {
     "figures/figSeven.pdf": "e2de1a0a932169bcb72cbe17bf55b4351788424092b06189786285369ac85f3f"
   },
+  "figure7_provenance": "figures/fig7_composite_manifest.json",
   "preserved_tracked_paths_verified_unchanged": [
     "evaluation/kinetics_recovery/results/final_seed123/"
   ],

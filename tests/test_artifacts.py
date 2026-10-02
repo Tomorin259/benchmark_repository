@@ -218,3 +218,19 @@ def test_figure4d_registration_and_composite_match_current_source():
     assert composite["panels"][0]["source_sha256"] == formal[0]["sha256"]
     for item in composite["metric_sources"]:
         assert hashlib.sha256((ROOT / item["path"]).read_bytes()).hexdigest() == item["sha256"]
+
+
+def test_figure7_current_assets_are_owned_by_its_composite_manifest():
+    path = "figures/fig7_composite_manifest.json"
+    composite = json.loads((ROOT / path).read_text())
+    assert composite["figure"] == "Figure 7"
+    assert composite["output"]["path"] == "figures/figSeven.pdf"
+    assert composite["assembly"]["path"] == "figures/assembly/fig7/fig7.pptx"
+    for item in [composite["output"], composite["assembly"], *composite["inputs"],
+                 *composite["summary_sources"], *composite["summary_refresh_scripts"]]:
+        assert hashlib.sha256((ROOT / item["path"]).read_bytes()).hexdigest() == item["sha256"], item["path"]
+    kinetics = json.loads(
+        (ROOT / "evaluation/kinetics_recovery/results/central_results/manifest.json").read_text()
+    )
+    assert "figures/figSeven.pdf" not in kinetics["outputs_sha256"]
+    assert kinetics["figure7_provenance"] == path
