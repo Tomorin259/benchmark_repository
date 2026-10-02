@@ -13,10 +13,12 @@ Figure 5
 contains real-data gene-kinetics panels; the canonical source for its D
 overview remains unverified. Figure 6 has 16 materialized source panels,
 including Dynamo(label data) in organoid E, with its validated user-exported
-composite recorded in `../fig6_composite_manifest.json`. Figure 7 retains the
-repository-baseline `../figSeven.pdf`; no independent whole-panel source is
-recorded. The old kinetics Figure 5 material is kept in the archive and has
-no active assembly aliases.
+composite recorded in `../fig6_composite_manifest.json`. Figure 7's original
+editable whole-panel source is `fig7/fig7.pptx`, including ten native charts
+and their embedded workbooks. The current author-exported,
+cropped `../figSeven.pdf` and its numerical inputs are recorded in
+`../fig7_composite_manifest.json`. The old kinetics Figure 5 material is kept
+in the archive and has no active assembly aliases.
 
 Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are
 materialized under `suppfig10/`. Supplementary Figure 11 has two materialized

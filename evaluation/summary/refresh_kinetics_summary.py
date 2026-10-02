@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = "evaluation/kinetics_recovery/results/central_results"
-RESULTS = ROOT / "evaluation/summary/results/figure6_summary"
+RESULTS = ROOT / "evaluation/summary/results/figure7_summary"
 
 
 def read_csv(path):
@@ -107,19 +107,19 @@ def main(write):
     for name, replacement in [("kinetic_component_means", component_rows),
                               ("gene_metric_dataset_means", system_rows),
                               ("gene_metric_summary", method_rows)]:
-        path = RESULTS / f"fig2_{name}.csv"
+        path = RESULTS / f"fig7_{name}.csv"
         fields, rows = read_csv(path)
         retained = [] if name == "kinetic_component_means" else [
             row for row in rows if not row["Metric"].startswith("Kinetic-Spearman-")
         ]
         updates.append((path, fields, retained + replacement))
 
-    path = RESULTS / "fig2_gene_metric_wps_values.csv"
+    path = RESULTS / "fig7_gene_metric_wps_values.csv"
     fields, rows = read_csv(path)
     mapped = set()
     for row in rows:
         for parameter in ("alpha", "gamma"):
-            key = (row["Figure2_Method"], parameter)
+            key = (row["Figure7_Method"], parameter)
             prefix = f"Kinetic_Spearman_{parameter}"
             if key in methods:
                 values = methods[key]

@@ -72,7 +72,7 @@ def test_assembly_manifest_materialized_panels_are_verified():
         rows = list(csv.DictReader(handle, delimiter="\t"))
     assert len(rows) == 126
     materialized = [row for row in rows if row["status"] == "materialized"]
-    assert len(materialized) == 119
+    assert len(materialized) == 120
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
         target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()

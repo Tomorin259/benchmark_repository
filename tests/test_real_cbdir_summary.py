@@ -49,7 +49,7 @@ class RealCBDirSummaryTests(unittest.TestCase):
         self.check_row(expected, dict(expected, Mean="0.3150070141443386"), succeeds=False)
 
     def test_formatted_wps_scores_remain_exact(self):
-        expected = dict(Figure2_Method="DeepVelo", Real_CBDir_mean_plus_1="1.1197")
+        expected = dict(Figure7_Method="DeepVelo", Real_CBDir_mean_plus_1="1.1197")
         self.check_row(expected, dict(expected, Real_CBDir_mean_plus_1="1.1198"), succeeds=False)
 
     def test_missing_rows_are_rejected(self):

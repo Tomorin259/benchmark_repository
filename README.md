@@ -22,8 +22,8 @@ Status as of 2026-09-29:
 | Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
 | Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
-| Integrated summary | The repository-baseline Figure 7 PDF and compact inputs are available | The Figure 7 renderer and source-table path normalization remain to be audited |
-| Paper figures | Figures 3–5 match the online PDFs, Figure 6 uses the validated user-exported PDF, and 117 materialized panels are mapped; Figure 7 keeps the repository baseline | Independent source/provenance gaps remain documented |
+| Integrated summary | Current Figure 7 inputs, original editable PowerPoint and cropped author PDF are synchronized and hashed | Final PDF export uses the documented manual WPS step |
+| Paper figures | Figures 3–5 match the online PDFs, Figure 6 uses the validated user-exported PDF, and the materialized panels are mapped; Figure 7 uses the synchronized native assembly and author export | Independent source/provenance gaps remain documented |
 
 Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
 additional registered methods. Mean-4 is the baseline and
@@ -111,8 +111,8 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
 | 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
-| 综合汇总 | Figure 7 的仓库基线 PDF 和紧凑输入表已归档 | Figure 7 renderer 及源表路径规范化仍待审计 |
-| 论文图件 | Figure 3–5 PDF 与在线一致，Figure 6 使用已验证的用户导出 PDF，117 个物化 panel 已登记；Figure 7 保留仓库基线 | 独立 source 与 provenance 缺口仍有记录 |
+| 综合汇总 | Figure 7 当前输入表、原始可编辑 PowerPoint 和裁剪后的作者导出 PDF 已同步并记录 hash | 最终 PDF 使用文档说明的 WPS 手动导出步骤 |
+| 论文图件 | Figure 3–5 PDF 与在线一致，Figure 6 使用已验证的用户导出 PDF，物化 panel 已登记；Figure 7 使用已同步的原始 assembly 和作者导出 PDF | 独立 source 与 provenance 缺口仍有记录 |
 
 Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
 方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组

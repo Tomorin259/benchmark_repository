@@ -13,9 +13,12 @@ panel, and manual-assembly boundary; online byte identity was not rechecked.
 composite, including the current B-panel palette and F-panel four-decimal means.
 Figure 6 has 16 source panels, including the Dynamo(label data) organoid E
 stream; `fig6_composite_manifest.json` records their hashes, the final PDF
-checksum, and the verification scope. `figSeven.pdf` retains the repository-baseline integrated summary
-values. The historical kinetics PDF bearing the old Figure 5 filename is
-retained in `archive/kinetics/figFive.pdf`.
+checksum, and the verification scope. `figSeven.pdf` is the author's current
+Figure 7 export, cropped after the native charts were synchronized with the
+canonical summary inputs. Its editable
+PowerPoint is `assembly/fig7/fig7.pptx`; `fig7_composite_manifest.json` records the
+source tables, refresh scripts, assembly, export and output hashes.
+The historical kinetics PDF bearing the old Figure 5 filename is retained in `archive/kinetics/figFive.pdf`.
 
 Do not add intermediate panels or alternate result copies to the active
 figure directory.

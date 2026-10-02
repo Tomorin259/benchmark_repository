@@ -1,4 +1,4 @@
-"""Refresh Figure-summary Real-CBDir values from the reference-30 gene results."""
+"""Refresh Figure 7 Real-CBDir values from the reference-30 gene results."""
 
 import argparse
 import csv
@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-RESULTS = ROOT / "evaluation/summary/results/figure6_summary"
+RESULTS = ROOT / "evaluation/summary/results/figure7_summary"
 
 
 def read_csv(path):
@@ -41,7 +41,7 @@ def check_summary(path, fields, expected_rows):
                     ):
                         continue
             raise SystemExit(f"Outdated Real-CBDir summary: {path}, "
-                             f"{expected.get('Method', expected.get('Figure2_Method'))}, {field}")
+                             f"{expected.get('Method', expected.get('Figure7_Method'))}, {field}")
 
 
 def main(write):
@@ -50,9 +50,9 @@ def main(write):
     dataset_names = {row["paper_name"].casefold(): row["dataset_id"].casefold()
                      for row in dataset_registry}
 
-    wps_path = RESULTS / "fig2_gene_metric_wps_values.csv"
+    wps_path = RESULTS / "fig7_gene_metric_wps_values.csv"
     wps_fields, wps_rows = read_csv(wps_path)
-    method_keys = {row["Figure2_Method"]: row["Source_Method_Key"].casefold()
+    method_keys = {row["Figure7_Method"]: row["Source_Method_Key"].casefold()
                    for row in wps_rows if row["Source_Method_Key"]}
 
     source_path = ROOT / "evaluation/gene/results/gene_cbdir_reference30_all.csv"
@@ -78,7 +78,7 @@ def main(write):
             raise ValueError(f"Reference-30 source mismatch: {key}")
         canonical[key] = (expected, len(values))
 
-    dataset_path = RESULTS / "fig2_gene_metric_dataset_means.csv"
+    dataset_path = RESULTS / "fig7_gene_metric_dataset_means.csv"
     dataset_fields, dataset_rows = read_csv(dataset_path)
     by_method = defaultdict(list)
     count = 0
@@ -95,7 +95,7 @@ def main(write):
     if count != 63 or len(by_method) != 9 or any(len(v) != 7 for v in by_method.values()):
         raise ValueError("Expected exactly 9 methods by 7 real datasets")
 
-    summary_path = RESULTS / "fig2_gene_metric_summary.csv"
+    summary_path = RESULTS / "fig7_gene_metric_summary.csv"
     summary_fields, summary_rows = read_csv(summary_path)
     for row in summary_rows:
         if row["Metric"] != "Real-CBDir":
@@ -109,9 +109,9 @@ def main(write):
         row["Std"] = repr(statistics.stdev(x for x, _ in values))
 
     for row in wps_rows:
-        if row["Figure2_Method"] not in by_method:
+        if row["Figure7_Method"] not in by_method:
             continue
-        values = by_method[row["Figure2_Method"]]
+        values = by_method[row["Figure7_Method"]]
         mean = statistics.mean(x for x, _ in values)
         std = statistics.stdev(x for x, _ in values)
         row["Real_CBDir_mean_plus_1"] = f"{mean + 1:.4f}"
@@ -119,7 +119,7 @@ def main(write):
         if int(float(row["Real_CBDir_n_datasets"])) != len(values) or int(
             float(row["Real_CBDir_n_gene_rows"])
         ) != sum(n for _, n in values):
-            raise ValueError(f"Figure count mismatch: {row['Figure2_Method']}")
+            raise ValueError(f"Figure count mismatch: {row['Figure7_Method']}")
 
     updates = [(dataset_path, dataset_fields, dataset_rows),
                (summary_path, summary_fields, summary_rows),

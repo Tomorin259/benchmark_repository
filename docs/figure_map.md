@@ -47,9 +47,13 @@ Method-colored Figure 6F boxplots inherit the benchmark palette from
 `evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
 high-contrast exception; Figure 6A/E stream colors encode cell clusters.
 
-Figure 7 is the integrated method comparison. Its repository-baseline PDF is
-`figures/figSeven.pdf`; the source tables remain under
-`evaluation/summary/`, pending a separate Figure 7 audit.
+Figure 7 is the integrated method comparison. Its current author-exported,
+cropped PDF is `figures/figSeven.pdf`; canonical summary tables are under
+`evaluation/summary/results/figure7_summary/`. The original editable assembly
+is `figures/assembly/fig7/fig7.pptx`, including ten native charts and embedded
+workbooks. `figures/fig7_composite_manifest.json` links numerical inputs, summary
+scripts, assembly, export/crop and output hashes. Final export remains a manual
+WPS step; the verification scope is recorded in that manifest.
 
 The online manuscript assigns the matched cell/gene comparison to
 Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.

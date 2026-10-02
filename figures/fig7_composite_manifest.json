@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "figure": "Figure 7",
+  "assembly": {
+    "path": "figures/assembly/fig7/fig7.pptx",
+    "sha256": "581159cf2defce83457809b6fecea314f5125bd0f44021fabe46fab19b395897"
+  },
+  "output": {
+    "path": "figures/figSeven.pdf",
+    "sha256": "ffdac9895ac4d1fc1f35a70918c37fa147178d471bca8eea24e20ef271e2769b"
+  },
+  "inputs": [
+    {
+      "path": "evaluation/cell/results/cell_metrics.csv",
+      "sha256": "5bd22e001d14dc0d866e19eb8492e4c45e74b2878a00c95a957aeed64c71bedd"
+    },
+    {
+      "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_wps_values.csv",
+      "sha256": "6d73ad0d018d29ee1f93f383c013aa4b1e7b8d6b6c44a39b5860d38552ade76d"
+    },
+    {
+      "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_dataset_means.csv",
+      "sha256": "288fb26c383d64261c48c70f9c48d0f1ef6460e27fe5fea5a6ede513b6a0b8d3"
+    },
+    {
+      "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_summary.csv",
+      "sha256": "bc3694e2cd6b407d48fa0afdb7fb3839a9d010fd382a276d487e17e6dc3adf65"
+    },
+    {
+      "path": "evaluation/summary/results/figure7_summary/fig7_kinetic_component_means.csv",
+      "sha256": "2abdd6f7a51e8afc2927f8542955d15d332d6ccf4b56ce6b0f30c809704a4808"
+    }
+  ],
+  "export": {
+    "application": "WPS Office",
+    "format": "native vector PDF",
+    "crop_box_points": [
+      0,
+      315.395,
+      540,
+      779.8
+    ],
+    "media_box_points": [
+      0,
+      315.395,
+      540,
+      779.8
+    ],
+    "assembly_mode": "The author re-exported the original editable PowerPoint on 2026-10-02. Crop only the blank lower slide area, preserving all vector page content, chart geometry, colors and text.",
+    "source_pdf": {
+      "filename": "图7.pdf",
+      "sha256": "3c44970b23c66edbc8b3a4003bac4232d3c03a8182076e3fce24b5b04a6de980",
+      "creator": "WPS 演示",
+      "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
+      "creation_date": "D:20261002175133+08'00'",
+      "page_count": 1,
+      "media_box_points": [
+        0.0,
+        0.0,
+        540.0,
+        779.8
+      ]
+    }
+  },
+  "embedded_workbooks": [
+    {
+      "path": "ppt/embeddings/Workbook1.xlsx",
+      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+    },
+    {
+      "path": "ppt/embeddings/Workbook10.xlsx",
+      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+    },
+    {
+      "path": "ppt/embeddings/Workbook2.xlsx",
+      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+    },
+    {
+      "path": "ppt/embeddings/Workbook3.xlsx",
+      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+    },
+    {
+      "path": "ppt/embeddings/Workbook4.xlsx",
+      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+    },
+    {
+      "path": "ppt/embeddings/Workbook5.xlsx",
+      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+    },
+    {
+      "path": "ppt/embeddings/Workbook6.xlsx",
+      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+    },
+    {
+      "path": "ppt/embeddings/Workbook7.xlsx",
+      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+    },
+    {
+      "path": "ppt/embeddings/Workbook8.xlsx",
+      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+    },
+    {
+      "path": "ppt/embeddings/Workbook9.xlsx",
+      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+    }
+  ],
+  "numerical_contract": {
+    "method_configurations": 20,
+    "cell_values": "Preserved fixed-reference-30 desktop table, matched to the cell metrics CSV.",
+    "gene_and_kinetics_values": "Current Figure 7 summary inputs; plotting means retain their existing +1 transform, SD and counts are unshifted.",
+    "missing_results": "Retain blanks and sparse native chart caches; do not create bars for unavailable results.",
+    "native_gene_workbook_label_aliases": {
+      "Dynamo": "Dynamo(label data)"
+    },
+    "dynamo_row": "The original table displays Dynamo. Its Cell charts use Dynamo(RNA_seq); kinetic alpha uses the separate Dynamo(label data) positive control. The native Gene/kinetics workbook retains its original Dynamo label."
+  },
+  "verification": {
+    "evaluator": "Codex agent",
+    "human_signoff": false,
+    "desktop_gene_workbook_cells_updated": 48,
+    "native_chart_count": 10,
+    "chart_cache_values_checked": 352,
+    "slide_layout_xml_unchanged": true,
+    "native_application_opened": true,
+    "numeric_chart_columns_changed": [
+      "Real_CBDir",
+      "alpha_Spearman",
+      "gamma_Spearman"
+    ],
+    "pixel_differences_outside_changed_columns": 0,
+    "comparison_baseline_pdf_sha256": "158ec56fc87099200b8ccd7815d4bfc7b012b38e17cb0ef8b5628680629c67d5",
+    "author_reexport_pixel_differences_from_updated_native_export": 0,
+    "author_reexport_comparison_resolution_pixels": [
+      2200,
+      1893
+    ]
+  },
+  "summary_sources": [
+    {
+      "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
+      "sha256": "4df8c7316a09dd66c1e71d42ae8d4b13b9938debed31c56109e548a8cd5105e0"
+    },
+    {
+      "path": "evaluation/gene/results/gene_cbdir_summary_by_dataset_method.csv",
+      "sha256": "140a79485999c3c3bde242931ee77f6673b960418a24ba612109024a29f0ce68"
+    },
+    {
+      "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
+      "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+    },
+    {
+      "path": "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv",
+      "sha256": "fe548433b018820a6218baf3ce379f9459a1a04f01d99e8733166ba230321088"
+    },
+    {
+      "path": "evaluation/kinetics_recovery/results/central_results/component_means.csv",
+      "sha256": "95160d8b886b0ac8fe306c97612100974d271ab50819dbf876bd0a11597d3313"
+    },
+    {
+      "path": "evaluation/kinetics_recovery/results/central_results/system_means.csv",
+      "sha256": "6ff5f08684fc48c5b6c84133d79f318f6abce7142e2cf0ec19cfce653d67b8be"
+    },
+    {
+      "path": "evaluation/kinetics_recovery/results/central_results/method_summary.csv",
+      "sha256": "ff7b39aca60f44c7d3bb1c720c3ac0f2babade66f2627d033dd273eebd659f7f"
+    }
+  ],
+  "summary_refresh_scripts": [
+    {
+      "path": "evaluation/summary/refresh_real_cbdir_summary.py",
+      "sha256": "5613232edf3cecea0bb57d03b124082c172e4ec7efbdb39a071e2907547b3284"
+    },
+    {
+      "path": "evaluation/summary/refresh_kinetics_summary.py",
+      "sha256": "5ad98decfec1c63121f3358d3b4a0e57082fe81fc0945d9445ed064c5d826fc3"
+    }
+  ]
+}
