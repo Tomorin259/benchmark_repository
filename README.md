@@ -42,6 +42,7 @@ the complete aggregation and ranking contract.
 | Reproduce kinetic-parameter recovery and Figure 6 panels | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
 | Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
+| Reproduce veloVI Table S6 coordinate-sensitivity diagnostics | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
 | Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
 | Read shared rules, environment requirements, and historical evidence | [`docs/`](docs/) |
 
@@ -129,6 +130,7 @@ Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于
 | 复现动力学参数恢复和 Figure 6 panel | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
 | 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
+| 复现 veloVI Table S6 坐标敏感性诊断 | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
 | 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
 | 阅读共用规则、环境要求和历史验证证据 | [`docs/`](docs/) |
 

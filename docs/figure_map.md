@@ -1,5 +1,10 @@
 # Figure map
 
+Supplementary Table S6 (veloVI gene-wise coordinate sensitivity) is backed by
+the full-precision CSV, transformation script, and manifest in
+[supplement/velovi/](../supplement/velovi/). Its A/C post-hoc diagnostics are
+separate from the primary cell-level benchmark (condition B).
+
 Scientific panels are generated beside the experiment that owns their data and
 metric definition:
 

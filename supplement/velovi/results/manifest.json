@@ -1,0 +1,471 @@
+{
+  "diagnostic": "veloVI gene-wise coordinate sensitivity",
+  "conditions": {
+    "A": "native Ms with stored velocity",
+    "B": "reference Ms with unchanged stored velocity",
+    "C": "reference Ms with V_prime = a_g V"
+  },
+  "n_datasets": 14,
+  "n_rows": 42,
+  "velocity_layer": "layers[velocity] (cell-role veloVI artifact)",
+  "reference_moment_layer": "Ms",
+  "affine_fit": "M_ref,ig = a_g M_native,ig + b_g; intercept not applied to velocity",
+  "graph": {
+    "n_neighbors": 30,
+    "n_recurse_neighbors": 1,
+    "mode_neighbors": "distances",
+    "velocity_graph_n_jobs": 8
+  },
+  "software": {
+    "scvelo": "0.3.1",
+    "tivelo": "0.1.4",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "anndata": "0.10.8",
+    "pandas": "2.3.1",
+    "python": "3.9.23",
+    "tivelo_metrics_sha256": "70ab8896ca6d78e79fa1d9e22fb36efed0582ef968c25f399b299293f98e9afb"
+  },
+  "external_inputs": {
+    "method_results": "artifact://velocity/results/veloVI/veloVI_without_vu/*.h5ad",
+    "reference_moments": "artifact://velocity/indicators/cell/reference_moments_union_scvelo025_20260907/*.npz",
+    "reference_neighbors": "repo:evaluation/cell/reference_neighbors/*.npz"
+  },
+  "outputs": {
+    "full_dataset_three_condition.csv": "441245c22810e50c9821160ed48e9acadb4c78f9fed9a2eaf4ddb3cd34e7740e",
+    "table_s6.csv": "1e04d107e1b994cb2e8d2ebbbac37d2c0bffbd0d4f75b561dcdfa29a436f43ef"
+  },
+  "macro_average": {
+    "A": 0.11474656969877288,
+    "B": 0.07783739634944967,
+    "C": 0.21934570831155725,
+    "C_minus_B": 0.14150831196210759
+  },
+  "interpretation": {
+    "primary_benchmark": "B",
+    "diagnostic_only": "A and C are post-hoc controls; no retraining",
+    "caveat": "a_g is not an official veloVI inverse-normalization factor"
+  },
+  "curation_base_commit": "adf67faeede9ffa67faa3e07f8286dc832ac3bce",
+  "result_origin": "archived original full-precision run; byte-identical CSV",
+  "original_script_sha256": "0cff83d8aa28122a7d3663f1eacf42249e5d6985cb93302ae70c3c89a4d5cd6e",
+  "software_provenance": "scvelo version recorded by original run; remaining versions verified in the reproduction environment on 2026-10-02",
+  "inputs": [
+    {
+      "dataset": "bonemarrow",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_bonemarrow_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "HSC_1",
+          "Ery_1"
+        ],
+        [
+          "HSC_1",
+          "HSC_2"
+        ],
+        [
+          "Ery_1",
+          "Ery_2"
+        ]
+      ],
+      "h5ad_sha256": "4b323e1a268ccdb1ada50ccf6f709717564ebae3291b87c5394ae3973b6ea564",
+      "moments_sha256": "8aa7bc6d4f728efe2eb0dfcc82b28f01b681593670ccc4b532be9355f2d7c648",
+      "neighbors_sha256": "dd42d081ba1fecff923b4ce6fc1edb5b1ed15b17bb43809d18e3322d9f94ad32"
+    },
+    {
+      "dataset": "capofibro",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_capo_pre_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
+      ],
+      "h5ad_sha256": "f1a4a03cb455150819d7eca0208d581fc68bc7aff1283512ab9456f7b2baae06",
+      "moments_sha256": "2446ac27914ef534a2cadb4c0f8ff0ae04a7463527db4fd8fa95fd74682728d0",
+      "neighbors_sha256": "61e6110eda842b345dd333f0019d91d0c28487dbf1aea1cc04703e8d84416940"
+    },
+    {
+      "dataset": "dentategyrus",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_dentategyrus_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "nIPC",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "Granule immature"
+        ],
+        [
+          "Granule immature",
+          "Granule mature"
+        ],
+        [
+          "Radial Glia-like",
+          "Astrocytes"
+        ],
+        [
+          "OPC",
+          "OL"
+        ]
+      ],
+      "h5ad_sha256": "0b12971dcd2fd9a8c08875d3f6d484da0c92b78473d91d1506915b0dde80c6e4",
+      "moments_sha256": "d323574184eecebe698b30f93d803da866b041cdafd8973383e48b44286d6535",
+      "neighbors_sha256": "6e1e15b063a0457faf2e3cbdf417990c9d596aed3531efd51f2bdb4d0f4fbf12"
+    },
+    {
+      "dataset": "DentateGyrus_lamanno",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_DentateGyrus_lamanno_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "nIPC",
+          "GlialProg"
+        ],
+        [
+          "GlialProg",
+          "ImmAstro"
+        ],
+        [
+          "GlialProg",
+          "OPC"
+        ],
+        [
+          "Nbl1",
+          "Nbl2"
+        ],
+        [
+          "Nbl2",
+          "ImmGranule1"
+        ],
+        [
+          "ImmGranule1",
+          "ImmGranule2"
+        ],
+        [
+          "ImmGranule2",
+          "Granule"
+        ],
+        [
+          "Nbl2",
+          "CA"
+        ],
+        [
+          "CA",
+          "CA1-Sub"
+        ],
+        [
+          "CA",
+          "CA2-3-4"
+        ]
+      ],
+      "h5ad_sha256": "2cf19a540a7b810d44c78e146bbc25eaf2635175993c0e57c22143c0a68a0d62",
+      "moments_sha256": "8626786e76b595716bfeed6886201300ee8b5086a5a992b96aa2b79d70b5432a",
+      "neighbors_sha256": "c7510097f03fb51a64abbee9328e0dc5001840b5b8bd4538b7cc28417803981a"
+    },
+    {
+      "dataset": "forebrain",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_ForebrainGlut_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "h5ad_sha256": "7eb24cc5462f0020c4002df89105393ce3475526e3cee2d96d2081dbb137d633",
+      "moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
+      "neighbors_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2"
+    },
+    {
+      "dataset": "gastrulation",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_Gastrulation_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "Blood progenitors 1",
+          "Blood progenitors 2"
+        ],
+        [
+          "Blood progenitors 2",
+          "Erythroid1"
+        ],
+        [
+          "Erythroid1",
+          "Erythroid2"
+        ],
+        [
+          "Erythroid2",
+          "Erythroid3"
+        ]
+      ],
+      "h5ad_sha256": "9f379e46a02e1db2bb85b5a11165cd6d014f8f743925014374863360ea5af7ab",
+      "moments_sha256": "2af295b172588a798902076df00d34c54553bebe8ffd5038e198263b574a6506",
+      "neighbors_sha256": "ec31841b736d7beb56063261aa91f8fc60652de7837df89c5c246f69fe9ef4d2"
+    },
+    {
+      "dataset": "hematopoiesis",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_hematopoiesis_dynamo_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "HSC",
+          "GMP-like"
+        ],
+        [
+          "HSC",
+          "MEP-like"
+        ],
+        [
+          "GMP-like",
+          "Neu"
+        ],
+        [
+          "GMP-like",
+          "Mon"
+        ],
+        [
+          "MEP-like",
+          "Ery"
+        ],
+        [
+          "MEP-like",
+          "Meg"
+        ],
+        [
+          "MEP-like",
+          "Bas"
+        ]
+      ],
+      "h5ad_sha256": "b4c78e3c57b82e59c45d78aa44b126f7d3c4c9fde91ef5f19065787348278dc7",
+      "moments_sha256": "c0216bbfd0109e6be46b3edc4f6f161e7c34f028aaabc111c189aea862464a78",
+      "neighbors_sha256": "0de5c1c8e5172626aee8c02995ded5e1319be0af6e9593a8e4db7a7c4e92b5b1"
+    },
+    {
+      "dataset": "mousebrain",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_mousebrain_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "RG, Astro, OPC",
+          "IPC"
+        ],
+        [
+          "IPC",
+          "V-SVZ"
+        ],
+        [
+          "V-SVZ",
+          "Upper Layer"
+        ],
+        [
+          "Upper Layer",
+          "Deeper Layer"
+        ]
+      ],
+      "h5ad_sha256": "cad73683e68ed887431a4401f7c24196346694e1e38b1f6fd9da4950461e4c78",
+      "moments_sha256": "d81883a759f7b518674d149a51c86d815b96acc66e4a8adf38e2e535d2978646",
+      "neighbors_sha256": "884e272cfa322e8906935ecd27109daceefb1c8a58e1a09e952383607baa521e"
+    },
+    {
+      "dataset": "neuron",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_neuron_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "0",
+          "15"
+        ],
+        [
+          "15",
+          "30"
+        ],
+        [
+          "30",
+          "60"
+        ],
+        [
+          "60",
+          "120"
+        ]
+      ],
+      "h5ad_sha256": "8920ab26814a81c24e407ebb47eed5b4f53a33031d3c0ff5122384ba4d5c2b62",
+      "moments_sha256": "cff956a07c88bb1f351b4223d6705ca4a6bcc9bfe0db34d46f4c9beae36b4c5c",
+      "neighbors_sha256": "488450751b61abb85ba69034f2af33f6fbbaddd9c28c43bf13f8bbc22c362467"
+    },
+    {
+      "dataset": "organoid",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_organoid_pre_all.h5ad",
+      "label": "cell_type",
+      "cluster_edges": [
+        [
+          "Stem cells",
+          "TA cells"
+        ],
+        [
+          "Stem cells",
+          "Goblet cells"
+        ]
+      ],
+      "h5ad_sha256": "81cd614ca4c9ae0a9bbfa679cca417864ba4f59c0fdb7ff0ff8dce57c0cfce36",
+      "moments_sha256": "8d16926b036962cc729b7f79fc9f1543dd35cc16b8e72adf620a443afd91d8b5",
+      "neighbors_sha256": "8b6e8d636b42acb37f199bd1a4de92cc73bc12966c4b2d681079972ae3b1b95d"
+    },
+    {
+      "dataset": "pancreas",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_Pancreas_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "Ductal",
+          "Ngn3 low EP"
+        ],
+        [
+          "Ngn3 low EP",
+          "Ngn3 high EP"
+        ],
+        [
+          "Ngn3 high EP",
+          "Pre-endocrine"
+        ],
+        [
+          "Pre-endocrine",
+          "Beta"
+        ],
+        [
+          "Pre-endocrine",
+          "Alpha"
+        ],
+        [
+          "Pre-endocrine",
+          "Delta"
+        ],
+        [
+          "Pre-endocrine",
+          "Epsilon"
+        ]
+      ],
+      "h5ad_sha256": "149bd8cfca26993a78d48fdcb613fd1138d665f09ece1713c28ffa81d350f7e2",
+      "moments_sha256": "48a5898e9a74582fa17fb6d8aef128feb7eea11583dfc2eb3d7d849fce391ab5",
+      "neighbors_sha256": "30b7e3a2a35ab2c88310d54fc986159b57d9dddedfd647822053f0a9806d91a0"
+    },
+    {
+      "dataset": "retina",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_retina_full_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "Progenitor",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "PR"
+        ],
+        [
+          "Neuroblast",
+          "AC/HC"
+        ],
+        [
+          "Neuroblast",
+          "RGC"
+        ]
+      ],
+      "h5ad_sha256": "4575c6b54e905b7e2825d1f92223c32cc872ffb6a05ed6a9e4cf6ef0b993e239",
+      "moments_sha256": "4f6d6b7a281535dc29dd18bf6c5dec83faf09204cf8188758c030e01638ecfd1",
+      "neighbors_sha256": "6639001e9fe6e87708cc502e15c5b87692929379be9f8f1a6c792dd855f20ccc"
+    },
+    {
+      "dataset": "rpe1",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_rpe1_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "M",
+          "M-G1"
+        ],
+        [
+          "M-G1",
+          "G1-S"
+        ],
+        [
+          "G1-S",
+          "S"
+        ],
+        [
+          "S",
+          "G2-M"
+        ]
+      ],
+      "h5ad_sha256": "63fe2f14fa03465fbfe016e77d217e0e8dcec63ac91cb7cec04bdb8bc9c51622",
+      "moments_sha256": "3f033ce4c431a8755d9f81f8e077b7b9c67f4c4cd2de860a9f8b0a5909dce5de",
+      "neighbors_sha256": "e5ec16a652c68a503d0e7c9b1497fe213e78a83074093eaadca7a4c8958a00c0"
+    },
+    {
+      "dataset": "rpe1_gen",
+      "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_rpe1_gen_all.h5ad",
+      "label": "clusters",
+      "cluster_edges": [
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
+      ],
+      "h5ad_sha256": "c2e85233115cbce911f3d4541d3eef06d3f04e6bd142c474bfdcdbe36dda92a9",
+      "moments_sha256": "d6aac7cae943e832d786b6370ebbe1f91c0e0d0e852f4a92ec053ba904fa96ac",
+      "neighbors_sha256": "9f79f9bf521340f3695a9d1afd0a3bed290ab4390bb69899eb15ae95d4162062"
+    }
+  ],
+  "validation": {
+    "date": "2026-10-02",
+    "full_recomputation": "all 14 datasets / 42 conditions using the public script",
+    "max_abs_transcosine_difference": 0,
+    "max_abs_highdim_cbdir_difference": 0,
+    "max_abs_numeric_difference": 0,
+    "all_input_hashes_verified": true,
+    "primary_B_max_abs_difference": 1.1328684601519257e-8,
+    "published_table_four_decimal_values": "all 14 datasets and macro-average match",
+    "synthetic_checks": "shuffled cell IDs, affine slopes/intercepts, duplicate and missing IDs"
+  },
+  "script_sha256": "1e7b99d71a88ffe63001cd8980ef7eedd6a6feeb47a44c019cbe98d09d5e22ce"
+}
