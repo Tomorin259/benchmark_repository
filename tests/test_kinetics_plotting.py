@@ -1,6 +1,7 @@
 import csv
 import hashlib
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -14,6 +15,73 @@ PLOTTING_ROOT = (
 
 
 class KineticsPlottingContractTests(unittest.TestCase):
+    def test_venn_two_line_titles_preserve_counts_and_membership(self):
+        import pandas as pd
+        from evaluation.kinetics_recovery.plotting.figure6 import plot_venn, venn2
+
+        if venn2 is None:
+            self.skipTest("matplotlib-venn is required for the Venn rendering check")
+
+        root = PLOTTING_ROOT.parent
+        source = root / "results/central_results"
+        canonical = root / "figures/fig6/plot_data"
+        config = json.loads((PLOTTING_ROOT / "figure6_config.json").read_text())
+        with tempfile.TemporaryDirectory() as directory:
+            for key, method, stem in (
+                ("deepvelo_venn", "DeepVelo", "deepvelo"),
+                ("cellDancer_venn", "cellDancer", "celldancer"),
+            ):
+                paths = config["inputs"]["rpe1"][key]
+                output = Path(directory) / f"{stem}.svg"
+                membership = Path(directory) / f"{stem}.csv"
+                counts = plot_venn(
+                    *(source / paths[name] for name in (
+                        "reference_alpha", "reference_gamma",
+                        "prediction_alpha", "prediction_gamma",
+                    )),
+                    output, method, membership,
+                )
+                pd.testing.assert_frame_equal(counts, pd.read_csv(
+                    canonical / f"rpe1_{stem}_kinetic_classes.csv"))
+                pd.testing.assert_frame_equal(pd.read_csv(membership), pd.read_csv(
+                    canonical / f"rpe1_{stem}_kinetic_class_membership.csv"))
+                svg = output.read_text()
+                self.assertIn("Cooperative Genes", svg)
+                self.assertIn("cosine", svg)
+                self.assertNotIn("Macro-F1", svg)
+                self.assertNotIn("cosine_similarity", svg)
+                self.assertNotIn("Balanced accuracy", svg)
+
+    def test_heatmap_means_preserve_scores_and_show_coverage(self):
+        import pandas as pd
+        from evaluation.kinetics_recovery.plotting.figure6 import plot_heatmap
+
+        root = PLOTTING_ROOT.parent
+        config = json.loads((PLOTTING_ROOT / "figure6_config.json").read_text())
+        paths = config["inputs"]["rpe1"]["heatmap_metrics"]
+        source = root / "results/central_results/gene_metrics.csv"
+        source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "heatmap.svg"
+            frames = plot_heatmap(
+                {method: source for method in paths["Alpha"]},
+                {method: source for method in paths["Gamma"]},
+                config["heatmap_genes"], output,
+            )
+            for parameter, frame in zip(("alpha", "gamma"), frames):
+                expected = pd.read_csv(
+                    root / f"figures/fig6/plot_data/rpe1_{parameter}_heatmap.csv",
+                    index_col=0,
+                )
+                pd.testing.assert_frame_equal(frame, expected, check_names=False)
+            svg = output.read_text()
+            for label in ("Dynamo (scEU)", "Mean (n)", "0.91", "(9)",
+                          "0.42", "(6)"):
+                self.assertIn(label, svg)
+            for label in ("Rank / Method", "1. Dynamo", "Rows ranked by"):
+                self.assertNotIn(label, svg)
+        self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), source_hash)
+
     def test_trajectory_palette_separates_green_methods(self):
         from evaluation.cell.plots import BENCHMARK_COLORS
         from evaluation.kinetics_recovery.plotting.figure6 import TRAJECTORY_COLORS

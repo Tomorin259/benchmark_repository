@@ -11,6 +11,9 @@ Cell/Gene D panel. `fig4_composite_manifest.json` records its checksum, source
 panel, and manual-assembly boundary; online byte identity was not rechecked.
 `figSix.pdf` is the validated user-exported scEU-seq kinetic-parameter recovery
 composite, including the current B-panel palette and F-panel four-decimal means.
+It uses `Dynamo (scEU)` display labels, bold two-decimal C-panel means with
+valid-gene counts, and aligned two-line D-panel category/interval titles without
+Macro-F1. C retains its source aspect ratio; D--F use the approved compact layout.
 Figure 6 has 16 source panels, including the Dynamo(label data) organoid E
 stream; `fig6_composite_manifest.json` records their hashes, the final PDF
 checksum, and the verification scope. `figSeven.pdf` is the author's current

@@ -3,12 +3,12 @@
   "composite_status": "current",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "The user-exported, cropped Figure 6 PDF was rendered and its complete A-F layout inspected. Both B panels and both F panels were compared with the current repository sources, accounting for PDF JPEG encoding; F panels trim 25 pixels of white margin at the top and bottom. All 12 F-panel means use four decimal places and match the exact plotted rows. Online byte identity was not independently rechecked in this update.",
+  "validation": "Agent rendered and inspected the complete A-F layout. All 16 embedded panels match the accepted PPT media, accounting for PDF JPEG encoding and the retained 25-pixel F-panel white-margin crops. C source aspect ratio is retained within PDF export coordinate rounding (0.034%). Only bottom whitespace was cropped; the PDF content stream, image bytes, text and scale are unchanged. Online byte identity was not rechecked.",
   "panels": [
     {
       "panel": "C",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png",
-      "source_sha256": "496685ef0125fab936666f2a738f950c170dcd0861e4ef624b371c2f1b8158d8"
+      "source_sha256": "40adfa8992d31f2376f71ac557262284bd807de1188cb1d75b8788f23b3c4a97"
     },
     {
       "panel": "A Dynamo labelled positive control",
@@ -38,7 +38,7 @@
     {
       "panel": "B alpha",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png",
-      "source_sha256": "37df3dff8bcde45b643f0b0c36b33c4bb4b8e79b3ca95ec67373b0211af0a32f"
+      "source_sha256": "014aade7de892780cb026803c840062a016eadf034491e7dbccee238e81f8926"
     },
     {
       "panel": "B gamma",
@@ -48,7 +48,7 @@
     {
       "panel": "D DeepVelo",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png",
-      "source_sha256": "7115b049295449ef540bd755ab80e810e563d5e414bee935fe26cbab55922ef7"
+      "source_sha256": "a25f4e1d68a3d2ed292bb180bf4d01789996b1b56ad79f1f29f024fa3d9b50f3"
     },
     {
       "panel": "E Dynamo labelled positive control",
@@ -74,22 +74,30 @@
     {
       "panel": "F branch 1",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png",
-      "source_sha256": "06da16dcf1af3d14c8c22a394422a3d57359c2ca8389bb19fb577ccf567e3aba"
+      "source_sha256": "62b1f9658e6c92c332c61747e8367db524d68417723dc797de0ab08b1a914003"
     },
     {
       "panel": "F branch 2",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png",
-      "source_sha256": "3c17417778cc1892277a80c8c1a3411953cdd79e36f751d74080c875d6d1bfdd"
+      "source_sha256": "01879281a8a4db25cd3d9918f7e2f624fe172fe5a0a7ba07833e7a2dc0caecaf"
     },
     {
       "panel": "D cellDancer",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
-      "source_sha256": "6db3ce5f59d9df7798a85efefe09f8b0cd2d019b13c36105652c40da2a2fec44"
+      "source_sha256": "63c60de81e3409ee656a01078f7245a5506ebf0f44f50e5b658b8899308da639"
     }
   ],
   "composite_path": "figures/figSix.pdf",
-  "composite_sha256": "6d02ee013f2189c97c0d6b8c7a54888379fb7d46c59741dc39a97bc41e7139c7",
-  "previous_composite_sha256": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866",
+  "composite_sha256": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
+  "previous_composite_sha256": "6d02ee013f2189c97c0d6b8c7a54888379fb7d46c59741dc39a97bc41e7139c7",
   "pending_panel_replacements": [],
-  "update_note": "The final user export includes the current B-panel palette and F-panel colors and four-decimal means. Source inputs, plotted scores, and the numerical evaluation are unchanged."
+  "update_note": "The validated user export contains current Dynamo (scEU) labels, C two-decimal Mean (n), aligned D category/interval titles without Macro-F1, and the approved compact D-F layout. All source panels are synchronized; scientific inputs, plotted values and evaluation scores are unchanged.",
+  "source_export_sha256": "f4097aa09a85f7089713537648398fd97ec681acf8cf62f3e3b622c26ccb1ad5",
+  "source_pptx_sha256": "d05f6bc32a3005a8c134abc2ee9e3af98b1cc62e241d54b0a6fdaf555816a037",
+  "crop_box_pt": [
+    0.0,
+    105.46666666666658,
+    540.0,
+    779.8
+  ]
 }

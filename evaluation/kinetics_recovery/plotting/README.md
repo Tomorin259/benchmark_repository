@@ -17,10 +17,24 @@ method, dataset, parameter, and branch, then displays selected-gene means.
 DeepKINET supplies gamma only. TSvelo alpha uses two lineage files; its stream
 uses the merged result. Dynamo A and E are recorded labelled-data manual assets, with provenance stored beside the panels; neither has an automatic H5AD renderer in this module.
 
+The B/C/F renderers label the control `Dynamo (scEU)` without renaming
+evaluator IDs or exported plot-data. The C heatmap shows
+`Mean (n)`, where the mean uses available displayed-gene scores
+and n counts valid genes. Rows remain sorted by these unrounded means, not by
+full-reference scores or a common cross-method gene intersection. These labels
+do not rename evaluator IDs or alter scores. The shared colorbar is narrow;
+missing cells retain the white `Not Calculated` encoding.
+
+D uses two aligned title lines: turnover category and cosine interval.
+It does not show Macro-F1 or balanced accuracy. Venn counts and classification
+thresholds are unchanged.
+
 Individual scores and summary annotations (means, standard deviations, medians,
 macro-averages, branch averages, and differences between summary values) use
-four decimal places. Dense heatmap annotations use two; formal numerical tables
-use four. Positive scores have no leading plus sign. Raw CSV files retain full
+four decimal places, except the C heatmap's bold `Mean (n)` column (two).
+Dense heatmap annotations also use two;
+formal numerical tables use four.
+Positive scores have no leading plus sign. Raw CSV files retain full
 precision, and calculations and ranking use unrounded values.
 
 Figure 6F organoid boxplots use the benchmark method colors in

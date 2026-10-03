@@ -57,11 +57,9 @@ def canonical_method_color(method: str) -> str:
         raise KeyError(f"No benchmark boxplot color registered for {method}")
     return BOXPLOT_METHOD_COLORS[display_name]
 
-# Organoid panels are rendered separately for each branch, so the branch
-# suffix is retained for the existing method labels.  Dynamo's full
-# ``Dynamo(label data)`` name is too wide for the boxplot x-axis; the caption
-# and README carry the label-data qualifier while the panel uses ``Dynamo``.
+# Evaluator IDs and exported plot-data stay unchanged; this is a figure label.
 ORGANOID_PLOT_METHOD_NAMES = {"Dynamo": "Dynamo"}
+FIGURE_METHOD_NAMES = {"Dynamo": "Dynamo (scEU)", "Dynamo(label data)": "Dynamo (scEU)"}
 
 # Display-only panels inherit the relative method order of Figure 7.  The
 # metric-ranked heatmap remains sorted by its own correlation values.
@@ -190,7 +188,7 @@ def plot_trajectory(
                 color=TRAJECTORY_COLORS[DISPLAY_METHOD_NAMES.get(name, name)],
                 linewidth=1.5,
                 alpha=0.8,
-                label=name,
+                label=FIGURE_METHOD_NAMES.get(name, name),
             )
         axis.grid(False)
         axis.set_xlabel("")
@@ -228,11 +226,12 @@ def plot_heatmap(
             matrix.mean(axis=1).sort_values(ascending=False).index
         ]
 
-    width = max(20, max(len(frame.columns) for frame in data.values()) * 1.2)
+    width = max(24, max(len(frame.columns) for frame in data.values()) * 1.35)
     height = max(len(frame.index) for frame in data.values()) * 0.8 + 3
     figure, axes = plt.subplots(1, 2, figsize=(width, height))
-    plt.subplots_adjust(wspace=0.15, right=0.92)
-    colorbar_axis = figure.add_axes([0.94, 0.3, 0.015, 0.4])
+    plt.subplots_adjust(left=0.12, wspace=0.24, right=0.895)
+    colorbar_axis = figure.add_axes([0.955, 0.3, 0.007, 0.4])
+    summary_columns = []
 
     for index, parameter in enumerate(("Alpha", "Gamma")):
         sns.heatmap(
@@ -251,18 +250,86 @@ def plot_heatmap(
             cbar_ax=colorbar_axis if index == 1 else None,
             cbar_kws={"label": "Spearman Correlation"} if index == 1 else None,
         )
+        axes[index].set_anchor("N")
         axes[index].set_title(
             f"{parameter} Performance", fontsize=16, fontweight="bold", pad=15
         )
         axes[index].set_xlabel("Gene", fontsize=14, fontweight="bold")
-        axes[index].set_ylabel("Method", fontsize=14, fontweight="bold")
+        axes[index].set_ylabel("Method" if index == 0 else "", fontsize=14, fontweight="bold")
         axes[index].set_xticklabels(
             axes[index].get_xticklabels(), rotation=45, ha="right", fontsize=12
         )
-        axes[index].set_yticklabels(
-            axes[index].get_yticklabels(), rotation=0, fontsize=12
+        frame = data[parameter]
+        labels = [
+            FIGURE_METHOD_NAMES.get(method, method)
+            for method in frame.index
+        ]
+        axes[index].set_yticklabels(labels, rotation=0, fontsize=12)
+        # The ordering is descriptive: methods cover different display genes.
+        header = axes[index].annotate(
+            "Mean (n)", xy=(1.07, 1), xycoords="axes fraction",
+            xytext=(0, 15), textcoords="offset points",
+            fontsize=12, fontweight="bold", ha="center", va="baseline",
+            annotation_clip=False,
         )
+        mean_labels, count_labels = [], []
+        for row, (_, scores) in enumerate(frame.iterrows()):
+            mean_labels.append(axes[index].text(
+                1.082, row + 0.5, f"{scores.mean():.2f}",
+                transform=axes[index].get_yaxis_transform(),
+                fontsize=12, fontfamily="DejaVu Sans", fontweight="bold",
+                ha="right", va="center",
+            ))
+            count_labels.append(axes[index].text(
+                1.096, row + 0.5, f"({scores.count()})",
+                transform=axes[index].get_yaxis_transform(),
+                fontsize=12, fontfamily="DejaVu Sans", fontweight="bold",
+                ha="left", va="center",
+            ))
+        summary_columns.append((header, mean_labels, count_labels))
 
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    # Use the same physical column widths and padding in both panels.
+    mean_width = max(
+        label.get_window_extent(renderer).width
+        for _, means, _ in summary_columns for label in means
+    )
+    count_width = max(
+        label.get_window_extent(renderer).width
+        for _, _, counts in summary_columns for label in counts
+    )
+    point = figure.dpi / 72
+    for axis, (header, means, counts) in zip(axes, summary_columns):
+        column_left = axis.bbox.x1 + 8 * point
+        mean_right = column_left + mean_width
+        count_left = mean_right + 4 * point
+        inverse = axis.transAxes.inverted()
+        for label in means:
+            label.set_x(inverse.transform((mean_right, 0))[0])
+        for label in counts:
+            label.set_x(inverse.transform((count_left, 0))[0])
+        header.xy = (inverse.transform(
+            ((column_left + count_left + count_width) / 2, 0)
+        )[0], 1)
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    # Reserve only the measured width of the mean column and next row labels.
+    # This keeps the gap compact without overlapping text at export size.
+    mean_right = max(text.get_window_extent(renderer).x1 for text in axes[0].texts)
+    gamma_label_width = max(
+        label.get_window_extent(renderer).width for label in axes[1].get_yticklabels()
+    )
+    gap_pixels = 10 * figure.dpi / 72
+    right_bounds = axes[1].get_position()
+    right_start = (mean_right + gamma_label_width + gap_pixels) / figure.bbox.width
+    axes[1].set_position([right_start, right_bounds.y0, right_bounds.width, right_bounds.height])
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    gamma_mean_right = max(text.get_window_extent(renderer).x1 for text in axes[1].texts)
+    colorbar_left = (gamma_mean_right + gap_pixels) / figure.bbox.width
+    heatmap_bounds = axes[0].get_position()
+    colorbar_axis.set_position([colorbar_left, heatmap_bounds.y0, 0.007, heatmap_bounds.height])
     figure.legend(
         handles=[
             mpatches.Patch(
@@ -273,7 +340,7 @@ def plot_heatmap(
             )
         ],
         loc="upper left",
-        bbox_to_anchor=(0.925, 0.31),
+        bbox_to_anchor=(colorbar_left - 0.01, heatmap_bounds.y0 - 0.02),
         frameon=False,
         fontsize=10,
     )
@@ -320,10 +387,10 @@ def plot_venn(
         raise RuntimeError("matplotlib-venn is required when rendering Venn panels")
     truth = cosine_classes(reference_alpha, reference_gamma)
     prediction = cosine_classes(prediction_alpha, prediction_gamma)
-    titles = {
-        "Cooperative": "Cooperative Genes (cosine_similarity <= -0.5)",
-        "Neutral": "Neutral Genes (-0.5 < cosine_similarity < 0.5)",
-        "Destabilizing": "Destabilizing Genes (cosine_similarity >= 0.5)",
+    intervals = {
+        "Cooperative": r"(cosine $\leq -0.5$)",
+        "Neutral": r"($-0.5 <$ cosine $< 0.5$)",
+        "Destabilizing": r"(cosine $\geq 0.5$)",
     }
     figure = plt.figure(figsize=(15, 5))
     rows = []
@@ -342,7 +409,11 @@ def plot_venn(
             ax=axis,
         )
         venn2_circles(subsets=subsets, linewidth=1.5, color="gray", ax=axis)
-        axis.set_title(titles[category], fontsize=12, fontweight="bold")
+        # Figure coordinates keep both title lines aligned across all circles.
+        figure.text((index - 0.5) / 3, 0.95, f"{category} Genes",
+                    fontsize=12, fontweight="bold", ha="center", va="top")
+        figure.text((index - 0.5) / 3, 0.89, intervals[category],
+                    fontsize=11, ha="center", va="top")
         rows.append(
             {
                 "Class": category,
@@ -363,7 +434,7 @@ def plot_venn(
                 }
             )
     pd.DataFrame(membership_rows).to_csv(membership_output_path, index=False)
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.03, 1, 0.84])
     figure.savefig(output_path, dpi=300)
     plt.close(figure)
     return pd.DataFrame(rows)
@@ -427,6 +498,10 @@ def plot_branch(
         axis.set_ylabel("Spearman Correlation (R)", fontsize=16, labelpad=10)
         axis.set_xlabel("")
         axis.tick_params(axis="x", labelsize=14, rotation=0)
+        axis.set_xticklabels([
+            tick.get_text().replace("Dynamo_", "Dynamo (scEU)_")
+            for tick in axis.get_xticklabels()
+        ])
         axis.tick_params(axis="y", labelsize=14)
         axis.set_ylim(-1.1, 1.25)
         axis.axhline(0, color="gray", linestyle="--", linewidth=1.5, alpha=0.6)

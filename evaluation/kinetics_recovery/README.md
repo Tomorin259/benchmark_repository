@@ -35,7 +35,9 @@ stream manifests. Dynamo A is the retained labelled-data manual exception.
 
 Assembly copies and hashes track the 16 current Figure 6 source panels. The
 formal composite is `../../figures/figSix.pdf`, with source-panel and PDF
-checksums in `../../figures/fig6_composite_manifest.json`. The former
+checksums in `../../figures/fig6_composite_manifest.json`.
+Source-panel replacements do not regenerate the composite PDF; the composite
+manifest records pending panels until a new exported PDF is validated. The former
 kinetics Figure 5 paths and composite are archived under `archive/fig5/`
 and `../../figures/archive/kinetics/`, respectively. They are not active
 aliases: manuscript Figure 5 now denotes the gene-level evaluation.
