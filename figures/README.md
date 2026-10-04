@@ -11,12 +11,16 @@ Cell/Gene D panel. `fig4_composite_manifest.json` records its checksum, source
 panel, and manual-assembly boundary; online byte identity was not rechecked.
 `figSix.pdf` is the validated user-exported scEU-seq kinetic-parameter recovery
 composite, including the current B-panel palette and F-panel four-decimal means.
-It uses `Dynamo (scEU)` display labels, bold two-decimal C-panel means with
-valid-gene counts, and aligned two-line D-panel category/interval titles without
-Macro-F1. C retains its source aspect ratio; D--F use the approved compact layout.
-Figure 6 has 16 source panels, including the Dynamo(label data) organoid E
-stream; `fig6_composite_manifest.json` records their hashes, the final PDF
-checksum, and the verification scope. `figSeven.pdf` is the author's current
+It uses `Dynamo (scEU)` display labels, two-decimal C-panel `Mean (n)` summary
+cells sharing the gene heatmap's color scale and row boundaries, and D-panel
+category headings with Macro-F1 shown below the Venn diagrams (0.324 for
+cellDancer and 0.340 for DeepVelo). Cosine intervals are documented in the
+kinetics module rather than repeated in D. C retains its source aspect ratio;
+D--F use the approved compact layout. Figure 6 has 17 source panels, including
+the Dynamo(label data) and TSvelo organoid E streams. A and E follow the same
+five-method display order. `fig6_composite_manifest.json` records all source
+hashes, the online-matched final PDF checksum, and the verification scope.
+`figSeven.pdf` is the author's current
 Figure 7 export, cropped after the native charts were synchronized with the
 canonical summary inputs. Its editable
 PowerPoint is `assembly/fig7/fig7.pptx`; `fig7_composite_manifest.json` records the

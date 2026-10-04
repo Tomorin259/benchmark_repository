@@ -1,0 +1,34 @@
+{
+  "panel": "organoid",
+  "projection_policy": "reuse_saved_X_and_V_without_recomputation",
+  "versions": {
+    "scanpy": "1.9.3",
+    "scvelo": "0.2.5",
+    "numpy": "1.21.6",
+    "matplotlib": "3.5.3"
+  },
+  "dpi": 600,
+  "records": [
+    {
+      "method": "TSvelo",
+      "input": "results/TSvelo/organoid_ori/TSvelo.h5ad",
+      "input_sha256": "d0553e436af49e5c88aa48f7fe7631c0c649a4364c771fd72545d5c6f4a2229a",
+      "n_cells": 3831,
+      "n_genes": 153,
+      "embedding_key": "X_umap",
+      "projection_key": "velocity_umap",
+      "projection_recomputed": false,
+      "display_reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad",
+      "display_reference_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+      "reference_embedding_exact_match": true,
+      "reference_embedding_equal_at_saved_dtype": true,
+      "reference_embedding_max_abs_difference": 0.0,
+      "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+      "output": "tsvelo_organoid_stream_title_removed.png",
+      "output_sha256": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46"
+    }
+  ],
+  "renderer": "evaluation/kinetics_recovery/plotting/streams.py",
+  "renderer_sha256": "4b51dc91e32cf8cd4606be9860732796cab6bb92c42b13de3e533cf364e88cea",
+  "parameter_scoring_added": false
+}

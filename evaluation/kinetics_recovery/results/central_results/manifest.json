@@ -247,6 +247,42 @@
           "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
           "output": "deepvelo_organoid_stream_title_removed.png",
           "output_sha256": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3"
+        },
+        {
+          "method": "TSvelo",
+          "input": "results/TSvelo/organoid_ori/TSvelo.h5ad",
+          "input_sha256": "d0553e436af49e5c88aa48f7fe7631c0c649a4364c771fd72545d5c6f4a2229a",
+          "n_cells": 3831,
+          "n_genes": 153,
+          "embedding_key": "X_umap",
+          "projection_key": "velocity_umap",
+          "projection_recomputed": false,
+          "display_reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad",
+          "display_reference_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+          "reference_embedding_exact_match": true,
+          "reference_embedding_equal_at_saved_dtype": true,
+          "reference_embedding_max_abs_difference": 0.0,
+          "projection_provenance_status": "saved_H5AD_projection_without_independent_provenance_record",
+          "output": "tsvelo_organoid_stream_title_removed.png",
+          "output_sha256": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46",
+          "renderer_versions": {
+            "scanpy": "1.9.3",
+            "scvelo": "0.2.5",
+            "numpy": "1.21.6",
+            "matplotlib": "3.5.3"
+          }
+        }
+      ],
+      "manual_records": [
+        {
+          "method": "Dynamo",
+          "asset": "dynamo_organoid_stream_title_removed.png",
+          "asset_sha256": "090d34813efa8f2975477033434559c5ee18011f5dd5c37d80ef28ba214273ad",
+          "source_manifest": "dynamo_organoid_stream_title_removed.manifest.json",
+          "source_status": "promoted_canonical_figure6E_label_data_stream",
+          "n_cells_background": 3831,
+          "n_cells_stream": 1373,
+          "gamma_available": false
         }
       ]
     }
@@ -320,18 +356,20 @@
     "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png": "33a859b6e7fb91311fe7e6697596b30eb94e12019db2f02bb0eda49844aa5f92",
     "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png": "3474b9a8457241cf15a3a673bf13304038b0f311d32a75d7b37616855730e2bd",
     "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png": "3fe0cf6486eab89b43455b2db278493021c6156183d9bd493023892617249cd8",
-    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/manifest.json": "9eddb3f27f3d5adecd2750eae4f3587c6d6f0f5b726fb016fbc56879a1c3f992",
+    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/manifest.json": "601b6fca900a751fbee3c5e5ec84ba55dbcf617a2f38fc0a24e1b50ec05ed264",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
-    "figures/figSix.pdf": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
-    "figures/fig6_composite_manifest.json": "03955eb19114914efe24bef10e450f874a6354734c52f032802391acbce26567",
+    "figures/figSix.pdf": "0028351d392148926f95050203dd25334241dac582a36788d40f652d10c81db9",
+    "figures/fig6_composite_manifest.json": "40f8bd317c5cb00d89c9b6193815a232249b9c4264c7589ac26a76b54ba80dee",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/Dynamo_alpha_raw.csv": "96bd0d1f4a2f146b1113295f57bea3360e6c54fcb28cd1a302499dc07239cdea",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/Dynamo_alpha_raw.csv": "773331f0e9e057dc8131835ce2f77d6de69251b4ab660e672afb95ba97d8aa7d",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/Dynamo_alpha.csv": "b6b8c1bc0e0d856ceb0a0c33fcc541aaf8419350f2b424de94cd856609b1a86b",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch2/Dynamo_alpha.csv": "c83affe71b477a74e37fb5863b6daf60d3784e764435a15677cafc8bea35aff7",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.png": "090d34813efa8f2975477033434559c5ee18011f5dd5c37d80ef28ba214273ad",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.pdf": "1b23f07d45b10f0211203bac08ff2663f6ea4b133be49dde8673665b840bd1c8",
-    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.manifest.json": "209f662a2e6981d6ed1132d8f659d6082c4c0f1dab4086329205fd917ad614f3"
+    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.manifest.json": "209f662a2e6981d6ed1132d8f659d6082c4c0f1dab4086329205fd917ad614f3",
+    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.png": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46",
+    "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.manifest.json": "1e45b07f10f5a3440fb1dd5bbcaaac17dc613f61e1fe1740b2172c8403c56bba"
   },
   "historical_preserved_figures_sha256": {
     "figures/figSeven.pdf": "e2de1a0a932169bcb72cbe17bf55b4351788424092b06189786285369ac85f3f"
@@ -368,7 +406,7 @@
     "evaluation/kinetics_recovery/plotting/figure6.py": "1e4f43ae0aeb2e50241504a717be1c4859cde059d978730dfeac3a48b173736b",
     "evaluation/kinetics_recovery/plotting/figure6_config.json": "8c3dadefa319be5eb0b44c70a70f1a712da1f030f6fa4c67fffec5f9155ea010",
     "evaluation/kinetics_recovery/plotting/streams.py": "4b51dc91e32cf8cd4606be9860732796cab6bb92c42b13de3e533cf364e88cea",
-    "evaluation/kinetics_recovery/plotting/stream_config.json": "2d93b0457cc170374e54a73c8d3401ef4eca3c364d6c442ecc9dee2f86854285",
+    "evaluation/kinetics_recovery/plotting/stream_config.json": "3057fbb8a530f412c65e7c10aec2dcf19ef5e6325e6238ac9343a793efffe8b7",
     "evaluation/kinetics_recovery/plotting/compare_figure6.py": "cc23a6dcc219436453008efb59d23f6d39541c9e24ca635aeacc2789b8e3fe60"
   },
   "historical_seed123_score_comparison": {
@@ -398,7 +436,7 @@
   "figure_display_update": {
     "score_decimal_places": 4,
     "scientific_inputs_and_scores_changed": false,
-    "composite_pdf_updated": false,
+    "composite_pdf_updated": true,
     "previous_outputs_sha256": {
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
@@ -416,7 +454,7 @@
       "matplotlib": "3.9.4",
       "seaborn": "0.13.2"
     },
-    "source_export_sha256": "f4097aa09a85f7089713537648398fd97ec681acf8cf62f3e3b622c26ccb1ad5",
+    "source_export_sha256": "220a07cc291eb542abf597d8c9f122ea87b5fb1bb0445cf14011c2cdd392e7a9",
     "heatmap_mean_cells": "shared gene-heatmap row boundaries and color scale; 10-point regular labels",
     "venn_macro_f1": {
       "cellDancer": 0.32386180116097996,
@@ -425,11 +463,8 @@
     "venn_macro_f1_n_genes": 250,
     "venn_macro_f1_position": "bottom",
     "venn_macro_f1_font_size": 16,
-    "pending_panel_replacements": [
-      "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png",
-      "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
-      "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png"
-    ]
+    "pending_panel_replacements": [],
+    "organoid_tsvelo_scope": "E stream only; no kinetic-parameter score added"
   },
   "active_figure": "fig6",
   "archive_root": "evaluation/kinetics_recovery/archive/fig5"

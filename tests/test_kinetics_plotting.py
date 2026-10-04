@@ -127,14 +127,14 @@ class KineticsPlottingContractTests(unittest.TestCase):
     def test_stream_config_has_explicit_method_keys(self):
         config = json.loads((PLOTTING_ROOT / "stream_config.json").read_text())
         specs = config["organoid"]
-        self.assertEqual([spec["method"] for spec in specs], ["cellDancer", "DeepKINET", "DeepVelo"])
+        self.assertEqual([spec["method"] for spec in specs], ["cellDancer", "DeepKINET", "DeepVelo", "TSvelo"])
         self.assertEqual(
             [spec["output_stem"] for spec in specs],
-            ["celldancer", "DeepKINET", "deepvelo"],
+            ["celldancer", "DeepKINET", "deepvelo", "tsvelo"],
         )
         self.assertEqual(
             [spec["velocity_layer"] for spec in specs],
-            ["velocity", "DeepKINET_velocity", "velocity"],
+            ["velocity", "DeepKINET_velocity", "velocity", "velocity"],
         )
         self.assertEqual([spec["method"] for spec in config["rpe1_manual"]], ["Dynamo"])
         self.assertEqual([spec["method"] for spec in config["organoid_manual"]], ["Dynamo"])
@@ -203,7 +203,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
         with (root / "figures/assembly/assembly_manifest.tsv").open() as handle:
             rows = [row for row in csv.DictReader(handle, delimiter="\t")
                     if row["figure"] == "fig6" and row["status"] == "materialized"]
-        self.assertEqual(len(rows), 16)
+        self.assertEqual(len(rows), 17)
         expected_panel = {
             "organoid_branch1_boxplot.png": "F",
             "organoid_branch2_boxplot.png": "F",
@@ -212,6 +212,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
             "rpe1_gamma_trajectories.png": "B",
             "rpe1_celldancer_kinetic_classes.png": "D",
             "rpe1_deepvelo_kinetic_classes.png": "D",
+            "tsvelo_organoid_stream_title_removed.png": "E",
         }
         for row in rows:
             if Path(row["source_path"]).name in expected_panel:
@@ -223,8 +224,8 @@ class KineticsPlottingContractTests(unittest.TestCase):
         self.assertEqual(composite["paper_figure"], "fig6")
         self.assertEqual(composite["export"], "validated_user_export_pdf")
         self.assertEqual(len(composite["composite_sha256"]), 64)
-        self.assertEqual(len(composite["panels"]), 16)
-        self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 16)
+        self.assertEqual(len(composite["panels"]), 17)
+        self.assertEqual(len({row["source_path"] for row in composite["panels"]}), 17)
         pending = set(composite["pending_panel_replacements"])
         self.assertEqual(
             composite["composite_status"],
@@ -242,6 +243,27 @@ class KineticsPlottingContractTests(unittest.TestCase):
             {row["source_path"] for row in composite["panels"] if "pending_source_sha256" in row},
         )
         self.assertEqual(hashlib.sha256((root / composite["composite_path"]).read_bytes()).hexdigest(), composite["composite_sha256"])
+
+    def test_organoid_tsvelo_stream_is_registered_without_parameter_scores(self):
+        root = PLOTTING_ROOT.parents[2]
+        config = json.loads((PLOTTING_ROOT / "stream_config.json").read_text())
+        spec = next(row for row in config["organoid"] if row["method"] == "TSvelo")
+        with (root / "evaluation/cell/inputs.tsv").open() as handle:
+            registered = next(row for row in csv.DictReader(handle, delimiter="\t")
+                              if row["operational_id"] == "TSvelo" and row["evaluation_dataset"] == "organoid")
+        record = json.loads((PLOTTING_ROOT.parent /
+            "figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.manifest.json").read_text())["records"][0]
+        self.assertEqual(record["input"], spec["result"])
+        self.assertEqual(record["input_sha256"], registered["sha256"])
+        self.assertFalse(record["projection_recomputed"])
+        self.assertTrue(record["reference_embedding_exact_match"])
+        self.assertEqual(record["n_cells"], 3831)
+        self.assertEqual(record["n_genes"], 153)
+        metrics = PLOTTING_ROOT.parent / "results/central_results/gene_metrics.csv"
+        with metrics.open() as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertFalse(any(row["Dataset"] == "organoid" and row["Method"] == "TSvelo"
+                             for row in rows))
 
 
 if __name__ == "__main__":

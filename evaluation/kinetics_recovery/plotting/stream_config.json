@@ -45,6 +45,13 @@
       "output_stem": "deepvelo",
       "result": "results/deepvelo/results_with_vu/deepvelo_organoid.h5ad",
       "velocity_layer": "velocity"
+    },
+    {
+      "method": "TSvelo",
+      "output_stem": "tsvelo",
+      "result": "results/TSvelo/organoid_ori/TSvelo.h5ad",
+      "velocity_layer": "velocity",
+      "reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad"
     }
   ],
   "rpe1_manual": [

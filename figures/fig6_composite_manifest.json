@@ -1,15 +1,14 @@
 {
   "export": "validated_user_export_pdf",
-  "composite_status": "pending_panel_replacements",
+  "composite_status": "current",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "Agent rendered and inspected the complete A-F layout. All 16 embedded panels match the accepted PPT media, accounting for PDF JPEG encoding and the retained 25-pixel F-panel white-margin crops. C source aspect ratio is retained within PDF export coordinate rounding (0.034%). Only bottom whitespace was cropped; the PDF content stream, image bytes, text and scale are unchanged. Online byte identity was not rechecked.",
+  "validation": "Agent rendered and inspected the complete A-F layout. All 17 embedded panels match the accepted PPT media within PDF JPEG-encoding tolerance, including the retained 25-pixel F-panel white-margin crops. The current E/F positions match the author-saved PPT. C retains its source aspect ratio within PDF coordinate rounding. Only bottom whitespace was cropped; content stream, text and embedded image bytes are unchanged. The downloaded online figSix.pdf and the promoted composite are byte-identical.",
   "panels": [
     {
       "panel": "C",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png",
-      "source_sha256": "40adfa8992d31f2376f71ac557262284bd807de1188cb1d75b8788f23b3c4a97",
-      "pending_source_sha256": "481b27b1b259320f90585c120e4fc7df03faeede7b0be39f27498c026fb9d27b"
+      "source_sha256": "481b27b1b259320f90585c120e4fc7df03faeede7b0be39f27498c026fb9d27b"
     },
     {
       "panel": "A Dynamo labelled positive control",
@@ -49,8 +48,7 @@
     {
       "panel": "D DeepVelo",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png",
-      "source_sha256": "a25f4e1d68a3d2ed292bb180bf4d01789996b1b56ad79f1f29f024fa3d9b50f3",
-      "pending_source_sha256": "3474b9a8457241cf15a3a673bf13304038b0f311d32a75d7b37616855730e2bd"
+      "source_sha256": "3474b9a8457241cf15a3a673bf13304038b0f311d32a75d7b37616855730e2bd"
     },
     {
       "panel": "E Dynamo labelled positive control",
@@ -86,25 +84,27 @@
     {
       "panel": "D cellDancer",
       "source_path": "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
-      "source_sha256": "63c60de81e3409ee656a01078f7245a5506ebf0f44f50e5b658b8899308da639",
-      "pending_source_sha256": "33a859b6e7fb91311fe7e6697596b30eb94e12019db2f02bb0eda49844aa5f92"
+      "source_sha256": "33a859b6e7fb91311fe7e6697596b30eb94e12019db2f02bb0eda49844aa5f92"
+    },
+    {
+      "panel": "E TSvelo",
+      "source_path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.png",
+      "source_sha256": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46"
     }
   ],
   "composite_path": "figures/figSix.pdf",
-  "composite_sha256": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
-  "previous_composite_sha256": "6d02ee013f2189c97c0d6b8c7a54888379fb7d46c59741dc39a97bc41e7139c7",
-  "pending_panel_replacements": [
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png"
-  ],
-  "update_note": "C now has row-aligned mean heatmap cells with regular 10-point labels; D shows bottom Macro-F1 and omits cosine intervals. Three source panels are updated. The retained composite PDF predates these replacements and requires a new author export; no velocities, correlations, class memberships or gene scopes changed.",
-  "source_export_sha256": "f4097aa09a85f7089713537648398fd97ec681acf8cf62f3e3b622c26ccb1ad5",
-  "source_pptx_sha256": "d05f6bc32a3005a8c134abc2ee9e3af98b1cc62e241d54b0a6fdaf555816a037",
+  "composite_sha256": "0028351d392148926f95050203dd25334241dac582a36788d40f652d10c81db9",
+  "previous_composite_sha256": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
+  "pending_panel_replacements": [],
+  "update_note": "Promoted the online-matched author export containing C summary heatmap cells, bottom D Macro-F1 annotations, and five organoid streams including TSvelo. All source panels and the formal PDF are synchronized; correlations, class memberships, and parameter-scoring gene scopes are unchanged.",
+  "source_export_sha256": "220a07cc291eb542abf597d8c9f122ea87b5fb1bb0445cf14011c2cdd392e7a9",
+  "source_pptx_sha256": "3e8fe7480ad496757ece3614b29b601da076674cd8e48c76a17a812cac4abc2b",
   "crop_box_pt": [
     0.0,
-    105.46666666666658,
+    133.13333333333333,
     540.0,
     779.8
-  ]
+  ],
+  "online_source_sha256": "0028351d392148926f95050203dd25334241dac582a36788d40f652d10c81db9",
+  "online_byte_identity_verified": true
 }

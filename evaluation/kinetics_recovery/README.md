@@ -33,7 +33,7 @@ without recomputing neighbors, moments, graphs, or embeddings. Some saved
 method files lack independent projection provenance; this is disclosed in the
 stream manifests. Dynamo A is the retained labelled-data manual exception.
 
-Assembly copies and hashes track the 16 current Figure 6 source panels. The
+Assembly copies and hashes track the 17 current Figure 6 source panels. The
 formal composite is `../../figures/figSix.pdf`, with source-panel and PDF
 checksums in `../../figures/fig6_composite_manifest.json`.
 Source-panel replacements do not regenerate the composite PDF; the composite
@@ -66,14 +66,17 @@ the resolved H5AD and hash, rather than the alias name, define the input.
 | DeepKINET | organoid | `results/DeepKINET/DeepKINET_organoid.h5ad` | Same layer keys | E, F gamma |
 | TSvelo | RPE1 alpha | `results/TSvelo/rpe1/l0_TSvelo.h5ad` and `results/TSvelo/rpe1/l1_TSvelo.h5ad` | `alpha` from both lineages | B alpha, C alpha |
 | TSvelo | RPE1 stream | `results/TSvelo/rpe1/TSvelo.h5ad` | `velocity` from the merged result | A |
+| TSvelo | organoid stream | `results/TSvelo/organoid_ori/TSvelo.h5ad` | Saved `velocity` and `velocity_umap` from the merged result | E only |
 | Dynamo(label data) | RPE1 | `indicators/gene/scEU_rpe1_analyze/dynamo/dynamo_rpe1.h5ad` | `cell_wise_alpha`; labelled-data stream state | A, B alpha, C alpha |
 | Dynamo(label data) | organoid | `indicators/gene/scEU_organoid_analyze/dynamo/pulse120_one_shot_corrected_20260926/dynamo_pulse120_corrected.h5ad` (artifact alias: `method-results/kinetics/dynamo/organoid_labelled.h5ad`) | `cell_wise_alpha`; Pulse 120 min labelled-data subset; Alpha only | E, F alpha |
 
 The selected DeepVelo files must contain `velocity_unspliced`, identifying
 the unspliced-prediction result family. DeepKINET's formal seed-123 files
 supply gamma only. The merged TSvelo file has no alpha layer and cannot
-replace the two lineage files for parameter recovery. Organoid TSvelo is not
-added to this experiment. Organoid Dynamo is included as a labelled-data
+replace the two lineage files for parameter recovery. Organoid TSvelo is shown
+only as a cell-level velocity field in E, not added to parameter scoring in F.
+Its 3,831-cell, 153-gene merged result reuses the saved velocity projection;
+its UMAP exactly matches the configured organoid reference. Organoid Dynamo is included as a labelled-data
 Alpha-only exception using the frozen Pulse 120 min one-shot result (1,373
 cells); no comparable Gamma layer is available.
 

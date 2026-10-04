@@ -11,8 +11,8 @@ the three gene-only scenario summaries remain supporting analyses. The
 approved user-exported composite is recorded in `../fig4_composite_manifest.json`.
 Figure 5
 contains real-data gene-kinetics panels; the canonical source for its D
-overview remains unverified. Figure 6 has 16 materialized source panels,
-including Dynamo(label data) in organoid E, with its validated user-exported
+overview remains unverified. Figure 6 has 17 materialized source panels,
+including Dynamo(label data) and TSvelo in organoid E, with its validated user-exported
 composite recorded in `../fig6_composite_manifest.json`. Figure 7's original
 editable whole-panel source is `fig7/fig7.pptx`, including ten native charts
 and their embedded workbooks. The current author-exported,

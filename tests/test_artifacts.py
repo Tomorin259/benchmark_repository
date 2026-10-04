@@ -70,9 +70,9 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 126
+    assert len(rows) == 127
     materialized = [row for row in rows if row["status"] == "materialized"]
-    assert len(materialized) == 120
+    assert len(materialized) == 121
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
         target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()
