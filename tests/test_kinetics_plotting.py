@@ -3,6 +3,7 @@ import hashlib
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -15,7 +16,7 @@ PLOTTING_ROOT = (
 
 
 class KineticsPlottingContractTests(unittest.TestCase):
-    def test_venn_two_line_titles_preserve_counts_and_membership(self):
+    def test_venn_macro_f1_preserves_counts_and_membership(self):
         import pandas as pd
         from evaluation.kinetics_recovery.plotting.figure6 import plot_venn, venn2
 
@@ -47,8 +48,9 @@ class KineticsPlottingContractTests(unittest.TestCase):
                     canonical / f"rpe1_{stem}_kinetic_class_membership.csv"))
                 svg = output.read_text()
                 self.assertIn("Cooperative Genes", svg)
-                self.assertIn("cosine", svg)
-                self.assertNotIn("Macro-F1", svg)
+                self.assertIn("Macro-F1", svg)
+                self.assertIn("0.340" if method == "DeepVelo" else "0.324", svg)
+                self.assertNotIn("cosine", svg)
                 self.assertNotIn("cosine_similarity", svg)
                 self.assertNotIn("Balanced accuracy", svg)
 
@@ -63,11 +65,31 @@ class KineticsPlottingContractTests(unittest.TestCase):
         source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "heatmap.svg"
-            frames = plot_heatmap(
-                {method: source for method in paths["Alpha"]},
-                {method: source for method in paths["Gamma"]},
-                config["heatmap_genes"], output,
-            )
+            import matplotlib.pyplot as plt
+            import numpy as np
+            with patch.object(plt, "close"):
+                frames = plot_heatmap(
+                    {method: source for method in paths["Alpha"]},
+                    {method: source for method in paths["Gamma"]},
+                    config["heatmap_genes"], output,
+                )
+                figure = plt.gcf()
+            for axis, frame in zip(figure.axes[:2], frames):
+                gene_mesh, summary_mesh = axis.collections[:2]
+                np.testing.assert_array_equal(
+                    gene_mesh.get_coordinates()[:, 0, 1],
+                    summary_mesh.get_coordinates()[:, 0, 1],
+                )
+                np.testing.assert_allclose(
+                    summary_mesh.get_array().ravel(), frame.mean(axis=1),
+                )
+                self.assertIs(gene_mesh.cmap, summary_mesh.cmap)
+                self.assertIs(gene_mesh.norm, summary_mesh.norm)
+                for label in axis.texts:
+                    if label.get_transform() is axis.get_yaxis_transform():
+                        self.assertEqual(label.get_fontsize(), 10)
+                        self.assertEqual(label.get_fontweight(), "normal")
+            plt.close(figure)
             for parameter, frame in zip(("alpha", "gamma"), frames):
                 expected = pd.read_csv(
                     root / f"figures/fig6/plot_data/rpe1_{parameter}_heatmap.csv",

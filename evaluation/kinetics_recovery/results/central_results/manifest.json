@@ -315,16 +315,16 @@
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_gamma_heatmap.csv": "cc1bae1a2911e14dd5a18779a03121963368f80876db2a87d14e6c6f8feffb09",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_gamma_trajectories.csv": "7688748edfcf60b3d6052d3abcef512a1bfb61e68a2a4bafafda4cc76c8604d2",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png": "40adfa8992d31f2376f71ac557262284bd807de1188cb1d75b8788f23b3c4a97",
+    "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png": "481b27b1b259320f90585c120e4fc7df03faeede7b0be39f27498c026fb9d27b",
     "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_trajectories.png": "014aade7de892780cb026803c840062a016eadf034491e7dbccee238e81f8926",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png": "63c60de81e3409ee656a01078f7245a5506ebf0f44f50e5b658b8899308da639",
-    "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png": "a25f4e1d68a3d2ed292bb180bf4d01789996b1b56ad79f1f29f024fa3d9b50f3",
+    "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png": "33a859b6e7fb91311fe7e6697596b30eb94e12019db2f02bb0eda49844aa5f92",
+    "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png": "3474b9a8457241cf15a3a673bf13304038b0f311d32a75d7b37616855730e2bd",
     "evaluation/kinetics_recovery/figures/fig6/rpe1_gamma_trajectories.png": "3fe0cf6486eab89b43455b2db278493021c6156183d9bd493023892617249cd8",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/manifest.json": "9eddb3f27f3d5adecd2750eae4f3587c6d6f0f5b726fb016fbc56879a1c3f992",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
     "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/manifest.json": "8b7ba00c312e4bf86b34eb6e2edf14ea4d1902b9a7200e63165e6c0f249c0f25",
     "figures/figSix.pdf": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
-    "figures/fig6_composite_manifest.json": "bfdb40cba483e98749197f01234d6e4404e58e7efb1d17e0ec0483e7880a3c73",
+    "figures/fig6_composite_manifest.json": "03955eb19114914efe24bef10e450f874a6354734c52f032802391acbce26567",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch1/Dynamo_alpha_raw.csv": "96bd0d1f4a2f146b1113295f57bea3360e6c54fcb28cd1a302499dc07239cdea",
     "evaluation/kinetics_recovery/results/central_results/matrices/organoid/branch2/Dynamo_alpha_raw.csv": "773331f0e9e057dc8131835ce2f77d6de69251b4ab660e672afb95ba97d8aa7d",
     "evaluation/kinetics_recovery/results/central_results/trajectories/organoid/branch1/Dynamo_alpha.csv": "b6b8c1bc0e0d856ceb0a0c33fcc541aaf8419350f2b424de94cd856609b1a86b",
@@ -365,7 +365,7 @@
   "current_code_sha256": {
     "evaluation/kinetics_recovery/metrics.py": "4a8663e4f4b6f436e77597021be3c8ac30864d3368f7a054befc86cdcd8a9721",
     "evaluation/kinetics_recovery/config.json": "9d5c7239077384017ee9057a8ee1573219ab5f0de3ad50da8289424decbc847c",
-    "evaluation/kinetics_recovery/plotting/figure6.py": "d7c42bec2f87694191fcce031cc72d641614888d4932076e688329d5a521838e",
+    "evaluation/kinetics_recovery/plotting/figure6.py": "1e4f43ae0aeb2e50241504a717be1c4859cde059d978730dfeac3a48b173736b",
     "evaluation/kinetics_recovery/plotting/figure6_config.json": "8c3dadefa319be5eb0b44c70a70f1a712da1f030f6fa4c67fffec5f9155ea010",
     "evaluation/kinetics_recovery/plotting/streams.py": "4b51dc91e32cf8cd4606be9860732796cab6bb92c42b13de3e533cf364e88cea",
     "evaluation/kinetics_recovery/plotting/stream_config.json": "2d93b0457cc170374e54a73c8d3401ef4eca3c364d6c442ecc9dee2f86854285",
@@ -398,7 +398,7 @@
   "figure_display_update": {
     "score_decimal_places": 4,
     "scientific_inputs_and_scores_changed": false,
-    "composite_pdf_updated": true,
+    "composite_pdf_updated": false,
     "previous_outputs_sha256": {
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
       "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
@@ -408,15 +408,28 @@
     "previous_renderer_sha256": "2f20b24b5daf68fba705787ba426160838fc7d13c33ec9f1660cfca75ce0ba78",
     "dynamo_display_label": "Dynamo (scEU)",
     "heatmap_mean_decimal_places": 2,
-    "venn_title_lines": 2,
-    "venn_macro_f1_shown": false,
+    "venn_title_lines": 1,
+    "venn_macro_f1_shown": true,
     "renderer_versions": {
       "numpy": "2.0.2",
       "pandas": "2.3.3",
       "matplotlib": "3.9.4",
       "seaborn": "0.13.2"
     },
-    "source_export_sha256": "f4097aa09a85f7089713537648398fd97ec681acf8cf62f3e3b622c26ccb1ad5"
+    "source_export_sha256": "f4097aa09a85f7089713537648398fd97ec681acf8cf62f3e3b622c26ccb1ad5",
+    "heatmap_mean_cells": "shared gene-heatmap row boundaries and color scale; 10-point regular labels",
+    "venn_macro_f1": {
+      "cellDancer": 0.32386180116097996,
+      "DeepVelo": 0.3395817178197266
+    },
+    "venn_macro_f1_n_genes": 250,
+    "venn_macro_f1_position": "bottom",
+    "venn_macro_f1_font_size": 16,
+    "pending_panel_replacements": [
+      "evaluation/kinetics_recovery/figures/fig6/rpe1_alpha_gamma_heatmap.png",
+      "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
+      "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png"
+    ]
   },
   "active_figure": "fig6",
   "archive_root": "evaluation/kinetics_recovery/archive/fig5"

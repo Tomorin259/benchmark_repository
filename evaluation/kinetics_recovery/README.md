@@ -119,14 +119,24 @@ Method-specific extraction is retained:
 
 Panel B applies a display-only z-score separately to processed reference
 and prediction profiles. This z-score is not used for Spearman or turnover
-classification. Panel C displays selected-gene Spearman scores.
+classification. Panel C displays selected-gene Spearman scores. Its `Mean (n)`
+column reports each method's mean over finite displayed scores and the number
+of those scores. Summary cells share the gene heatmap's color scale and row
+boundaries; their color encodes the unrounded mean, not the gene count.
 
 Panel D independently classifies reference and predicted processed
 alpha/gamma trajectories: cosine <= -0.5 is cooperative, cosine >= 0.5 is
 destabilizing, and intermediate values are neutral. Genes without finite
 paired values or with zero vector norm are unclassified. Only DeepVelo and
 cellDancer provide both parameters in this comparison. Save both class-count
-and per-gene membership tables.
+and per-gene membership tables. Panel D reports Macro-F1 below each method's
+three Venn diagrams, without repeating the cosine intervals in the image.
+For the same classified gene universe (currently 250 genes), compute each
+class F1 as `2 TP / (2 TP + FP + FN)` and take the unweighted mean over the
+three classes. The intersections are TP, prediction-only members are FP,
+and reference-only members are FN. The displayed Macro-F1 values are 0.324
+for cellDancer and 0.340 for DeepVelo; the memberships and class counts are
+unchanged. This set differs from the 19-gene parameter display in panels B/C.
 
 ### Organoid
 

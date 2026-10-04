@@ -13,6 +13,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
+from matplotlib.transforms import Bbox
 try:
     from matplotlib_venn import venn2, venn2_circles
 except ModuleNotFoundError:
@@ -277,13 +278,13 @@ def plot_heatmap(
             mean_labels.append(axes[index].text(
                 1.082, row + 0.5, f"{scores.mean():.2f}",
                 transform=axes[index].get_yaxis_transform(),
-                fontsize=12, fontfamily="DejaVu Sans", fontweight="bold",
+                fontsize=10, fontfamily="DejaVu Sans", fontweight="normal",
                 ha="right", va="center",
             ))
             count_labels.append(axes[index].text(
                 1.096, row + 0.5, f"({scores.count()})",
                 transform=axes[index].get_yaxis_transform(),
-                fontsize=12, fontfamily="DejaVu Sans", fontweight="bold",
+                fontsize=10, fontfamily="DejaVu Sans", fontweight="normal",
                 ha="left", va="center",
             ))
         summary_columns.append((header, mean_labels, count_labels))
@@ -301,9 +302,9 @@ def plot_heatmap(
     )
     point = figure.dpi / 72
     for axis, (header, means, counts) in zip(axes, summary_columns):
-        column_left = axis.bbox.x1 + 8 * point
+        column_left = axis.bbox.x1 + 2.5 * point
         mean_right = column_left + mean_width
-        count_left = mean_right + 4 * point
+        count_left = mean_right + 2.5 * point
         inverse = axis.transAxes.inverted()
         for label in means:
             label.set_x(inverse.transform((mean_right, 0))[0])
@@ -320,7 +321,7 @@ def plot_heatmap(
     gamma_label_width = max(
         label.get_window_extent(renderer).width for label in axes[1].get_yticklabels()
     )
-    gap_pixels = 10 * figure.dpi / 72
+    gap_pixels = 12 * figure.dpi / 72
     right_bounds = axes[1].get_position()
     right_start = (mean_right + gamma_label_width + gap_pixels) / figure.bbox.width
     axes[1].set_position([right_start, right_bounds.y0, right_bounds.width, right_bounds.height])
@@ -344,6 +345,36 @@ def plot_heatmap(
         frameon=False,
         fontsize=10,
     )
+    # Summary cells use the same row boundaries and ScalarMappable as the
+    # gene heatmap. Only their physical width differs; n is not color-coded.
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    for axis, (_, means, counts), frame in zip(
+        axes, summary_columns, (data["Alpha"], data["Gamma"])
+    ):
+        boxes = [label.get_window_extent(renderer) for label in (*means, *counts)]
+        inverse = axis.transAxes.inverted()
+        left = inverse.transform((min(box.x0 for box in boxes) - 1.5 * point, 0))[0]
+        right = inverse.transform((max(box.x1 for box in boxes) + 1.5 * point, 0))[0]
+        source_mesh = axis.collections[0]
+        limits = axis.get_xlim(), axis.get_ylim()
+        axis.pcolormesh(
+            [left, right], source_mesh.get_coordinates()[:, 0, 1],
+            frame.mean(axis=1).to_numpy()[:, None],
+            cmap=source_mesh.cmap, norm=source_mesh.norm,
+            transform=axis.get_yaxis_transform(), clip_on=False,
+            edgecolors="white", linewidths=source_mesh.get_linewidths(),
+            shading="flat", zorder=1,
+        )
+        axis.set_xlim(limits[0])
+        axis.set_ylim(limits[1])
+        for mean, count, value in zip(means, counts, frame.mean(axis=1)):
+            rgb = source_mesh.to_rgba(value)[:3]
+            linear = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in rgb]
+            luminance = sum(v * w for v, w in zip(linear, (0.2126, 0.7152, 0.0722)))
+            for label in (mean, count):
+                label.set_color("white" if luminance < 0.408 else "#262626")
+                label.set_zorder(3)
     figure.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close(figure)
     return data["Alpha"], data["Gamma"]
@@ -387,11 +418,8 @@ def plot_venn(
         raise RuntimeError("matplotlib-venn is required when rendering Venn panels")
     truth = cosine_classes(reference_alpha, reference_gamma)
     prediction = cosine_classes(prediction_alpha, prediction_gamma)
-    intervals = {
-        "Cooperative": r"(cosine $\leq -0.5$)",
-        "Neutral": r"($-0.5 <$ cosine $< 0.5$)",
-        "Destabilizing": r"(cosine $\geq 0.5$)",
-    }
+    if set.union(*truth.values()) != set.union(*prediction.values()):
+        raise ValueError("Macro-F1 requires the same classified gene universe for reference and prediction")
     figure = plt.figure(figsize=(15, 5))
     rows = []
     for index, category in enumerate(
@@ -409,11 +437,9 @@ def plot_venn(
             ax=axis,
         )
         venn2_circles(subsets=subsets, linewidth=1.5, color="gray", ax=axis)
-        # Figure coordinates keep both title lines aligned across all circles.
+        # Category headings share a baseline; thresholds are documented in Methods.
         figure.text((index - 0.5) / 3, 0.95, f"{category} Genes",
                     fontsize=12, fontweight="bold", ha="center", va="top")
-        figure.text((index - 0.5) / 3, 0.89, intervals[category],
-                    fontsize=11, ha="center", va="top")
         rows.append(
             {
                 "Class": category,
@@ -435,7 +461,27 @@ def plot_venn(
             )
     pd.DataFrame(membership_rows).to_csv(membership_output_path, index=False)
     plt.tight_layout(rect=[0, 0.03, 1, 0.84])
-    figure.savefig(output_path, dpi=300)
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    gaps = [heading.get_window_extent(renderer).y0 - max(
+        circle.get_window_extent(renderer).y1 for circle in axis.patches
+    ) for heading, axis in zip(figure.texts, figure.axes)]
+    shift = max(0, min(gaps) - 8 * figure.dpi / 72) / figure.bbox.height
+    for axis in figure.axes:
+        bounds = axis.get_position()
+        axis.set_position([bounds.x0, bounds.y0 + shift, bounds.width, bounds.height])
+    macro_f1 = np.mean([
+        2 * row["intersection"] / (
+            2 * row["intersection"] + row["scEU_only"] + row[f"{prediction_label}_only"]
+        ) if row["intersection"] + row["scEU_only"] + row[f"{prediction_label}_only"] else 0
+        for row in rows
+    ])
+    # Shared footer baseline and crop retain the approved 4500 x 1305 canvas.
+    figure.text(0.5, 0.1591117071421362, f"Macro-F1 = {macro_f1:.3f}",
+                fontsize=16, fontweight="bold", ha="center", va="center")
+    figure.savefig(output_path, dpi=300,
+                   bbox_inches=Bbox.from_bounds(0, 195 / 300, 15, 1305 / 300),
+                   pad_inches=0)
     plt.close(figure)
     return pd.DataFrame(rows)
 
