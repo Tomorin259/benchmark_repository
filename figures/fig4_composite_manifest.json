@@ -3,7 +3,10 @@
   "paper_figure": "fig4",
   "composite_status": "current",
   "composite_path": "figures/figFour.pdf",
-  "composite_sha256": "6bdc36fbfb6b8517282688c3529148ce090996c2983cabc24c7a77e2786e05f8",
+  "composite_sha256": "1208cf07bf9271d41fefc8d6b9149b61d8c5871b2dfec2050999f371d7960f35",
+  "source_pdf": "user-exported local PDF (not committed)",
+  "source_pdf_sha256": "c256e6406fd0d0191141f185ae4f40ff8ed06c4903b74aa5634dadb6d6252c0f",
+  "crop_box_pt": [0.0, 235.94, 540.0, 779.8],
   "pages": 1,
   "panels": [
     {
@@ -39,6 +42,6 @@
       "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
     }
   ],
-  "validation": "The previously approved cropped user export was imported byte-for-byte without PDF conversion. The complete A-D page was rendered and visually inspected; D has continuous alternating method bands, upper Cell scores, lower Gene scores and a lower-right legend. The repository's 36-row D summary was checked against source tables (maximum numerical difference below 2e-16). PDF rasterization/resizing is not claimed to be pixel-identical to the source PNG. Online PDF byte identity was not independently rechecked.",
+  "validation": "The user-exported Figure 4 PDF was cropped without content conversion using the explicit crop box above. The cropped page was rendered and visually inspected; A-D, the left gutter labels, D, and the lower legend remain visible. The repository's 36-row D summary was not recomputed in this crop-only update. Online PDF byte identity was not independently rechecked.",
   "reproduction_boundary": "The D renderer reproduces the paired panel and summary, not the manually assembled and user-exported whole-figure PDF. Independent A schematic source remains unavailable; B/C source mappings remain in assembly_manifest.tsv. Historical gene-only summaries are supporting analyses, not final D sources."
 }
