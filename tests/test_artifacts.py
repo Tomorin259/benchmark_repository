@@ -36,7 +36,7 @@ def test_artifact_registry_schema_and_paths():
         if row["status"] == "available":
             path = ROOT / row["path"]
             assert path.is_file(), row["path"]
-            assert hashlib.sha256(path.read_bytes()).hexdigest() == row["sha256"]
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == row["sha256"], row["path"]
         else:
             assert row["path"] == ""
         if row["status"] == "external":
