@@ -13,6 +13,9 @@ Figure 1 corrected editable A/B must not be inferred from the presence of a
 PPTX. Figure 5D sources are identified by native image placement; its old
 misidentified gene summary is archived without changing the current PDF.
 
+`figures/export_materials.py` validates sources and generates fresh material
+bundles from the map; duplicate source-panel copies are not tracked.
+
 Scientific panels are generated beside the experiment that owns their data and
 metric definition:
 
@@ -34,7 +37,7 @@ assemblies. See the Gene README for the exact layer and score-source contract.
 
 [`../figures/assembly/assembly_manifest.tsv`](../figures/assembly/assembly_manifest.tsv)
 is the authoritative panel-to-source map. It records panel identity, status,
-source and materialized paths, SHA256, and unresolved source gaps. Do not copy
+source and on-demand export paths, SHA256, and unresolved source gaps. Do not copy
 its inventory into prose; derive current panel counts and missing-source lists
 from the manifest.
 

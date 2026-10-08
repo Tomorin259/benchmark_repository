@@ -202,7 +202,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256((root / relative).read_bytes()).hexdigest(), expected, relative)
         with (root / "figures/assembly/assembly_manifest.tsv").open() as handle:
             rows = [row for row in csv.DictReader(handle, delimiter="\t")
-                    if row["figure"] == "fig6" and row["status"] == "materialized"]
+                    if row["figure"] == "fig6" and row["status"] == "referenced_source"]
         self.assertEqual(len(rows), 17)
         expected_panel = {
             "organoid_branch1_boxplot.png": "F",
@@ -218,7 +218,6 @@ class KineticsPlottingContractTests(unittest.TestCase):
             if Path(row["source_path"]).name in expected_panel:
                 self.assertEqual(row["panel"], expected_panel[Path(row["source_path"]).name])
             source = (root / row["source_path"]).read_bytes()
-            self.assertEqual(source, (root / "figures/assembly" / row["materialized_path"]).read_bytes())
             self.assertEqual(hashlib.sha256(source).hexdigest(), row["sha256"])
         composite = json.loads((root / "figures/fig6_composite_manifest.json").read_text())
         self.assertEqual(composite["paper_figure"], "fig6")

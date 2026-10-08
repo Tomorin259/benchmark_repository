@@ -1,39 +1,39 @@
-# Paper figure assembly assets
+# Paper figure assembly sources
 
-Every materialized panel under this directory is a regular repository file.
-`assembly_manifest.tsv` records its paper figure, panel, canonical source,
-materialized path, and SHA256; unresolved independent sources remain explicit.
+`assembly_manifest.tsv` is the authoritative mapping from each paper panel to
+one retained source file and its SHA-256. `export_path` is a destination inside
+an on-demand PowerPoint/WPS material bundle, not a second tracked copy.
+`referenced_source` denotes a stored source; `retained_composite` denotes an
+online-matched final PDF; `authoring_source` denotes a native manual source.
+`missing_source` remains explicit when independent final panel extraction is
+unavailable. Retaining a PDF/PPTX is not proof of a numerical renderer.
 
-Figure 3 contains three selected gene/cell comparisons. Figure 4 contains
-simulation panels; its native schematic/assembly source is retained in
-`fig4/authoring/source.pptx`, with the author-export identity verified in its
-manifest. A standalone schematic export is not claimed. Its final D
-panel is the paired Cell/Gene comparison under `evaluation/cell/simulation/`;
-the three gene-only scenario summaries remain supporting analyses. The
-approved user-exported composite is recorded in `../fig4_composite_manifest.json`.
-Figure 5
-contains real-data gene-kinetics panels; the canonical source for its D
-overview remains unverified. Figure 6 has 17 materialized source panels,
-including Dynamo(label data) and TSvelo in organoid E, with its validated user-exported
-composite recorded in `../fig6_composite_manifest.json`. Figure 7's original
-editable whole-panel source is `fig7/fig7.pptx`, including ten native charts
-and their embedded workbooks. The current author-exported,
-cropped `../figSeven.pdf` and its numerical inputs are recorded in
-`../fig7_composite_manifest.json`. The old kinetics Figure 5 material is kept
-in the archive and has no active assembly aliases.
+Verify sources without writing or exporting:
 
-Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are
-materialized under `suppfig10/`. Supplementary Figure 11 has two materialized
-veloAE source panels. The exact online full-page PDFs for Supplementary Figures 9 and 11 are
-retained under the root `figures/` directory. Retaining a final PDF does not
-prove independent editable or numerical reconstruction; these boundaries
-remain explicit in the composite manifests. Figure 1 also retains the exact
-online PDF, while its original authoring source predates the approved three
-text corrections. Figure 5D left/right overview images are recovered from the author slide at
-the D label position. The formerly misidentified branching-gene summary is
-retained only in `figures/archive/fig5/`.
+```bash
+python figures/export_materials.py --verify-only
+```
 
-Supplementary Figures 12 and 13 are registered as whole-composite materials.
-S12 is the approved simulation Cell composite with its Table 7 provenance;
-S13 is the approved TiVelo root-control composite with its editable PPTX and
-panel manifest. Their detailed provenance remains beside each composite.
+Create a fresh material bundle, preserving every file byte:
+
+```bash
+python figures/export_materials.py --figures fig4 fig5 fig6 --output-root outputs/paper-materials
+```
+
+The bundle records source hashes and source gaps. Its directory must be empty;
+canonical sources are never overwritten. Module panels remain in their owning
+evaluation/diagnostic directory. Native PPTX/manual sources are stored here.
+
+Figure 1 retains the original authoring PPTX and exact online PDF. The user
+intentionally keeps the three original PPT labels; it is not described as an
+exact independently re-exported source of the corrected online PDF.
+Figure 4 retains the native schematic/assembly source and verified author-export
+lineage. Figure 5D's two overview images were recovered from native slide
+placement; its previously misidentified legacy gene-summary bitmap is archived.
+The validated Figure 6 source panels and author PDF retain their existing
+scientific inputs and hashes. Figure 7 retains the editable native charts and
+embedded workbooks, with manual WPS PDF export.
+
+Supplementary Figures 9/11 retain exact online whole-PDF bytes; independent
+editable/numerical whole-figure reconstruction remains a separate boundary.
+Supplementary Figures 12/13 retain their approved composites and provenance.

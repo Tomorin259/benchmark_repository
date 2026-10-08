@@ -33,7 +33,8 @@ without recomputing neighbors, moments, graphs, or embeddings. Some saved
 method files lack independent projection provenance; this is disclosed in the
 stream manifests. Dynamo A is the retained labelled-data manual exception.
 
-Assembly copies and hashes track the 17 current Figure 6 source panels. The
+The assembly map and hashes reference the 17 current Figure 6 source panels.
+`figures/export_materials.py` generates regular-file copies on demand. The
 formal composite is `../../figures/figSix.pdf`, with source-panel and PDF
 checksums in `../../figures/fig6_composite_manifest.json`.
 Source-panel replacements do not regenerate the composite PDF; the composite

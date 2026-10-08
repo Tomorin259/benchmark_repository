@@ -1,7 +1,7 @@
 # Paper figures
 
 Paper-level PDFs and assembly assets are tracked here. The assembly manifest
-maps each materialized panel to a repository source and SHA256 and records
+maps each referenced panel to a repository source and SHA256 and records
 unresolved independent sources without inventing replacements.
 
 `figOne.pdf`, `suppFigNine.pdf`, and `suppFigEleven.pdf` are retained original

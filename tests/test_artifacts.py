@@ -71,23 +71,23 @@ def test_assembly_manifest_materialized_panels_are_verified():
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
     assert len(rows) == 129
-    materialized = [row for row in rows if row["status"] == "materialized"]
+    materialized = [row for row in rows if row["status"] == "referenced_source"]
     assert len(materialized) == 123
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
-        target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()
-        assert source == target, row["materialized_path"]
+        assert row["export_path"] and not Path(row["export_path"]).is_absolute()
+        assert ".." not in Path(row["export_path"]).parts
         assert hashlib.sha256(source).hexdigest() == row["sha256"], row["source_path"]
     panels = [row for row in rows if row["figure"] == "suppfig10"]
     assert len(panels) == 2
-    assert all(row["status"] == "materialized" for row in panels)
+    assert all(row["status"] == "referenced_source" for row in panels)
     assert {row["panel"] for row in panels} == {"A", "B"}
     assert not any("workflow schematic" in row["role"] for row in panels)
     expected = {
         "suppfig10/A_row_geometric_median4_cbdir.svg",
         "suppfig10/B_row_geometric_median4_batc.svg",
     }
-    assert {row["materialized_path"] for row in panels} == expected
+    assert {row["export_path"] for row in panels} == expected
 
 
 def test_supplementary_figures_12_and_13_are_registered():
@@ -98,17 +98,17 @@ def test_supplementary_figures_12_and_13_are_registered():
         if row["figure"] in {"suppfig12", "suppfig13"}
     }
     assert set(registered) == {"suppfig12", "suppfig13"}
-    assert all(row["panel"] == "whole" and row["status"] == "materialized"
+    assert all(row["panel"] == "whole" and row["status"] == "referenced_source"
                for row in registered.values())
     s12 = registered["suppfig12"]
     assert s12["source_path"] == "figures/suppFigTwelve.pdf"
-    assert s12["materialized_path"] == "suppfig12/suppFigTwelve.pdf"
+    assert s12["export_path"] == "suppfig12/suppFigTwelve.pdf"
     assert s12["sha256"] == hashlib.sha256((ROOT / s12["source_path"]).read_bytes()).hexdigest()
     s12_manifest = json.loads((ROOT / "figures/suppfig12_composite_manifest.json").read_text())
     assert s12_manifest["composite_sha256"] == s12["sha256"]
     s13 = registered["suppfig13"]
     assert s13["source_path"] == "figures/assembly/suppfig13/suppFigThirteen.pdf"
-    assert s13["materialized_path"] == "suppfig13/suppFigThirteen.pdf"
+    assert s13["export_path"] == "suppfig13/suppFigThirteen.pdf"
     assert s13["sha256"] == hashlib.sha256((ROOT / s13["source_path"]).read_bytes()).hexdigest()
     s13_manifest = json.loads((ROOT / "figures/assembly/suppfig13/assembly_manifest.json").read_text())
     assembly_hashes = {item["file"]: item["sha256"] for item in s13_manifest["assembly"]}
@@ -128,13 +128,11 @@ def test_online_supplementary_figure_gaps_are_explicit():
         assert hashlib.sha256((ROOT / whole["source_path"]).read_bytes()).hexdigest() == whole["sha256"]
         assert "independent" in whole["note"]
         if figure == "suppfig11":
-            panels = [row for row in rows if row["figure"] == figure and row["status"] == "materialized"]
+            panels = [row for row in rows if row["figure"] == figure and row["status"] == "referenced_source"]
             assert {row["panel"] for row in panels} == {"A", "B"}
             for row in panels:
                 source = ROOT / row["source_path"]
-                target = ROOT / "figures/assembly" / row["materialized_path"]
-                assert source.read_bytes() == target.read_bytes()
-                assert hashlib.sha256(target.read_bytes()).hexdigest() == row["sha256"]
+                assert hashlib.sha256(source.read_bytes()).hexdigest() == row["sha256"]
 
 
 def test_gene_panel_manifest_hashes_and_supporting_scope():
@@ -208,7 +206,7 @@ def test_figure4d_registration_and_composite_match_current_source():
     assert len(formal) == 1
     source = "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png"
     assert formal[0]["source_path"] == source
-    assert formal[0]["materialized_path"] == "fig4/D_summary/simulation_cross_level_cbdir.png"
+    assert formal[0]["export_path"] == "fig4/D_summary/simulation_cross_level_cbdir.png"
     assert not (ROOT / "figures/assembly/fig4/D_summary/summary_dot_interval.png").exists()
     supporting = [row for row in rows if row["figure"] == "fig4" and row["panel"] == "D"
                   and row["role"] == "supporting gene-only scenario summary"]
