@@ -88,14 +88,49 @@ display contract supported by the public renderer.
 The paper panels are materialized under one date-free directory:
 
 ```bash
-python plot_current_gene_assets_from_originals.py \
+python evaluation/gene/plot_gene_assets.py \
   --artifact-root /path/to/velocity-artifacts \
-  --output-root evaluation/gene/figures/panels
+  --output-root outputs/gene-panels
 ```
 
-`figures/panels/assembly_manifest.tsv` records the panel-to-file mapping and
-SHA256 values. The renderer records external inputs as logical artifact
-locators and never writes machine-specific paths into public metadata.
+The renderer is owned entirely by this repository. It reads reference-30
+`new_cbdir` from `results/gene_cbdir_reference30_all.csv` and joins `CosSim`
+from `results/simulation/gene_cbdir_cossim_reference.csv` by dataset, method,
+and gene. The compact simulation table's separate CBDir column is not a
+replacement for the reference-30 values used by these panels. Missing tables,
+duplicate keys, mismatched inputs, and missing velocity components are errors;
+there is no external score-TXT fallback or dynamic import of legacy scripts.
+
+For CSV-only summary boxplots/heatmaps, no H5AD root, Scanpy, or scVelo import
+is needed:
+
+```bash
+python evaluation/gene/plot_gene_assets.py --summaries-only \
+  --output-root outputs/gene-summary
+```
+
+For a focused phase-panel check, use `--cases bonemarrow --genes LMNA`;
+summaries still cover every registered gene in the selected dataset. `--dpi`
+defaults to 600. Output directories must be empty and must not be the committed
+`figures/panels/` directory; the default is `outputs/gene-panels/`. Independently
+review a new export before promoting any assets to the paper bundle.
+
+The phase API is unchanged. Native `Ms`/`Mu` are read without recomputing
+moments or neighbor graphs. All 90 frozen result inputs have both coordinate
+layers; missing layers stop the export. The historical real-panel velocity
+cleaning (NaN/Inf to zero and clipping to +/-1e10) applies only to selected
+plotting copies. Simulation vectors retain their native values. Real cluster
+labels/colors are taken from each registered reference H5AD; the historical
+equal-length label-assignment fallback is retained. H5AD files are never saved
+or modified by the renderer. Summary stripplot jitter inherits the display RNG
+and has no effect on metric values, means, or ordering.
+
+Each export writes `scores_used.csv`, source/configuration hashes in
+`provenance.json`, and an `assembly_manifest.tsv` for generated paper-panel
+references. It generates the previously scripted nine-method comparison panels
+and summaries, not the manually assembled whole PDFs or retained raw phase
+plates. The committed `figures/panels/assembly_manifest.tsv` remains the
+panel-to-file mapping and hash authority for current paper assets.
 
 After a display-only update, check or refresh the existing panel hashes from
 the repository root without importing scVelo, opening H5AD files, or redrawing:

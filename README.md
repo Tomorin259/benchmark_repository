@@ -18,7 +18,7 @@ Status as of 2026-09-29:
 | --- | --- | --- |
 | Method configurations | All 20 configurations are registered and mapped to method scripts | Reviewed environments and some upstream source revisions remain pending |
 | Cell-level evaluation | Complete compact results for 14 real datasets × 20 configurations under the fixed-reference-30 contract | Large method-result inputs remain external |
-| Gene-level evaluation | Reference-30 real and simulated results, plotting code, and paper panels are available | Canonical input and method-result H5AD files remain external |
+| Gene-level evaluation | Reference-30 real and simulated results, repository-owned phase/comparison/summary renderers, and paper panels are available | Canonical input and method-result H5AD files remain external |
 | Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
 | Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
@@ -107,7 +107,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | --- | --- | --- |
 | 方法配置 | 20 个配置均已注册并映射到方法脚本 | 正式环境及部分上游源码版本仍待补充 |
 | Cell-level 评估 | fixed-reference-30 契约下的 14 个真实数据集 × 20 个配置紧凑结果已完成 | 大型方法结果输入仍在外部存储 |
-| Gene-level 评估 | reference-30 真实及模拟结果、绘图代码和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
+| Gene-level 评估 | reference-30 真实及模拟结果、仓库独立的相图/组图/汇总绘图入口和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
 | 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
 | 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |

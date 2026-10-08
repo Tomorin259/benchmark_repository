@@ -17,6 +17,13 @@ metric definition:
 The owning module documents its renderers, inputs, and manual-asset boundaries.
 Paper-level composite PDFs are stored in [`../figures/`](../figures/).
 
+Gene comparison panels and score summaries use the repository-owned
+`evaluation/gene/plot_gene_assets.py` entry point. It consumes the registered
+H5AD inputs and committed CSVs; `--summaries-only` consumes CSVs alone. Export
+into a fresh directory under `outputs/` before any separately reviewed asset
+promotion. It does not rebuild retained raw phase plates or final manual PDF
+assemblies. See the Gene README for the exact layer and score-source contract.
+
 [`../figures/assembly/assembly_manifest.tsv`](../figures/assembly/assembly_manifest.tsv)
 is the authoritative panel-to-source map. It records panel identity, status,
 source and materialized paths, SHA256, and unresolved source gaps. Do not copy
