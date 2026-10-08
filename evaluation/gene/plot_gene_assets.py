@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+from importlib.metadata import version
 import json
 import os
 from pathlib import Path
@@ -122,15 +123,18 @@ def read_phase_inputs(case, scores, artifact_root, genes):
         original = ad.read_h5ad(path)
         present = [gene for gene in genes if gene in original.var_names]
         obs = original.obs.copy()
+        label_alignment = None
         if case in REAL_CONFIGS:
             if "Annotation" in obs:
                 obs["clusters"] = obs["Annotation"].copy()
             aligned = labels.reindex(original.obs_names)
             if aligned.notna().all():
                 obs["clusters"] = aligned.copy()
+                label_alignment = "cell_id"
             elif len(labels) == original.n_obs:
                 # Retained historical plotting fallback, recorded in provenance.
                 obs["clusters"] = labels.copy()
+                label_alignment = "equal_length_historical_fallback"
             else:
                 raise ValueError(f"{case}/{item['method']}: reference labels cannot be aligned")
         elif "bin" not in obs and "clusters" in obs:
@@ -154,7 +158,7 @@ def read_phase_inputs(case, scores, artifact_root, genes):
             plot.uns["bin_colors"] = original.uns["bin_colors"].copy()
         inputs.append({"method": item["method"], "source": "artifact://velocity/" + item["path"],
                        "sha256": sha256(path), "velocity_s_key": item["velocity_s"],
-                       "velocity_u_key": item["velocity_u"]})
+                       "velocity_u_key": item["velocity_u"], "label_alignment": label_alignment})
         adatas.append(plot)
         del original
     return adatas, inputs
@@ -351,14 +355,19 @@ def main():
         else:
             plot_simulation_summary(case, scores, path, args.dpi)
         outputs.append(path)
-        scores[scores.dataset == case].to_csv(folder / "scores_used.csv", index=False)
+        score_columns = ["dataset", "method", "gene", "new_cbdir", "cossim", "display_method", "display_dataset"]
+        scores.loc[scores.dataset == case, score_columns].to_csv(folder / "scores_used.csv", index=False)
     write_manifest(output, args.cases, set(outputs))
     provenance = {
         "record_scope": "generation", "renderer": "evaluation/gene/plot_gene_assets.py",
         "renderer_sha256": sha256(__file__), "phase_plot_renderer": "evaluation/gene/plotting/phase_portrait.py",
         "phase_plot_renderer_sha256": sha256(HERE / "plotting/phase_portrait.py"),
         "phase_plot_version": PHASE_PLOT_VERSION, "cases": args.cases,
-        "summaries_only": args.summaries_only, "dpi": args.dpi, "phase_genes": genes_by_case,
+        "software_versions": {package: version(package) for package in
+                              (["numpy", "pandas", "matplotlib", "seaborn", "scipy", "scikit-learn"]
+                               + ([] if args.summaries_only else ["anndata", "scvelo"]))},
+        "summaries_only": args.summaries_only, "dpi": args.dpi,
+        "phase_genes": {} if args.summaries_only else genes_by_case,
         "score_sources": {p.relative_to(ROOT).as_posix(): sha256(p) for p in [CBDIR_CSV, COSSIM_CSV]},
         "inputs": inputs, "display_precision": {"gene_score": 4, "heatmap": 2},
         "real_phase_velocity_cleaning": "nan/inf to zero; clip to [-1e10, 1e10]; plotting copy only",
@@ -366,7 +375,7 @@ def main():
         "stripplot_jitter": "inherits NumPy display RNG; no effect on metric values or ordering",
         "outputs": {p.relative_to(output).as_posix(): sha256(p) for p in outputs},
     }
-    for path in [HERE / "config.py", HERE / "plotting/layouts.json", ROOT / "methods/configurations.tsv", ROOT / "data/datasets.tsv"]:
+    for path in [HERE / "config.py", HERE / "plotting/layouts.json", ROOT / "methods/configurations.tsv", ROOT / "data/datasets.tsv", ROOT / "evaluation/cell/plots.py"]:
         provenance.setdefault("configuration_sources", {})[path.relative_to(ROOT).as_posix()] = sha256(path)
     (output / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
     print(f"Rendered {len(outputs)} assets from registered CSVs and inputs into {output}")

@@ -81,6 +81,7 @@ class GeneAssetTests(unittest.TestCase):
                 originals[path] = sha256(path)
             inputs, records = read_phase_inputs(case, scores, root, [gene])
             self.assertEqual(len(records), 9)
+            self.assertTrue(all(r["label_alignment"] == "cell_id" for r in records))
             for data in inputs:
                 np.testing.assert_array_equal(data.layers["Ms"], [[1.0], [3.0]])
                 np.testing.assert_array_equal(data.layers["Mu"], [[2.0], [4.0]])
@@ -102,6 +103,8 @@ class GeneAssetTests(unittest.TestCase):
             self.assertTrue((output / "simulation/murk/summary_cbdir_cossim.png").is_file())
             provenance = json.loads((output / "provenance.json").read_text())
             self.assertEqual(provenance["inputs"], {})
+            self.assertEqual(provenance["phase_genes"], {})
+            self.assertIn("evaluation/cell/plots.py", provenance["configuration_sources"])
             self.assertEqual(set(provenance["score_sources"]), {
                 "evaluation/gene/results/gene_cbdir_reference30_all.csv",
                 "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",

@@ -85,7 +85,8 @@ sampling:             deterministic
 This is the enlarged-arrow contract used by the paper panels. It is the only
 display contract supported by the public renderer.
 
-The paper panels are materialized under one date-free directory:
+The committed paper panels live under one date-free directory. New exports
+use a separate output directory:
 
 ```bash
 python evaluation/gene/plot_gene_assets.py \
@@ -125,7 +126,9 @@ equal-length label-assignment fallback is retained. H5AD files are never saved
 or modified by the renderer. Summary stripplot jitter inherits the display RNG
 and has no effect on metric values, means, or ordering.
 
-Each export writes `scores_used.csv`, source/configuration hashes in
+Method names/order are joined through the method configuration IDs; summary
+colors use the existing Cell benchmark palette. Each export writes
+`scores_used.csv`, source/configuration hashes and software versions in
 `provenance.json`, and an `assembly_manifest.tsv` for generated paper-panel
 references. It generates the previously scripted nine-method comparison panels
 and summaries, not the manually assembled whole PDFs or retained raw phase
