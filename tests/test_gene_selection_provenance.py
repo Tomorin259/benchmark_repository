@@ -25,7 +25,7 @@ class GeneSelectionProvenanceTests(unittest.TestCase):
         self.assertTrue((SELECTION / 'upstream/LICENCE.txt').is_file())
 
     def test_frozen_selection_matches_evaluation_and_candidate_evidence(self):
-        tree = ast.parse((ROOT / 'evaluation/gene/run_reference30_gene_cbdir.py').read_text())
+        tree = ast.parse((ROOT / 'evaluation/gene/config.py').read_text())
         configs = next(ast.literal_eval(n.value) for n in tree.body
                        if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'REAL_CONFIGS' for t in n.targets))
         with (SELECTION / 'selected_genes.tsv').open() as stream:

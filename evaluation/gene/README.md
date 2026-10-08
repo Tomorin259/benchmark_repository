@@ -7,6 +7,10 @@ controlled replacement used by the current CBDir results.
 
 ## Reproducible entry point
 
+`config.py` owns the shared input paths, velocity-layer keys, selected gene
+lists, and transition edges used by evaluation and panel rendering. Display-only
+summary dimensions and typography live in `plotting/layouts.json`.
+
 `run_reference30_gene_cbdir.py` evaluates the nine gene-level methods on:
 
 - real: `retina`, `DentateGyrus_lamanno`, `gastrulation`, `capo_pre`,
