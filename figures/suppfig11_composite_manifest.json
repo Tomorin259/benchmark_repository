@@ -1,0 +1,9 @@
+{
+  "figure": "suppfig11",
+  "composite_path": "figures/suppFigEleven.pdf",
+  "composite_sha256": "2f04350ef349d918b395669108d5b2b8a042146c83c5a6a45676dbe37dd0cb82",
+  "online_file_git_blob_sha1": "95ad80ed9c7697dca83e95d197ad97d2968bd96a",
+  "source_kind": "author_exported_pdf",
+  "verification": "Exact original bytes match the online project file hash.",
+  "reproduction_boundary": "Retained final PDF is directly reusable. A final PDF is not a numerical renderer or proof of independent editable-source reconstruction."
+}

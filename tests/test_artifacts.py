@@ -70,9 +70,9 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 127
+    assert len(rows) == 129
     materialized = [row for row in rows if row["status"] == "materialized"]
-    assert len(materialized) == 121
+    assert len(materialized) == 123
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
         target = (ROOT / "figures/assembly" / row["materialized_path"]).read_bytes()
@@ -122,8 +122,11 @@ def test_online_supplementary_figure_gaps_are_explicit():
         rows = list(csv.DictReader(handle, delimiter="\t"))
     for figure in ("suppfig09", "suppfig11"):
         gaps = [row for row in rows if row["figure"] == figure]
-        missing = [row for row in gaps if row["status"] == "missing_source"]
-        assert len(missing) == 1
+        retained = [row for row in gaps if row["panel"] == "whole" and row["status"] == "retained_composite"]
+        assert len(retained) == 1
+        whole = retained[0]
+        assert hashlib.sha256((ROOT / whole["source_path"]).read_bytes()).hexdigest() == whole["sha256"]
+        assert "independent" in whole["note"]
         if figure == "suppfig11":
             panels = [row for row in rows if row["figure"] == figure and row["status"] == "materialized"]
             assert {row["panel"] for row in panels} == {"A", "B"}

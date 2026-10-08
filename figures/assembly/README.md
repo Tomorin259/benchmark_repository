@@ -5,7 +5,9 @@ Every materialized panel under this directory is a regular repository file.
 materialized path, and SHA256; unresolved independent sources remain explicit.
 
 Figure 3 contains three selected gene/cell comparisons. Figure 4 contains
-simulation panels; its independent schematic source is missing. Its final D
+simulation panels; its native schematic/assembly source is retained in
+`fig4/authoring/source.pptx`, with the author-export identity verified in its
+manifest. A standalone schematic export is not claimed. Its final D
 panel is the paired Cell/Gene comparison under `evaluation/cell/simulation/`;
 the three gene-only scenario summaries remain supporting analyses. The
 approved user-exported composite is recorded in `../fig4_composite_manifest.json`.
@@ -22,8 +24,14 @@ in the archive and has no active assembly aliases.
 
 Supplementary Figure 10's GeoMedian-4 CBDir and BATC source panels are
 materialized under `suppfig10/`. Supplementary Figure 11 has two materialized
-veloAE source panels. Its manual full-page composite and Supplementary Figure 9
-remain unresolved in the manifest.
+veloAE source panels. The exact online full-page PDFs for Supplementary Figures 9 and 11 are
+retained under the root `figures/` directory. Retaining a final PDF does not
+prove independent editable or numerical reconstruction; these boundaries
+remain explicit in the composite manifests. Figure 1 also retains the exact
+online PDF, while its original authoring source predates the approved three
+text corrections. Figure 5D left/right overview images are recovered from the author slide at
+the D label position. The formerly misidentified branching-gene summary is
+retained only in `figures/archive/fig5/`.
 
 Supplementary Figures 12 and 13 are registered as whole-composite materials.
 S12 is the approved simulation Cell composite with its Table 7 provenance;

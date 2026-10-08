@@ -4,6 +4,10 @@ Paper-level PDFs and assembly assets are tracked here. The assembly manifest
 maps each materialized panel to a repository source and SHA256 and records
 unresolved independent sources without inventing replacements.
 
+`figOne.pdf`, `suppFigNine.pdf`, and `suppFigEleven.pdf` are retained original
+PDFs whose git-blob hashes match the current online project. Their composite
+manifests distinguish retained final exports from independent reconstruction.
+
 The active PDFs are `figThree.pdf` (selected gene/cell transitions),
 `figFour.pdf` (simulation), and `figFive.pdf` (real-data gene kinetics).
 Figure 4 is the approved user-exported, cropped composite containing the paired

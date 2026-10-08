@@ -5,6 +5,14 @@ the full-precision CSV, transformation script, and manifest in
 [supplement/velovi/](../supplement/velovi/). Its A/C post-hoc diagnostics are
 separate from the primary cell-level benchmark (condition B).
 
+Figure 1 and Supplementary Figures 9/11 retain the exact online PDF bytes in
+`figures/`, checked by online git-blob identity. Authoring candidates and their
+verification boundaries are under `figures/assembly/*/authoring/`. Current
+Figure 4 has a verified author-export lineage; its standalone A export,
+Figure 1 corrected editable A/B must not be inferred from the presence of a
+PPTX. Figure 5D sources are identified by native image placement; its old
+misidentified gene summary is archived without changing the current PDF.
+
 Scientific panels are generated beside the experiment that owns their data and
 metric definition:
 

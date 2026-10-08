@@ -1,0 +1,8 @@
+{
+  "source_type": "author_editable_powerpoint",
+  "path": "figures/assembly/fig4/authoring/source.pptx",
+  "sha256": "b2ee7094e8e4c36ece30ff136aef5e9ee352007ec95a706b2d3a22e0b6df4664",
+  "author_export_identity_verified": true,
+  "verification_boundary": "Author PDF SHA-256 matches the recorded pre-crop export; the current cropped PDF git-blob SHA-1 matches the online file. Native PowerPoint is retained as the schematic/assembly lineage, not an independently re-exported byte-exact PDF.",
+  "author_export_sha256": "c256e6406fd0d0191141f185ae4f40ff8ed06c4903b74aa5634dadb6d6252c0f"
+}

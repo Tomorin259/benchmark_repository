@@ -1,0 +1,9 @@
+{
+  "figure": "fig1",
+  "composite_path": "figures/figOne.pdf",
+  "composite_sha256": "335dbcabe8d28dbc6b4f0964e30703ca0ae9c807ca1e7969fdc831235a08c3f4",
+  "online_file_git_blob_sha1": "9598b19f9ad829aad2aa3f94847d86c7ac3ab036",
+  "source_kind": "author_exported_pdf",
+  "verification": "Exact original bytes match the online project file hash.",
+  "reproduction_boundary": "Retained final PDF is directly reusable. A final PDF is not a numerical renderer or proof of independent editable-source reconstruction."
+}
