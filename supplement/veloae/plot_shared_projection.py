@@ -241,8 +241,8 @@ def _assemble(out: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input-dir", type=Path, required=True)
-    parser.add_argument("--registry", type=Path, required=True)
+    parser.add_argument("--input-dir", type=Path, default=Path(__file__).resolve().parent / "inputs/projections")
+    parser.add_argument("--registry", type=Path, default=Path(__file__).resolve().parents[2] / "data/datasets.tsv")
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)

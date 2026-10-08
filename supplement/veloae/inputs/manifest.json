@@ -1,0 +1,95 @@
+{
+  "scope": "Frozen PCA comparison and shared state-axis projections; no PCA refit or benchmark score changes",
+  "files": [
+    {
+      "path": "inputs/pca_comparison.csv",
+      "source": "artifact://velocity/plot/veloae_geometry_study_20260913/pca_comparison/pca_comparison.csv",
+      "sha256": "6a9a9a9f3162b121a80f0acaf66d78fe25a70ea3485e4ce2a65ba0580ecbdc4a",
+      "rows": 84
+    },
+    {
+      "path": "inputs/projections/DentateGyrus_lamanno.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/DentateGyrus_lamanno.npz",
+      "sha256": "eeba51fdf52620013791dc89eb061f5d5b282d86f747fc3011893181c01a257a",
+      "bytes": 751191
+    },
+    {
+      "path": "inputs/projections/bonemarrow.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/bonemarrow.npz",
+      "sha256": "db141570935f33f99cd620c4b0b41cf00147b696ff79c7bedc143fb4e119f3e7",
+      "bytes": 246397
+    },
+    {
+      "path": "inputs/projections/capofibro.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/capofibro.npz",
+      "sha256": "81d1f1e61fbc590bbadea3f890e9fcc547567a5e2f136838fb56af95853004ec",
+      "bytes": 57352
+    },
+    {
+      "path": "inputs/projections/dentategyrus.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/dentategyrus.npz",
+      "sha256": "d234cafa87429e3e8d0f52bc57bb23652db8169a29e1935c6a67dddc83c72b54",
+      "bytes": 122401
+    },
+    {
+      "path": "inputs/projections/forebrain.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/forebrain.npz",
+      "sha256": "496a78ab57505d2728cdb6107952c6f1480d194488f711e79658db67fad2fd46",
+      "bytes": 74141
+    },
+    {
+      "path": "inputs/projections/gastrulation.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/gastrulation.npz",
+      "sha256": "7a3ba3802a895b3e9198cba90091f5c9af622d2f8c8c50a77483c69826e4ef89",
+      "bytes": 397432
+    },
+    {
+      "path": "inputs/projections/hematopoiesis.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/hematopoiesis.npz",
+      "sha256": "2cb944a82004081d1802bc7b3ada1c7b6bb500e38184c41aa2f9eafeed5a9a6d",
+      "bytes": 82355
+    },
+    {
+      "path": "inputs/projections/mousebrain.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/mousebrain.npz",
+      "sha256": "9a5b868f172eec0eb03021c61ae48461cc35919e1c319b968c540673d19f8593",
+      "bytes": 141691
+    },
+    {
+      "path": "inputs/projections/neuron.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/neuron.npz",
+      "sha256": "f13b7632de637f3f90c8d2bf443f8ebc88ca4891692bb4bb64dd8db6e9952429",
+      "bytes": 130591
+    },
+    {
+      "path": "inputs/projections/organoid.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/organoid.npz",
+      "sha256": "ccf0cef196e259753e290ac8f398c7d30926df8fc3d2ec0e2dec7747ddcdea22",
+      "bytes": 145146
+    },
+    {
+      "path": "inputs/projections/pancreas.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/pancreas.npz",
+      "sha256": "e31dcaa8ccc008690e4084e5e7189ddf8138e965c0665d3b3eb44e9ad066e4cb",
+      "bytes": 153033
+    },
+    {
+      "path": "inputs/projections/retina.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/retina.npz",
+      "sha256": "4f44de29fe56dfaaa144e5f91d5147ec02756e38c4f7c8dbb89908a6c95bf52e",
+      "bytes": 114804
+    },
+    {
+      "path": "inputs/projections/rpe1.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/rpe1.npz",
+      "sha256": "8a9d15661618de9256197068c8d26b2e6a43f12fb00c5bf1e9194b99e9e28ea4",
+      "bytes": 107567
+    },
+    {
+      "path": "inputs/projections/rpe1_gen.npz",
+      "source": "artifact://velocity/plot/veloae_ms_pca_projection_20260913/rpe1_gen.npz",
+      "sha256": "c1af90173e67e00dbcec09ce97852cfccc1aba8f30f6c581e4821b7368bce9aa",
+      "bytes": 141373
+    }
+  ]
+}

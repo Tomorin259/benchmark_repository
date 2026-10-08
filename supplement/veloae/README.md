@@ -2,20 +2,24 @@
 
 This directory contains source renderers and final A/B source assets for online
 Supplementary Figure 11. Plotting does not refit PCA, modify the saved
-state/velocity projections, or recompute benchmark scores. Input roots must
-be supplied explicitly.
+state/velocity projections, or recompute benchmark scores. The exact compact inputs are included under `inputs/`.
 
 ## Inputs and reproduction
 
-`plot_pca_summary.py` reads the existing `pca_comparison.csv` (three methods,
+`plot_pca_summary.py` reads the frozen `inputs/pca_comparison.csv` (three methods,
 14 paired observations per matrix and method). The accepted paired-dot layout
 is retained; PNG output is 180 mm wide at 600 dpi, with PDF/SVG companions.
 
 ```sh
-python plot_pca_summary.py --input-csv INPUT/pca_comparison.csv --output-dir results
-python plot_shared_projection.py --input-dir INPUT/projections --registry ../../data/datasets.tsv --output-dir results
-python export_ppt_assets.py --input-dir results --output-dir results/ppt_assets_final
+python supplement/veloae/plot_pca_summary.py --output-dir outputs/veloae
+python supplement/veloae/plot_shared_projection.py --output-dir outputs/veloae
+python supplement/veloae/export_ppt_assets.py --input-dir outputs/veloae --output-dir outputs/veloae/ppt_assets_final
 ```
+
+`inputs/manifest.json` records the original logical source and SHA-256 for the
+84-row PCA table and all 14 projection archives. Their bytes match the frozen
+input hashes in the retained output manifests. The mean raw/standardized PC1
+fractions for veloAE are 95.7%/70.0% (state) and 84.8%/52.7% (velocity).
 
 `plot_shared_projection.py` reads the 14 trusted diagnostic NPZ archives, using
 their saved `X2`, `V2`, per-cell labels and PCA axes. It renders each dataset at

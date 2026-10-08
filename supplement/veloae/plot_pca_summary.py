@@ -17,7 +17,7 @@ COLORS = ('#C43C39', '#E17C05', '#B279A2')
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--input-csv', type=Path, required=True)
+    parser.add_argument('--input-csv', type=Path, default=Path(__file__).resolve().parent / 'inputs/pca_comparison.csv')
     parser.add_argument('--output-dir', type=Path, required=True)
     parser.add_argument('--dpi', type=int, default=600)
     args = parser.parse_args()
