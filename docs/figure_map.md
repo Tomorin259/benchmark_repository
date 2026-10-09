@@ -75,8 +75,9 @@ WPS step; the verification scope is recorded in that manifest.
 
 The online manuscript assigns the matched cell/gene comparison to
 Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.
-Figure 10 source panels are in `figures/assembly/suppfig10/`; Figure 11
-veloAE A/B source panels are in `figures/assembly/suppfig11/`. Supplementary
+Supplementary Figure 10 SVG sources are in `figures/assembly/suppfig10/`;
+Figure 11 veloAE A/B sources are owned by `supplement/veloae/`. Their export
+locations are recorded in the root assembly manifest. Supplementary
 Figure 12 is the approved simulation Cell composite at
 `figures/suppFigTwelve.pdf`, with numerical provenance in
 `figures/suppfig12_composite_manifest.json`. Supplementary Figure 13 is the

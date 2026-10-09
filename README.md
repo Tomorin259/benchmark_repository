@@ -12,7 +12,7 @@ yet a clean-environment, from-public-inputs, one-command reproduction release.
 
 ## Current status
 
-Status as of 2026-09-29:
+Status as of 2026-10-09:
 
 | Area | Repository support | Remaining boundary |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ Status as of 2026-09-29:
 | Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
 | Integrated summary | Current Figure 7 inputs, original editable PowerPoint and cropped author PDF are synchronized and hashed | Final PDF export uses the documented manual WPS step |
-| Paper figures | Figures 3–5 match the online PDFs, Figure 6 uses the validated user-exported PDF, and the materialized panels are mapped; Figure 7 uses the synchronized native assembly and author export | Independent source/provenance gaps remain documented |
+| Paper figures | Figures 1 and S9/S11 retain verified online PDF bytes; scientific source panels are mapped for on-demand export; Figures 4/6/7 retain validated author exports | Independent reconstruction gaps remain; online Figure 5 differs from the retained repository PDF |
 
 Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
 additional registered methods. Mean-4 is the baseline and
@@ -70,10 +70,11 @@ Operational IDs and file paths may retain shorter internal names.
 ## Reproducibility boundaries
 
 - [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
-  checksums, but stable public URIs have not yet been published.
+  checksums. [`data/release_map.tsv`](data/release_map.tsv) and its verifier prepare
+  publication packages; stable public URIs have not yet been published.
 - [Environment documentation](docs/environments.md) records environment evidence
-  and release requirements. Reviewed Conda specifications and lock files have
-  not yet been published.
+  and release requirements. The validated plotting lock is available; reviewed method-training
+  specifications remain pending.
 - Simulation generation intentionally leaves the random stream unseeded. The
   historical canonical H5AD files remain the exact paper inputs; a new run is
   an independent realization.
@@ -101,7 +102,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 
 ## 当前状态
 
-截至 2026-09-29：
+截至 2026-10-09：
 
 | 模块 | 仓库现有支撑 | 当前边界 |
 | --- | --- | --- |
@@ -112,7 +113,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
 | 综合汇总 | Figure 7 当前输入表、原始可编辑 PowerPoint 和裁剪后的作者导出 PDF 已同步并记录 hash | 最终 PDF 使用文档说明的 WPS 手动导出步骤 |
-| 论文图件 | Figure 3–5 PDF 与在线一致，Figure 6 使用已验证的用户导出 PDF，物化 panel 已登记；Figure 7 使用已同步的原始 assembly 和作者导出 PDF | 独立 source 与 provenance 缺口仍有记录 |
+| 论文图件 | Figure 1 与 S9/S11 保留已核对的在线 PDF 原版；科学 panel 按需导出；Figure 4/6/7 保留已验证的作者导出图 | 独立重建缺口仍有记录；在线 Figure 5 与仓库保留 PDF 不同 |
 
 Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
 方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组
@@ -158,9 +159,9 @@ tests/                           轻量级论文契约检查
 ## 复现边界
 
 - [`artifacts.tsv`](artifacts.tsv) 已记录逻辑 artifact 身份和校验和，但稳定公开 URI
-  尚未发布。
-- [环境说明](docs/environments.md) 记录环境证据与发布要求，目前还没有经过审核的 Conda
-  specification 或 lock file。
+  尚未发布；[`data/release_map.tsv`](data/release_map.tsv) 与校验脚本用于准备发布包。
+- [环境说明](docs/environments.md) 记录环境证据与发布要求，已提供验证过的绘图 lock；方法训练环境
+  specification 仍待补充。
 - 模拟数据生成器刻意不设置随机种子。历史 canonical H5AD 仍是论文使用的精确输入；
   新运行得到的是独立随机 realization。
 - [`figures/assembly/assembly_manifest.tsv`](figures/assembly/assembly_manifest.tsv)
