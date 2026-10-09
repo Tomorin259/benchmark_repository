@@ -23,7 +23,7 @@ Status as of 2026-10-09:
 | Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
 | Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
 | Integrated summary | Current Figure 7 inputs, original editable PowerPoint and cropped author PDF are synchronized and hashed | Final PDF export uses the documented manual WPS step |
-| Paper figures | Figures 1 and S9/S11 retain verified online PDF bytes; scientific source panels are mapped for on-demand export; Figures 4/6/7 retain validated author exports | Independent reconstruction gaps remain; online Figure 5 differs from the retained repository PDF |
+| Paper figures | Figures 1/5 and S9/S11 retain verified online PDF bytes; scientific source panels are mapped for on-demand export; Figures 4/6/7 retain validated author exports | Independent reconstruction gaps remain |
 
 Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
 additional registered methods. Mean-4 is the baseline and
@@ -113,7 +113,7 @@ H5AD、模型检查点、软件环境、日志和探索性输出保存在外部�
 | 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
 | 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
 | 综合汇总 | Figure 7 当前输入表、原始可编辑 PowerPoint 和裁剪后的作者导出 PDF 已同步并记录 hash | 最终 PDF 使用文档说明的 WPS 手动导出步骤 |
-| 论文图件 | Figure 1 与 S9/S11 保留已核对的在线 PDF 原版；科学 panel 按需导出；Figure 4/6/7 保留已验证的作者导出图 | 独立重建缺口仍有记录；在线 Figure 5 与仓库保留 PDF 不同 |
+| 论文图件 | Figure 1/5 与 S9/S11 保留已核对的在线 PDF 原版；科学 panel 按需导出；Figure 4/6/7 保留已验证的作者导出图 | 独立重建缺口仍有记录 |
 
 Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
 方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组
