@@ -3,9 +3,9 @@
   "paper_figure": "fig4",
   "composite_status": "current",
   "composite_path": "figures/figFour.pdf",
-  "composite_sha256": "1208cf07bf9271d41fefc8d6b9149b61d8c5871b2dfec2050999f371d7960f35",
+  "composite_sha256": "4c9edfdf8931b7349dce777fc43af9aa987455c4a3d972d6d4d98a2377d083fd",
   "source_pdf": "user-exported local PDF (not committed)",
-  "source_pdf_sha256": "c256e6406fd0d0191141f185ae4f40ff8ed06c4903b74aa5634dadb6d6252c0f",
+  "source_pdf_sha256": "dd7b9fb78d08e5d03650e63623e27d1953f5ab3a6c138aedcf77c661929b44a9",
   "crop_box_pt": [0.0, 235.94, 540.0, 779.8],
   "pages": 1,
   "panels": [
@@ -42,6 +42,6 @@
       "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
     }
   ],
-  "validation": "The user-exported Figure 4 PDF was cropped without content conversion using the explicit crop box above. The cropped page was rendered and visually inspected; A-D, the left gutter labels, D, and the lower legend remain visible. The repository's 36-row D summary was not recomputed in this crop-only update. Online PDF byte identity was not independently rechecked.",
+  "validation": "The user-reexported Figure 4 PDF was cropped without content conversion using the explicit crop box above. Decoded page contents were verified unchanged against the supplied reexport. The cropped page was rendered and visually inspected; A-D, the left gutter labels, and the lower legend remain visible. No scores or panels were recalculated or redrawn. The retained panel-source mappings were not independently revalidated against the manual reexport. Online PDF byte identity was not independently rechecked.",
   "reproduction_boundary": "The D renderer reproduces the paired panel and summary, not the manually assembled and user-exported whole-figure PDF. Independent A schematic source remains unavailable; B/C source mappings remain in assembly_manifest.tsv. Historical gene-only summaries are supporting analyses, not final D sources."
 }
