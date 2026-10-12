@@ -18,6 +18,37 @@ remain owned by `artifacts.tsv`. Locators recovered from frozen Cell, kinetics,
 veloVI and simulation manifests are not treated as current-byte verification.
 Unfrozen input identity and unrecovered locators remain explicit.
 
+## Input release inventory
+
+`input_release_manifest.tsv` is the current release-preparation inventory for
+the 28 source files selected for the 17 benchmark datasets: 14 benchmark main
+inputs, four counts inputs, two scEU labelled sources, three fixed simulation
+realizations, three Battich reference tables, and two expanded reference-gene
+usage tables. It records dataset/role/package identity, member path, bytes,
+SHA-256, H5AD dimensions/layers where applicable, and current publication
+status.
+
+The server-side file bytes and SHA-256 values were checked on 2026-10-12, but
+the manifest intentionally has no private source paths or public URLs. The
+`server_stat_sha256_verified_pending_publication` status means that the source
+was found and hashed on the preparation host; it is not a Zenodo or Google
+Drive publication claim. `public_storage=zenodo_core_pending` remains empty
+until a real upload is completed and the download is verified.
+
+The two scEU labelled sources are the native saved objects, not method-result
+files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848
+genes), while organoid retains the same four labelled layers (3,831 cells ×
+9,157 genes). The benchmark main inputs remain separate records with their
+own roles and hashes. The RPE1 main input is aligned to the labelled source by
+`Gene_Id`; the organoid main input is within the labelled source's cell/gene
+scope. No source file is replaced by a Dynamo output.
+
+`kinetics_reference_gene_usage/` contains the 250-gene RPE1 and 270-gene
+organoid tables, their manifest, and an explanation of valid/undefined/
+unavailable status. These tables describe the expanded reference evaluation;
+they do not duplicate the Table S1/S3/S4 trajectories or claim to describe
+model-training gene usage.
+
 Check one package without creating a large archive:
 
 ```bash

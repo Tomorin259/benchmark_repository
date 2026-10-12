@@ -1,0 +1,234 @@
+{
+  "generated_date": "2026-10-12",
+  "source_repository": "https://github.com/Tomorin259/benchmark_repository",
+  "source_commit": "2402e9a7ff300162ae9d573348a535d502c77b28",
+  "outputs": {
+    "rpe1_reference_gene_usage.csv": {
+      "rows": 250,
+      "columns": 13,
+      "sha256": "674dfb25f1bea867cf81236c73f51caf8b512de3d3d06c1ffe635012ecab495a"
+    },
+    "organoid_reference_gene_usage.csv": {
+      "rows": 270,
+      "columns": 21,
+      "sha256": "22b6287304d7b3df3ca530393065f3e843dc5974e92032c0908796a0e410e3c8"
+    }
+  },
+  "source_files_sha256": {
+    "evaluation/kinetics_recovery/results/expanded_reference/gene_scope.csv": "0651927c25841b14d9d441297216d438a569eda7f181187a22e5d0fdc4d4404a",
+    "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv": "fe548433b018820a6218baf3ce379f9459a1a04f01d99e8733166ba230321088",
+    "evaluation/kinetics_recovery/results/expanded_reference/tsvelo_organoid_gene_metrics.csv": "77f651d5941d04834d3b2e5adb181ea94a57054dc22542d264c74ac0ba53f9ca",
+    "evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv": "2e19113cbf02a3041dd59296a44601ca6a804a6ccd161e96630d10e25c654066",
+    "evaluation/kinetics_recovery/results/expanded_reference/common_gene_membership.csv": "9ed6628d7853201b3d1f77127b8bb1cc5504d2e5cc6f3ba12226e8b809726eba",
+    "evaluation/kinetics_recovery/results/expanded_reference/tsvelo_organoid_gene_mapping.csv": "3165535820f1e303d50241fceeb5b4b6a4f80d18088b988e8b22d67ee23396fe"
+  },
+  "prior_rpe1_gene_table_sha256": "25b4941da98fb8510593a03d22f451b984436309689e2cadcbd02e10019e0ca8",
+  "original_reference_doi": "10.1126/science.aax3072",
+  "ensembl_id_sources": {
+    "rpe1": "original Table S1 gene_id",
+    "organoid": "canonical organoid input var.ID, checked against TSvelo original gene-ID mapping"
+  },
+  "status_definition": {
+    "valid": "evaluation row with finite Spearman score",
+    "undefined": "evaluation row with non-finite Spearman score",
+    "unavailable": "no evaluation row in the current reference universe"
+  },
+  "scope": "expanded reference-gene parameter evaluation, not model-training gene usage",
+  "verified_coverage_rows": 21,
+  "verified_common_gene_groups": 18,
+  "coverage": [
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "cellDancer",
+      "parameter": "alpha",
+      "valid": 250
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "cellDancer",
+      "parameter": "gamma",
+      "valid": 250
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "DeepVelo",
+      "parameter": "alpha",
+      "valid": 250
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "DeepVelo",
+      "parameter": "gamma",
+      "valid": 249,
+      "undefined": 1
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "DeepKINET",
+      "parameter": "gamma",
+      "valid": 250
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "TSvelo",
+      "parameter": "alpha",
+      "valid": 65,
+      "unavailable": 182,
+      "undefined": 3
+    },
+    {
+      "dataset": "rpe1",
+      "branch": "",
+      "method": "Dynamo(label data)",
+      "parameter": "alpha",
+      "unavailable": 134,
+      "valid": 116
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "cellDancer",
+      "parameter": "alpha",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "cellDancer",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "DeepVelo",
+      "parameter": "alpha",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "DeepVelo",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "DeepKINET",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "TSvelo",
+      "parameter": "alpha",
+      "unavailable": 233,
+      "valid": 20,
+      "undefined": 17
+    },
+    {
+      "dataset": "organoid",
+      "branch": "1",
+      "method": "Dynamo(label data)",
+      "parameter": "alpha",
+      "valid": 200,
+      "undefined": 70
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "cellDancer",
+      "parameter": "alpha",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "cellDancer",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "DeepVelo",
+      "parameter": "alpha",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "DeepVelo",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "DeepKINET",
+      "parameter": "gamma",
+      "valid": 270
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "TSvelo",
+      "parameter": "alpha",
+      "unavailable": 233,
+      "valid": 20,
+      "undefined": 17
+    },
+    {
+      "dataset": "organoid",
+      "branch": "2",
+      "method": "Dynamo(label data)",
+      "parameter": "alpha",
+      "valid": 197,
+      "undefined": 73
+    }
+  ],
+  "external_input_provenance": {
+    "table_s1": {
+      "artifact_id": "kinetics-reference-table-s1",
+      "path": "references/kinetics/rpe1_table_s1.csv",
+      "sha256": "18a8d807adaaff6a69001bf6098367bc8d318ed792654cb18bcb830a78cbf837"
+    },
+    "table_s3": {
+      "artifact_id": "kinetics-reference-table-s3",
+      "path": "references/kinetics/organoid_table_s3.csv",
+      "sha256": "951ff2a689448efed4be1d1d4ab34cf71657cebebde482d000407d1e898ac1e7"
+    },
+    "table_s4": {
+      "artifact_id": "kinetics-reference-table-s4",
+      "path": "references/kinetics/organoid_table_s4.csv",
+      "sha256": "831e67d038d6c1e7972388af7c42f81ac1103677670a5220b888e0e78ad5a09d"
+    },
+    "organoid_source": {
+      "artifact_id": "kinetics-organoid-source-gene-ids",
+      "path": "data/organoid/organoid_pre.h5ad",
+      "sha256": "68dff859293385a0e7dba3623f549b686fb8283f37cbe209a5b61ab1b82be4b0"
+    },
+    "tsvelo_lineage0": {
+      "artifact_id": "h5ad-tsvelo-organoid-lineage0-kinetics",
+      "path": "method-results/kinetics/tsvelo/organoid_lineage0.h5ad",
+      "sha256": "ca729c61679e4abeeea387ead82c504bc9f35a2c41b5b2b0ca95aee22f782619",
+      "n_cells": 3798,
+      "n_genes": 153
+    },
+    "tsvelo_lineage1": {
+      "artifact_id": "h5ad-tsvelo-organoid-lineage1-kinetics",
+      "path": "method-results/kinetics/tsvelo/organoid_lineage1.h5ad",
+      "sha256": "0f9066e9aa1fbf32e9cf166a3d938511afa3946d9f23093ae377689f6fd5b166",
+      "n_cells": 3674,
+      "n_genes": 153
+    }
+  }
+}

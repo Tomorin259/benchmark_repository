@@ -76,6 +76,13 @@ Operational IDs and file paths may retain shorter internal names.
 - [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
   checksums. [`data/release_map.tsv`](data/release_map.tsv) and its verifier prepare
   publication packages; stable public URIs have not yet been published.
+- [`data/input_release_manifest.tsv`](data/input_release_manifest.tsv) records
+  the 28-file input release inventory, including processing role, H5AD
+  dimensions/layers, server-verified SHA-256 values, and pending publication
+  status. It contains no private source paths or public URLs.
+- [`data/kinetics_reference_gene_usage/`](data/kinetics_reference_gene_usage/)
+  records the expanded RPE1 250-gene and organoid 270-gene scope, Figure 6
+  display flags, and valid/undefined/unavailable method coverage.
 - [Environment documentation](docs/environments.md) records environment evidence
   and release requirements. The validated plotting lock is available; reviewed method-training
   specifications remain pending.
