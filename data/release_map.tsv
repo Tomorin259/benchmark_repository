@@ -319,3 +319,9 @@ velovi-s6-reference-moments-pancreas	reference-moments	velocity:indicators/cell/
 velovi-s6-reference-moments-retina	reference-moments	velocity:indicators/cell/reference_moments_union_scvelo025_20260907/retina.npz	indicators/cell/reference_moments_union_scvelo025_20260907/retina.npz	recorded_by_frozen_manifest
 velovi-s6-reference-moments-rpe1	reference-moments	velocity:indicators/cell/reference_moments_union_scvelo025_20260907/rpe1.npz	indicators/cell/reference_moments_union_scvelo025_20260907/rpe1.npz	recorded_by_frozen_manifest
 velovi-s6-reference-moments-rpe1-gen	reference-moments	velocity:indicators/cell/reference_moments_union_scvelo025_20260907/rpe1_gen.npz	indicators/cell/reference_moments_union_scvelo025_20260907/rpe1_gen.npz	recorded_by_frozen_manifest
+kinetics-reference-table-s1	kinetics-reference-inputs	velocity:indicators/gene/scEU_rpe1_analyze/aax3072_table-s1.csv	indicators/gene/scEU_rpe1_analyze/aax3072_table-s1.csv	recorded_by_frozen_manifest
+kinetics-reference-table-s3	kinetics-reference-inputs	velocity:indicators/gene/scEU_organoid_analyze/aax3072_table-s3.csv	indicators/gene/scEU_organoid_analyze/aax3072_table-s3.csv	recorded_by_frozen_manifest
+kinetics-reference-table-s4	kinetics-reference-inputs	velocity:indicators/gene/scEU_organoid_analyze/aax3072_table-s4.csv	indicators/gene/scEU_organoid_analyze/aax3072_table-s4.csv	recorded_by_frozen_manifest
+kinetics-organoid-source-gene-ids	kinetics-reference-inputs	velocity:data/organoid/organoid_pre.h5ad	data/organoid/organoid_pre.h5ad	recorded_by_frozen_manifest
+h5ad-tsvelo-organoid-lineage0-kinetics	kinetics-method-results	velocity:results/TSvelo/organoid_ori/l0_TSvelo.h5ad	results/TSvelo/organoid_ori/l0_TSvelo.h5ad	recorded_by_frozen_manifest
+h5ad-tsvelo-organoid-lineage1-kinetics	kinetics-method-results	velocity:results/TSvelo/organoid_ori/l1_TSvelo.h5ad	results/TSvelo/organoid_ori/l1_TSvelo.h5ad	recorded_by_frozen_manifest
