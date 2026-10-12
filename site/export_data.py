@@ -108,7 +108,7 @@ def export_data(root=ROOT, output=None):
         by_method[binding["config_id"]]
         by_dataset[binding["dataset_id"]]
         cell.append({"dataset": binding["dataset_id"], "method": binding["config_id"],
-                     "source": CELL, "n_cells": int(binding["n_common"]),
+                     "source": CELL, "n_cells": int(binding["n_common"]), "n_reference": int(binding["n_reference"]),
                      **{field: numeric(row[field]) for field in ["consistency", "iccoh", "cbdir", "transcosine", "batc"]},
                      "details": supplementary[(row["dataset"], row["method"])]})
 
@@ -263,7 +263,8 @@ def export_data(root=ROOT, output=None):
     for relative in ["evaluation/cell/README.md", "evaluation/gene/README.md", "evaluation/kinetics_recovery/README.md", EXPANDED + "README.md"]:
         register_file(relative)
     commit = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
-    downloads = {'tables': [], 'figures': []}
+    build_state = "working-tree-preview" if subprocess.check_output(["git","-C",str(root),"status","--porcelain"],text=True).strip() else "committed"
+    downloads = {'tables': [], 'figures': [], 'metadata': []}
     # Expose only publication result tables and summary figures as downloads.
     for item in sources:
         item['download'] = None
@@ -281,6 +282,21 @@ def export_data(root=ROOT, output=None):
         entry = next(s for s in sources if s['path'] == relative)
         entry['download'] = f'data/files/{relative}'
         downloads['tables'].append({'label': label, **entry})
+    metadata_downloads = [
+        ('data/input_release_manifest.tsv', 'Input release manifest',
+         '28 source files with dataset roles, layer contracts, SHA-256 values, and pending publication status.'),
+        ('data/kinetics_reference_gene_usage/README.md', 'Expanded reference-gene guide',
+         'Scope and valid/undefined/unavailable status definitions for the 250/270 gene tables.'),
+        ('data/kinetics_reference_gene_usage/manifest.json', 'Expanded reference-gene manifest',
+         'Source commit, output hashes, coverage checks, and upstream reference provenance.'),
+        ('data/kinetics_reference_gene_usage/rpe1_reference_gene_usage.csv', 'RPE1 reference-gene usage',
+         '250 retained reference genes, Figure 6 display flags, and parameter coverage status.'),
+        ('data/kinetics_reference_gene_usage/organoid_reference_gene_usage.csv', 'Organoid reference-gene usage',
+         '270 retained genes shared by both branches, Figure 6 display flags, and method status.'),
+    ]
+    for relative, label, description in metadata_downloads:
+        entry = register_file(relative)
+        downloads['metadata'].append({'label': label, 'description': description, **entry})
     figure_manifest_path = 'figures/fig7_composite_manifest.json'
     figure_manifest = json.loads((root / figure_manifest_path).read_text())
     register_file(figure_manifest_path, download=False)
@@ -304,8 +320,77 @@ def export_data(root=ROOT, output=None):
     if (directory / 'index.json').exists():
         validate_visuals(root, directory)
         visuals = {'index': 'visuals/index.json'}
-    payload = {"schema_version": 1, "source_commit": commit, "methods": methods, "datasets": datasets,
-               "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
+    preview_path = 'evaluation/cell/streams/preview_manifest.json'
+    preview = json.loads((root / preview_path).read_text())
+    register_file(preview_path, download=False)
+    if preview['schema_version'] != 1 or preview['inputs_sha256'] != hashlib.sha256((root / 'evaluation/cell/inputs.tsv').read_bytes()).hexdigest():
+        raise ValueError('Cell preview inputs changed')
+    for relative, field in [('evaluation/cell/render_stream_previews.py','renderer_sha256'), ('evaluation/cell/stream_preview_config.json','palette_sha256')]:
+        if hashlib.sha256((root / relative).read_bytes()).hexdigest() != preview[field]:
+            raise ValueError('Cell preview renderer or palette changed')
+        register_file(relative, download=False)
+    stream_keys = keyed(preview['entries'], ['dataset','method'])
+    expected_keys = {(r['dataset'],r['method']) for r in cell}
+    if set(stream_keys) != expected_keys:
+        raise ValueError('Cell previews must cover the complete registered input set')
+    streams = []
+    stream_copies = []
+    bindings = {(r['dataset_id'],r['config_id']):r for r in inputs}
+    for key, entry in stream_keys.items():
+        binding = bindings[key]
+        if (entry['result_path'],entry['result_sha256']) != (binding['result_path'],binding['sha256']):
+            raise ValueError(f'Cell preview uses a different method output: {key}')
+        image = (root / entry['path']).resolve()
+        if not image.is_relative_to((root / 'evaluation/cell/streams').resolve()):
+            raise ValueError('Cell preview path escapes its source directory')
+        if hashlib.sha256(image.read_bytes()).hexdigest() != entry['sha256']:
+            raise ValueError(f'Cell preview image changed: {key}')
+        target = f"previews/{entry['dataset']}/{entry['method']}.png"
+        streams.append({'dataset':entry['dataset'],'method':entry['method'],'path':'data/'+target,'legend':entry['legend']})
+        stream_copies.append((image,target))
+    overview_path = 'site/public/overview.manifest.json'
+    overview = json.loads((root / overview_path).read_text())
+    for relative, checksum in [(overview['source'],overview['source_sha256']),('site/public/overview.png',overview['preview_sha256'])]:
+        if hashlib.sha256((root / relative).read_bytes()).hexdigest() != checksum:
+            raise ValueError('Overview figure changed')
+        register_file(relative, download=False)
+    register_file(overview_path,download=False)
+    descriptions = {
+        'pancreas':'Mouse pancreatic endocrinogenesis.',
+        'gastrulation':'Mouse gastrulation erythroid lineage.',
+        'forebrain':'Developing human forebrain glutamatergic lineage.',
+        'dentategyrus_lamanno':'Mouse dentate gyrus neurogenesis.',
+        'dentategyrus':'Mouse dentate gyrus neurogenesis.',
+        'retina':'Mouse retinal development.',
+        'mousebrain':'Embryonic E18 mouse brain.',
+        'hematopoiesis':'Human hematopoiesis.',
+        'bonemarrow':'Human bone marrow CD34+ differentiation.',
+        'sceu_rpe1':'RPE1 cell cycle.',
+        'sceu_organoid':'Mouse intestinal organoid differentiation.',
+        'scnt_neuron':'Mouse cortical neuron activation.',
+        'capo_pre':'Human dermal fibroblasts.',
+        'rpe1_gen':'RPE1 cell cycle.',
+        'sim_only_murk':'Normal + MURK simulation.',
+        'sim_only_branching':'Normal + branching simulation.',
+        'sim_hybrid':'Hybrid normal + MURK + branching simulation.',
+    }
+    labels = {
+        CELL:('Cell-level method scores','Five metrics for 20 configurations across 14 real datasets.'),
+        GENE:('Gene-level directional scores','Per-gene CBDir scores on the fixed reference neighborhood.'),
+        COSINE:('Simulated gene-velocity agreement','CosSim values against known simulated ground-truth velocities.'),
+        gene_summary_path:('Gene-score dataset summaries','Stored means across evaluated genes with finite CBDir scores.'),
+        KINETICS+'gene_metrics.csv':('Main benchmark gene scores','Per-gene kinetic scores used by the canonical benchmark summaries.'),
+        KINETICS+'component_means.csv':('Main benchmark parameter summaries','Finite-gene means by system, parameter, and organoid branch.'),
+        EXPANDED+'coverage_summary.csv':('Extended-reference coverage and means','Candidate, present, valid, and missing counts with available-gene means.'),
+        EXPANDED+'common_gene_summary.csv':('Fixed common-gene comparisons','Means for the frozen common-gene comparison groups.'),
+        EXPANDED+'tsvelo_organoid_gene_metrics.csv':('TSvelo organoid transcription scores','Extended-reference alpha scores; undefined constant predictions remain missing.'),
+    }
+    for item in downloads['tables']:
+        item['label'],item['description'] = labels[item['path']]
+    for item in downloads['figures']:
+        item['description'] = 'Published cross-task summary.' if item['path'].endswith('figSeven.pdf') else 'Distribution of finite kinetic scores across the extended reference-gene set.'
+    payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
+               "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "kinetics": kinetics, "kinetics_summary": summary,
                "kinetics_common_membership": common_membership, "kinetics_method_order": kinetics_order,
                "kinetics_colors": kinetics_colors,
@@ -320,8 +405,12 @@ def export_data(root=ROOT, output=None):
             destination = output / "files" / source["path"]
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(root / source["path"], destination)
+    for source, target in stream_copies:
+        destination = output / target
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source,destination)
     (output / "benchmark.json").write_text(json.dumps(payload, ensure_ascii=False, allow_nan=False), encoding="utf-8")
-    (output / "manifest.json").write_text(json.dumps({"schema_version": 1, "source_commit": commit, "sources": sources}, indent=2), encoding="utf-8")
+    (output / "manifest.json").write_text(json.dumps({"schema_version": 1, "source_commit": commit, "build_state": build_state, "sources": sources, "cell_preview_manifest": preview_path}, indent=2), encoding="utf-8")
     return payload
 
 

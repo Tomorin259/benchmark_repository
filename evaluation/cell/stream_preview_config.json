@@ -1,0 +1,290 @@
+{
+  "bonemarrow": {
+    "categories": [
+      "HSC_1",
+      "HSC_2",
+      "Ery_1",
+      "Mono_1",
+      "Precursors",
+      "CLP",
+      "Mono_2",
+      "DCs",
+      "Ery_2",
+      "Mega"
+    ],
+    "palette": [
+      "#f781bf",
+      "#e78ac3",
+      "#a6d854",
+      "#e41a1c",
+      "#984ea3",
+      "#e5c494",
+      "#e41a1c",
+      "#a6cee3",
+      "#4daf4a",
+      "#ff7f00"
+    ]
+  },
+  "capofibro": {
+    "categories": [
+      "G1",
+      "G2M",
+      "S"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c"
+    ]
+  },
+  "dentategyrus": {
+    "categories": [
+      "Astrocytes",
+      "Cajal Retzius",
+      "Cck-Tox",
+      "Endothelial",
+      "GABA",
+      "Granule immature",
+      "Granule mature",
+      "Microglia",
+      "Mossy",
+      "Neuroblast",
+      "OL",
+      "OPC",
+      "Radial Glia-like",
+      "nIPC"
+    ],
+    "palette": [
+      "#3ba458",
+      "#404040",
+      "#7a7a7a",
+      "#fda762",
+      "#6950a3",
+      "#2575b7",
+      "#08306b",
+      "#e1bfb0",
+      "#e5d8bd",
+      "#79b5d9",
+      "#f14432",
+      "#fc8a6a",
+      "#98d594",
+      "#d0e1f2"
+    ]
+  },
+  "DentateGyrus_lamanno": {
+    "categories": [
+      "CA",
+      "CA1-Sub",
+      "CA2-3-4",
+      "GlialProg",
+      "Granule",
+      "ImmAstro",
+      "ImmGranule1",
+      "ImmGranule2",
+      "Nbl1",
+      "Nbl2",
+      "OPC",
+      "RadialGlia",
+      "RadialGlia2",
+      "nIPC"
+    ],
+    "palette": [
+      "#023fa5",
+      "#7d87b9",
+      "#bec1d4",
+      "#d6bcc0",
+      "#bb7784",
+      "#8e063b",
+      "#4a6fe3",
+      "#8595e1",
+      "#b5bbe3",
+      "#e6afb9",
+      "#e07b91",
+      "#d33f6a",
+      "#11c638",
+      "#8dd593"
+    ]
+  },
+  "forebrain": {
+    "categories": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd",
+      "#8c564b",
+      "#e377c2"
+    ]
+  },
+  "gastrulation": {
+    "categories": [
+      "Blood progenitors 1",
+      "Blood progenitors 2",
+      "Erythroid1",
+      "Erythroid2",
+      "Erythroid3"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd"
+    ]
+  },
+  "hematopoiesis": {
+    "categories": [
+      "Bas",
+      "Ery",
+      "GMP-like",
+      "HSC",
+      "MEP-like",
+      "Meg",
+      "Mon",
+      "Neu"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd",
+      "#8c564b",
+      "#e377c2",
+      "#7f7f7f"
+    ]
+  },
+  "mousebrain": {
+    "categories": [
+      "Upper Layer",
+      "Deeper Layer",
+      "V-SVZ",
+      "RG, Astro, OPC",
+      "Ependymal cells",
+      "IPC",
+      "Subplate"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd",
+      "#8c564b",
+      "#e377c2"
+    ]
+  },
+  "neuron": {
+    "categories": [
+      "0",
+      "15",
+      "30",
+      "60",
+      "120"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd"
+    ]
+  },
+  "organoid": {
+    "categories": [
+      "Enterocytes",
+      "Enteroendocrine",
+      "Enteroendocrine progenitor",
+      "Goblet cells",
+      "Paneth cells",
+      "Stem cells",
+      "TA cells",
+      "Tuft cells"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd",
+      "#8c564b",
+      "#e377c2",
+      "#7f7f7f"
+    ]
+  },
+  "pancreas": {
+    "categories": [
+      "Ductal",
+      "Ngn3 low EP",
+      "Ngn3 high EP",
+      "Pre-endocrine",
+      "Beta",
+      "Alpha",
+      "Delta",
+      "Epsilon"
+    ],
+    "palette": [
+      "#8fbc8f",
+      "#f4a460",
+      "#fdbf6f",
+      "#ff7f00",
+      "#b2df8a",
+      "#1f78b4",
+      "#6a3d9a",
+      "#cab2d6"
+    ]
+  },
+  "retina": {
+    "categories": [
+      "AC/HC",
+      "Neuroblast",
+      "PR",
+      "Progenitor",
+      "RGC"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd"
+    ]
+  },
+  "rpe1": {
+    "categories": [
+      "G1-S",
+      "G2-M",
+      "M",
+      "M-G1",
+      "S"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c",
+      "#d62728",
+      "#9467bd"
+    ]
+  },
+  "rpe1_gen": {
+    "categories": [
+      "G1",
+      "G2M",
+      "S"
+    ],
+    "palette": [
+      "#1f77b4",
+      "#ff7f0e",
+      "#2ca02c"
+    ]
+  }
+}

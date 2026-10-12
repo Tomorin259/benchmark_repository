@@ -70,7 +70,7 @@ python -m unittest discover -s tests -p test_site_export.py -v
   provenance remains in the source manifest and owning module guides.
   Source figures are not labelled as a final paper composite based only on
   their filenames. Their manifest owns the current registration boundary.
-- Results default to a table, with a plot toggle. Kinetic method order follows
+- Cell results show all five metrics with per-method stream previews and a 2–4 method comparison. Gene and Kinetics provide explicit Summary / Single gene selectors. Results default to a table, with a plot toggle. Kinetic method order follows
   `PAPER_METHOD_ORDER` in the Figure 6 renderer; score sorting is an explicit
   visitor choice. No new method ranking or scientific mean is calculated.
 - Labelled-data Dynamo has its own display identity; it is not the C07
@@ -81,14 +81,20 @@ python -m unittest discover -s tests -p test_site_export.py -v
 - `manifest.json` records source commit, relative paths, row/schema information,
   sizes and SHA-256. Original compact downloads are copied byte-for-byte.
 - Large-file downloads are shown only for actual HTTPS URIs from the external
-  artifact registry. Upstream data references are not relabelled as frozen
-  benchmark input downloads.
+  artifact registry. The input release manifest and expanded reference-gene
+  tables are published as lightweight release metadata; they do not imply
+  that source H5AD files or full method outputs are publicly downloadable.
+  Upstream data references are not relabelled as frozen benchmark input
+  downloads.
 
 ## Single-gene visual assets
 
-In Results, select a gene and then **Phase portraits** (Gene-level) or
+In Results, choose **Single gene**, select a gene and then **Phase portraits** (Gene-level) or
 **Trajectories** (Kinetic-parameter recovery). Mean views remain score views.
-Method filters apply to both the score rows and the visual. Trajectories
+Gene and Kinetics method filters apply to their score rows and visual. Cell
+results use one method selector for the primary streamline preview; the same
+control opens a 2–4 method comparison, while the score table remains below.
+Trajectories
 support pointer inspection, drag or numeric range zoom, and displayed-series
 method filtering. Phase portraits support enlargement. These single-gene
 displays have no download controls. Downloads exposes only the curated result
@@ -150,3 +156,26 @@ the website. Do not edit generated JSON to change scientific results.
 Update an owning result table or registry through its established workflow,
 then rebuild and check the source manifest. For a release, freeze the source
 commit and public artifact locations before enabling website publication.
+
+## Cell previews and reader-facing navigation
+
+Cell previews are exported from `evaluation/cell/streams/preview_manifest.json`.
+All 280 keys must match `evaluation/cell/inputs.tsv`, including source H5AD hashes.
+Image, input, renderer and palette drift stops the build. `public/data/previews/`
+is generated; the Cell module owns the source images. Only the currently opened
+method images are fetched by the browser. See `evaluation/cell/README.md` for
+materialization. The retained Figure 1 PDF is rendered as the static overview
+preview with a source/display checksum record.
+
+Cell score tables omit repeated dataset cell counts. Only partial alignment
+coverage is explained in the method preview. Gene and Kinetics retain their
+valid-gene or paired-position counts; CosSim does not reuse CBDir sample counts.
+The share link records task, dataset, parameter, branch, scope, gene, metric,
+display mode, and the selected Cell method or comparison set. Older `streams`
+links remain readable for compatibility.
+
+Overview, Results, Datasets & Methods, Downloads and Documentation are the
+main navigation. SHA-256 values and commit identities remain in the machine
+manifest and repository; normal result and download rows link to readable
+scientific documentation. Documentation distinguishes bundle validation,
+re-evaluation from external inputs, and rendering committed summaries.

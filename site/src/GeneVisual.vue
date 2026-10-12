@@ -114,11 +114,11 @@ function finishZoom(event) {
   </div>
   <div v-else class="trajectory-view">
     <p v-if="loading" role="status">Loading trajectories…</p>
-    <p v-else-if="error" role="alert">Trajectory could not be loaded: {{ error }}</p>
+    <p v-else-if="error" role="alert">Trajectory could not be loaded. Please select another gene or try again.</p>
     <p v-else-if="!curve">Trajectory unavailable for this gene.</p>
     <template v-else>
       <div v-if="!separateAxes" class="trajectory-controls"><span>{{ curve.transform }}</span></div>
-      <div class="zoom-controls"><label>From <input v-model.number="from" type="number" min="0" :max="to - 0.01" step="0.01" aria-label="Trajectory start" @change="from = xRange[0]; to = xRange[1]"></label><label>To <input v-model.number="to" type="number" :min="from + 0.01" max="1" step="0.01" aria-label="Trajectory end" @change="from = xRange[0]; to = xRange[1]"></label><button class="text-button" @click="from = 0; to = 1">Reset</button><span>Drag to zoom</span></div>
+      <div class="zoom-controls"><button class="text-button" @click="from = 0; to = 1">Reset zoom</button><span>Drag to zoom</span><details><summary>Set range</summary><label>From <input v-model.number="from" type="number" min="0" :max="to - 0.01" step="0.01" aria-label="Trajectory start" @change="from = xRange[0]; to = xRange[1]"></label><label>To <input v-model.number="to" type="number" :min="from + 0.01" max="1" step="0.01" aria-label="Trajectory end" @change="from = xRange[0]; to = xRange[1]"></label></details></div>
       <svg class="trajectory-chart" viewBox="0 0 810 455" role="img" :aria-label="`${gene} ${parameter} trajectories`" font-family="Arial, sans-serif" font-size="12" fill="#374151"
         @pointermove="pointer = position($event)" @pointerleave="pointer = null; dragStart = null" @pointerdown="dragStart = position($event)" @pointerup="finishZoom">
         <title>{{ dataset }} {{ branch ? `branch ${branch}` : '' }} · {{ gene }} · {{ parameter }} · {{ curve.transform }}</title>
@@ -134,7 +134,7 @@ function finishZoom(event) {
         <rect v-if="dragStart !== null && pointer !== null" data-hover :x="x(Math.min(dragStart,pointer))" y="55" :width="Math.abs(x(dragStart) - x(pointer))" height="305" fill="#2166ac" opacity="0.1"/>
         <g v-for="(s,i) in series" :key="`legend-${s.method}`" :transform="`translate(${75 + (i % 3) * 238},${423 + Math.floor(i / 3) * 21})`"><line x1="0" x2="17" stroke-width="2" :stroke="s.color"/><text x="23" y="4">{{ s.name }}</text></g>
       </svg>
-      <div v-if="hovered.length" class="trajectory-tooltip"><span v-for="s in hovered" :key="s.method"><i :style="{ background: s.color }"></i>{{ s.name }}: {{ format(s.value) }} <small>({{ s.relative.toFixed(3) }}, bin {{ s.position }})</small></span></div>
+      <div v-if="hovered.length" class="trajectory-tooltip"><span v-for="s in hovered" :key="s.method"><i :style="{ background: s.color }"></i>{{ s.name }}: {{ format(s.value) }} <small>(position {{ s.relative.toFixed(3) }})</small></span></div>
       <div class="trajectory-scores"><span v-for="s in series.filter(s => s.method !== 'reference')" :key="s.method"><i :style="{ background: s.color }"></i>{{ s.name }} · ρ {{ format(s.score) }}</span></div>
       <p v-if="rows.some(row => !series.some(s => s.method === row.method))" class="small muted">Some displayed methods have no saved trajectory for this gene.</p>
     </template>

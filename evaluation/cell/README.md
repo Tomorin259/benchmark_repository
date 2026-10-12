@@ -191,3 +191,31 @@ cell-level evaluation under [`simulation/`](simulation/README.md). Its 27
 method-by-scenario scores use the same source H5ADs as the simulation Gene
 analysis and a shared fixed-30-neighbor reference. Those supplementary results
 do not enter the real-data Cell benchmark or its overall ranking.
+
+## Website velocity-field previews
+
+`streams/preview_manifest.json` binds all 14 dataset × 20 configuration previews
+back to the exact result locator and SHA-256 in `inputs.tsv`. The existing
+40 paper panels remain byte-for-byte retained. Additional previews live under
+`streams/previews/`; they do not replace a score, a paper panel, or a method output.
+The website copies images only after verifying the complete mapping and image hashes.
+
+`render_stream_previews.py` uses registered source outputs read-only. Direct
+projections retain the stored native velocities and reference coordinates;
+Forebrain uses the fixed-reference-30 projection sequence from
+`prepare_cell_metrics.py` in the scVelo 0.2.5 indicators environment.
+The frozen dataset palettes are in `stream_preview_config.json`.
+Rebuild into a separate checkout when reviewing a new display bundle:
+
+```bash
+python evaluation/cell/render_stream_previews.py \
+  --artifact-root /path/to/artifacts \
+  --reference-moments-root /path/to/reference-moments \
+  --cache-root site/tmp/stream-frame-cache \
+  --manifest-root site/tmp/stream-manifests
+```
+
+The command writes one manifest fragment per dataset. Assemble a reviewed,
+complete 280-entry `preview_manifest.json` before website export. Dataset and
+configuration identities come from `inputs.tsv` and the TSV registries.
+No method is trained and no evaluation score is computed by this renderer.

@@ -162,6 +162,25 @@ class SiteExportTests(unittest.TestCase):
                     for r in self.payload["kinetics_common_membership"]}
         self.assertEqual(exported, members)
 
+    def test_cell_previews_match_the_exact_registered_method_outputs(self):
+        with (ROOT / 'evaluation/cell/inputs.tsv').open() as handle:
+            bindings = {(r['dataset_id'],r['config_id']):r for r in csv.DictReader(handle,delimiter='\t')}
+        index = json.loads((ROOT / 'evaluation/cell/streams/preview_manifest.json').read_text())
+        registered = EXPORT.keyed(index['entries'],['dataset','method'])
+        displayed = EXPORT.keyed(self.payload['streams'],['dataset','method'])
+        self.assertEqual(set(bindings),set(registered))
+        self.assertEqual(set(bindings),set(displayed))
+        self.assertEqual(len(displayed),280)
+        self.assertEqual(sum(int(r['n_common'])<int(r['n_reference']) for r in bindings.values()),4)
+        for key, entry in registered.items():
+            self.assertEqual(entry['result_path'],bindings[key]['result_path'])
+            self.assertEqual(entry['result_sha256'],bindings[key]['sha256'])
+            self.assertEqual((ROOT/entry['path']).read_bytes(),(self.output/displayed[key]['path'].removeprefix('data/')).read_bytes())
+            self.assertEqual(entry['n_common'],int(bindings[key]['n_common']))
+        forebrain = [e for e in registered.values() if e['dataset']=='forebrain']
+        self.assertEqual(len(forebrain),20)
+        self.assertTrue(all(e['projection']=='fixed_reference30_projection_display_only' for e in forebrain))
+
     def test_changed_canonical_source_blocks_expanded_export(self):
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory) / "repository"
@@ -189,12 +208,21 @@ class SiteExportTests(unittest.TestCase):
     def test_downloads_only_expose_curated_tables_and_summary_figures(self):
         tables = self.payload['downloads']['tables']
         figures = self.payload['downloads']['figures']
+        metadata = self.payload['downloads']['metadata']
         self.assertEqual(len(tables), 9)
         self.assertEqual(len(figures), 4)
-        exposed = {r['path'] for r in tables + figures}
+        self.assertEqual(len(metadata), 5)
+        exposed = {r['path'] for r in tables + figures + metadata}
         self.assertEqual(exposed, {s['path'] for s in self.payload['sources'] if s['download']})
         self.assertTrue(all(r['path'].endswith('.csv') for r in tables))
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
+        self.assertEqual({r['path'] for r in metadata}, {
+            'data/input_release_manifest.tsv',
+            'data/kinetics_reference_gene_usage/README.md',
+            'data/kinetics_reference_gene_usage/manifest.json',
+            'data/kinetics_reference_gene_usage/rpe1_reference_gene_usage.csv',
+            'data/kinetics_reference_gene_usage/organoid_reference_gene_usage.csv',
+        })
         self.assertFalse(any('/trajectories/' in p or p.endswith(('.svg', '.zip')) for p in exposed))
         with (ROOT / 'data/release_map.tsv').open() as handle:
             h5ad_ids = {r['artifact_id'] for r in csv.DictReader(handle, delimiter='\t') if r['member_path'].endswith('.h5ad')}
