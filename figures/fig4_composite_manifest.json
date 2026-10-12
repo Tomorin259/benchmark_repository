@@ -3,9 +3,9 @@
   "paper_figure": "fig4",
   "composite_status": "current",
   "composite_path": "figures/figFour.pdf",
-  "composite_sha256": "4c9edfdf8931b7349dce777fc43af9aa987455c4a3d972d6d4d98a2377d083fd",
+  "composite_sha256": "b56a1abff2f6259e3d1fdde5c2528166ca797986af36691eba9af4783338e5fd",
   "source_pdf": "user-exported local PDF (not committed)",
-  "source_pdf_sha256": "dd7b9fb78d08e5d03650e63623e27d1953f5ab3a6c138aedcf77c661929b44a9",
+  "source_pdf_sha256": "92dc8029e7f4cdb626071fc8095a61ff1ee7350d5d6a55bd0f6be1a30e934951",
   "crop_box_pt": [0.0, 235.94, 540.0, 779.8],
   "pages": 1,
   "panels": [
