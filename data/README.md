@@ -33,7 +33,12 @@ the manifest intentionally has no private source paths or public URLs. The
 `server_stat_sha256_verified_pending_publication` status means that the source
 was found and hashed on the preparation host; it is not a Zenodo or Google
 Drive publication claim. `public_storage=zenodo_core_pending` remains empty
-until a real upload is completed and the download is verified.
+until a real upload is completed and the download is verified. The corresponding
+source hashes are now also registered in [`artifacts.tsv`](../artifacts.tsv), and
+`release_map.tsv` links each verified source to its archive member path. These
+`velocity:` locators are preparation-host logical locators, not public download
+URLs; they must not be presented as published links before the archive is uploaded
+and checked.
 
 The two scEU labelled sources are the native saved objects, not method-result
 files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848

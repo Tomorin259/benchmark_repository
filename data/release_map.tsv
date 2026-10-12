@@ -1,18 +1,18 @@
 artifact_id	package_id	source_locator	member_path	source_status
-dataset-pancreas	canonical-real-inputs			input_identity_not_frozen
-dataset-gastrulation	canonical-real-inputs			input_identity_not_frozen
-dataset-forebrain	canonical-real-inputs			input_identity_not_frozen
-dataset-dentategyrus-lamanno	canonical-real-inputs			input_identity_not_frozen
-dataset-dentategyrus	canonical-real-inputs			input_identity_not_frozen
-dataset-retina	canonical-real-inputs			input_identity_not_frozen
-dataset-mousebrain	canonical-real-inputs			input_identity_not_frozen
-dataset-hematopoiesis	canonical-real-inputs			input_identity_not_frozen
-dataset-bonemarrow	canonical-real-inputs			input_identity_not_frozen
-dataset-sceu-rpe1	canonical-real-inputs			input_identity_not_frozen
-dataset-sceu-organoid	canonical-real-inputs			input_identity_not_frozen
-dataset-scnt-neuron	canonical-real-inputs			input_identity_not_frozen
-dataset-capo-pre	canonical-real-inputs			input_identity_not_frozen
-dataset-rpe1-gen	canonical-real-inputs			input_identity_not_frozen
+dataset-pancreas	canonical-real-inputs	velocity:data/Pancreas/Pancreas.h5ad	data/Pancreas/Pancreas.h5ad	source_sha_verified_20261012
+dataset-gastrulation	canonical-real-inputs	velocity:data/Gastrulation/Gastrulation.h5ad	data/Gastrulation/Gastrulation.h5ad	source_sha_verified_20261012
+dataset-forebrain	canonical-real-inputs	velocity:data/ForebrainGlut/ForebrainGlut.loom	data/ForebrainGlut/ForebrainGlut.loom	source_sha_verified_20261012
+dataset-dentategyrus-lamanno	canonical-real-inputs	velocity:data/DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad	data/DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad	source_sha_verified_20261012
+dataset-dentategyrus	canonical-real-inputs	velocity:data/dentategyrus/dentategyrus.h5ad	data/dentategyrus/dentategyrus.h5ad	source_sha_verified_20261012
+dataset-retina	canonical-real-inputs	velocity:data/retina/retina_full.h5ad	data/retina/retina_full.h5ad	source_sha_verified_20261012
+dataset-mousebrain	canonical-real-inputs	velocity:data/mousebrain/mousebrain.h5ad	data/mousebrain/mousebrain.h5ad	source_sha_verified_20261012
+dataset-hematopoiesis	canonical-real-inputs	velocity:data/hematopoiesis_dynamo/hematopoiesis_dynamo.h5ad	data/hematopoiesis_dynamo/hematopoiesis_dynamo.h5ad	source_sha_verified_20261012
+dataset-bonemarrow	canonical-real-inputs	velocity:data/bonemarrow/bonemarrow.h5ad	data/bonemarrow/bonemarrow.h5ad	source_sha_verified_20261012
+dataset-sceu-rpe1	canonical-real-inputs	velocity:data/rpe1/rpe1.h5ad	data/rpe1/rpe1.h5ad	source_sha_verified_20261012
+dataset-sceu-organoid	canonical-real-inputs	velocity:data/organoid/organoid_pre.h5ad	data/organoid/organoid_pre.h5ad	source_sha_verified_20261012
+dataset-scnt-neuron	canonical-real-inputs	velocity:data/neuron/neuron.h5ad	data/neuron/neuron.h5ad	source_sha_verified_20261012
+dataset-capo-pre	canonical-real-inputs	velocity:data/capo_pre/capo_pre.h5ad	data/capo_pre/capo_pre.h5ad	source_sha_verified_20261012
+dataset-rpe1-gen	canonical-real-inputs	velocity:data/rpe1_gen/rpe1_gen.h5ad	data/rpe1_gen/rpe1_gen.h5ad	source_sha_verified_20261012
 dataset-sim-only-murk	canonical-simulation-inputs	velocity:indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad	indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad	recorded_by_frozen_manifest
 dataset-sim-only-branching	canonical-simulation-inputs	velocity:indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad	indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad	recorded_by_frozen_manifest
 dataset-sim-hybrid	canonical-simulation-inputs	velocity:indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad	indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad	recorded_by_frozen_manifest
@@ -325,3 +325,11 @@ kinetics-reference-table-s4	kinetics-reference-inputs	velocity:indicators/gene/s
 kinetics-organoid-source-gene-ids	kinetics-reference-inputs	velocity:data/organoid/organoid_pre.h5ad	data/organoid/organoid_pre.h5ad	recorded_by_frozen_manifest
 h5ad-tsvelo-organoid-lineage0-kinetics	kinetics-method-results	velocity:results/TSvelo/organoid_ori/l0_TSvelo.h5ad	results/TSvelo/organoid_ori/l0_TSvelo.h5ad	recorded_by_frozen_manifest
 h5ad-tsvelo-organoid-lineage1-kinetics	kinetics-method-results	velocity:results/TSvelo/organoid_ori/l1_TSvelo.h5ad	results/TSvelo/organoid_ori/l1_TSvelo.h5ad	recorded_by_frozen_manifest
+input-counts-capo_pre	input-capo_pre	velocity:data/capo_pre/capo_pre_counts.h5ad	data/capo_pre/capo_pre_counts.h5ad	source_sha_verified_20261012
+input-counts-mousebrain	input-mousebrain	velocity:data/mousebrain/mousebrain_counts.h5ad	data/mousebrain/mousebrain_counts.h5ad	source_sha_verified_20261012
+input-counts-scnt_neuron	input-scnt_neuron	velocity:data/neuron/neuron_counts.h5ad	data/neuron/neuron_counts.h5ad	source_sha_verified_20261012
+input-counts-rpe1_gen	input-rpe1_gen	velocity:data/rpe1_gen/rpe1_gen_counts.h5ad	data/rpe1_gen/rpe1_gen_counts.h5ad	source_sha_verified_20261012
+input-labelled-sceu_rpe1	input-sceu_rpe1	velocity:data_release/inputs/sceu_rpe1/rpe1_labelled_source.h5ad	data/rpe1/rpe1_labelled_source.h5ad	source_sha_verified_20261012
+input-labelled-sceu_organoid	input-sceu_organoid	velocity:data_release/inputs/sceu_organoid/organoid_labelled_source.h5ad	data/organoid/organoid_labelled_source.h5ad	source_sha_verified_20261012
+kinetics-gene-usage-sceu_rpe1	kinetics-reference-inputs	velocity:data_release/metadata/rpe1_reference_gene_usage.csv	metadata/rpe1_reference_gene_usage.csv	source_sha_verified_20261012
+kinetics-gene-usage-sceu_organoid	kinetics-reference-inputs	velocity:data_release/metadata/organoid_reference_gene_usage.csv	metadata/organoid_reference_gene_usage.csv	source_sha_verified_20261012
