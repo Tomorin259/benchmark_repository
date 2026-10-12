@@ -1,0 +1,13 @@
+{
+  "name": "rna-velocity-benchmark-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "python3 export_data.py && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": { "vue": "3.5.29" },
+  "devDependencies": { "@vitejs/plugin-vue": "5.2.4", "vite": "5.4.21" }
+}

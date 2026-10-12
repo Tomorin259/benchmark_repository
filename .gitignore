@@ -39,3 +39,8 @@ data/raw/
 data/processed/
 
 *.h5ad
+
+# Static website dependencies and generated display projections
+site/node_modules/
+site/dist/
+site/public/data/

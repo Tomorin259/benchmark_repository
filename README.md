@@ -33,6 +33,10 @@ the complete aggregation and ranking contract.
 
 ## Where to start
 
+[Browse benchmark results](https://tomorin259.github.io/benchmark_repository/)
+for score tables, gene phase portraits and kinetic-parameter trajectories.
+Website build and source contracts are documented in [`site/README.md`](site/README.md).
+
 | Task | Documentation and entry point |
 | --- | --- |
 | Inspect or run a method configuration | [`methods/README.md`](methods/README.md) |
