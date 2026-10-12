@@ -1,0 +1,22 @@
+Panel,Dataset,Branch,Parameter,Method,Candidate_N,Present_N,Valid_N,Undefined_N,Unavailable_N,Mean,Median,SD_across_genes,Role,Provenance
+organoid_branch1_alpha,organoid,1.0,alpha,DeepVelo,270,270,270,0,0,0.13915773132554354,0.23659905617109883,0.4835369891846673,conventional_us,canonical_central_results
+organoid_branch1_alpha,organoid,1.0,alpha,Dynamo(label data),270,270,200,70,0,0.33078197878318166,0.391601445531566,0.35754133158383095,label_data_control,canonical_central_results
+organoid_branch1_alpha,organoid,1.0,alpha,TSvelo,270,37,20,17,233,0.09711947450027074,0.2271566994993099,0.4633029312762248,conventional_us,expanded_tsvelo_organoid
+organoid_branch1_alpha,organoid,1.0,alpha,cellDancer,270,270,270,0,0,-0.0069392091166893075,-0.0111425307590109,0.14577943231860716,conventional_us,canonical_central_results
+organoid_branch1_gamma,organoid,1.0,gamma,DeepKINET,270,270,270,0,0,-0.0735892883087739,-0.10576953262134375,0.4604100629711572,conventional_us,canonical_central_results
+organoid_branch1_gamma,organoid,1.0,gamma,DeepVelo,270,270,270,0,0,0.058065786789489426,0.10971994488368911,0.483679053901769,conventional_us,canonical_central_results
+organoid_branch1_gamma,organoid,1.0,gamma,cellDancer,270,270,270,0,0,0.0026820177734528674,-0.00687641660202935,0.1466053481522214,conventional_us,canonical_central_results
+organoid_branch2_alpha,organoid,2.0,alpha,DeepVelo,270,270,270,0,0,0.5152335569263664,0.7430573635455004,0.48112121037392225,conventional_us,canonical_central_results
+organoid_branch2_alpha,organoid,2.0,alpha,Dynamo(label data),270,270,197,73,0,0.653732156146636,0.781539732228495,0.3432560983600826,label_data_control,canonical_central_results
+organoid_branch2_alpha,organoid,2.0,alpha,TSvelo,270,37,20,17,233,0.2228012553949407,0.37056325653663114,0.6317201597214978,conventional_us,expanded_tsvelo_organoid
+organoid_branch2_alpha,organoid,2.0,alpha,cellDancer,270,270,270,0,0,-0.008031084098273952,-0.01317853454592865,0.14866881855370248,conventional_us,canonical_central_results
+organoid_branch2_gamma,organoid,2.0,gamma,DeepKINET,270,270,270,0,0,0.0031547779436840438,-0.01427960476323225,0.46002623075396365,conventional_us,canonical_central_results
+organoid_branch2_gamma,organoid,2.0,gamma,DeepVelo,270,270,270,0,0,0.060269629720453556,0.0948131248075069,0.69251915237539,conventional_us,canonical_central_results
+organoid_branch2_gamma,organoid,2.0,gamma,cellDancer,270,270,270,0,0,-0.015563380528037598,-0.01146296442526965,0.13124808063907956,conventional_us,canonical_central_results
+rpe1_all_alpha,rpe1,,alpha,DeepVelo,250,250,250,0,0,0.30281838416272233,0.4443115457143586,0.5563686990796216,conventional_us,canonical_central_results
+rpe1_all_alpha,rpe1,,alpha,Dynamo(label data),250,116,116,0,134,0.7970731475417075,0.8555837348011117,0.1772288138872369,label_data_control,canonical_central_results
+rpe1_all_alpha,rpe1,,alpha,TSvelo,250,68,65,3,182,0.4926711876188559,0.5264684454589058,0.3141636171506696,conventional_us,canonical_central_results
+rpe1_all_alpha,rpe1,,alpha,cellDancer,250,250,250,0,0,-0.025293684499238297,-0.1344758685969911,0.5753468675336764,conventional_us,canonical_central_results
+rpe1_all_gamma,rpe1,,gamma,DeepKINET,250,250,250,0,0,-0.04149523078022015,-0.0552348525839867,0.4365077868135961,conventional_us,canonical_central_results
+rpe1_all_gamma,rpe1,,gamma,DeepVelo,250,250,249,1,0,0.06740098068058517,0.0801367683408966,0.4782497565831392,conventional_us,canonical_central_results
+rpe1_all_gamma,rpe1,,gamma,cellDancer,250,250,250,0,0,-0.27419826595537244,-0.31875870589695315,0.41483466812693714,conventional_us,canonical_central_results

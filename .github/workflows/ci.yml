@@ -19,6 +19,7 @@ jobs:
           python -m json.tool evaluation/kinetics_recovery/config.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/plotting/figure6_config.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/plotting/stream_config.json >/dev/null
+          python -m json.tool evaluation/kinetics_recovery/results/expanded_reference/manifest.json >/dev/null
       - name: Compile Python entry points
         run: |
           python -m py_compile evaluation/cell/run_cell_metrics.py
@@ -32,6 +33,8 @@ jobs:
           python -m py_compile evaluation/cell/batc.py
           python -m py_compile evaluation/cell/validate_results.py
           python -m py_compile evaluation/kinetics_recovery/metrics.py
+          python -m py_compile evaluation/kinetics_recovery/expanded_reference.py
+          python -m py_compile evaluation/kinetics_recovery/plotting/expanded_reference.py
           python -m py_compile evaluation/kinetics_recovery/plotting/figure6.py
           python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
           python -m py_compile evaluation/gene/config.py

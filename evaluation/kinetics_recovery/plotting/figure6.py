@@ -13,6 +13,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.lines import Line2D
 from matplotlib.transforms import Bbox
 try:
     from matplotlib_venn import venn2, venn2_circles
@@ -48,6 +50,7 @@ BOXPLOT_METHOD_COLORS = {
     "cellDancer": "#5BA658",
     "Dynamo(label data)": "#2CA02C",
     "DeepKINET": "#FA8F12",
+    "TSvelo": "#A05D56",
 }
 
 
@@ -145,14 +148,18 @@ def plot_trajectory(
     reference_path: Path,
     method_paths: dict[str, Path],
     genes: list[str],
-    output_path: Path,
+    output_path: Path | PdfPages,
+    *,
+    complete_legend: bool = False,
+    output_format: str | None = None,
 ) -> pd.DataFrame:
     """Preserve the 10-column trajectory layout and export plotted values."""
     truth = read_matrix(reference_path)
     methods = {name: read_matrix(path) for name, path in paper_method_order(method_paths).items()}
     valid_genes = [gene for gene in genes if gene in truth.index]
     plotted_rows = []
-    rows = math.ceil(len(valid_genes) / 10)
+    # Reserve a legend slot even when the gene count is a multiple of ten.
+    rows = math.ceil((len(valid_genes) + 1) / 10)
     figure, axes = plt.subplots(rows, 10, figsize=(30, 3 * rows))
     axes = np.asarray(axes).reshape(-1)
 
@@ -197,10 +204,22 @@ def plot_trajectory(
         axis.set_title(gene, fontsize=12, fontweight="bold")
 
     handles, labels = axes[0].get_legend_handles_labels()
+    if complete_legend:
+        handles = [Line2D([0], [0], color="black", linewidth=2.5)]
+        labels = ["Ground Truth"]
+        for name in methods:
+            handles.append(Line2D(
+                [0], [0], color=TRAJECTORY_COLORS[DISPLAY_METHOD_NAMES.get(name, name)],
+                linewidth=1.5, alpha=0.8,
+            ))
+            labels.append(FIGURE_METHOD_NAMES.get(name, name))
     axes[-1].axis("off")
     axes[-1].legend(handles, labels, loc="center", frameon=False, fontsize=12)
     plt.tight_layout()
-    figure.savefig(output_path, dpi=600, bbox_inches="tight")
+    if isinstance(output_path, PdfPages):
+        output_path.savefig(figure, dpi=600, bbox_inches="tight")
+    else:
+        figure.savefig(output_path, dpi=600, bbox_inches="tight", format=output_format)
     plt.close(figure)
     return pd.DataFrame(plotted_rows)
 
@@ -487,10 +506,20 @@ def plot_venn(
 
 
 def plot_branch(
-    branch_id: int,
+    branch_id: int | None,
     method_paths: dict[str, dict[str, Path]],
     genes: list[str],
     output_path: Path,
+    *,
+    dataset: str = "organoid",
+    system_label: str | None = None,
+    show_n: bool = False,
+    point_size: float = 7,
+    point_alpha: float = 0.7,
+    point_color: str = "black",
+    point_linewidth: float | None = None,
+    dpi: int = 300,
+    bbox_inches: str | None = "tight",
 ) -> pd.DataFrame:
     method_paths = paper_method_order(method_paths)
     frames = []
@@ -502,7 +531,7 @@ def plot_branch(
         for parameter in ("Alpha", "Gamma"):
             path = paths.get(parameter)
             if path is not None:
-                frame = read_metric(path, method, parameter, genes, dataset="organoid", branch=branch_id)
+                frame = read_metric(path, method, parameter, genes, dataset=dataset, branch=branch_id)
                 frame["Method"] = display_method
                 frames.append(frame)
     combined = pd.concat(frames, ignore_index=True)
@@ -533,18 +562,23 @@ def plot_branch(
             y="Correlation",
             data=subset,
             ax=axis,
-            color="black",
-            size=7,
-            alpha=0.7,
+            color=point_color,
+            size=point_size,
+            alpha=point_alpha,
             jitter=True,
+            **({} if point_linewidth is None else {"linewidth": point_linewidth}),
         )
         axis.set_title(
-            f"Performance on {parameter}", fontsize=20, fontweight="bold", pad=15
+            (f"{system_label}\n" if system_label else "") + f"Performance on {parameter}",
+            fontsize=20, fontweight="bold", pad=15
         )
         axis.set_ylabel("Spearman Correlation (R)", fontsize=16, labelpad=10)
         axis.set_xlabel("")
         axis.tick_params(axis="x", labelsize=14, rotation=0)
+        counts = subset.groupby("Method")["Correlation"].count()
         axis.set_xticklabels([
+            (tick.get_text().split("_branch")[0].replace("Dynamo", "Dynamo (scEU)")
+             + f"\n(n = {int(counts[tick.get_text()])})") if show_n else
             tick.get_text().replace("Dynamo_", "Dynamo (scEU)_")
             for tick in axis.get_xticklabels()
         ])
@@ -583,7 +617,7 @@ def plot_branch(
                 )
 
     plt.tight_layout()
-    figure.savefig(output_path, dpi=300, bbox_inches="tight")
+    figure.savefig(output_path, dpi=dpi, bbox_inches=bbox_inches)
     plt.close(figure)
     return combined
 

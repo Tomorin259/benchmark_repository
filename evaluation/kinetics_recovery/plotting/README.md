@@ -9,6 +9,16 @@ output. Scientific inputs, processing, commands, and scope are documented in
 | `figure6.py` / `figure6_config.json` | Evaluator output root; renders B--D/F and exports exact plotted rows |
 | `streams.py` / `stream_config.json` | Velocity root; validates and renders saved X/V for four RPE1 and four conventional organoid methods |
 | `compare_figure6.py` | Explicit archived/current canonical directories and a fresh comparison output directory |
+| `expanded_reference.py` | Isolated expanded scores; reuses Figure 6B/6F functions for three 600-dpi boxplot PNGs and one 10-page RPE1 PDF |
+
+Expanded-reference materials retain the native 18-by-8-inch Figure 6F canvas,
+without tight cropping or resizing. Labels give finite gene n; smaller gray
+points reduce crowding. Method order is fixed, not an expanded-score ranking.
+The shared boxplot function's default arguments still reproduce the selected
+Figure 6F display. The trajectory function reserves a separate legend slot
+at multiples of ten; expanded pages request a complete method legend rather
+than inheriting coverage from their first gene. Existing 19-gene rendering
+uses its original legend behavior. See [the expanded results contract](../results/expanded_reference/README.md).
 
 B applies display-only z-scores. C uses selected-gene Spearman scores. D
 classifies reference and predictions independently using cosine thresholds

@@ -4,6 +4,13 @@ This module evaluates saved method-result H5AD files against the published
 scEU-seq references for RPE1 and intestinal organoid. It does not prepare
 datasets or train methods.
 
+An independent expanded-reference sensitivity analysis uses 250 RPE1 genes
+and the same 270 differentiation-associated organoid genes in each branch.
+Its scope, isolated TSvelo organoid alpha scores, coverage and common-valid
+gene summaries are documented in [results/expanded_reference/README.md](results/expanded_reference/README.md).
+It does not change the canonical scores, selected-gene Figure 6 panels or
+Figure 7 aggregation.
+
 ## Input policy and implementation status
 
 The selected result source is the central `<velocity-root>/results/` directory.
@@ -76,6 +83,8 @@ the unspliced-prediction result family. DeepKINET's formal seed-123 files
 supply gamma only. The merged TSvelo file has no alpha layer and cannot
 replace the two lineage files for parameter recovery. Organoid TSvelo is shown
 only as a cell-level velocity field in E, not added to parameter scoring in F.
+The separate expanded-reference analysis reads its lineage alpha files;
+it does not add scores for the selected 14 genes to F or to canonical results.
 Its 3,831-cell, 153-gene merged result reuses the saved velocity projection;
 its UMAP exactly matches the configured organoid reference. Organoid Dynamo is included as a labelled-data
 Alpha-only exception using the frozen Pulse 120 min one-shot result (1,373
