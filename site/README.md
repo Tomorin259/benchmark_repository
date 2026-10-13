@@ -92,8 +92,10 @@ python -m unittest discover -s tests -p test_site_export.py -v
 In Results, choose **Single gene**, select a gene and then **Phase portraits** (Gene-level) or
 **Trajectories** (Kinetic-parameter recovery). Mean views remain score views.
 Gene and Kinetics method filters apply to their score rows and visual. Cell
-results use one method selector for the primary streamline preview; the same
-control opens a 2–4 method comparison, while the score table remains below.
+results use Dataset and Preview method for the single streamline preview.
+Compare methods opens an optional 2–4 method view; closing it restores one method.
+Every preview shows all five Cell scores. Table headers control sorting, and
+Plot metric appears only beside the score plot; neither changes stream images.
 Trajectories
 support pointer inspection, drag or numeric range zoom, and displayed-series
 method filtering. Phase portraits support enlargement. These single-gene
