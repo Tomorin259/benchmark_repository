@@ -19,18 +19,18 @@ def read_csv(path):
         return reader.fieldnames, list(reader)
 
 
-def check_summary(path, fields, expected_rows):
+def check_summary(path, fields, expected_rows, metric="Real-CBDir"):
     """Check content without requiring identical cross-version float repr."""
     actual_fields, actual_rows = read_csv(path)
     if actual_fields != fields or len(actual_rows) != len(expected_rows):
-        raise SystemExit(f"Outdated Real-CBDir summary schema or coverage: {path}")
+        raise SystemExit(f"Outdated {metric} summary schema or coverage: {path}")
     for actual, expected in zip(actual_rows, expected_rows):
         if actual.keys() != expected.keys():
-            raise SystemExit(f"Malformed Real-CBDir summary row: {path}")
+            raise SystemExit(f"Malformed {metric} summary row: {path}")
         for field in fields:
             if actual[field] == expected[field]:
                 continue
-            if expected.get("Metric") == "Real-CBDir" and field in ("Mean", "Std"):
+            if expected.get("Metric") == metric and field in ("Mean", "Std"):
                 try:
                     value, reference = float(actual[field]), float(expected[field])
                 except (TypeError, ValueError):
@@ -40,7 +40,7 @@ def check_summary(path, fields, expected_rows):
                         value, reference, rel_tol=0, abs_tol=1e-12
                     ):
                         continue
-            raise SystemExit(f"Outdated Real-CBDir summary: {path}, "
+            raise SystemExit(f"Outdated {metric} summary: {path}, "
                              f"{expected.get('Method', expected.get('Figure7_Method'))}, {field}")
 
 

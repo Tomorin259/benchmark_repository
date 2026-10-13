@@ -3,11 +3,11 @@
   "figure": "Figure 7",
   "assembly": {
     "path": "figures/assembly/fig7/fig7.pptx",
-    "sha256": "581159cf2defce83457809b6fecea314f5125bd0f44021fabe46fab19b395897"
+    "sha256": "54f00b102ab522abbae7de104ffe6502f69e63007592a97d488ae64b64ac5dd1"
   },
   "output": {
     "path": "figures/figSeven.pdf",
-    "sha256": "ffdac9895ac4d1fc1f35a70918c37fa147178d471bca8eea24e20ef271e2769b"
+    "sha256": "2df7f17c6bb6f45c6a788769f1c31f75ef025924a2e4a7ebb9d4f3e8bdc38e27"
   },
   "inputs": [
     {
@@ -16,15 +16,15 @@
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_wps_values.csv",
-      "sha256": "6d73ad0d018d29ee1f93f383c013aa4b1e7b8d6b6c44a39b5860d38552ade76d"
+      "sha256": "0fcf51a22419a2e7a649846282e0eca50ea49309492f96ddbc575e3a29d7764e"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_dataset_means.csv",
-      "sha256": "288fb26c383d64261c48c70f9c48d0f1ef6460e27fe5fea5a6ede513b6a0b8d3"
+      "sha256": "ca179abe56503b962c3adec9928c630858c7802b8dffe3e8f982a8a11053f4c7"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_summary.csv",
-      "sha256": "bc3694e2cd6b407d48fa0afdb7fb3839a9d010fd382a276d487e17e6dc3adf65"
+      "sha256": "e746668814a2c1f7ed4bbad035924c3ee62f787a74210b82baf3194b9a5e7a6b"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_kinetic_component_means.csv",
@@ -46,18 +46,18 @@
       540,
       779.8
     ],
-    "assembly_mode": "The author re-exported the original editable PowerPoint on 2026-10-02. Crop only the blank lower slide area, preserving all vector page content, chart geometry, colors and text.",
+    "assembly_mode": "The author re-exported the updated native editable PowerPoint. Only the blank lower slide area is cropped; vector content, chart geometry, colors and text are preserved.",
     "source_pdf": {
       "filename": "图7.pdf",
-      "sha256": "3c44970b23c66edbc8b3a4003bac4232d3c03a8182076e3fce24b5b04a6de980",
+      "sha256": "c87387551073587818da62a9cbb2185562970a0e916f4935d783d5955753ff5c",
       "creator": "WPS 演示",
       "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
-      "creation_date": "D:20261002175133+08'00'",
+      "creation_date": "D:20261013173054+08'00'",
       "page_count": 1,
       "media_box_points": [
-        0.0,
-        0.0,
-        540.0,
+        0,
+        0,
+        540,
         779.8
       ]
     }
@@ -69,7 +69,7 @@
     },
     {
       "path": "ppt/embeddings/Workbook10.xlsx",
-      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+      "sha256": "4d5d27507d0a1943aa67166024af71b854d25d2d0900a70e317a4127ab68b4d9"
     },
     {
       "path": "ppt/embeddings/Workbook2.xlsx",
@@ -89,19 +89,19 @@
     },
     {
       "path": "ppt/embeddings/Workbook6.xlsx",
-      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+      "sha256": "4d5d27507d0a1943aa67166024af71b854d25d2d0900a70e317a4127ab68b4d9"
     },
     {
       "path": "ppt/embeddings/Workbook7.xlsx",
-      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+      "sha256": "4d5d27507d0a1943aa67166024af71b854d25d2d0900a70e317a4127ab68b4d9"
     },
     {
       "path": "ppt/embeddings/Workbook8.xlsx",
-      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+      "sha256": "4d5d27507d0a1943aa67166024af71b854d25d2d0900a70e317a4127ab68b4d9"
     },
     {
       "path": "ppt/embeddings/Workbook9.xlsx",
-      "sha256": "a8a545ab8fcb4448e33074ba8d09ac57f4a3c164c3b5beb006ea31cecabca77d"
+      "sha256": "4d5d27507d0a1943aa67166024af71b854d25d2d0900a70e317a4127ab68b4d9"
     }
   ],
   "numerical_contract": {
@@ -112,28 +112,8 @@
     "native_gene_workbook_label_aliases": {
       "Dynamo": "Dynamo(label data)"
     },
-    "dynamo_row": "The original table displays Dynamo. Its Cell charts use Dynamo(RNA_seq); kinetic alpha uses the separate Dynamo(label data) positive control. The native Gene/kinetics workbook retains its original Dynamo label."
-  },
-  "verification": {
-    "evaluator": "Codex agent",
-    "human_signoff": false,
-    "desktop_gene_workbook_cells_updated": 48,
-    "native_chart_count": 10,
-    "chart_cache_values_checked": 352,
-    "slide_layout_xml_unchanged": true,
-    "native_application_opened": true,
-    "numeric_chart_columns_changed": [
-      "Real_CBDir",
-      "alpha_Spearman",
-      "gamma_Spearman"
-    ],
-    "pixel_differences_outside_changed_columns": 0,
-    "comparison_baseline_pdf_sha256": "158ec56fc87099200b8ccd7815d4bfc7b012b38e17cb0ef8b5628680629c67d5",
-    "author_reexport_pixel_differences_from_updated_native_export": 0,
-    "author_reexport_comparison_resolution_pixels": [
-      2200,
-      1893
-    ]
+    "dynamo_row": "The original table displays Dynamo. Its Cell charts use Dynamo(RNA_seq); kinetic alpha uses the separate Dynamo(label data) positive control. The native Gene/kinetics workbook retains its original Dynamo label.",
+    "simulated_gene_cbdir": "Finite reference-30 new_cbdir scores averaged within each scenario (10 MURK, 20 branching, 40 hybrid special genes), then equally across the three scenarios; plotting means shifted by +1."
   },
   "summary_sources": [
     {
@@ -168,11 +148,61 @@
   "summary_refresh_scripts": [
     {
       "path": "evaluation/summary/refresh_real_cbdir_summary.py",
-      "sha256": "5613232edf3cecea0bb57d03b124082c172e4ec7efbdb39a071e2907547b3284"
+      "sha256": "ee4f1f6d6f6eb16c3b24b96c2d7ffcc33aa7db2dc3b7a267fde11e882ef10c27"
     },
     {
       "path": "evaluation/summary/refresh_kinetics_summary.py",
       "sha256": "5ad98decfec1c63121f3358d3b4a0e57082fe81fc0945d9445ed064c5d826fc3"
+    },
+    {
+      "path": "evaluation/summary/refresh_sim_cbdir_summary.py",
+      "sha256": "e4b80d1ab4ed83a12b88ad9ed988b4c0e6c3cbb8079f91884dba3d3fd7cd1bc0"
     }
-  ]
+  ],
+  "previous_export_verification": {
+    "evaluator": "Codex agent",
+    "human_signoff": false,
+    "desktop_gene_workbook_cells_updated": 48,
+    "native_chart_count": 10,
+    "chart_cache_values_checked": 352,
+    "slide_layout_xml_unchanged": true,
+    "native_application_opened": true,
+    "numeric_chart_columns_changed": [
+      "Real_CBDir",
+      "alpha_Spearman",
+      "gamma_Spearman"
+    ],
+    "pixel_differences_outside_changed_columns": 0,
+    "comparison_baseline_pdf_sha256": "158ec56fc87099200b8ccd7815d4bfc7b012b38e17cb0ef8b5628680629c67d5",
+    "author_reexport_pixel_differences_from_updated_native_export": 0,
+    "author_reexport_comparison_resolution_pixels": [
+      2200,
+      1893
+    ]
+  },
+  "verification": {
+    "evaluator": "Codex agent",
+    "human_signoff": false,
+    "native_chart_count": 10,
+    "native_application_opened": true,
+    "slide_layout_xml_unchanged": true,
+    "layout_comparison_source": "Author-provided editable assembly before the simulated CBDir-gene update",
+    "desktop_gene_workbook_cells_updated": 18,
+    "numeric_chart_columns_changed": [
+      "Sim_CBDir"
+    ],
+    "native_chart_cache_values_changed": 9,
+    "simulation_reference30_scenario_means_checked": 27,
+    "simulation_equal_scenario_means_checked": 9,
+    "other_nine_chart_parts_unchanged": true,
+    "author_reexport_sim_cbdir_bar_values_checked": 9,
+    "pdf_bar_width_max_residual_points": 0.0003344894343335625,
+    "pixel_differences_outside_changed_column": 0,
+    "author_reexport_comparison_resolution_pixels": [
+      2400,
+      2065
+    ],
+    "cropped_pdf_content_stream_unchanged": true,
+    "comparison_baseline_pdf_sha256": "0fa175f59d1d88772612338295b9d3d8bb6db253664bc84b5106a7c1ff31e506"
+  }
 }

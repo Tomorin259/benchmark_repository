@@ -23,11 +23,24 @@ python3 evaluation/summary/refresh_real_cbdir_summary.py --write
 
 Run the same command without `--write` to check that the committed summaries
 still match the reference-30 real results. This refresh does not alter simulation,
-kinetic-parameter, or Cell-level metrics. The two simulation Gene columns retain
-the frozen `evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv`
-values, summarized within each scenario and then equally across scenarios.
+kinetic-parameter, or Cell-level metrics.
 
-Read-only validation compares unrounded Real-CBDir means and standard
+Simulated CBDir-gene uses the same reference-30 `new_cbdir` source, with
+10, 20, and 40 special genes in the MURK, branching, and hybrid scenarios.
+Average within each scenario, then give the three scenario means equal weight.
+CosSim retains the frozen `CosSim` column in
+`evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv`; that
+table's historical `CBDir` column is not a Figure 7 input.
+
+```bash
+python3 evaluation/summary/refresh_sim_cbdir_summary.py --write
+```
+
+Without `--write`, this checks the three summary tables and their artifact
+hashes against reference-30. It does not retrain methods, regenerate simulations,
+change CosSim or refresh native chart workbooks and the final PDF.
+
+Read-only validation compares unrounded Real-CBDir and Sim-CBDir means and standard
 deviations with absolute tolerance `1e-12`, matching the source consistency
 check. This permits last-bit floating-point differences between Python
 versions, not displayed-score rounding. Coverage, counts, labels, other
@@ -66,11 +79,13 @@ workbooks automatically.
 
 ## Final Figure 7 assembly
 
-The desktop Gene/kinetics workbook and native Figure 7 charts were synchronized
-on 2026-10-02; the Cell workbook already matched the canonical Cell table.
+The desktop Gene/kinetics workbook and native Figure 7 charts use the current
+reference-30 real and simulated CBDir-gene summaries; the Cell workbook matches
+the canonical Cell table.
 `figures/assembly/fig7/fig7.pptx` contains the original layout, ten native editable
 charts and their embedded source workbooks. `figures/figSeven.pdf` is the author's
-2026-10-02 WPS re-export, cropped to remove the lower blank slide area.
+WPS re-export of the updated assembly, cropped to remove the lower blank
+slide area. Its simulated CBDir-gene column matches the reference-30 summary.
 `figures/fig7_composite_manifest.json` records the inputs, refresh scripts,
 assembly, export and PDF hashes and the verification scope.
 

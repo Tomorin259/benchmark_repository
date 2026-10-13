@@ -42,6 +42,7 @@ jobs:
           python -m py_compile evaluation/gene/plotting/phase_portrait.py
           python -m py_compile evaluation/gene/simulation/generate.py
           python -m py_compile evaluation/summary/refresh_real_cbdir_summary.py
+          python -m py_compile evaluation/summary/refresh_sim_cbdir_summary.py
           python -m py_compile ensemble/core.py
           python -m py_compile ensemble/geometric_median.py
           python -m py_compile ensemble/metrics.py
@@ -64,5 +65,6 @@ jobs:
         run: |
           python evaluation/cell/validate_results.py
           python evaluation/summary/refresh_real_cbdir_summary.py
+          python evaluation/summary/refresh_sim_cbdir_summary.py
       - name: Check whitespace
         run: git diff --check
