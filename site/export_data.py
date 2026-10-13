@@ -20,6 +20,7 @@ COSINE = "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
 KINETICS = "evaluation/kinetics_recovery/results/central_results/"
 PLOT = "evaluation/kinetics_recovery/figures/fig6/plot_data/"
 EXPANDED = "evaluation/kinetics_recovery/results/expanded_reference/"
+CONTENT = "site/content/website_content.json"
 # Existing Gene result identifiers -> method registry identities. No display names here.
 GENE_IDS = {
     "scVelo_dyn": "C03", "MultiVelo": "C04", "UniTVelo": "C05",
@@ -73,8 +74,12 @@ def export_data(root=ROOT, output=None):
     if output.is_relative_to(root) and not output.is_relative_to(root / "site"):
         raise ValueError("Repository outputs must stay under site/")
     sources = []
+    media_copies = []
 
     def register_file(relative, download=True):
+        existing = next((s for s in sources if s["path"] == relative), None)
+        if existing is not None:
+            return existing
         path = root / relative
         source = {"path": relative, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                   "bytes": path.stat().st_size,
@@ -89,6 +94,16 @@ def export_data(root=ROOT, output=None):
             rows = list(reader)
         register_file(relative, download).update(rows=len(rows), columns=reader.fieldnames)
         return rows
+
+    def media_asset(relative, expected_sha256):
+        if not (root / relative).resolve().is_relative_to(root):
+            raise ValueError("Analysis image path escapes the repository")
+        source = register_file(relative, download=False)
+        if source["sha256"] != expected_sha256:
+            raise ValueError(f"Analysis image changed: {relative}")
+        target = "media/" + relative
+        media_copies.append((root / relative, target))
+        return {"path": "data/" + target, "source": relative, "sha256": source["sha256"]}
 
     methods = read("methods/configurations.tsv")
     datasets = read("data/datasets.tsv")
@@ -249,8 +264,9 @@ def export_data(root=ROOT, output=None):
     register_file(order_path, download=False)
     kinetics_order = [kinetics_methods[name] for name in order]
     # Only public-facing fields from the artifact registry are exposed.
+    artifact_rows = read("artifacts.tsv", download=False)
     artifacts = [{key: row[key] for key in ["artifact_id", "category", "sha256", "status", "uri"]}
-                 for row in read("artifacts.tsv", download=False) if row["status"] == "external"]
+                 for row in artifact_rows if row["status"] == "external"]
     release = {row['artifact_id']: row for row in read('data/release_map.tsv', download=False)}
     h5ad = [row for row in artifacts if release[row['artifact_id']]['member_path'].endswith('.h5ad')]
     for artifact in artifacts:
@@ -262,9 +278,63 @@ def export_data(root=ROOT, output=None):
             by_method[entry["method"]]
     for relative in ["evaluation/cell/README.md", "evaluation/gene/README.md", "evaluation/kinetics_recovery/README.md", EXPANDED + "README.md"]:
         register_file(relative)
+    content = json.loads((root / CONTENT).read_text())
+    if content.get("schema_version") != 1:
+        raise ValueError("Unsupported website content schema")
+    if set(content["datasets"]) != set(by_dataset) or set(content["methods"]) != set(by_method):
+        raise ValueError("Website content must cover the exact dataset and method registries")
+    for dataset_id, scenario in content["simulations"].items():
+        registered = by_dataset[dataset_id]
+        if (scenario["cells"], scenario["genes"]) != (int(registered["n_obs"]), int(registered["n_vars"])):
+            raise ValueError("Simulation content dimensions disagree with the registered input")
+    register_file(CONTENT, download=False)
+    register_file("site/content/README.md", download=False)
+    cell_config_path = "evaluation/cell/config.json"
+    cell_config = json.loads((root / cell_config_path).read_text())
+    register_file(cell_config_path, download=False)
+    ensemble_dataset_ids = {name: entry["dataset_id"] for name, entry in cell_config["datasets"].items()}
+    ensemble_dataset_ids["dentate_lamanno"] = ensemble_dataset_ids["DentateGyrus_lamanno"]
+    ensemble_scores = []
+    for row in read("ensemble/results/scores.csv", download=False):
+        ensemble_scores.append({"dataset": ensemble_dataset_ids[row["dataset"]], "variant": row["variant"],
+                                "label": row["label"], "cbdir": numeric(row["cbdir"]), "batc": numeric(row["batc"])})
+    scores_by_key = keyed(ensemble_scores, ["dataset", "variant"])
+    ensemble_metadata_path = "ensemble/results/metadata.json"
+    ensemble_metadata = json.loads((root / ensemble_metadata_path).read_text())
+    register_file(ensemble_metadata_path, download=False)
+    variants = ensemble_metadata["variants"]
+    expected = {(ensemble_dataset_ids[name], variant) for name in ensemble_metadata["datasets"] for variant in variants}
+    if set(scores_by_key) != expected or len(expected) != 28:
+        raise ValueError("Ensemble scores must cover both variants on all 14 registered Cell datasets")
+    ensemble_rankings = []
+    for row in read("ensemble/results/rankings_vs_20.csv", download=False):
+        dataset_id = ensemble_dataset_ids[row["dataset"]]
+        if numeric(row["score"]) != scores_by_key[(dataset_id, row["variant"])][row["metric"]]:
+            raise ValueError("Ensemble ranking score differs from its frozen score")
+        ensemble_rankings.append({"dataset": dataset_id, "variant": row["variant"], "metric": row["metric"],
+                                  "score": numeric(row["score"]), "rank": int(row["rank"]),
+                                  "out_of": int(row["out_of"]), "tie_count": int(row["tie_count"])})
+    if set(keyed(ensemble_rankings, ["dataset", "variant", "metric"])) != {(*key, metric) for key in expected for metric in ["cbdir", "batc"]}:
+        raise ValueError("Ensemble rankings must cover both metrics for all frozen scores")
+    ensemble = {"scores": ensemble_scores, "rankings": ensemble_rankings,
+                "macro_average": ensemble_metadata["macro_average"], "variants": variants,
+                "methods": ensemble_metadata["methods"]}
+    # Frozen post-hoc stream panels are separate from the 20 Cell configurations.
+    stream_artifacts = {r["path"]: r for r in artifact_rows if r["category"] == "ensemble-stream"}
+    ensemble_streams = []
+    for name in ensemble_metadata["datasets"]:
+        for variant, folder in [(variants[0], "mean4"), (variants[1], "row_geometric_median4")]:
+            relative = f"ensemble/results/figures/streams/{folder}/{name}.png"
+            registered = stream_artifacts[relative]
+            ensemble_streams.append({"dataset": ensemble_dataset_ids[name], "variant": variant,
+                                     **media_asset(relative, registered["sha256"])})
+    if set(keyed(ensemble_streams, ["dataset", "variant"])) != expected:
+        raise ValueError("Ensemble images and scores must have identical keys")
+    ensemble["streams"] = ensemble_streams
+
     commit = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
     build_state = "working-tree-preview" if subprocess.check_output(["git","-C",str(root),"status","--porcelain"],text=True).strip() else "committed"
-    downloads = {'tables': [], 'figures': [], 'metadata': []}
+    downloads = {'tables': [], 'figures': [], 'metadata': [], 'audit': []}
     # Expose only publication result tables and summary figures as downloads.
     for item in sources:
         item['download'] = None
@@ -297,6 +367,27 @@ def export_data(root=ROOT, output=None):
     for relative, label, description in metadata_downloads:
         entry = register_file(relative)
         downloads['metadata'].append({'label': label, 'description': description, **entry})
+    audit_downloads = [
+        ("evaluation/cell/results/cell_metrics_supplementary.csv", "Cell supplementary metrics and evaluability counts", "Supplementary Cell metrics and valid-sample fields; it does not replace the five primary scores."),
+        ("evaluation/cell/results/cell_metrics_edge_details.csv", "Cell edge-level audit", "Edge-level Cell evaluation details under the fixed reference contract."),
+        ("evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv", "Gene edge-level audit", "Gene-level edge details underlying the reference-30 CBDir rows."),
+        ("evaluation/gene/results/neighbor_audit_all.csv", "Gene neighbor audit", "Neighbor-set provenance and overlap checks for Gene-level evaluation."),
+        ("ensemble/results/scores.csv", "Post-hoc ensemble scores", "Mean-4 and RowGeometricMedian-4 scores across the 14 real datasets."),
+        ("ensemble/results/rankings_vs_20.csv", "Post-hoc ensemble rankings", "Independent per-dataset CBDir/BATC comparisons with the 20 registered configurations."),
+        ("supplement/velovi/results/table_s6.csv", "veloVI coordinate-sensitivity summary", "A/B/C coordinate diagnostics and C − B differences across 14 datasets; primary Cell scoring is condition B."),
+        ("evaluation/cell/results/cell_metrics_audit.csv", "Cell source and status audit", "Logical source identity, velocity layers, invalid-value handling and status for each method/dataset."),
+        ("evaluation/cell/reference_neighbors/manifest.json", "Cell reference-neighbor manifest", "Hashes and construction settings for the frozen dataset-level neighbor assets."),
+        ("evaluation/gene/results/provenance.json", "Gene result provenance", "Input and neighbor contracts for the frozen Gene evaluation."),
+        ("ensemble/results/metadata.json", "Ensemble protocol and provenance", "Frozen input roles, transition settings and macro averages for both variants."),
+        ("supplement/velovi/results/full_dataset_three_condition.csv", "veloVI coordinate diagnostic: full values", "42 dataset/condition rows; this post-hoc coordinate comparison does not replace Cell scores."),
+        ("supplement/velovi/results/manifest.json", "veloVI coordinate diagnostic manifest", "Conditions, input hashes and output hashes for the coordinate-sensitivity analysis."),
+    ]
+    for relative, label, description in audit_downloads:
+        entry = next((s for s in sources if s['path'] == relative), None)
+        if entry is None:
+            entry = register_file(relative)
+        entry['download'] = f'data/files/{relative}'
+        downloads['audit'].append({'label': label, 'description': description, **entry})
     figure_manifest_path = 'figures/fig7_composite_manifest.json'
     figure_manifest = json.loads((root / figure_manifest_path).read_text())
     register_file(figure_manifest_path, download=False)
@@ -318,8 +409,9 @@ def export_data(root=ROOT, output=None):
     visuals = None
     directory = root / 'site/public/visuals'
     if (directory / 'index.json').exists():
-        validate_visuals(root, directory)
-        visuals = {'index': 'visuals/index.json'}
+        visual_index = validate_visuals(root, directory)
+        visuals = {'index': 'visuals/index.json', 'materialized_at_commit': visual_index['source_commit'],
+                   'validated_at_commit': commit, 'validation': 'source-and-display-sha256'}
     preview_path = 'evaluation/cell/streams/preview_manifest.json'
     preview = json.loads((root / preview_path).read_text())
     register_file(preview_path, download=False)
@@ -355,25 +447,7 @@ def export_data(root=ROOT, output=None):
             raise ValueError('Overview figure changed')
         register_file(relative, download=False)
     register_file(overview_path,download=False)
-    descriptions = {
-        'pancreas':'Mouse pancreatic endocrinogenesis.',
-        'gastrulation':'Mouse gastrulation erythroid lineage.',
-        'forebrain':'Developing human forebrain glutamatergic lineage.',
-        'dentategyrus_lamanno':'Mouse dentate gyrus neurogenesis.',
-        'dentategyrus':'Mouse dentate gyrus neurogenesis.',
-        'retina':'Mouse retinal development.',
-        'mousebrain':'Embryonic E18 mouse brain.',
-        'hematopoiesis':'Human hematopoiesis.',
-        'bonemarrow':'Human bone marrow CD34+ differentiation.',
-        'sceu_rpe1':'RPE1 cell cycle.',
-        'sceu_organoid':'Mouse intestinal organoid differentiation.',
-        'scnt_neuron':'Mouse cortical neuron activation.',
-        'capo_pre':'Human dermal fibroblasts.',
-        'rpe1_gen':'RPE1 cell cycle.',
-        'sim_only_murk':'Normal + MURK simulation.',
-        'sim_only_branching':'Normal + branching simulation.',
-        'sim_hybrid':'Hybrid normal + MURK + branching simulation.',
-    }
+    descriptions = {key: entry['context'].capitalize() + '.' for key, entry in content['datasets'].items()}
     labels = {
         CELL:('Cell-level method scores','Five metrics for 20 configurations across 14 real datasets.'),
         GENE:('Gene-level directional scores','Per-gene CBDir scores on the fixed reference neighborhood.'),
@@ -389,8 +463,128 @@ def export_data(root=ROOT, output=None):
         item['label'],item['description'] = labels[item['path']]
     for item in downloads['figures']:
         item['description'] = 'Published cross-task summary.' if item['path'].endswith('figSeven.pdf') else 'Distribution of finite kinetic scores across the extended reference-gene set.'
+    # Diagnostic scores remain outside the primary Cell/Gene/Kinetics arrays.
+    asset_path = "site/content/diagnostic_assets.json"
+    asset_binding = json.loads((root / asset_path).read_text())
+    register_file(asset_path, download=False)
+    if asset_binding["schema_version"] != 1:
+        raise ValueError("Unsupported diagnostic asset schema")
+    diagnostic_images = {entry["id"]: media_asset(entry["source"], entry["sha256"])
+                         for entry in asset_binding["assets"]}
+    ae = "supplement/veloae/"
+    projection_renderer = ae + "plot_shared_projection.py"
+    if register_file(projection_renderer, download=False)["sha256"] != asset_binding["projection_renderer_sha256"]:
+        raise ValueError("veloAE projection renderer changed")
+    aliases = next(ast.literal_eval(n.value) for n in ast.parse((root / projection_renderer).read_text()).body
+                   if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "ALIASES" for t in n.targets))
+    projection_manifest = json.loads((root / (ae + "results/manifest.json")).read_text())
+    register_file(ae + "results/manifest.json", download=False)
+    if [r["dataset_id"] for r in projection_manifest["panels"]] != list(aliases.values()):
+        raise ValueError("veloAE panel order differs from its renderer")
+    if set(aliases.values()) != {r["dataset"] for r in cell}:
+        raise ValueError("veloAE projections must cover the 14 registered Cell datasets")
+    source_inputs = json.loads((root / (ae + "inputs/manifest.json")).read_text())
+    register_file(ae + "inputs/manifest.json", download=False)
+    for entry in source_inputs["files"]:
+        if register_file(ae + entry["path"], download=False)["sha256"] != entry["sha256"]:
+            raise ValueError("veloAE frozen diagnostic input changed")
+    final_manifest = json.loads((root / (ae + "results/ppt_assets_final/manifest.json")).read_text())
+    register_file(ae + "results/ppt_assets_final/manifest.json", download=False)
+    for name in ["pca_summary.svg", "veloae_pca_velocity.png"]:
+        expected_image = next(r["sha256"] for r in final_manifest["files"] if r["name"] == name)
+        if register_file(ae + "results/ppt_assets_final/" + name, download=False)["sha256"] != expected_image:
+            raise ValueError("veloAE final source image changed")
+    pca_rows = read(ae + "inputs/pca_comparison.csv", download=False)
+    if len(keyed(pca_rows, ["dataset", "method", "matrix_key"])) != 84:
+        raise ValueError("veloAE PCA comparison requires 84 paired source rows")
+    ae_panels = []
+    for (stem, dataset_id), source in zip(aliases.items(), projection_manifest["panels"]):
+        input_record = next(r for r in source_inputs["files"] if r["path"] == f"inputs/projections/{stem}.npz")
+        if source["npz_sha256"] != input_record["sha256"]:
+            raise ValueError("veloAE projection uses a different frozen input")
+        ae_panels.append({"dataset": dataset_id, **diagnostic_images["ae-panel-"+dataset_id]})
+
+    vi = "supplement/velovi/results/"
+    vi_manifest = json.loads((root / (vi + "manifest.json")).read_text())
+    register_file(vi + "manifest.json", download=False)
+    for name, checksum in vi_manifest["outputs"].items():
+        if register_file(vi + name, download=False)["sha256"] != checksum:
+            raise ValueError("veloVI diagnostic table changed")
+    vi_full = read(vi + "full_dataset_three_condition.csv", download=False)
+    conditions = ["native_ms_native_velocity", "reference_ms_native_velocity", "reference_ms_affine_velocity"]
+    if len(keyed(vi_full, ["dataset", "condition"])) != 42 or {r["condition"] for r in vi_full} != set(conditions):
+        raise ValueError("veloVI requires 14 datasets and three distinct conditions")
+    vi_table = read(vi + "table_s6.csv", download=False)
+    vi_rows = [{"dataset": ensemble_dataset_ids[r["dataset"]],
+                **{key: numeric(r[key]) for key in ["A_native_Ms_V", "B_reference_Ms_V", "C_reference_Ms_affine_V", "C_minus_B"]}}
+               for r in vi_table if r["dataset"] != "Macro-average"]
+    vi_macro = next(r for r in vi_table if r["dataset"] == "Macro-average")
+    vi_macro = {key: numeric(vi_macro[key]) for key in ["A_native_Ms_V", "B_reference_Ms_V", "C_reference_Ms_affine_V", "C_minus_B"]}
+    vi_full_rows = [{"dataset": ensemble_dataset_ids[r["dataset"]], "condition": r["condition"],
+                     "transcosine": numeric(r["transcosine"]), "highdim_cbdir": numeric(r["highdim_cbdir"]),
+                     "n_cells": int(r["n_cells"]), "n_common_genes": int(r["n_common_genes"])} for r in vi_full]
+    if set(r["dataset"] for r in vi_rows) != set(aliases.values()):
+        raise ValueError("veloVI scope must match the registered 14 Cell datasets")
+
+    ti = "supplement/tivelo_gene/"
+    assembly_path = "figures/assembly/suppfig13/assembly_manifest.json"
+    assembly = json.loads((root / assembly_path).read_text())
+    register_file(assembly_path, download=False)
+    for entry in assembly["panels"]:
+        if register_file(entry["source"], download=False)["sha256"] != entry["sha256"]:
+            raise ValueError("TIvelo diagnostic source differs from its assembly")
+    simulation_manifest = json.loads((root / (ti+"figures/simulation_source_manifest.json")).read_text())
+    register_file(ti+"figures/simulation_source_manifest.json", download=False)
+    for source, checksum in simulation_manifest["sources"].items():
+        if register_file(source.removeprefix("repository:"), download=False)["sha256"] != checksum:
+            raise ValueError("TIvelo simulation root-pair input changed")
+    root_pairs = read(ti+"root_stage_intervention/root_stage_summary.csv", download=False)
+    selected_pairs = [{"dataset": SIM_IDS[r["scenario"]], "condition": r["variant"], "n_genes": int(r["n_genes"]),
+                       "cbdir": numeric(r["mean_cbdir_reference30"]), "cossim": numeric(r["mean_cossim"])}
+                      for r in root_pairs if r["scenario"] in ["branching", "all"] and r["variant"] in ["correct_path_root", "oracle_early_root"]]
+    if len(keyed(selected_pairs, ["dataset", "condition"])) != 4:
+        raise ValueError("TIvelo displayed simulation pairs are incomplete")
+    bone_rows = read(ti+"bonemarrow_root_control_20261001/paired_summary.csv", download=False)
+    bone_pairs = [{"metric": r["metric"], "n_pairs": int(r["n_pairs"]),
+                   **{key: numeric(r[key]) for key in ["original_mean", "hsc1_mean", "delta_mean"]}}
+                  for r in bone_rows if r["metric"] in ["cbdir", "batc"]]
+    if len(bone_pairs) != 2 or any(r["n_pairs"] != 3 for r in bone_pairs):
+        raise ValueError("TIvelo bone-marrow comparison requires three paired optimizer seeds")
+    bone_manifest_path = ti+"figures/source_manifest.json"
+    bone_manifest = json.loads((root/bone_manifest_path).read_text())
+    register_file(bone_manifest_path, download=False)
+    if register_file(ti+"bonemarrow_root_control_20261001/paired_summary.csv", download=False)["sha256"] != bone_manifest["source_hashes"]["paired_summary.csv"]:
+        raise ValueError("TIvelo bone-marrow summary differs from the displayed source")
+    for path in [ae+"README.md", "supplement/velovi/README.md", ti+"README.md"]:
+        register_file(path, download=False)
+    analysis_downloads = [
+        (ae+"inputs/pca_comparison.csv", "veloAE PC1 comparison"),
+        (ti+"root_stage_intervention/root_stage_summary.csv", "TIvelo simulation root-pair summary"),
+        (ti+"figures/simulation_plotted_pairs.csv", "TIvelo simulation paired gene scores"),
+        (ti+"bonemarrow_root_control_20261001/paired_summary.csv", "TIvelo bone-marrow paired summary"),
+        (ti+"figures/plotted_seed_pairs.csv", "TIvelo bone-marrow paired seed scores"),
+    ]
+    downloads["analyses"] = []
+    for relative, label in analysis_downloads:
+        entry = register_file(relative, download=False)
+        entry["download"] = f"data/files/{relative}"
+        downloads["analyses"].append({"label": label, **entry})
+    diagnostics = {
+        "veloae": {"method": "C11", "summary": diagnostic_images["ae-summary"],
+                   "plate": diagnostic_images["ae-plate"], "panels": ae_panels,
+                   "pca": pca_rows, "csv": "data/files/"+ae+"inputs/pca_comparison.csv"},
+        "velovi": {"method": "C12", "rows": vi_rows, "full": vi_full_rows, "macro": vi_macro,
+                   "conditions": conditions, "csv": "data/files/"+vi+"table_s6.csv",
+                   "full_csv": "data/files/"+vi+"full_dataset_three_condition.csv"},
+        "tivelo": {"method": "C08", "simulation_order": diagnostic_images["ti-simulation-order"],
+                   "simulation_scores": diagnostic_images["ti-simulation-scores"],
+                   "bone_image": diagnostic_images["ti-bonemarrow"], "simulation": selected_pairs,
+                   "bonemarrow": bone_pairs, "displayed_seed": bone_manifest["displayed_seed"],
+                   "simulation_csv": "data/files/"+ti+"figures/simulation_plotted_pairs.csv",
+                   "bone_csv": "data/files/"+ti+"figures/plotted_seed_pairs.csv"},
+    }
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
-               "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
+               "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "kinetics": kinetics, "kinetics_summary": summary,
                "kinetics_common_membership": common_membership, "kinetics_method_order": kinetics_order,
                "kinetics_colors": kinetics_colors,
@@ -405,12 +599,13 @@ def export_data(root=ROOT, output=None):
             destination = output / "files" / source["path"]
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(root / source["path"], destination)
-    for source, target in stream_copies:
+    for source, target in stream_copies + media_copies:
         destination = output / target
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source,destination)
+    shutil.copyfile(root / "site/content/README.md", output / "content-guide.md")
     (output / "benchmark.json").write_text(json.dumps(payload, ensure_ascii=False, allow_nan=False), encoding="utf-8")
-    (output / "manifest.json").write_text(json.dumps({"schema_version": 1, "source_commit": commit, "build_state": build_state, "sources": sources, "cell_preview_manifest": preview_path}, indent=2), encoding="utf-8")
+    (output / "manifest.json").write_text(json.dumps({"schema_version": 1, "source_commit": commit, "build_state": build_state, "sources": sources, "cell_preview_manifest": preview_path, "visual_bundle": visuals}, indent=2), encoding="utf-8")
     return payload
 
 

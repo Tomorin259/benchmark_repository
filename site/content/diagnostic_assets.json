@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "source_registration_commit": "ccdab5f3a4270a6cf6b0ec838e4cda72e6cd7450",
+  "projection_renderer_sha256": "771980ecb406090f4b010e933a1243315eeb5555d720ee87e76bc68b55b096b9",
+  "assets": [
+    {
+      "id": "ae-summary",
+      "source": "supplement/veloae/results/ppt_assets_final/pca_summary.svg",
+      "sha256": "d0b60545e7c6457286e21578a2a6316e78e2e7dfb0a72e1709445d1bb991fe54"
+    },
+    {
+      "id": "ae-plate",
+      "source": "supplement/veloae/results/ppt_assets_final/veloae_pca_velocity.png",
+      "sha256": "3ec74739930273a4339e2132a9f46dff5885a84a7779c69c57a8c523a1034f8a"
+    },
+    {
+      "id": "ti-simulation-order",
+      "source": "supplement/tivelo_gene/figures/ab_right_legend_material.png",
+      "sha256": "6377c4c07ba552f46f583eb7363173b9a171128cfaff5c57305d42845891efab"
+    },
+    {
+      "id": "ti-simulation-scores",
+      "source": "supplement/tivelo_gene/figures/tivelo_root_control_gene_metrics.png",
+      "sha256": "d4a20cf3903ceba9ad1f6b2dc393bf2937df0340508bfb6409d19128b653ebf4"
+    },
+    {
+      "id": "ti-bonemarrow",
+      "source": "supplement/tivelo_gene/figures/bonemarrow_root_control_row.png",
+      "sha256": "8562cf7cedcd4976bce51204287ff2f8671ebeeb8cd64359b25984ca75811749"
+    },
+    {
+      "id": "ae-panel-dentategyrus_lamanno",
+      "dataset": "dentategyrus_lamanno",
+      "source": "supplement/veloae/results/panel_01_DentateGyrus_lamanno.png",
+      "sha256": "2bd31dce59361dd6d093968f5a1ba36d47524fe05e96226b8b54c336537896fb"
+    },
+    {
+      "id": "ae-panel-bonemarrow",
+      "dataset": "bonemarrow",
+      "source": "supplement/veloae/results/panel_02_bonemarrow.png",
+      "sha256": "cb2e2e2ea6749a2fd89cb8d56d1f462a90aca151403670c7afb21f09351c337f"
+    },
+    {
+      "id": "ae-panel-capo_pre",
+      "dataset": "capo_pre",
+      "source": "supplement/veloae/results/panel_03_capofibro.png",
+      "sha256": "0a7f6ed519c6292657ef94cada65c21a0e7b9b944f58e27af5751342ec1a244c"
+    },
+    {
+      "id": "ae-panel-dentategyrus",
+      "dataset": "dentategyrus",
+      "source": "supplement/veloae/results/panel_04_dentategyrus.png",
+      "sha256": "2d6fd7bf4acd45cfdf737b4ca9ac3271016a62e9a95689d519c9a24f0a9e6462"
+    },
+    {
+      "id": "ae-panel-forebrain",
+      "dataset": "forebrain",
+      "source": "supplement/veloae/results/panel_05_forebrain.png",
+      "sha256": "c04f8b9db401f1a498d4f51e975969d53240c7e388b59e4f937a79d2355a739c"
+    },
+    {
+      "id": "ae-panel-gastrulation",
+      "dataset": "gastrulation",
+      "source": "supplement/veloae/results/panel_06_gastrulation.png",
+      "sha256": "972152278223eaad87344a957540b38a2edff93b84837ebec6814c6c77934658"
+    },
+    {
+      "id": "ae-panel-hematopoiesis",
+      "dataset": "hematopoiesis",
+      "source": "supplement/veloae/results/panel_07_hematopoiesis.png",
+      "sha256": "422730ad6e4d15b78689683accde43ded6f4a26de168864148b85b33839e7710"
+    },
+    {
+      "id": "ae-panel-mousebrain",
+      "dataset": "mousebrain",
+      "source": "supplement/veloae/results/panel_08_mousebrain.png",
+      "sha256": "760a401a6ef9baf3fe40238aabb63b388168fd222419e0b8360522614184d1de"
+    },
+    {
+      "id": "ae-panel-scnt_neuron",
+      "dataset": "scnt_neuron",
+      "source": "supplement/veloae/results/panel_09_neuron.png",
+      "sha256": "a08344adc9b96f07f93c036129ff2dc1ff279442178b6797c7f896ced4a6ef53"
+    },
+    {
+      "id": "ae-panel-sceu_organoid",
+      "dataset": "sceu_organoid",
+      "source": "supplement/veloae/results/panel_10_organoid.png",
+      "sha256": "068c262586836736ed5418a0045ee5b99d5ec69313c2aba7871897e3267e6b0c"
+    },
+    {
+      "id": "ae-panel-pancreas",
+      "dataset": "pancreas",
+      "source": "supplement/veloae/results/panel_11_pancreas.png",
+      "sha256": "4109b0f095134f9eb80cf7d77108f4c159a913b13d4405fce3016bf9610d0f6d"
+    },
+    {
+      "id": "ae-panel-retina",
+      "dataset": "retina",
+      "source": "supplement/veloae/results/panel_12_retina.png",
+      "sha256": "10166eb6ab280e55287889f382f7a06f516db6e0ce6d8de9956272746fa1f914"
+    },
+    {
+      "id": "ae-panel-sceu_rpe1",
+      "dataset": "sceu_rpe1",
+      "source": "supplement/veloae/results/panel_13_rpe1.png",
+      "sha256": "a734f5d59e47e56b42807c2439c213faac8f88a94e9345bc636a6a45725cb3ab"
+    },
+    {
+      "id": "ae-panel-rpe1_gen",
+      "dataset": "rpe1_gen",
+      "source": "supplement/veloae/results/panel_14_rpe1_gen.png",
+      "sha256": "e454ac94341ba3b094b978ba1be5edab42ee92ef09192b75aa2db797cbaec384"
+    }
+  ]
+}

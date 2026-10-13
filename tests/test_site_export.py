@@ -212,7 +212,10 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(len(tables), 9)
         self.assertEqual(len(figures), 4)
         self.assertEqual(len(metadata), 5)
-        exposed = {r['path'] for r in tables + figures + metadata}
+        audit = self.payload['downloads']['audit']
+        analyses = self.payload['downloads']['analyses']
+        self.assertEqual(len(analyses), 5)
+        exposed = {r['path'] for r in tables + figures + metadata + audit + analyses}
         self.assertEqual(exposed, {s['path'] for s in self.payload['sources'] if s['download']})
         self.assertTrue(all(r['path'].endswith('.csv') for r in tables))
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
@@ -223,6 +226,10 @@ class SiteExportTests(unittest.TestCase):
             'data/kinetics_reference_gene_usage/rpe1_reference_gene_usage.csv',
             'data/kinetics_reference_gene_usage/organoid_reference_gene_usage.csv',
         })
+        self.assertEqual(len(audit), 13)
+        self.assertEqual(len(self.payload['ensemble']['scores']), 28)
+        self.assertEqual(self.payload['content']['schema_version'], 1)
+        self.assertEqual(len(self.payload['content']['datasets']), 17)
         self.assertFalse(any('/trajectories/' in p or p.endswith(('.svg', '.zip')) for p in exposed))
         with (ROOT / 'data/release_map.tsv').open() as handle:
             h5ad_ids = {r['artifact_id'] for r in csv.DictReader(handle, delimiter='\t') if r['member_path'].endswith('.h5ad')}
@@ -247,6 +254,127 @@ class SiteExportTests(unittest.TestCase):
             (visuals / 'curve.json').write_text('{"y":[1,0,3]}')
             with self.assertRaisesRegex(ValueError, 'Visual asset changed'):
                 EXPORT.validate_visuals(root, visuals)
+
+    def test_content_scope_matches_registry_and_frozen_method_coverage(self):
+        content = self.payload['content']
+        with (ROOT / 'data/datasets.tsv').open() as handle:
+            datasets = {r['dataset_id']: r for r in csv.DictReader(handle, delimiter='\t')}
+        with (ROOT / 'methods/configurations.tsv').open() as handle:
+            methods = {r['config_id'] for r in csv.DictReader(handle, delimiter='\t')}
+        self.assertEqual(set(content['datasets']), set(datasets))
+        self.assertEqual(set(content['methods']), methods)
+        scenarios = json.loads((ROOT / 'evaluation/gene/simulation/config.json').read_text())['scenarios']
+        for source_name, dataset_id in EXPORT.SIM_IDS.items():
+            scenario = content['simulations'][dataset_id]
+            generator = scenarios['hybrid' if source_name == 'all' else source_name]
+            self.assertEqual([scenario['cells'], scenario['genes']], generator['expected_shape'])
+            self.assertEqual(scenario['normal_genes'] + scenario['murk_genes'] + scenario['branching_genes'], scenario['genes'])
+        scored_gene_methods = {r['method'] for r in self.payload['gene']}
+        marked_components = {key for key, entry in content['methods'].items() if entry['gene_components'] == 'spliced + unspliced velocity components'}
+        self.assertEqual(marked_components, scored_gene_methods)
+        self.assertEqual(len(scored_gene_methods), 9)
+        self.assertEqual(content['methods']['C13']['kinetic']['parameters'], ['beta', 'gamma'])
+        self.assertEqual(content['methods']['C14']['kinetic']['parameters'], ['alpha'])
+        self.assertNotIn('dynamo_labelled', methods)
+        self.assertNotIn('C07', {r['method'] for r in self.payload['kinetics']})
+
+    def test_ensemble_projection_preserves_scores_ranks_and_macro_averages(self):
+        ensemble = self.payload['ensemble']
+        aliases = {'capofibro': 'capo_pre', 'dentate_lamanno': 'dentategyrus_lamanno',
+                   'neuron': 'scnt_neuron', 'organoid': 'sceu_organoid', 'rpe1': 'sceu_rpe1'}
+        actual = EXPORT.keyed(ensemble['scores'], ['dataset', 'variant'])
+        with (ROOT / 'ensemble/results/scores.csv').open() as handle:
+            for row in csv.DictReader(handle):
+                key = (aliases.get(row['dataset'], row['dataset']), row['variant'])
+                for metric in ['cbdir', 'batc']:
+                    self.assertEqual(actual[key][metric], float(row[metric]))
+        self.assertEqual(len(actual), 28)
+        ranks = EXPORT.keyed(ensemble['rankings'], ['dataset', 'variant', 'metric'])
+        with (ROOT / 'ensemble/results/rankings_vs_20.csv').open() as handle:
+            for row in csv.DictReader(handle):
+                key = (aliases.get(row['dataset'], row['dataset']), row['variant'], row['metric'])
+                self.assertEqual(ranks[key]['score'], float(row['score']))
+                self.assertEqual(ranks[key]['rank'], int(row['rank']))
+                self.assertEqual(ranks[key]['out_of'], 21)
+                self.assertEqual(ranks[key]['tie_count'], int(row['tie_count']))
+        self.assertEqual(len(ranks), 56)
+        metadata = json.loads((ROOT / 'ensemble/results/metadata.json').read_text())
+        self.assertEqual(ensemble['macro_average'], metadata['macro_average'])
+        for variant in ensemble['variants']:
+            rows = [r for r in ensemble['scores'] if r['variant'] == variant]
+            for metric in ['cbdir', 'batc']:
+                self.assertAlmostEqual(sum(r[metric] for r in rows) / len(rows), ensemble['macro_average'][variant][metric], places=14)
+        self.assertTrue(all(r['method'] in {m['config_id'] for m in self.payload['methods']} for r in self.payload['cell']))
+
+    def test_ensemble_images_cover_and_preserve_all_frozen_results(self):
+        scores = EXPORT.keyed(self.payload['ensemble']['scores'], ['dataset', 'variant'])
+        images = EXPORT.keyed(self.payload['ensemble']['streams'], ['dataset', 'variant'])
+        self.assertEqual(set(images), set(scores))
+        self.assertEqual(len(images), 28)
+        with (ROOT / 'artifacts.tsv').open() as handle:
+            registered = {r['path']: r['sha256'] for r in csv.DictReader(handle, delimiter='\t') if r['category'] == 'ensemble-stream'}
+        for image in images.values():
+            self.assertEqual(image['sha256'], registered[image['source']])
+            original = (ROOT / image['source']).read_bytes()
+            self.assertEqual(original, (self.output / image['path'].removeprefix('data/')).read_bytes())
+
+    def test_veloae_panels_follow_registered_dataset_and_frozen_input_scope(self):
+        ae = self.payload['diagnostics']['veloae']
+        panel_manifest = json.loads((ROOT / 'supplement/veloae/results/manifest.json').read_text())
+        self.assertEqual([r['dataset'] for r in ae['panels']], [r['dataset_id'] for r in panel_manifest['panels']])
+        self.assertEqual(len(ae['panels']), 14)
+        with (ROOT / 'supplement/veloae/inputs/pca_comparison.csv').open() as handle:
+            self.assertEqual(ae['pca'], list(csv.DictReader(handle)))
+        self.assertEqual(len(ae['pca']), 84)
+        self.assertTrue(ae['summary']['source'].endswith('pca_summary.svg'))
+        for image in ae['panels'] + [ae['summary'], ae['plate']]:
+            self.assertEqual((ROOT / image['source']).read_bytes(), (self.output / image['path'].removeprefix('data/')).read_bytes())
+
+    def test_velovi_diagnostic_conditions_and_archived_macro_are_preserved(self):
+        vi = self.payload['diagnostics']['velovi']
+        self.assertEqual(len(vi['full']), 42)
+        self.assertEqual(len(vi['rows']), 14)
+        config = json.loads((ROOT / 'evaluation/cell/config.json').read_text())['datasets']
+        ids = {key: row['dataset_id'] for key, row in config.items()}
+        actual = EXPORT.keyed(vi['full'], ['dataset', 'condition'])
+        with (ROOT / 'supplement/velovi/results/full_dataset_three_condition.csv').open() as handle:
+            for row in csv.DictReader(handle):
+                exported = actual[(ids[row['dataset']], row['condition'])]
+                for metric in ['transcosine', 'highdim_cbdir']:
+                    self.assertEqual(exported[metric], float(row[metric]))
+        with (ROOT / 'supplement/velovi/results/table_s6.csv').open() as handle:
+            macro = next(r for r in csv.DictReader(handle) if r['dataset'] == 'Macro-average')
+        self.assertEqual(vi['macro'], {k: float(v) for k, v in macro.items() if k != 'dataset'})
+        self.assertEqual(set(vi['conditions']), {'native_ms_native_velocity','reference_ms_native_velocity','reference_ms_affine_velocity'})
+
+    def test_tivelo_diagnostic_refits_keep_scope_and_source_values(self):
+        ti = self.payload['diagnostics']['tivelo']
+        self.assertEqual(len(ti['simulation']), 4)
+        with (ROOT / 'supplement/tivelo_gene/root_stage_intervention/root_stage_summary.csv').open() as handle:
+            source = {(EXPORT.SIM_IDS[r['scenario']], r['variant']): r for r in csv.DictReader(handle)}
+        for row in ti['simulation']:
+            original = source[(row['dataset'], row['condition'])]
+            self.assertEqual(row['n_genes'], 20 if row['dataset'] == 'sim_only_branching' else 40)
+            self.assertEqual(row['cbdir'], float(original['mean_cbdir_reference30']))
+            self.assertEqual(row['cossim'], float(original['mean_cossim']))
+        with (ROOT / 'supplement/tivelo_gene/bonemarrow_root_control_20261001/paired_summary.csv').open() as handle:
+            source = {r['metric']: r for r in csv.DictReader(handle)}
+        for row in ti['bonemarrow']:
+            self.assertEqual(row['n_pairs'], 3)
+            for field in ['original_mean', 'hsc1_mean', 'delta_mean']:
+                self.assertEqual(row[field], float(source[row['metric']][field]))
+        for field in ['simulation_order','simulation_scores','bone_image']:
+            image = ti[field]
+            self.assertEqual((ROOT / image['source']).read_bytes(), (self.output / image['path'].removeprefix('data/')).read_bytes())
+        self.assertEqual(len(self.payload['cell']), 280)
+
+    def test_visual_bundle_generation_and_validation_commits_are_distinct(self):
+        historical = json.loads((ROOT / 'site/public/visuals/index.json').read_text())['source_commit']
+        visual = self.payload['visuals']
+        self.assertEqual(visual['materialized_at_commit'], historical)
+        self.assertEqual(visual['validated_at_commit'], self.payload['source_commit'])
+        manifest = json.loads((self.output / 'manifest.json').read_text())
+        self.assertEqual(manifest['visual_bundle'], visual)
 
     @unittest.skipUnless((ROOT / 'site/public/visuals/index.json').exists(), 'Static visual bundle not materialized')
     def test_materialized_visuals_match_paper_display_data_and_scopes(self):

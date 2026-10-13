@@ -1,0 +1,582 @@
+{
+  "schema_version": 1,
+  "source_note": "Scope and terms transcribed from the current online manuscript and repository registries on 2026-10-13. Figure numbering and captions are intentionally not encoded here.",
+  "scope": {
+    "question": "A two-level benchmark of cell-level trajectory inference and gene-level kinetics.",
+    "summary": "20 RNA velocity method configurations across 14 real datasets and three simulated scenarios. The two scEU-seq systems are included among the 14 real datasets.",
+    "tasks": [
+      {
+        "id": "cell",
+        "label": "Cell-level trajectory inference",
+        "object": "14 real datasets · 20 configurations",
+        "inputs": "Method-specific cellular velocities and annotated transitions.",
+        "outputs": "Consistency, ICCoh, CBDir, TransCosine and BATC; method-specific velocity fields."
+      },
+      {
+        "id": "gene",
+        "label": "Gene-level kinetics",
+        "object": "7 real datasets + 3 scenarios · 9 configurations",
+        "inputs": "Both spliced and unspliced gene-velocity components in the method-native phase plane.",
+        "outputs": "Gene-level CBDir; CosSim against known velocities in simulations; phase portraits."
+      },
+      {
+        "id": "kinetics",
+        "label": "Kinetic-parameter recovery",
+        "object": "RPE1 + intestinal organoid · scEU-seq references",
+        "inputs": "Cell-specific transcription or degradation profiles aligned to fitted reference trajectories.",
+        "outputs": "Paired-finite Spearman correlations for α and γ; reference/prediction trajectories."
+      }
+    ],
+    "interpretation": "The website displays frozen evaluation results. Changing the visible methods or viewing a velocity field does not change the scored population or calculate a new ranking."
+  },
+  "datasets": {
+    "pancreas": {
+      "context": "mouse pancreatic endocrinogenesis",
+      "technology": "10x Chromium scRNA-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "endocrine differentiation toward alpha/beta/delta/epsilon fates"
+    },
+    "gastrulation": {
+      "context": "mouse gastrulation erythroid lineage",
+      "technology": "scRNA-seq",
+      "trajectory_pattern": "linear",
+      "trajectory_annotation": "erythroid lineage progression"
+    },
+    "forebrain": {
+      "context": "developing human forebrain glutamatergic lineage",
+      "technology": "10x Chromium scRNA-seq",
+      "trajectory_pattern": "developmental progression",
+      "trajectory_annotation": "glutamatergic neuronal lineage"
+    },
+    "dentategyrus_lamanno": {
+      "context": "mouse dentate gyrus neurogenesis",
+      "technology": "scRNA-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "branching toward astrocytes, OPCs, granule neurons and pyramidal neurons"
+    },
+    "dentategyrus": {
+      "context": "mouse dentate gyrus neurogenesis",
+      "technology": "10x Genomics Chromium scRNA-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "granule lineage and sub-lineages"
+    },
+    "retina": {
+      "context": "mouse retinal development",
+      "technology": "10x Chromium scRNA-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "developmental progression"
+    },
+    "mousebrain": {
+      "context": "embryonic E18 mouse brain",
+      "technology": "10x Multiome (RNA + ATAC)",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "lineages toward neurons and astrocytes",
+      "input_note": "The source modality includes RNA and ATAC. The evaluated MultiVelo configuration uses RNA only; the benchmark working object retains 936 genes."
+    },
+    "hematopoiesis": {
+      "context": "human hematopoiesis",
+      "technology": "scNT-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "multi-lineage hematopoietic differentiation"
+    },
+    "bonemarrow": {
+      "context": "human bone marrow CD34+ differentiation",
+      "technology": "scRNA-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "three terminal states from HSCs"
+    },
+    "sceu_rpe1": {
+      "context": "RPE1 cell cycle",
+      "technology": "scEU-seq",
+      "trajectory_pattern": "cyclic",
+      "trajectory_annotation": "cell-cycle progression with kinetic reference"
+    },
+    "sceu_organoid": {
+      "context": "mouse intestinal organoid differentiation",
+      "technology": "scEU-seq",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "branch-specific ordering with kinetic reference"
+    },
+    "scnt_neuron": {
+      "context": "mouse cortical neuron activation",
+      "technology": "scNT-seq",
+      "trajectory_pattern": "transient",
+      "trajectory_annotation": "KCl stimulation time course",
+      "input_note": "The benchmark uses a fixed 2,000-gene subset; the manuscript source context lists 44,021 genes."
+    },
+    "capo_pre": {
+      "context": "human dermal fibroblasts",
+      "technology": "10x Chromium scRNA-seq",
+      "trajectory_pattern": "cyclic",
+      "trajectory_annotation": "cell-cycle progression with paired time-lapse microscopy"
+    },
+    "rpe1_gen": {
+      "context": "RPE1 cell cycle",
+      "technology": "scRNA-seq",
+      "trajectory_pattern": "cyclic",
+      "trajectory_annotation": "replicated cell-cycle progression"
+    },
+    "sim_only_murk": {
+      "context": "controlled single-lineage kinetic simulation",
+      "technology": "ODE-based simulation",
+      "trajectory_pattern": "linear",
+      "trajectory_annotation": "500 normal induced, 100 normal repressed, 50 MURK; active branch retained"
+    },
+    "sim_only_branching": {
+      "context": "controlled two-branch kinetic simulation",
+      "technology": "ODE-based simulation",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "500 normal induced, 100 normal repressed, 10 post-transcriptional and 10 transcriptional-asymmetry branching genes"
+    },
+    "sim_hybrid": {
+      "context": "controlled two-branch hybrid kinetic simulation",
+      "technology": "ODE-based simulation",
+      "trajectory_pattern": "branching",
+      "trajectory_annotation": "500 normal induced, 100 normal repressed, 100 MURK and 20 branching genes"
+    }
+  },
+  "methods": {
+    "C01": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "Gene-specific steady-state ratio (β/γ)",
+        "du_dt": "—"
+      }
+    },
+    "C02": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "Gene-specific moment fit",
+        "du_dt": "—"
+      }
+    },
+    "C03": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Gene-specific",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C04": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Gene-specific",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C05": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Gene-specific RBF function",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes, not output"
+      }
+    },
+    "C06": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Gene-specific RBF function",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes, not output"
+      }
+    },
+    "C07": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Constant",
+        "beta_gamma": "β fixed; γ gene-specific",
+        "du_dt": "—"
+      }
+    },
+    "C08": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "—",
+        "du_dt": "Explicit output"
+      }
+    },
+    "C09": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Module-weighted production",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "—"
+      }
+    },
+    "C10": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "TF-regulated production",
+        "beta_gamma": "—",
+        "du_dt": "—"
+      }
+    },
+    "C11": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "β fixed; latent-space γ",
+        "du_dt": "—"
+      }
+    },
+    "C12": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Latent state",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes (latent velocity output)"
+      }
+    },
+    "C13": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [
+          "beta",
+          "gamma"
+        ],
+        "input": "conventional u-s inputs",
+        "role": "kinetic-parameter evaluation"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "Cell-specific (VAE output)",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C14": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [
+          "alpha"
+        ],
+        "input": "conventional u-s inputs",
+        "role": "kinetic-parameter evaluation"
+      },
+      "model_parameters": {
+        "alpha": "Continuous function α(t)",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C15": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [
+          "alpha",
+          "beta",
+          "gamma"
+        ],
+        "input": "conventional u-s inputs",
+        "role": "kinetic-parameter evaluation"
+      },
+      "model_parameters": {
+        "alpha": "Cell-specific",
+        "beta_gamma": "Cell-specific (DNN output)",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C16": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [
+          "alpha",
+          "beta",
+          "gamma"
+        ],
+        "input": "conventional u-s inputs",
+        "role": "kinetic-parameter evaluation"
+      },
+      "model_parameters": {
+        "alpha": "Cell-specific",
+        "beta_gamma": "Cell-specific (GCN output)",
+        "du_dt": "Yes (model output)"
+      }
+    },
+    "C17": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "Sigmoid function",
+        "beta_gamma": "Gene-specific",
+        "du_dt": "—"
+      },
+      "workflow_note": "The manuscript reports process=False for the benchmark workflow."
+    },
+    "C18": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "—",
+        "du_dt": "from scVelo"
+      }
+    },
+    "C19": {
+      "gene_components": "spliced + unspliced velocity components",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "—",
+        "du_dt": "from scVelo"
+      },
+      "workflow_note": "Precomputed scVelo input; MacK-based pseudotime-dependent gene selection was not applied."
+    },
+    "C20": {
+      "gene_components": "not included in Gene-level nine-method comparison",
+      "kinetic": {
+        "parameters": [],
+        "input": "not included in selected kinetic-parameter comparison",
+        "role": "not included"
+      },
+      "model_parameters": {
+        "alpha": "—",
+        "beta_gamma": "—",
+        "du_dt": "—"
+      },
+      "workflow_note": "Precomputed Dynamo input; MacK-based pseudotime-dependent gene selection was not applied."
+    }
+  },
+  "simulations": {
+    "sim_only_murk": {
+      "label": "Normal + MURK",
+      "cells": 1000,
+      "genes": 650,
+      "ground_truth": "Ground-truth velocities follow v_u = α − βu and v_s = βu − γs.",
+      "description": "500 normal induced, 100 normal repressed, 50 MURK; active branch retained",
+      "normal_genes": 600,
+      "murk_genes": 50,
+      "branching_genes": 0
+    },
+    "sim_only_branching": {
+      "label": "Normal + branching",
+      "cells": 2000,
+      "genes": 620,
+      "ground_truth": "Ground-truth velocities follow v_u = α − βu and v_s = βu − γs.",
+      "description": "500 normal induced, 100 normal repressed, 10 post-transcriptional and 10 transcriptional-asymmetry branching genes",
+      "normal_genes": 600,
+      "murk_genes": 0,
+      "branching_genes": 20
+    },
+    "sim_hybrid": {
+      "label": "Hybrid",
+      "cells": 2000,
+      "genes": 720,
+      "ground_truth": "Ground-truth velocities follow v_u = α − βu and v_s = βu − γs.",
+      "description": "500 normal induced, 100 normal repressed, 100 MURK and 20 branching genes",
+      "normal_genes": 600,
+      "murk_genes": 100,
+      "branching_genes": 20
+    }
+  },
+  "ensembles": {
+    "methods": [
+      "TIvelo",
+      "veloVI",
+      "DeepVelo",
+      "UniTVelo"
+    ],
+    "note": "Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate signed transition rows from four fixed methods. This is an exploratory post-hoc comparison, outside the 20-method registry; it is not evidence that gene-level kinetics are corrected.",
+    "ranking_note": "Each variant is ranked independently against the 20 registered methods for the same dataset and metric. The other ensemble variant is excluded. Rank is 1 + the number of method scores strictly above the ensemble score; exact ties use competition rank."
+  },
+  "provenance": {
+    "manuscript": {
+      "document": "merged.tex",
+      "read_date": "2026-10-13",
+      "sha256": "ca5677611dfd0df344b30643803c2763e62dfe245be48a21ce5fb72f10c0d7b4",
+      "sections": [
+        "Overview of the benchmarking framework",
+        "Summary of datasets",
+        "Detailed Descriptions of Benchmarked Methods",
+        "Quantitative Evaluation Metrics",
+        "Simulation framework",
+        "Kinetic-parameter recovery evaluation",
+        "Post-hoc signed-transition ensemble"
+      ]
+    },
+    "dataset_identity": "data/datasets.tsv",
+    "method_identity": "methods/configurations.tsv",
+    "model_characteristics": "figures/assembly/fig7/fig7.pptx: retained text table",
+    "gene_components": "evaluation/gene/config.py: VELOCITY_KEYS",
+    "simulation": "evaluation/gene/simulation/config.json",
+    "ensemble": "ensemble/results/metadata.json"
+  },
+  "protocol": [
+    {
+      "title": "Inputs and preprocessing",
+      "text": "The common preprocessing uses the top 2,000 highly variable genes where applicable; method-specific filtering and native input requirements are retained. Raw-count, total-expression and upstream-velocity configurations have their own input contracts."
+    },
+    {
+      "title": "Fixed reference neighbors",
+      "text": "Cell evaluation uses stored 30-nearest-neighbor assets built in X_pca with 30 PCs, Euclidean distance and random state 0. Installing these assets transfers candidate indices, distances and connectivities; it does not replace the method output PCA. Compatible saved low-dimensional projections are reused; other projections follow the documented scVelo route."
+    },
+    {
+      "title": "TransCosine and representation",
+      "text": "For the primary Cell benchmark, the scVelo velocity graph is recomputed on fixed candidates using reference Ms aligned to common cells and genes and the unchanged method velocity. veloAE retains native latent Ms because its velocity is defined in a learned latent space. Positive graph weights are not row-normalized transition probabilities."
+    }
+  ],
+  "metrics": {
+    "cell": [
+      {
+        "key": "consistency",
+        "label": "Consistency",
+        "definition": "Cosine agreement between neighboring velocity vectors.",
+        "aggregation": "Non-self reference neighbors with positive vector norms are averaged per cell, then across cells; cells with no valid neighbors contribute zero."
+      },
+      {
+        "key": "iccoh",
+        "label": "ICCoh",
+        "definition": "Velocity coherence within the same annotated cluster.",
+        "aggregation": "Within-cluster neighbor cosines are averaged per cell and cluster, then across clusters with defined scores."
+      },
+      {
+        "key": "cbdir",
+        "label": "CBDir",
+        "definition": "Velocity alignment with displacement toward target-cluster neighbors along annotated transitions.",
+        "aggregation": "Source-cell values are averaged within each valid transition, then transitions receive equal weight."
+      },
+      {
+        "key": "transcosine",
+        "label": "TransCosine",
+        "definition": "Positive velocity-graph support for annotated downstream transitions.",
+        "aggregation": "Positive graph weights are averaged over target-cluster neighbors, then valid source cells and defined transition edges. Negative graph weights do not contribute."
+      },
+      {
+        "key": "batc",
+        "label": "BATC",
+        "definition": "Velocity alignment with the tangents of reference lineage curves.",
+        "aggregation": "The best outgoing branch alignment is retained per source cell; the dataset score is cell-weighted over source clusters. The benchmark replaces non-finite branch scores with zero before branch maximization."
+      }
+    ],
+    "gene": [
+      {
+        "key": "cbdir",
+        "label": "Gene-level CBDir",
+        "definition": "Directional agreement in the method-native spliced–unspliced phase plane.",
+        "aggregation": "Fixed reference-30 target neighbors define displacement vectors. Source-cell cosines are averaged per transition; valid transitions receive equal weight. Zero-norm velocity and zero-length displacement contribute zero. Source-cell observations count participation per edge; one cell can contribute to more than one transition."
+      },
+      {
+        "key": "cossim",
+        "label": "CosSim",
+        "definition": "Cosine alignment between inferred and analytical ground-truth vectors in the simulated (s,u) phase plane.",
+        "aggregation": "The mean uses cells for which both vector norms exceed 10⁻⁶. The compact CosSim table does not report this valid-cell count; CBDir cell counts must not be used as its denominator."
+      }
+    ],
+    "kinetics": [
+      {
+        "key": "score",
+        "label": "Spearman correlation",
+        "definition": "Monotonic agreement between predicted and experimentally fitted kinetic profiles.",
+        "aggregation": "Scores use paired finite positions for each gene/parameter/branch. Fewer than two pairs or a constant trajectory yields an undefined score. Finite gene scores are averaged within a branch; organoid branches and then available systems receive equal weight."
+      }
+    ]
+  },
+  "interpretation": [
+    {
+      "title": "Gene sets and method coverage",
+      "text": "The real Gene benchmark contains 39 MURK and 20 branching dataset–gene pairs across five and two datasets. Nine configurations provide both ds/dt and du/dt for this comparison. A method can omit a selected gene; that missing output is not a score of zero."
+    },
+    {
+      "title": "Canonical and selected kinetic scores",
+      "text": "The selected examples comprise 19 RPE1 genes, six secretory-branch genes and eight enterocyte-branch genes. Canonical cross-experiment summaries use all available finite scores in the stored evaluation, rather than these example subsets. The RPE1 turnover-strategy analysis uses a separate set of 250 matched α/γ trajectories."
+    },
+    {
+      "title": "Expanded reference analysis",
+      "text": "The expanded sensitivity analysis uses 250 retained RPE1 reference genes and the same 270 retained organoid genes in each branch. Its available-gene and fixed common-valid-gene summaries are separate comparisons. TSvelo organoid α has 37 matched genes per branch: 20 finite scores and 17 constant predictions; none belongs to the 14 organoid example genes."
+    },
+    {
+      "title": "Parameter outputs and the labelled comparator",
+      "text": "cellDancer and DeepVelo provide cell-specific α, β and γ; DeepKINET provides β and γ, with γ scored here; TSvelo provides α. Dynamo in the scEU-seq analysis uses newly synthesized RNA, total RNA and labeling time to estimate α. It is a labelled positive control, distinct from Dynamo(RNA_seq)."
+    },
+    {
+      "title": "Display units and missing values",
+      "text": "α denotes transcription, β splicing and γ degradation. RPE1 curves are independently z-scored using sample SD for display only. Organoid predictions retain the early-50-bin baseline ratio and references retain their saved source scale on a separate axis. Gaps remain gaps. Missing genes, unavailable parameters and undefined correlations are distinguished; non-finite scores are excluded from summaries, without filling them with zero."
+    }
+  ],
+  "method_note": "Model characteristics describe the retained paper table. “—” means no explicit entry in that table. Gene-level coverage describes the saved benchmark components and may include repository post-processing; it is separate from the model’s native du/dt output.",
+  "labelled_control": {
+    "name": "Dynamo (scEU-seq)",
+    "input": "Newly synthesized RNA, total RNA and labeling-time information",
+    "parameters": "Cell-specific α",
+    "tasks": "Kinetic-parameter recovery",
+    "note": "Labelled positive control; not an additional member of the 20-configuration RNA-seq registry."
+  },
+  "dataset_note": "Modality and trajectory terms follow the manuscript dataset table. Dimensions below describe the registered benchmark input; they can differ from the upstream source object.",
+  "simulation_note": "Historical canonical H5AD inputs are the paper’s fixed realizations. The public cellDancer-based generator deliberately sets no seed, so a new run is an independent realization and does not replace those inputs."
+}

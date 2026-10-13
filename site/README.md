@@ -121,8 +121,7 @@ portraits are generated from the existing frozen simulation outputs.
 
 RPE1 applies the Figure 6 display z-score independently to each saved curve
 using sample SD. Each curve retains its own 0–1 relative-position grid;
-Dynamo retains 290 positions. Original bin IDs remain in the static data and
-pointer tooltip.
+Dynamo retains 290 positions. Original bin IDs remain in the static data; the pointer tooltip displays relative position.
 Organoid retains the processed early-50-bin prediction ratios and the saved
 Table S4 reference values/direction on separate labelled y-axes. No numerical
 conversion is applied to make these different scales coincide. Missing
@@ -174,8 +173,34 @@ The share link records task, dataset, parameter, branch, scope, gene, metric,
 display mode, and the selected Cell method or comparison set. Older `streams`
 links remain readable for compatibility.
 
-Overview, Results, Datasets & Methods, Downloads and Documentation are the
-main navigation. SHA-256 values and commit identities remain in the machine
-manifest and repository; normal result and download rows link to readable
-scientific documentation. Documentation distinguishes bundle validation,
-re-evaluation from external inputs, and rendering committed summaries.
+Overview, Results, Ensemble, Diagnostics, Datasets & Methods and Downloads are
+the main navigation. Documentation is available from the footer. Simulation
+inputs are grouped in the dataset directory; previous hash routes remain valid.
+SHA-256 values and commit identities stay in machine records and the repository.
+Normal browsing shows objects, selectors, plots, scores and concise scope labels.
+
+The Ensemble page binds both frozen variants to their registered stream images
+on all 14 Cell datasets. It loads the selected dataset images, supports
+enlargement and original-image download, and preserves the independent rankings.
+Neither variant enters the 20-configuration method registry.
+
+Diagnostics exposes existing veloAE PCA summaries/projections, veloVI coordinate
+conditions and TIvelo root/ordering controls. It copies scores and plotted data
+without running a method or evaluator. The published diagnostic images are
+pinned by `content/diagnostic_assets.json` and checked against owning manifests
+and frozen input identities. This display binding does not assign paper panels.
+The veloAE summary uses the verified SVG; its PNG is not used as a substitute.
+TIvelo simulation refit gene counts and paired bone-marrow optimizer seeds stay
+separate from primary benchmark scores. Bone-marrow maps retain archived t-SNE.
+These diagnostic results never replace method-ranking inputs.
+
+Additional analysis CSVs are copied byte-for-byte. All existing result, release,
+figure and audit downloads remain available; metadata/audits form one technical
+resources section. There is no claim that the unpublished H5AD artifacts are
+downloadable merely because their upstream sources are linked.
+
+Scientific context uses registry-backed names and the documented manuscript read.
+Model/dataset facts and metric terms stay in `content/website_content.json`;
+`content/README.md` explains their authority. The build records the historical
+visual materialization commit separately from its validation commit. Source
+and display hashes must continue to match; final paper figure mapping is separate.
