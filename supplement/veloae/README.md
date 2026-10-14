@@ -47,3 +47,8 @@ dataset panels. It does not create or modify a PowerPoint.
 The online `merged.tex` assigns the paired PCA summary to panel A and the
 14-dataset shared-axis projection plate to panel B. The final manual page
 composite is not part of this source bundle.
+
+Superseded A/B/C and 4×4 drafts are available in
+[`archive/non_online_20260927/` at Git revision
+`51edf35695e2b1db1449596f2878c1be3ee466c3`](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/supplement/veloae/archive/non_online_20260927).
+They are not sources for the current figure.

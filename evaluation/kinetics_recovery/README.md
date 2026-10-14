@@ -30,9 +30,10 @@ trajectories are unchanged. The evaluator's reference alignment did change.
 Figure 6B uses benchmark method hues, with darker green for
 Dynamo(label data) and lighter green for cellDancer to separate overlapping
 trajectories. The superseded line-color PNGs are retained under
-`archive/fig6_legacy_line_palette_20260927/` and are not active assembly
-sources. This is a display-only change; the plotted trajectory CSVs are
-unchanged.
+[`archive/fig6_legacy_line_palette_20260927/` at Git revision
+`51edf35695e2b1db1449596f2878c1be3ee466c3`](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/evaluation/kinetics_recovery/archive/fig6_legacy_line_palette_20260927)
+and are not active assembly sources. This is a display-only change; the
+plotted trajectory CSVs are unchanged.
 
 Quantitative panels read one common evaluator output rather than independent
 static legacy tables. Streams use saved embeddings and velocity projections
