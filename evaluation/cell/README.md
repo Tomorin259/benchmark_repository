@@ -119,6 +119,19 @@ extended details are recomputed when using `--resume`. Pair caches also bind
 source bytes, evaluator/config hashes and metric spaces; old UMAP-only
 Forebrain pairs cannot be resumed as PCA30 results.
 
+Dependency checks follow the selected dataset and method rows; a single-dataset
+run needs only that dataset's reference moments. Partial runs must use a separate
+`--output-root`; the canonical Cell directory requires all 280 pairs. The output
+tables contain only current pairs from the selected scope.
+
+When all 20 Forebrain pairs are available, the runner also writes
+`forebrain_cbdir_pca_edge_details.csv` and `forebrain_cbdir_pca_manifest.json`.
+These bind the 120 edge means, exact-zero/empty-edge exclusion, frozen frames,
+evaluated source hashes, evaluator files, and generated table hashes. A full
+rerun therefore supplies the audit files required by `validate_results.py`.
+An incomplete Forebrain run removes prior generated Forebrain audit files from
+its staging result directory rather than retaining a complete-run claim.
+
 The optional `preflight_reference30_inputs.py` and
 `build_reference_union_moments.py` helpers also take `--artifact-root` and
 write logical locators rather than embedding the caller's local filesystem

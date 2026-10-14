@@ -7,6 +7,8 @@ import csv
 import hashlib
 import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -25,12 +27,79 @@ from evaluation.cell.reference_neighbors import (
 )
 from evaluation.cell.run_cell_metrics import (
     DEFAULT_INPUTS, evaluation_protocol, extended_edge_records, pair_is_current,
+    write_tables,
 )
 from evaluation.cell.reference_embeddings import (
     array_sha256, load_forebrain_frames, PCA_COORDINATE_SHA256,
     UMAP_COORDINATE_SHA256,
 )
-from evaluation.cell.validate_results import validate_results
+from evaluation.cell.validate_results import _validate_forebrain_cbdir, validate_results
+
+
+def forebrain_pair_fixture():
+    """Reconstruct the 20 frozen pair records without external H5AD inputs."""
+    root = DEFAULT_INPUTS.parent
+    config = json.loads((root / "config.json").read_text())
+
+    def table(name, delimiter=","):
+        with (root / name).open(encoding="utf-8", newline="") as handle:
+            return [row for row in csv.DictReader(handle, delimiter=delimiter)
+                    if row.get("dataset", row.get("evaluation_dataset")) == "forebrain"]
+
+    inputs = {row["operational_id"]: row for row in table("inputs.tsv", "\t")}
+    primary = {row["method"]: row for row in table("results/cell_metrics.csv")}
+    supplementary = {row["method"]: row for row in table("results/cell_metrics_supplementary.csv")}
+    audit = {row["method"]: row for row in table("results/cell_metrics_audit.csv")}
+    edges = table("results/forebrain_cbdir_pca_edge_details.csv")
+    frozen_manifest = json.loads((root / "results/forebrain_cbdir_pca_manifest.json").read_text())
+    file_hashes = {
+        name: hashlib.sha256((root / relative).read_bytes()).hexdigest()
+        for name, relative in {
+            "config": "config.json", "inputs": "inputs.tsv",
+            "prepare_script": "prepare_cell_metrics.py",
+            "official_script": "score_tivelo_metrics.py",
+            "frame_loader": "reference_embeddings.py", "metrics": "metrics.py",
+            "batc": "batc.py", "reference_neighbors_code": "reference_neighbors.py",
+            "reference_neighbors": "reference_neighbors/forebrain.npz",
+            "frame_manifest": "reference_embeddings/manifest.json",
+            "umap_frame": "reference_embeddings/forebrain_umap.npz",
+        }.items()
+    }
+    file_hashes["reference_moments"] = frozen_manifest["reference_moments_sha256"]
+    protocols = {}
+    pairs = {}
+    for method in config["method_order"]:
+        protocol = evaluation_protocol(inputs[method], config, file_hashes)
+        protocols["forebrain", method] = protocol
+        pairs[method] = {
+            "dataset": "forebrain", "method": method, "status": "ok",
+            "evaluation_protocol": protocol,
+            "metrics": {
+                **{key: float(primary[method][key]) for key in config["result_tables"]["primary"][2:]},
+                "highdim_cbdir": float(supplementary[method]["highdim_cbdir"]),
+            },
+            "counts": {key: int(value) for key, value in supplementary[method].items()
+                       if key.endswith(("_edges", "_cells"))},
+            "metadata": {
+                **audit[method], "invalid_velocity_values_replaced_with_zero": 0,
+                "scvelo_version": "0.2.5",
+                "metric_frames": {
+                    "cbdir": {"space": "pca", "dimensions": 30,
+                              "coordinate_sha256": PCA_COORDINATE_SHA256},
+                    "batc": {"space": "umap", "dimensions": 2,
+                             "coordinate_sha256": UMAP_COORDINATE_SHA256},
+                },
+            },
+            "edge_details": [], "tivelo_parity": [],
+            "extended_edge_details": [{
+                "dataset": "forebrain", "method": method, "metric": "cbdir",
+                "source": row["source"], "target": row["target"],
+                "score": float(row["score"]) if row["score"] else None,
+                "evaluable_source_cells": int(row["evaluable_source_cells"]),
+                "raw_nonfinite_source_cells": 0, "branch_winner_source_cells": "",
+            } for row in edges if row["method"] == method],
+        }
+    return config, pairs, protocols
 
 
 class CellEvaluationTests(unittest.TestCase):
@@ -61,7 +130,7 @@ class CellEvaluationTests(unittest.TestCase):
             "embedding": "pca", "dimensions": 30,
             "coordinate_sha256": PCA_COORDINATE_SHA256,
         }}}}
-        row = {"evaluation_dataset": "forebrain", "sha256": "source",
+        row = {"config_id": "C01", "evaluation_dataset": "forebrain", "sha256": "source",
                "velocity_layer_key": "velocity"}
         protocol = evaluation_protocol(row, config, {"config": "new"})
         old = {"status": "ok", "extended_edge_details": []}
@@ -71,6 +140,138 @@ class CellEvaluationTests(unittest.TestCase):
         changed = evaluation_protocol(row, config, {"config": "different"})
         self.assertFalse(pair_is_current(current, changed))
         self.assertFalse(pair_is_current(current, None))
+
+    def test_dataset_cli_does_not_require_unselected_reference_materials(self):
+        root = DEFAULT_INPUTS.parent
+        with DEFAULT_INPUTS.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle, delimiter="\t")
+            fields = reader.fieldnames
+            rows = [row for row in reader if row["config_id"] == "C01"
+                    and row["evaluation_dataset"] in {"forebrain", "pancreas"}]
+        selected = next(row for row in rows if row["evaluation_dataset"] == "forebrain")
+        official = {"highdim_cbdir": 0.5, "transcosine": 0.6,
+                    "highdim_cbdir_raw": {"0->1": [0.5]},
+                    "transcosine_raw": {"0->1": [0.6]}}
+        indicators = {
+            "metadata": {"result_path": selected["result_path"],
+                         "result_sha256": selected["sha256"],
+                         "velocity_layer_key": selected["velocity_layer_key"],
+                         "invalid_velocity_values_replaced_with_zero": 0},
+            "metrics": {**official, "consistency": 0.1, "iccoh": 0.2,
+                        "cbdir": 0.3, "batc": 0.4,
+                        "cbdir_edge_raw": {"0->1": [0.3]}, "batc_edge_details": []},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            temporary = Path(directory)
+            inputs = temporary / "inputs.tsv"
+            with inputs.open("w", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=fields, delimiter="\t")
+                writer.writeheader()
+                writer.writerows(rows)
+            moments = temporary / "moments"
+            neighbors = temporary / "neighbors"
+            moments.mkdir()
+            neighbors.mkdir()
+            (moments / "forebrain.npz").write_bytes(b"stub reference moments")
+            shutil.copyfile(root / "reference_neighbors/forebrain.npz", neighbors / "forebrain.npz")
+            prepare = temporary / "prepare.py"
+            score = temporary / "score.py"
+            prelude = (
+                "import json, sys\nfrom pathlib import Path\n"
+                "def option(name): return Path(sys.argv[sys.argv.index(name) + 1])\n"
+            )
+            prepare.write_text(
+                prelude + f"payload = json.loads({json.dumps(json.dumps(indicators))})\n"
+                "option('--prepared-output').write_bytes(b'stub prepared input')\n"
+                "option('--indicators-output').write_text(json.dumps(payload))\n"
+            )
+            score.write_text(
+                prelude + f"payload = json.loads({json.dumps(json.dumps(official))})\n"
+                "option('--output').write_text(json.dumps(payload))\n"
+            )
+            command = [
+                sys.executable, str(root / "run_cell_metrics.py"),
+                "--artifact-root", str(temporary), "--inputs", str(inputs),
+                "--reference-neighbors-root", str(neighbors),
+                "--reference-moments-root", str(moments),
+                "--output-root", str(temporary / "output"),
+                "--indicators-python", sys.executable, "--tivelo-python", sys.executable,
+                "--prepare-script", str(prepare), "--official-script", str(score),
+                "--dataset", "forebrain",
+            ]
+            completed = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            with (temporary / "output/results/cell_metrics.csv").open(newline="") as handle:
+                result = list(csv.DictReader(handle))
+            self.assertEqual([(row["dataset"], row["method"]) for row in result],
+                             [("forebrain", "scvelo_deterministic")])
+            self.assertFalse((moments / "pancreas.npz").exists())
+            self.assertFalse((neighbors / "pancreas.npz").exists())
+            canonical = temporary / "canonical_cell"
+            canonical.mkdir()
+            shutil.copyfile(root / "run_cell_metrics.py", canonical / "run_cell_metrics.py")
+            command[1] = str(canonical / "run_cell_metrics.py")
+            command[command.index("--output-root") + 1] = str(canonical)
+            command.extend(["--config", str(root / "config.json")])
+            protected = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            self.assertNotEqual(protected.returncode, 0)
+            self.assertIn("A partial run must use a separate --output-root", protected.stderr)
+            self.assertFalse((canonical / "results").exists())
+            self.assertFalse((canonical / ".work").exists())
+
+    def test_forebrain_rerun_writes_valid_complete_audit_and_excludes_zero_empty_edges(self):
+        config, pairs, protocols = forebrain_pair_fixture()
+        root = DEFAULT_INPUTS.parent
+        with tempfile.TemporaryDirectory() as directory:
+            pair_root = Path(directory) / "pairs"
+            result_root = Path(directory) / "results"
+            pair_root.mkdir()
+            for case in ("frozen", "zero_and_empty"):
+                with self.subTest(case=case):
+                    if case == "zero_and_empty":
+                        payload = pairs[config["method_order"][0]]
+                        edges = payload["extended_edge_details"]
+                        edges[0]["score"] = 0.0
+                        edges[1].update(score=None, evaluable_source_cells=0)
+                        payload["metrics"]["cbdir"] = np.mean([edge["score"] for edge in edges[2:]])
+                    for method, payload in pairs.items():
+                        (pair_root / f"forebrain__{method}.json").write_text(json.dumps(payload))
+                    write_tables(pair_root, result_root, config, protocols)
+                    with (result_root / "cell_metrics.csv").open(newline="") as handle:
+                        primary = list(csv.DictReader(handle))
+                    _validate_forebrain_cbdir(config, result_root,
+                        root / "reference_neighbors", root / "reference_embeddings", primary)
+                    manifest = json.loads((result_root / "forebrain_cbdir_pca_manifest.json").read_text())
+                    self.assertEqual(manifest["edge_rows"], 120)
+                    self.assertEqual(manifest["pca_coordinate_sha256"], PCA_COORDINATE_SHA256)
+                    self.assertEqual(manifest["umap_coordinate_sha256"], UMAP_COORDINATE_SHA256)
+                    self.assertEqual(manifest["evaluation_files"],
+                                     protocols["forebrain", config["method_order"][0]]["files"])
+                    self.assertEqual({row["method"]: row["sha256"] for row in manifest["inputs"]},
+                        {method: payload["metadata"]["result_sha256"] for method, payload in pairs.items()})
+                    with (result_root / "forebrain_cbdir_pca_edge_details.csv").open(newline="") as handle:
+                        audit = list(csv.DictReader(handle))
+                    self.assertEqual(len(audit), 120)
+                    if case == "zero_and_empty":
+                        method_edges = [row for row in audit if row["method"] == config["method_order"][0]]
+                        self.assertEqual([row["included_in_mean"] for row in method_edges[:2]],
+                                         ["False", "False"])
+
+    def test_partial_forebrain_rerun_does_not_leave_complete_audit(self):
+        config, pairs, protocols = forebrain_pair_fixture()
+        with tempfile.TemporaryDirectory() as directory:
+            pair_root = Path(directory) / "pairs"
+            result_root = Path(directory) / "results"
+            pair_root.mkdir()
+            for method, payload in pairs.items():
+                (pair_root / f"forebrain__{method}.json").write_text(json.dumps(payload))
+            write_tables(pair_root, result_root, config, protocols)
+            manifest = result_root / "forebrain_cbdir_pca_manifest.json"
+            self.assertTrue(manifest.exists())
+            (pair_root / f"forebrain__{config['method_order'][-1]}.json").unlink()
+            write_tables(pair_root, result_root, config, protocols)
+            self.assertFalse(manifest.exists())
+            self.assertFalse((result_root / "forebrain_cbdir_pca_edge_details.csv").exists())
 
     def test_unitvelo_pca_cbdir_uses_dimensions_beyond_the_display(self):
         try:

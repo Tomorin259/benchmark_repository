@@ -90,10 +90,11 @@ external staging directory; H5AD files are not part of the Git module. The CLI
 stores only logical artifact paths and checksums in metadata; server-specific
 paths are not written to the public result files.
 
-The formal all-14 metadata records the upstream lineage, release-index commit,
-and clean numerical-reproduction commit as separate fields. See
+The formal all-14 [`results/metadata.json`](results/metadata.json) records the
+current macro-average scores, upstream lineage, release-index commit, and clean
+numerical-reproduction commit. The dated
 [`../docs/fixed_neighbor_reproduction_20260912.md`](../docs/fixed_neighbor_reproduction_20260912.md)
-for the corresponding evidence and macro scores.
+preserves the historical schema-6 migration and numerical-reproduction evidence.
 
 ## Independent ranking contract
 

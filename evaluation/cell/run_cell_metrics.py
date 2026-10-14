@@ -37,6 +37,10 @@ EXTENDED_DETAIL_COLUMNS = [
     "evaluable_source_cells", "raw_nonfinite_source_cells",
     "branch_winner_source_cells",
 ]
+FOREBRAIN_DETAIL_COLUMNS = [
+    "dataset", "config_id", "method", "source", "target", "score",
+    "evaluable_source_cells", "included_in_mean",
+]
 
 
 def evaluation_protocol(row: dict, config: dict, file_hashes: dict) -> dict:
@@ -45,6 +49,7 @@ def evaluation_protocol(row: dict, config: dict, file_hashes: dict) -> dict:
     cbdir = config["datasets"][dataset].get("cbdir", {})
     space = cbdir.get("embedding", "umap")
     protocol = {
+        "config_id": row["config_id"],
         "source_sha256": row["sha256"],
         "velocity_layer_key": row["velocity_layer_key"],
         "dataset": dataset,
@@ -225,6 +230,88 @@ def run(command: list[str], log_path: Path) -> None:
         raise RuntimeError(f"command failed ({completed.returncode}); see {log_path}")
 
 
+def write_forebrain_cbdir_audit(pairs: list[dict], result_root: Path, config: dict) -> None:
+    """Bind a complete Forebrain rerun's edge scores to its current inputs."""
+    selected = [pair for pair in pairs if pair["dataset"] == "forebrain"]
+    if {pair["method"] for pair in selected} != set(config["method_order"]):
+        for name in ("forebrain_cbdir_pca_edge_details.csv", "forebrain_cbdir_pca_manifest.json"):
+            path = result_root / name
+            if path.is_file():
+                path.unlink()
+        return
+    if len(selected) != len(config["method_order"]):
+        raise ValueError("Forebrain audit requires unique method pairs")
+    frames = selected[0]["metadata"]["metric_frames"]
+    files = selected[0]["evaluation_protocol"]["files"]
+    cbdir = config["datasets"]["forebrain"]["cbdir"]
+    if (frames["cbdir"]["space"], frames["cbdir"]["dimensions"],
+        frames["cbdir"]["coordinate_sha256"]) != (
+        "pca", 30, cbdir["coordinate_sha256"],
+    ) or (frames["batc"]["space"], frames["batc"]["dimensions"]) != ("umap", 2):
+        raise ValueError("Forebrain audit requires the frozen PCA30 and UMAP2 frames")
+    edges = config["datasets"]["forebrain"]["cluster_edges"]
+    expected = {(str(source), str(target)) for source, target in edges}
+    records, inputs = [], []
+    for pair in sorted(selected, key=lambda item: item["evaluation_protocol"]["config_id"]):
+        metadata, protocol = pair["metadata"], pair["evaluation_protocol"]
+        if metadata["metric_frames"] != frames or protocol["files"] != files:
+            raise ValueError("Forebrain pairs have different frames or evaluation inputs")
+        if metadata["result_sha256"] != protocol["source_sha256"]:
+            raise ValueError("Forebrain source bytes differ from the evaluated protocol")
+        current = [row for row in pair["extended_edge_details"] if row["metric"] == "cbdir"]
+        if len(current) != len(expected) or {
+            (str(row["source"]), str(row["target"])) for row in current
+        } != expected:
+            raise ValueError("Forebrain audit requires each configured CBDir edge once")
+        values = []
+        for row in current:
+            score = row["score"]
+            included = score is not None and score != 0.0
+            if included:
+                if not math.isfinite(float(score)) or row["evaluable_source_cells"] <= 0:
+                    raise ValueError("Forebrain CBDir cannot include an undefined edge")
+                values.append(float(score))
+            records.append({"dataset": "forebrain", "config_id": protocol["config_id"],
+                "method": pair["method"], "source": str(row["source"]),
+                "target": str(row["target"]), "score": score,
+                "evaluable_source_cells": row["evaluable_source_cells"],
+                "included_in_mean": included})
+        if not values or not math.isclose(sum(values) / len(values),
+            pair["metrics"]["cbdir"], rel_tol=0.0, abs_tol=1e-12):
+            raise ValueError("Forebrain edge means differ from the primary CBDir score")
+        inputs.append({"method": pair["method"], "config_id": protocol["config_id"],
+            "locator": metadata["result_path"], "sha256": metadata["result_sha256"],
+            "velocity_layer_key": metadata["velocity_layer_key"]})
+    edge_path = result_root / "forebrain_cbdir_pca_edge_details.csv"
+    with edge_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=FOREBRAIN_DETAIL_COLUMNS)
+        writer.writeheader()
+        writer.writerows(records)
+    manifest = {
+        "schema_version": 1, "dataset": "forebrain", "status": "reproduced_pca30_cbdir",
+        "metric": "cbdir", "coordinate_space": "pca", "dimensions": 30,
+        "pca_coordinate_sha256": frames["cbdir"]["coordinate_sha256"],
+        "umap_coordinate_sha256": frames["batc"]["coordinate_sha256"],
+        "projection": {"basis": "pca", "direct_pca_projection": False,
+                       "autoscale": True, "all_comps": True},
+        "evaluation_files": files,
+        "scvelo_versions": sorted({pair["metadata"]["scvelo_version"] for pair in selected}),
+        "inputs": inputs,
+        "cbdir_aggregation": "UnitVelo edge means; exact-zero and empty edges excluded; remaining edges equally weighted",
+        "edge_details_file": edge_path.name,
+        "edge_details_sha256": hashlib.sha256(edge_path.read_bytes()).hexdigest(),
+        "edge_rows": len(records), "primary_table": "cell_metrics.csv",
+        "primary_table_sha256": hashlib.sha256((result_root / "cell_metrics.csv").read_bytes()).hexdigest(),
+        "guard_tables": {name: hashlib.sha256((result_root / name).read_bytes()).hexdigest()
+            for name in ("cell_metrics_supplementary.csv", "cell_metrics_audit.csv",
+                         "cell_metrics_edge_details.csv", "tivelo_parity.csv")},
+        "randomness_policy": "Frozen coordinate and neighbor assets; no PCA/UMAP construction or training",
+    }
+    (result_root / "forebrain_cbdir_pca_manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+
+
 def write_tables(pair_root: Path, result_root: Path, config: dict, protocols: dict = None) -> None:
     pairs = []
     for path in sorted(pair_root.glob("*.json")):
@@ -286,6 +373,7 @@ def write_tables(pair_root: Path, result_root: Path, config: dict, protocols: di
             writer = csv.DictWriter(handle, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(rows)
+    write_forebrain_cbdir_audit(pairs, result_root, config)
 
 
 def main() -> None:
@@ -353,6 +441,11 @@ def main() -> None:
     log_root = work_root / "logs"
     reference_umap_cache = work_root / "reference_umap_scvelo_deterministic"
     result_root = output_root / "results"
+    if result_root == MODULE_DIR / "results":
+        expected = {(dataset, method) for dataset in config["datasets"] for method in config["method_order"]}
+        selected_keys = {(row["evaluation_dataset"], row["operational_id"]) for row in rows}
+        if selected_keys != expected:
+            raise ValueError("A partial run must use a separate --output-root, not the canonical Cell bundle")
     for directory in (pair_root, work_root, log_root, reference_umap_cache):
         directory.mkdir(parents=True, exist_ok=True)
 
@@ -373,7 +466,7 @@ def main() -> None:
         "reference_neighbors_code": file_sha(MODULE_DIR / "reference_neighbors.py"),
     }
     dataset_hashes = {}
-    for dataset in {row["evaluation_dataset"] for row in all_rows}:
+    for dataset in {row["evaluation_dataset"] for row in rows}:
         files = {
             **shared_hashes,
             "reference_neighbors": file_sha(args.reference_neighbors_root / f"{dataset}.npz"),
@@ -386,7 +479,7 @@ def main() -> None:
     protocols = {
         (row["evaluation_dataset"], row["operational_id"]): evaluation_protocol(
             row, config, dataset_hashes[row["evaluation_dataset"]]
-        ) for row in all_rows
+        ) for row in rows
     }
 
     def process_row(position: int, row: dict) -> None:
