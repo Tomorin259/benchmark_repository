@@ -256,7 +256,7 @@ L 760.577143 58.0032
     <g id="ytick_12">
      <g id="line2d_23"/>
      <g id="text_18">
-      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="603.494049" transform="rotate(-0 165.412 603.494049)">scVelo_stochastic</text>
+      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="603.494049" transform="rotate(-0 165.412 603.494049)">scVelo_sto</text>
      </g>
     </g>
     <g id="ytick_13">
@@ -268,7 +268,7 @@ L 760.577143 58.0032
     <g id="ytick_14">
      <g id="line2d_25"/>
      <g id="text_20">
-      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="689.719503" transform="rotate(-0 165.412 689.719503)">scVelo_deterministic</text>
+      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="689.719503" transform="rotate(-0 165.412 689.719503)">scVelo_det</text>
      </g>
     </g>
     <g id="ytick_15">
@@ -292,7 +292,7 @@ L 760.577143 58.0032
     <g id="ytick_18">
      <g id="line2d_29"/>
      <g id="text_24">
-      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="862.170413" transform="rotate(-0 165.412 862.170413)">scVelo_dynamic</text>
+      <text style="font-size: 14px; font-family: 'Arial', 'Liberation Sans', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #262626" x="165.412" y="862.170413" transform="rotate(-0 165.412 862.170413)">scVelo_dyn</text>
      </g>
     </g>
     <g id="ytick_19">
@@ -1060,7 +1060,7 @@ z
      <use xlink:href="#C0_0_564387f493" x="701.866222" y="125.066164" style="fill: #cc6677; fill-opacity: 0.9; stroke: #000000; stroke-opacity: 0.9; stroke-width: 0.8"/>
     </g>
     <g clip-path="url(#paa84443bdf)">
-     <use xlink:href="#C0_0_564387f493" x="510.265564" y="127.965999" style="fill: #cc6677; fill-opacity: 0.9; stroke: #000000; stroke-opacity: 0.9; stroke-width: 0.8"/>
+     <use xlink:href="#C0_0_564387f493" x="519.048554" y="127.965999" style="fill: #cc6677; fill-opacity: 0.9; stroke: #000000; stroke-opacity: 0.9; stroke-width: 0.8"/>
     </g>
     <g clip-path="url(#paa84443bdf)">
      <use xlink:href="#C0_0_564387f493" x="739.673774" y="122.8552" style="fill: #cc6677; fill-opacity: 0.9; stroke: #000000; stroke-opacity: 0.9; stroke-width: 0.8"/>
@@ -2243,7 +2243,7 @@ z
 " style="stroke: #000000; stroke-width: 1.2"/>
     </defs>
     <g clip-path="url(#paa84443bdf)">
-     <use xlink:href="#mcafdc06d7d" x="620.429936" y="124.181236" style="fill: #ffd700; stroke: #000000; stroke-width: 1.2"/>
+     <use xlink:href="#mcafdc06d7d" x="621.057293" y="124.181236" style="fill: #ffd700; stroke: #000000; stroke-width: 1.2"/>
     </g>
    </g>
    <g id="PathCollection_23">

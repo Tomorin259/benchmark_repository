@@ -3,16 +3,17 @@
   "figure": "Figure 7",
   "assembly": {
     "path": "figures/assembly/fig7/fig7.pptx",
-    "sha256": "54f00b102ab522abbae7de104ffe6502f69e63007592a97d488ae64b64ac5dd1"
+    "sha256": "dfcfef0ec89af655df362d15c65a9928a2b8bf78d9666a981b69b7cd45a161f2"
   },
   "output": {
     "path": "figures/figSeven.pdf",
-    "sha256": "2df7f17c6bb6f45c6a788769f1c31f75ef025924a2e4a7ebb9d4f3e8bdc38e27"
+    "sha256": "9504c9767d475c507196013bb06fc6558ffa75088b6b3acbe8304052ded7973d",
+    "status": "current_author_export"
   },
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "5bd22e001d14dc0d866e19eb8492e4c45e74b2878a00c95a957aeed64c71bedd"
+      "sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_wps_values.csv",
@@ -29,6 +30,10 @@
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_kinetic_component_means.csv",
       "sha256": "2abdd6f7a51e8afc2927f8542955d15d332d6ccf4b56ce6b0f30c809704a4808"
+    },
+    {
+      "path": "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv",
+      "sha256": "0841fa02fa66b7bef3640ea518a613fb78493396100a596ace401a138497b9b6"
     }
   ],
   "export": {
@@ -48,11 +53,11 @@
     ],
     "assembly_mode": "The author re-exported the updated native editable PowerPoint. Only the blank lower slide area is cropped; vector content, chart geometry, colors and text are preserved.",
     "source_pdf": {
-      "filename": "图7.pdf",
-      "sha256": "c87387551073587818da62a9cbb2185562970a0e916f4935d783d5955753ff5c",
-      "creator": "WPS 演示",
-      "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
-      "creation_date": "D:20261013173054+08'00'",
+      "filename": "\u56fe7.pdf",
+      "sha256": "73d8c19319f4212cbf18f416a01b64650e48d5194f1825e7bca023294a524e0e",
+      "creator": "WPS \u6f14\u793a",
+      "producer": "macOS \u7248\u672c26.6.2\uff08\u7248\u53f725G83\uff09 Quartz PDFContext",
+      "creation_date": "D:20261014031801+08'00'",
       "page_count": 1,
       "media_box_points": [
         0,
@@ -60,12 +65,13 @@
         540,
         779.8
       ]
-    }
+    },
+    "applies_to_previous_pdf": false
   },
   "embedded_workbooks": [
     {
       "path": "ppt/embeddings/Workbook1.xlsx",
-      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
     },
     {
       "path": "ppt/embeddings/Workbook10.xlsx",
@@ -73,19 +79,19 @@
     },
     {
       "path": "ppt/embeddings/Workbook2.xlsx",
-      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
     },
     {
       "path": "ppt/embeddings/Workbook3.xlsx",
-      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
     },
     {
       "path": "ppt/embeddings/Workbook4.xlsx",
-      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
     },
     {
       "path": "ppt/embeddings/Workbook5.xlsx",
-      "sha256": "5f509a78ca660b7ec8642dbcda806da42632f010986949e111121be25e784248"
+      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
     },
     {
       "path": "ppt/embeddings/Workbook6.xlsx",
@@ -106,7 +112,7 @@
   ],
   "numerical_contract": {
     "method_configurations": 20,
-    "cell_values": "Preserved fixed-reference-30 desktop table, matched to the cell metrics CSV.",
+    "cell_values": "280 canonical Cell rows; Forebrain CBDir uses the shared 30-PC projection. Each method averages 14 datasets equally; sample SD and linear-interpolation quartiles. Native means retain the existing +1 shift.",
     "gene_and_kinetics_values": "Current Figure 7 summary inputs; plotting means retain their existing +1 transform, SD and counts are unshifted.",
     "missing_results": "Retain blanks and sparse native chart caches; do not create bars for unavailable results.",
     "native_gene_workbook_label_aliases": {
@@ -157,6 +163,10 @@
     {
       "path": "evaluation/summary/refresh_sim_cbdir_summary.py",
       "sha256": "e4b80d1ab4ed83a12b88ad9ed988b4c0e6c3cbb8079f91884dba3d3fd7cd1bc0"
+    },
+    {
+      "path": "evaluation/summary/refresh_cell_summary.py",
+      "sha256": "bf8b059a5aef36acf8b5ed0838c5c5e961493fef899c2c8c6e92ddc259fc16d8"
     }
   ],
   "previous_export_verification": {
@@ -184,6 +194,27 @@
     "evaluator": "Codex agent",
     "human_signoff": false,
     "native_chart_count": 10,
+    "slide_layout_xml_unchanged": true,
+    "numeric_chart_columns_changed": [
+      "Cell_CBDir"
+    ],
+    "native_chart_cache_values_checked": 60,
+    "cell_workbook_target_cells_checked": 160,
+    "other_nine_chart_parts_unchanged": true,
+    "gene_and_kinetics_workbooks_unchanged": true,
+    "final_pdf_export_verified": true,
+    "cropped_pdf_content_stream_unchanged": true,
+    "author_export_cbdir_bars_checked": 20,
+    "author_export_other_bars_unchanged": 114,
+    "pdf_bar_width_max_residual_points": 0.000444901,
+    "author_export_cbdir_sd_errorbar_sides_checked": 40,
+    "pdf_sd_endpoint_max_residual_points": 0.000591828,
+    "author_export_text_unchanged": true
+  },
+  "last_pdf_verification": {
+    "evaluator": "Codex agent",
+    "human_signoff": false,
+    "native_chart_count": 10,
     "native_application_opened": true,
     "slide_layout_xml_unchanged": true,
     "layout_comparison_source": "Author-provided editable assembly before the simulated CBDir-gene update",
@@ -204,5 +235,6 @@
     ],
     "cropped_pdf_content_stream_unchanged": true,
     "comparison_baseline_pdf_sha256": "0fa175f59d1d88772612338295b9d3d8bb6db253664bc84b5106a7c1ff31e506"
-  }
+  },
+  "pending_pdf_export": false
 }

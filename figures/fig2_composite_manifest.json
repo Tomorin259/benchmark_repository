@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "figure": "Figure 2",
+  "assembly": {
+    "path": "figures/assembly/fig2/fig2.pptx",
+    "sha256": "83bf83068dba0ee05915429a72d04ec08d3c3f153b5fce1524005310381dc8d5"
+  },
+  "pending_pdf_export": false,
+  "inputs": [
+    {
+      "path": "evaluation/cell/results/cell_metrics.csv",
+      "sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
+    }
+  ],
+  "panels": [
+    {
+      "panel": "A",
+      "path": "evaluation/cell/figures/gastrulation_20methods_3x7_BATC.png",
+      "sha256": "680148db284d61b18b137d29f0eb7731b331ed344bf48bc4983c210f8d9aadd3"
+    },
+    {
+      "panel": "B",
+      "path": "evaluation/cell/figures/DentateGyrus_lamanno_20methods_3x7_CBDir.png",
+      "sha256": "1cfe48b1c32a8101784107bb1138170f903e06e8b9e325ac34e993a6614966f7"
+    },
+    {
+      "panel": "C",
+      "path": "evaluation/cell/figures/fig2_cell_metrics_5panel.png",
+      "sha256": "fdb9f0f543a0c4d4e79b91ad3ec98f16a8bf96ffcf8b40e383d7e1b444ceb413"
+    }
+  ],
+  "export": {
+    "application": "WPS Office",
+    "format": "author PDF; page content and resources retained",
+    "status": "verified",
+    "crop_box_points": [
+      0,
+      116.08,
+      540,
+      779.8
+    ],
+    "media_box_points": [
+      0,
+      116.08,
+      540,
+      779.8
+    ],
+    "source_pdf": {
+      "filename": "\u56fe2_0909_update.pdf",
+      "sha256": "4bc31599473c88dc380188a531d7ac2d3bb8a52bc8a73fb9e116a1f442025acf",
+      "creation_date": "D:20261014030758+08'00'",
+      "page_count": 1
+    }
+  },
+  "verification": {
+    "slide_layout_xml_unchanged": true,
+    "final_pdf_export_verified": true,
+    "unchanged_panels": [
+      "A",
+      "B"
+    ],
+    "five_metric_panel_pixel_changes": "CBDir only; zero pixel differences in the other four metric columns",
+    "cropped_pdf_content_stream_unchanged": true,
+    "source_panels_checked": 3
+  },
+  "output": {
+    "path": "figures/figTwo.pdf",
+    "sha256": "8157abde96b7ec61efcede8d6dd6104a9bf1f59afef0cf96bc410bd4de93b444",
+    "status": "current_author_export"
+  }
+}

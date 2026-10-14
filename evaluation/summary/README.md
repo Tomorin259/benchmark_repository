@@ -11,6 +11,23 @@ inputs. Its directory, CSV names and method-label column use Figure 7 names.
 Final assembly uses the original editable PowerPoint and native chart workbooks;
 PDF export remains a documented manual step.
 
+## Cell summaries
+
+`fig7_cell_metric_summary.csv` derives all five Cell summaries from the 280
+canonical rows in `evaluation/cell/results/cell_metrics.csv`. Each method gives
+the 14 datasets equal weight. Standard deviations use `ddof=1`; quartiles use
+linear interpolation (Excel `QUARTILE.INC`). The existing native chart uses
+`mean + 1`, with unshifted standard deviations.
+
+```bash
+python3 evaluation/summary/refresh_cell_summary.py --write
+```
+
+Without `--write`, the command verifies all 100 committed summary rows. Forebrain
+CBDir uses the shared 30-PC projection; BATC retains the shared 2D UMAP. The
+2026-10-14 refresh changes only the Forebrain CBDir contribution. These summaries
+do not regenerate the author's native chart or final PDF automatically.
+
 The Real-CBDir columns in the three `fig7_gene_metric_*.csv` summary files
 come from the reference-30 `new_cbdir` values in
 `evaluation/gene/results/gene_cbdir_reference30_all.csv`. Refresh the 63
@@ -83,9 +100,10 @@ The desktop Gene/kinetics workbook and native Figure 7 charts use the current
 reference-30 real and simulated CBDir-gene summaries; the Cell workbook matches
 the canonical Cell table.
 `figures/assembly/fig7/fig7.pptx` contains the original layout, ten native editable
-charts and their embedded source workbooks. `figures/figSeven.pdf` is the author's
-WPS re-export of the updated assembly, cropped to remove the lower blank
-slide area. Its simulated CBDir-gene column matches the reference-30 summary.
+charts and their embedded source workbooks. Its Cell CBDir chart and Cell
+workbooks include the corrected Forebrain contribution. `figures/figSeven.pdf`
+is the verified cropped author export with all 20 corrected Cell CBDir bars.
+Its simulated CBDir-gene column matches reference-30.
 `figures/fig7_composite_manifest.json` records the inputs, refresh scripts,
 assembly, export and PDF hashes and the verification scope.
 

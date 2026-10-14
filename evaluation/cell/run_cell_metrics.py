@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import subprocess
@@ -36,6 +37,35 @@ EXTENDED_DETAIL_COLUMNS = [
     "evaluable_source_cells", "raw_nonfinite_source_cells",
     "branch_winner_source_cells",
 ]
+
+
+def evaluation_protocol(row: dict, config: dict, file_hashes: dict) -> dict:
+    """Bind a pair cache to source bytes and the complete scientific protocol."""
+    dataset = row["evaluation_dataset"]
+    cbdir = config["datasets"][dataset].get("cbdir", {})
+    space = cbdir.get("embedding", "umap")
+    protocol = {
+        "source_sha256": row["sha256"],
+        "velocity_layer_key": row["velocity_layer_key"],
+        "dataset": dataset,
+        "cbdir_space": space,
+        "cbdir_dimensions": cbdir.get("dimensions", 2),
+        "frame_sha256": cbdir.get("coordinate_sha256", "registered_reference_umap"),
+        "files": file_hashes,
+    }
+    protocol["sha256"] = hashlib.sha256(
+        json.dumps(protocol, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    return protocol
+
+
+def pair_is_current(payload: dict, protocol: dict) -> bool:
+    return (
+        protocol is not None
+        and payload.get("status") == "ok"
+        and "extended_edge_details" in payload
+        and payload.get("evaluation_protocol") == protocol
+    )
 
 
 def read_rows(path: Path) -> list[dict]:
@@ -195,11 +225,14 @@ def run(command: list[str], log_path: Path) -> None:
         raise RuntimeError(f"command failed ({completed.returncode}); see {log_path}")
 
 
-def write_tables(pair_root: Path, result_root: Path, config: dict) -> None:
+def write_tables(pair_root: Path, result_root: Path, config: dict, protocols: dict = None) -> None:
     pairs = []
     for path in sorted(pair_root.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
         if payload.get("status") == "ok":
+            key = (payload["dataset"], payload["method"])
+            if protocols is not None and not pair_is_current(payload, protocols.get(key)):
+                continue
             pairs.append(payload)
     primary_rows = []
     supplementary_rows = []
@@ -277,6 +310,7 @@ def main() -> None:
         help="fixed reference-30 assets; defaults to the repository copy",
     )
     parser.add_argument("--reference-moments-root", type=Path, required=True)
+    parser.add_argument("--reference-embeddings-root", type=Path, default=MODULE_DIR / "reference_embeddings")
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--work-root", type=Path)
     parser.add_argument("--indicators-python", type=Path, required=True)
@@ -297,7 +331,8 @@ def main() -> None:
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
 
-    rows = read_rows(args.inputs)
+    all_rows = read_rows(args.inputs)
+    rows = all_rows
     config = json.loads(args.config.read_text(encoding="utf-8"))
     configured_n_jobs = int(config["metrics"]["velocity_graph_n_jobs"])
     n_jobs = args.n_jobs if args.n_jobs is not None else configured_n_jobs
@@ -321,13 +356,47 @@ def main() -> None:
     for directory in (pair_root, work_root, log_root, reference_umap_cache):
         directory.mkdir(parents=True, exist_ok=True)
 
+    def file_sha(path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as handle:
+            for block in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(block)
+        return digest.hexdigest()
+
+    shared_hashes = {
+        "config": file_sha(args.config), "inputs": file_sha(args.inputs),
+        "prepare_script": file_sha(args.prepare_script),
+        "official_script": file_sha(args.official_script),
+        "frame_loader": file_sha(MODULE_DIR / "reference_embeddings.py"),
+        "metrics": file_sha(MODULE_DIR / "metrics.py"),
+        "batc": file_sha(MODULE_DIR / "batc.py"),
+        "reference_neighbors_code": file_sha(MODULE_DIR / "reference_neighbors.py"),
+    }
+    dataset_hashes = {}
+    for dataset in {row["evaluation_dataset"] for row in all_rows}:
+        files = {
+            **shared_hashes,
+            "reference_neighbors": file_sha(args.reference_neighbors_root / f"{dataset}.npz"),
+            "reference_moments": file_sha(args.reference_moments_root / f"{dataset}.npz"),
+        }
+        if dataset == "forebrain":
+            files["frame_manifest"] = file_sha(args.reference_embeddings_root / "manifest.json")
+            files["umap_frame"] = file_sha(args.reference_embeddings_root / "forebrain_umap.npz")
+        dataset_hashes[dataset] = files
+    protocols = {
+        (row["evaluation_dataset"], row["operational_id"]): evaluation_protocol(
+            row, config, dataset_hashes[row["evaluation_dataset"]]
+        ) for row in all_rows
+    }
+
     def process_row(position: int, row: dict) -> None:
         method = row["operational_id"]
         dataset = row["evaluation_dataset"]
         pair_path = pair_root / f"{dataset}__{method}.json"
+        protocol = protocols[(dataset, method)]
         if args.resume and pair_path.is_file():
             payload = json.loads(pair_path.read_text(encoding="utf-8"))
-            if payload.get("status") == "ok" and "extended_edge_details" in payload:
+            if pair_is_current(payload, protocol):
                 print(f"[{position}/{len(rows)}] skip {dataset}/{method}", flush=True)
                 return
         stem = f"{dataset}__{method}"
@@ -343,6 +412,7 @@ def main() -> None:
                     "--config", str(args.config),
                     "--reference-neighbors-root", str(args.reference_neighbors_root),
                     "--reference-moments-root", str(args.reference_moments_root),
+                    "--reference-embeddings-root", str(args.reference_embeddings_root),
                     "--reference-umap-cache", str(reference_umap_cache),
                     "--method", method, "--dataset", dataset,
                     "--prepared-output", str(prepared),
@@ -363,6 +433,7 @@ def main() -> None:
             official = json.loads(official_json.read_text(encoding="utf-8"))
             qa = compare_tivelo(indicators, official)
             payload = build_pair_payload(dataset, method, indicators, official, qa)
+            payload["evaluation_protocol"] = protocol
             pair_path.write_text(
                 json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
             )
@@ -409,7 +480,7 @@ def main() -> None:
                 f"parallel evaluation failed at [{position}] "
                 f"{row['evaluation_dataset']}/{row['operational_id']}: {error}"
             ) from error
-    write_tables(pair_root, result_root, config)
+    write_tables(pair_root, result_root, config, protocols)
     print(f"Wrote {len(rows)} selected rows to {result_root}", flush=True)
 
 

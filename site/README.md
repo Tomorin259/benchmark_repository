@@ -53,6 +53,9 @@ python -m unittest discover -s tests -p test_site_export.py -v
 
 - Cell scores are joined to registry identities through the frozen
   `evaluation/cell/inputs.tsv`, with all primary source values preserved.
+  Forebrain streamlines display the first two components of the full 30-PC
+  velocity projection used by CBDir. BATC uses the shared frozen 2D UMAP.
+  Ensemble scores use the same reference frames. Other Cell displays are unchanged.
 - Gene CBDir uses `new_cbdir` from the reference-30 table. Simulation CosSim
   is joined by dataset/method/gene from the separate frozen compact table;
   that table's CBDir does not replace the reference-30 score.
@@ -70,6 +73,8 @@ python -m unittest discover -s tests -p test_site_export.py -v
   provenance remains in the source manifest and owning module guides.
   Source figures are not labelled as a final paper composite based only on
   their filenames. Their manifest owns the current registration boundary.
+  Figure 7 downloads are omitted while its composite manifest records
+  `pending_pdf_export`; a retained previous PDF is not the corrected summary.
 - Cell results show all five metrics with per-method stream previews and a 2–4 method comparison. Gene and Kinetics provide explicit Summary / Single gene selectors. Results default to a table, with a plot toggle. Kinetic method order follows
   `PAPER_METHOD_ORDER` in the Figure 6 renderer; score sorting is an explicit
   visitor choice. No new method ranking or scientific mean is calculated.
@@ -183,7 +188,7 @@ Normal browsing shows objects, selectors, plots, scores and concise scope labels
 
 The Ensemble page binds both frozen variants to their registered stream images
 on all 14 Cell datasets. It loads the selected dataset images, supports
-enlargement and original-image download, and preserves the independent rankings.
+enlargement, and preserves the independent rankings.
 Neither variant enters the 20-configuration method registry.
 
 Diagnostics exposes existing veloAE PCA summaries/projections, veloVI coordinate

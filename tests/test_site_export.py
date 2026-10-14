@@ -179,7 +179,14 @@ class SiteExportTests(unittest.TestCase):
             self.assertEqual(entry['n_common'],int(bindings[key]['n_common']))
         forebrain = [e for e in registered.values() if e['dataset']=='forebrain']
         self.assertEqual(len(forebrain),20)
-        self.assertTrue(all(e['projection']=='fixed_reference30_projection_display_only' for e in forebrain))
+        self.assertTrue(all(e['projection']=='fixed_reference30_pca30_projection_pc1_pc2' for e in forebrain))
+        self.assertTrue(all(e['frame']['projection_dimensions']==30 and
+                            e['frame']['display_components']==[1,2] for e in forebrain))
+
+    def test_previous_figure7_export_is_hidden_while_author_export_is_pending(self):
+        manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
+        if manifest.get('pending_pdf_export'):
+            self.assertNotIn(manifest['output']['path'], {r['path'] for r in self.payload['downloads']['figures']})
 
     def test_changed_canonical_source_blocks_expanded_export(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -210,7 +217,8 @@ class SiteExportTests(unittest.TestCase):
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
         self.assertEqual(len(tables), 9)
-        self.assertEqual(len(figures), 4)
+        figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
+        self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
         self.assertEqual(len(metadata), 5)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']

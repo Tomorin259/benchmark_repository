@@ -32,9 +32,9 @@ async function copyLink(){try{await navigator.clipboard.writeText(shareUrl.value
   <p class="compact-context">{{data.ensemble.methods.join(' · ')}}</p>
   <section ref="preview" class="analysis-preview">
     <div class="analysis-toolbar"><label for="ensemble-dataset">Dataset<select id="ensemble-dataset" v-model="dataset"><option v-for="p in pairs" :key="p.dataset.dataset_id" :value="p.dataset.dataset_id">{{p.dataset.paper_name}}</option></select></label><a :href="`#results?level=cell&dataset=${dataset}`" class="text-link">Cell results →</a></div>
+    <p v-if="dataset==='forebrain'" class="small">Display: PC1/PC2 · CBDir: 30 PCs · BATC: 2D UMAP</p>
     <div class="analysis-grid"><article v-for="row in opened" :key="row.variant" class="panel analysis-image"><div class="image-heading"><h2>{{label(row.variant)}}</h2><span class="small">CBDir {{format(row.cbdir)}} · BATC {{format(row.batc)}}</span></div>
       <button class="phase-image" :aria-label="`Enlarge ${datasetName} ${label(row.variant)} streamlines`" @click="enlarged={...row.image,title:`${datasetName} · ${label(row.variant)}`} "><img :src="`./${row.image.path}`" :alt="`${datasetName} · ${label(row.variant)} streamlines`" loading="lazy"></button>
-      <a class="small image-download" :href="`./${row.image.path}`" download>Download image</a>
     </article></div>
   </section>
   <section class="panel content-panel"><h2>Macro-average <span class="tag">14 datasets · Equal weight</span></h2><div class="table-scroll"><table>

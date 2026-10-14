@@ -7,8 +7,8 @@ dentategyrus,signed_t_mean4,Signed-T Mean-4,0.4648053295883874,0.784543961232981
 dentategyrus,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,0.6490879722549192,0.831081134813887
 dentate_lamanno,signed_t_mean4,Signed-T Mean-4,0.6878759207851217,0.8015230145545004
 dentate_lamanno,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,0.6908015260539091,0.7965785399797225
-forebrain,signed_t_mean4,Signed-T Mean-4,0.06713676937675803,0.11142581276462299
-forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,0.08265107437660399,0.1327210283391841
+forebrain,signed_t_mean4,Signed-T Mean-4,0.06713676937675803,0.1408611906933459
+forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,0.08265107437660399,0.16315231292546747
 gastrulation,signed_t_mean4,Signed-T Mean-4,0.7620148417062793,0.9370434785088659
 gastrulation,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,0.7427277031363375,0.9275740580759191
 hematopoiesis,signed_t_mean4,Signed-T Mean-4,-0.2629857290127959,0.4322222601432578

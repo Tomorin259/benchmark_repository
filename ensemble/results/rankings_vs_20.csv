@@ -15,10 +15,10 @@ dentate_lamanno,signed_t_mean4,Signed-T Mean-4,cbdir,0.6878759207851217,1,21,0,0
 dentate_lamanno,signed_t_mean4,Signed-T Mean-4,batc,0.8015230145545004,2,21,0,1
 dentate_lamanno,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.6908015260539091,1,21,0,0
 dentate_lamanno,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.7965785399797225,2,21,0,1
-forebrain,signed_t_mean4,Signed-T Mean-4,cbdir,0.06713676937675803,15,21,0,14
-forebrain,signed_t_mean4,Signed-T Mean-4,batc,0.11142581276462299,14,21,0,13
-forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.08265107437660399,15,21,0,14
-forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.1327210283391841,14,21,0,13
+forebrain,signed_t_mean4,Signed-T Mean-4,cbdir,0.06713676937675803,11,21,0,10
+forebrain,signed_t_mean4,Signed-T Mean-4,batc,0.1408611906933459,14,21,0,13
+forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.08265107437660399,10,21,0,9
+forebrain,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,batc,0.16315231292546747,14,21,0,13
 gastrulation,signed_t_mean4,Signed-T Mean-4,cbdir,0.7620148417062793,5,21,0,4
 gastrulation,signed_t_mean4,Signed-T Mean-4,batc,0.9370434785088659,5,21,0,4
 gastrulation,signed_t_row_geometric_median4,Signed-T RowGeometricMedian-4,cbdir,0.7427277031363375,5,21,0,4

@@ -65,13 +65,21 @@ Method-colored Figure 6F boxplots inherit the benchmark palette from
 `evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
 high-contrast exception; Figure 6A/E stream colors encode cell clusters.
 
-Figure 7 is the integrated method comparison. Its current author-exported,
-cropped PDF is `figures/figSeven.pdf`; canonical summary tables are under
+Figure 7 is the integrated method comparison. Its verified author-exported,
+cropped PDF is `figures/figSeven.pdf`, including the corrected Cell CBDir.
+Canonical summary tables are under
 `evaluation/summary/results/figure7_summary/`. The original editable assembly
 is `figures/assembly/fig7/fig7.pptx`, including ten native charts and embedded
 workbooks. `figures/fig7_composite_manifest.json` links numerical inputs, summary
 scripts, assembly, export/crop and output hashes. Final export remains a manual
 WPS step; the verification scope is recorded in that manifest.
+
+Figures 2, 7 and S10 have verified cropped author exports and updated native
+assemblies. Figure 2C's CBDir panel and Figure 7's
+Cell CBDir column use the corrected Forebrain 30-PC scores; S10 uses the updated
+Cell distribution and shared-frame GeoMedian-4 BATC. Figure 2A/B and the other
+four Cell metric panels are unchanged. Their composite manifests bind the
+current PDF files to the source panels and author exports.
 
 The online manuscript assigns the matched cell/gene comparison to
 Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.

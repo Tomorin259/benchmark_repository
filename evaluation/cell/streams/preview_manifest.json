@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "inputs_sha256": "fbec71fb529c6d389fd88809e08cb2cf6f3c237d451f9409fbeb6abe8bea8d4f",
-  "renderer_sha256": "58cb5456851f26026ad20c974d1092333cad9e1977077a345d436dafeb9cd37a",
+  "inputs_sha256": "7aa49d26fb6a5440bb2bd22b0ad846552d306a6ba4ebda2c744eaec519133396",
+  "renderer_sha256": "ca87f41b30eda4ce0d3a04298302e378b0653f278a98ee163f4db36c155c1ae0",
   "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
   "scvelo_version": "0.2.5",
   "entries": [
@@ -4329,12 +4329,12 @@
       "dataset": "forebrain",
       "method": "C01",
       "path": "evaluation/cell/streams/previews/forebrain/C01.png",
-      "sha256": "59b0be81cc66174b8e187e0aa87fe42389c14d81b8536f4d8e0f4911643a6d04",
+      "sha256": "c4ff2ea499e5bc869bec476cea2e1e82dee168f7a03a544e43296c6a08f01b5c",
       "result_path": "velocity:results/scvelo_deterministic/scv_deterministic_ForebrainGlut.h5ad",
       "result_sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4364,18 +4364,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C02",
       "path": "evaluation/cell/streams/previews/forebrain/C02.png",
-      "sha256": "97235798b86bdf3b92fbd7814c35826815d81a9760eba5dbe6bc224effa40c3e",
+      "sha256": "d66eb773082a5dc8fa150036a9ab69b7a10332fd9c6be8378e3103df7c25aa8a",
       "result_path": "velocity:results/scvelo_stochastic/scv_stochastic_ForebrainGlut.h5ad",
       "result_sha256": "2046315f96f7c50619502558a1d74647abb67dbf611cdc47f2dc5f140fb9e413",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4405,18 +4415,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/forebrain/C03.png",
-      "sha256": "f606e08a8667e3dfe52e918ddbf52a5b03e17d610dc7ff6cd8ef1d1026d8a1c5",
+      "sha256": "363b3ed6a68097c54bad792e26b330f6d556bd26e5745af7e2cbfb8fb880fc58",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_ForebrainGlut.h5ad",
       "result_sha256": "eda14d704f97bf7a34f692fb3f445de02378d5b0370dd11ad9a2a81b11e621b7",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4446,18 +4466,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/forebrain/C04.png",
-      "sha256": "8906b2d2383ee1cfea610910b91bd587b2026d94e26b38669f4d420d7c9aa592",
+      "sha256": "fd643d37fca4af31a0609ff41fed45841541217f042a7a7470abd50e75ad5674",
       "result_path": "velocity:results/multivelo/multivelo_ForebrainGlut.h5ad",
       "result_sha256": "d597af9fce5031e1863118ac673a42ac22699628d6c669c42965574b7254a48c",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4487,18 +4517,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C05",
       "path": "evaluation/cell/streams/previews/forebrain/C05.png",
-      "sha256": "f325589dbada410e2f7a55d55b4e31d7e87d0278f6828ca9192f18b193ad2581",
+      "sha256": "49db7680d4164b9f573c1c0ddd5891495717e311836c8776ba989159fa2341d6",
       "result_path": "velocity:results/unitvelo/unitvelo_ForebrainGlut.h5ad",
       "result_sha256": "d7aa1aea0fef024802dfa77d4a6824f63ff7eda06a24c5e6cd87cc690c9aede1",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4528,18 +4568,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C06",
       "path": "evaluation/cell/streams/previews/forebrain/C06.png",
-      "sha256": "28b230000be0244d4d22f1ef9d37f3eb21ca8fcf3c2e2d42b4170214a92d2641",
+      "sha256": "93b9ac847edd782a8d6679141dd0b5ae0971857fd2714c10621dcb400704d131",
       "result_path": "velocity:results/unitvelo_mode2/unitvelo_ForebrainGlut.h5ad",
       "result_sha256": "9d2e81f3d13da8dd22692deb0ffda5b8029d5c448d8fa138e88315f3e779926f",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4569,18 +4619,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C07",
       "path": "evaluation/cell/streams/previews/forebrain/C07.png",
-      "sha256": "f8b9bf909d2b791cb6082c0a3f458adefa8c3fa5afa9351064d8746645676c01",
+      "sha256": "3cbe3786afaa9ac6195a63d6466a99b1f2da90e1c349fcfe649140b5589b36f8",
       "result_path": "velocity:results/dynamo/dynamo_ForebrainGlut.h5ad",
       "result_sha256": "92f0919403b2d683e053748cdfc6998eb08cf59302664d68b4194d36b6257724",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4610,18 +4670,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C08",
       "path": "evaluation/cell/streams/previews/forebrain/C08.png",
-      "sha256": "116a134100422cbb2158f0c0735dd3eae346ae7dc7b5fb156daafb51d90c516a",
+      "sha256": "54b541b6ca25d4a3baee9e9e0d88649a73a2c4e5188db0d0f0f9b2d42d507f54",
       "result_path": "velocity:results/TIvelo/tivelo_ForebrainGlut.h5ad",
       "result_sha256": "b8a8a4a6c72d8f1164d1e02da10aecafc5eb4ca0b7bab180d49d96f891469b14",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4651,18 +4721,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C09",
       "path": "evaluation/cell/streams/previews/forebrain/C09.png",
-      "sha256": "6a39819661840d75b8c169be0a66ea6291a1cd47f028491527b5fae2ca732225",
+      "sha256": "f4297cfd74796e69aa0e79b3a7ae3a98f2c97c7526d798f6829d340c2c0184cf",
       "result_path": "velocity:results/cell2fate/ForebrainGlut/cell2fate_ForebrainGlut.h5ad",
       "result_sha256": "0e18299b88e9a27e94a7b8d6ded102b3d37c17395097bed05345c5d6ca57872f",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4692,18 +4772,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C10",
       "path": "evaluation/cell/streams/previews/forebrain/C10.png",
-      "sha256": "f38a115e019812ef972544f9cb486c5b7e6a080fc3cc8dad6e3b350c556458c8",
+      "sha256": "becdbc2e8772bc1e9e49ff663c2476d6c40a211b2a3aa86464b432b549b70047",
       "result_path": "velocity:results/TFvelo/TFvelo_forebrain_demo/TFvelo.h5ad",
       "result_sha256": "0cc75e53a0364663122dd9a23173f3e7c249b0282c61850da7f311c09453a071",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4733,18 +4823,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C11",
       "path": "evaluation/cell/streams/previews/forebrain/C11.png",
-      "sha256": "86cea38f5f9f89a8d9af6030414d03e5e8d5997586fa845f50cfe2db87e952af",
+      "sha256": "368cf3ee87c58f289f8e700274ccfebdeb567a6106998d5d5c7b4d4b949cc816",
       "result_path": "velocity:results/veloae/veloAE_ForebrainGlut.h5ad",
       "result_sha256": "4caabe37b52fe38183e035bb1ac85543bae0812d6b3462a0db4dd9930d23704f",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4774,18 +4874,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C12",
       "path": "evaluation/cell/streams/previews/forebrain/C12.png",
-      "sha256": "8e6dba407be266edd4d9860418a5659203b16fd80a4434b4e5e06248381517b0",
+      "sha256": "6774e406cff7a0117288b446bb25e06f8aa8d5d4cdd0b0153c6a11ee41eaef98",
       "result_path": "velocity:results/veloVI/veloVI_without_vu/veloVI_ForebrainGlut_all.h5ad",
       "result_sha256": "7eb24cc5462f0020c4002df89105393ce3475526e3cee2d96d2081dbb137d633",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4815,18 +4925,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C13",
       "path": "evaluation/cell/streams/previews/forebrain/C13.png",
-      "sha256": "ff348731a2e6dd28650aaa498eceae427c30638641f6c52554a2892e39683f86",
+      "sha256": "b9f66da5ad85f4eed636c12880cff5e755cd5bbaf52903bffc09b1f922c709a8",
       "result_path": "velocity:results/DeepKINET/DeepKINET_ForebrainGlut.h5ad",
       "result_sha256": "67fd803264bc7918b3fa80cfa11c6b7157a84c1f48c85145f6312e0de8b9579a",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4856,18 +4976,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C14",
       "path": "evaluation/cell/streams/previews/forebrain/C14.png",
-      "sha256": "fb9c1687e655ef3cea26ce6d67f4ec22390587bbde2f332c166d79616fec2502",
+      "sha256": "5d38ad9bd1185e4d293a99429771322ba3f2f0dc0f9cbc30a6779e78c945f10c",
       "result_path": "velocity:results/TSvelo/forebrain/TSvelo.h5ad",
       "result_sha256": "3e8b8885ea943cdda8d1a8e59b9f7decd86b8dd3bf01b536498918551f1bceb8",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4897,18 +5027,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C15",
       "path": "evaluation/cell/streams/previews/forebrain/C15.png",
-      "sha256": "652be5bf198f0d1c26a5f883b25f81b89f2b08b9bd4e8d2532cba792a3170c2d",
+      "sha256": "734e658d6421e7c88d638c04b410c4e7be4a4eb276d8c3449710b87eaf32cff8",
       "result_path": "velocity:results/celldancer/celldancer_ForebrainGlut.h5ad",
       "result_sha256": "d32f86658152c3aa473b2e58c3ad6eab6087ff9061c52fd7b25d9a5a9208bac9",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4938,18 +5078,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C16",
       "path": "evaluation/cell/streams/previews/forebrain/C16.png",
-      "sha256": "c809ad41a2f10c96f2ed9e36acad857e0891617ced0455dfe7ac86a3772df733",
+      "sha256": "2f9c15af134042771ace79a6715354f9b51e7473d9873639ddb986c44db96ec6",
       "result_path": "velocity:results/deepvelo/deepvelo_ForebrainGlut.h5ad",
       "result_sha256": "04eeec72c6c7278eaa16b439c4489e5b37bd052c7487853d3d7bcf0a27c08043",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -4979,18 +5129,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C17",
       "path": "evaluation/cell/streams/previews/forebrain/C17.png",
-      "sha256": "39b4bdf8c48f3b3e6e7b140773c94ce3a401d771eda6cf842c14bf122ac49597",
+      "sha256": "d1674967243a63454b9cc205891496a9d80ac7948b3e77e5070b4847bebbde02",
       "result_path": "velocity:results/SDEvelo/sdevelo_ForebrainGlut.h5ad",
       "result_sha256": "f9155e44f053f2b2d588c581a99db7c576cbb638d812537d56fef405f3e7023e",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -5020,18 +5180,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C18",
       "path": "evaluation/cell/streams/previews/forebrain/C18.png",
-      "sha256": "8166b5c1244e8c1960a53222e4ded1b334905d79edc0eaa781fa3acb4edcccd1",
+      "sha256": "15934c8698fd429c118190782a02ccdc31347c9a4ba21ad7f97129a8afd72944",
       "result_path": "velocity:results/deepvelo2022/deepvelo_ForebrainGlut_recon.h5ad",
       "result_sha256": "da6db3143bc82c2fa5806de1ea1cbcf2c50fbd8d7171afa97d78dddc7df709fd",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -5061,18 +5231,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C19",
       "path": "evaluation/cell/streams/previews/forebrain/C19.png",
-      "sha256": "28affe21c3df1f8ad1d6c570c2da98405def9e3ebf50272e7fc7987a8f5cac94",
+      "sha256": "42c73d9c6d48c5a9d397c737afbad5b22a0513b171148c657e7f7080cdc533f9",
       "result_path": "velocity:results/graphvelo_scv/graphveloForebrainGlut.h5ad",
       "result_sha256": "4f195533ae03606da8ec21dbe5ec860b208a6a517ac23bca84f37b12e2ac338c",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -5102,18 +5282,28 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "forebrain",
       "method": "C20",
       "path": "evaluation/cell/streams/previews/forebrain/C20.png",
-      "sha256": "7749eb79a703f4899209737042a313d08b2e93c096087a9ee677e73319ad572b",
+      "sha256": "14818ce36ae4378da98e832e6744b1aa7282a192e3fd23e1d7edf554c9b7430c",
       "result_path": "velocity:results/graphvelo_dynamo/graphvelo_dynamo_ForebrainGlut.h5ad",
       "result_sha256": "6f96f7848f3850d56a295bd9cab25e282defbd615e9c2edfe116b87bcb2934af",
       "n_reference": 1720,
       "n_common": 1720,
-      "projection": "fixed_reference30_projection_display_only",
+      "projection": "fixed_reference30_pca30_projection_pc1_pc2",
       "legend": [
         {
           "label": "0",
@@ -5143,7 +5333,17 @@
           "label": "6",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
     },
     {
       "dataset": "gastrulation",
@@ -11805,5 +12005,39 @@
         }
       ]
     }
-  ]
+  ],
+  "dataset_frames": {
+    "forebrain": {
+      "space": "pca",
+      "projection_dimensions": 30,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+    }
+  },
+  "render_protocols": {
+    "forebrain": {
+      "renderer_sha256": "ca87f41b30eda4ce0d3a04298302e378b0653f278a98ee163f4db36c155c1ae0",
+      "preparation_sha256": "a93ed397877907724c5f2b72722d516d93e35abac817d51b9d1b2ce4087a71df",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "reference_neighbors_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
+      "reference_moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
+      "direct_pca_projection": false
+    }
+  }
 }

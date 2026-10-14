@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import tempfile
 import unittest
@@ -32,7 +33,7 @@ from ensemble.core import (
     validate_signed_operator,
 )
 from ensemble.geometric_median import validate_row_geometric_median4
-from ensemble.metrics import build_rankings, write_rankings
+from ensemble.metrics import build_rankings, score_global_metrics, write_rankings
 
 
 class EnsembleTests(unittest.TestCase):
@@ -80,6 +81,10 @@ class EnsembleTests(unittest.TestCase):
             VARIANT_MEAN4,
             VARIANT_ROW_GEOMETRIC_MEDIAN4,
         })
+        forebrain = config["datasets"]["forebrain"]
+        self.assertEqual((forebrain["cbdir_basis"], forebrain["cbdir_dimensions"]), ("pca", 30))
+        self.assertEqual((forebrain["batc_basis"], forebrain["batc_dimensions"]), ("umap", 2))
+        self.assertEqual(forebrain["stream_basis"], "pca")
 
     def test_mean_and_geometric_median_are_permutation_invariant(self):
         values = np.asarray([
@@ -232,7 +237,10 @@ class EnsembleTests(unittest.TestCase):
         self.assertEqual(fixed["asset_role"], "dataset-level fixed reference graph")
         self.assertEqual(fixed["random_state"], 0)
         self.assertFalse(fixed["reference_pca_installed"])
-        self.assertIn("not installed", fixed["build_time_pca_note"])
+        self.assertIn("separately validates", fixed["build_time_pca_note"])
+        frames = metadata["reference_frames"]["forebrain"]
+        self.assertEqual(frames["pca_shape"], [1720, 30])
+        self.assertEqual(frames["umap_shape"], [1720, 2])
 
     def test_explicit_transition_projection(self):
         data = ad.AnnData(np.asarray([
@@ -250,6 +258,7 @@ class EnsembleTests(unittest.TestCase):
             [1.0, 0.0],
             [0.0, 1.0],
         ])
+        data.obsm["X_pca"] = np.column_stack((data.obsm["X_umap"], np.zeros((3, 28))))
         data.obs["label"] = ["a", "b", "c"]
         operator = sparse.csr_matrix(np.asarray([
             [0.0, 0.75, 0.25],
@@ -261,6 +270,7 @@ class EnsembleTests(unittest.TestCase):
             operator,
             variant=VARIANT_MEAN4,
             logical_inputs={"reference": {"locator": "velocity:toy"}},
+            bases=("pca", "umap"),
         )
         self.assertLessEqual(invalid, 3)
         self.assertIn("ensemble_transition_signed", result.obsp)
@@ -270,9 +280,38 @@ class EnsembleTests(unittest.TestCase):
             H5AD_SCHEMA_VERSION,
         )
         self.assertEqual(result.obsm["ensemble_velocity_umap"].shape, (3, 2))
+        self.assertEqual(result.obsm["ensemble_velocity_pca"].shape, (3, 30))
+        np.testing.assert_allclose(result.obsm["ensemble_velocity_pca"][:, :2], result.obsm["ensemble_velocity_umap"])
+        np.testing.assert_array_equal(result.obsm["ensemble_velocity_pca"][:, 2:], np.zeros((3, 28)))
+        np.testing.assert_array_equal(result.obsm["X_pca"], data.obsm["X_pca"])
+        np.testing.assert_array_equal(result.obsm["X_umap"], data.obsm["X_umap"])
+        np.testing.assert_array_equal(result.obsp["ensemble_transition_signed"].toarray(), operator.toarray())
         validate_signed_operator(
             result.obsp["ensemble_transition_signed"], "projected operator"
         )
+
+    def test_forebrain_cbdir_uses_all_pcs_and_batc_uses_umap(self):
+        data = ad.AnnData(np.zeros((6, 1)))
+        data.obs["label"] = ["a"] * 3 + ["b"] * 3
+        data.obsm["X_umap"] = np.column_stack((np.arange(6), np.zeros(6)))
+        data.obsm["ensemble_velocity_umap"] = np.tile([1.0, 0.0], (6, 1))
+        pca = np.zeros((6, 30))
+        pca[:, 0] = np.arange(6)
+        pca[:, 29] = 10 * np.arange(6)
+        data.obsm["X_pca"] = pca
+        velocity = np.zeros((6, 30))
+        velocity[:, 0] = 1
+        velocity[:, 29] = -1
+        data.obsm["ensemble_velocity_pca"] = velocity
+        data.uns["neighbors"] = {"indices": np.asarray([np.r_[i, np.delete(np.arange(6), i)] for i in range(6)])}
+        config = {"label": "label", "edges": [["a", "b"]], "batc_n_bins": 2, "cbdir_basis": "pca", "cbdir_dimensions": 30}
+        scores = score_global_metrics(data, "forebrain", config)
+        self.assertLess(scores["cbdir"], 0)
+        self.assertAlmostEqual(scores["batc"], 1.0)
+        data.obsm["X_umap"] = pca.copy()
+        data.obsm["ensemble_velocity_umap"] = velocity.copy()
+        with self.assertRaisesRegex(ValueError, "two-dimensional"):
+            score_global_metrics(data, "forebrain", config)
 
     def test_no_deprecated_ensemble_variant(self):
         repository_root = Path(__file__).resolve().parents[1]
@@ -327,11 +366,30 @@ class EnsembleTests(unittest.TestCase):
             first_bytes, second_bytes = first.read_bytes(), second.read_bytes()
             self.assertEqual(first_bytes, second_bytes)
             self.assertEqual(first_summary.read_bytes(), second_summary.read_bytes())
+            self.assertEqual(first_bytes, (repository_root / "ensemble/results/rankings_vs_20.csv").read_bytes())
             with first.open(newline="") as handle:
                 rows = list(csv.DictReader(handle))
             self.assertEqual(len(rows), 56)
             self.assertEqual({r["out_of"] for r in rows}, {"21"})
             self.assertEqual({(r["variant"], r["dataset"], r["metric"]) for r in rows}, {(v, d, m) for v in ("signed_t_mean4", "signed_t_row_geometric_median4") for d in load_config()["datasets"] for m in ("cbdir", "batc")})
+
+    def test_formal_macro_scores_and_frame_hashes_match_inputs(self):
+        root = Path(__file__).resolve().parents[1]
+        metadata = json.loads((root / "ensemble/results/metadata.json").read_text())
+        with (root / "ensemble/results/scores.csv").open(newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        for variant in VARIANT_NAMES:
+            selected = [row for row in rows if row["variant"] == variant]
+            self.assertEqual(len(selected), 14)
+            for metric in ("cbdir", "batc"):
+                self.assertEqual(metadata["macro_average"][variant][metric], float(np.mean([float(row[metric]) for row in selected])))
+        for relative, expected in metadata["result_sha256"].items():
+            self.assertEqual(hashlib.sha256((root / relative).read_bytes()).hexdigest(), expected)
+        from evaluation.cell.reference_embeddings import load_forebrain_frames
+        frames = load_forebrain_frames()["metadata"]
+        recorded = metadata["reference_frames"]["forebrain"]
+        for key in ("pca_coordinate_sha256", "umap_coordinate_sha256"):
+            self.assertEqual(recorded[key], frames[key])
 
 
 if __name__ == "__main__":

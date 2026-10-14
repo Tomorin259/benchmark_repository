@@ -306,6 +306,12 @@ def export_data(root=ROOT, output=None):
     expected = {(ensemble_dataset_ids[name], variant) for name in ensemble_metadata["datasets"] for variant in variants}
     if set(scores_by_key) != expected or len(expected) != 28:
         raise ValueError("Ensemble scores must cover both variants on all 14 registered Cell datasets")
+    for variant in variants:
+        rows = [r for r in ensemble_scores if r['variant'] == variant]
+        for metric in ['cbdir', 'batc']:
+            mean = sum(r[metric] for r in rows) / len(rows)
+            if not math.isclose(mean, ensemble_metadata['macro_average'][variant][metric], rel_tol=0, abs_tol=1e-12):
+                raise ValueError('Ensemble macro average differs from its score table')
     ensemble_rankings = []
     for row in read("ensemble/results/rankings_vs_20.csv", download=False):
         dataset_id = ensemble_dataset_ids[row["dataset"]]
@@ -394,8 +400,11 @@ def export_data(root=ROOT, output=None):
     figure = figure_manifest['output']
     if hashlib.sha256((root / figure['path']).read_bytes()).hexdigest() != figure['sha256']:
         raise ValueError('Figure 7 does not match its composite manifest')
-    entry = register_file(figure['path'])
-    downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
+    # A retained author export must not be offered as the updated summary while
+    # its native charts await the author's final PDF export.
+    if not figure_manifest.get('pending_pdf_export', False):
+        entry = register_file(figure['path'])
+        downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
     for relative, label in [
         ('rpe1_boxplot.png', 'Expanded reference: RPE1'),
         ('organoid_branch1_boxplot.png', 'Expanded reference: organoid branch 1'),

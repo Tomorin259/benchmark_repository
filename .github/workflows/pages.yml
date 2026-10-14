@@ -6,6 +6,7 @@ on:
     paths:
       - site/**
       - evaluation/**
+      - ensemble/**
       - figures/**
       - methods/configurations.tsv
       - data/datasets.tsv

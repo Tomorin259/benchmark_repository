@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "datasets": {
+    "forebrain": {
+      "pca_source": "reference_neighbors/forebrain.npz:reference_pca",
+      "pca_coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb",
+      "pca_shape": [
+        1720,
+        30
+      ],
+      "pca_dtype": "float32",
+      "historical_reference_source": "velocity:results/scvelo_deterministic/scv_deterministic_ForebrainGlut.h5ad",
+      "historical_reference_source_sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+      "historical_reference_identity": "X_pca equals historical X_umap and reference_pca byte-for-byte",
+      "umap_file": "forebrain_umap.npz",
+      "umap_file_sha256": "d56a117cc53dc61259c881285775f906f60f2f99331c71767b36bd76bd9982bc",
+      "umap_coordinate_sha256": "0d8448c8e6cb2d7a635f773874257a1f40e57a17720df597138364f7491fec7d",
+      "umap_shape": [
+        1720,
+        2
+      ],
+      "umap_dtype": "float64",
+      "umap_construction": "scanpy_umap_random_state_0_on_fixed_reference_graph",
+      "umap_construction_runtime": {
+        "python": "3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:21) \n[GCC 9.4.0]",
+        "scvelo": "0.2.5",
+        "scanpy": "1.9.3",
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "sklearn": "1.0.2",
+        "unitvelo": "0.2.5.2"
+      },
+      "cell_order": "shared reference cell order",
+      "randomness_policy": "Frozen coordinate bytes; no PCA or UMAP reconstruction"
+    }
+  }
+}

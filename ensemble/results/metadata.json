@@ -15,22 +15,6 @@
     "rpe1",
     "rpe1_gen"
   ],
-  "macro_average": {
-    "signed_t_mean4": {
-      "batc": 0.48541164067602616,
-      "cbdir": 0.349882266127113
-    },
-    "signed_t_row_geometric_median4": {
-      "batc": 0.5144182874429892,
-      "cbdir": 0.37668835002093143
-    }
-  },
-  "methods": [
-    "TIvelo",
-    "veloVI",
-    "DeepVelo",
-    "UniTVelo"
-  ],
   "input_selections": {
     "DeepVelo": {
       "result_family": "root deepvelo_*.h5ad family (no-vu)",
@@ -49,16 +33,50 @@
       "velocity_layer": "velocity"
     }
   },
+  "macro_average": {
+    "signed_t_mean4": {
+      "batc": 0.4875141676709349,
+      "cbdir": 0.349882266127113
+    },
+    "signed_t_row_geometric_median4": {
+      "batc": 0.5165919506277238,
+      "cbdir": 0.37668835002093143
+    }
+  },
+  "methods": [
+    "TIvelo",
+    "veloVI",
+    "DeepVelo",
+    "UniTVelo"
+  ],
   "protocol": {
     "fixed_neighbors": {
       "asset_role": "dataset-level fixed reference graph",
-      "build_time_pca_note": "used only to construct stored neighbors; not installed into result X_pca",
+      "build_time_pca_note": "graph installation does not replace method expression or PCA; Forebrain separately validates and installs the shared frozen PCA30 and UMAP2 frames",
       "metric": "euclidean",
       "n_neighbors": 30,
       "n_pcs": 30,
       "random_state": 0,
       "reference_pca_installed": false,
       "use_rep": "X_pca"
+    },
+    "metric_spaces": {
+      "default": {
+        "batc": "umap",
+        "cbdir": "umap",
+        "stream": "umap"
+      },
+      "forebrain": {
+        "batc": "umap",
+        "batc_dimensions": 2,
+        "cbdir": "pca",
+        "cbdir_dimensions": 30,
+        "stream": "pca",
+        "stream_components": [
+          1,
+          2
+        ]
+      }
     },
     "scvelo_version": "0.3.4",
     "transition_matrix": {
@@ -71,7 +89,12 @@
     "velocity_embedding": {
       "autoscale": true,
       "basis": "umap",
-      "explicit_transition_operator": true
+      "explicit_transition_operator": true,
+      "forebrain_bases": [
+        "pca",
+        "umap"
+      ],
+      "forebrain_direct_pca_projection": false
     },
     "velocity_graph": {
       "approx": false,
@@ -83,11 +106,43 @@
     }
   },
   "provenance": {
+    "compact_metric_refresh": "Forebrain BATC uses shared frozen UMAP2; two accepted PCA CBDir values and all other dataset scores are unchanged",
     "fixed_neighbor_provenance": "benchmark NPZ arrays are elementwise equal to audited upstream arrays; metadata is portable",
+    "forebrain_derived_outputs": [
+      {
+        "artifact_id": "ensemble-mean4-forebrain-schema7-h5ad",
+        "locator": "velocity:ensemble_derived/pca30_umap2_schema7/mean4/forebrain.h5ad",
+        "sha256": "f91af5ac278bb117dcb529ce792b467e4547ce513dcf8f20bcc24cb1fc0b8869"
+      },
+      {
+        "artifact_id": "ensemble-row-geometric-median4-forebrain-schema7-h5ad",
+        "locator": "velocity:ensemble_derived/pca30_umap2_schema7/row_geometric_median4/forebrain.h5ad",
+        "sha256": "f1207dea4a05603127b60aadb0c3684df1217eaa8cd03a9cfc7470c93d7836c1"
+      }
+    ],
     "formal_release_artifact_id": "transition-ensemble:fixed-neighbors-all14:schema6:2026-09-12",
     "lineage/current_upstream": "transition_ensemble/main@4f2a621f5c1814635f33ec70f75c9bba2e7fd23f",
     "numerical_reproduction_commit": "baa79856522f2528ec798a5a0641574280a90a58",
-    "release_index_commit": "d9fae0bb8e67fd49b719746914bc06645c9dd738"
+    "release_index_commit": "d9fae0bb8e67fd49b719746914bc06645c9dd738",
+    "source_h5ad_schema_version": 6
+  },
+  "reference_frames": {
+    "forebrain": {
+      "new_umap_optimization": false,
+      "pca_coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb",
+      "pca_shape": [
+        1720,
+        30
+      ],
+      "pca_source": "evaluation/cell/reference_neighbors/forebrain.npz:reference_pca",
+      "projection": "explicit signed T, autoscale=True, all_comps=True, direct_pca_projection=False",
+      "umap_coordinate_sha256": "0d8448c8e6cb2d7a635f773874257a1f40e57a17720df597138364f7491fec7d",
+      "umap_shape": [
+        1720,
+        2
+      ],
+      "umap_source": "evaluation/cell/reference_embeddings/forebrain_umap.npz:X_umap"
+    }
   },
   "result_files": {
     "ranking_summary": "ensemble/results/ranking_summary.md",
@@ -96,12 +151,13 @@
     "streams": "ensemble/results/figures/streams/{mean4,row_geometric_median4}/<dataset>.png",
     "summary": "ensemble/results/summary.md"
   },
-  "schema_version": 6,
+  "result_sha256": {
+    "ensemble/results/rankings_vs_20.csv": "e6b316dccc7da47741b907c7f571b23c47a8c479d9e57f81474a712cacf3276e",
+    "ensemble/results/scores.csv": "b0c7323bf8f8bd3b2a61695f857414588f93867746ffd29f1dc0464b3eb63453",
+    "evaluation/cell/results/cell_metrics.csv": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
+  },
+  "schema_version": 7,
   "status": "formal-all14",
-  "variants": [
-    "signed_t_mean4",
-    "signed_t_row_geometric_median4"
-  ],
   "variant_definitions": {
     "signed_t_mean4": "Arithmetic mean of the four signed off-diagonal transition entries.",
     "signed_t_row_geometric_median4": "For each source cell, take the Euclidean geometric median of the four complete signed off-diagonal transition rows; preserve its native L1 mass without post-hoc renormalization."
@@ -110,6 +166,10 @@
     "signed_t_mean4": "fixed equal method weights of 1/4; no learned weights",
     "signed_t_row_geometric_median4": "no learned method-identity weights; permutation-invariant convex solver coefficients are determined once per source cell by the four-row geometric-median geometry"
   },
+  "variants": [
+    "signed_t_mean4",
+    "signed_t_row_geometric_median4"
+  ],
   "verification": {
     "cbdir_batc": "approximately 1e-8 absolute floating-point difference",
     "datasets": [
@@ -117,6 +177,47 @@
       "forebrain"
     ],
     "ensemble_transition_signed": "entrywise equal",
-    "ensemble_velocity_umap": "entrywise equal"
+    "ensemble_velocity_umap": "historical schema-6 source fields verified unchanged; new schema-7 Forebrain UMAP field uses true UMAP2",
+    "forebrain": {
+      "accepted_cbdir": "preserved; same-field float64 reconstruction differs only at approximately 1e-8",
+      "batc": "evaluated on exact frozen Cell UMAP2",
+      "batc_evaluable_source_cells": 1452,
+      "cbdir_evaluable_edges": 6,
+      "cbdir_reconstruction_deltas": {
+        "signed_t_mean4": -1.5618834572905804e-08,
+        "signed_t_row_geometric_median4": -1.191141636713855e-08
+      },
+      "pca_coordinates": "entrywise unchanged",
+      "pca_velocity": "entrywise equal to historical ensemble_velocity_umap alias",
+      "runtime": {
+        "anndata": "0.11.4",
+        "numpy": "1.26.4",
+        "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+        "python": "3.10.19 | packaged by conda-forge | (main, Jan 26 2026, 23:45:08) [GCC 14.3.0]",
+        "scanpy": "1.11.5",
+        "scipy": "1.15.3",
+        "scvelo": "0.3.4",
+        "sklearn": "1.7.2"
+      },
+      "signed_transition_operator": "entrywise unchanged",
+      "source_h5ad_unchanged": true,
+      "stream_pngs_unchanged": true
+    },
+    "forebrain_entry_reproduction": {
+      "batc_max_abs_difference": 0.0,
+      "cbdir_max_abs_difference": 1.561883458e-08,
+      "cbdir_policy": "Retain previously accepted PCA CBDir scores; last-bit reconstruction differences do not change displayed values or ranks.",
+      "native_input_files_unchanged": true,
+      "new_h5ad_schema_version": 7,
+      "reference_pca_shape": [
+        1720,
+        30
+      ],
+      "reference_umap_shape": [
+        1720,
+        2
+      ],
+      "runtime": "scvelo 0.3.4"
+    }
   }
 }

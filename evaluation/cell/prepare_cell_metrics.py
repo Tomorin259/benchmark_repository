@@ -47,6 +47,11 @@ from reference_neighbors import (  # noqa: E402
     apply_reference_neighbors,
     load_reference_neighbors,
 )
+from reference_embeddings import (  # noqa: E402
+    DEFAULT_REFERENCE_EMBEDDINGS_ROOT,
+    array_sha256,
+    load_forebrain_frames,
+)
 
 
 def read_inputs(path: Path) -> pd.DataFrame:
@@ -122,8 +127,22 @@ def canonical_umap(
     cache_root: Path,
     reference_neighbors_root: Path,
     config: dict,
+    reference_embeddings_root: Path = DEFAULT_REFERENCE_EMBEDDINGS_ROOT,
 ) -> dict:
     """Load one registered dataset-level UMAP, not a method-specific embedding."""
+    if dataset == "forebrain":
+        frames = load_forebrain_frames(reference_neighbors_root, reference_embeddings_root)
+        names = np.asarray(adata.obs_names).astype(str)
+        positions = pd.Index(frames["obs_names"]).get_indexer(names)
+        if len(np.unique(names)) != len(names) or np.any(positions < 0):
+            raise ValueError("method cells must be unique members of the frozen Forebrain frame")
+        adata.obsm["X_umap"] = frames["X_umap"][positions]
+        return {
+            "reference_umap_source": frames["metadata"]["umap_source"],
+            "reference_umap_sha256": frames["metadata"]["umap_coordinate_sha256"],
+            "reference_neighbor_sha256": sha256(reference_neighbors_root / "forebrain.npz"),
+            "reference_umap_construction": "frozen_scanpy_umap_random_state_0_on_fixed_reference_graph",
+        }
     cache_root.mkdir(parents=True, exist_ok=True)
     cache_path = cache_root / f"{dataset}.npz"
     reference_locator = config["datasets"][dataset].get("reference_umap_path")
@@ -182,50 +201,8 @@ def canonical_umap(
         finally:
             reference_adata.file.close()
 
-    # Forebrain's historical X_umap is actually 30-D PCA.  Generate one
-    # deterministic dataset-level 2-D representation from the audited
-    # reference PCA and graph, never from a method-specific output.
     if not cache_path.is_file():
-        import scanpy as sc
-        from reference_neighbors import load_reference_neighbors
-        reference_graph = load_reference_neighbors(
-            dataset, output_root=reference_neighbors_root
-        )
-        with np.load(
-            reference_neighbors_root / f"{dataset}.npz", allow_pickle=False
-        ) as reference_asset:
-            reference_pca = np.asarray(reference_asset["reference_pca"], dtype=np.float32)
-        umap_adata = ad.AnnData(
-            X=np.zeros((len(reference_graph["obs_names"]), 1), dtype=np.float32)
-        )
-        umap_adata.obs_names = reference_graph["obs_names"]
-        umap_adata.obsm["X_pca"] = reference_pca
-        umap_adata.obsp["distances"] = reference_graph["distances"]
-        umap_adata.obsp["connectivities"] = reference_graph["connectivities"]
-        umap_adata.uns["neighbors"] = {
-            "indices": reference_graph["indices"],
-            "distances_key": "distances",
-            "connectivities_key": "connectivities",
-            "params": {
-                "n_neighbors": REFERENCE_PARAMS["n_neighbors"],
-                "n_pcs": REFERENCE_PARAMS["n_pcs"],
-                "use_rep": REFERENCE_PARAMS["use_rep"],
-                "method": "umap",
-            },
-        }
-        sc.tl.umap(umap_adata, random_state=0)
-        coordinates = np.asarray(umap_adata.obsm["X_umap"], dtype=np.float64)
-        if coordinates.ndim != 2 or coordinates.shape[1] != 2:
-            raise ValueError(f"{dataset}: generated embedding is not 2-D")
-        save_npz_atomic(
-            cache_path,
-            obs_names=np.asarray(reference_graph["obs_names"]).astype(str),
-            X_umap=coordinates,
-            source_path=np.asarray("generated_from_fixed_reference_graph"),
-            source_sha256=np.asarray(""),
-            reference_neighbor_sha256=np.asarray(reference_neighbor_sha),
-            construction=np.asarray("scanpy_umap_random_state_0_on_fixed_reference_graph"),
-        )
+        raise ValueError(f"{dataset}: registered reference must provide a 2-D UMAP")
 
     with np.load(cache_path, allow_pickle=False) as cached:
         names = np.asarray(cached["obs_names"]).astype(str)
@@ -258,6 +235,32 @@ def canonical_umap(
         np.asarray([lookup[name] for name in current_names], dtype=np.int64)
     ]
     return provenance
+
+
+def project_forebrain_pca(
+    adata: ad.AnnData,
+    reference_neighbors_root: Path = DEFAULT_REFERENCE_NEIGHBORS_ROOT,
+    reference_embeddings_root: Path = DEFAULT_REFERENCE_EMBEDDINGS_ROOT,
+) -> dict:
+    """Project the existing gene velocity graph into the frozen full PCA30."""
+    import scvelo as scv
+
+    frames = load_forebrain_frames(reference_neighbors_root, reference_embeddings_root)
+    names = np.asarray(adata.obs_names).astype(str)
+    positions = pd.Index(frames["obs_names"]).get_indexer(names)
+    if len(np.unique(names)) != len(names) or np.any(positions < 0):
+        raise ValueError("method cells must be unique members of the frozen Forebrain frame")
+    adata.obsm["X_pca"] = frames["X_pca"][positions]
+    scv.tl.velocity_embedding(
+        adata, basis="pca", vkey="velocity", direct_pca_projection=False,
+        autoscale=True, all_comps=True,
+    )
+    if adata.obsm["velocity_pca"].shape != adata.obsm["X_pca"].shape:
+        raise ValueError("Forebrain PCA coordinate and velocity dimensions differ")
+    # UnitVelo's non-UMAP branch picks the first matching velocity prefix.
+    # A unique key prevents it from selecting the separate BATC UMAP2 field.
+    adata.obsm["cbdir_pca_velocity"] = np.asarray(adata.obsm["velocity_pca"]).copy()
+    return frames["metadata"]
 
 
 def load_reference_moments(dataset: str, root: Path) -> dict:
@@ -617,6 +620,12 @@ def evaluate_four_native_metrics(adata: ad.AnnData, dataset: str, label: str, co
         )
     cbdir, iccoh = parse_unitvelo_means(output.getvalue())
     cbdir_raw = unitvelo_result["Cross-Boundary Direction Correctness (A->B)"]
+    if dataset == "forebrain":
+        cbdir_raw = unitvelo.eval_utils.cross_boundary_correctness(
+            evaluation_adata, label, "cbdir_pca_velocity",
+            config["datasets"][dataset]["cluster_edges"], return_raw=True,
+            x_emb="X_pca",
+        )
     cbdir_edge_raw = {
         f"{source}->{target}": [float(value) for value in values]
         for (source, target), values in cbdir_raw.items()
@@ -625,6 +634,8 @@ def evaluate_four_native_metrics(adata: ad.AnnData, dataset: str, label: str, co
     # Match UnitVelo summary_scores: exact-zero edge means are omitted.
     cbdir_included = [value for value in cbdir_edge_means if value]
     cbdir_from_edges = float(np.mean(cbdir_included)) if cbdir_included else float("nan")
+    if dataset == "forebrain":
+        cbdir = cbdir_from_edges
     if not np.isclose(cbdir, cbdir_from_edges, rtol=0.0, atol=1e-12, equal_nan=True):
         raise ValueError(
             "unitvelo CBDir aggregate differs from its native edge dict: "
@@ -680,6 +691,7 @@ def main() -> None:
         help="fixed reference-30 assets; defaults to the repository copy",
     )
     parser.add_argument("--reference-moments-root", type=Path, required=True)
+    parser.add_argument("--reference-embeddings-root", type=Path, default=DEFAULT_REFERENCE_EMBEDDINGS_ROOT)
     parser.add_argument("--reference-umap-cache", type=Path, required=True)
     parser.add_argument("--method", required=True)
     parser.add_argument("--dataset", required=True)
@@ -697,6 +709,8 @@ def main() -> None:
     inputs = read_inputs(args.inputs)
     row = select_row(inputs, args.method, args.dataset)
     source_path = resolve_source(args.artifact_root, row["result_path"])
+    if sha256(source_path) != row["sha256"]:
+        raise ValueError(f"{args.method}/{args.dataset}: source SHA256 differs from inputs.tsv")
     adata = ad.read_h5ad(source_path)
     invalid_velocity_values = prepare_velocity(adata, row["velocity_layer_key"])
     reference = load_reference_moments(args.dataset, args.reference_moments_root)
@@ -765,6 +779,7 @@ def main() -> None:
         args.reference_umap_cache,
         args.reference_neighbors_root,
         config,
+        args.reference_embeddings_root,
     )
     projection = install_native_2d_velocity(
         adata, row, args.dataset, native_coordinates
@@ -783,6 +798,16 @@ def main() -> None:
         scv.tl.velocity_embedding(
             adata, basis="umap", vkey="velocity", all_comps=True
         )
+    if args.dataset == "forebrain":
+        frame_metadata = project_forebrain_pca(
+            adata, args.reference_neighbors_root, args.reference_embeddings_root
+        )
+    else:
+        frame_metadata = {
+            "cbdir_space": "umap", "pca_dimensions": 0, "batc_space": "umap",
+            "umap_dimensions": 2,
+            "umap_coordinate_sha256": array_sha256(adata.obsm["X_umap"]),
+        }
     metadata = {
         "method": args.method,
         "dataset": args.dataset,
@@ -807,6 +832,17 @@ def main() -> None:
         "gene_alignment": gene_alignment,
         "reference_moments": reference_state,
         "velocity_embedding": projection,
+        "metric_frames": {
+            "cbdir": {
+                "space": frame_metadata["cbdir_space"],
+                "dimensions": 30 if args.dataset == "forebrain" else 2,
+                "coordinate_sha256": frame_metadata.get("pca_coordinate_sha256", frame_metadata["umap_coordinate_sha256"]),
+                "velocity_key": "cbdir_pca_velocity" if args.dataset == "forebrain" else "velocity_umap",
+            },
+            "batc": {"space": "umap", "dimensions": 2,
+                     "coordinate_sha256": frame_metadata["umap_coordinate_sha256"],
+                     "velocity_key": "velocity_umap"},
+        },
         **umap_provenance,
     }
     adata.uns["evaluation_metadata"] = metadata

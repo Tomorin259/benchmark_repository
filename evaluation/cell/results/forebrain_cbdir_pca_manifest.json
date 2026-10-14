@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "dataset": "forebrain",
+  "status": "canonical_pca30_cbdir",
+  "source_repository_head": "8001fe7daeb37adc8ddf39d3dc91c2f6bdd5c460",
+  "metric": "cbdir",
+  "coordinate_space": "pca",
+  "dimensions": 30,
+  "pca_coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb",
+  "umap_coordinate_sha256": "0d8448c8e6cb2d7a635f773874257a1f40e57a17720df597138364f7491fec7d",
+  "reference_moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
+  "reference_moments_gene_count": 5974,
+  "fixed_neighbor_indices_sha256": "4557ba04d430d07e7425e851eb3c2e175e5e00b67a7eac3bbc938354a684df6f",
+  "projection": {
+    "basis": "pca",
+    "dimensions": 30,
+    "direct_pca_projection": false,
+    "autoscale": true,
+    "all_comps": true,
+    "T": "scvelo_0.2.5_default_transition_from_unchanged_fixed_gene_graph"
+  },
+  "runtime": {
+    "python": "3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:21) \n[GCC 9.4.0]",
+    "scvelo": "0.2.5",
+    "scanpy": "1.9.3",
+    "anndata": "0.8.0",
+    "numpy": "1.21.6",
+    "sklearn": "1.0.2",
+    "unitvelo": "0.2.5.2"
+  },
+  "inputs": [
+    {
+      "method": "scvelo_deterministic",
+      "config_id": "C01",
+      "locator": "velocity:results/scvelo_deterministic/scv_deterministic_ForebrainGlut.h5ad",
+      "sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "scvelo_stochastic",
+      "config_id": "C02",
+      "locator": "velocity:results/scvelo_stochastic/scv_stochastic_ForebrainGlut.h5ad",
+      "sha256": "2046315f96f7c50619502558a1d74647abb67dbf611cdc47f2dc5f140fb9e413",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "scvelo_dynamic",
+      "config_id": "C03",
+      "locator": "velocity:results/scvelo_dynamic/scv_dynamic_ForebrainGlut.h5ad",
+      "sha256": "eda14d704f97bf7a34f692fb3f445de02378d5b0370dd11ad9a2a81b11e621b7",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "multivelo",
+      "config_id": "C04",
+      "locator": "velocity:results/multivelo/multivelo_ForebrainGlut.h5ad",
+      "sha256": "d597af9fce5031e1863118ac673a42ac22699628d6c669c42965574b7254a48c",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "unitvelo",
+      "config_id": "C05",
+      "locator": "velocity:results/unitvelo/unitvelo_ForebrainGlut.h5ad",
+      "sha256": "d7aa1aea0fef024802dfa77d4a6824f63ff7eda06a24c5e6cd87cc690c9aede1",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "unitvelo_mode2",
+      "config_id": "C06",
+      "locator": "velocity:results/unitvelo_mode2/unitvelo_ForebrainGlut.h5ad",
+      "sha256": "9d2e81f3d13da8dd22692deb0ffda5b8029d5c448d8fa138e88315f3e779926f",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "dynamo",
+      "config_id": "C07",
+      "locator": "velocity:results/dynamo/dynamo_ForebrainGlut.h5ad",
+      "sha256": "92f0919403b2d683e053748cdfc6998eb08cf59302664d68b4194d36b6257724",
+      "velocity_layer_key": "velocity_S"
+    },
+    {
+      "method": "TIvelo",
+      "config_id": "C08",
+      "locator": "velocity:results/TIvelo/tivelo_ForebrainGlut.h5ad",
+      "sha256": "b8a8a4a6c72d8f1164d1e02da10aecafc5eb4ca0b7bab180d49d96f891469b14",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "cell2fate",
+      "config_id": "C09",
+      "locator": "velocity:results/cell2fate/ForebrainGlut/cell2fate_ForebrainGlut.h5ad",
+      "sha256": "0e18299b88e9a27e94a7b8d6ded102b3d37c17395097bed05345c5d6ca57872f",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "TFvelo",
+      "config_id": "C10",
+      "locator": "velocity:results/TFvelo/TFvelo_forebrain_demo/TFvelo.h5ad",
+      "sha256": "0cc75e53a0364663122dd9a23173f3e7c249b0282c61850da7f311c09453a071",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "veloae",
+      "config_id": "C11",
+      "locator": "velocity:results/veloae/veloAE_ForebrainGlut.h5ad",
+      "sha256": "4caabe37b52fe38183e035bb1ac85543bae0812d6b3462a0db4dd9930d23704f",
+      "velocity_layer_key": "new_velocity"
+    },
+    {
+      "method": "veloVI",
+      "config_id": "C12",
+      "locator": "velocity:results/veloVI/veloVI_without_vu/veloVI_ForebrainGlut_all.h5ad",
+      "sha256": "7eb24cc5462f0020c4002df89105393ce3475526e3cee2d96d2081dbb137d633",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "DeepKINET",
+      "config_id": "C13",
+      "locator": "velocity:results/DeepKINET/DeepKINET_ForebrainGlut.h5ad",
+      "sha256": "67fd803264bc7918b3fa80cfa11c6b7157a84c1f48c85145f6312e0de8b9579a",
+      "velocity_layer_key": "DeepKINET_velocity"
+    },
+    {
+      "method": "TSvelo",
+      "config_id": "C14",
+      "locator": "velocity:results/TSvelo/forebrain/TSvelo.h5ad",
+      "sha256": "3e8b8885ea943cdda8d1a8e59b9f7decd86b8dd3bf01b536498918551f1bceb8",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "celldancer",
+      "config_id": "C15",
+      "locator": "velocity:results/celldancer/celldancer_ForebrainGlut.h5ad",
+      "sha256": "d32f86658152c3aa473b2e58c3ad6eab6087ff9061c52fd7b25d9a5a9208bac9",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "deepvelo",
+      "config_id": "C16",
+      "locator": "velocity:results/deepvelo/deepvelo_ForebrainGlut.h5ad",
+      "sha256": "04eeec72c6c7278eaa16b439c4489e5b37bd052c7487853d3d7bcf0a27c08043",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "SDEvelo",
+      "config_id": "C17",
+      "locator": "velocity:results/SDEvelo/sdevelo_ForebrainGlut.h5ad",
+      "sha256": "f9155e44f053f2b2d588c581a99db7c576cbb638d812537d56fef405f3e7023e",
+      "velocity_layer_key": "velocity"
+    },
+    {
+      "method": "deepvelo2022",
+      "config_id": "C18",
+      "locator": "velocity:results/deepvelo2022/deepvelo_ForebrainGlut_recon.h5ad",
+      "sha256": "da6db3143bc82c2fa5806de1ea1cbcf2c50fbd8d7171afa97d78dddc7df709fd",
+      "velocity_layer_key": "velocity_reconstructed"
+    },
+    {
+      "method": "graphvelo_scv",
+      "config_id": "C19",
+      "locator": "velocity:results/graphvelo_scv/graphveloForebrainGlut.h5ad",
+      "sha256": "4f195533ae03606da8ec21dbe5ec860b208a6a517ac23bca84f37b12e2ac338c",
+      "velocity_layer_key": "velocity_gv"
+    },
+    {
+      "method": "graphvelo_dynamo",
+      "config_id": "C20",
+      "locator": "velocity:results/graphvelo_dynamo/graphvelo_dynamo_ForebrainGlut.h5ad",
+      "sha256": "6f96f7848f3850d56a295bd9cab25e282defbd615e9c2edfe116b87bcb2934af",
+      "velocity_layer_key": "velocity_gv"
+    }
+  ],
+  "cbdir_aggregation": "UnitVelo edge means; exact-zero and empty edges excluded; remaining edges equally weighted",
+  "edge_details_file": "forebrain_cbdir_pca_edge_details.csv",
+  "edge_details_sha256": "7d4c357ff5426ed28553480069e7b46f18b5a1d578c116975504d781d443f034",
+  "edge_rows": 120,
+  "primary_table": "cell_metrics.csv",
+  "primary_table_sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453",
+  "changed_pairs": 20,
+  "unchanged_metrics": [
+    "consistency",
+    "iccoh",
+    "transcosine",
+    "batc",
+    "highdim_cbdir"
+  ],
+  "non_target_reproduction_max_error": 2.9380009869406365e-08,
+  "randomness_policy": "Frozen coordinates/neighbor assets; no UMAP/PCA construction or training",
+  "guard_tables": {
+    "cell_metrics_supplementary.csv": "f9677243c1700ccc29e8ab6f7669a28876f0f69e98e0033fb88940c4da6d1462",
+    "cell_metrics_audit.csv": "17f5c25f9bb694b793102fc7751c7cc85ab06a8f658e7555a3e1b1c4ff27648f",
+    "cell_metrics_edge_details.csv": "a1c2aa863804799b198b5af28c14ef18173f7f259206f3145c9c07c854f08e8d",
+    "tivelo_parity.csv": "54a03143160d7fea08c85b097f451040fcc30d05100337198942995e879a22ae"
+  },
+  "entry_validation": {
+    "methods": [
+      "scvelo_deterministic",
+      "unitvelo",
+      "veloae",
+      "graphvelo_dynamo"
+    ],
+    "max_cbdir_abs_difference": 0.0,
+    "scvelo_version": "0.2.5",
+    "prepare_script_sha256": "a93ed397877907724c5f2b72722d516d93e35abac817d51b9d1b2ce4087a71df",
+    "tested_input_roles": [
+      "native spliced velocity",
+      "UnitVelo PCA metric selector",
+      "veloAE native latent state",
+      "GraphVelo Dynamo parent gene mapping"
+    ]
+  }
+}

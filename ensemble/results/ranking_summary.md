@@ -5,7 +5,7 @@ The ensemble is the 21st participant; equal scores use competition rank.
 
 ## Signed-T Mean-4
 
-First: 3 | Top 3: 9 | Top 5: 12 | Average rank: 7.714286 (28 dataset-metric records)
+First: 3 | Top 3: 9 | Top 5: 12 | Average rank: 7.571429 (28 dataset-metric records)
 
 | Dataset | CBDir rank | BATC rank |
 | --- | ---: | ---: |
@@ -13,7 +13,7 @@ First: 3 | Top 3: 9 | Top 5: 12 | Average rank: 7.714286 (28 dataset-metric reco
 | capofibro | 14/21 | 12/21 |
 | dentategyrus | 6/21 | 2/21 |
 | dentate_lamanno | 1/21 | 2/21 |
-| forebrain | 15/21 | 14/21 |
+| forebrain | 11/21 | 14/21 |
 | gastrulation | 5/21 | 5/21 |
 | hematopoiesis | 18/21 | 16/21 |
 | mousebrain | 2/21 | 2/21 |
@@ -26,7 +26,7 @@ First: 3 | Top 3: 9 | Top 5: 12 | Average rank: 7.714286 (28 dataset-metric reco
 
 ## Signed-T RowGeometricMedian-4
 
-First: 5 | Top 3: 11 | Top 5: 14 | Average rank: 6.464286 (28 dataset-metric records)
+First: 5 | Top 3: 11 | Top 5: 14 | Average rank: 6.285714 (28 dataset-metric records)
 
 | Dataset | CBDir rank | BATC rank |
 | --- | ---: | ---: |
@@ -34,7 +34,7 @@ First: 5 | Top 3: 11 | Top 5: 14 | Average rank: 6.464286 (28 dataset-metric rec
 | capofibro | 9/21 | 8/21 |
 | dentategyrus | 1/21 | 2/21 |
 | dentate_lamanno | 1/21 | 2/21 |
-| forebrain | 15/21 | 14/21 |
+| forebrain | 10/21 | 14/21 |
 | gastrulation | 5/21 | 5/21 |
 | hematopoiesis | 18/21 | 15/21 |
 | mousebrain | 2/21 | 2/21 |

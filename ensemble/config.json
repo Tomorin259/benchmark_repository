@@ -23,7 +23,17 @@
     "velocity_embedding": {
       "basis": "umap",
       "autoscale": true,
-      "explicit_transition_operator": true
+      "explicit_transition_operator": true,
+      "forebrain_bases": ["pca", "umap"],
+      "forebrain_direct_pca_projection": false
+    },
+    "metric_spaces": {
+      "default": {"cbdir": "umap", "batc": "umap", "stream": "umap"},
+      "forebrain": {
+        "cbdir": "pca", "cbdir_dimensions": 30,
+        "batc": "umap", "batc_dimensions": 2,
+        "stream": "pca", "stream_components": [1, 2]
+      }
     }
   },
   "datasets": {
@@ -90,7 +100,13 @@
       "label": "clusters",
       "edges": [["0", "1"], ["1", "2"], ["2", "3"], ["3", "4"], ["4", "5"], ["5", "6"]],
       "batc_n_bins": 20,
-      "reference_neighbor_file": "forebrain.npz"
+      "reference_neighbor_file": "forebrain.npz",
+      "cbdir_basis": "pca",
+      "cbdir_dimensions": 30,
+      "batc_basis": "umap",
+      "batc_dimensions": 2,
+      "stream_basis": "pca",
+      "stream_components": [1, 2]
     },
     "gastrulation": {
       "reference": "results/scvelo_stochastic/scv_stochastic_Gastrulation.h5ad",

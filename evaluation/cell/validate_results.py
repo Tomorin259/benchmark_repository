@@ -387,11 +387,64 @@ def _validate_streams(root: Path, methods: list[str]) -> None:
         raise ValueError(f"{manifest_path}: incomplete method coverage")
 
 
+def _validate_forebrain_cbdir(
+    config: dict, result_root: Path, reference_neighbors_root: Path,
+    reference_embeddings_root: Path, primary_rows: list,
+) -> None:
+    try:
+        from .reference_embeddings import load_forebrain_frames
+    except ImportError:
+        from reference_embeddings import load_forebrain_frames
+    frames = load_forebrain_frames(reference_neighbors_root, reference_embeddings_root)
+    cbdir = config["datasets"]["forebrain"]["cbdir"]
+    if (cbdir.get("embedding"), cbdir.get("dimensions"), cbdir.get("coordinate_sha256")) != (
+        "pca", 30, frames["metadata"]["pca_coordinate_sha256"],
+    ):
+        raise ValueError("Forebrain CBDir config must bind the frozen PCA30 frame")
+    manifest_path = result_root / "forebrain_cbdir_pca_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    edge_path = result_root / "forebrain_cbdir_pca_edge_details.csv"
+    if _sha256(edge_path) != manifest["edge_details_sha256"]:
+        raise ValueError("Forebrain PCA CBDir edge table SHA256 mismatch")
+    if _sha256(result_root / "cell_metrics.csv") != manifest["primary_table_sha256"]:
+        raise ValueError("Forebrain PCA CBDir primary table SHA256 mismatch")
+    for name, digest in manifest["guard_tables"].items():
+        if _sha256(result_root / name) != digest:
+            raise ValueError(f"Forebrain promotion changed protected table {name}")
+    _, rows = _read_csv(edge_path)
+    expected = {
+        (method, str(source), str(target)) for method in config["method_order"]
+        for source, target in config["datasets"]["forebrain"]["cluster_edges"]
+    }
+    if len(rows) != 120 or {(r["method"], r["source"], r["target"]) for r in rows} != expected:
+        raise ValueError("Forebrain PCA CBDir must contain exactly 20x6 edge rows")
+    primary = {r["method"]: float(r["cbdir"]) for r in primary_rows if r["dataset"] == "forebrain"}
+    for method in config["method_order"]:
+        edges = [row for row in rows if row["method"] == method]
+        values = []
+        for row in edges:
+            _nonnegative_int(row, "evaluable_source_cells", edge_path)
+            if row["dataset"] != "forebrain":
+                raise ValueError("Forebrain PCA edge table contains a different dataset")
+            included = row["included_in_mean"] == "True"
+            if row["score"]:
+                _finite(row, "score", edge_path)
+                if included != (float(row["score"]) != 0.0):
+                    raise ValueError("Forebrain CBDir zero-edge exclusion differs from UnitVelo")
+            elif included:
+                raise ValueError("Forebrain CBDir cannot include an empty edge")
+            if included:
+                values.append(float(row["score"]))
+        if not values or not np.isclose(np.mean(values), primary[method], rtol=0.0, atol=1e-12):
+            raise ValueError(f"Forebrain PCA edge mean differs from CBDir for {method}")
+
+
 def validate_results(
     config_path: Path = DEFAULT_CONFIG,
     result_root: Path = MODULE_DIR / "results",
     reference_neighbors_root: Path = MODULE_DIR / "reference_neighbors",
     streams_root: Path = MODULE_DIR / "streams",
+    reference_embeddings_root: Path = MODULE_DIR / "reference_embeddings",
 ) -> None:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     if config.get("schema_version") != 1:
@@ -492,6 +545,9 @@ def validate_results(
         reference_neighbors_root, datasets, reference
     )
     _validate_streams(streams_root, methods)
+    _validate_forebrain_cbdir(
+        config, result_root, reference_neighbors_root, reference_embeddings_root, primary_rows
+    )
 
     print(
         f"Cell canonical bundle valid: {len(datasets)} datasets x "

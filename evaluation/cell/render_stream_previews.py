@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import gc
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,9 +18,10 @@ import pandas as pd
 import scvelo as scv
 
 from prepare_cell_metrics import (align_cells_to_reference, align_genes_to_reference,
-    apply_reference_graph, canonical_umap, clear_derived_graphs,
+    apply_reference_graph, clear_derived_graphs,
     graphvelo_dynamo_parent_fields, inject_reference_state, load_reference_moments,
-    prepare_velocity, read_inputs, resolve_source, sha256)
+    prepare_velocity, project_forebrain_pca, read_inputs, resolve_source, sha256)
+from reference_embeddings import array_sha256, load_forebrain_frames
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -35,9 +37,6 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
         if datasets and dataset not in datasets:
             continue
         entries = []
-        manifest = {'schema_version':1,'inputs_sha256':sha256(HERE/'inputs.tsv'),
-            'renderer_sha256':sha256(Path(__file__)),'palette_sha256':sha256(HERE/'stream_preview_config.json'),
-            'scvelo_version':scv.__version__,'entries':entries}
         settings = palettes[dataset]
         reference_row = group[group.operational_id == 'scvelo_deterministic'].iloc[0]
         reference_path = resolve_source(artifact_root, reference_row.result_path)
@@ -52,11 +51,36 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
         if set(label_values) - set(settings['categories']):
             raise ValueError(f'Unexpected cell labels: {dataset}')
         if dataset == 'forebrain':
-            frame_adata = ad.AnnData(X=np.zeros((len(ref_names), 1), dtype=np.float32))
-            frame_adata.obs_names = ref_names
-            canonical_umap(frame_adata, dataset, inputs, artifact_root, cache_root,
-                           HERE / 'reference_neighbors', config)
-            frame = np.asarray(frame_adata.obsm['X_umap'])
+            frames = load_forebrain_frames()
+            if not np.array_equal(ref_names, frames['obs_names']):
+                raise ValueError('Forebrain reference and frozen PCA cell orders differ')
+            frame = frames['X_pca'][:, :2]
+        frame_contract = {
+            'space': 'pca' if dataset == 'forebrain' else 'umap',
+            'projection_dimensions': 30 if dataset == 'forebrain' else 2,
+            'display_components': [1, 2],
+            'coordinate_sha256': frames['metadata']['pca_coordinate_sha256']
+                if dataset == 'forebrain' else array_sha256(frame),
+        }
+        protocol = {
+            'renderer_sha256': sha256(Path(__file__)),
+            'preparation_sha256': sha256(HERE / 'prepare_cell_metrics.py'),
+            'frame_loader_sha256': sha256(HERE / 'reference_embeddings.py'),
+            'config_sha256': sha256(HERE / 'config.json'),
+            'palette_sha256': sha256(HERE / 'stream_preview_config.json'),
+            'reference_source_sha256': reference_row.sha256,
+            'scvelo_version': scv.__version__, 'frame': frame_contract,
+        }
+        if dataset == 'forebrain':
+            protocol['reference_neighbors_sha256'] = sha256(HERE / 'reference_neighbors/forebrain.npz')
+            protocol['reference_moments_sha256'] = sha256(moments_root / 'forebrain.npz')
+            protocol['direct_pca_projection'] = False
+        protocol_sha = hashlib.sha256(json.dumps(protocol, sort_keys=True).encode()).hexdigest()
+        manifest = {'schema_version': 1, 'inputs_sha256': sha256(HERE / 'inputs.tsv'),
+            'renderer_sha256': sha256(Path(__file__)),
+            'palette_sha256': sha256(HERE / 'stream_preview_config.json'),
+            'scvelo_version': scv.__version__, 'dataset_frames': {reference_row.dataset_id: frame_contract},
+            'render_protocols': {reference_row.dataset_id: protocol}, 'entries': entries}
         fragment = manifest_root / f'{dataset}.json'
         previous = json.loads(fragment.read_text())['entries'] if fragment.exists() else []
         cached = {(e['dataset'],e['method']): e for e in previous}
@@ -65,7 +89,7 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
         for _, row in group.iterrows():
             source = resolve_source(artifact_root, row.result_path)
             prior = cached.get((row.dataset_id,row.config_id))
-            if prior and prior['result_sha256'] == row.sha256 and source.stat().st_size == int(row.file_size_bytes) and source.stat().st_mtime <= fragment.stat().st_mtime and sha256(ROOT / prior['path']) == prior['sha256']:
+            if prior and prior.get('render_protocol_sha256') == protocol_sha and prior.get('frame') == frame_contract and prior['result_sha256'] == row.sha256 and source.stat().st_size == int(row.file_size_bytes) and source.stat().st_mtime <= fragment.stat().st_mtime and sha256(ROOT / prior['path']) == prior['sha256']:
                 entries.append(prior)
                 print(f'{len(entries)}/20 {row.dataset_id}/{row.config_id} resumed verified preview',flush=True)
                 continue
@@ -106,15 +130,13 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
                         method, gene_positions, _ = align_genes_to_reference(method, moments['var_names'], extra)
                         inject_reference_state(method, moments, cell_positions, gene_positions)
                     apply_reference_graph(method, dataset, cell_positions, HERE / 'reference_neighbors')
-                    canonical_umap(method, dataset, inputs, artifact_root, cache_root,
-                                   HERE / 'reference_neighbors', config)
                     clear_derived_graphs(method)
                     scv.tl.velocity_graph(method, vkey='velocity', xkey='Ms', n_neighbors=30,
                         n_recurse_neighbors=1, mode_neighbors='distances', n_jobs=8)
-                    scv.tl.velocity_embedding(method, basis='umap', vkey='velocity', all_comps=True)
-                    xy = np.asarray(method.obsm['X_umap'])
-                    velocity = np.asarray(method.obsm['velocity_umap'])
-                    provenance = 'fixed_reference30_projection_display_only'
+                    project_forebrain_pca(method)
+                    xy = np.asarray(method.obsm['X_pca'])[:, :2]
+                    velocity = np.asarray(method.obsm['velocity_pca'])[:, :2]
+                    provenance = 'fixed_reference30_pca30_projection_pc1_pc2'
                     del moments
                 velocity = np.nan_to_num(velocity, nan=0, posinf=0, neginf=0)
                 plot = ad.AnnData(X=np.zeros((len(xy), 1), dtype=np.float32))
@@ -140,11 +162,8 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
                 'path': str(image.relative_to(ROOT)), 'sha256': sha256(image),
                 'result_path': row.result_path, 'result_sha256': source_hash,
                 'n_reference': int(row.n_reference), 'n_common': int(row.n_common),
-                'projection': provenance, 'legend': legend})
-            manifest = {'schema_version': 1, 'inputs_sha256': sha256(HERE / 'inputs.tsv'),
-                'renderer_sha256': sha256(Path(__file__)),
-                'palette_sha256': sha256(HERE / 'stream_preview_config.json'),
-                'scvelo_version': scv.__version__, 'entries': entries}
+                'projection': provenance, 'legend': legend, 'frame': frame_contract,
+                'render_protocol_sha256': protocol_sha})
             (manifest_root / f'{dataset}.json').write_text(json.dumps(manifest, indent=2))
             print(f'{len(entries)}/280 {row.dataset_id}/{row.config_id} {provenance}', flush=True)
 
@@ -168,6 +187,9 @@ if __name__ == '__main__':
         fragments = [json.loads(f.read_text()) for f in sorted(args.manifest_root.glob('*.json'))]
         combined = {k:v for k,v in fragments[0].items() if k!='entries'}
         combined['entries'] = [entry for fragment in fragments for entry in fragment['entries']]
+        for key in ('dataset_frames', 'render_protocols'):
+            combined[key] = {name: value for fragment in fragments
+                for name, value in fragment[key].items()}
         if len(combined['entries']) != 280:
             raise ValueError('Expected all 280 registered Cell previews')
         (HERE / 'streams/preview_manifest.json').write_text(json.dumps(combined,indent=2))

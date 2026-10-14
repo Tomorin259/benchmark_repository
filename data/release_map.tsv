@@ -333,3 +333,5 @@ input-labelled-sceu_rpe1	input-sceu_rpe1	velocity:data_release/inputs/sceu_rpe1/
 input-labelled-sceu_organoid	input-sceu_organoid	velocity:data_release/inputs/sceu_organoid/organoid_labelled_source.h5ad	data/organoid/organoid_labelled_source.h5ad	source_sha_verified_20261012
 kinetics-gene-usage-sceu_rpe1	kinetics-reference-inputs	velocity:data_release/metadata/rpe1_reference_gene_usage.csv	metadata/rpe1_reference_gene_usage.csv	source_sha_verified_20261012
 kinetics-gene-usage-sceu_organoid	kinetics-reference-inputs	velocity:data_release/metadata/organoid_reference_gene_usage.csv	metadata/organoid_reference_gene_usage.csv	source_sha_verified_20261012
+ensemble-mean4-forebrain-schema7-h5ad	ensemble-forebrain-pca30-umap2	velocity:ensemble_derived/pca30_umap2_schema7/mean4/forebrain.h5ad	ensemble/mean4/forebrain.h5ad	source_sha_verified_20261014
+ensemble-row-geometric-median4-forebrain-schema7-h5ad	ensemble-forebrain-pca30-umap2	velocity:ensemble_derived/pca30_umap2_schema7/row_geometric_median4/forebrain.h5ad	ensemble/row_geometric_median4/forebrain.h5ad	source_sha_verified_20261014

@@ -4,6 +4,9 @@
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -20,11 +23,72 @@ from evaluation.cell.reference_neighbors import (
     apply_reference_neighbors,
     load_reference_neighbors,
 )
-from evaluation.cell.run_cell_metrics import DEFAULT_INPUTS, extended_edge_records
+from evaluation.cell.run_cell_metrics import (
+    DEFAULT_INPUTS, evaluation_protocol, extended_edge_records, pair_is_current,
+)
+from evaluation.cell.reference_embeddings import (
+    array_sha256, load_forebrain_frames, PCA_COORDINATE_SHA256,
+    UMAP_COORDINATE_SHA256,
+)
 from evaluation.cell.validate_results import validate_results
 
 
 class CellEvaluationTests(unittest.TestCase):
+    def test_forebrain_frames_preserve_the_frozen_coordinate_bytes(self):
+        frames = load_forebrain_frames()
+        self.assertEqual(frames["X_pca"].shape, (1720, 30))
+        self.assertEqual(frames["X_umap"].shape, (1720, 2))
+        self.assertEqual(frames["X_pca"].dtype, np.dtype("float32"))
+        self.assertEqual(array_sha256(frames["X_pca"]), PCA_COORDINATE_SHA256)
+        self.assertEqual(array_sha256(frames["X_umap"]), UMAP_COORDINATE_SHA256)
+
+    def test_forebrain_frames_reject_a_different_cell_order(self):
+        root = Path(__file__).resolve().parents[1] / "evaluation/cell"
+        frames = load_forebrain_frames()
+        with tempfile.TemporaryDirectory() as directory:
+            changed = Path(directory)
+            np.savez_compressed(changed / "forebrain_umap.npz",
+                obs_names=frames["obs_names"][::-1], X_umap=frames["X_umap"])
+            manifest = json.loads((root / "reference_embeddings/manifest.json").read_text())
+            manifest["datasets"]["forebrain"]["umap_file_sha256"] = hashlib.sha256(
+                (changed / "forebrain_umap.npz").read_bytes()).hexdigest()
+            (changed / "manifest.json").write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(ValueError, "cell orders differ"):
+                load_forebrain_frames(root / "reference_neighbors", changed)
+
+    def test_resume_rejects_old_umap_pairs_and_changed_protocols(self):
+        config = {"datasets": {"forebrain": {"cbdir": {
+            "embedding": "pca", "dimensions": 30,
+            "coordinate_sha256": PCA_COORDINATE_SHA256,
+        }}}}
+        row = {"evaluation_dataset": "forebrain", "sha256": "source",
+               "velocity_layer_key": "velocity"}
+        protocol = evaluation_protocol(row, config, {"config": "new"})
+        old = {"status": "ok", "extended_edge_details": []}
+        self.assertFalse(pair_is_current(old, protocol))
+        current = {**old, "evaluation_protocol": protocol}
+        self.assertTrue(pair_is_current(current, protocol))
+        changed = evaluation_protocol(row, config, {"config": "different"})
+        self.assertFalse(pair_is_current(current, changed))
+        self.assertFalse(pair_is_current(current, None))
+
+    def test_unitvelo_pca_cbdir_uses_dimensions_beyond_the_display(self):
+        try:
+            import unitvelo
+        except ImportError:
+            self.skipTest("UnitVelo is available in the indicators environment")
+        adata = ad.AnnData(np.zeros((2, 1)))
+        adata.obs["clusters"] = ["A", "B"]
+        adata.uns["neighbors"] = {"indices": np.asarray([[0, 1], [1, 0]])}
+        adata.obsm["X_pca"] = np.asarray([[0., 0., 0.], [0., 0., 1.]])
+        adata.obsm["velocity_umap"] = np.asarray([[1., 0.], [1., 0.]])
+        adata.obsm["cbdir_pca_velocity"] = np.asarray([[0., 0., 1.], [0., 0., 1.]])
+        raw = unitvelo.eval_utils.cross_boundary_correctness(
+            adata, "clusters", "cbdir_pca_velocity", [("A", "B")],
+            return_raw=True, x_emb="X_pca",
+        )
+        np.testing.assert_allclose(raw[("A", "B")], [1.0])
+
     def test_optional_batc_edge_audit_preserves_branch_max_score(self):
         rng = np.random.default_rng(42)
         coordinates = np.concatenate([

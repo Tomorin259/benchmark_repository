@@ -12,8 +12,8 @@ Datasets: bonemarrow, capofibro, dentategyrus, dentate_lamanno, forebrain, gastr
 | dentategyrus | Signed-T RowGeometricMedian-4 | 0.64908797 | 0.83108113 |
 | dentate_lamanno | Signed-T Mean-4 | 0.68787592 | 0.80152301 |
 | dentate_lamanno | Signed-T RowGeometricMedian-4 | 0.69080153 | 0.79657854 |
-| forebrain | Signed-T Mean-4 | 0.067136769 | 0.11142581 |
-| forebrain | Signed-T RowGeometricMedian-4 | 0.082651074 | 0.13272103 |
+| forebrain | Signed-T Mean-4 | 0.067136769 | 0.14086119 |
+| forebrain | Signed-T RowGeometricMedian-4 | 0.082651074 | 0.16315231 |
 | gastrulation | Signed-T Mean-4 | 0.76201484 | 0.93704348 |
 | gastrulation | Signed-T RowGeometricMedian-4 | 0.7427277 | 0.92757406 |
 | hematopoiesis | Signed-T Mean-4 | -0.26298573 | 0.43222226 |

@@ -484,7 +484,7 @@
     },
     {
       "title": "Fixed reference neighbors",
-      "text": "Cell evaluation uses stored 30-nearest-neighbor assets built in X_pca with 30 PCs, Euclidean distance and random state 0. Installing these assets transfers candidate indices, distances and connectivities; it does not replace the method output PCA. Compatible saved low-dimensional projections are reused; other projections follow the documented scVelo route."
+      "text": "Cell evaluation uses stored 30-nearest-neighbor assets built in X_pca with 30 PCs, Euclidean distance and random state 0. Forebrain CBDir uses the shared 30-PC coordinates and full velocity projection; its streamlines display PC1/PC2. Forebrain BATC uses the shared frozen 2D UMAP. Other datasets retain their registered reference projections."
     },
     {
       "title": "TransCosine and representation",

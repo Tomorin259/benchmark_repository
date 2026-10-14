@@ -10,11 +10,13 @@ import sys
 from pathlib import Path
 
 import anndata as ad
+import numpy as np
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     from ensemble.core import (
         METHOD_NAMES,
+        H5AD_SCHEMA_VERSION,
         VARIANT_NAMES,
         VARIANT_SPECS,
         aggregate_offdiagonal,
@@ -38,6 +40,7 @@ if __package__ in {None, ""}:
 else:
     from .core import (
         METHOD_NAMES,
+        H5AD_SCHEMA_VERSION,
         VARIANT_NAMES,
         VARIANT_SPECS,
         aggregate_offdiagonal,
@@ -58,6 +61,8 @@ else:
         write_h5ad,
     )
     from .metrics import score_global_metrics, write_rankings
+
+from evaluation.cell.reference_embeddings import load_forebrain_frames
 
 
 MODULE_DIR = Path(__file__).resolve().parent
@@ -146,6 +151,18 @@ def run_dataset(
     )
     asset = load_fixed_neighbor_asset(asset_path)
     reference_neighbor_detail = install_fixed_neighbors(reference, asset)
+    if dataset == "forebrain":
+        frames = load_forebrain_frames(reference_neighbors_root)
+        positions = {name: index for index, name in enumerate(frames["obs_names"])}
+        if set(positions) != set(reference.obs_names):
+            raise ValueError("Forebrain frozen frames and reference cell sets differ")
+        rows = np.asarray([positions[name] for name in reference.obs_names])
+        pca = frames["X_pca"][rows]
+        if not np.array_equal(reference.obsm["X_pca"], pca):
+            raise ValueError("Forebrain reference X_pca differs from the frozen PCA30 frame")
+        reference.obsm["X_pca"] = pca.copy()
+        reference.obsm["X_umap"] = frames["X_umap"][rows].copy()
+        reference.uns["reference_frames"] = frames["metadata"]
 
     logical_inputs = {
         "reference": logical_input(reference_locator, reference_path, "Ms"),
@@ -182,12 +199,12 @@ def run_dataset(
             operator,
             variant=variant,
             logical_inputs=logical_inputs,
+            bases=("pca", "umap") if dataset == "forebrain" else ("umap",),
         )
         metrics = score_global_metrics(
             result,
             dataset,
             dataset_config,
-            operator=operator,
         )
         spec = VARIANT_SPECS[variant]
         output_locator = f"ensemble:{spec['directory']}/{dataset}"
@@ -207,6 +224,7 @@ def run_dataset(
                 stream_path,
                 label_key=dataset_config["label"],
                 title=f"{spec['label']} - {dataset}",
+                basis=dataset_config.get("stream_basis", "umap"),
             )
         completion = dict(completion_detail)
         completion["invalid_embedded_values"] = invalid
@@ -238,6 +256,7 @@ def run_dataset(
     return rows, {
         "dataset": dataset,
         "reference_neighbor": reference_neighbor_detail,
+        "reference_frames": reference.uns.get("reference_frames", {}),
         "inputs": logical_inputs,
         "methods": method_metadata,
         "variants": variant_metadata,
@@ -323,7 +342,7 @@ def main(argv: list[str] | None = None) -> int:
     (output_root / "metadata.json").write_text(
         json.dumps(
             {
-                "schema_version": 6,
+                "schema_version": H5AD_SCHEMA_VERSION,
                 "status": "selected-datasets",
                 "datasets": datasets,
                 "variants": list(variants),

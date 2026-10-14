@@ -266,56 +266,30 @@ def compute_batc(
     }
 
 
-def _forebrain_batc_representation(adata, operator):
-    """Rebuild the audited two-dimensional embedding only when necessary."""
-    import scanpy as sc
-    import scvelo as scv
-
-    rebuilt = adata.copy()
-    params = rebuilt.uns.get("neighbors", {}).get("params", {})
-    if isinstance(params, dict) and "method" not in params:
-        params["method"] = "umap"
-    sc.tl.umap(rebuilt, random_state=0)
-    scv.tl.velocity_embedding(
-        rebuilt,
-        basis="umap",
-        vkey="ensemble_velocity",
-        T=operator.copy(),
-        autoscale=True,
-        all_comps=True,
-    )
-    return (
-        np.asarray(rebuilt.obsm["X_umap"], dtype=np.float64),
-        np.asarray(rebuilt.obsm["ensemble_velocity_umap"], dtype=np.float64),
-    )
-
-
 def score_global_metrics(
     adata,
     dataset: str,
     dataset_config: dict,
-    *,
-    operator=None,
 ) -> dict:
     """Return CBDir, BATC, and compact evaluator diagnostics."""
     labels, neighbors = _validate_inputs(adata, dataset, dataset_config)
-    embedding = _as_float_array(adata.obsm["X_umap"], "UMAP embedding")
+    cbdir_basis = dataset_config.get("cbdir_basis", "umap")
+    embedding = _as_float_array(adata.obsm[f"X_{cbdir_basis}"], "CBDir embedding")
     velocity = _as_float_array(
-        adata.obsm["ensemble_velocity_umap"], "embedded ensemble velocity"
+        adata.obsm[f"ensemble_velocity_{cbdir_basis}"], "embedded CBDir velocity"
     )
     if embedding.ndim != 2 or velocity.shape != embedding.shape:
         raise ValueError(f"{dataset}: embedding and velocity shapes do not match")
+    expected_dimensions = dataset_config.get("cbdir_dimensions", 2)
+    if embedding.shape[1] != expected_dimensions:
+        raise ValueError(f"{dataset}: CBDir requires {expected_dimensions} {cbdir_basis} dimensions")
     cbdir, cbdir_details = compute_cbdir(
         labels, neighbors, embedding, velocity, dataset_config["edges"]
     )
-    batc_embedding = embedding
-    batc_velocity = velocity
-    if embedding.shape[1] != 2:
-        if dataset != "forebrain" or operator is None:
-            raise ValueError(f"{dataset}: BATC requires a two-dimensional UMAP")
-        batc_embedding, batc_velocity = _forebrain_batc_representation(
-            adata, operator
-        )
+    batc_embedding = _as_float_array(adata.obsm["X_umap"], "BATC UMAP embedding")
+    batc_velocity = _as_float_array(
+        adata.obsm["ensemble_velocity_umap"], "embedded BATC velocity"
+    )
     batc, batc_details = compute_batc(
         labels,
         batc_embedding,

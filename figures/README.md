@@ -24,11 +24,11 @@ D--F use the approved compact layout. Figure 6 has 17 source panels, including
 the Dynamo(label data) and TSvelo organoid E streams. A and E follow the same
 five-method display order. `fig6_composite_manifest.json` records all source
 hashes, the online-matched final PDF checksum, and the verification scope.
-`figSeven.pdf` is the author's current
-Figure 7 export, cropped after the native charts were synchronized with the
-canonical summary inputs. Its editable
-PowerPoint is `assembly/fig7/fig7.pptx`; `fig7_composite_manifest.json` records the
-source tables, refresh scripts, assembly, export and output hashes.
+`figTwo.pdf`, `figSeven.pdf` and `suppFigTen.pdf` are the verified cropped author
+exports containing the corrected Forebrain Cell CBDir and shared-frame Ensemble
+BATC results. Their composite manifests record source and export hashes and the
+crop boxes. The editable sources are `assembly/fig2/fig2.pptx`,
+`assembly/fig7/fig7.pptx` and `assembly/suppfig10/suppfig10.pptx`.
 The historical kinetics PDF bearing the old Figure 5 filename is retained in `archive/kinetics/figFive.pdf`.
 
 Do not add intermediate panels or alternate result copies to the active

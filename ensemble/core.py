@@ -23,7 +23,7 @@ MODULE_DIR = Path(__file__).resolve().parent
 DEFAULT_CONFIG = MODULE_DIR / "config.json"
 
 SCVELO_VERSION = "0.3.4"
-H5AD_SCHEMA_VERSION = 6
+H5AD_SCHEMA_VERSION = 7
 DEGENERATE_ROW_TOLERANCE = 1e-12
 FIXED_REFERENCE_NEIGHBOR_SCHEMA_VERSION = 1
 METHOD_NAMES = ("TIvelo", "veloVI", "DeepVelo", "UniTVelo")
@@ -96,6 +96,16 @@ def protocol_metadata() -> dict:
             "basis": EMBEDDING_BASIS,
             "autoscale": True,
             "explicit_transition_operator": True,
+            "forebrain_bases": ["pca", "umap"],
+            "forebrain_direct_pca_projection": False,
+        },
+        "metric_spaces": {
+            "default": {"cbdir": "umap", "batc": "umap", "stream": "umap"},
+            "forebrain": {
+                "cbdir": "pca", "cbdir_dimensions": 30,
+                "batc": "umap", "batc_dimensions": 2,
+                "stream": "pca", "stream_components": [1, 2],
+            },
         },
         "fixed_neighbors": {
             **FIXED_REFERENCE_NEIGHBOR_BUILD,
@@ -601,8 +611,9 @@ def project_with_scvelo(
     *,
     variant: str,
     logical_inputs: dict[str, dict],
+    bases: tuple[str, ...] = (EMBEDDING_BASIS,),
 ) -> tuple[ad.AnnData, int]:
-    """Materialize the aggregate and obtain its explicit-T UMAP projection."""
+    """Materialize the aggregate and project its explicit T in named frames."""
     validate_scvelo_runtime()
     if variant not in VARIANT_SPECS:
         raise ValueError(f"unknown ensemble variant: {variant}")
@@ -610,8 +621,13 @@ def project_with_scvelo(
     validate_signed_operator(operator, "projection operator")
     if "Ms" not in reference.layers:
         raise KeyError("reference is missing layers['Ms']")
-    if "X_umap" not in reference.obsm:
-        raise KeyError("reference is missing obsm['X_umap']")
+    if not bases or any(basis not in {"pca", "umap"} for basis in bases):
+        raise ValueError("projection bases must be pca or umap")
+    for basis in bases:
+        if f"X_{basis}" not in reference.obsm:
+            raise KeyError(f"reference is missing obsm['X_{basis}']")
+        if basis == "umap" and np.asarray(reference.obsm["X_umap"]).shape[1] != 2:
+            raise ValueError("X_umap must contain the true two-dimensional frame")
 
     result = reference.copy()
     result.obsp["ensemble_transition_signed"] = operator.copy()
@@ -619,21 +635,33 @@ def project_with_scvelo(
         operator, result.layers["Ms"]
     ).astype(np.float32)
     result.var["ensemble_velocity_genes"] = np.ones(result.n_vars, dtype=bool)
-    scv.tl.velocity_embedding(
-        result,
-        basis=EMBEDDING_BASIS,
-        vkey="ensemble_velocity",
-        T=operator.copy(),
-        autoscale=True,
-        all_comps=True,
-    )
-    embedded_key = f"ensemble_velocity_{EMBEDDING_BASIS}"
-    embedded = np.asarray(result.obsm[embedded_key], dtype=np.float64)
-    invalid = ~np.isfinite(embedded).all(axis=1)
-    if np.any(invalid):
-        embedded = embedded.copy()
-        embedded[invalid] = 0.0
-        result.obsm[embedded_key] = embedded.astype(np.float32)
+    invalid_rows = np.zeros(result.n_obs, dtype=bool)
+    projection_frames = {}
+    for basis in bases:
+        scv.tl.velocity_embedding(
+            result,
+            basis=basis,
+            vkey="ensemble_velocity",
+            T=operator.copy(),
+            autoscale=True,
+            all_comps=True,
+            direct_pca_projection=False,
+        )
+        embedded_key = f"ensemble_velocity_{basis}"
+        embedded = np.asarray(result.obsm[embedded_key], dtype=np.float64)
+        invalid = ~np.isfinite(embedded).all(axis=1)
+        invalid_rows |= invalid
+        if np.any(invalid):
+            embedded = embedded.copy()
+            embedded[invalid] = 0.0
+            result.obsm[embedded_key] = embedded.astype(np.float32)
+        projection_frames[basis] = {
+            "coordinate_field": f"X_{basis}",
+            "velocity_field": embedded_key,
+            "shape": list(embedded.shape),
+            "explicit_transition_operator": True,
+            "direct_pca_projection": False,
+        }
 
     result.uns["ensemble_signed_params"] = {
         "schema_version": H5AD_SCHEMA_VERSION,
@@ -644,6 +672,8 @@ def project_with_scvelo(
         "methods": list(METHOD_NAMES),
         "method_weight": VARIANT_SPECS[variant]["method_weight"],
         "scvelo_protocol": protocol_metadata(),
+        "projection_frames": projection_frames,
+        "reference_frames": copy.deepcopy(result.uns.get("reference_frames", {})),
         "diagonal_completion": "T_ii = 1 - sum_j!=i(abs(T_ij))",
         "operator_semantics": (
             "signed L1-normalized scVelo projection operator; not a "
@@ -664,11 +694,12 @@ def project_with_scvelo(
         ),
         "fixed_neighbor_semantics": (
             "only distances, connectivities, and neighbor indices are installed; "
-            "the asset reference_pca is not installed into obsm['X_pca']"
+            "graph installation does not replace X_pca; the separately validated "
+            "Forebrain shared frames are recorded in reference_frames"
         ),
         "logical_inputs": copy.deepcopy(logical_inputs),
     }
-    return result, int(invalid.sum())
+    return result, int(invalid_rows.sum())
 
 
 def write_h5ad(adata: ad.AnnData, path: Path) -> None:
@@ -685,6 +716,7 @@ def save_stream_plot(
     *,
     label_key: str,
     title: str,
+    basis: str = EMBEDDING_BASIS,
 ) -> None:
     import matplotlib.pyplot as plt
 
@@ -693,7 +725,7 @@ def save_stream_plot(
         raise KeyError(f"stream color key is missing: {label_key}")
     axis = scv.pl.velocity_embedding_stream(
         adata,
-        basis=EMBEDDING_BASIS,
+        basis=basis,
         vkey="ensemble_velocity",
         color=label_key,
         title=title,

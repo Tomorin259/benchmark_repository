@@ -196,7 +196,7 @@
     },
     "forebrain": {
       "dataset_id": "forebrain",
-      "embedding": "umap",
+      "embedding": "pca",
       "label": "clusters",
       "cluster_edges": [
         [
@@ -227,7 +227,17 @@
       "batc_n_bins": 20,
       "batc": {
         "embedding": "umap",
-        "recompute_embedding": true
+        "recompute_embedding": false,
+        "reference_frame": "reference_embeddings/forebrain_umap.npz:X_umap",
+        "dimensions": 2,
+        "coordinate_sha256": "0d8448c8e6cb2d7a635f773874257a1f40e57a17720df597138364f7491fec7d"
+      },
+      "cbdir": {
+        "embedding": "pca",
+        "dimensions": 30,
+        "reference_frame": "reference_neighbors/forebrain.npz:reference_pca",
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb",
+        "direct_pca_projection": false
       }
     },
     "gastrulation": {
