@@ -18,6 +18,11 @@ const opened = computed(()=>variants.map(variant=>({
   ...props.data.ensemble.scores.find(r=>r.dataset===dataset.value&&r.variant===variant),
   image:props.data.ensemble.streams.find(r=>r.dataset===dataset.value&&r.variant===variant),
 })))
+const constituentIds = props.data.ensemble.methods.map(name=>props.data.methods.find(m=>m.manuscript_name===name).config_id)
+const constituentRows = computed(()=>constituentIds.map(method=>({
+  ...props.data.cell.find(r=>r.dataset===dataset.value&&r.method===method),
+  label:props.data.methods.find(m=>m.config_id===method).manuscript_name,
+})))
 const ranks = computed(()=>pairs.value.map(({dataset})=>({dataset,...Object.fromEntries(
   props.data.ensemble.rankings.filter(r=>r.dataset===dataset.dataset_id&&r.variant===rankVariant.value).map(r=>[r.metric,r]),
 )})))
@@ -36,6 +41,7 @@ async function copyLink(){try{await navigator.clipboard.writeText(shareUrl.value
     <div class="analysis-grid"><article v-for="row in opened" :key="row.variant" class="panel analysis-image"><div class="image-heading"><h2>{{label(row.variant)}}</h2><span class="small">CBDir {{format(row.cbdir)}} · BATC {{format(row.batc)}}</span></div>
       <button class="phase-image" :aria-label="`Enlarge ${datasetName} ${label(row.variant)} streamlines`" @click="enlarged={...row.image,title:`${datasetName} · ${label(row.variant)}`} "><img :src="`./${row.image.path}`" :alt="`${datasetName} · ${label(row.variant)} streamlines`" loading="lazy"></button>
     </article></div>
+    <details class="panel content-panel constituent-comparison"><summary>Compare with constituent methods</summary><div class="table-scroll"><table><thead><tr><th>Method</th><th class="numeric">CBDir</th><th class="numeric">BATC</th></tr></thead><tbody><tr v-for="row in constituentRows" :key="row.method"><td><a :href="`#results?level=cell&dataset=${dataset}&method=${row.method}`">{{row.label}} →</a></td><td class="numeric">{{format(row.cbdir)}}</td><td class="numeric">{{format(row.batc)}}</td></tr><tr v-for="row in opened" :key="row.variant" class="macro-row"><td>{{label(row.variant)}}</td><td class="numeric">{{format(row.cbdir)}}</td><td class="numeric">{{format(row.batc)}}</td></tr></tbody></table></div></details>
   </section>
   <section class="panel content-panel"><h2>Macro-average <span class="tag">14 datasets · Equal weight</span></h2><div class="table-scroll"><table>
     <thead><tr><th>Metric</th><th class="numeric">Mean-4</th><th class="numeric">GeoMedian-4</th><th class="numeric"><abbr title="GeoMedian-4 minus Mean-4">Δ</abbr></th></tr></thead>

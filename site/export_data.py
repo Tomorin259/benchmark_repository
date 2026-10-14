@@ -20,6 +20,8 @@ COSINE = "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
 KINETICS = "evaluation/kinetics_recovery/results/central_results/"
 PLOT = "evaluation/kinetics_recovery/figures/fig6/plot_data/"
 EXPANDED = "evaluation/kinetics_recovery/results/expanded_reference/"
+SIM_CELL = "evaluation/cell/simulation/"
+SUMMARY = "evaluation/summary/results/figure7_summary/"
 CONTENT = "site/content/website_content.json"
 # Existing Gene result identifiers -> method registry identities. No display names here.
 GENE_IDS = {
@@ -126,6 +128,69 @@ def export_data(root=ROOT, output=None):
                      "source": CELL, "n_cells": int(binding["n_common"]), "n_reference": int(binding["n_reference"]),
                      **{field: numeric(row[field]) for field in ["consistency", "iccoh", "cbdir", "transcosine", "batc"]},
                      "details": supplementary[(row["dataset"], row["method"])]})
+
+    # Supplementary simulations stay separate from the canonical 14 x 20 table.
+    sim_inputs = keyed(read(SIM_CELL + "inputs.tsv", download=False), ["evaluation_dataset", "operational_id"])
+    sim_raw = read(SIM_CELL + "results/cell_metrics.csv")
+    if set(keyed(sim_raw, ["dataset", "method"])) != set(sim_inputs) or len(sim_raw) != 27:
+        raise ValueError("Simulation Cell scores require all 27 frozen method/scenario inputs")
+    cell_simulation = []
+    for row in sim_raw:
+        binding = sim_inputs[(row["dataset"], row["method"])]
+        by_method[binding["config_id"]]
+        if SIM_IDS[row["dataset"]] != binding["dataset_id"]:
+            raise ValueError("Simulation Cell dataset identity differs from its frozen input")
+        scores = {field: numeric(row[field]) for field in ["consistency", "iccoh", "cbdir", "transcosine", "batc"]}
+        if any(value is None for value in scores.values()):
+            raise ValueError("Simulation primary Cell score is undefined")
+        cell_simulation.append({"dataset": binding["dataset_id"], "method": binding["config_id"],
+                                "source": SIM_CELL + "results/cell_metrics.csv", **scores})
+
+    cell_summary = []
+    for row in read(SUMMARY + "fig7_cell_metric_summary.csv"):
+        method = by_method[row["config_id"]]
+        if row["manuscript_name"] != method["manuscript_name"] or int(row["n_datasets"]) != 14:
+            raise ValueError("Cell summary registry or dataset coverage differs")
+        cell_summary.append({"method": row["config_id"], "metric": row["metric"], "n_datasets": 14,
+                             **{key: numeric(row[key]) for key in ["mean", "sample_sd", "median", "q1", "q3", "iqr"]},
+                             "source": SUMMARY + "fig7_cell_metric_summary.csv"})
+    if set(keyed(cell_summary, ["method", "metric"])) != {
+        (m["config_id"], metric) for m in methods for metric in ["consistency", "iccoh", "cbdir", "transcosine", "batc"]
+    }:
+        raise ValueError("Cell overall summary requires all 100 method/metric records")
+    summary_method_ids = {row["manuscript_name"]: row["config_id"] for row in methods}
+    summary_method_ids.update({"scVelo_dynamic": "C03", "Dynamo(label data)": "dynamo_labelled"})
+    overall_summary = [{"method": summary_method_ids[row["Method"]], "metric": row["Metric"],
+                        "mean": numeric(row["Mean"]), "sample_sd": numeric(row["Std"]),
+                        "n_components": int(row["N_dataset_or_system"]),
+                        "source": SUMMARY + "fig7_gene_metric_summary.csv"}
+                       for row in read(SUMMARY + "fig7_gene_metric_summary.csv")]
+    keyed(overall_summary, ["method", "metric"])
+    cross_cases = [
+        {"id": "normal-murk", "label": "Normal + MURK", "category": "normal + MURK", "dataset": "sim_only_murk", "n_genes": 10},
+        {"id": "normal-branching", "label": "Normal + branching", "category": "normal + branching", "dataset": "sim_only_branching", "n_genes": 20},
+        {"id": "hybrid-murk", "label": "Hybrid · MURK genes", "category": "hybrid: MURK", "dataset": "sim_hybrid", "n_genes": 20},
+        {"id": "hybrid-branching", "label": "Hybrid · branching genes", "category": "hybrid: branching", "dataset": "sim_hybrid", "n_genes": 20},
+    ]
+    cross_by_category = {row["category"]: row for row in cross_cases}
+    sim_scores = keyed(cell_simulation, ["dataset", "method"])
+    cross_level = []
+    for row in read(SIM_CELL + "results/cross_level_summary.csv"):
+        case = cross_by_category[row["category"]]
+        binding = sim_inputs[(row["dataset"], row["operational_id"])]
+        if binding["dataset_id"] != case["dataset"] or int(row["n_genes"]) != case["n_genes"]:
+            raise ValueError("Cross-level simulation case or gene scope differs")
+        record = {"case": case["id"], "dataset": case["dataset"], "method": binding["config_id"],
+                  "n_genes": int(row["n_genes"]), "source": SIM_CELL + "results/cross_level_summary.csv",
+                  **{key: numeric(row[key]) for key in ["cell_cbdir", "cell_batc", "gene_cbdir_mean", "gene_cbdir_sd", "gene_cossim_mean", "gene_cossim_sd"]}}
+        primary = sim_scores[(record["dataset"], record["method"])]
+        if any(not math.isclose(record["cell_" + key], primary[key], abs_tol=1e-12, rel_tol=0) for key in ["cbdir", "batc"]):
+            raise ValueError("Cross-level Cell scores differ from their matched simulation results")
+        cross_level.append(record)
+    if set(keyed(cross_level, ["case", "method"])) != {
+        (case["id"], row["method"]) for case in cross_cases for row in cell_simulation if row["dataset"] == case["dataset"]
+    } or len(cross_level) != 36:
+        raise ValueError("Cross-level simulation comparison requires all 36 case/method pairs")
 
     gene_rows = read(GENE)
     gene_summary_path = 'evaluation/gene/results/gene_cbdir_summary_by_dataset_method.csv'
@@ -592,11 +657,30 @@ def export_data(root=ROOT, output=None):
                    "simulation_csv": "data/files/"+ti+"figures/simulation_plotted_pairs.csv",
                    "bone_csv": "data/files/"+ti+"figures/plotted_seed_pairs.csv"},
     }
+    for relative, label in [
+        (SUMMARY + "fig7_cell_metric_summary.csv", "Cell-level overall statistics"),
+        (SUMMARY + "fig7_gene_metric_summary.csv", "Cross-task benchmark summaries"),
+        (SIM_CELL + "results/cell_metrics.csv", "Simulation Cell scores"),
+        (SIM_CELL + "results/cross_level_summary.csv", "Simulation Cell/Gene comparisons"),
+    ]:
+        entry = register_file(relative)
+        entry["download"] = "data/files/" + relative
+        downloads["tables"].append({"label": label, **entry})
+    result_assets_path = "site/content/result_assets.json"
+    result_assets = json.loads((root / result_assets_path).read_text())
+    register_file(result_assets_path, download=False)
+    for relative, checksum in result_assets["sources"].items():
+        if register_file(relative, download=False)["sha256"] != checksum:
+            raise ValueError("Overall/comparison display source changed: " + relative)
+    result_images = {entry["id"]: media_asset(entry["path"], entry["sha256"]) for entry in result_assets["images"]}
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
                "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "kinetics": kinetics, "kinetics_summary": summary,
                "kinetics_common_membership": common_membership, "kinetics_method_order": kinetics_order,
                "kinetics_colors": kinetics_colors,
+               "cell_simulation": cell_simulation, "cell_summary": cell_summary,
+               "overall_summary": overall_summary, "cross_cases": cross_cases, "cross_level": cross_level,
+               "result_images": result_images,
                "kinetics_expanded_scope": {"sceu_rpe1": len(universe["rpe1"]), "sceu_organoid": len(universe["organoid"])},
                "artifacts": artifacts, 'h5ad': h5ad, "sources": sources}
     for source in sources:

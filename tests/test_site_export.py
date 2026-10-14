@@ -216,7 +216,7 @@ class SiteExportTests(unittest.TestCase):
         tables = self.payload['downloads']['tables']
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
-        self.assertEqual(len(tables), 9)
+        self.assertEqual(len(tables), 13)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
         self.assertEqual(len(metadata), 5)
@@ -424,6 +424,54 @@ class SiteExportTests(unittest.TestCase):
             self.assertTrue(all(len(s['y']) == 200 for s in tsvelo))
             self.assertEqual(sum(len({v for v in s['y'] if v is not None}) == 1 for s in tsvelo), 17)
 
+
+    def test_cell_overall_statistics_are_unshifted_committed_values(self):
+        path = ROOT / EXPORT.SUMMARY / 'fig7_cell_metric_summary.csv'
+        actual = EXPORT.keyed(self.payload['cell_summary'], ['method', 'metric'])
+        self.assertEqual(len(actual), 100)
+        with path.open() as handle:
+            for source in csv.DictReader(handle):
+                row = actual[(source['config_id'], source['metric'])]
+                self.assertEqual(row['n_datasets'], 14)
+                for key in ['mean', 'median', 'sample_sd', 'q1', 'q3', 'iqr']:
+                    self.assertEqual(row[key], float(source[key]))
+                self.assertNotIn('mean_plus_1', row)
+        summary = self.payload['overall_summary']
+        self.assertEqual(len(summary), 34)
+        self.assertTrue(any(r['method']=='dynamo_labelled' for r in summary))
+        self.assertFalse(any(r['method']=='C07' for r in summary))
+
+    def test_simulation_cell_stays_separate_and_preserves_frozen_scores(self):
+        self.assertEqual(len(self.payload['cell']), 280)
+        self.assertFalse(any(r['dataset'].startswith('sim_') for r in self.payload['cell']))
+        actual = EXPORT.keyed(self.payload['cell_simulation'], ['dataset','method'])
+        self.assertEqual(len(actual), 27)
+        with (ROOT / EXPORT.SIM_CELL / 'inputs.tsv').open() as handle:
+            bindings = EXPORT.keyed(list(csv.DictReader(handle, delimiter='\t')), ['evaluation_dataset','operational_id'])
+        with (ROOT / EXPORT.SIM_CELL / 'results/cell_metrics.csv').open() as handle:
+            for source in csv.DictReader(handle):
+                binding = bindings[(source['dataset'],source['method'])]
+                row = actual[(binding['dataset_id'],binding['config_id'])]
+                for key in ['consistency','iccoh','cbdir','transcosine','batc']:
+                    self.assertEqual(row[key], float(source[key]))
+        self.assertEqual(len(self.payload['streams']), 280)
+
+    def test_cross_level_rows_preserve_pairing_gene_sd_and_hybrid_scope(self):
+        actual = EXPORT.keyed(self.payload['cross_level'], ['case','method'])
+        self.assertEqual(len(actual), 36)
+        categories = {r['category']:r['id'] for r in self.payload['cross_cases']}
+        with (ROOT / EXPORT.SIM_CELL / 'inputs.tsv').open() as handle:
+            bindings = EXPORT.keyed(list(csv.DictReader(handle, delimiter='\t')), ['evaluation_dataset','operational_id'])
+        with (ROOT / EXPORT.SIM_CELL / 'results/cross_level_summary.csv').open() as handle:
+            for source in csv.DictReader(handle):
+                method = bindings[(source['dataset'],source['operational_id'])]['config_id']
+                row = actual[(categories[source['category']],method)]
+                for key in ['cell_cbdir','cell_batc','gene_cbdir_mean','gene_cbdir_sd','gene_cossim_mean','gene_cossim_sd']:
+                    self.assertEqual(row[key],float(source[key]))
+                self.assertEqual(row['n_genes'],int(source['n_genes']))
+        for method in {r['method'] for r in self.payload['cross_level']}:
+            for key in ['cell_cbdir','cell_batc']:
+                self.assertEqual(actual[('hybrid-murk',method)][key],actual[('hybrid-branching',method)][key])
 
 if __name__ == "__main__":
     unittest.main()

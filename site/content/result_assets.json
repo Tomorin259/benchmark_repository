@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "evaluation/cell/results/cell_metrics.csv": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453",
+    "evaluation/cell/plots.py": "00ba6101a82c612150761d44db859d660bb5fc55eca3a55ddd3364ea9439ff86",
+    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "0841fa02fa66b7bef3640ea518a613fb78493396100a596ace401a138497b9b6",
+    "evaluation/cell/simulation/results/cross_level_summary.csv": "a93eee8d66fc8397399fb191bec8e9e1ea79aa746d92c441009ebd6f22a44e95",
+    "figures/fig4_composite_manifest.json": "66b3eb24fac927c0b4032a23c4affde6464b7688228e61fb48847bef256e0b97"
+  },
+  "images": [
+    {
+      "id": "cell-consistency",
+      "path": "evaluation/cell/figures/fig2_cell_metric_consistency.png",
+      "sha256": "b5d7c12b5f27d49ef32a1bd0d0214397e29f6df575e387b3b91021a802371904"
+    },
+    {
+      "id": "cell-iccoh",
+      "path": "evaluation/cell/figures/fig2_cell_metric_iccoh.png",
+      "sha256": "a9e04abca5b2cb4021e886452045d237b1d6a951f3999662b9928ab3e6c6839b"
+    },
+    {
+      "id": "cell-cbdir",
+      "path": "evaluation/cell/figures/fig2_cell_metric_cbdir.png",
+      "sha256": "0a73ef7e5939822f5c495706af8fb6dcc474d4c5e25fbdbf7538b2fc4840dcee"
+    },
+    {
+      "id": "cell-transcosine",
+      "path": "evaluation/cell/figures/fig2_cell_metric_transcosine.png",
+      "sha256": "8d7f21ebf0b430a6231a06f612854dd05758768e6b9378e83defdeb0fe81b413"
+    },
+    {
+      "id": "cell-batc",
+      "path": "evaluation/cell/figures/fig2_cell_metric_batc.png",
+      "sha256": "c4e985b5a77216319b7f358dae3f39f3412eba3adcfbed0f95fca6cba89ca265"
+    },
+    {
+      "id": "simulation-cross-level",
+      "path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
+      "sha256": "035eeb9fe11523d6ccdd5cbceefea0917459ab1508f67aa5da3164219b620d67"
+    }
+  ]
+}

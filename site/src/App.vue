@@ -17,11 +17,13 @@ const number = value => Number(value).toLocaleString('en-US')
 const rate = name => ({alpha:'α · Transcription',beta:'β · Splicing',gamma:'γ · Degradation'}[name])
 const methodInput = m => ['C09','C13'].includes(m.config_id) ? 'Raw unspliced and spliced counts' : m.config_id === 'C10' ? 'Total RNA expression; native TFvelo processing' : m.config_id==='C18' ? 'Existing scVelo velocity estimates' : ['C19','C20'].includes(m.config_id) ? 'Upstream method velocity estimates' : 'Unspliced and spliced RNA'
 const taskNames = {cell:'Cell',gene:'Gene',kinetics:'Kinetics'}
-const taskKeys = (id, field) => Object.keys(taskNames).filter(key => data.value[key].some(r => r[field] === id))
+const taskKeys = (id, field) => Object.keys(taskNames).filter(key => (key==='cell'?[...data.value.cell,...data.value.cell_simulation]:data.value[key]).some(r => r[field] === id))
 const parameterScores = id => [...new Set(data.value.kinetics.filter(r=>r.method===id).map(r=>r.parameter))].map(rate).join(' · ')
 const diagnostic = id => Object.keys(data.value.diagnostics).find(key=>data.value.diagnostics[key].method===id)
 const downloads = computed(() => [
-  ['Cell-level results',data.value.downloads.tables.filter(s=>s.path.includes('/cell/'))],
+  ['Benchmark summaries',data.value.downloads.tables.filter(s=>s.path.includes('/summary/'))],
+  ['Cell-level results',data.value.downloads.tables.filter(s=>s.path.includes('/cell/')&&!s.path.endsWith('/cross_level_summary.csv'))],
+  ['Cross-level comparisons',data.value.downloads.tables.filter(s=>s.path.endsWith('/cross_level_summary.csv'))],
   ['Gene-level results',data.value.downloads.tables.filter(s=>s.path.includes('/gene/'))],
   ['Kinetic-parameter recovery',data.value.downloads.tables.filter(s=>s.path.includes('/kinetics_recovery/'))],
   ['Method-specific analyses',data.value.downloads.analyses],
@@ -66,6 +68,7 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
     <template v-else>
       <template v-if="page==='home'">
         <section class="overview-header"><h1>RNA velocity benchmarking</h1><p>20 method configurations · 14 real datasets · 3 simulations</p></section>
+        <div class="guide-links overview-links"><a href="#results?level=overall">Benchmark summary →</a><a href="#results?level=cross">Cell / Gene comparisons →</a></div>
         <section class="cards overview-results" aria-label="Evaluation tasks"><a v-for="task in data.content.scope.tasks" :key="task.id" class="question-card" :href="`#results?level=${task.id}`"><h2>{{task.label}}</h2><p>{{task.object}}</p><span class="text-link">Explore results →</span></a></section>
         <section class="framework panel"><h2>Benchmarking framework</h2><img :src="'./overview.png'" alt="RNA velocity benchmarking framework" loading="lazy"></section>
       </template>

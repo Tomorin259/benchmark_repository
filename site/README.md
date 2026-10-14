@@ -211,3 +211,18 @@ Model/dataset facts and metric terms stay in `content/website_content.json`;
 `content/README.md` explains their authority. The build records the historical
 visual materialization commit separately from its validation commit. Source
 and display hashes must continue to match; final paper figure mapping is separate.
+
+## Overall and cross-level browsing
+
+All real datasets reads the committed 100-row Cell summary, with means,
+medians, quartiles and 14 equal-weight datasets. Overall also reads the
+committed Gene/Kinetics summaries. Native-chart mean-plus-one values are
+never website scores. Simulation Cell remains a separate 27-row projection;
+Cross-level reads the 36 committed case/method rows, preserving gene-wise
+SD and the hybrid subsets shared Cell scores. Simulation scores do not
+enter the real-data summary or imply independent streamline assets.
+
+The Ensemble constituent comparison reads the four canonical Cell rows
+and two Ensemble rows for the selected dataset, without adding ranks or
+configurations. content/result_assets.json pins existing distribution
+and comparison images and their sources, without assigning paper panels.
