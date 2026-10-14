@@ -46,10 +46,13 @@ The assembly map and hashes reference the 17 current Figure 6 source panels.
 formal composite is `../../figures/figSix.pdf`, with source-panel and PDF
 checksums in `../../figures/fig6_composite_manifest.json`.
 Source-panel replacements do not regenerate the composite PDF; the composite
-manifest records pending panels until a new exported PDF is validated. The former
-kinetics Figure 5 paths and composite are archived under `archive/fig5/`
-and `../../figures/archive/kinetics/`, respectively. They are not active
-aliases: manuscript Figure 5 now denotes the gene-level evaluation.
+manifest records pending panels until a new exported PDF is validated. The full
+historical kinetics Figure 5 panel bundle is retained at
+[`archive/fig5/` in Git revision `bed37b629dbc966109c8cb92dd22aca0810caf2f`](https://github.com/Tomorin259/benchmark_repository/tree/bed37b629dbc966109c8cb92dd22aca0810caf2f/evaluation/kinetics_recovery/archive/fig5).
+The working-tree archive retains unique historical panels, renderer/config
+files, and manual provenance; byte-identical Figure 6 copies are omitted.
+The historical composite remains under `../../figures/archive/kinetics/`.
+These are not active aliases: manuscript Figure 5 denotes gene-level evaluation.
 `results/final_seed123/` remains historical input provenance; the current
 evaluation and figures use `results/central_results/`.
 The pre-alignment numerical baseline is available at Git revision
@@ -256,7 +259,20 @@ python evaluation/kinetics_recovery/metrics.py --artifact-root /path/to/kinetics
 python evaluation/kinetics_recovery/plotting/figure6.py --artifact-root /path/to/fresh-kinetics-output --output /path/to/fresh-quantitative-output
 python evaluation/kinetics_recovery/plotting/streams.py --artifact-root /path/to/velocity-root --panel rpe1 --output /path/to/fresh-rpe1-streams
 python evaluation/kinetics_recovery/plotting/streams.py --artifact-root /path/to/velocity-root --panel organoid --output /path/to/fresh-organoid-streams
-python evaluation/kinetics_recovery/plotting/compare_figure6.py --old evaluation/kinetics_recovery/archive/fig5/panels --new evaluation/kinetics_recovery/figures/fig6 --output /path/to/fresh-comparison
+~~~
+
+For an archived/current comparison, first materialize the complete historical
+bundle into a separate directory. The compact working-tree archive is not a
+complete comparison input. Run from the repository root:
+
+~~~bash
+mkdir -p /path/to/historical-kinetics
+git archive bed37b629dbc966109c8cb92dd22aca0810caf2f evaluation/kinetics_recovery/archive/fig5 \
+  | tar -x -C /path/to/historical-kinetics
+python evaluation/kinetics_recovery/plotting/compare_figure6.py \
+  --old /path/to/historical-kinetics/evaluation/kinetics_recovery/archive/fig5/panels \
+  --new evaluation/kinetics_recovery/figures/fig6 \
+  --output /path/to/fresh-comparison
 ~~~
 
 Use the software versions recorded in the `results/central_results/manifest.json`. The quantitative

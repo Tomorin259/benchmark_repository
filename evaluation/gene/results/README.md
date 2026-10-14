@@ -26,9 +26,15 @@ recalculation. The additional edge, neighbor, and comparison columns are
 retained for supplementary inspection; manuscript summaries use the CBDir
 columns.
 
-The simulation Figure 3D source table is
-simulation/gene_cbdir_cossim_reference.csv. It contains the 630 rows from
-the three upstream results_new/score_rerun_results.txt files
-(branching: 180, murk: 90, all: 360), with columns Dataset, Gene,
-Method_raw, Method, CBDir, and CosSim. The source files remain external
-artifacts and are recorded in the gene figure assembly manifest.
+`simulation/gene_cbdir_cossim_reference.csv` supplies simulation CosSim
+and retains the historical CBDir values. Its 630 rows come from the three
+upstream `results_new/score_rerun_results.txt` files (branching: 180,
+murk: 90, all: 360), with columns Dataset, Gene, Method_raw, Method, CBDir,
+and CosSim. These external sources are recorded in the
+[gene panel manifest](../figures/panels/assembly_manifest.tsv).
+
+Current Figure 4D uses `new_cbdir` from `gene_cbdir_reference30_all.csv`
+for CBDir-gene and CosSim from the compact simulation table, paired with
+cell-level CBDir and BATC. The final panel and its
+`results/cross_level_summary.csv` are owned by
+the [Cell simulation module](../../cell/simulation/README.md).

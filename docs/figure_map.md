@@ -59,8 +59,11 @@ scEU-seq kinetic-parameter recovery evaluation, with active source panels in
 and A/E streams are mapped in the assembly manifest; E includes the
 Dynamo(label data) positive-control stream. The current Figure 6 composite
 and its checksums are `figures/figSix.pdf` and
-`figures/fig6_composite_manifest.json`. The historical kinetics `fig5`
-paths are preserved only under `evaluation/kinetics_recovery/archive/fig5/`.
+`figures/fig6_composite_manifest.json`. Unique historical kinetics `fig5`
+panels and provenance remain under `evaluation/kinetics_recovery/archive/fig5/`.
+The complete historical bundle, including exact copies omitted from the working
+tree, is available at
+[Git revision `bed37b629dbc966109c8cb92dd22aca0810caf2f`](https://github.com/Tomorin259/benchmark_repository/tree/bed37b629dbc966109c8cb92dd22aca0810caf2f/evaluation/kinetics_recovery/archive/fig5).
 Method-colored Figure 6F boxplots inherit the benchmark palette from
 `evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
 high-contrast exception; Figure 6A/E stream colors encode cell clusters.
