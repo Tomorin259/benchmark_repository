@@ -226,3 +226,20 @@ The Ensemble constituent comparison reads the four canonical Cell rows
 and two Ensemble rows for the selected dataset, without adding ranks or
 configurations. content/result_assets.json pins existing distribution
 and comparison images and their sources, without assigning paper panels.
+
+Cross-level also provides the three registered real-data selected-edge
+case images. Their Gene/Cell links return to the full-dataset results; these
+ordinary scores are not relabelled as scores for the selected edge.
+
+Kinetics Analysis includes Turnover strategy for RPE1 and Velocity fields
+for both systems. Strategy labels come from the exact per-gene memberships;
+all three class counts must match those sets. Macro-F1 follows the owning
+module formula on the fixed 250-gene universe and does not change when
+visitors search genes. The four original classification CSVs are copied
+byte-for-byte into curated downloads.
+
+The ten velocity-field images retain their registered Figure 6 sources,
+including labelled Dynamo and the kinetics-specific DeepVelo output role.
+They are distinct from canonical Cell previews and carry no borrowed Cell
+scores. The site never recomputes their embeddings or velocity fields.
+Image hashes and the current assembly rows must agree before export.

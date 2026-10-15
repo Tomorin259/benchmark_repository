@@ -672,7 +672,91 @@ def export_data(root=ROOT, output=None):
     for relative, checksum in result_assets["sources"].items():
         if register_file(relative, download=False)["sha256"] != checksum:
             raise ValueError("Overall/comparison display source changed: " + relative)
+    assembly = read("figures/assembly/assembly_manifest.tsv", download=False)
+    for image in result_assets["images"]:
+        if "figure" in image:
+            matches = [row for row in assembly if (row["figure"], row["panel"], row["source_path"]) ==
+                       (image["figure"], image["panel"], image["path"])]
+            if len(matches) != 1 or matches[0]["sha256"] != image["sha256"]:
+                raise ValueError("Case/kinetics image differs from its registered source: " + image["path"])
     result_images = {entry["id"]: media_asset(entry["path"], entry["sha256"]) for entry in result_assets["images"]}
+
+    real_cases = []
+    for case in result_assets["real_cases"]:
+        by_dataset[case["dataset"]]
+        if len(case["transition"]) != 2 or not any(r["dataset"] == case["dataset"] and r["gene"] == case["gene"] for r in gene):
+            raise ValueError("Real case is not bound to an evaluated dataset/gene")
+        real_cases.append({**case, "image": result_images[case["image"]]})
+    keyed(real_cases, ["id"])
+
+    kinetics_streams = []
+    for entry in result_assets["kinetic_streams"]:
+        by_dataset[entry["dataset"]]
+        if entry["method"] not in kinetics_order:
+            raise ValueError("Kinetic field method is not a registered recovery identity")
+        kinetics_streams.append({"dataset": entry["dataset"], "method": entry["method"],
+                                 "image": result_images[entry["image"]]})
+    if set(keyed(kinetics_streams, ["dataset", "method"])) != {
+        (dataset, method) for dataset in ["sceu_rpe1", "sceu_organoid"] for method in kinetics_order
+    }:
+        raise ValueError("Kinetic velocity fields must cover both systems and all five input roles")
+
+    # Recover the existing three-class labels and F1 from their committed sets.
+    classes = ["Cooperative", "Neutral", "Destabilizing"]
+    strategy_methods = []
+    strategy_reference = None
+    strategy_predictions = {}
+    for binding in result_assets["strategy"]:
+        method = binding["method"]
+        method_name = by_method[method]["manuscript_name"]
+        counts = keyed(read(binding["counts"], download=False), ["Class"])
+        members = read(binding["membership"], download=False)
+        keyed(members, ["Class", "Gene"])
+        if set(key[0] for key in counts) != set(classes):
+            raise ValueError("Turnover strategy requires all three classes")
+        reference, predicted = {}, {}
+        for row in members:
+            if row["Class"] not in classes or row["scEU"] not in ["True", "False"] or row[method_name] not in ["True", "False"]:
+                raise ValueError("Invalid strategy class or membership flag")
+            if row["scEU"] == row[method_name] == "False":
+                raise ValueError("Strategy membership row has no set member")
+            for column, labels in [("scEU", reference), (method_name, predicted)]:
+                if row[column] == "True":
+                    if row["Gene"] in labels:
+                        raise ValueError("Strategy gene has multiple assigned classes")
+                    labels[row["Gene"]] = row["Class"]
+        if set(reference) != set(predicted) or len(reference) != 250:
+            raise ValueError("Strategy classification requires the same 250 paired genes")
+        if strategy_reference is not None and reference != strategy_reference:
+            raise ValueError("Strategy methods disagree on reference classes or gene universe")
+        strategy_reference = reference
+        strategy_predictions[method] = predicted
+        class_counts = []
+        for category in classes:
+            row = counts[(category,)]
+            observed = {
+                "reference_only": sum(reference[g] == category and predicted[g] != category for g in reference),
+                "prediction_only": sum(predicted[g] == category and reference[g] != category for g in reference),
+                "intersection": sum(reference[g] == predicted[g] == category for g in reference),
+            }
+            if observed != {"reference_only": int(row["scEU_only"]), "prediction_only": int(row[method_name + "_only"]),
+                            "intersection": int(row["intersection"])}:
+                raise ValueError("Strategy class counts differ from their exact memberships")
+            denominator = 2 * observed["intersection"] + observed["reference_only"] + observed["prediction_only"]
+            class_counts.append({"class": category, **observed, "f1": 2 * observed["intersection"] / denominator if denominator else 0.0})
+        strategy_methods.append({"method": method, "image": result_images[binding["image"]],
+                                 "counts": class_counts, "macro_f1": sum(row["f1"] for row in class_counts) / len(classes)})
+        for field, label in [("counts", "class counts"), ("membership", "class membership")]:
+            entry = register_file(binding[field], download=False)
+            entry["download"] = "data/files/" + binding[field]
+            downloads["tables"].append({"label": "RPE1 " + method_name + " strategy " + label, **entry})
+    if set(strategy_predictions) != {"C15", "C16"}:
+        raise ValueError("Turnover strategy requires cellDancer and DeepVelo")
+    kinetics_strategy = {"dataset": "sceu_rpe1", "n_genes": len(strategy_reference), "classes": classes,
+                         "methods": strategy_methods,
+                         "genes": [{"gene": gene, "reference": strategy_reference[gene],
+                                    "predictions": {method: labels[gene] for method, labels in strategy_predictions.items()}}
+                                   for gene in sorted(strategy_reference)]}
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
                "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "kinetics": kinetics, "kinetics_summary": summary,
@@ -681,6 +765,7 @@ def export_data(root=ROOT, output=None):
                "cell_simulation": cell_simulation, "cell_summary": cell_summary,
                "overall_summary": overall_summary, "cross_cases": cross_cases, "cross_level": cross_level,
                "result_images": result_images,
+               "real_cases": real_cases, "kinetics_streams": kinetics_streams, "kinetics_strategy": kinetics_strategy,
                "kinetics_expanded_scope": {"sceu_rpe1": len(universe["rpe1"]), "sceu_organoid": len(universe["organoid"])},
                "artifacts": artifacts, 'h5ad': h5ad, "sources": sources}
     for source in sources:

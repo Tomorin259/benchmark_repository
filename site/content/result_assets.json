@@ -5,7 +5,11 @@
     "evaluation/cell/plots.py": "00ba6101a82c612150761d44db859d660bb5fc55eca3a55ddd3364ea9439ff86",
     "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "0841fa02fa66b7bef3640ea518a613fb78493396100a596ace401a138497b9b6",
     "evaluation/cell/simulation/results/cross_level_summary.csv": "a93eee8d66fc8397399fb191bec8e9e1ea79aa746d92c441009ebd6f22a44e95",
-    "figures/fig4_composite_manifest.json": "66b3eb24fac927c0b4032a23c4affde6464b7688228e61fb48847bef256e0b97"
+    "figures/fig4_composite_manifest.json": "66b3eb24fac927c0b4032a23c4affde6464b7688228e61fb48847bef256e0b97",
+    "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
+    "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
+    "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
+    "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_class_membership.csv": "9e8e93d8cddbb1eac2aded9875f0db6b2a6464f72e1a7e4d0eef44467770ef5c"
   },
   "images": [
     {
@@ -37,6 +41,209 @@
       "id": "simulation-cross-level",
       "path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
       "sha256": "035eeb9fe11523d6ccdd5cbceefea0917459ab1508f67aa5da3164219b620d67"
+    },
+    {
+      "id": "case-fam111a-g1-s",
+      "path": "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.png",
+      "sha256": "ddb533a5defe49364cd9ead1635edca35c5c518ce2465e7642491d54823ee3ee",
+      "figure": "fig3",
+      "panel": "A"
+    },
+    {
+      "id": "case-ncald-immgranule",
+      "path": "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png",
+      "sha256": "761ae9ee57e9a613e7303086417013e3125e0189c6e1cf86f0342fefe2c1b04e",
+      "figure": "fig3",
+      "panel": "B"
+    },
+    {
+      "id": "case-fech-erythroid",
+      "path": "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png",
+      "sha256": "f8d6cf44e1217eb5d0dda31dda208a0e37f5f6d50cccb9c545cb665f769c6259",
+      "figure": "fig3",
+      "panel": "C"
+    },
+    {
+      "id": "kinetics-rpe1-C15",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/celldancer.png",
+      "sha256": "27cfc2c85f47fbed91f24d2125f9fa0248add8ed2343a9e90dacac3e1c97ce18",
+      "figure": "fig6",
+      "panel": "A"
+    },
+    {
+      "id": "kinetics-rpe1-C16",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/deepvelo.png",
+      "sha256": "ac5de515944498c89e28d74ad87a8522902b10c60d8cb1793621d058781edf48",
+      "figure": "fig6",
+      "panel": "A"
+    },
+    {
+      "id": "kinetics-rpe1-C13",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/deepkinet.png",
+      "sha256": "c04564022d29b08ddef6fc3fbb2a1045a61c50285ad993f4a95b78cf79995555",
+      "figure": "fig6",
+      "panel": "A"
+    },
+    {
+      "id": "kinetics-rpe1-C14",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/tsvelo.png",
+      "sha256": "e8c355920275030ef6356606554e73c24a8ee0f2174d488d12fe35e6fd14280b",
+      "figure": "fig6",
+      "panel": "A"
+    },
+    {
+      "id": "kinetics-rpe1-dynamo_labelled",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png",
+      "sha256": "92a391394fcfbe3f7ae6c998b9d32215962d7b19230648f7f3bd685a7cd11ee7",
+      "figure": "fig6",
+      "panel": "A"
+    },
+    {
+      "id": "kinetics-organoid-C15",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/celldancer_organoid_stream_title_removed.png",
+      "sha256": "44cf89552308800a9df0eba9306a7b0be08d081025ad8501861ded7fc9d8aab9",
+      "figure": "fig6",
+      "panel": "E"
+    },
+    {
+      "id": "kinetics-organoid-C16",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/deepvelo_organoid_stream_title_removed.png",
+      "sha256": "6dfd85e0180af03b17cb3358adcccfd167c69bd6773670240994c4d2556a5de3",
+      "figure": "fig6",
+      "panel": "E"
+    },
+    {
+      "id": "kinetics-organoid-C13",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/DeepKINET_organoid_stream_title_removed.png",
+      "sha256": "76bea19242a18595a6d880102644942ca9e21db5833299dce02d53923cf1e862",
+      "figure": "fig6",
+      "panel": "E"
+    },
+    {
+      "id": "kinetics-organoid-C14",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.png",
+      "sha256": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46",
+      "figure": "fig6",
+      "panel": "E"
+    },
+    {
+      "id": "kinetics-organoid-dynamo_labelled",
+      "path": "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/dynamo_organoid_stream_title_removed.png",
+      "sha256": "090d34813efa8f2975477033434559c5ee18011f5dd5c37d80ef28ba214273ad",
+      "figure": "fig6",
+      "panel": "E"
+    },
+    {
+      "id": "strategy-C15",
+      "path": "evaluation/kinetics_recovery/figures/fig6/rpe1_celldancer_kinetic_classes.png",
+      "sha256": "33a859b6e7fb91311fe7e6697596b30eb94e12019db2f02bb0eda49844aa5f92",
+      "figure": "fig6",
+      "panel": "D"
+    },
+    {
+      "id": "strategy-C16",
+      "path": "evaluation/kinetics_recovery/figures/fig6/rpe1_deepvelo_kinetic_classes.png",
+      "sha256": "3474b9a8457241cf15a3a673bf13304038b0f311d32a75d7b37616855730e2bd",
+      "figure": "fig6",
+      "panel": "D"
+    }
+  ],
+  "real_cases": [
+    {
+      "id": "fam111a-g1-s",
+      "dataset": "capo_pre",
+      "gene": "FAM111A",
+      "transition": [
+        "G1",
+        "S"
+      ],
+      "image": "case-fam111a-g1-s"
+    },
+    {
+      "id": "ncald-immgranule",
+      "dataset": "dentategyrus_lamanno",
+      "gene": "Ncald",
+      "transition": [
+        "ImmGranule1",
+        "ImmGranule2"
+      ],
+      "image": "case-ncald-immgranule"
+    },
+    {
+      "id": "fech-erythroid",
+      "dataset": "gastrulation",
+      "gene": "Fech",
+      "transition": [
+        "Erythroid2",
+        "Erythroid3"
+      ],
+      "image": "case-fech-erythroid"
+    }
+  ],
+  "kinetic_streams": [
+    {
+      "dataset": "sceu_rpe1",
+      "method": "C15",
+      "image": "kinetics-rpe1-C15"
+    },
+    {
+      "dataset": "sceu_rpe1",
+      "method": "C16",
+      "image": "kinetics-rpe1-C16"
+    },
+    {
+      "dataset": "sceu_rpe1",
+      "method": "C13",
+      "image": "kinetics-rpe1-C13"
+    },
+    {
+      "dataset": "sceu_rpe1",
+      "method": "C14",
+      "image": "kinetics-rpe1-C14"
+    },
+    {
+      "dataset": "sceu_rpe1",
+      "method": "dynamo_labelled",
+      "image": "kinetics-rpe1-dynamo_labelled"
+    },
+    {
+      "dataset": "sceu_organoid",
+      "method": "C15",
+      "image": "kinetics-organoid-C15"
+    },
+    {
+      "dataset": "sceu_organoid",
+      "method": "C16",
+      "image": "kinetics-organoid-C16"
+    },
+    {
+      "dataset": "sceu_organoid",
+      "method": "C13",
+      "image": "kinetics-organoid-C13"
+    },
+    {
+      "dataset": "sceu_organoid",
+      "method": "C14",
+      "image": "kinetics-organoid-C14"
+    },
+    {
+      "dataset": "sceu_organoid",
+      "method": "dynamo_labelled",
+      "image": "kinetics-organoid-dynamo_labelled"
+    }
+  ],
+  "strategy": [
+    {
+      "method": "C15",
+      "image": "strategy-C15",
+      "counts": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv",
+      "membership": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_class_membership.csv"
+    },
+    {
+      "method": "C16",
+      "image": "strategy-C16",
+      "counts": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv",
+      "membership": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_class_membership.csv"
     }
   ]
 }

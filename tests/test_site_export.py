@@ -216,7 +216,7 @@ class SiteExportTests(unittest.TestCase):
         tables = self.payload['downloads']['tables']
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
-        self.assertEqual(len(tables), 13)
+        self.assertEqual(len(tables), 17)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
         self.assertEqual(len(metadata), 5)
@@ -472,6 +472,59 @@ class SiteExportTests(unittest.TestCase):
         for method in {r['method'] for r in self.payload['cross_level']}:
             for key in ['cell_cbdir','cell_batc']:
                 self.assertEqual(actual[('hybrid-murk',method)][key],actual[('hybrid-branching',method)][key])
+
+    def test_real_cases_keep_registered_edge_images_and_gene_scope(self):
+        cases = self.payload['real_cases']
+        self.assertEqual(len(cases), 3)
+        self.assertEqual({(c['dataset'],c['gene'],tuple(c['transition'])) for c in cases}, {
+            ('capo_pre','FAM111A',('G1','S')),
+            ('dentategyrus_lamanno','Ncald',('ImmGranule1','ImmGranule2')),
+            ('gastrulation','Fech',('Erythroid2','Erythroid3')),
+        })
+        with (ROOT / 'figures/assembly/assembly_manifest.tsv').open() as handle:
+            assembly = {r['source_path']:r for r in csv.DictReader(handle,delimiter='\t') if r['figure']=='fig3'}
+        for case in cases:
+            image = case['image']
+            self.assertEqual(image['sha256'],assembly[image['source']]['sha256'])
+            self.assertEqual((self.output / image['path'].removeprefix('data/')).read_bytes(),(ROOT / image['source']).read_bytes())
+        self.assertEqual(len(self.payload['cross_level']),36)
+        self.assertEqual(len(self.payload['cross_cases']),4)
+
+    def test_kinetic_fields_use_their_own_images_and_labelled_identity(self):
+        rows = self.payload['kinetics_streams']
+        self.assertEqual(len(rows),10)
+        self.assertEqual({(r['dataset'],r['method']) for r in rows},{
+            (dataset,method) for dataset in ['sceu_rpe1','sceu_organoid']
+            for method in ['C13','C14','C15','C16','dynamo_labelled']})
+        with (ROOT / 'figures/assembly/assembly_manifest.tsv').open() as handle:
+            assembly = {r['source_path']:r for r in csv.DictReader(handle,delimiter='\t') if r['figure']=='fig6' and r['panel'] in ['A','E']}
+        for row in rows:
+            image = row['image']
+            self.assertEqual(image['sha256'],assembly[image['source']]['sha256'])
+            self.assertEqual((self.output / image['path'].removeprefix('data/')).read_bytes(),(ROOT / image['source']).read_bytes())
+            self.assertNotIn('cbdir',row)
+        self.assertFalse(any(r['method']=='C07' for r in rows))
+
+    def test_strategy_labels_and_macro_f1_preserve_committed_class_sets(self):
+        actual = self.payload['kinetics_strategy']
+        self.assertEqual(actual['n_genes'],250)
+        self.assertEqual(len(actual['genes']),250)
+        genes = {r['gene']:r for r in actual['genes']}
+        for method,stem,name in [('C15','celldancer','cellDancer'),('C16','deepvelo','DeepVelo')]:
+            with (ROOT / EXPORT.PLOT / ('rpe1_'+stem+'_kinetic_class_membership.csv')).open() as handle:
+                members = list(csv.DictReader(handle))
+            reference = {r['Gene']:r['Class'] for r in members if r['scEU']=='True'}
+            predicted = {r['Gene']:r['Class'] for r in members if r[name]=='True'}
+            self.assertEqual(set(reference),set(genes))
+            for gene in genes:
+                self.assertEqual(genes[gene]['reference'],reference[gene])
+                self.assertEqual(genes[gene]['predictions'][method],predicted[gene])
+            with (ROOT / EXPORT.PLOT / ('rpe1_'+stem+'_kinetic_classes.csv')).open() as handle:
+                counts = list(csv.DictReader(handle))
+            expected = sum(2*int(r['intersection'])/(2*int(r['intersection'])+int(r['scEU_only'])+int(r[name+'_only'])) for r in counts)/3
+            projected = next(r for r in actual['methods'] if r['method']==method)
+            self.assertAlmostEqual(projected['macro_f1'],expected,places=14)
+            self.assertEqual({r['class'] for r in projected['counts']},set(actual['classes']))
 
 if __name__ == "__main__":
     unittest.main()

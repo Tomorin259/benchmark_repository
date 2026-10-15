@@ -3,6 +3,8 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import GeneVisual from './GeneVisual.vue'
 import OverallResults from './OverallResults.vue'
 import CrossLevel from './CrossLevel.vue'
+import StrategyResults from './StrategyResults.vue'
+import KineticsStreams from './KineticsStreams.vue'
 
 const props = defineProps({ data:Object, initialLevel:{type:String,default:'cell'} })
 const levels=['overall','cell','gene','kinetics','cross']
@@ -15,8 +17,15 @@ const streamMethods=ref([]), compareOpen=ref(false), enlarged=ref(null), dialog=
 const summaryTask=ref('cell'), summaryStatistic=ref('mean'), summaryView=ref('table'), crossCase=ref(props.data.cross_cases[0].id)
 const allReal=computed(()=>mode.value==='cell'&&dataset.value==='__all_real__')
 const standard=computed(()=>['cell','gene','kinetics'].includes(mode.value))
+const specialKinetics=computed(()=>mode.value==='kinetics'&&['strategy','streams'].includes(scope.value))
+const strategyQuery=ref(''), strategyClass=ref(''), kineticMethods=ref([]), kineticCompareOpen=ref(false)
 const names=Object.fromEntries(props.data.methods.map(m=>[m.config_id,m.manuscript_name]))
 names.dynamo_labelled='Dynamo (scEU-seq)'
+const kineticChoices=computed(()=>props.data.kinetics_streams.filter(r=>r.dataset===dataset.value).sort((a,b)=>props.data.kinetics_method_order.indexOf(a.method)-props.data.kinetics_method_order.indexOf(b.method)))
+const kineticPreview=computed({get:()=>kineticMethods.value[0]??'',set:value=>{kineticMethods.value=[value];kineticCompareOpen.value=false}})
+const localCase=computed(()=>mode.value==='gene'?props.data.real_cases.find(c=>c.dataset===dataset.value&&c.gene===gene.value):undefined)
+watch(kineticChoices,choices=>{const valid=kineticMethods.value.filter(m=>choices.some(r=>r.method===m));kineticMethods.value=valid.length?valid:choices.slice(0,1).map(r=>r.method)},{immediate:true})
+watch([mode,dataset,scope],()=>{if(mode.value==='kinetics'&&scope.value==='strategy'&&dataset.value!=='sceu_rpe1')scope.value='full'})
 const cellMetrics=[['consistency','Consistency'],['iccoh','ICCoh'],['cbdir','CBDir'],['transcosine','TransCosine'],['batc','BATC']]
 const comparisonNames={available:'Each method’s available genes',core_conventional:'Fixed common set · core RNA methods',all_conventional:'Fixed common set · all RNA methods',all_displayed_methods:'Fixed common set · RNA methods + scEU comparator'}
 const activeMetric=computed(()=>props.data.content.metrics[mode.value].find(m=>m.key===metric.value))
@@ -79,6 +88,8 @@ function sortMetric(key){if(metric.value===key)order.value=order.value==='descen
 async function preview(id){streamMethods.value=[id];compareOpen.value=false;display.value='table';await nextTick();document.getElementById('stream-preview')?.scrollIntoView({block:'start',behavior:'smooth'})}
 function toggleCompare(id){if(streamMethods.value.includes(id)){if(streamMethods.value.length>1)streamMethods.value=streamMethods.value.filter(m=>m!==id);return}if(streamMethods.value.length<4)streamMethods.value=[...streamMethods.value,id]}
 function toggleCompareMode(){if(compareOpen.value){streamMethods.value=streamMethods.value.slice(0,1);compareOpen.value=false}else compareOpen.value=true}
+function toggleKineticCompare(){if(kineticCompareOpen.value){kineticMethods.value=kineticMethods.value.slice(0,1);kineticCompareOpen.value=false}else kineticCompareOpen.value=true}
+function toggleKineticMethod(id){if(kineticMethods.value.includes(id)){if(kineticMethods.value.length>1)kineticMethods.value=kineticMethods.value.filter(m=>m!==id)}else if(kineticMethods.value.length<4)kineticMethods.value=[...kineticMethods.value,id]}
 watch(enlarged,async value=>{await nextTick();if(value)dialog.value?.showModal()})
 watch([display,gene],async()=>{
   if(display.value!=='visual'||gene.value==='__summary__'||visualIndex.value||visualLoading.value||!props.data.visuals)return
@@ -91,6 +102,12 @@ const shareUrl=computed(()=>{
   if(mode.value==='overall')return `${location.origin}${location.pathname}#results?${new URLSearchParams({level:'overall',task:summaryTask.value,statistic:summaryStatistic.value,view:summaryView.value})}`
   if(mode.value==='cross')return `${location.origin}${location.pathname}#results?${new URLSearchParams({level:'cross',case:crossCase.value})}`
   if(allReal.value)return `${location.origin}${location.pathname}#results?${new URLSearchParams({level:'cell',dataset:'__all_real__',statistic:summaryStatistic.value,view:summaryView.value})}`
+  if(specialKinetics.value){
+    const p=new URLSearchParams({level:'kinetics',dataset:dataset.value,scope:scope.value})
+    if(scope.value==='strategy'){if(strategyQuery.value)p.set('geneSearch',strategyQuery.value);if(strategyClass.value)p.set('class',strategyClass.value)}
+    else if(kineticMethods.value.length>1)p.set('compare',kineticMethods.value.join(','));else if(kineticMethods.value[0])p.set('method',kineticMethods.value[0])
+    return `${location.origin}${location.pathname}#results?${p}`
+  }
   const p=new URLSearchParams({level:mode.value,dataset:dataset.value,metric:metric.value,order:order.value,view:display.value})
   if(mode.value!=='cell')p.set('gene',gene.value)
   if(mode.value==='kinetics'){p.set('scope',scope.value);p.set('comparison',comparison.value);p.set('branch',branch.value);p.set('parameter',parameter.value)}
@@ -107,10 +124,12 @@ onMounted(async()=>{
   if(['cell','gene','kinetics'].includes(p.get('task')))summaryTask.value=p.get('task')
   if(['mean','median'].includes(p.get('statistic')))summaryStatistic.value=p.get('statistic')
   if(['table','distribution'].includes(p.get('view')))summaryView.value=p.get('view')
-  if(props.data.cross_cases.some(c=>c.id===p.get('case')))crossCase.value=p.get('case')
+  if([...props.data.cross_cases,...props.data.real_cases].some(c=>c.id===p.get('case')))crossCase.value=p.get('case')
   if(mode.value==='cell'&&p.get('dataset')==='__all_real__')dataset.value='__all_real__'
   if(datasets.value.some(d=>d.dataset_id===p.get('dataset')))dataset.value=p.get('dataset')
-  if(['full','selected','expanded'].includes(p.get('scope')))scope.value=p.get('scope')
+  if(['full','selected','expanded','strategy','streams'].includes(p.get('scope')))scope.value=p.get('scope')
+  strategyQuery.value=p.get('geneSearch')??''
+  if(props.data.kinetics_strategy.classes.includes(p.get('class')))strategyClass.value=p.get('class')
   await nextTick();if(branches.value.includes(p.get('branch')))branch.value=p.get('branch')
   await nextTick();if(parameters.value.includes(p.get('parameter')))parameter.value=p.get('parameter')
   if(comparisonNames[p.get('comparison')])comparison.value=p.get('comparison')
@@ -125,6 +144,11 @@ onMounted(async()=>{
     const valid=requested.filter(m=>rows.value.some(r=>r.method===m)).slice(0,4)
     if(valid.length){streamMethods.value=[...new Set(valid)];compareOpen.value=streamMethods.value.length>1}
   }
+  if(mode.value==='kinetics'&&scope.value==='streams'){
+    const requested=p.has('compare')?p.get('compare').split(','):p.has('method')?[p.get('method')]:[]
+    const valid=[...new Set(requested.filter(m=>kineticChoices.value.some(r=>r.method===m)))].slice(0,4)
+    if(valid.length){kineticMethods.value=valid;kineticCompareOpen.value=valid.length>1}
+  }
   ready.value=true
   history.replaceState(null,'',shareUrl.value)
 })
@@ -137,20 +161,25 @@ onMounted(async()=>{
   <CrossLevel v-else-if="mode==='cross'" :data="data" v-model:case-id="crossCase"/>
   <div v-else-if="standard" class="explorer"><aside class="filters panel">
     <label for="dataset">{{ mode==='kinetics'?'System':'Dataset' }}</label><select id="dataset" v-model="dataset"><option v-if="mode==='cell'" value="__all_real__">All real datasets</option><template v-if="mode==='kinetics'"><option v-for="d in datasets" :key="d.dataset_id" :value="d.dataset_id">{{d.paper_name}}</option></template><template v-else><optgroup v-for="[label,simulated] in [['Real datasets',false],['Simulations',true]]" :key="label" :label="label"><option v-for="d in datasets.filter(d=>d.dataset_id.startsWith('sim_')===simulated)" :key="d.dataset_id" :value="d.dataset_id">{{d.paper_name}}</option></optgroup></template></select>
-    <template v-if="mode==='kinetics'"><label for="scope">Analysis</label><select id="scope" v-model="scope"><option value="full">Canonical benchmark scores</option><option value="selected">Selected example genes</option><option value="expanded">Extended reference-gene analysis</option></select>
+    <template v-if="mode==='kinetics'"><label for="scope">Analysis</label><select id="scope" v-model="scope"><option value="full">Canonical benchmark scores</option><option value="selected">Selected example genes</option><option value="expanded">Extended reference-gene analysis</option><option v-if="dataset==='sceu_rpe1'" value="strategy">Turnover strategy</option><option value="streams">Velocity fields</option></select>
+      <template v-if="!specialKinetics">
       <template v-if="scope==='expanded'"><label for="comparison">Gene comparison</label><select id="comparison" v-model="comparison"><option v-for="(label,key) in comparisonNames" :key="key" :value="key">{{ label }}</option></select></template>
       <template v-if="dataset==='sceu_organoid'"><label for="branch">Differentiation branch</label><select id="branch" v-model="branch"><option value="1">Branch 1 · Secretory</option><option value="2">Branch 2 · Enterocyte</option></select></template>
       <label for="parameter">Parameter</label><select id="parameter" v-model="parameter"><option v-for="p in parameters" :key="p" :value="p">{{ p==='alpha'?'α · Transcription':'γ · Degradation' }}</option></select>
+      </template>
     </template>
-    <template v-if="mode!=='cell'"><label>Evaluation object</label><div class="subject-switch"><button :disabled="!summaryAllowed" :aria-pressed="gene==='__summary__'" @click="chooseSubject('summary')">Summary</button><button :aria-pressed="gene!=='__summary__'" @click="chooseSubject('single')">Single gene</button></div><template v-if="gene!=='__summary__'"><label for="gene">Gene</label><select id="gene" v-model="gene"><option v-for="g in genes" :key="g">{{ g }}</option></select></template></template>
+    <template v-if="mode!=='cell'&&!specialKinetics"><label>Evaluation object</label><div class="subject-switch"><button :disabled="!summaryAllowed" :aria-pressed="gene==='__summary__'" @click="chooseSubject('summary')">Summary</button><button :aria-pressed="gene!=='__summary__'" @click="chooseSubject('single')">Single gene</button></div><template v-if="gene!=='__summary__'"><label for="gene">Gene</label><select id="gene" v-model="gene"><option v-for="g in genes" :key="g">{{ g }}</option></select></template></template>
+    <template v-if="mode==='kinetics'&&scope==='streams'"><label for="kinetic-preview-method">Preview method</label><select id="kinetic-preview-method" v-model="kineticPreview"><option v-for="r in kineticChoices" :key="r.method" :value="r.method">{{names[r.method]}}</option></select><button class="text-button compare-toggle" :aria-expanded="kineticCompareOpen" aria-controls="kinetic-compare-picker" @click="toggleKineticCompare">{{kineticCompareOpen?'Close comparison':'Compare methods'}}</button><fieldset v-if="kineticCompareOpen" id="kinetic-compare-picker" class="compare-picker side-compare-picker"><legend>Methods to show (up to four)</legend><label v-for="r in kineticChoices" :key="r.method"><input type="checkbox" :checked="kineticMethods.includes(r.method)" :disabled="kineticMethods.length>=4&&!kineticMethods.includes(r.method)" @change="toggleKineticMethod(r.method)">{{names[r.method]}}</label></fieldset></template>
     <template v-if="mode==='cell'&&previewChoices.length"><label for="preview-method">Preview method</label><select id="preview-method" v-model="previewMethod"><option v-for="r in previewChoices" :key="r.method" :value="r.method">{{ r.name }}</option></select><button class="text-button compare-toggle" :aria-expanded="compareOpen" aria-controls="cell-compare-picker" @click="toggleCompareMode">{{ compareOpen?'Close comparison':'Compare methods' }}</button><fieldset v-if="compareOpen" id="cell-compare-picker" class="compare-picker side-compare-picker"><legend>Methods to show (up to four)</legend><label v-for="r in previewChoices" :key="r.method"><input type="checkbox" :checked="streamMethods.includes(r.method)" :disabled="streamMethods.length>=4&&!streamMethods.includes(r.method)" @change="toggleCompare(r.method)">{{ r.name }}</label></fieldset></template>
     <template v-if="mode==='gene'"><label for="metric">Metric</label><select id="metric" v-model="metric"><option v-for="m in metrics" :key="m[0]" :value="m[0]">{{ m[1] }}</option></select></template>
-    <template v-if="mode!=='cell'"><label for="method-search">Search methods</label><input id="method-search" v-model="query" placeholder="Method name">
+    <template v-if="mode!=='cell'&&!specialKinetics"><label for="method-search">Search methods</label><input id="method-search" v-model="query" placeholder="Method name">
       <details class="method-select"><summary>Methods <span>{{ rows.length }} / {{ availableMethods.length }}</span></summary><div class="method-actions"><button @click="selected=[...availableMethods]">Select all</button><button @click="selected=[]">Clear</button></div><label v-for="m in availableMethods" :key="m" class="checkbox"><input v-model="selected" type="checkbox" :value="m">{{ names[m] }}</label></details>
     </template>
   </aside>
-  <OverallResults v-if="allReal" :data="data" cell-only v-model:statistic="summaryStatistic" v-model:view="summaryView"/>
-  <section v-else class="panel result-panel"><div class="result-heading"><div><h2>{{ datasetName }}<span v-if="mode!=='cell'&&gene!=='__summary__'"> · {{ gene }}</span></h2><div class="scope-tags"><span v-if="scopeLabel" class="tag">{{ scopeLabel }}</span><span v-if="mode==='cell'&&dataset.startsWith('sim_')" class="tag">Simulation · Matched method outputs</span><span v-if="mode==='kinetics'&&branch" class="tag">{{ branch==='1'?'Secretory':'Enterocyte' }} branch</span></div></div><a class="text-link" href="#directory">Data & methods →</a></div>
+  <StrategyResults v-if="mode==='kinetics'&&scope==='strategy'" :data="data" v-model:query="strategyQuery" v-model:reference-class="strategyClass"/>
+  <KineticsStreams v-else-if="mode==='kinetics'&&scope==='streams'" :data="data" :dataset="dataset" :methods="kineticMethods"/>
+  <OverallResults v-else-if="allReal" :data="data" cell-only v-model:statistic="summaryStatistic" v-model:view="summaryView"/>
+  <section v-else class="panel result-panel"><div class="result-heading"><div><h2>{{ datasetName }}<span v-if="mode!=='cell'&&gene!=='__summary__'"> · {{ gene }}</span></h2><div class="scope-tags"><span v-if="scopeLabel" class="tag">{{ scopeLabel }}</span><span v-if="mode==='cell'&&dataset.startsWith('sim_')" class="tag">Simulation · Matched method outputs</span><span v-if="mode==='kinetics'&&branch" class="tag">{{ branch==='1'?'Secretory':'Enterocyte' }} branch</span></div></div><div class="guide-links"><a v-if="localCase" class="text-link" :href="`#results?level=cross&case=${localCase.id}`">Local comparison →</a><a class="text-link" href="#directory">Data & methods →</a></div></div>
     <div v-if="mode!=='cell'" class="result-context"><details class="metric-help" @keydown.esc="$event.currentTarget.open=false"><summary>{{ activeMetric.label }} ⓘ</summary><p>{{ activeMetric.definition }}</p><a href="#documentation">Metric reference →</a></details><span v-if="mode==='kinetics'&&scope==='expanded'&&comparison!=='available'" class="tag" :title="'Fixed for ' + commonMethods.map(m=>names[m]).join(', ')">Fixed common genes · {{ commonGenes.length }}</span></div>
     <section v-if="mode==='cell'&&streamRows.length" id="stream-preview" class="stream-preview">
       <p v-if="dataset==='forebrain'" class="small">Display: PC1/PC2 · CBDir: 30 PCs · BATC: 2D UMAP</p>
