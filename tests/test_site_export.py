@@ -219,7 +219,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(len(tables), 17)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
-        self.assertEqual(len(metadata), 5)
+        self.assertEqual(len(metadata), 8)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
         self.assertEqual(len(analyses), 5)
@@ -229,6 +229,9 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
         self.assertEqual({r['path'] for r in metadata}, {
             'data/input_release_manifest.tsv',
+            'data/input_package_manifest.tsv',
+            'data/upstream_references.tsv',
+            'data/UPSTREAM_REFERENCES.md',
             'data/kinetics_reference_gene_usage/README.md',
             'data/kinetics_reference_gene_usage/manifest.json',
             'data/kinetics_reference_gene_usage/rpe1_reference_gene_usage.csv',
@@ -242,6 +245,21 @@ class SiteExportTests(unittest.TestCase):
         with (ROOT / 'data/release_map.tsv').open() as handle:
             h5ad_ids = {r['artifact_id'] for r in csv.DictReader(handle, delimiter='\t') if r['member_path'].endswith('.h5ad')}
         self.assertEqual({r['artifact_id'] for r in self.payload['h5ad']}, h5ad_ids)
+
+    def test_input_archives_and_upstream_sources_are_separate(self):
+        archives = self.payload['input_archives']
+        self.assertEqual(len(archives), 18)
+        members = [m for a in archives for m in a['members']]
+        self.assertEqual(len(members), 25)
+        self.assertEqual(len({m['artifact_id'] for m in members}), 25)
+        self.assertTrue(any(m['path'].endswith('.loom') for m in members))
+        usage = next(a for a in archives if a['filename'] == 'reference-gene-usage.tar.gz')
+        self.assertEqual(len(usage['members']), 2)
+        self.assertTrue(all(m['role'] == 'reference_gene_usage' for m in usage['members']))
+        references = self.payload['upstream_references']
+        self.assertEqual({r['table'] for r in references}, {'S1', 'S3', 'S4'})
+        self.assertFalse({r['artifact_id'] for r in references} & {m['artifact_id'] for m in members})
+        self.assertTrue(all(a['url'].endswith('.tar.gz?download=true') for a in archives))
 
     def test_visual_source_or_asset_drift_blocks_publication(self):
         with tempfile.TemporaryDirectory() as directory:

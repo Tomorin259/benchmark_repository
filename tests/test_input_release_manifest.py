@@ -2,6 +2,9 @@ import csv
 import hashlib
 import json
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -35,12 +38,84 @@ class InputReleaseManifestTests(unittest.TestCase):
     def test_public_inventory_has_no_private_source_path_or_unverified_url(self):
         for row in self.read_rows():
             self.assertFalse(row["source_path"] if "source_path" in row else "")
-            self.assertEqual(row["source_status"], "server_stat_sha256_verified_pending_publication")
-            self.assertEqual(row["public_storage"], "zenodo_core_pending")
-            self.assertEqual(row["public_url"], "-")
+            self.assertEqual(row["source_status"], "source_sha256_verified")
+            if row["role"] == "reference_table":
+                self.assertEqual(row["public_storage"], "upstream_only")
+                self.assertEqual(row["public_url"], "-")
+            else:
+                self.assertEqual(row["public_storage"], "huggingface_archive")
+                self.assertTrue(row["public_url"].startswith(
+                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public/resolve/v1.0.1/v1.0.1/"))
+                self.assertTrue(row["public_url"].endswith(".tar.gz?download=true"))
             self.assertFalse(re.search(r"/(?:mnt|Users|home)/|[A-Za-z]:\\", row["member_path"]))
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")
             self.assertGreater(int(row["bytes"]), 0)
+
+    def test_archive_members_match_scientific_registry_without_original_tables(self):
+        with (ROOT / 'data/input_package_manifest.tsv').open(newline='') as handle:
+            members = list(csv.DictReader(handle, delimiter='\t'))
+        with (ROOT / 'artifacts.tsv').open(newline='') as handle:
+            registry = {r['artifact_id']: r for r in csv.DictReader(handle, delimiter='\t')}
+        inputs = {r['artifact_id']: r for r in self.read_rows()}
+        self.assertEqual(len(members), 25)
+        self.assertEqual(len({r['archive'] for r in members}), 18)
+        self.assertEqual({r['artifact_id'] for r in members}, {
+            r['artifact_id'] for r in inputs.values() if r['role'] != 'reference_table'})
+        archive_metadata = {}
+        for member in members:
+            source = inputs[member['artifact_id']]
+            self.assertEqual(member['member_sha256'], source['sha256'])
+            self.assertEqual(member['member_bytes'], source['bytes'])
+            self.assertEqual(member['member_path'], source['member_path'])
+            self.assertEqual(member['url'], source['public_url'])
+            self.assertEqual(member['url'], registry[member['artifact_id']]['uri'])
+            self.assertNotEqual(member['archive'], 'kinetics-references.tar.gz')
+            self.assertNotIn('aax3072_table-', member['member_path'])
+            self.assertRegex(member['archive_sha256'], r'^[0-9a-f]{64}$')
+            identity = (member['archive_bytes'], member['archive_sha256'], member['url'])
+            self.assertEqual(archive_metadata.setdefault(member['archive'], identity), identity)
+
+    def test_original_reference_tables_are_identified_but_not_mirrored(self):
+        with (ROOT / 'data/upstream_references.tsv').open(newline='') as handle:
+            rows = list(csv.DictReader(handle, delimiter='\t'))
+        inputs = {r['artifact_id']: r for r in self.read_rows()}
+        self.assertEqual({r['table'] for r in rows}, {'S1', 'S3', 'S4'})
+        for row in rows:
+            self.assertEqual(row['source_url'], 'https://doi.org/10.1126/science.aax3072')
+            self.assertEqual(row['benchmark_csv_sha256'], inputs[row['artifact_id']]['sha256'])
+            self.assertEqual(row['velocity_member_path'], inputs[row['artifact_id']]['member_path'])
+            self.assertEqual(row['distribution'], 'upstream_only_not_mirrored')
+
+    def test_reference_checker_rejects_missing_and_changed_bytes_without_writing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / 'references.tsv'
+            body = b'original reference fixture\n'
+            with manifest.open('w', newline='') as handle:
+                writer = csv.DictWriter(handle, delimiter='\t', fieldnames=[
+                    'table', 'source_url', 'velocity_member_path', 'kinetics_member_path',
+                    'benchmark_csv_bytes', 'benchmark_csv_sha256'])
+                writer.writeheader()
+                writer.writerow(dict(table='S1', source_url='https://doi.org/10.1126/science.aax3072',
+                                     velocity_member_path='velocity/reference.csv',
+                                     kinetics_member_path='kinetics/reference.csv',
+                                     benchmark_csv_bytes=len(body),
+                                     benchmark_csv_sha256=hashlib.sha256(body).hexdigest()))
+            command = [sys.executable, str(ROOT / 'data/check_references.py'),
+                       '--artifact-root', str(root), '--manifest', str(manifest)]
+            missing = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual(missing.returncode, 1)
+            self.assertIn('MISSING S1', missing.stdout)
+            self.assertFalse((root / 'velocity').exists())
+            reference = root / 'kinetics/reference.csv'
+            reference.parent.mkdir()
+            reference.write_bytes(body)
+            self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            reference.write_bytes(b'changed reference\n')
+            changed = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual(changed.returncode, 1)
+            self.assertIn('MISMATCH S1', changed.stdout)
+            self.assertEqual(reference.read_bytes(), b'changed reference\n')
 
     def test_expected_layer_contracts_are_visible(self):
         rows = {row["artifact_id"]: row for row in self.read_rows()}

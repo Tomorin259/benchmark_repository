@@ -88,7 +88,9 @@ python -m unittest discover -s tests -p test_site_export.py -v
 - Large-file downloads are shown only for actual HTTPS URIs from the external
   artifact registry. The input release manifest and expanded reference-gene
   tables are published as lightweight release metadata; they do not imply
-  that source H5AD files or full method outputs are publicly downloadable.
+  that full method outputs are publicly downloadable. The input archives are
+  now publicly linked with their archive/member identities; three original
+  kinetic-reference tables remain upstream-only.
   Upstream data references are not relabelled as frozen benchmark input
   downloads.
 
@@ -243,3 +245,13 @@ including labelled Dynamo and the kinetics-specific DeepVelo output role.
 They are distinct from canonical Cell previews and carry no borrowed Cell
 scores. The site never recomputes their embeddings or velocity fields.
 Image hashes and the current assembly rows must agree before export.
+
+## Public input downloads
+
+Downloads renders 18 input archives from `data/input_package_manifest.tsv`,
+covering 25 mirrored scientific files, including the Forebrain loom and the
+two gene-usage tables. `data/upstream_references.tsv` supplies three separately
+labelled original-source links. The exporter cross-checks artifact/member
+identities and archive URLs; an archive is never labelled as a direct H5AD
+download. Full method outputs remain separate and pending. These additions
+do not change any score, method, plot, or existing scientific display.

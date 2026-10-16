@@ -40,7 +40,11 @@ def test_artifact_registry_schema_and_paths():
         else:
             assert row["path"] == ""
         if row["status"] == "external":
-            assert "Zenodo URI" in row["notes"]
+            if row['uri']:
+                assert row['uri'].startswith('https://')
+                assert 'Archive size/SHA-256' in row['notes']
+            else:
+                assert 'Zenodo URI' in row['notes'] or 'Upstream-only' in row['notes']
 
 
 def test_registry_has_no_deprecated_variant_and_formal_ensemble_is_available():

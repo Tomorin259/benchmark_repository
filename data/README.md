@@ -3,42 +3,41 @@
 `datasets.tsv` records the paper dataset identity, role, dimensions, stable
 upstream source, and release status. It contains no server working paths.
 
-Large canonical inputs are not stored in Git. The root
-[`artifacts.tsv`](../artifacts.tsv) records their logical identities, expected
-checksums, and intended external-location fields. Stable public URIs have not
-yet been published, so the registry is not currently a download index. A
-method script may select a method-specific artifact, such as a `_counts.h5ad`
-input, when its official workflow requires raw counts.
+Large canonical inputs are stored in the
+[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public), distribution **v1.0.1**.
+It covers 17 benchmark datasets and mirrors **25 scientific files** in 18
+archives. Three original Battich reference tables are obtained from the
+original study and are not mirrored; follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md).
+Full method-result H5AD downloads remain a separate, unpublished release.
 
-## External release preparation
+## Input files, packages, and upstream references
 
-`release_map.tsv` covers every external artifact ID exactly once. It adds only
-package/member layout and logical source locators; hashes and publication state
-remain owned by `artifacts.tsv`. Locators recovered from frozen Cell, kinetics,
-veloVI and simulation manifests are not treated as current-byte verification.
-Unfrozen input identity and unrecovered locators remain explicit.
+- `input_release_manifest.tsv` inventories all 28 logical dependencies with
+  roles, dimensions/layers and scientific-file SHA-256 values. Its storage
+  fields distinguish 25 `huggingface_archive` records from three `upstream_only`
+  records. An upstream-only row has no mirrored download URL.
+- `input_package_manifest.tsv` maps the 25 bundled files to their 18 archives,
+  public URLs, archive sizes/SHA-256, and member paths/sizes/SHA-256. A URL
+  downloads the entire archive; it is not a direct H5AD member URL. Extract
+  selected archives under your artifact root and verify the appropriate hash.
+- `upstream_references.tsv` identifies Tables S1/S3/S4 by DOI and table number,
+  records expected benchmark CSV identities and both supported input layouts.
+  `check_references.py` checks locally supplied files without downloading or
+  rewriting them. Current publisher downloads and any format conversion have
+  not been verified as byte-identical to the recorded benchmark CSVs.
+- `release_map.tsv` continues to map external logical artifacts to their
+  materialization paths; it is not a list of archive download URLs.
 
-## Input release inventory
+The 23 expression files and two project-prepared gene-usage CSVs preserve
+their previous scientific SHA-256 values. The 17 expression archives retain
+their frozen bytes. `reference-gene-usage.tar.gz` contains only the two usage
+tables, not the original Battich Tables S1/S3/S4. The old private reference
+archive is not part of this public release.
 
-`input_release_manifest.tsv` is the current release-preparation inventory for
-the 28 source files selected for the 17 benchmark datasets: 14 benchmark main
-inputs, four counts inputs, two scEU labelled sources, three fixed simulation
-realizations, three Battich reference tables, and two expanded reference-gene
-usage tables. It records dataset/role/package identity, member path, bytes,
-SHA-256, H5AD dimensions/layers where applicable, and current publication
-status.
-
-The server-side file bytes and SHA-256 values were checked on 2026-10-12, but
-the manifest intentionally has no private source paths or public URLs. The
-`server_stat_sha256_verified_pending_publication` status means that the source
-was found and hashed on the preparation host; it is not a Zenodo or Google
-Drive publication claim. `public_storage=zenodo_core_pending` remains empty
-until a real upload is completed and the download is verified. The corresponding
-source hashes are now also registered in [`artifacts.tsv`](../artifacts.tsv), and
-`release_map.tsv` links each verified source to its archive member path. These
-`velocity:` locators are preparation-host logical locators, not public download
-URLs; they must not be presented as published links before the archive is uploaded
-and checked.
+Source attribution and dataset-specific terms are documented in the HF
+release. The project does not relabel all third-party data under one new
+license or assert that absence of a verified mirror license prohibits reuse
+of numerical facts. Original studies retain attribution.
 
 The two scEU labelled sources are the native saved objects, not method-result
 files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848
@@ -66,4 +65,4 @@ registered SHA-256. The archive preserves the logical velocity-root paths used
 by the existing launchers/evaluators. Missing sources or changed bytes block
 archive construction; no new canonical input or score is inferred. The script
 never uploads or fills download URIs. Record real URIs only after an actual
-publication in the selected artifact store. Public storage selection is pending.
+publication in the selected artifact store. Input public storage is linked above; other external artifact packages remain pending.
