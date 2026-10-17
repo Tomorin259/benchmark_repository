@@ -75,7 +75,7 @@ Operational IDs and file paths may retain shorter internal names.
 
 - [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
   checksums. [`data/release_map.tsv`](data/release_map.tsv) and its verifier prepare
-  publication packages. The [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public) provides 25 original-format files (22 H5AD, one loom, two CSV); three original kinetic-reference tables are obtained from the original study.
+  publication packages. The [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs) provides 25 original-format files (22 H5AD, one loom, two CSV); three original kinetic-reference tables are obtained from the original study.
 - [`data/input_release_manifest.tsv`](data/input_release_manifest.tsv) records
   the 28-file input release inventory, including processing role, H5AD
   dimensions/layers and SHA-256 values. It separates 25 mirrored files from three
@@ -171,7 +171,7 @@ tests/                           轻量级论文契约检查
 ## 复现边界
 
 - [`artifacts.tsv`](artifacts.tsv) 记录逻辑 artifact 身份和校验和。
-  [Hugging Face 输入发布](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public)
+  [Hugging Face 输入发布](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
   提供 25 份原格式文件（22 H5AD、1 loom、2 CSV）；三张原始动力学参考表从原研究获取。文件下载及校验清单见
   [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv)，参考表获取说明见
   [`data/UPSTREAM_REFERENCES.md`](data/UPSTREAM_REFERENCES.md)。完整方法输出尚未发布。

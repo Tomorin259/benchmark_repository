@@ -4,7 +4,7 @@
 upstream source, and release status. It contains no server working paths.
 
 Large canonical inputs are stored as individual files in the
-[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public), distribution **v1.0.2**.
+[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution **v1.0.2**.
 It covers 17 benchmark datasets and provides **25 original-format scientific
 files: 22 H5AD, one loom and two CSVs**. Select the files needed for your
 analysis; no TAR extraction is required. Three original Battich reference

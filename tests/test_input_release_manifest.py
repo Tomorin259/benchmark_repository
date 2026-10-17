@@ -45,7 +45,7 @@ class InputReleaseManifestTests(unittest.TestCase):
             else:
                 self.assertEqual(row["public_storage"], "huggingface_file")
                 self.assertTrue(row["public_url"].startswith(
-                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public/resolve/v1.0.2/v1.0.2/"))
+                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs/resolve/v1.0.2/v1.0.2/"))
                 self.assertTrue(row["public_url"].endswith(row["member_path"] + "?download=true"))
             self.assertFalse(re.search(r"/(?:mnt|Users|home)/|[A-Za-z]:\\", row["member_path"]))
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")
