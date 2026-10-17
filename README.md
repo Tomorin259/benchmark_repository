@@ -47,6 +47,7 @@ Website build and source contracts are documented in [`site/README.md`](site/REA
 | Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | Reproduce veloVI Table S6 coordinate-sensitivity diagnostics | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
+| Reproduce Supplementary Figure S15 and Table S9 phase-constraint diagnostics | [`supplement/multivelo/README.md`](supplement/multivelo/README.md) |
 | Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
 | Read shared rules, environment requirements, and historical evidence | [`docs/`](docs/) |
 
@@ -144,6 +145,7 @@ Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于
 | 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
 | 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
 | 复现 veloVI Table S6 坐标敏感性诊断 | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
+| 复核补充图 S15 与表 S9 的相位约束诊断及源素材 | [`supplement/multivelo/README.md`](supplement/multivelo/README.md) |
 | 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
 | 阅读共用规则、环境要求和历史验证证据 | [`docs/`](docs/) |
 

@@ -1,0 +1,6 @@
+{
+  "off_path_unchanged": true,
+  "complete_path_unchanged": true,
+  "open_on_matches_both_candidates_without_complete_gap_penalty": true,
+  "only_one_ast_condition_changed": true
+}

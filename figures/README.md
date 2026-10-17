@@ -1,5 +1,12 @@
 # Paper figures
 
+`suppFigFifteen.pdf` is the retained author-exported MultiVelo diagnostic
+composite. `suppfig15_composite_manifest.json` maps its A/B materials,
+editable PPTX, compact numerical sources and Supplementary Table S9. Source
+panels are owned by `supplement/multivelo/`; the assembly entry point under
+`assembly/suppfig15/` preserves source scale and leaves final PPTX layout and
+PDF export to the author.
+
 Paper-level PDFs and assembly assets are tracked here. The assembly manifest
 maps each referenced panel to a repository source and SHA256 and records
 unresolved independent sources without inventing replacements.

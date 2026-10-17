@@ -1,5 +1,14 @@
 # Figure map
 
+Supplementary Figure S15 and Table S9 are backed by
+[`supplement/multivelo/`](../supplement/multivelo/). S15A uses three phase
+portraits and a short progression key; S15B uses the single paired-score row
+for the two branching subsets. The current author-exported composite and its
+editable assembly are registered in
+[`figures/suppfig15_composite_manifest.json`](../figures/suppfig15_composite_manifest.json).
+The S9 LaTeX source is generated from the frozen full-precision condition
+summary and paired-decrease counts, not transcribed from the plotted points.
+
 Supplementary Table S6 (veloVI gene-wise coordinate sensitivity) is backed by
 the full-precision CSV, transformation script, and manifest in
 [supplement/velovi/](../supplement/velovi/). Its A/C post-hoc diagnostics are

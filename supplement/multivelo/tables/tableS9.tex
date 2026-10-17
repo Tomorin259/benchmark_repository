@@ -1,0 +1,52 @@
+\begin{table}[p]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\multicolumn{6}{@{}l}{\textbf{A. Branching-gene controls}} \\
+\midrule
+ & & \multicolumn{2}{c}{\shortstack{normal + branching\\branching ($n=20$)}} & \multicolumn{2}{c}{\shortstack{hybrid\\branching ($n=20$)}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Method & Condition & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim \\
+\midrule
+scVelo\_dyn & Original & 0.3630 & 0.6118 & 0.4454 & 0.6096 \\
+scVelo\_dyn & Induction only & 0.4927 & 0.8008 & 0.5585 & 0.7954 \\
+MultiVelo (RNA only) & Default & 0.5003 & 0.8205 & 0.5663 & 0.8143 \\
+MultiVelo (RNA only) & Gate open & 0.2054 & 0.2477 & 0.2528 & 0.2349 \\
+MultiVelo (RNA only) & No output smoothing & 0.5007 & 0.8218 & 0.5664 & 0.8151 \\
+MultiVelo (RNA only) & Complete trajectory & 0.3070 & 0.5361 & 0.3995 & 0.5403 \\
+\bottomrule
+\end{tabular}
+\vspace{12pt}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\multicolumn{6}{@{}l}{\textbf{B. MURK-gene controls}} \\
+\midrule
+ & & \multicolumn{2}{c}{\shortstack{normal + MURK\\MURK ($n=10$)}} & \multicolumn{2}{c}{\shortstack{hybrid\\MURK ($n=20$)}} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Method & Condition & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim \\
+\midrule
+scVelo\_dyn & Original & 0.5884 & 0.7114 & 0.4230 & 0.5177 \\
+scVelo\_dyn & Induction only & 0.7223 & 0.8219 & 0.4618 & 0.5656 \\
+MultiVelo (RNA only) & Default & 0.6591 & 0.7443 & 0.4989 & 0.5995 \\
+MultiVelo (RNA only) & No output smoothing & 0.6986 & 0.8068 & 0.4989 & 0.5980 \\
+MultiVelo (RNA only) & Complete trajectory & 0.6323 & 0.7114 & 0.3732 & 0.4621 \\
+\bottomrule
+\end{tabular}
+\vspace{12pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\multicolumn{4}{@{}l}{\textbf{C. Paired decreases after allowing repression candidates}} \\
+\midrule
+Subset & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & Fitting loss \\
+\midrule
+normal + branching & 20/20 & 20/20 & 20/20 \\
+hybrid: branching & 20/20 & 20/20 & 20/20 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{\normalsize Post-hoc controls of gene-level velocity inference in scVelo\_dyn and MultiVelo.}\label{tab:suppMultiveloPhaseControls}
+\footnotesize\normalfont
+Values in parts A and B are arithmetic means over the evaluated genes in each subset; $n$ denotes genes, not independent simulation replicates. Part A summarizes branching-gene controls, part B summarizes MURK-gene controls, and part C reports paired decreases after allowing repression candidates, expressed as the number of genes with a lower value divided by the number of paired genes. The scVelo induction-only condition retains fitted rates and scaling while using the induction trajectory and its corresponding smoothed times. MultiVelo Gate open retains the on classification and changes only repression-candidate exclusion during refitting. No output smoothing removes final velocity smoothing/rescaling. Complete trajectory also changes gap handling and is a supporting sensitivity control, not a single-factor ablation. Gate-open refits were evaluated only in branching subsets. All directional scores are displayed to four decimal places; full-precision results and gene-wise SDs are available in the repository.}
+\end{table}

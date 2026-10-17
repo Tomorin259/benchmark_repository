@@ -1,0 +1,11 @@
+--- installed_function
++++ in_memory_function
+@@ -58,7 +58,7 @@
+         if direction == 'off':
+             if (model in [1,2]) and (i < 2):
+                 skip_phase = True
+-        elif direction == 'on':
++        elif False:  # diagnostic: retain repression candidates for direction='on'
+             if (model in [1,2]) and (i >= 2):
+                 skip_phase = True
+         if rna_only and i == 0:

@@ -1,0 +1,3 @@
+dataset,n_gene_pairs,n_lower_cbdir,n_lower_cossim,n_lower_fit_loss
+branching,20,20,20,20
+all,20,20,20,20

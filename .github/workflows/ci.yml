@@ -43,6 +43,13 @@ jobs:
           python -m py_compile evaluation/gene/simulation/generate.py
           python -m py_compile evaluation/summary/refresh_real_cbdir_summary.py
           python -m py_compile evaluation/summary/refresh_sim_cbdir_summary.py
+          python -m py_compile supplement/multivelo/run_multivelo_controls.py
+          python -m py_compile supplement/multivelo/run_scvelo_controls.py
+          python -m py_compile supplement/multivelo/inspect_phase_rule.py
+          python -m py_compile supplement/multivelo/archive_results.py
+          python -m py_compile supplement/multivelo/summarize_controls.py
+          python -m py_compile supplement/multivelo/plot_materials.py
+          python -m py_compile figures/assembly/suppfig15/assemble_materials.py
           python -m py_compile ensemble/core.py
           python -m py_compile ensemble/geometric_median.py
           python -m py_compile ensemble/metrics.py
