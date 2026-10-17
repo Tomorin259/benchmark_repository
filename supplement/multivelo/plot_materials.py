@@ -27,7 +27,7 @@ REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO))
 from evaluation.gene.plotting.phase_portrait import plot_phase_portrait
 from evaluation.cell.plots import BENCHMARK_COLORS
-from summarize_controls import CONDITIONS, summarize
+from summarize_controls import CONDITIONS, summarize, manuscript_table
 
 
 def sha(path):
@@ -199,7 +199,7 @@ def main():
 
     summaries, effects = summarize(root / "results")
     summary = pd.DataFrame(summaries)
-    # The image is a material preview; tableS9.tex is the manuscript table source.
+    # Retain the full diagnostic preview; manuscript S9 is a separate compact view.
     fig = plt.figure(figsize=(7.25, 6.35))
     ax = fig.add_axes([.03, .025, .94, .95])
     ax.set_xlim(0, 1)
@@ -209,20 +209,14 @@ def main():
     y = .985
     ax.text(0, y, "Phase-assignment controls: numerical summary", fontsize=10, weight="bold", va="top")
     y -= .065
-    latex = [r"\begin{table}[p]", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\renewcommand{\arraystretch}{1.15}"]
     for section, category, first, second, first_label, second_label, n1, n2 in [
         ("A", "branching", "branching", "all", "normal + branching", "hybrid: branching", 20, 20),
         ("B", "MURK", "murk", "all", "normal + MURK", "hybrid: MURK", 10, 20),
     ]:
         ax.text(0, y, f"{section}. {category} genes", fontsize=9, weight="bold", va="top")
-        heading = "Branching-gene controls" if category == "branching" else "MURK-gene controls"
-        latex += [r"\begin{tabular}{@{}llrrrr@{}}", r"\toprule", r"\multicolumn{6}{@{}l}{\textbf{" + section + ". " + heading + r"}} \\", r"\midrule"]
         y -= .043
         ax.text(.62, y, f"{first_label} (n={n1})", fontsize=7.6, ha="center")
         ax.text(.90, y, f"{second_label} (n={n2})", fontsize=7.6, ha="center")
-        second_header = r"hybrid\\" + category
-        first_header = first_label + r"\\" + category
-        latex += [r" & & \multicolumn{2}{c}{\shortstack{" + first_header + f" ($n={n1}$)" + r"}} & \multicolumn{2}{c}{\shortstack{" + second_header + f" ($n={n2}$)" + r"}} \\", r"\cmidrule(lr){3-4}\cmidrule(lr){5-6}", r"Method & Condition & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim \\", r"\midrule"]
         y -= .037
         for value, position, alignment in [("Method", x[0], "left"), ("Condition", x[1], "left"), (r"$\mathrm{CBDir}_{\mathrm{gene}}$", x[2], "right"), ("CosSim", x[3], "right"), (r"$\mathrm{CBDir}_{\mathrm{gene}}$", x[4], "right"), ("CosSim", x[5], "right")]:
             ax.text(position, y, value, fontsize=7.6, ha=alignment)
@@ -238,10 +232,8 @@ def main():
             display_method = "MultiVelo (RNA only)" if method.startswith("MultiVelo") else method
             for value, position, alignment in [(display_method, x[0], "left"), (condition, x[1], "left")] + [(v, p, "right") for v, p in zip(values, x[2:])]:
                 ax.text(position, y, value, fontsize=7.6, ha=alignment)
-            latex.append(display_method.replace("_", r"\_") + " & " + condition + " & " + " & ".join(values) + r" \\")
             y -= .037
         ax.plot([0, 1], [y + .017, y + .017], color="black", lw=.7)
-        latex += [r"\bottomrule", r"\end{tabular}", r"\vspace{12pt}"]
         y -= .032
     ax.text(0, y, "C. Gate-open paired checks (number of genes with lower values)", fontsize=8.5, weight="bold")
     y -= .043
@@ -255,16 +247,7 @@ def main():
             ax.text(position, y, f"{row['n_lower_' + metric]}/{row['n_gene_pairs']}", fontsize=8, ha="right")
         y -= .037
     export(fig, args.output_dir, "controls_table_preview", args.dpi)
-    latex += [r"\begin{tabular}{@{}lrrr@{}}", r"\toprule", r"\multicolumn{4}{@{}l}{\textbf{C. Paired decreases after allowing repression candidates}} \\", r"\midrule", r"Subset & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & Fitting loss \\", r"\midrule"]
-    for row in effects:
-        label = "normal + branching" if row["dataset"] == "branching" else "hybrid: branching"
-        values = [f"{row['n_lower_' + metric]}/{row['n_gene_pairs']}" for metric in ["cbdir", "cossim", "fit_loss"]]
-        latex.append(label + " & " + " & ".join(values) + r" \\")
-    table_caption = (root / "CAPTION.md").read_text().split("## Supplementary Table S9\n\n", 1)[1].strip()
-    title, body = table_caption.split("\n\n", 1)
-    title = title.replace("scVelo_dyn", r"scVelo\_dyn")
-    latex += [r"\bottomrule", r"\end{tabular}", r"\caption{\textbf{\normalsize " + title + r"}\label{tab:suppMultiveloPhaseControls}", r"\footnotesize\normalfont", body + "}", r"\end{table}"]
-    (args.output_dir / "tableS9.tex").write_text("\n".join(latex) + "\n")
+    (args.output_dir / "tableS9.tex").write_text(manuscript_table(root))
     assert all(sha(root / name) == value for name, value in before.items())
     manifest = dict(inputs=before, input_hashes_unchanged=True, script_sha256=sha(__file__), font=font, dpi=args.dpi, phase_diagnostics=diagnostics, panel_letters=False, primary_results_modified=False, figure="S15", table="S9", phase_score_scope="Mean of cell-wise CosSim over all 2000 cells of BoostALL_5; branch-specific scores use 1000 cells", style_reference=dict(path="supplement/veloae/plot_pca_summary.py", sha256=sha(REPO / "supplement/veloae/plot_pca_summary.py")), method_registry_sha256=sha(REPO / "methods/configurations.tsv"), condition_key={"Default": "saved native output or matching default refit", "Modified": {"scVelo_dyn": "force_induction_fit_tau_smoothed", "MultiVelo": "on_allow_repression"}}, outputs={p.name: sha(p) for p in args.output_dir.iterdir() if p.is_file()})
     (args.output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

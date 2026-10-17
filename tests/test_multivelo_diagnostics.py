@@ -126,16 +126,17 @@ class MultiVeloDiagnosticsTests(unittest.TestCase):
         table = (MODULE / "tables/tableS9.tex").read_text()
         rows = summary.read(MODULE / "results/condition_summary.csv")
         expected = []
-        for first, category in [("branching", "branching"), ("murk", "MURK")]:
-            for method, condition, _ in summary.CONDITIONS:
-                if category == "MURK" and condition == "Gate open":
-                    continue
-                for dataset in [first, "all"]:
-                    row = next(r for r in rows if r["dataset"] == dataset and r["gene_class"] == category and r["method"] == method and r["condition"] == condition)
-                    expected.extend(f"{float(row[key]):.4f}" for key in ["mean_cbdir", "mean_cossim"])
+        for method, condition, _ in summary.CONDITIONS[:4]:
+            for dataset in ["branching", "all"]:
+                row = next(r for r in rows if r["dataset"] == dataset and r["gene_class"] == "branching" and r["method"] == method and r["condition"] == condition)
+                expected.extend(f"{float(row[key]):.4f}" for key in ["mean_cbdir", "mean_cossim"])
         self.assertEqual(re.findall(r"-?\d+\.\d{4}", table), expected)
-        self.assertEqual(table.count("20/20"), 6)
-        self.assertIn("Values in parts A and B", table)
+        self.assertEqual(len(expected), 16)
+        self.assertNotIn("20/20", table)
+        self.assertNotIn("MURK", table)
+        self.assertNotIn("smoothing", table)
+        self.assertNotIn("Complete trajectory", table)
+        self.assertEqual(table, summary.manuscript_table())
         material = json.loads((MODULE / "materials_manifest.json").read_text())
         self.assertIn("figures/paired_controls.pdf", material["outputs"])
         self.assertFalse(any("paired_branching" in path or "paired_all" in path for path in material["outputs"]))

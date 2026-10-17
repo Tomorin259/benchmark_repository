@@ -1604,10 +1604,10 @@
   "code_sha256": {
     "archive_results.py": "7824746c139a354a30e2d130e6c93ddda0ce43d89cfca0043479df44bb06a75e",
     "inspect_phase_rule.py": "5c7b450e0eae1e7bc55480396b48f727dfcbc8c9a3e262ae08504510bb04e33d",
-    "plot_materials.py": "a6c314d4c452193345b29bd833522e67be061ac82214a315603e554b2608e110",
+    "plot_materials.py": "59818a6b1961db57538c7f52eb97c29a6fc4e663f595d7343fb3ebea2000493b",
     "run_multivelo_controls.py": "6cd08b76da168d3772ff8d62115c8ab4e4e464d0d3c248235a8c15b99b2f716f",
     "run_scvelo_controls.py": "4bcf81aacaf943ace1b8cd159230189f1e1d4e16f74cd5d60e3c6cfd75d8a95a",
-    "summarize_controls.py": "179223343f263e45149e7806b024760169ed00069a7b3d8d9a30049c859d03b6"
+    "summarize_controls.py": "70375427e50c6298269d3868d51251dfffd28512822bb8eb2909cd0fe519b1ba"
   },
   "code_identity_scope": "code_sha256 identifies published entry points; source_runs retains historical execution identities"
 }

@@ -6,8 +6,9 @@ portraits and a short progression key; S15B uses the single paired-score row
 for the two branching subsets. The current author-exported composite and its
 editable assembly are registered in
 [`figures/suppfig15_composite_manifest.json`](../figures/suppfig15_composite_manifest.json).
-The S9 LaTeX source is generated from the frozen full-precision condition
-summary and paired-decrease counts, not transcribed from the plotted points.
+The compact four-row S9 LaTeX source is generated from the frozen full-precision
+condition summary, not transcribed from the plotted points. The full MURK,
+smoothing, complete-trajectory and paired-decrease records remain in the module.
 
 Supplementary Table S6 (veloVI gene-wise coordinate sensitivity) is backed by
 the full-precision CSV, transformation script, and manifest in

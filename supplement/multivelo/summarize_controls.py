@@ -59,12 +59,39 @@ def summarize(result_root=ROOT / "results"):
     return summaries, effects
 
 
+def manuscript_table(module_root=ROOT):
+    """Select the four branching controls for S9; retain the full result CSVs."""
+    rows = read(module_root / "results/condition_summary.csv")
+    selected = {(r["dataset"], r["method"], r["condition"]): r for r in rows if r["gene_class"] == "branching"}
+    latex = [r"\begin{table}[p]", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\renewcommand{\arraystretch}{1.15}", r"\begin{tabular}{@{}llrrrr@{}}", r"\toprule",
+             r" & & \multicolumn{2}{c}{\shortstack{normal + branching\\branching ($n=20$)}} & \multicolumn{2}{c}{\shortstack{hybrid\\branching ($n=20$)}} \\",
+             r"\cmidrule(lr){3-4}\cmidrule(lr){5-6}", r"Method & Condition & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim & $\mathrm{CBDir}_{\mathrm{gene}}$ & CosSim \\", r"\midrule"]
+    for method, condition, _ in CONDITIONS[:4]:
+        values = []
+        for dataset in ["branching", "all"]:
+            row = selected[dataset, method, condition]
+            if int(row["n_genes"]) != 20:
+                raise ValueError("S9 requires 20 evaluated branching genes in each subset")
+            values.extend(f"{float(row[key]):.4f}" for key in ["mean_cbdir", "mean_cossim"])
+        label = "MultiVelo (RNA only)" if method.startswith("MultiVelo") else method
+        latex.append(label.replace("_", r"\_") + " & " + condition + " & " + " & ".join(values) + r" \\")
+    caption = (module_root / "CAPTION.md").read_text().split("## Supplementary Table S9\n\n", 1)[1].strip()
+    title, body = caption.split("\n\n", 1)
+    latex += [r"\bottomrule", r"\end{tabular}", r"\caption{\textbf{\normalsize " + title.replace("scVelo_dyn", r"scVelo\_dyn") + r"}\label{tab:suppMultiveloPhaseControls}", r"\footnotesize\normalfont", body + "}", r"\end{table}"]
+    return "\n".join(latex) + "\n"
+
+
 def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--result-root", type=Path, default=ROOT / "results")
     parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--table-only", action="store_true", help="Export compact manuscript S9 without regenerating scientific CSVs")
     args = parser.parse_args()
     args.output_root.mkdir(parents=True, exist_ok=True)
+    if args.table_only:
+        (args.output_root / "tableS9.tex").write_text(manuscript_table(args.result_root.parent))
+        print("Wrote four-row manuscript Table S9")
+        return
     summaries, effects = summarize(args.result_root)
     write(args.output_root / "condition_summary.csv", summaries)
     write(args.output_root / "candidate_gate_effects.csv", effects)

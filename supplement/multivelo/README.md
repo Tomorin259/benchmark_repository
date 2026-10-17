@@ -61,8 +61,10 @@ distribution; it is not a biological method or a primary ranking entry.
 - `figures/`: three phase portraits, one paired-score row and a short early--late key. No
   theoretical flowchart, branch-state fraction plot or fitted curve is included.
 - `tables/tableS9.tex`: the booktabs source for Supplementary Table S9, with
-  four-decimal means in A/B and paired-decrease counts in C. The image files
-  in `tables/` are numerical previews, not the typeset manuscript table.
+  four conditions and four-decimal scores for the two branching subsets.
+  MURK, smoothing, complete-trajectory and paired-count results remain in
+  the full CSVs. The image files in `tables/` retain that full diagnostic
+  preview; they are not the compact manuscript Table S9.
 - `materials_manifest.json`: rendering inputs, sampled arrows, output
   checksums, font and resolution for Supplementary Figure S15 A/B and Table S9.
 - `../../figures/assembly/suppfig15/`: the retained editable author assembly,
@@ -95,6 +97,7 @@ The vector/raster A/B assembly additionally requires pypdf and Pillow.
 python supplement/multivelo/plot_materials.py --output-dir outputs/multivelo-materials
 python supplement/multivelo/plot_materials.py --paired-only --output-dir outputs/multivelo-paired-materials
 python supplement/multivelo/summarize_controls.py --output-root outputs/multivelo-summary
+python supplement/multivelo/summarize_controls.py --table-only --output-root outputs/multivelo-table
 python supplement/multivelo/archive_results.py --materials-only \
   --materials-dir outputs/multivelo-materials
 python figures/assembly/suppfig15/assemble_materials.py \
