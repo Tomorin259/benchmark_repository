@@ -75,12 +75,12 @@ Operational IDs and file paths may retain shorter internal names.
 
 - [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
   checksums. [`data/release_map.tsv`](data/release_map.tsv) and its verifier prepare
-  publication packages. The [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public) provides 25 scientific files; three original kinetic-reference tables are obtained from the original study.
+  publication packages. The [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public) provides 25 original-format files (22 H5AD, one loom, two CSV); three original kinetic-reference tables are obtained from the original study.
 - [`data/input_release_manifest.tsv`](data/input_release_manifest.tsv) records
   the 28-file input release inventory, including processing role, H5AD
   dimensions/layers and SHA-256 values. It separates 25 mirrored files from three
-  upstream-only references; archive/member identities are in
-  [`data/input_package_manifest.tsv`](data/input_package_manifest.tsv).
+  upstream-only references; individual-file paths, sizes and checksums are in
+  [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv).
 - [`data/kinetics_reference_gene_usage/`](data/kinetics_reference_gene_usage/)
   records the expanded RPE1 250-gene and organoid 270-gene scope, Figure 6
   display flags, and valid/undefined/unavailable method coverage.
@@ -172,8 +172,8 @@ tests/                           轻量级论文契约检查
 
 - [`artifacts.tsv`](artifacts.tsv) 记录逻辑 artifact 身份和校验和。
   [Hugging Face 输入发布](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public)
-  提供 25 份科学文件；三张原始动力学参考表从原研究获取。归档和成员对应关系见
-  [`data/input_package_manifest.tsv`](data/input_package_manifest.tsv)，获取说明见
+  提供 25 份原格式文件（22 H5AD、1 loom、2 CSV）；三张原始动力学参考表从原研究获取。文件下载及校验清单见
+  [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv)，参考表获取说明见
   [`data/UPSTREAM_REFERENCES.md`](data/UPSTREAM_REFERENCES.md)。完整方法输出尚未发布。
 - [环境说明](docs/environments.md) 记录环境证据与发布要求，已提供验证过的绘图 lock；方法训练环境
   specification 仍待补充。

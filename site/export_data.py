@@ -335,33 +335,24 @@ def export_data(root=ROOT, output=None):
     release = {row['artifact_id']: row for row in read('data/release_map.tsv', download=False)}
     h5ad = [row for row in artifacts if release[row['artifact_id']]['member_path'].endswith('.h5ad')]
     input_manifest = {r['artifact_id']: r for r in read('data/input_release_manifest.tsv', download=False)}
-    package_rows = read('data/input_package_manifest.tsv', download=False)
+    file_rows = read('data/input_file_manifest.tsv', download=False)
     upstream_references = read('data/upstream_references.tsv', download=False)
     by_artifact = {r['artifact_id']: r for r in artifacts}
-    input_archives = {}
-    for member in package_rows:
-        identifier = member['artifact_id']
+    input_files = []
+    for entry in file_rows:
+        identifier = entry['artifact_id']
         binding = input_manifest[identifier]
-        if binding['public_storage'] != 'huggingface_archive':
-            raise ValueError('Archive member must be a mirrored input')
-        if member['member_sha256'] != binding['sha256'] or member['member_path'] != binding['member_path']:
-            raise ValueError('Input package member identity changed')
-        if member['url'] != binding['public_url'] or member['url'] != by_artifact[identifier]['uri']:
-            raise ValueError('Input archive URL differs across release records')
-        name = member['archive']
-        label = 'Kinetics reference-gene usage' if member['role'] == 'reference_gene_usage' else by_dataset[member['dataset_id']]['paper_name']
-        archive = {'filename': name, 'label': label, 'url': member['url'],
-                   'bytes': int(member['archive_bytes']), 'sha256': member['archive_sha256']}
-        if name not in input_archives:
-            input_archives[name] = {**archive, 'members': []}
-        if any(input_archives[name][key] != value for key, value in archive.items() if key != 'label'):
-            raise ValueError('Conflicting input archive metadata')
-        input_archives[name]['members'].append({
-            'artifact_id': identifier, 'role': member['role'], 'path': member['member_path'],
-            'bytes': int(member['member_bytes']), 'sha256': member['member_sha256']})
-    input_archives = list(input_archives.values())
-    if len(input_archives) != 18 or sum(len(a['members']) for a in input_archives) != 25:
-        raise ValueError('Input release must cover 18 archives and 25 mirrored scientific files')
+        if binding['public_storage'] != 'huggingface_file':
+            raise ValueError('Input download must be an individual mirrored file')
+        if (entry['sha256'], entry['bytes'], entry['path']) != (binding['sha256'], binding['bytes'], binding['member_path']):
+            raise ValueError('Input file identity changed')
+        if entry['url'] != binding['public_url'] or entry['url'] != by_artifact[identifier]['uri']:
+            raise ValueError('Input URL differs across release records')
+        input_files.append({**entry, 'bytes': int(entry['bytes']),
+                            'label': by_dataset[entry['dataset_id']]['paper_name'],
+                            'format': Path(entry['path']).suffix[1:].upper()})
+    if len(input_files) != 25 or len({r['artifact_id'] for r in input_files}) != 25:
+        raise ValueError('Input release must cover 25 individual scientific files')
     if {r['artifact_id'] for r in upstream_references} != {k for k, r in input_manifest.items() if r['public_storage'] == 'upstream_only'}:
         raise ValueError('Upstream reference coverage changed')
     for reference in upstream_references:
@@ -459,8 +450,8 @@ def export_data(root=ROOT, output=None):
     metadata_downloads = [
         ('data/input_release_manifest.tsv', 'Input release manifest',
          '28 logical dependencies: 25 mirrored files and three upstream-only reference tables.'),
-        ('data/input_package_manifest.tsv', 'Input archive and member manifest',
-         '18 archive downloads and the exact 25 contained scientific-file identities.'),
+        ('data/input_file_manifest.tsv', 'Input file download manifest',
+         '25 individual original-format files with direct URLs, sizes and SHA-256 values.'),
         ('data/upstream_references.tsv', 'Original kinetic-reference sources',
          'Official sources and expected benchmark CSV identities for Tables S1/S3/S4.'),
         ('data/UPSTREAM_REFERENCES.md', 'Original reference acquisition guide',
@@ -807,7 +798,7 @@ def export_data(root=ROOT, output=None):
                "result_images": result_images,
                "real_cases": real_cases, "kinetics_streams": kinetics_streams, "kinetics_strategy": kinetics_strategy,
                "kinetics_expanded_scope": {"sceu_rpe1": len(universe["rpe1"]), "sceu_organoid": len(universe["organoid"])},
-               "artifacts": artifacts, 'h5ad': h5ad, "input_archives": input_archives,
+               "artifacts": artifacts, 'h5ad': h5ad, "input_files": input_files,
                "upstream_references": upstream_references, "sources": sources}
     for source in sources:
         if hashlib.sha256((root / source["path"]).read_bytes()).hexdigest() != source["sha256"]:

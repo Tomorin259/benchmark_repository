@@ -88,8 +88,8 @@ python -m unittest discover -s tests -p test_site_export.py -v
 - Large-file downloads are shown only for actual HTTPS URIs from the external
   artifact registry. The input release manifest and expanded reference-gene
   tables are published as lightweight release metadata; they do not imply
-  that full method outputs are publicly downloadable. The input archives are
-  now publicly linked with their archive/member identities; three original
+  that full method outputs are publicly downloadable. The input files are
+  publicly linked with their individual-file identities; three original
   kinetic-reference tables remain upstream-only.
   Upstream data references are not relabelled as frozen benchmark input
   downloads.
@@ -248,10 +248,10 @@ Image hashes and the current assembly rows must agree before export.
 
 ## Public input downloads
 
-Downloads renders 18 input archives from `data/input_package_manifest.tsv`,
-covering 25 mirrored scientific files, including the Forebrain loom and the
-two gene-usage tables. `data/upstream_references.tsv` supplies three separately
-labelled original-source links. The exporter cross-checks artifact/member
-identities and archive URLs; an archive is never labelled as a direct H5AD
-download. Full method outputs remain separate and pending. These additions
-do not change any score, method, plot, or existing scientific display.
+Downloads renders 25 individual files from `data/input_file_manifest.tsv`:
+22 H5AD, the Forebrain loom, and two gene-usage CSVs. The exporter cross-checks
+their paths, sizes, SHA-256 and URLs against the input manifest and artifact
+registry. `data/upstream_references.tsv` supplies three separately labelled
+original-source links. Full method outputs remain separate and pending;
+later result collections may be packaged by dataset/method. These input
+download changes preserve all scores, methods, plots and scientific displays.

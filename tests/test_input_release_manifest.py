@@ -43,37 +43,34 @@ class InputReleaseManifestTests(unittest.TestCase):
                 self.assertEqual(row["public_storage"], "upstream_only")
                 self.assertEqual(row["public_url"], "-")
             else:
-                self.assertEqual(row["public_storage"], "huggingface_archive")
+                self.assertEqual(row["public_storage"], "huggingface_file")
                 self.assertTrue(row["public_url"].startswith(
-                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public/resolve/v1.0.1/v1.0.1/"))
-                self.assertTrue(row["public_url"].endswith(".tar.gz?download=true"))
+                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public/resolve/v1.0.2/v1.0.2/"))
+                self.assertTrue(row["public_url"].endswith(row["member_path"] + "?download=true"))
             self.assertFalse(re.search(r"/(?:mnt|Users|home)/|[A-Za-z]:\\", row["member_path"]))
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")
             self.assertGreater(int(row["bytes"]), 0)
 
-    def test_archive_members_match_scientific_registry_without_original_tables(self):
-        with (ROOT / 'data/input_package_manifest.tsv').open(newline='') as handle:
-            members = list(csv.DictReader(handle, delimiter='\t'))
+    def test_individual_files_match_scientific_registry_without_original_tables(self):
+        with (ROOT / 'data/input_file_manifest.tsv').open(newline='') as handle:
+            files = list(csv.DictReader(handle, delimiter='\t'))
         with (ROOT / 'artifacts.tsv').open(newline='') as handle:
             registry = {r['artifact_id']: r for r in csv.DictReader(handle, delimiter='\t')}
         inputs = {r['artifact_id']: r for r in self.read_rows()}
-        self.assertEqual(len(members), 25)
-        self.assertEqual(len({r['archive'] for r in members}), 18)
-        self.assertEqual({r['artifact_id'] for r in members}, {
+        self.assertEqual(len(files), 25)
+        self.assertEqual({r['artifact_id'] for r in files}, {
             r['artifact_id'] for r in inputs.values() if r['role'] != 'reference_table'})
-        archive_metadata = {}
-        for member in members:
-            source = inputs[member['artifact_id']]
-            self.assertEqual(member['member_sha256'], source['sha256'])
-            self.assertEqual(member['member_bytes'], source['bytes'])
-            self.assertEqual(member['member_path'], source['member_path'])
-            self.assertEqual(member['url'], source['public_url'])
-            self.assertEqual(member['url'], registry[member['artifact_id']]['uri'])
-            self.assertNotEqual(member['archive'], 'kinetics-references.tar.gz')
-            self.assertNotIn('aax3072_table-', member['member_path'])
-            self.assertRegex(member['archive_sha256'], r'^[0-9a-f]{64}$')
-            identity = (member['archive_bytes'], member['archive_sha256'], member['url'])
-            self.assertEqual(archive_metadata.setdefault(member['archive'], identity), identity)
+        self.assertEqual({ext: sum(r['path'].endswith(ext) for r in files) for ext in ['.h5ad', '.loom', '.csv']},
+                         {'.h5ad': 22, '.loom': 1, '.csv': 2})
+        for entry in files:
+            source = inputs[entry['artifact_id']]
+            self.assertEqual(entry['sha256'], source['sha256'])
+            self.assertEqual(entry['bytes'], source['bytes'])
+            self.assertEqual(entry['path'], source['member_path'])
+            self.assertEqual(entry['url'], source['public_url'])
+            self.assertEqual(entry['url'], registry[entry['artifact_id']]['uri'])
+            self.assertTrue(entry['url'].endswith(entry['path'] + '?download=true'))
+            self.assertNotIn('aax3072_table-', entry['path'])
 
     def test_original_reference_tables_are_identified_but_not_mirrored(self):
         with (ROOT / 'data/upstream_references.tsv').open(newline='') as handle:

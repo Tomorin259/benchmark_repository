@@ -3,41 +3,40 @@
 `datasets.tsv` records the paper dataset identity, role, dimensions, stable
 upstream source, and release status. It contains no server working paths.
 
-Large canonical inputs are stored in the
-[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public), distribution **v1.0.1**.
-It covers 17 benchmark datasets and mirrors **25 scientific files** in 18
-archives. Three original Battich reference tables are obtained from the
-original study and are not mirrored; follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md).
-Full method-result H5AD downloads remain a separate, unpublished release.
+Large canonical inputs are stored as individual files in the
+[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs-public), distribution **v1.0.2**.
+It covers 17 benchmark datasets and provides **25 original-format scientific
+files: 22 H5AD, one loom and two CSVs**. Select the files needed for your
+analysis; no TAR extraction is required. Three original Battich reference
+tables are obtained from the original study; follow
+[UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md).
 
-## Input files, packages, and upstream references
+## Input files and upstream references
 
 - `input_release_manifest.tsv` inventories all 28 logical dependencies with
-  roles, dimensions/layers and scientific-file SHA-256 values. Its storage
-  fields distinguish 25 `huggingface_archive` records from three `upstream_only`
+  processing roles, dimensions/layers and scientific-file SHA-256 values.
+  It distinguishes 25 `huggingface_file` records from three `upstream_only`
   records. An upstream-only row has no mirrored download URL.
-- `input_package_manifest.tsv` maps the 25 bundled files to their 18 archives,
-  public URLs, archive sizes/SHA-256, and member paths/sizes/SHA-256. A URL
-  downloads the entire archive; it is not a direct H5AD member URL. Extract
-  selected archives under your artifact root and verify the appropriate hash.
-- `upstream_references.tsv` identifies Tables S1/S3/S4 by DOI and table number,
-  records expected benchmark CSV identities and both supported input layouts.
+- `input_file_manifest.tsv` maps the 25 individual files to direct public
+  URLs, relative paths, sizes and SHA-256 values. Save a file at the recorded
+  path under your artifact root and check its scientific-file hash.
+- `upstream_references.tsv` records Tables S1/S3/S4 by DOI and table number,
+  expected benchmark CSV identities and both supported input layouts.
   `check_references.py` checks locally supplied files without downloading or
   rewriting them. Current publisher downloads and any format conversion have
   not been verified as byte-identical to the recorded benchmark CSVs.
 - `release_map.tsv` continues to map external logical artifacts to their
-  materialization paths; it is not a list of archive download URLs.
+  materialization paths. It is distinct from the input download manifest.
 
 The 23 expression files and two project-prepared gene-usage CSVs preserve
-their previous scientific SHA-256 values. The 17 expression archives retain
-their frozen bytes. `reference-gene-usage.tar.gz` contains only the two usage
-tables, not the original Battich Tables S1/S3/S4. The old private reference
-archive is not part of this public release.
+their frozen scientific bytes and SHA-256 values. Working inputs,
+count-preserving supplements, native labelled sources and fixed simulations
+keep their documented processing roles. The project does not relabel all
+third-party data under one new license; source attribution and dataset-specific
+terms are documented in the HF release.
 
-Source attribution and dataset-specific terms are documented in the HF
-release. The project does not relabel all third-party data under one new
-license or assert that absence of a verified mirror license prohibits reuse
-of numerical facts. Original studies retain attribution.
+Full method-result outputs remain a separate, unpublished release; those
+larger result collections may use compressed dataset/method packages.
 
 The two scEU labelled sources are the native saved objects, not method-result
 files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848

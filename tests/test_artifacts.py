@@ -42,7 +42,7 @@ def test_artifact_registry_schema_and_paths():
         if row["status"] == "external":
             if row['uri']:
                 assert row['uri'].startswith('https://')
-                assert 'Archive size/SHA-256' in row['notes']
+                assert 'File size/SHA-256' in row['notes']
             else:
                 assert 'Zenodo URI' in row['notes'] or 'Upstream-only' in row['notes']
 

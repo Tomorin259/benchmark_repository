@@ -2,14 +2,14 @@
 
 This distribution provides 25 mirrored scientific files and records three
 additional upstream-only reference dependencies. It does not host Battich's
-original Tables S1/S3/S4 or reproduce them in the reference-gene-usage archive.
+original Tables S1/S3/S4 or reproduce their reference trajectories.
 
 1. Visit https://doi.org/10.1126/science.aax3072 and open Supplementary Materials.
 2. Obtain Tables S1, S3 and S4 through the original publisher/author access route.
 3. Place the benchmark-compatible CSV files at the paths in
    `upstream_references.tsv`, using the layout required by your evaluator.
-4. Run `python check_references.py --artifact-root /path/to/artifacts` from
-   the release version directory, or supply `--manifest` explicitly.
+4. From this repository root, run `python data/check_references.py --artifact-root /path/to/artifacts`.
+   In the HF version folder, run `python check_references.py --artifact-root /path/to/artifacts` instead.
 
 There are two documented layouts: velocity-root paths used by existing
 launchers and `references/kinetics/` aliases used by the kinetics evaluator.
