@@ -448,6 +448,8 @@ def export_data(root=ROOT, output=None):
         entry['download'] = f'data/files/{relative}'
         downloads['tables'].append({'label': label, **entry})
     metadata_downloads = [
+        ('data/RESULT_DOWNLOADS.md', 'Native result download guide',
+         'Verified staged availability, TAR.GZ extraction and separate archive/member checksums.'),
         ('data/input_release_manifest.tsv', 'Input release manifest',
          '28 logical dependencies: 25 mirrored files and three upstream-only reference tables.'),
         ('data/input_file_manifest.tsv', 'Input file download manifest',

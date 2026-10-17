@@ -82,6 +82,11 @@ Operational IDs and file paths may retain shorter internal names.
   dimensions/layers and SHA-256 values. It separates 25 mirrored files from three
   upstream-only references; individual-file paths, sizes and checksums are in
   [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv).
+- [Native method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
+  are being uploaded in verified batches. Consult the release's availability
+  index before downloading; the complete release is not yet available.
+  [Download and extraction guidance](data/RESULT_DOWNLOADS.md) distinguishes
+  archive hashes from the original scientific-file hashes.
 - [`data/kinetics_reference_gene_usage/`](data/kinetics_reference_gene_usage/)
   records the expanded RPE1 250-gene and organoid 270-gene scope, Figure 6
   display flags, and valid/undefined/unavailable method coverage.
@@ -176,7 +181,10 @@ tests/                           轻量级论文契约检查
   [Hugging Face 输入发布](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
   提供 25 份原格式文件（22 H5AD、1 loom、2 CSV）；三张原始动力学参考表从原研究获取。文件下载及校验清单见
   [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv)，参考表获取说明见
-  [`data/UPSTREAM_REFERENCES.md`](data/UPSTREAM_REFERENCES.md)。完整方法输出尚未发布。
+  [`data/UPSTREAM_REFERENCES.md`](data/UPSTREAM_REFERENCES.md)。
+- [方法原生输出与评估资源](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
+  正在分批上传并校验，当前尚不是完整发布。请按 HF 的实际可下载清单选择文件；
+  压缩包与解压后科学文件的校验方式见 [`data/RESULT_DOWNLOADS.md`](data/RESULT_DOWNLOADS.md)。
 - [环境说明](docs/environments.md) 记录环境证据与发布要求，已提供验证过的绘图 lock；方法训练环境
   specification 仍待补充。
 - 模拟数据生成器刻意不设置随机种子。历史 canonical H5AD 仍是论文使用的精确输入；

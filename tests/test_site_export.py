@@ -219,7 +219,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(len(tables), 17)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
-        self.assertEqual(len(metadata), 8)
+        self.assertEqual(len(metadata), 9)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
         self.assertEqual(len(analyses), 5)
@@ -228,6 +228,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(r['path'].endswith('.csv') for r in tables))
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
         self.assertEqual({r['path'] for r in metadata}, {
+            'data/RESULT_DOWNLOADS.md',
             'data/input_release_manifest.tsv',
             'data/input_file_manifest.tsv',
             'data/upstream_references.tsv',

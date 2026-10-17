@@ -93,6 +93,9 @@ python -m unittest discover -s tests -p test_site_export.py -v
   kinetic-reference tables remain upstream-only.
   Upstream data references are not relabelled as frozen benchmark input
   downloads.
+- The native-result download guide links to the output repository's actual
+  availability index during staged upload. Planned output manifests do not
+  imply that the full collection is already public or complete.
 
 ## Single-gene visual assets
 

@@ -35,8 +35,11 @@ keep their documented processing roles. The project does not relabel all
 third-party data under one new license; source attribution and dataset-specific
 terms are documented in the HF release.
 
-Full method-result outputs remain a separate, unpublished release; those
-larger result collections may use compressed dataset/method packages.
+Saved method outputs and evaluation assets are being uploaded to the separate
+[Hugging Face output release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
+in verified batches. It is not yet a complete release. Use its actual
+availability index and follow [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md) for
+TAR.GZ extraction and the separate archive/member SHA-256 checks.
 
 The two scEU labelled sources are the native saved objects, not method-result
 files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848
