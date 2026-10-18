@@ -12,7 +12,7 @@
 | [analysis/](analysis/) | 配对来源、逐边观测、聚合、相关性和方向一致性表 |
 | [analysis/source_mapping_audit.csv](analysis/source_mapping_audit.csv) | 方法 H5AD、速度层和案例来源对应 |
 | [results/](results/) | 独立 Cell 配对结果及 Diaph3 额外边的补算 |
-| [FIGURE_DESIGN.md](FIGURE_DESIGN.md) | 相图显示参数和完整案例清单 |
+| [相图显示与切片](#相图显示与切片) | 展示边、cluster 掩膜和显示参数 |
 
 已有紧凑材料可用于重新汇总；从仓库根目录输出到新目录：
 
@@ -21,9 +21,10 @@ python supplement/gene-kinetic/analysis/gene_kinetic_analysis.py \
   --repo-root . --output-dir outputs/gene-edge-analysis
 ```
 
-重新绘制相图另需相应方法 H5AD、参考标签和科学绘图环境。
-`gene_kinetic_pilot.py` 与 `FIGURE_DESIGN.md` 说明案例切片和绘图入口；
-本目录的整群速度场不作为单基因相图。
+重新绘制相图另需方法 H5AD、参考标签和科学绘图环境。
+[gene_kinetic_pilot.py](gene_kinetic_pilot.py) 按下述案例切片，并写入本模块的
+`figures/`；该入口没有输出目录参数，保留现有图件时应使用独立仓库副本。
+整群 UMAP 和 velocity stream 属于细胞速度场，不作为单基因相图。
 
 ## 比较口径
 
@@ -39,7 +40,7 @@ Gene-output-matched 来源与主 Cell 来源分开。有效方法要求 `status=
 
 这些案例支持特定边上的描述性关联和方向不一致分析；小数量独立边、
 方法覆盖差异和表达图不能支持全数据集排名或因果结论。
-未完成的后续实验设想保留在历史报告中，不作为现有结果。
+[历史报告](analysis/analysis_report_20260920.md) 中的后续实验设想不作为现有结果。
 
 ## 案例与文献依据
 
@@ -58,5 +59,32 @@ Gene-output-matched 来源与主 Cell 来源分开。有效方法要求 `status=
 
 Snap25、Hcn1、Igf1r、LMNA 的文献证据未被充分锚定到此案例集合的预定过渡，
 因此不列为这里的主要边分析；不影响它们在主 Gene 评估中的既有用途。
-显示使用原生 Ms/Mu 和速度层，`reference_length=0.05`、
-`max_length=0.10`、`s=12`、`alpha=0.6`；这些参数不改变源数据或 CBDir。
+## 相图显示与切片
+
+上表定义分析问题和先验；下表列出同组全部基因的显示掩膜与标注分数的边。
+显示中同时纳入对照或分支边，不扩大上表的研究结论。
+
+| 案例组（对应上表） | mask clusters | 展示分数的边 |
+| --- | --- | --- |
+| 晚期动力学切换 | Erythroid1, Erythroid2, Erythroid3 | Erythroid1→Erythroid2; Erythroid2→Erythroid3 |
+| 颗粒细胞成熟 | Nbl2, ImmGranule1, ImmGranule2, Granule | ImmGranule1→ImmGranule2; ImmGranule2→Granule |
+| 祖细胞退出 | nIPC, Nbl1, Nbl2 | nIPC→Nbl1; Nbl1→Nbl2 |
+| 细胞周期机制对照 | G1, S, G2M | G1→S; S→G2M |
+| 迁移/定位 | CA, CA1-Sub, CA2-3-4 | CA→CA1-Sub |
+| 视网膜分化表达 | Neuroblast, RGC, AC/HC | Neuroblast→RGC; Neuroblast→AC/HC |
+| 皮层迁移 | V-SVZ, Upper Layer, Deeper Layer | V-SVZ→Upper Layer |
+| 终末功能 | Pre-endocrine, Beta, Alpha | Pre-endocrine→Beta; Pre-endocrine→Alpha |
+
+每个案例为九方法 2×5 面板，第十格为共享 cluster 图例；方法名下标注完整边名
+和逐边 Gene CBDir，缺失分数为 `N/A`。Diaph3 的 nIPC→Nbl1 使用独立补算
+[CSV](results/diaph3_nipc_to_nbl1.csv)；DeepVelo_scv 缺失该基因时保持 N/A，
+其他边读取主评估逐边表。
+
+相图经 [plot_phase_portrait](../../evaluation/gene/plotting/phase_portrait.py)
+绘制，保留原生 `Ms/Mu`，将方法对应的速度分量映射为
+`velocity/velocity_u`。显示参数为 `color_key="clusters"`、
+`arrow_grid=(25,25)`、log1p 箭长、参考分位数 0.90、
+`reference_length=0.05`、`max_length=0.10`、`s=12`、`alpha=0.6`；
+坐标轴和刻度隐藏。这些显示设置不改变源 H5AD、速度层或 CBDir。
+每例保存 PNG、PDF、SVG 和 manifest，记录输入 locator、掩膜、方法、边分数、
+预处理诊断及显示参数。

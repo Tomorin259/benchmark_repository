@@ -1,109 +1,89 @@
 # Real-data gene selection
 
-This module preserves computational candidate screening and the subsequent
-manual gene selection used for the real-data gene-level benchmark. Screening
-outputs do not replace the manuscript gene lists or reference-30 velocity metrics.
+## Final selection and evidence
 
-## Sources and final selection
+[selected_genes.tsv](selected_genes.tsv) identifies the 59 frozen dataset–gene
+pairs evaluated by [the Gene entry point](../run_reference30_gene_cbdir.py).
+Every pair has recovered candidate-table evidence. The final genes were
+selected manually after screening and phase-portrait inspection; per-gene
+decision logs were not retained. No automated union, intersection, combined
+ranking or top-k selection rule is claimed. First-evidence row ranks in the TSV
+are evidence locators. Synthetic genes follow the simulator's known modules.
 
-- `provenance.json` records original source locators, dated script snapshots,
-  checksums, and computational limitations.
-- `historical/` preserves original candidate tables and source snapshots.
-  Snapshots retain their historical paths and are evidence, not public launchers.
-- `selected_genes.tsv` records the 59 dataset-gene pairs evaluated by
-  `../run_reference30_gene_cbdir.py`. Every pair occurs in a recovered candidate
-  table. Its first-evidence row rank is not a combined ranking or top-k rule.
-- `results/` contains the retained checks, input/environment manifests,
-  and full-precision comparisons against the historical tables.
-  `results/summary.json` indexes these checks; each comparison JSON is
-  the numerical record for its associated historical/rerun table pair.
+| Material | Role |
+| --- | --- |
+| [selected_genes.tsv](selected_genes.tsv) | Final evaluated pairs and candidate evidence |
+| [provenance.json](provenance.json) | Original source locators, script snapshots, checksums and limitations |
+| [historical/](historical/) | Original candidate tables and source snapshots, retained as evidence |
+| [results/summary.json](results/summary.json) | Reconstruction attempts and links to full-precision comparisons |
+| [historical/MURK_selected.md](historical/MURK_selected.md) | Broader intermediate lists; the TSV and evaluation entry define the final selection |
 
-Results use stable gene-setting and dataset names:
+Reconstruction results do not reselect genes or replace reference-30 velocity
+metrics. Package versions, hash seed, input hashes and run settings are
+recorded in the associated manifests.
 
-```text
-results/
-├── branching/
-│   ├── DentateGyrus_lamanno/
-│   └── retina/
-├── murk/
-│   └── gastrulation/
-└── summary.json
-```
+## Screening rules
 
-Package versions, hash seed, input checksums, and run settings belong in the
-manifests, not in directory names. These remain reconstruction checks rather
-than replacement benchmark results.
+### MURK
 
-The authors selected the final genes manually after computational screening
-and phase-portrait inspection. Per-gene decision logs were not retained.
-No automated intersection, union, or combined-score rule is claimed for this
-final step. The historical `MURK_selected.md` contains broader intermediate
-lists; the current evaluation entry and `selected_genes.tsv` define the final
-selection. Synthetic genes instead follow the simulator's known modules.
+[Barile et al. (2021)](https://doi.org/10.1186/s13059-021-02414-y) provides the
+[upstream notebook](https://github.com/mebarile/Gata1_Erythroid_kinetics),
+pinned to commit `1e0de6338a85a559478627927c24bdc72d2d8919`; the unmodified
+notebook and GPL-3.0 license remain in [upstream/](upstream/).
 
-## MURK screening
+The notebook combines Scanpy variable genes with scVelo-filtered genes,
+computes spliced/unspliced moments, fits population-specific slopes, applies
+expression and slope-change criteria, and ranks scaled slope differences.
+It does not directly estimate transcription-rate alpha. Its interval uses
+`t.ppf(0.95, n-1)`, unlike the branching two-sided interval.
 
-The upstream source is Barile et al. (2021),
-https://doi.org/10.1186/s13059-021-02414-y, with the notebook pinned to commit
-`1e0de6338a85a559478627927c24bdc72d2d8919` of
-https://github.com/mebarile/Gata1_Erythroid_kinetics.
-The unmodified notebook and GPL-3.0 license are retained in `upstream/`.
+[reproduce_murk.py](reproduce_murk.py) executes the unchanged numerical cells
+with the input read redirected. Recovered population comparisons apply to
+Gastrulation; configurations for the other four MURK datasets remain missing.
+The legacy Gastrulation input is absent, so the retained raw-input run is a
+reconstruction check rather than exact historical-input reproduction. The
+commented project excerpt is configuration evidence, not a run log.
 
-The notebook combines Scanpy variable genes and scVelo-filtered genes, computes
-spliced/unspliced moments, fits population-specific slopes, applies expression
-and slope-change criteria, and ranks candidates by scaled slope differences.
-It does not directly estimate transcription-rate alpha for selection.
-Its uncertainty calculation uses `t.ppf(0.95, n-1)`, distinct from the
-branching script's two-sided 95% interval.
+### Branching
 
-`reproduce_murk.py` executes the unchanged numerical notebook cells, redirecting
-only the input read. Its population comparisons apply to Gastrulation.
-The comparisons used for the other four MURK datasets have not been recovered;
-their historical candidate tables are preserved without applying guessed groups.
-The legacy Gastrulation input is absent, so the retained run uses the currently
-available raw input and is a reconstruction check, not exact historical-input
-reproduction. The recovered commented project excerpt is configuration evidence,
-not a run log.
+[reproduce_branching.py](reproduce_branching.py) adapts the slope-comparison
+idea, combining the two variable-gene sets and scaling moments by the maximum
+across both populations. It fits OLS slopes with an intercept and two-sided
+95% Student-t intervals (`t.ppf(0.975, n-2)`), then ranks non-overlapping
+interval gaps without a positive-gap cutoff.
+
+The `pro` filter requires maximum absolute expression-versus-cluster-rank
+Spearman correlation strictly greater than 0.1: a magnitude threshold, not a
+p-value test or an opposite-sign requirement. Retina retains the historical
+equal Neuroblast/RGC ranks, producing zero correlation in that branch.
+
+| DentateGyrus task | Populations and ranks |
+| --- | --- |
+| Neuron/Glia | Neuron: `RadialGlia, nIPC, Nbl1, Nbl2, ImmGranule1, ImmGranule2, Granule, CA, CA1-Sub, CA2-3-4`; Glia: `RadialGlia, GlialProg, ImmAstro, OPC` |
+| Granule/Pyramidal | `Nbl2, ImmGranule1, ImmGranule2, Granule` versus `Nbl2, CA, CA1-Sub, CA2-3-4`; ranks 1/2/3/4 versus 1/2/3/3 |
+
+The [preserved snapshots](historical/scripts/) separate the December 2025
+unfiltered tasks, January 7 filtered Granule/Pyramidal ranks, and January 18
+ten-gene list. The two slope tables are separate comparisons; the later list
+does not implement an automated final-selection rule.
+
+Selection-stage `moments(n_neighbors=30)` is distinct from the fixed-reference-30
+evaluation graph. Historical `list(set(...))` ordering depends on Python's hash
+seed. Manifests record the actual seed and preprocessing settings; the retained
+two-task run's thread settings are indexed in the summary.
+
+## Reconstruct candidate tables
+
+Run from the repository root with the input H5ADs and compatible
+Scanpy/scVelo environments recorded in the retained manifests. Each screening
+entry requires a new output directory:
 
 ```bash
 python evaluation/gene/selection/reproduce_murk.py \
   --input /path/to/Gastrulation.h5ad \
   --input-id artifact://velocity/data/Gastrulation/Gastrulation.h5ad \
   --output /path/to/new-murk-check
-```
 
-## Branching screening
-
-The project scripts adapt the phase-portrait slope-comparison idea rather than
-the complete MURK rule. They combine Scanpy variable genes and scVelo-filtered
-genes, scale moments by the maximum across both comparison populations, fit
-OLS slopes with an intercept and two-sided 95% Student-t intervals
-(`t.ppf(0.975, n-2)`), and rank by non-overlapping interval gaps.
-There is no positive-gap cutoff.
-
-The `pro` variants retain genes whose maximum absolute expression-versus-cluster-
-rank Spearman correlation is strictly greater than 0.1. This is a magnitude
-threshold, not a p-value test; opposite-signed trends are not required.
-The Retina snapshot assigns the same rank to Neuroblast and RGC, yielding zero
-correlation in that branch. This historical configuration is retained.
-
-Three dated DentateGyrus snapshots establish the recovered sequence:
-
-- `branching_DentateGyrus_lamanno_20251216.py` contains the unfiltered
-  Neuron/Glia and Granule/Pyramidal slope tasks and the `for_scvelo` input path.
-- `branching_DentateGyrus_lamanno_pro_20260107.py` supplies the matching
-  Granule/Pyramidal trend ranks and filtered-output filename.
-- `branching_DentateGyrus_lamanno_analyze_20260118.py` already contains the
-  current ten-gene list. It does not implement an automated final-selection rule.
-
-For Neuron/Glia, Neuron contains `RadialGlia, nIPC, Nbl1, Nbl2, ImmGranule1,
-ImmGranule2, Granule, CA, CA1-Sub, CA2-3-4`; Glia contains
-`RadialGlia, GlialProg, ImmAstro, OPC`. Granule/Pyramidal compares
-`Nbl2, ImmGranule1, ImmGranule2, Granule` against
-`Nbl2, CA, CA1-Sub, CA2-3-4`, with ranks 1/2/3/4 and 1/2/3/3.
-The two historical slope tables are separate comparisons, not a combined ranking.
-
-```bash
 PYTHONHASHSEED=0 python evaluation/gene/selection/reproduce_branching.py \
   --dataset DentateGyrus_lamanno --include-neuron-glia \
   --input /path/to/DentateGyrus_lamanno_for_scvelo.h5ad \
@@ -116,19 +96,12 @@ PYTHONHASHSEED=0 python evaluation/gene/selection/reproduce_branching.py \
   --output /path/to/new-retina-check
 ```
 
-The DentateGyrus entry emits both December slope-task outputs when
-`--include-neuron-glia` is enabled, plus the Granule/Pyramidal filtered output
-using the January rule. The latter is not attributed to the December script.
-Without this option it emits only the Granule/Pyramidal outputs.
-Retina emits unfiltered and filtered PR/RGC outputs.
+`--include-neuron-glia` adds the recovered December Neuron/Glia task to
+Granule/Pyramidal; its filtered output uses the January rule. Without the
+option, only Granule/Pyramidal outputs are emitted. Retina emits unfiltered
+and filtered PR/RGC tables.
 
-Selection-stage `moments(n_neighbors=30)` is not the fixed-reference-30
-evaluation graph. The historical `list(set(...))` gene union has uncontrolled
-ordering unless Python's hash seed is fixed. Run manifests record the actual
-hash seed, packages, input checksum, groups, and parameters; launch thread
-settings for the retained two-task run are recorded in the summary.
-
-## Retained results and verification
+## Historical agreement
 
 | Check | Agreement with historical tables |
 | --- | --- |
@@ -137,22 +110,18 @@ settings for the retained two-task run are recorded in the summary.
 | Gastrulation MURK | The run returns 89 candidates containing all 45 historical candidates. The historical list is a manually selected subset, not a top-45 rule. Shared numerical values are not exact. |
 | Other MURK datasets | Historical tables are retained; dataset-specific population configurations were not recovered, so screening was not rerun. |
 
-Top-50 overlap denotes set membership, not exact ordering.
-DentateGyrus maximum interval-gap discrepancies are approximately 0.0245 for
-Neuron/Glia, 0.0321 for Granule/Pyramidal, and 0.0322 after trend filtering.
-These checks establish candidate-table support for all 59 frozen pairs without
-claiming exact historical numerical reproduction where discrepancies remain.
-No rerun output is used to reselect genes or replace benchmark metrics.
+Top-50 overlap is set membership, not exact ordering. DentateGyrus maximum
+interval-gap discrepancies are approximately 0.0245 (Neuron/Glia), 0.0321
+(Granule/Pyramidal), and 0.0322 (filtered). Candidate support for all 59 pairs
+does not establish exact numerical reproduction where discrepancies remain.
 
-All screening entry points require a new output directory.
-`compare_rankings.py` reports candidate membership, row order, tie-aware ranks,
-top-50 overlap, and full-precision numerical differences separately.
-Its diagnostic tolerances do not convert discrepancies into exact agreement.
+[compare_rankings.py](compare_rankings.py) separates membership, row order,
+tie-aware ranks, top-50 overlap and full-precision differences. Diagnostic
+tolerances do not turn discrepancies into exact agreement. Use a new output
+file for comparison:
 
 ```bash
 python evaluation/gene/selection/compare_rankings.py \
   --historical /path/to/historical.csv --rerun /path/to/reconstructed.csv \
   --output /path/to/new-comparison.json
-
-python -m unittest discover -s tests -p test_gene_selection_provenance.py -v
 ```
