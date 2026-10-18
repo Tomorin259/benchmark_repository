@@ -8,9 +8,18 @@ on:
       - evaluation/**
       - ensemble/**
       - figures/**
+      - supplement/veloae/**
+      - supplement/velovi/**
+      - supplement/tivelo_gene/**
       - methods/configurations.tsv
       - data/datasets.tsv
       - data/release_map.tsv
+      - data/input_release_manifest.tsv
+      - data/input_file_manifest.tsv
+      - data/upstream_references.tsv
+      - data/RESULT_DOWNLOADS.md
+      - data/UPSTREAM_REFERENCES.md
+      - data/kinetics_reference_gene_usage/**
       - artifacts.tsv
       - tests/test_site_export.py
       - .github/workflows/pages.yml

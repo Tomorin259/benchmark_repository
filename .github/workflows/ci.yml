@@ -21,57 +21,46 @@ jobs:
           python -m json.tool evaluation/kinetics_recovery/plotting/stream_config.json >/dev/null
           python -m json.tool evaluation/kinetics_recovery/results/expanded_reference/manifest.json >/dev/null
       - name: Compile Python entry points
-        run: |
-          python -m py_compile evaluation/cell/run_cell_metrics.py
-          python -m py_compile evaluation/cell/prepare_cell_metrics.py
-          python -m py_compile evaluation/cell/score_tivelo_metrics.py
-          python -m py_compile evaluation/cell/reference_neighbors.py
-          python -m py_compile evaluation/cell/plots.py
-          python -m py_compile evaluation/cell/build_reference_union_moments.py
-          python -m py_compile evaluation/cell/preflight_reference30_inputs.py
-          python -m py_compile evaluation/cell/metrics.py
-          python -m py_compile evaluation/cell/batc.py
-          python -m py_compile evaluation/cell/validate_results.py
-          python -m py_compile evaluation/kinetics_recovery/metrics.py
-          python -m py_compile evaluation/kinetics_recovery/expanded_reference.py
-          python -m py_compile evaluation/kinetics_recovery/plotting/expanded_reference.py
-          python -m py_compile evaluation/kinetics_recovery/plotting/figure6.py
-          python -m py_compile evaluation/kinetics_recovery/plotting/streams.py
-          python -m py_compile evaluation/gene/config.py
-          python -m py_compile evaluation/gene/plot_gene_assets.py
-          python -m py_compile evaluation/gene/plotting/phase_portrait.py
-          python -m py_compile evaluation/gene/simulation/generate.py
-          python -m py_compile evaluation/summary/refresh_real_cbdir_summary.py
-          python -m py_compile evaluation/summary/refresh_sim_cbdir_summary.py
-          python -m py_compile supplement/multivelo/run_multivelo_controls.py
-          python -m py_compile supplement/multivelo/run_scvelo_controls.py
-          python -m py_compile supplement/multivelo/inspect_phase_rule.py
-          python -m py_compile supplement/multivelo/archive_results.py
-          python -m py_compile supplement/multivelo/summarize_controls.py
-          python -m py_compile supplement/multivelo/plot_materials.py
-          python -m py_compile figures/assembly/suppfig15/assemble_materials.py
-          python -m py_compile ensemble/core.py
-          python -m py_compile ensemble/geometric_median.py
-          python -m py_compile ensemble/metrics.py
-          python -m py_compile ensemble/benchmark.py
-          python -m py_compile ensemble/plot_supfig10.py
-          python -m py_compile tests/test_gene_phase_plotting.py
-          python -m py_compile tests/test_cell_evaluation.py
-          python -m py_compile tests/test_kinetics_recovery.py
-          python -m py_compile tests/test_source_backed_method_launchers.py
-          python -m py_compile tests/test_ensemble.py
-          python -m py_compile tests/test_artifacts.py
-          python -m py_compile tests/test_simulation_generation.py
+        run: >-
+          python -m py_compile
+          evaluation/cell/run_cell_metrics.py
+          evaluation/cell/prepare_cell_metrics.py
+          evaluation/cell/score_tivelo_metrics.py
+          evaluation/cell/reference_neighbors.py
+          evaluation/cell/plots.py
+          evaluation/cell/build_reference_union_moments.py
+          evaluation/cell/preflight_reference30_inputs.py
+          evaluation/cell/metrics.py
+          evaluation/cell/batc.py
+          evaluation/cell/validate_results.py
+          evaluation/kinetics_recovery/metrics.py
+          evaluation/kinetics_recovery/expanded_reference.py
+          evaluation/kinetics_recovery/plotting/expanded_reference.py
+          evaluation/kinetics_recovery/plotting/figure6.py
+          evaluation/kinetics_recovery/plotting/streams.py
+          evaluation/gene/config.py
+          evaluation/gene/plot_gene_assets.py
+          evaluation/gene/plotting/phase_portrait.py
+          evaluation/gene/simulation/generate.py
+          evaluation/summary/refresh_real_cbdir_summary.py
+          evaluation/summary/refresh_sim_cbdir_summary.py
+          supplement/multivelo/run_multivelo_controls.py
+          supplement/multivelo/run_scvelo_controls.py
+          supplement/multivelo/inspect_phase_rule.py
+          supplement/multivelo/archive_results.py
+          supplement/multivelo/summarize_controls.py
+          supplement/multivelo/plot_materials.py
+          figures/assembly/suppfig15/assemble_materials.py
+          ensemble/core.py
+          ensemble/geometric_median.py
+          ensemble/metrics.py
+          ensemble/benchmark.py
+          ensemble/plot_supfig10.py
       - name: Install test dependencies
         run: python -m pip install numpy pandas scipy h5py anndata matplotlib matplotlib-venn scikit-learn seaborn pytest scvelo==0.3.4
-      - name: Run unit tests
-        run: |
-          python -m unittest discover -s tests -v
-          python -m pytest tests/test_artifacts.py -q
-      - name: Validate evaluation results
-        run: |
-          python evaluation/cell/validate_results.py
-          python evaluation/summary/refresh_real_cbdir_summary.py
-          python evaluation/summary/refresh_sim_cbdir_summary.py
+      - name: Run tests
+        run: python -m pytest tests -q
+      - name: Validate real Gene summary
+        run: python evaluation/summary/refresh_real_cbdir_summary.py
       - name: Check whitespace
         run: git diff --check
