@@ -1,70 +1,59 @@
-# Dataset metadata
+# Get the data
 
-`datasets.tsv` records the paper dataset identity, role, dimensions, stable
-upstream source, and release status. It contains no server working paths.
+Choose inputs for method execution, or saved outputs for metric/figure
+reproduction. Paths must match the selected module's input layout.
 
-Large canonical inputs are stored as individual files in the
-[public Hugging Face input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution **v1.0.2**.
-It covers 17 benchmark datasets and provides **25 original-format scientific
-files: 22 H5AD, one loom and two CSVs**. Select the files needed for your
-analysis; no TAR extraction is required. Three original Battich reference
-tables are obtained from the original study; follow
-[UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md).
+| Needed material | Access | Next step |
+| --- | --- | --- |
+| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution `v1.0.2` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
+| Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
+| Saved method outputs and evaluation assets | [Hugging Face results](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results) | Consult the actual availability index and [extraction guide](RESULT_DOWNLOADS.md) |
+| Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |
 
-## Input files and upstream references
+## Canonical inputs
 
-- `input_release_manifest.tsv` inventories all 28 logical dependencies with
-  processing roles, dimensions/layers and scientific-file SHA-256 values.
-  It distinguishes 25 `huggingface_file` records from three `upstream_only`
-  records. An upstream-only row has no mirrored download URL.
-- `input_file_manifest.tsv` maps the 25 individual files to direct public
-  URLs, relative paths, sizes and SHA-256 values. Save a file at the recorded
-  path under your artifact root and check its scientific-file hash.
-- `upstream_references.tsv` records Tables S1/S3/S4 by DOI and table number,
-  expected benchmark CSV identities and both supported input layouts.
-  `check_references.py` checks locally supplied files without downloading or
-  rewriting them. Current publisher downloads and any format conversion have
-  not been verified as byte-identical to the recorded benchmark CSVs.
-- `release_map.tsv` continues to map external logical artifacts to their
-  materialization paths. It is distinct from the input download manifest.
+The input release has 25 original-format scientific files: 22 H5AD, one loom
+and two gene-usage CSVs, covering 17 benchmark datasets. These are individual
+downloads, with no TAR extraction. Dataset-specific source terms apply;
+the release does not assign one new license to all third-party data.
 
-The 23 expression files and two project-prepared gene-usage CSVs preserve
-their frozen scientific bytes and SHA-256 values. Working inputs,
-count-preserving supplements, native labelled sources and fixed simulations
-keep their documented processing roles. The project does not relabel all
-third-party data under one new license; source attribution and dataset-specific
-terms are documented in the HF release.
+The scEU labelled sources retain `sl`, `su`, `ul` and `uu` layers:
+RPE1 has 5,422 cells × 11,848 genes, and organoid has 3,831 × 9,157.
+They are separate from the benchmark main inputs and from Dynamo method outputs.
+RPE1 alignment uses `Gene_Id`; the organoid main input lies within the labelled
+source's cell/gene scope.
 
-Saved method outputs and evaluation assets are being uploaded to the separate
-[Hugging Face output release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-in verified batches. It is not yet a complete release. Use its actual
-availability index and follow [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md) for
-TAR.GZ extraction and the separate archive/member SHA-256 checks.
+The [reference-gene usage tables](kinetics_reference_gene_usage/README.md)
+describe the expanded 250-gene RPE1 and 270-gene organoid evaluation, selected
+Figure 6 display flags, and valid/undefined/unavailable coverage. They do not
+contain the original reference trajectories or describe every training gene.
 
-The two scEU labelled sources are the native saved objects, not method-result
-files: RPE1 retains `sl`, `su`, `ul`, and `uu` layers (5,422 cells × 11,848
-genes), while organoid retains the same four labelled layers (3,831 cells ×
-9,157 genes). The benchmark main inputs remain separate records with their
-own roles and hashes. The RPE1 main input is aligned to the labelled source by
-`Gene_Id`; the organoid main input is within the labelled source's cell/gene
-scope. No source file is replaced by a Dynamo output.
+## File identities and layouts
 
-`kinetics_reference_gene_usage/` contains the 250-gene RPE1 and 270-gene
-organoid tables, their manifest, and an explanation of valid/undefined/
-unavailable status. These tables describe the expanded reference evaluation;
-they do not duplicate the Table S1/S3/S4 trajectories or claim to describe
-model-training gene usage.
+| File | Purpose |
+| --- | --- |
+| [datasets.tsv](datasets.tsv) | Dataset ID, role, dimensions and upstream source |
+| [input_file_manifest.tsv](input_file_manifest.tsv) | Direct URLs, paths, sizes and hashes for the 25 mirrored files |
+| [input_release_manifest.tsv](input_release_manifest.tsv) | All 28 logical input dependencies and processing roles, including three upstream-only references |
+| [upstream_references.tsv](upstream_references.tsv) | Original table identity, expected benchmark CSV hashes and supported layouts |
+| [release_map.tsv](release_map.tsv) | Logical artifacts and materialization paths |
+| [artifacts.tsv](../artifacts.tsv) | Artifact identity, checksum and registered access |
 
-Check one package without creating a large archive:
+Current publisher downloads and Excel-to-CSV conversions have not been
+verified as byte-identical to the benchmark's three reference CSVs.
+The [reference guide](UPSTREAM_REFERENCES.md) explains how to handle a mismatch.
+For packaged results, archive/member hashes and logical aliases are described
+once in [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md); planned inventory does not
+establish current download availability.
+
+## Release preparation
+
+For maintainers with the original artifacts, check a selected package:
 
 ```bash
 python data/prepare_release.py --artifact-root /path/to/velocity-artifacts \
   --package reference-moments --output-root outputs/reference-release-check
 ```
 
-Add `--build` to write a `.tar.gz` only after every selected source matches its
-registered SHA-256. The archive preserves the logical velocity-root paths used
-by the existing launchers/evaluators. Missing sources or changed bytes block
-archive construction; no new canonical input or score is inferred. The script
-never uploads or fills download URIs. Record real URIs only after an actual
-publication in the selected artifact store. Input public storage is linked above; other external artifact packages remain pending.
+Add `--build` to create a lossless TAR.GZ after source checks pass.
+The tool does not upload files or register public URLs.

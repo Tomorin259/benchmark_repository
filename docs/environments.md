@@ -1,15 +1,14 @@
-# Environment evidence and release requirements
+# Environments
 
-Supplementary Table S1 reports the package and selected dependency versions used in the benchmark. A clean-installed plotting lock is available under [`environments/`](environments/). Reviewed method-training Conda specifications and containers remain pending. This document records the requirements that future reviewed environment files must satisfy. Historical environment assignments and import checks remain in the private audit records.
+The benchmark uses method-specific Python environments.
+Supplementary Table S1 reports package versions and execution devices;
+[methods/configurations.tsv](../methods/configurations.tsv) records method
+versions and source references.
 
-## Plotting environment
+## CSV-only plotting
 
-`environments/plotting.requirements.txt` pins the seven direct dependencies;
-`environments/plotting.lock.txt` records the installed transitive versions.
-It was installed in a fresh Python 3.9 virtual environment on Linux. Validation
-ran the frozen veloAE PCA summary, all 14 saved projection panels, and all ten
-CSV-only Gene summaries (the latter at 60 dpi). These commands neither train
-methods nor modify committed figure assets or scientific inputs.
+The committed plotting lock was installed in a fresh Python 3.9 environment on
+Linux and checked with the veloAE diagnostics and CSV-only Gene summaries:
 
 ```bash
 python3.9 -m venv plotting-env
@@ -19,34 +18,20 @@ plotting-env/bin/python supplement/veloae/plot_shared_projection.py --output-dir
 plotting-env/bin/python evaluation/gene/plot_gene_assets.py --summaries-only --dpi 60 --output-root outputs/gene-summary
 ```
 
-The lock covers these plotting workflows only. It does not contain the
-AnnData/Scanpy/scVelo dependencies needed for H5AD phase panels or model training.
-Cross-runtime pixel or PDF byte identity is not implied.
+[plotting.requirements.txt](environments/plotting.requirements.txt) lists direct
+dependencies; [plotting.lock.txt](environments/plotting.lock.txt) pins the tested
+environment. It does not include the AnnData/Scanpy/scVelo stack for H5AD phase
+plots or model training. Rendering bytes may differ across platforms.
 
-## Method environments
+## Evaluation and method training
 
-Existing environment assignments are candidate runtime evidence, not reviewed
-locks for the paper's original runs. Package-import smoke tests do not establish
-clean installation, launcher execution, GPU compatibility, or scientific
-reproduction. Current package versions can differ from the manuscript-reported
-versions. Historical assignments and detailed probe results remain private.
+Use the dependencies and software versions in the selected module guide and
+run manifest. Reviewed training specifications remain incomplete. Current
+environment probes are not historical environment locks, and successful imports
+do not establish clean installation or result reproduction.
 
-Do not publish raw Conda exports: unrelated packages, editable installs and
-local paths obscure the method's actual dependency contract. Source-backed
-TFvelo, TSvelo and DeepKINET runs also require exact source identity; a
-non-Git source tree must not be assigned an invented upstream commit.
-
-## Requirements for a reviewed specification
-
-Each future environment file must:
-
-- identify exactly one or an explicitly shared set of configuration IDs;
-- pin the benchmarked method version or upstream commit;
-- reproduce the manuscript-reported Python and key dependency versions, or document a validated deviation;
-- avoid local filesystem paths and unreviewed editable installs;
-- record GPU/CUDA constraints where required;
-- install successfully in a clean environment;
-- pass the corresponding runner smoke test;
-- preserve third-party license notices without vendoring unapproved assets.
-
-The audited Conda paths are provenance evidence only and will not appear in the final public execution interface.
+Source-backed TFvelo, TSvelo and DeepKINET workflows also need the recorded
+source tree or release. Unknown historical source revisions remain unresolved.
+A usable specification must identify its configuration, Python and key
+dependencies, any CUDA/hardware constraints, and a checked invocation. Preserve
+upstream license notices and keep private installation paths out of public files.

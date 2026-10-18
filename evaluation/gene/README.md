@@ -1,92 +1,63 @@
-# Gene-level evaluation
+# Gene-level velocity evaluation
 
-This module owns gene-level velocity evaluation on simulated and real datasets.
-It preserves the method-native `Ms`, `Mu`, spliced-velocity, and
-unspliced-velocity layers. The reference-neighbor calculation is the only
-controlled replacement used by the current CBDir results.
+Nine method configurations are evaluated on seven real datasets and the three
+fixed simulation scenarios. Native `Ms`, `Mu` and spliced/unspliced velocities
+are retained; the canonical CBDir comparison uses the fixed reference-30 graph.
 
-## Reproducible entry point
+## Results and selection
 
-`config.py` owns the shared input paths, velocity-layer keys, selected gene
-lists, and transition edges used by evaluation and panel rendering. Display-only
-summary dimensions and typography live in `plotting/layouts.json`.
+| Source | Use |
+| --- | --- |
+| [results/gene_cbdir_reference30_all.csv](results/gene_cbdir_reference30_all.csv) | Canonical `new_cbdir` scores |
+| [results/gene_cbdir_edge_details_reference30_all.csv](results/gene_cbdir_edge_details_reference30_all.csv) | Transition-level results |
+| [results/simulation/gene_cbdir_cossim_reference.csv](results/simulation/gene_cbdir_cossim_reference.csv) | Frozen simulation CosSim; its historical CBDir column is a different source |
+| [selection/](selection/README.md) | Candidate screening, manual selection and unresolved historical configurations |
+| [config.py](config.py) | Input paths, layer keys, genes and transition edges |
+| [figures/panels/assembly_manifest.tsv](figures/panels/assembly_manifest.tsv) | Paper panel paths, score sources and checksums |
 
-`run_reference30_gene_cbdir.py` evaluates the nine gene-level methods on:
+Real datasets are `retina`, `DentateGyrus_lamanno`, `gastrulation`,
+`capo_pre`, `bonemarrow`, `mousebrain` and `pancreas`;
+simulation IDs are `branching`, `murk` and `all`.
+[results/README.md](results/README.md) describes the dataset/scenario layout.
 
-- real: `retina`, `DentateGyrus_lamanno`, `gastrulation`, `capo_pre`,
-  `bonemarrow`, `mousebrain`, and `pancreas`;
-- simulation: `branching`, `murk`, and `all`.
+## Recalculate CBDir
 
-Large method-result H5AD files and simulation inputs are external artifacts.
-Pass their common root explicitly, or set `VELOCITY_ARTIFACT_ROOT`:
+Run from the repository root with the external artifacts arranged at their
+recorded logical paths:
 
 ```bash
-python run_reference30_gene_cbdir.py \
+python evaluation/gene/run_reference30_gene_cbdir.py \
   --artifact-root /path/to/velocity-artifacts \
   --neighbor-mode reference \
-  --output-root evaluation/gene/results
+  --datasets retina DentateGyrus_lamanno gastrulation capo_pre bonemarrow mousebrain pancreas branching murk all \
+  --output-root outputs/gene-evaluation
 ```
 
-The canonical neighbor mode uses the shared 30-neighbor assets. The native
-neighbor mode is a controlled comparison only:
+The explicit list covers all ten datasets/scenarios; the script's default list
+is a subset. `VELOCITY_ARTIFACT_ROOT` can supply the artifact root.
+The evaluator also reads the historical comparison-score files named in its
+source/provenance; the saved H5ADs alone do not supply those comparisons.
+
+`--neighbor-mode native` is a controlled comparison, with a separate output
+root. Results include per-dataset scores, edge details, neighbor assets and
+audit/provenance records. The committed reference-neighbor NPZs allow graph
+inspection without the original H5ADs.
+
+To generate a new simulation realization, use the separate
+[simulation generator](simulation/README.md). It is intentionally unseeded;
+new outputs do not replace the canonical simulation inputs.
+
+## Render summaries and phase portraits
+
+For CSV-only summaries, install the [plotting environment](../../docs/environments.md):
 
 ```bash
-python run_reference30_gene_cbdir.py \
-  --artifact-root /path/to/velocity-artifacts \
-  --neighbor-mode native \
-  --output-root evaluation/gene/results/native_control
+python evaluation/gene/plot_gene_assets.py --summaries-only \
+  --output-root outputs/gene-summary
 ```
 
-The committed result layout is organized by scientific scope:
-
-```text
-results/
-├── real/<dataset>/
-├── simulation/<scenario>/
-├── reference_neighbors/<dataset>.npz
-└── gene_cbdir_reference30_all.csv
-```
-
-The two earlier reference-30 runs had complementary coverage; their values
-are now represented in this single date-free layout. The reference-neighbor
-NPZ files are retained so that the fixed neighbor sets can be inspected
-without reopening the original H5AD files. The result tables retain the
-method-specific audit columns, while the compact gene-level CBDir columns are
-the fields used by manuscript summaries.
-
-## Real-data gene selection provenance
-
-[`selection/`](selection/) preserves the recovered MURK and branching candidate
-rankings, upstream/project screening sources, and the frozen real-data evaluation
-lists. Its reconstruction checks separate historical evidence from newly run
-results and distinguish computational screening from subsequent manual selection.
-Dataset-specific configurations that have not been recovered remain documented.
-The checks do not modify the reference-30 evaluation results.
-
-## Repository-owned phase portraits
-
-`plotting/phase_portrait.py` is the public phase-portrait renderer. It changes
-only vector display and never writes to the source AnnData object or to any
-metric input. Phase coordinates stay linear, representative cells are selected
-deterministically, and no neighborhood velocity smoothing is applied.
-
-The single canonical arrow contract is:
-
-```text
-length mode:          log1p
-reference quantile:   0.90
-reference length:     0.05
-maximum length:       0.10
-grid:                 25 x 25
-density percentile:  15
-sampling:             deterministic
-```
-
-This is the enlarged-arrow contract used by the paper panels. It is the only
-display contract supported by the public renderer.
-
-The committed paper panels live under one date-free directory. New exports
-use a separate output directory:
+Phase/comparison panels additionally need the registered H5AD inputs and the
+AnnData/Scanpy/scVelo plotting dependencies:
 
 ```bash
 python evaluation/gene/plot_gene_assets.py \
@@ -94,87 +65,49 @@ python evaluation/gene/plot_gene_assets.py \
   --output-root outputs/gene-panels
 ```
 
-The renderer is owned entirely by this repository. It reads reference-30
-`new_cbdir` from `results/gene_cbdir_reference30_all.csv` and joins `CosSim`
-from `results/simulation/gene_cbdir_cossim_reference.csv` by dataset, method,
-and gene. The compact simulation table's separate CBDir column is not a
-replacement for the reference-30 values used by these panels. Missing tables,
-duplicate keys, mismatched inputs, and missing velocity components are errors;
-there is no external score-TXT fallback or dynamic import of legacy scripts.
+Use `--cases bonemarrow --genes LMNA` for focused phase panels.
+Summaries still cover every registered gene in the selected dataset.
+`--dpi` defaults to 600; output directories must be empty and cannot be the
+committed panel directory. The renderer joins `new_cbdir` and CosSim by
+dataset/method/gene, with registry method names and the Cell color palette.
 
-For CSV-only summary boxplots/heatmaps, no H5AD root, Scanpy, or scVelo import
-is needed:
+### Display and source boundaries
 
-```bash
-python evaluation/gene/plot_gene_assets.py --summaries-only \
-  --output-root outputs/gene-summary
-```
+[plotting/phase_portrait.py](plotting/phase_portrait.py) keeps linear
+`Ms`/`Mu` coordinates and uses deterministic representative-cell sampling,
+without neighborhood velocity smoothing:
 
-For a focused phase-panel check, use `--cases bonemarrow --genes LMNA`;
-summaries still cover every registered gene in the selected dataset. `--dpi`
-defaults to 600. Output directories must be empty and must not be the committed
-`figures/panels/` directory; the default is `outputs/gene-panels/`. Independently
-review a new export before promoting any assets to the paper bundle.
+| Setting | Value |
+| --- | --- |
+| Arrow length transform | `log1p` |
+| Reference quantile / length | 0.90 / 0.05 |
+| Maximum length | 0.10 |
+| Grid / density percentile | 25 × 25 / 15 |
 
-The phase API is unchanged. Native `Ms`/`Mu` are read without recomputing
-moments or neighbor graphs. All 90 frozen result inputs have both coordinate
-layers; missing layers stop the export. The historical real-panel velocity
-cleaning (NaN/Inf to zero and clipping to +/-1e10) applies only to selected
-plotting copies. Simulation vectors retain their native values. Real cluster
-labels/colors are taken from each registered reference H5AD; the historical
-equal-length label-assignment fallback is retained. H5AD files are never saved
-or modified by the renderer. Summary stripplot jitter inherits the display RNG
-and has no effect on metric values, means, or ordering.
+Real plotting copies replace NaN/Inf velocities by zero and clip to ±1e10;
+simulation vectors keep their native values. Reference H5ADs supply cluster
+labels/colors, including the retained equal-length label-assignment fallback.
+Source H5ADs are not saved or modified. Summary jitter affects display only.
 
-Method names/order are joined through the method configuration IDs; summary
-colors use the existing Cell benchmark palette. Each export writes
-`scores_used.csv`, source/configuration hashes and software versions in
-`provenance.json`, and an `assembly_manifest.tsv` for generated paper-panel
-references. It generates the previously scripted nine-method comparison panels
-and summaries, not the manually assembled whole PDFs or retained raw phase
-plates. The committed `figures/panels/assembly_manifest.tsv` remains the
-panel-to-file mapping and hash authority for current paper assets.
+Exports include `scores_used.csv`, `provenance.json` and
+`assembly_manifest.tsv`. They recreate scripted comparison panels and
+summaries, not retained raw phase plates or whole manually assembled PDFs.
+Figure 4D's final paired Cell/Gene panel belongs to
+[Simulation Cell](../cell/simulation/README.md).
 
-After a display-only update, check or refresh the existing panel hashes from
-the repository root without importing scVelo, opening H5AD files, or redrawing:
+Individual scores, summary annotations and formal tables use four decimals;
+dense heatmaps two. CSVs and sorting retain full precision.
+The sampling design is adapted from cellDancer 1.1.7; see
+[THIRD_PARTY_NOTICES.md](plotting/THIRD_PARTY_NOTICES.md).
+
+## Check panel registrations
 
 ```bash
 python evaluation/gene/refresh_panel_manifest.py
-python evaluation/gene/refresh_panel_manifest.py --write
 ```
 
-The refresh preserves panel references, row order, and recorded score sources;
-it changes only SHA256 fields. Shared images may have separate references for
-main and supplementary panels. `figures/panels/provenance.json` retains the
-historical generation record, not the current script or image checksums.
-Current image hashes belong to the panel manifest. Its Figure 4D scenario
-summaries are supporting gene-only analyses; the final paired Cell/Gene panel
-is owned by [`../cell/simulation/`](../cell/simulation/).
-
-The sampling design is adapted from cellDancer 1.1.7, which is distributed
-under the BSD 3-Clause license. The repository implementation does not require
-cellDancer to be installed; the retained notice is in
-`plotting/THIRD_PARTY_NOTICES.md`.
-
-## Figure display precision
-
-Display precision is separate from the stored metric values. Individual
-method-by-dataset, method-by-gene, or method-by-transition scores are formatted
-to four decimal places, including both CBDir-gene and cell-level CBDir in a
-single-gene phase portrait. Positive scores do not carry a leading plus sign;
-negative signs are retained. Aggregated summaries across genes or datasets
-(means, standard deviations, medians, macro-averages, branch averages,
-differences between summary values, and ranking-panel score annotations) use
-four decimal places. Dense heatmap annotations use two decimal places.
-Formal manuscript numerical tables use four decimal places, including their
-summary entries. Sorting and ranking always use unrounded values. All CSV
-result tables retain their full numeric precision and are the source of
-record for re-analysis.
-
-The same rule applies to staged and final gene-level figure regeneration:
-formatting changes must not alter the underlying CSV values.
-
-The audited simulation inputs have a clean regeneration entry point under
-[`simulation/`](simulation/). It uses the three frozen scenario parameter sets
-without setting a random seed. Each output is therefore an independent random
-realization rather than a replacement for the historical canonical artifact.
+After a reviewed display change, `--write` updates only panel hashes,
+preserving references, row order and score sources.
+The panel provenance retains the historical generation identity;
+current hashes belong to the panel manifest. See the
+[paper figure map](../../docs/figure_map.md) for final assembly.

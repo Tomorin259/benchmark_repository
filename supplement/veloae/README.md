@@ -1,54 +1,50 @@
-# veloAE supplementary diagnostics
+# veloAE representation diagnostics
 
-This directory contains source renderers and final A/B source assets for online
-Supplementary Figure 11. Plotting does not refit PCA, modify the saved
-state/velocity projections, or recompute benchmark scores. The exact compact inputs are included under `inputs/`.
+Source material for Supplementary Figure 11:
+A compares state/velocity PC1 explained variance, and B displays the 14
+datasets in their shared state-PCA axes. The final PDF is linked in the
+[figure map](../../docs/figure_map.md).
 
 ## Inputs and reproduction
 
-`plot_pca_summary.py` reads the frozen `inputs/pca_comparison.csv` (three methods,
-14 paired observations per matrix and method). The accepted paired-dot layout
-is retained; PNG output is 180 mm wide at 600 dpi, with PDF/SVG companions.
+The compact inputs are committed:
+[inputs/manifest.json](inputs/manifest.json) identifies the 84-row PCA
+comparison table and 14 projection NPZs.
+Use Python, NumPy, Matplotlib and Pillow, or the checked
+[plotting environment](../../docs/environments.md).
 
-```sh
+```bash
 python supplement/veloae/plot_pca_summary.py --output-dir outputs/veloae
 python supplement/veloae/plot_shared_projection.py --output-dir outputs/veloae
 python supplement/veloae/export_ppt_assets.py --input-dir outputs/veloae --output-dir outputs/veloae/ppt_assets_final
 ```
 
-`inputs/manifest.json` records the original logical source and SHA-256 for the
-84-row PCA table and all 14 projection archives. Their bytes match the frozen
-input hashes in the retained output manifests. The mean raw/standardized PC1
-fractions for veloAE are 95.7%/70.0% (state) and 84.8%/52.7% (velocity).
+Run from the repository root with fresh destinations.
+The first two commands render A and the B plate; the last exports letter-free
+materials for manual layout. PDF companions depend on the converter.
+The renderers use saved projections, without PCA refitting or metric changes.
+NPZ label arrays contain pickled objects and require trusted input files.
 
-`plot_shared_projection.py` reads the 14 trusted diagnostic NPZ archives, using
-their saved `X2`, `V2`, per-cell labels and PCA axes. It renders each dataset at
-300 dpi, then assembles the PNGs without interpolation. Display names are joined
-to `data/datasets.tsv`; no independent paper-name dictionary is maintained.
-Numeric ticks show the actual projected coordinates. Panels follow the original
-row-major five-column, three-row order, with a compact key in the final slot.
-One shared PC1/PC2 schematic sits at the lower left of the complete plate;
-it indicates positive coordinate directions, not a velocity scale bar. A compact
-shared key occupies the unused bottom-right slot.
+## Interpretation and display
 
-The environment requires Python, NumPy, Matplotlib and Pillow. Pickled label
-arrays in these existing NPZ archives require trusted inputs. No silent
-single-color fallback is permitted. Manifests record source hashes and panel
-parameters. Check the manifests, all 14 label/category counts, numeric ticks,
-and the finished figures before use. Do not infer high-dimensional cosines
-from angles in a panel with unequal x/y display scaling.
+A compares veloAE, scVelo stochastic and TIvelo, with 14 paired datasets per
+matrix and method. Filled/open points denote raw/standardized PCA; lines pair
+datasets and bars show cross-dataset means.
+The raw/standardized veloAE PC1 fractions are 95.7%/70.0% for state and
+84.8%/52.7% for velocity.
 
-`export_ppt_assets.py` is the handoff for final manual layout. It exports two
-letter-free assets: the native side-by-side `pca_summary` and the complete
-`veloae_pca_velocity` plate, each as PNG/SVG and PDF where the converter is
-available. The former is 600 dpi; the latter preserves its native 300-dpi
-dataset panels. It does not create or modify a PowerPoint.
+B reads saved `X2`, `V2`, labels and PCA axes. State coordinates are centered;
+velocity is projected without centering. Dataset names follow the registry.
+The 300-dpi dataset panels form a row-major 5 × 3 plate, without interpolation,
+with a shared cluster key and coordinate-orientation marker.
+The marker is not a velocity scale bar, and unequal axis scaling means visual
+angles cannot be read as high-dimensional cosines.
+Missing labels or malformed arrays stop rendering.
 
-The online `merged.tex` assigns the paired PCA summary to panel A and the
-14-dataset shared-axis projection plate to panel B. The final manual page
-composite is not part of this source bundle.
-
-Superseded A/B/C and 4×4 drafts are available in
-[`archive/non_online_20260927/` at Git revision
-`51edf35695e2b1db1449596f2878c1be3ee466c3`](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/supplement/veloae/archive/non_online_20260927).
-They are not sources for the current figure.
+A is exported at 180 mm/600 dpi; the B export retains its native 300-dpi panels.
+[results/ppt_assets_final/](results/ppt_assets_final/) contains the accepted
+source materials and manifest. [CAPTION.md](CAPTION.md) retains caption text.
+The final whole-page PDF remains a separate author assembly with incomplete
+independent reconstruction; no panel C is part of the current figure.
+Superseded layouts are retained at
+[revision 51edf35](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/supplement/veloae/archive/non_online_20260927).

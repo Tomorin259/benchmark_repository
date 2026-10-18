@@ -1,14 +1,17 @@
-# Benchmark evaluation
+# Evaluation
 
-Each submodule owns one scientific question and keeps its extraction,
-dataset-specific processing, metrics, compact results, and generated panels
-together. Reproducible plotting belongs inside the owning experiment under a
-plotting/ directory; only the final paper-level composition may remain manual.
-Evaluation consumes method-native H5AD files through explicit key mappings; it
-does not impose a universal result schema on the methods.
+Each module provides its input map, metric implementation, compact results and
+plotting entry points.
 
-- `cell/`: cell-level trajectory metrics across the 14 real datasets.
-- `gene/`: gene-level metrics for real and simulated data.
-- `kinetics_recovery/`: RPE1 and organoid kinetic-parameter recovery, including
-  its Figure 6 plotting module.
-- `summary/`: cross-experiment tables and integrated panels such as Figure 7.
+| Task | Results and commands |
+| --- | --- |
+| Cell-level trajectories on 14 real datasets | [Cell](cell/README.md) |
+| Gene-level velocity directions on real and simulated data | [Gene](gene/README.md) |
+| Rates against RPE1 and organoid scEU-seq references | [Kinetic-parameter recovery](kinetics_recovery/README.md) |
+| Figure 7 and cross-experiment summaries | [Summary](summary/README.md) |
+| Cell-level comparison on the three simulations | [Simulation Cell](cell/simulation/README.md) |
+| Post-hoc signed-transition aggregation | [Ensemble](../ensemble/README.md) |
+
+Start with committed tables for inspection, or materialize the method-native
+H5ADs and reference inputs to recalculate metrics. See
+[data access](../data/README.md) and [environments](../docs/environments.md).

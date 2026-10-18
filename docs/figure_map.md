@@ -1,108 +1,68 @@
-# Figure map
+# Paper figure and table map
 
-Supplementary Figure S15 and Table S9 are backed by
-[`supplement/multivelo/`](../supplement/multivelo/). S15A uses three phase
-portraits and a short progression key; S15B uses the single paired-score row
-for the two branching subsets. The current author-exported composite and its
-editable assembly are registered in
-[`figures/suppfig15_composite_manifest.json`](../figures/suppfig15_composite_manifest.json).
-The compact four-row S9 LaTeX source is generated from the frozen full-precision
-condition summary, not transcribed from the plotted points. The full MURK,
-smoothing, complete-trajectory and paired-decrease records remain in the module.
+Find a final figure first, then follow its source module for numerical data and
+reproduction commands. Final composites and experiment-level source panels
+have different reconstruction requirements.
 
-Supplementary Table S6 (veloVI gene-wise coordinate sensitivity) is backed by
-the full-precision CSV, transformation script, and manifest in
-[supplement/velovi/](../supplement/velovi/). Its A/C post-hoc diagnostics are
-separate from the primary cell-level benchmark (condition B).
+## Main figures
 
-Figure 1 and Supplementary Figures 9/11 retain the exact online PDF bytes in
-`figures/`, checked by online git-blob identity. Authoring candidates and their
-verification boundaries are under `figures/assembly/*/authoring/`. Current
-Figure 4 has a verified author-export lineage; its standalone A export,
-Figure 1 corrected editable A/B must not be inferred from the presence of a
-PPTX. Figure 5D sources are identified by native image placement; its old
-misidentified gene summary is archived without changing the current PDF.
+| Figure | Final PDF | Numerical sources and commands | Assembly / limits |
+| --- | --- | --- | --- |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Author source](../figures/assembly/fig1/authoring/source.pptx); corrected final panels are not independently reconstructed from this PPTX |
+| 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
+| 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | Retained composite; three panel sources are registered in the assembly map |
+| 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
+| 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
+| 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/) | Quantitative panels are scripted; labelled Dynamo A/E streams retain manual assets |
+| 7 — integrated comparison | [figSeven.pdf](../figures/figSeven.pdf) | [Summary tables and refresh commands](../evaluation/summary/README.md) | [Editable charts](../figures/assembly/fig7/fig7.pptx); manual WPS export and crop |
 
-`figures/export_materials.py` validates sources and generates fresh material
-bundles from the map; duplicate source-panel copies are not tracked.
+## Supplementary figures
 
-Scientific panels are generated beside the experiment that owns their data and
-metric definition:
+For S1–S8 and S14, the final composite is retained in the manuscript project;
+the links below identify repository source material, not a tracked final PDF.
 
-- cell-level panels: [`../evaluation/cell/`](../evaluation/cell/);
-- gene-level real and simulation panels: [`../evaluation/gene/`](../evaluation/gene/);
-- kinetics-recovery panels: [`../evaluation/kinetics_recovery/`](../evaluation/kinetics_recovery/);
-- integrated summaries: [`../evaluation/summary/`](../evaluation/summary/);
-- ensemble-specific panels: [`../ensemble/`](../ensemble/).
+| Figure | Subject | Sources and reproduction |
+| --- | --- | --- |
+| S1 | Dentategyrus_lamanno branching genes | [Gene panels](../evaluation/gene/figures/panels/real/DentateGyrus_lamanno/), [renderer](../evaluation/gene/README.md) |
+| S2 | Mouse retina branching genes | [Gene panels](../evaluation/gene/figures/panels/real/retina/), [renderer](../evaluation/gene/README.md) |
+| S3 | Gastrulation MURK genes, part I | [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
+| S4 | Gastrulation MURK genes, part II | [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
+| S5 | capofibro MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/capo_pre/), [renderer](../evaluation/gene/README.md) |
+| S6 | Human bone marrow MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/bonemarrow/), [renderer](../evaluation/gene/README.md) |
+| S7 | mousebrain MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/mousebrain/), [renderer](../evaluation/gene/README.md) |
+| S8 | Pancreas MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
+| S9 | Matched Cell/Gene comparison | [Retained PDF](../figures/suppFigNine.pdf); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); independent final-composite reconstruction remains incomplete |
+| S10 | GeoMedian-4 Cell evaluation | [Retained PDF](../figures/suppFigTen.pdf); [ensemble renderer](../ensemble/README.md), [editable assembly](../figures/assembly/suppfig10/suppfig10.pptx) |
+| S11 | veloAE representation diagnostics | [Retained PDF](../figures/suppFigEleven.pdf); [PCA inputs and renderers](../supplement/veloae/README.md); final whole-page reconstruction remains incomplete |
+| S12 | Cell evaluation on three simulations | [Retained PDF](../figures/suppFigTwelve.pdf); [scores, plots and table](../evaluation/cell/simulation/README.md) |
+| S13 | TIvelo root and ordering controls | [Retained PDF](../figures/assembly/suppfig13/suppFigThirteen.pdf); [diagnostics](../supplement/tivelo_gene/README.md), [editable assembly](../figures/assembly/suppfig13/README.md) |
+| S14 | Expanded reference-gene parameter recovery | [Expanded scores](../evaluation/kinetics_recovery/results/expanded_reference/README.md), [renderers](../evaluation/kinetics_recovery/plotting/README.md) |
+| S15 | RNA-only MultiVelo phase constraints | [Retained PDF](../figures/suppFigFifteen.pdf); [controls and table](../supplement/multivelo/README.md), [assembly](../figures/assembly/suppfig15/) |
 
-The owning module documents its renderers, inputs, and manual-asset boundaries.
-Paper-level composite PDFs are stored in [`../figures/`](../figures/).
+## Supplementary tables
 
-Gene comparison panels and score summaries use the repository-owned
-`evaluation/gene/plot_gene_assets.py` entry point. It consumes the registered
-H5AD inputs and committed CSVs; `--summaries-only` consumes CSVs alone. Export
-into a fresh directory under `outputs/` before any separately reviewed asset
-promotion. It does not rebuild retained raw phase plates or final manual PDF
-assemblies. See the Gene README for the exact layer and score-source contract.
+| Table | Subject | Repository source |
+| --- | --- | --- |
+| S1 | Method versions and execution settings | [Method registry and launchers](../methods/README.md), [environment limits](environments.md) |
+| S2 | Dataset descriptions | [Dataset registry](../data/datasets.tsv), [simulation configuration](../evaluation/gene/simulation/config.json) |
+| S3 | Cell scores, continued across parts | [Primary Cell table](../evaluation/cell/results/cell_metrics.csv) |
+| S4 | Cross-dataset Cell summaries | [Summary guide](../evaluation/summary/README.md) |
+| S5 | Signed-transition ensemble | [Scores and independent ranking](../ensemble/README.md) |
+| S6 | veloVI coordinate sensitivity | [CSV, transformation and table export](../supplement/velovi/README.md) |
+| S7 | Cell scores on simulations | [Simulation Cell table exporter](../evaluation/cell/simulation/README.md) |
+| S8 | Gene sets, coverage and scores | [Selected genes and screening evidence](../evaluation/gene/selection/README.md), [Gene scores](../evaluation/gene/results/README.md) |
+| S9 | scVelo/MultiVelo phase controls | [Full-precision summary and LaTeX table](../supplement/multivelo/README.md) |
 
-[`../figures/assembly/assembly_manifest.tsv`](../figures/assembly/assembly_manifest.tsv)
-is the authoritative panel-to-source map. It records panel identity, status,
-source and on-demand export paths, SHA256, and unresolved source gaps. Do not copy
-its inventory into prose; derive current panel counts and missing-source lists
-from the manifest.
+## Source identity and manual assembly
 
-Figure 3 compares selected gene-level and cell-level transition cases; its
-three source panels are under `evaluation/gene/figures/panels/selected_edges/`.
-Figure 4 is the simulation evaluation, with its final paired Cell/Gene D source
-at `evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png`.
-Gene-only scenario summaries are supporting analyses, not the final D panel.
-Figure 5 is the real-dataset
-gene-level evaluation. Their active PDFs are `figures/figThree.pdf`,
-`figures/figFour.pdf`, and `figures/figFive.pdf`. Figure 4 is the approved
-user-exported, cropped composite; `figures/fig4_composite_manifest.json`
-records its checksum and the verification boundary. Its online byte identity
-was not independently rechecked during this synchronization.
+[assembly_manifest.tsv](../figures/assembly/assembly_manifest.tsv) gives exact
+panel paths, checksums and missing-source flags. Figure-specific composite
+manifests in [figures/](../figures/) record final export identity and its
+verification scope; [the Gene panel manifest](../evaluation/gene/figures/panels/assembly_manifest.tsv)
+records Gene panel/score bindings.
 
-Figure 6 is the
-scEU-seq kinetic-parameter recovery evaluation, with active source panels in
-`evaluation/kinetics_recovery/figures/fig6/`. Its B–D/F quantitative panels
-and A/E streams are mapped in the assembly manifest; E includes the
-Dynamo(label data) positive-control stream. The current Figure 6 composite
-and its checksums are `figures/figSix.pdf` and
-`figures/fig6_composite_manifest.json`. Unique historical kinetics `fig5`
-panels and provenance remain under `evaluation/kinetics_recovery/archive/fig5/`.
-The complete historical bundle, including exact copies omitted from the working
-tree, is available at
-[Git revision `bed37b629dbc966109c8cb92dd22aca0810caf2f`](https://github.com/Tomorin259/benchmark_repository/tree/bed37b629dbc966109c8cb92dd22aca0810caf2f/evaluation/kinetics_recovery/archive/fig5).
-Method-colored Figure 6F boxplots inherit the benchmark palette from
-`evaluation/cell/plots.py`. Figure 6B trajectory lines retain a documented
-high-contrast exception; Figure 6A/E stream colors encode cell clusters.
-
-Figure 7 is the integrated method comparison. Its verified author-exported,
-cropped PDF is `figures/figSeven.pdf`, including the corrected Cell CBDir.
-Canonical summary tables are under
-`evaluation/summary/results/figure7_summary/`. The original editable assembly
-is `figures/assembly/fig7/fig7.pptx`, including ten native charts and embedded
-workbooks. `figures/fig7_composite_manifest.json` links numerical inputs, summary
-scripts, assembly, export/crop and output hashes. Final export remains a manual
-WPS step; the verification scope is recorded in that manifest.
-
-Figures 2, 7 and S10 have verified cropped author exports and updated native
-assemblies. Figure 2C's CBDir panel and Figure 7's
-Cell CBDir column use the corrected Forebrain 30-PC scores; S10 uses the updated
-Cell distribution and shared-frame GeoMedian-4 BATC. Figure 2A/B and the other
-four Cell metric panels are unchanged. Their composite manifests bind the
-current PDF files to the source panels and author exports.
-
-The online manuscript assigns the matched cell/gene comparison to
-Supplementary Figure 9 and GeoMedian-4 evaluation to Supplementary Figure 10.
-Supplementary Figure 10 SVG sources are in `figures/assembly/suppfig10/`;
-Figure 11 veloAE A/B sources are owned by `supplement/veloae/`. Their export
-locations are recorded in the root assembly manifest. Supplementary
-Figure 12 is the approved simulation Cell composite at
-`figures/suppFigTwelve.pdf`, with numerical provenance in
-`figures/suppfig12_composite_manifest.json`. Supplementary Figure 13 is the
-approved TiVelo root-control composite under
-`figures/assembly/suppfig13/`, with its PDF, editable PPTX, and assembly
-manifest. Both are registered as whole composites in the root assembly
-manifest.
+Use [material export](../figures/assembly/README.md) for fresh source copies.
+A saved author PDF or PPTX is reusable evidence, but does not establish
+independent whole-figure reconstruction. Editing a source panel alone does not
+update its composite. Historical kinetics assets named Figure 5 belong to the
+former numbering; current parameter recovery is Figure 6.

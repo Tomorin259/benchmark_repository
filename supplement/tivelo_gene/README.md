@@ -1,62 +1,28 @@
-# TIvelo root and ordering diagnostics
+# TIvelo root and ordering controls
 
-Mechanism sensitivity analyses for branching and hybrid simulations, with a
-paired bone marrow root intervention. These biologically informed refits explain
-failures; they must not replace original benchmark scores or method rankings.
+Supplementary Figure 13 examines root-dependent direction in frozen branching
+and hybrid simulations and a paired bone marrow intervention.
+The refits explain sensitivity; primary benchmark scores remain separate.
 
-## Evidence
+## Final materials
 
-| Evidence | Data | Entry script |
+| Panel | Inputs / source | Output material |
 | --- | --- | --- |
-| Archived gene scores | `results/` | `analyze_tivelo_gene.py` |
-| Main-path selection and orientation | `stage_audit/` | `stage_audit.py` |
-| Root decision and upstream diagnostics | `root_decision_audit/`, `upstream_scvelo_audit/` | `root_decision_audit.py`, `upstream_scvelo_audit.py` |
-| Fixed-expression ordering intervention | `ordering_trigger_audit_20260929_threads1/` | `tivelo_ordering_trigger_audit.py` |
-| Secondary-path DPT | `branch_dpt_export_20260930/` | `export_tivelo_branch_dpt.py` |
-| Simulation root pairs used in panel C | `root_stage_intervention/` | `root_stage_intervention.py` |
-| Independent optimizer-seed control | `root_stage_intervention_seed20260927/` | `root_stage_intervention.py` |
-| Bone marrow root pairs used in panel D | `bonemarrow_root_control_20261001/` | `bonemarrow_root_control.py` |
+| A/B, lineage and ordering | [stage_audit/](stage_audit/), [branch_dpt_export_20260930/](branch_dpt_export_20260930/) | [figures/](figures/), compact `ab_right_legend_material` |
+| C, simulation root pairs | [root_stage_intervention/](root_stage_intervention/), [independent seed control](root_stage_intervention_seed20260927/) | `tivelo_root_control_gene_metrics` and plotted CSVs |
+| D, bone marrow pairs | [bonemarrow_root_control_20261001/](bonemarrow_root_control_20261001/README.md) | `bonemarrow_root_control_row` and source assets |
 
-Other retained audits (`truth_graph_root_audit/`, `transition_flux_audit/`,
-`orientation_order_audit/`, `orientation_path_intervention/`,
-`orientation_stat_intervention/`, `root_mode_intervention/`, and the earlier
-`results/root_intervention*`) test different interventions, not duplicates of
-the final root-stage pairs. Their top-level scripts remain available; use
-`--help` for explicit inputs and outputs.
+[Editable assembly and final PDF](../../figures/assembly/suppfig13/README.md)
+carry panel letters and whole-figure layout.
+Input/result identities and current material hashes remain in the experiment
+and assembly manifests.
 
-Branching initially selects BranchA_9, then BranchB_9 after orientation
-correction, rather than an early root. Hybrid initially selects BranchA_0;
-path-wise DPT subsequently changes the root to BranchB_9. Its fixed-expression
-ordering audit changes the u/s direction score from -19.594465 to 77.043071.
-These failures occur at different stages in the recorded runs.
+## Re-render
 
-| Final paired simulation | Metric | Corrected-path root | Known early root |
-| --- | --- | ---: | ---: |
-| Branching (20 genes) | CBDir-gene | -0.282741 | 0.513026 |
-| Branching (20 genes) | CosSim | -0.432665 | 0.480011 |
-| Hybrid (40 genes) | CBDir-gene | -0.400341 | 0.686810 |
-| Hybrid (40 genes) | CosSim | -0.403071 | 0.672195 |
-
-Bone marrow compares Mono_1 and HSC_1 DTI roots across three paired optimizer
-seeds. Mean cell-level CBDir changes from 0.109349 to 0.662020, and BATC from
-0.283570 to 0.745330. The intervention changes the child graph, DPT and directed
-neighbors together; it does not isolate DPT alone or establish real-data
-ground-truth gene velocities. See the experiment README for controls.
-
-## Final materials and reproduction
-
-`figures/` is the sole active material bundle: compact A/B
-`ab_right_legend_material.{pdf,png}`, simulation C
-`tivelo_root_control_gene_metrics.{pdf,svg,png}`, bone marrow D
-`bonemarrow_root_control_row.{pdf,svg,png}`, source panels, plotted CSVs and
-historical source manifests. Paper composites, panel letters and editable PPT
-belong in [`figures/assembly/suppfig13/`](../../figures/assembly/suppfig13/).
-The assembly manifest records current hashes; historical generator hashes are
-not relabeled as hashes of the consolidated scripts.
-
-Run from repository root in the TIvelo environment (anndata, scanpy,
-matplotlib, numpy, pandas). PDF assembly additionally needs pypdf, reportlab
-and the original Arial TTF. Use a fresh export directory.
+Run from the repository root in the TIvelo environment with AnnData, Scanpy,
+Matplotlib, NumPy and pandas. PDF assembly additionally needs pypdf, reportlab
+and the original Arial TTF. Set `VELOCITY_ROOT`, `EXPORT_DIR` (fresh) and
+`ARIAL_TTF` to your local paths.
 
 ```bash
 MODULE=supplement/tivelo_gene
@@ -74,18 +40,27 @@ python "$MODULE/figures/scripts/plot_tivelo_bonemarrow_dpt_assets.py" \
   --output-dir "$EXPORT_DIR" --seed 20261001
 ```
 
-Large H5AD outputs are external artifacts retained on the execution host, not
-committed binaries. The small manifests retain their checksums. Public path
-prefixes `repository:`, `velocity:`, `artifact-root:` and `environment:` refer
-to user-supplied roots. No fitting is needed to re-render when the native
-artifacts have been materialized.
+Native H5ADs are external. Locators prefixed `repository:`, `velocity:`,
+`artifact-root:` or `environment:` use caller-supplied roots.
+Bone marrow `provenance.json` is the portable record; the original runtime
+manifest/logs remain external. Historical `--resume` requires that runtime
+manifest and matching inputs; independent reruns need a fresh output root.
 
-The raw bone marrow `manifest.json`, evaluation workspaces and logs remain on
-the execution host and are ignored by Git. `provenance.json` is its portable
-published counterpart; the D renderer accepts either. Historical `--resume`
-requires the original runtime manifest and matching inputs. Independent reruns
-should use a new output directory.
+## Controls and interpretation
 
-Cleanup removed superseded preview layouts, duplicate renderers, empty failed
-runs and caches from the active module. Result CSVs, native outputs and approved
-panel binaries are unchanged.
+The simulation pairs compare corrected-path roots with known early roots:
+branching CBDir-gene/CosSim changes from -0.282741/-0.432665 to
+0.513026/0.480011; hybrid changes from -0.400341/-0.403071 to
+0.686810/0.672195. The paired bone marrow comparison changes roots Mono_1/HSC_1
+across three optimizer seeds. Mean Cell CBDir changes from 0.109349 to 0.662020
+and BATC from 0.283570 to 0.745330.
+Its child graph, DPT and directed neighbors change together, so it does not
+isolate DPT or establish real-data gene-velocity truth.
+
+Supporting root-decision, upstream-scVelo, ordering-trigger, flux and
+orientation interventions remain linked by their manifests and top-level
+scripts. They answer different intervention questions, not duplicate final
+pairs. In the recorded runs, branching and hybrid fail at different ordering
+stages; the fixed-expression hybrid direction score changes from -19.594465
+to 77.043071. Use the relevant script's `--help` and a fresh output directory
+for a new diagnostic.

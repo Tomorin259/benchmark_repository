@@ -1,102 +1,74 @@
-# veloVI coordinate-sensitivity diagnostic
+# veloVI coordinate sensitivity
 
-This directory publishes the post-hoc coordinate diagnostic behind
-Supplementary Table S6. It does not retrain veloVI and it does not replace the
-primary cell benchmark.
+Supplementary Table S6 is a post-hoc coordinate diagnostic on 14 Cell datasets.
+It uses stored Cell-role velocity; it does not retrain veloVI or replace the
+primary benchmark.
+
+## Inspect and reproduce
+
+| File | Contents |
+| --- | --- |
+| [results/full_dataset_three_condition.csv](results/full_dataset_three_condition.csv) | Full-precision 14 × 3 conditions |
+| [results/table_s6.csv](results/table_s6.csv) | Wide table, C − B and unweighted macro-average |
+| [results/manifest.json](results/manifest.json) | Frozen labels/edges, input hashes, settings and output identities |
+
+Regenerate the table without scientific dependencies:
+
+```bash
+python3 supplement/velovi/run_coordinate_sensitivity.py \
+  --table-only --output-root /path/to/table-export
+```
+
+Recalculate the diagnostic with the recorded H5ADs and reference moments:
+
+```bash
+python supplement/velovi/run_coordinate_sensitivity.py \
+  --artifact-root /path/to/velocity-artifacts \
+  --reference-moments-root /path/to/reference-moments \
+  --output-root /path/to/fresh-coordinate-results
+```
+
+Inputs need their manifest identities; a clean checkout alone is insufficient.
+The script verifies input and TIvelo metric-source hashes before scoring.
+Use Python 3.9.23, scVelo 0.3.1, TIvelo 0.1.4, NumPy 1.26.4, SciPy 1.13.1,
+AnnData 0.10.8 and pandas 2.3.1 for the checked reproduction environment.
+Only scVelo was recorded in the original log; the other versions were inspected
+in the later reproduction environment, not independently archived originally.
 
 ## Conditions
 
-For each of the 14 cell datasets, the diagnostic keeps the scored cells,
-common genes, reference-neighbor candidates, labels, and transition edges
+Cells, common genes, fixed-neighbor candidates, labels and transitions stay
 fixed:
 
-* A: native stored Ms with stored velocity;
-* B: reference Ms with the unchanged stored velocity;
-* C: reference Ms with gene-wise transformed velocity
-  V'_ig = a_g V_ig.
+| Condition | State | Velocity |
+| --- | --- | --- |
+| A | Native stored `Ms` | Stored velocity |
+| B | Reference `Ms` | Same stored velocity |
+| C | Reference `Ms` | Gene-wise transformed `V'_ig = a_g V_ig` |
 
-The coefficients are fitted independently for each dataset and gene, without
-using transition labels or benchmark scores, by
-ordinary least squares,
+OLS fits `M_ref,ig = a_g M_native,ig + b_g` per gene/dataset without transition
+labels or scores. The intercept is not applied to velocity.
+The diagnostic map can reflect preprocessing and moment smoothing; it is not
+an official inverse-normalization factor.
+Original latent-time scaling stays in all conditions.
+Constant native genes use slope 1; constant reference genes retain the archived
+R-squared convention of 1. Match genes case-insensitively and cells by ID.
 
-    M_ref,ig = a_g M_native,ig + b_g,
+All conditions recompute velocity graphs with scVelo 0.3.1, 30 neighbors,
+one recursive expansion and `mode_neighbors="distances"`.
+TIvelo's positive-graph TransCosine averages finite source-cell values per
+annotated edge, then across evaluable edges; it is not a normalized transition
+probability.
 
-and the intercept is not applied to velocity. Thus a_g is a diagnostic
-coordinate map, not an official veloVI inverse-normalization factor. The
-mapping can reflect preprocessing and moment smoothing in addition to
-gene-specific scale differences.
+The retained macro-average is A=0.1147, B=0.0778, C=0.2193, C−B=0.1415.
+The 14/14 improvement refers to TransCosine, not the additional CBDir-HD column.
+It does not establish better biological inference or isolate training-time
+normalization. Uniform/time-scaling and reference-moment retraining answer
+separate questions.
 
-The original stored gene-wise latent-time scaling is retained in all three
-conditions. For a constant native gene, the archived calculation uses a slope
-of 1; constant reference genes receive the archived R-squared convention of 1.
-Common genes are matched case-insensitively. Cells are aligned by their IDs.
-TransCosine is calculated using TIvelo's positive scVelo graph metric: finite
-source-cell values are averaged per annotated edge, then across evaluable
-edges. This is not a row-normalized transition probability.
+```bash
+python3 -m unittest discover -s tests -p test_velovi_coordinate_sensitivity.py -v
+```
 
-All three conditions recompute the velocity graph with the same scVelo 0.3.1 settings:
-30 neighbors, one recursive neighbor expansion, and mode_neighbors="distances".
-The stored cell-role layers["velocity"] output is used; the gene-role
-velocity_u output is not part of Table S6.
-
-## Reproduce
-
-Large H5AD files and reference moments are external artifacts. The repository
-contains the fixed reference-neighbor assets and records artifact hashes in
-artifacts.tsv. The frozen manifest additionally records all 14 input paths,
-labels, transition edges, and checksums, so later benchmark-configuration
-changes cannot silently redefine this diagnostic. Supply the artifact root and the external reference-moment
-directory explicitly:
-
-    python supplement/velovi/run_coordinate_sensitivity.py \
-        --artifact-root /path/to/velocity-artifacts \
-        --reference-moments-root /path/to/reference_moments_union_scvelo025_20260907 \
-        --output-root supplement/velovi/results
-
-The script writes:
-
-* full_dataset_three_condition.csv: full-precision rows for all 14 × 3
-  conditions;
-* table_s6.csv: a wide, publication-facing view with C - B and the
-  unweighted macro-average;
-* manifest.json: software versions, graph settings, input hashes, script
-  hash, and output hashes.
-
-Recomputation verifies the frozen input checksums and the TIvelo metric source
-hash before scoring. The verified environment uses Python 3.9.23, scVelo
-0.3.1, TIvelo 0.1.4, NumPy 1.26.4, SciPy 1.13.1, AnnData 0.10.8, and pandas
-2.3.1. The original log recorded only the scVelo version; the other versions
-were inspected in the reproduction environment on 2026-10-02 and must not be
-read as independently archived original-run metadata.
-
-The result CSV and Table S6 can be inspected without the large input files.
-Public download URIs for those inputs remain unpublished in the repository's
-artifact index; a clean checkout alone cannot run the full recomputation.
-The input SHA-256 values identify the required external files.
-
-The committed CSV is the archived run used for Table S6. A clean rerun should
-reproduce its rounded values and the following macro-average:
-
-    A = 0.1147, B = 0.0778, C = 0.2193, C - B = 0.1415
-
-The CSV also retains CBDir-HD for transparency; Table S6's 14/14 improvement
-claim concerns TransCosine, not CBDir-HD. This post-hoc result does not establish
-better biological inference or isolate the causal effect of training-time
-normalization.
-
-Regenerate the full-precision wide table without scientific dependencies:
-
-    python3 supplement/velovi/run_coordinate_sensitivity.py \
-        --table-only --output-root /path/to/table-export
-
-Run the lightweight regression checks:
-
-    python3 -m unittest discover -s tests -p test_velovi_coordinate_sensitivity.py -v
-
-These check the 42-row contract, hashes, agreement of B with the primary
-benchmark (within 2e-8), table regeneration, and a synthetic shuffled-cell
-affine transformation. Full recomputation requires the external artifacts.
-
-The uniform-scaling and time-scaling controls, and the separate
-reference-moment retraining experiments, are intentionally kept outside this
-module because they answer different questions.
+Checks cover the 42 rows, source hashes, B/primary agreement (within 2e-8),
+table regeneration and shuffled-cell affine transformation.

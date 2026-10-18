@@ -1,44 +1,58 @@
-# Reproducibility policy
+# Reproduction routes
 
-Reproduction claims must identify the scientific inputs, method configuration,
-software source, randomness policy, output, and validation performed. A
-structural rerun must not be described as byte-exact reproduction.
+Choose a route according to the result you need. Commands and exact numerical
+settings live in the linked module guides.
 
-## Method runs
+| Route | Inputs | Guide |
+| --- | --- | --- |
+| Inspect scores or render CSV-only summaries | Committed compact tables and plotting dependencies | [Evaluation index](../evaluation/README.md) |
+| Recalculate metrics | Frozen method H5ADs, references and evaluation environments | [Cell](../evaluation/cell/README.md), [Gene](../evaluation/gene/README.md), [kinetics](../evaluation/kinetics_recovery/README.md) |
+| Retrain a method | Canonical inputs, registered method configuration and upstream software | [Methods](../methods/README.md) |
+| Generate new simulations | Simulator and scenario configuration | [Simulation](../evaluation/gene/simulation/README.md) |
+| Assemble a paper figure | Plot-data, source panels and any editable author source | [Figure map](figure_map.md) |
 
-Method scripts follow their audited upstream workflows. Versions, source
-references, scientific options, result layers, and embeddings are recorded in
-[`../methods/configurations.tsv`](../methods/configurations.tsv). External
-source checkouts must use a recorded release or commit before public release.
+## Inputs and outputs
 
-The repository does not impose one benchmark-wide random seed. Each launcher
-must state whether randomness is fixed or intentionally inherited from the
-upstream workflow. The formal DeepKINET configuration is the explicit
-seed-123, deterministic PyTorch/CUDA case. Raw-count selection and preprocessing
-rules remain local to the methods that consume those inputs.
+Start with the [data guide](../data/README.md). It distinguishes direct input
+downloads, upstream-only references and packaged method outputs.
+Materialize files at the logical paths expected by the selected evaluator;
+archive grouping paths are not automatically valid evaluator roots.
 
-## Data and artifacts
+A method produces a native result; evaluation consumes its recorded layers,
+cell/gene IDs and embeddings, then writes compact tables and panels.
+Keep fields consumed by evaluation when retaining an H5AD. A final figure may
+also require manual assembly.
 
-Large inputs and method results may remain outside Git. Their logical IDs,
-checksums, publication status, and stable URIs are recorded in
-[`../artifacts.tsv`](../artifacts.tsv). Public code must resolve an artifact or
-user-supplied root and must not depend on a private server path.
+| Information | Source |
+| --- | --- |
+| Method identity, version, options and output keys | [methods/configurations.tsv](../methods/configurations.tsv) |
+| Dataset identity and upstream origin | [data/datasets.tsv](../data/datasets.tsv) |
+| Artifact identity, checksum and access | [artifacts.tsv](../artifacts.tsv) and [data guide](../data/README.md) |
+| Files, layers and alignment used in a comparison | The evaluation module's input map and configuration |
+| Numerical processing and aggregation | The producing module's README and code |
 
-The archived simulation workflow is intentionally stochastic. Its scripts,
-canonical output hashes, structural checks, and non-byte-exact boundary are
-recorded in
-[`simulation_reproduction_audit_20260914.md`](simulation_reproduction_audit_20260914.md).
+## Randomness and reproducibility limits
 
-## Specialized workflows
+Use the [environment guide](environments.md) and record the configuration
+used for a rerun. There is no common random seed across the benchmark:
+DeepKINET uses its documented seed-123 deterministic configuration, while
+new simulation generation intentionally leaves the stream unseeded.
 
-Module-specific numerical settings belong with the module that executes them.
-The ensemble implementation contract is documented in
-[`../ensemble/README.md`](../ensemble/README.md). Durable evidence separating
-its upstream lineage, release index, and numerical reproduction is recorded in
-[`fixed_neighbor_reproduction_20260912.md`](fixed_neighbor_reproduction_20260912.md).
+Reusing a fixed canonical input and generating a new realization are different
+operations. Structural agreement or matching rounded scores does not establish
+byte identity. Kinetics uses the frozen `central_results` inputs, the corrected
+organoid reference direction and the labelled-data Dynamo exceptions described
+in its module guide. Small cross-runtime full-table differences in DeepKINET
+have not been assigned a cause.
 
-Kinetics reproduction uses the frozen central-result inputs and runtime
-versions recorded in `evaluation/kinetics_recovery/results/central_results/manifest.json`.
-DeepKINET seed identity is backed by H5AD metadata and input checksums; CSV
-byte identity is not implied; small full-table differences have an unestablished cause. Figure 6 streams reuse
-saved projections, and quantitative plots consume one evaluator output.
+Use fresh output directories. Run relevant checks before promoting a new
+result or figure; the [figure map](figure_map.md) distinguishes numerical
+rendering from retained author exports.
+
+## Historical evidence
+
+The [fixed-neighbor reproduction record](fixed_neighbor_reproduction_20260912.md)
+is a checksum-registered historical record.
+The earlier simulation audit is retained at
+[revision 8b4db85](https://github.com/Tomorin259/benchmark_repository/blob/8b4db85127b3333e6d60960d1e73359f5a5a81b6/docs/simulation_reproduction_audit_20260914.md).
+Use the current module guides for runnable workflows.

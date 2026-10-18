@@ -1,198 +1,71 @@
-# RNA velocity benchmark reproduction repository
+# RNA velocity benchmark
 
-This repository curates the scripts, compact numerical results, and figure
-assets needed to inspect and reproduce the RNA velocity benchmark. The
-benchmark contains 20 method configurations; their sole registry is
-[`methods/configurations.tsv`](methods/configurations.tsv). Large datasets,
-method-result H5AD files, checkpoints, environments, logs, and exploratory
-outputs remain in external storage.
+Code, compact results and figure sources for a benchmark of 20 RNA velocity
+method configurations across 14 real datasets and three simulated scenarios.
+The study evaluates cell-level trajectories, gene-level velocity directions
+and kinetic-parameter recovery against two scEU-seq reference systems.
 
-The repository supports audit and reuse of most reported results, but it is not
-yet a clean-environment, from-public-inputs, one-command reproduction release.
+[Browse results](https://tomorin259.github.io/benchmark_repository/) ·
+[Download data](data/README.md) ·
+[Find a paper figure](docs/figure_map.md)
 
-## Current status
+## Start here
 
-Status as of 2026-10-14:
-
-| Area | Repository support | Remaining boundary |
-| --- | --- | --- |
-| Method configurations | All 20 configurations are registered and mapped to method scripts | Reviewed environments and some upstream source revisions remain pending |
-| Cell-level evaluation | Complete compact results for 14 real datasets × 20 configurations under the fixed-reference-30 contract | Large method-result inputs remain external |
-| Gene-level evaluation | Reference-30 real and simulated results, repository-owned phase/comparison/summary renderers, and paper panels are available | Canonical input and method-result H5AD files remain external |
-| Simulation | The three scenario configurations and a public generator are available | Runs are intentionally unseeded independent realizations, not byte-exact reconstructions of the paper inputs |
-| Kinetics recovery | Frozen central-result evaluation, current Figure 6 panels/composite, and plotting entries are available; DeepKINET uses seed 123 | Rebuilding requires external H5AD files and reference tables |
-| Ensemble | Mean-4 baseline and formal RowGeometricMedian-4 results are complete for all 14 datasets | Both comparators depend on the external method-result artifacts |
-| Integrated summary | Current Figure 7 inputs, native charts and verified author PDF include the Forebrain correction | Final PDF export uses the documented manual WPS step |
-| Paper figures | Figures 1/5 and S9/S11 retain verified online PDF bytes; scientific source panels are mapped for on-demand export; Figures 4/6/7 retain validated author exports | Independent reconstruction gaps remain |
-
-Signed-T Mean-4 and Signed-T RowGeometricMedian-4 are post-hoc comparators, not
-additional registered methods. Mean-4 is the baseline and
-RowGeometricMedian-4 is the formal ensemble; each is ranked independently
-against the same 20 methods. See [`ensemble/README.md`](ensemble/README.md) for
-the complete aggregation and ranking contract.
-
-## Where to start
-
-[Browse benchmark results](https://tomorin259.github.io/benchmark_repository/)
-for score tables, gene phase portraits and kinetic-parameter trajectories.
-Website build and source contracts are documented in [`site/README.md`](site/README.md).
-
-| Task | Documentation and entry point |
+| Goal | Entry |
 | --- | --- |
-| Inspect or run a method configuration | [`methods/README.md`](methods/README.md) |
-| Reproduce Cell-level metrics and panels | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
-| Reproduce Gene-level metrics and phase portraits | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
-| Generate a new simulation realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
-| Reproduce kinetic-parameter recovery and Figure 6 panels | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
-| Reproduce the post-hoc ensemble | [`ensemble/README.md`](ensemble/README.md) |
-| Inspect cross-experiment summaries | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
-| Reproduce veloVI Table S6 coordinate-sensitivity diagnostics | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
-| Reproduce Supplementary Figure S15 and Table S9 phase-constraint diagnostics | [`supplement/multivelo/README.md`](supplement/multivelo/README.md) |
-| Trace manuscript panels to repository assets | [`docs/figure_map.md`](docs/figure_map.md) |
-| Read shared rules, environment requirements, and historical evidence | [`docs/`](docs/) |
+| Inspect scores without running methods | [Cell](evaluation/cell/results/cell_metrics.csv), [Gene](evaluation/gene/results/README.md), [kinetic parameters](evaluation/kinetics_recovery/README.md#results-and-scope) and [Figure 7 summaries](evaluation/summary/README.md) |
+| Recalculate metrics from saved method outputs | [Cell evaluation](evaluation/cell/README.md), [Gene evaluation](evaluation/gene/README.md), [kinetics recovery](evaluation/kinetics_recovery/README.md) |
+| Run a velocity method | [Method launchers](methods/README.md) and [environment requirements](docs/environments.md) |
+| Reproduce plots or assemble paper figures | [Figure map](docs/figure_map.md) |
+| Generate a new simulation realization | [Simulation generator](evaluation/gene/simulation/README.md) |
+| Inspect supplementary controls | [veloAE](supplement/veloae/README.md), [veloVI](supplement/velovi/README.md), [TIvelo](supplement/tivelo_gene/README.md), [MultiVelo](supplement/multivelo/README.md) and [gene–transition cases](supplement/gene-kinetic/README.md) |
 
-## Repository structure
+For example, render Gene summary plots from the committed CSVs after installing
+the [plotting environment](docs/environments.md):
 
-```text
-methods/                         method-specific reproduction scripts
-evaluation/cell/                 Cell-level evaluation, results, and panels
-evaluation/gene/                 Gene-level evaluation, simulation, and panels
-evaluation/kinetics_recovery/    kinetic-parameter recovery and Figure 6 panels
-evaluation/summary/              cross-experiment summaries such as Figure 7
-ensemble/                        post-hoc signed-transition comparators
-data/                            dataset identities and upstream access metadata
-artifacts.tsv                    logical registry for large external artifacts
-figures/                         paper composites and assembly assets
-docs/                            shared contracts, environment requirements, figure map, and provenance
-tests/                           lightweight publication-contract checks
+```bash
+python evaluation/gene/plot_gene_assets.py --summaries-only \
+  --output-root outputs/gene-summary
 ```
 
-Method display names are defined by `manuscript_name` in
-[`methods/configurations.tsv`](methods/configurations.tsv). Dataset display
-names are defined by `paper_name` in [`data/datasets.tsv`](data/datasets.tsv).
-Operational IDs and file paths may retain shorter internal names.
+Run commands from the repository root and use a fresh output directory.
 
-## Reproducibility boundaries
+## Data and reproducibility
 
-- [`artifacts.tsv`](artifacts.tsv) records logical artifact identities and
-  checksums. [`data/release_map.tsv`](data/release_map.tsv) and its verifier prepare
-  publication packages. The [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs) provides 25 original-format files (22 H5AD, one loom, two CSV); three original kinetic-reference tables are obtained from the original study.
-- [`data/input_release_manifest.tsv`](data/input_release_manifest.tsv) records
-  the 28-file input release inventory, including processing role, H5AD
-  dimensions/layers and SHA-256 values. It separates 25 mirrored files from three
-  upstream-only references; individual-file paths, sizes and checksums are in
-  [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv).
-- [Native method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-  are being uploaded in verified batches. Consult the release's availability
-  index before downloading; the complete release is not yet available.
-  [Download and extraction guidance](data/RESULT_DOWNLOADS.md) distinguishes
-  archive hashes from the original scientific-file hashes.
-- [`data/kinetics_reference_gene_usage/`](data/kinetics_reference_gene_usage/)
-  records the expanded RPE1 250-gene and organoid 270-gene scope, Figure 6
-  display flags, and valid/undefined/unavailable method coverage.
-- [Environment documentation](docs/environments.md) records environment evidence
-  and release requirements. The validated plotting lock is available; reviewed method-training
-  specifications remain pending.
-- Simulation generation intentionally leaves the random stream unseeded. The
-  historical canonical H5AD files remain the exact paper inputs; a new run is
-  an independent realization.
-- [`figures/assembly/assembly_manifest.tsv`](figures/assembly/assembly_manifest.tsv)
-  records available panel files, SHA256 values, and unresolved source gaps.
-- CI checks lightweight publication contracts and compact results. It does not
-  train all methods, install every method environment, or download every
-  external artifact.
+- [Canonical inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
+  provide 25 original-format files at distribution `v1.0.2`.
+  Three Battich reference tables are obtained separately; see
+  [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
+- [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
+  have a dated [availability index](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/available_files.tsv).
+  Check that index for the files needed by your task and follow the
+  [download and extraction guide](data/RESULT_DOWNLOADS.md).
+- Committed tables support inspection and several CSV-only plotting workflows.
+  Recomputing metrics requires the saved H5AD outputs and reference inputs;
+  retraining additionally requires method-specific software. The
+  [plotting lock](docs/environments.md) has been checked in a clean environment;
+  reviewed training specifications and some upstream source revisions remain
+  incomplete.
+- Simulations are intentionally unseeded. New runs are independent realizations;
+  the historical canonical H5ADs are the paper inputs.
+- Some final figures use author-edited PowerPoint and manual PDF export.
+  Their sources and reconstruction limits are listed in the [figure map](docs/figure_map.md).
 
-Read [`AGENTS.md`](AGENTS.md) and
-[`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md) before changing a script or
-module.
+## Repository layout
 
----
-
-# RNA velocity 基准评测复现仓库
-
-本仓库整理了检查和复现 RNA velocity 基准评测所需的脚本、紧凑数值结果和图件素材。
-基准评测包含 20 个方法配置，唯一注册表是
-[`methods/configurations.tsv`](methods/configurations.tsv)。大型数据集、方法结果
-H5AD、模型检查点、软件环境、日志和探索性输出保存在外部存储中。
-
-本仓库已经能够审计和复用论文中的大部分结果，但尚未达到从公开输入和干净环境
-开始、一条命令完整复现全部论文结果的发布状态。
-
-## 当前状态
-
-截至 2026-10-14：
-
-| 模块 | 仓库现有支撑 | 当前边界 |
-| --- | --- | --- |
-| 方法配置 | 20 个配置均已注册并映射到方法脚本 | 正式环境及部分上游源码版本仍待补充 |
-| Cell-level 评估 | fixed-reference-30 契约下的 14 个真实数据集 × 20 个配置紧凑结果已完成 | 大型方法结果输入仍在外部存储 |
-| Gene-level 评估 | reference-30 真实及模拟结果、仓库独立的相图/组图/汇总绘图入口和论文 panel 已归档 | canonical 输入和方法结果 H5AD 仍在外部存储 |
-| 模拟数据 | 三个场景的配置和公开生成器已归档 | 每次运行都是不设 seed 的独立 realization，不是论文输入的 byte-exact 重建 |
-| 动力学参数恢复 | central-results 评估、当前 Figure 6 单图素材、组合图和绘图入口已同步；DeepKINET 使用 seed 123 | 重建仍需外部 H5AD 和参考表 |
-| 集成方法 | Mean-4 baseline 和正式 RowGeometricMedian-4 的 14 数据集结果已完成 | 两个比较器均依赖外部方法结果 artifact |
-| 综合汇总 | Figure 7 当前输入表、原生图表和已验证作者导出 PDF 包含 Forebrain 修正 | 最终 PDF 使用文档说明的 WPS 手动导出步骤 |
-| 论文图件 | Figure 1/5 与 S9/S11 保留已核对的在线 PDF 原版；科学 panel 按需导出；Figure 4/6/7 保留已验证的作者导出图 | 独立重建缺口仍有记录 |
-
-Signed-T Mean-4 和 Signed-T RowGeometricMedian-4 是事后比较器，不属于 20 个注册
-方法。Mean-4 是 baseline，RowGeometricMedian-4 是正式 ensemble；二者分别与同一组
-20 个方法独立排名。完整的聚合及排名契约见
-[`ensemble/README.md`](ensemble/README.md)。
-
-## 从哪里开始
-
-| 任务 | 文档和入口 |
+| Directory | Contents |
 | --- | --- |
-| 检查或运行方法配置 | [`methods/README.md`](methods/README.md) |
-| 复现 Cell-level 指标和 panel | [`evaluation/cell/README.md`](evaluation/cell/README.md) |
-| 复现 Gene-level 指标和 phase portrait | [`evaluation/gene/README.md`](evaluation/gene/README.md) |
-| 生成新的模拟数据 realization | [`evaluation/gene/simulation/README.md`](evaluation/gene/simulation/README.md) |
-| 复现动力学参数恢复和 Figure 6 panel | [`evaluation/kinetics_recovery/README.md`](evaluation/kinetics_recovery/README.md) |
-| 复现事后 ensemble | [`ensemble/README.md`](ensemble/README.md) |
-| 检查跨实验汇总 | [`evaluation/summary/README.md`](evaluation/summary/README.md) |
-| 复现 veloVI Table S6 坐标敏感性诊断 | [`supplement/velovi/README.md`](supplement/velovi/README.md) |
-| 复核补充图 S15 与表 S9 的相位约束诊断及源素材 | [`supplement/multivelo/README.md`](supplement/multivelo/README.md) |
-| 查询论文 panel 对应的仓库素材 | [`docs/figure_map.md`](docs/figure_map.md) |
-| 阅读共用规则、环境要求和历史验证证据 | [`docs/`](docs/) |
+| `data/` | Dataset identities, downloads and input layouts |
+| `methods/` | Registered configurations and method launchers |
+| `evaluation/` | Cell, Gene and kinetics metrics, results and plots |
+| `ensemble/` | Mean-4 and GeoMedian-4 post-hoc comparisons |
+| `supplement/` | Method diagnostics and additional analyses |
+| `figures/` | Paper composites and editable assembly sources |
+| `site/` | Static results website |
+| `tests/` | Scientific and file-format regression checks |
 
-## 仓库结构
-
-```text
-methods/                         各方法的复现脚本
-evaluation/cell/                 Cell-level 评估、结果和 panel
-evaluation/gene/                 Gene-level 评估、模拟数据和 panel
-evaluation/kinetics_recovery/    动力学参数恢复和 Figure 6 panel
-evaluation/summary/              Figure 7 等跨实验汇总
-ensemble/                        事后有符号转移比较器
-data/                            数据集身份和上游访问信息
-artifacts.tsv                    大型外部 artifact 的逻辑注册表
-figures/                         论文组合图和 assembly 素材
-docs/                            跨模块契约、环境要求、figure map 和历史证据
-tests/                           轻量级论文契约检查
-```
-
-方法展示名称由 [`methods/configurations.tsv`](methods/configurations.tsv) 中的
-`manuscript_name` 定义；数据集展示名称由
-[`data/datasets.tsv`](data/datasets.tsv) 中的 `paper_name` 定义。运行 ID 和文件路径
-可以继续使用较短的内部名称。
-
-## 复现边界
-
-- [`artifacts.tsv`](artifacts.tsv) 记录逻辑 artifact 身份和校验和。
-  [Hugging Face 输入发布](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
-  提供 25 份原格式文件（22 H5AD、1 loom、2 CSV）；三张原始动力学参考表从原研究获取。文件下载及校验清单见
-  [`data/input_file_manifest.tsv`](data/input_file_manifest.tsv)，参考表获取说明见
-  [`data/UPSTREAM_REFERENCES.md`](data/UPSTREAM_REFERENCES.md)。
-- [方法原生输出与评估资源](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-  正在分批上传并校验，当前尚不是完整发布。请按 HF 的实际可下载清单选择文件；
-  压缩包与解压后科学文件的校验方式见 [`data/RESULT_DOWNLOADS.md`](data/RESULT_DOWNLOADS.md)。
-- [环境说明](docs/environments.md) 记录环境证据与发布要求，已提供验证过的绘图 lock；方法训练环境
-  specification 仍待补充。
-- 模拟数据生成器刻意不设置随机种子。历史 canonical H5AD 仍是论文使用的精确输入；
-  新运行得到的是独立随机 realization。
-- [`figures/assembly/assembly_manifest.tsv`](figures/assembly/assembly_manifest.tsv)
-  记录现有 panel 文件、SHA256 和未解决的 source 缺口。
-- CI 只检查轻量级论文契约和紧凑结果，不会训练全部方法、安装所有方法环境或下载
-  全部外部 artifact。
-
-修改脚本或模块前，请先阅读 [`AGENTS.md`](AGENTS.md) 和
-[`REPOSITORY_DESIGN.md`](REPOSITORY_DESIGN.md)。
+Names come from [methods/configurations.tsv](methods/configurations.tsv) and
+[data/datasets.tsv](data/datasets.tsv). [artifacts.tsv](artifacts.tsv) identifies
+large files and retained assets.
+See [reproduction routes](docs/reproducibility.md) for the input-to-result
+workflow and [repository design](REPOSITORY_DESIGN.md) for development rules.
