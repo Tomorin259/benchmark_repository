@@ -11,7 +11,7 @@ are retained; the canonical CBDir comparison uses the fixed reference-30 graph.
 | [results/gene_cbdir_reference30_all.csv](results/gene_cbdir_reference30_all.csv) | Canonical `new_cbdir` scores |
 | [results/gene_cbdir_edge_details_reference30_all.csv](results/gene_cbdir_edge_details_reference30_all.csv) | Transition-level results |
 | [results/simulation/gene_cbdir_cossim_reference.csv](results/simulation/gene_cbdir_cossim_reference.csv) | Frozen simulation CosSim; its historical CBDir column is a different source |
-| [selection/](selection/README.md) | Candidate screening, manual selection and unresolved historical configurations |
+| [selection/](selection/README.md) | Final genes, screening rules and candidate-table evidence |
 | [config.py](config.py) | Input paths, layer keys, genes and transition edges |
 | [figures/panels/assembly_manifest.tsv](figures/panels/assembly_manifest.tsv) | Paper panel paths, score sources and checksums |
 
@@ -90,7 +90,9 @@ Rendering uses copies of the source arrays. Summary jitter affects display only.
 
 Exports include `scores_used.csv`, `provenance.json` and
 `assembly_manifest.tsv`. They recreate scripted comparison panels and
-summaries. Final composites follow the assembly steps in the figure map.
+summaries. The panel manifest records current hashes; panel provenance retains
+the original generation identity. Final composites follow the
+[assembly steps in the figure map](../../docs/figure_map.md).
 Figure 4D's final paired Cell/Gene panel belongs to
 [Simulation Cell](../cell/simulation/README.md).
 
@@ -98,15 +100,3 @@ Individual scores, summary annotations and formal tables use four decimals;
 dense heatmaps two. CSVs and sorting retain full precision.
 The sampling design is adapted from cellDancer 1.1.7; see
 [THIRD_PARTY_NOTICES.md](plotting/THIRD_PARTY_NOTICES.md).
-
-## Check panel registrations
-
-```bash
-python evaluation/gene/refresh_panel_manifest.py
-```
-
-After a reviewed display change, `--write` updates only panel hashes,
-preserving references, row order and score sources.
-The panel provenance retains the historical generation identity;
-current hashes belong to the panel manifest. See the
-[paper figure map](../../docs/figure_map.md) for final assembly.

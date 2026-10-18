@@ -1,1 +1,0 @@
-Top row: normal + branching; bottom row: hybrid. Known developmental bins are mapped to 0--1 by dividing by 9. Main-path and branch DPT are independently normalized to 0--1. The common colorbar indicates relative progression within each path. Gray cells are outside the respective DPT path. Root markers and all point colors/coordinates are unchanged.

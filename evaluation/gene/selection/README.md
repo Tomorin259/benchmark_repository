@@ -6,19 +6,13 @@
 pairs evaluated by [the Gene entry point](../run_reference30_gene_cbdir.py).
 Every pair has recovered candidate-table evidence. The final genes were
 selected manually after screening and phase-portrait inspection. First-evidence
-row ranks in the TSV locate the supporting candidate rows. Per-gene selection
-decision logs are unavailable. Synthetic genes follow the simulator's known modules.
+row ranks in the TSV locate the supporting candidate rows. Synthetic genes
+follow the simulator's known modules.
 
 | Material | Role |
 | --- | --- |
 | [selected_genes.tsv](selected_genes.tsv) | Final evaluated pairs and candidate evidence |
 | [provenance.json](provenance.json) | Original source locators, script snapshots, checksums and limitations |
-| [historical/](historical/) | Original candidate tables and source snapshots, retained as evidence |
-| [results/summary.json](results/summary.json) | Reconstruction attempts and links to full-precision comparisons |
-| [historical/MURK_selected.md](historical/MURK_selected.md) | Broader intermediate lists; the TSV and evaluation entry define the final selection |
-
-Candidate reconstruction uses the recorded package versions, hash seed, input
-hashes and run settings. The selected-gene TSV defines the evaluated set.
 
 ## Screening rules
 
@@ -36,11 +30,7 @@ It does not directly estimate transcription-rate alpha. Its interval uses
 `t.ppf(0.95, n-1)`, unlike the branching two-sided interval.
 
 [reproduce_murk.py](reproduce_murk.py) executes the unchanged numerical cells
-with the input read redirected. Recovered population comparisons apply to
-Gastrulation; configurations for the other four MURK datasets remain missing.
-The legacy Gastrulation input is absent, so the retained raw-input run is a
-reconstruction check rather than exact historical-input reproduction. The
-commented project excerpt is configuration evidence, not a run log.
+with the input read redirected.
 
 ### Branching
 
@@ -60,21 +50,16 @@ equal Neuroblast/RGC ranks, producing zero correlation in that branch.
 | Neuron/Glia | Neuron: `RadialGlia, nIPC, Nbl1, Nbl2, ImmGranule1, ImmGranule2, Granule, CA, CA1-Sub, CA2-3-4`; Glia: `RadialGlia, GlialProg, ImmAstro, OPC` |
 | Granule/Pyramidal | `Nbl2, ImmGranule1, ImmGranule2, Granule` versus `Nbl2, CA, CA1-Sub, CA2-3-4`; ranks 1/2/3/4 versus 1/2/3/3 |
 
-The [preserved snapshots](historical/scripts/) separate the December 2025
-unfiltered tasks, January 7 filtered Granule/Pyramidal ranks, and January 18
-ten-gene list. The two slope tables record separate population comparisons;
-the later list records the manual selection.
-
 Selection-stage `moments(n_neighbors=30)` is distinct from the fixed-reference-30
-evaluation graph. Historical `list(set(...))` ordering depends on Python's hash
-seed. Manifests record the actual seed and preprocessing settings; the retained
-two-task run's thread settings are indexed in the summary.
+evaluation graph.
 
 ## Reconstruct candidate tables
 
 Run from the repository root with the input H5ADs and compatible
-Scanpy/scVelo environments recorded in the retained manifests. Each screening
-entry requires a new output directory:
+Scanpy/scVelo environments. Manifests record package versions, input hashes,
+hash seed and preprocessing settings; the retained two-task run's thread
+settings are indexed in the summary. Historical `list(set(...))` ordering
+depends on Python's hash seed. Each screening entry requires a new output directory:
 
 ```bash
 python evaluation/gene/selection/reproduce_murk.py \
@@ -100,6 +85,24 @@ option, only Granule/Pyramidal outputs are emitted. Retina emits unfiltered
 and filtered PR/RGC tables.
 
 ## Historical agreement
+
+| Material | Role |
+| --- | --- |
+| [historical/](historical/) | Original candidate tables and source snapshots |
+| [results/summary.json](results/summary.json) | Reconstruction attempts and full-precision comparisons |
+| [historical/MURK_selected.md](historical/MURK_selected.md) | Broader intermediate lists; the TSV and evaluation entry define the final selection |
+
+Per-gene selection decision logs are unavailable. Recovered MURK population
+comparisons apply to Gastrulation; configurations for the other four MURK
+datasets remain missing. The legacy Gastrulation input is absent, so the
+retained raw-input run is a reconstruction check rather than exact
+historical-input reproduction. The commented project excerpt is configuration
+evidence, not a run log.
+
+The [preserved snapshots](historical/scripts/) separate the December 2025
+unfiltered tasks, January 7 filtered Granule/Pyramidal ranks, and January 18
+ten-gene list. The two slope tables record separate population comparisons;
+the later list records the manual selection.
 
 | Check | Agreement with historical tables |
 | --- | --- |

@@ -2,6 +2,13 @@
 
 [configurations.tsv](configurations.tsv) lists the 20 configurations, versions,
 source references, scientific options and required result keys.
+
+`config_id` identifies a benchmark configuration, `operational_id` is used in
+file paths and table joins, and `manuscript_name` gives its display name.
+DeepVelo and DeepVelo_scv are distinct configurations; GraphVelo_scv and
+GraphVelo_dyn use different upstream velocity inputs. The operational ID
+`velovi` is displayed as **veloVI**.
+
 Use [canonical inputs](../data/README.md) and the method's
 [software environment](../docs/environments.md).
 
@@ -64,7 +71,6 @@ Use separate empty roots for distinct evaluation roles.
 
 scVelo, UniTVelo and veloVI record their selected settings in
 `uns["benchmark_run"]`; DeepVelo writes `run_config.json`.
-Entry scripts avoid sibling-file package shadowing.
 
 ## Use the results
 
@@ -72,5 +78,5 @@ Entry scripts avoid sibling-file package shadowing.
 [kinetics](../evaluation/kinetics_recovery/README.md) document the exact result
 family, layer and alignment consumed by each task. Ensembles are
 [post-hoc comparisons](../ensemble/README.md) outside the method registry.
-See [reproduction routes](../docs/reproducibility.md) for data/version
-identities and [repository design](../REPOSITORY_DESIGN.md) before changing code.
+See the [reproduction guide](../docs/reproducibility.md) for input identities,
+software environments and evaluation commands.

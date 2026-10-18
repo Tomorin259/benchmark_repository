@@ -30,6 +30,9 @@ trajectories are obtained through the upstream reference-table route.
 
 ## File identities and layouts
 
+Dataset IDs follow `dataset_id` in [datasets.tsv](datasets.tsv); figures and
+tables use the corresponding `paper_name`.
+
 | File | Purpose |
 | --- | --- |
 | [datasets.tsv](datasets.tsv) | Dataset ID, role, dimensions and upstream source |
@@ -42,15 +45,3 @@ trajectories are obtained through the upstream reference-table route.
 The [reference guide](UPSTREAM_REFERENCES.md) describes the expected benchmark
 CSV format and checksums. [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md) explains
 archive/member hashes, logical aliases and the current availability index.
-
-## Release preparation
-
-For maintainers with the original artifacts, check a selected package:
-
-```bash
-python data/prepare_release.py --artifact-root /path/to/velocity-artifacts \
-  --package reference-moments --output-root outputs/reference-release-check
-```
-
-Add `--build` to create a lossless TAR.GZ after source checks pass.
-Publish the resulting package and register its download URL as a separate release step.

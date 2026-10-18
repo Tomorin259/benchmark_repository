@@ -140,10 +140,8 @@ described above; the historical seed-123 evaluation used an earlier alignment.
 
 A/E use saved cell-level velocity projections, separately from processed rate
 trajectories. Stream rendering checks cell IDs, finite values, shapes and the
-configured comparison embedding. For DeepKINET it also checks recorded graph/
-projection provenance; key presence alone is insufficient.
-Native inputs remain unchanged. Any necessary recomputation requires an
-explicitly reviewed expression layer, graph, seed, versions and reason.
+configured comparison embedding. DeepKINET checks also include recorded graph
+and projection provenance.
 
 DeepKINET RPE1 may obtain aligned labels/palette from
 `results/scvelo_deterministic/scv_deterministic_rpe1.h5ad`; that file supplies
@@ -151,8 +149,5 @@ no DeepKINET velocities. Some saved projections lack independent provenance.
 Labelled Dynamo A/E retain manual assets without automatic H5AD renderers.
 
 The final PDF and panel bindings are in the [figure map](../../docs/figure_map.md).
-Current Figure 7 hashes belong to its own composite manifest, not the historical
-Figure 7 hash retained inside the kinetics promotion record.
-The old kinetics Figure 5 sources and comparison commands are documented in
-[the plotting guide](plotting/README.md#historical-comparison); they are outside
-the current Figure 5 Gene analysis.
+Earlier kinetics sources and comparison commands are documented in the
+[historical comparison guide](plotting/README.md#historical-comparison).

@@ -30,7 +30,7 @@ const downloads = computed(() => [
   ['Summary figures',data.value.downloads.figures],
 ])
 const technicalFiles = computed(()=>[...data.value.downloads.metadata,...data.value.downloads.audit])
-const guides = [['evaluation/cell/README.md','Cell'],['evaluation/gene/README.md','Gene'],['evaluation/kinetics_recovery/README.md','Kinetics'],['ensemble/README.md','Ensemble'],['supplement/veloae/README.md','veloAE'],['supplement/velovi/README.md','veloVI'],['supplement/tivelo_gene/README.md','TIvelo']]
+const guides = [['evaluation/cell/README.md','Cell'],['evaluation/gene/README.md','Gene'],['evaluation/kinetics_recovery/README.md','Kinetics'],['ensemble/README.md','Ensemble'],['supplement/veloae/README.md','veloAE'],['supplement/velovi/README.md','veloVI'],['supplement/tivelo_gene/README.md','TIvelo'],['supplement/multivelo/README.md','MultiVelo']]
 function focusMain(){document.getElementById('main').focus()}
 async function navigate(){
   const id=location.hash.slice(1).split('?')[0]||'home'
@@ -111,8 +111,8 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
       <template v-else-if="page==='documentation'">
         <div class="page-heading"><h1>Documentation</h1></div>
         <section class="panel content-panel"><h2>Metrics</h2><details v-for="(metrics,level) in data.content.metrics" :key="level" class="metric-guide"><summary>{{taskNames[level]}}</summary><div v-for="m in metrics" :key="m.key"><h3>{{m.label}}</h3><p class="small">{{m.definition}} {{m.aggregation}}</p></div></details></section>
-        <section class="panel content-panel"><h2>Evaluation & reproduction</h2><div class="guide-links"><a v-for="[path,label] in guides" :key="path" :href="sourceLink(path)" target="_blank" rel="noopener">{{label}} ↗</a><a :href="sourceLink('evaluation/gene/simulation/README.md')" target="_blank" rel="noopener">Simulation ↗</a></div></section>
-        <section class="panel content-panel"><h2>Data & source records</h2><div class="guide-links"><a href="#downloads">Downloads →</a><a :href="repository" target="_blank" rel="noopener">Repository ↗</a><a href="./data/manifest.json" target="_blank" rel="noopener">Build manifest ↗</a><a href="./data/content-guide.md" target="_blank" rel="noopener">Content sources ↗</a><a :href="sourceLink('docs/environments.md')" target="_blank" rel="noopener">Environments ↗</a></div></section>
+        <section class="panel content-panel"><h2>Reproduce results</h2><div class="guide-links"><a v-for="[path,label] in guides" :key="path" :href="sourceLink(path)" target="_blank" rel="noopener">{{label}} ↗</a><a :href="sourceLink('evaluation/gene/simulation/README.md')" target="_blank" rel="noopener">Simulation ↗</a></div></section>
+        <section class="panel content-panel"><h2>Data and code</h2><div class="guide-links"><a href="#downloads">Downloads →</a><a :href="sourceLink('docs/reproducibility.md')" target="_blank" rel="noopener">Reproduction guide ↗</a><a :href="sourceLink('docs/environments.md')" target="_blank" rel="noopener">Environments ↗</a><a :href="sourceLink('docs/figure_map.md')" target="_blank" rel="noopener">Figure sources ↗</a><a :href="repository" target="_blank" rel="noopener">Repository ↗</a></div></section>
       </template>
       <div v-else class="empty"><h1>Page not found</h1><a href="#home">Return to overview</a></div>
     </template>

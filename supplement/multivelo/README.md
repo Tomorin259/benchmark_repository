@@ -95,8 +95,6 @@ python supplement/multivelo/plot_materials.py --output-dir outputs/multivelo-mat
 python supplement/multivelo/plot_materials.py --paired-only --output-dir outputs/multivelo-paired-materials
 python supplement/multivelo/summarize_controls.py --output-root outputs/multivelo-summary
 python supplement/multivelo/summarize_controls.py --table-only --output-root outputs/multivelo-table
-python supplement/multivelo/archive_results.py --materials-only \
-  --materials-dir outputs/multivelo-materials
 python figures/assembly/suppfig15/assemble_materials.py \
   --output-dir outputs/multivelo-assembly
 python supplement/multivelo/run_scvelo_controls.py \
@@ -128,29 +126,9 @@ open points show modified conditions (scVelo induction-only and MultiVelo
 gate open), keyed as Default/Modified at the lower right. Method names are neutral axis labels; method colors are reserved
 for data marks. `scores_used.csv` retains all 160 plotted gene-condition rows.
 
-Large native outputs remain on the execution host and are ignored by Git.
-`repository:`, `artifact-root:` and `environment:` locators are relative to
-user-supplied roots, not public download URIs. `archive_results.py` is the
-explicit compact-result import boundary for the original completed runs;
-it validates source identities and de-duplicates default-condition rows.
-Runtime manifests may contain execution-local paths; their public counterpart
-is the portable `provenance.json`.
-
-To archive identified completed runs on the execution host, use
-`archive_results.py --diagnostics-root /path/to/completed-diagnostics
---artifact-root /path/to/velocity-artifacts`. After checking a fresh rendering,
-add `--materials-dir /path/to/accepted-rendering` to publish its figure materials,
-shared key and Table S9 source under this module. Input and output hashes must
-match before the copy is accepted.
-
-For rendering-only updates, use `--materials-only` as above. It validates
-the current plotting script, source inputs and accepted export hashes without
-re-importing or reformatting any frozen scientific CSV. Clean-checkout figure
-rendering and summary verification use the compact files in Git. Repeating the
-model fits additionally requires the frozen method-native H5ADs identified in
-`provenance.json`; unresolved external locators are not public download URLs.
-
-Hand-reconstructed MultiVelo velocities failed output reproduction and are
-excluded from attribution. Two attempted scVelo controls disabling steady-state
-candidates raise an upstream IndexError. These excluded attempts and their
-failure records are retained in provenance.
+Figure rendering and summary verification use the compact files in Git.
+Refitting additionally requires the frozen method-native H5ADs identified in
+[provenance.json](provenance.json). Its `repository:`, `artifact-root:` and
+`environment:` locators resolve against user-supplied roots; they are not
+public download URLs. Large native outputs remain external to Git.
+The provenance record also documents excluded controls and reconstruction attempts.

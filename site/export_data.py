@@ -377,7 +377,6 @@ def export_data(root=ROOT, output=None):
         if (scenario["cells"], scenario["genes"]) != (int(registered["n_obs"]), int(registered["n_vars"])):
             raise ValueError("Simulation content dimensions disagree with the registered input")
     register_file(CONTENT, download=False)
-    register_file("site/content/README.md", download=False)
     cell_config_path = "evaluation/cell/config.json"
     cell_config = json.loads((root / cell_config_path).read_text())
     register_file(cell_config_path, download=False)
@@ -815,7 +814,6 @@ def export_data(root=ROOT, output=None):
         destination = output / target
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source,destination)
-    shutil.copyfile(root / "site/content/README.md", output / "content-guide.md")
     (output / "benchmark.json").write_text(json.dumps(payload, ensure_ascii=False, allow_nan=False), encoding="utf-8")
     (output / "manifest.json").write_text(json.dumps({"schema_version": 1, "source_commit": commit, "build_state": build_state, "sources": sources, "cell_preview_manifest": preview_path, "visual_bundle": visuals}, indent=2), encoding="utf-8")
     return payload

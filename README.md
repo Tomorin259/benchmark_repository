@@ -65,5 +65,5 @@ Run commands from the repository root and use a fresh output directory.
 Names come from [methods/configurations.tsv](methods/configurations.tsv) and
 [data/datasets.tsv](data/datasets.tsv). [artifacts.tsv](artifacts.tsv) identifies
 large files and retained assets.
-See [reproduction routes](docs/reproducibility.md) for the input-to-result
-workflow and [repository design](REPOSITORY_DESIGN.md) for development rules.
+See the [reproduction guide](docs/reproducibility.md) for required inputs,
+software environments and evaluation commands.

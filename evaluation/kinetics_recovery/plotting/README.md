@@ -7,7 +7,6 @@ Use [the kinetics guide](../README.md) for inputs, processing and commands.
 | `figure6.py` / `figure6_config.json` | Evaluator output; renders B–D/F and exact plot-data |
 | `streams.py` / `stream_config.json` | Saved velocity-root H5ADs; four RPE1 and four conventional organoid methods |
 | `expanded_reference.py` | Expanded scores; three boxplots and a ten-page RPE1 trajectory PDF |
-| `compare_figure6.py` | Explicit historical/current directories and a fresh comparison directory |
 
 ## Display settings
 
@@ -43,8 +42,17 @@ storage precision; rendering does not recompute neighbors, moments or graphs.
 
 ## Historical comparison
 
+<details>
+<summary>Earlier kinetics sources and comparison commands</summary>
+
 The retained `../archive/fig5/` contains unique historical sources.
-Materialize the full original bundle before comparing it with Figure 6:
+These use the former kinetics Figure 5 numbering; current Figure 5 is
+gene-level evaluation. Current Figure 7 hashes belong to its own composite
+manifest, not the historical Figure 7 hash retained inside the kinetics
+promotion record.
+
+Materialize the full original bundle, then use `compare_figure6.py` with
+explicit historical/current directories and a fresh comparison directory:
 
 ```bash
 mkdir -p /path/to/historical-kinetics
@@ -58,4 +66,6 @@ python evaluation/kinetics_recovery/plotting/compare_figure6.py \
 
 Archived-source rendering requires explicit `--legacy-config`,
 `--legacy-artifact-root` and `--metrics-root`.
-Use fresh export directories and the identities in the manifests.
+Use the source identities in the manifests.
+
+</details>
