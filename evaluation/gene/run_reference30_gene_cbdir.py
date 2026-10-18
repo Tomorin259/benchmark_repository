@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Recalculate main-figure gene-level CBDir with controlled 30-NN graphs.
+"""Recalculate gene-level CBDir with reference-30 neighbors and scoring units.
 
-The method-native Ms/Mu coordinates and velocity values are never replaced.
-Only the neighbor index collection used to identify cross-cluster boundary
-cells is replaced. Method-native coordinates and velocity values remain in
-memory unchanged.
+Method-specific moments and predictions are retained. The extra independent
+veloVI min-max transforms are reversed for state and velocity before scoring;
+native H5ADs and phase-portrait display coordinates remain untouched.
 """
 
 from __future__ import annotations
@@ -29,7 +28,6 @@ HERE = Path(__file__).resolve()
 REPOSITORY_ROOT = HERE.parents[2]
 ARTIFACT_ROOT = None
 DEFAULT_OUTPUT = REPOSITORY_ROOT / "evaluation" / "gene" / "results"
-REFERENCE_NEIGHBOR_ROOT = None
 
 # Shared with the panel renderer; the evaluation settings are unchanged.
 import sys
@@ -38,6 +36,7 @@ from evaluation.gene.config import (
     METHOD_ORDER, METHOD_KEYS, SIM_METHOD_KEYS, VELOCITY_KEYS,
     REAL_CONFIGS, SIM_CONFIGS, SIM_PATHS,
 )
+from evaluation.gene.coordinate_units import restore_velovi_coordinates, velocity_cosine
 
 
 def sha256(path):
@@ -89,56 +88,17 @@ def read_reference_asset(path):
         return np.asarray(data["obs_names"]).astype(str), np.asarray(data["indices"], dtype=np.int64)
 
 
-def build_simulation_reference(dataset, config, output_path):
-    source = ARTIFACT_ROOT / config["reference_source"]
-    if output_path.is_file():
-        names, indices = read_reference_asset(output_path)
-        return {
-            "source": public_locator(source),
-            "path": public_locator(output_path),
-            "n_obs": len(names),
-            "n_neighbors": int(indices.shape[1]),
-            "reused": True,
-        }
-    adata = sc.read_h5ad(source)
-    if adata.X is None:
-        adata.X = adata.layers["spliced"].copy()
-    n_top_genes = min(2000, adata.n_vars)
-    scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=n_top_genes, log=True)
-    scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
-    scv.pp.neighbors(adata, n_neighbors=30, n_pcs=30, use_rep="X_pca", metric="euclidean", random_state=0)
-    indices = np.asarray(adata.uns["neighbors"]["indices"], dtype=np.int64)
-    if indices.ndim != 2 or indices.shape[1] != 30:
-        raise RuntimeError(f"{dataset}: invalid simulation reference neighbor shape {indices.shape}")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    metadata = {
-        "dataset": dataset,
-        "source": public_locator(source),
-        "source_sha256": sha256(source),
-        "scvelo_version": scv.__version__,
-        "filter_and_normalize": {"min_shared_counts": 20, "n_top_genes": n_top_genes, "log": True},
-        "neighbors": {"n_neighbors": 30, "n_pcs": 30, "use_rep": "X_pca", "metric": "euclidean", "random_state": 0},
-        "n_vars_after_filter": int(adata.n_vars),
-    }
-    np.savez_compressed(output_path, obs_names=np.asarray(adata.obs_names).astype(str), indices=indices, metadata=np.asarray(json.dumps(metadata, sort_keys=True)))
-    return {
-        "source": public_locator(source),
-        "path": public_locator(output_path),
-        "n_obs": int(adata.n_obs),
-        "n_neighbors": 30,
-        "reused": False,
-        "metadata": metadata,
-    }
-
-
-def copy_real_reference_asset(dataset, asset_name, output_path):
-    source = REFERENCE_NEIGHBOR_ROOT / asset_name
+def copy_reference_asset(dataset, output_path):
+    """Reuse the committed graph; ordinary reevaluation never rebuilds it."""
+    source = HERE.parent / "results" / "reference_neighbors" / f"{dataset}.npz"
     if not source.is_file():
         raise FileNotFoundError(source)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if not output_path.is_file() or sha256(output_path) != sha256(source):
         shutil.copy2(source, output_path)
     names, indices = read_reference_asset(output_path)
+    if indices.ndim != 2 or indices.shape != (len(names), 30):
+        raise ValueError(f"{dataset}: expected the fixed reference-30 graph")
     return {
         "source": public_locator(source),
         "path": public_locator(output_path),
@@ -218,7 +178,7 @@ def label_vector(adata, names, reference_label_path=None, preferred_key=None):
     return np.asarray(adata.obs[key].astype(str)), key
 
 
-def velocity_matrix(adata, method, gene_indices):
+def velocity_matrix(adata, method, gene_indices, unit_multipliers=None):
     velocity_s_key, velocity_u_key = VELOCITY_KEYS[method]
     if velocity_s_key not in adata.layers:
         raise KeyError(f"missing layers/{velocity_s_key}")
@@ -229,6 +189,9 @@ def velocity_matrix(adata, method, gene_indices):
         if velocity_u_key not in adata.layers:
             raise KeyError(f"missing layers/{velocity_u_key}")
         unspliced_velocity = dense_values(adata.layers[velocity_u_key][:, gene_indices]).astype(np.float64, copy=False)
+    if unit_multipliers is not None:
+        spliced_velocity = spliced_velocity * unit_multipliers[0]
+        unspliced_velocity = unspliced_velocity * unit_multipliers[1]
     invalid = int(np.size(spliced_velocity) - np.count_nonzero(np.isfinite(spliced_velocity)))
     invalid += int(np.size(unspliced_velocity) - np.count_nonzero(np.isfinite(unspliced_velocity)))
     # This is the old evaluator's in-memory cleanup; source H5AD values remain untouched.
@@ -301,12 +264,14 @@ def score_gene(ms, mu, velocity_s, velocity_u, labels, neighbors, edges):
     return global_score, edge_rows, len(edge_means), evaluable_source_cells
 
 
-def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_asset_path, reference_label_path=None, simulation=False, neighbor_mode="reference"):
+def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_asset_path, reference_label_path=None, simulation=False, neighbor_mode="reference", methods=METHOD_ORDER):
     reference_names, reference_indices = read_reference_asset(reference_asset_path)
     neighbor_rows = []
     score_rows = []
     edge_rows = []
-    for method in METHOD_ORDER:
+    unit_rows = []
+    cossim_rows = []
+    for method in methods:
         path = ARTIFACT_ROOT / paths[method]
         if not path.is_file():
             raise FileNotFoundError(path)
@@ -329,6 +294,7 @@ def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_
                 "dataset": dataset,
                 "method": method,
                 "source_h5ad": public_locator(path),
+                "source_h5ad_sha256": sha256(path),
                 "reference_neighbor_asset": public_locator(reference_asset_path),
                 "native_neighbor_jaccard": native_jaccard,
                 "label_source": label_source,
@@ -347,7 +313,35 @@ def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_
         mu_matrix = dense_values(adata.layers["Mu"][:, positions]).astype(np.float64, copy=False) if "Mu" in adata.layers else None
         if ms_matrix is None or mu_matrix is None:
             raise KeyError(f"{method}/{dataset}: native Ms/Mu are required")
-        velocity_s_matrix, velocity_u_matrix, invalid_velocity = velocity_matrix(adata, method, positions)
+        unit_multipliers = None
+        if method == "veloVI":
+            moment_source = ARTIFACT_ROOT / "data/capo_pre/capo_pre.h5ad" if dataset == "capo_pre" else path
+            preprocessed = sc.read_h5ad(moment_source) if dataset == "capo_pre" else None
+            ms_matrix, mu_matrix, inverse_s, inverse_u, factors = restore_velovi_coordinates(
+                adata, positions, preprocessed=preprocessed)
+            unit_multipliers = (inverse_s, inverse_u)
+            for factor in factors:
+                unit_rows.append(dict(dataset=dataset, method=method,
+                                      moment_source=public_locator(moment_source), **factor))
+        velocity_s_matrix, velocity_u_matrix, invalid_velocity = velocity_matrix(
+            adata, method, positions, unit_multipliers=unit_multipliers)
+        if simulation and method == "veloVI":
+            # CosSim historically uses raw predictions and a norm mask, without
+            # CBDir's NaN/Inf replacement or clipping. Truth stays in its units.
+            raw_s = dense_values(adata.layers["velocity"][:, positions]).astype(np.float64)
+            raw_u = dense_values(adata.layers["velocity_u"][:, positions]).astype(np.float64)
+            truth_s = dense_values(adata.layers["velocity_s_true"][:, positions]).astype(np.float64)
+            truth_u = dense_values(adata.layers["velocity_u_true"][:, positions]).astype(np.float64)
+            for column, gene in enumerate(selected):
+                native = np.column_stack([raw_s[:, column], raw_u[:, column]])
+                restored = native * np.array([inverse_s[column], inverse_u[column]])
+                truth = np.column_stack([truth_s[:, column], truth_u[:, column]])
+                native_cosine, native_n = velocity_cosine(native, truth)
+                cosine, n = velocity_cosine(restored, truth)
+                cossim_rows.append(dict(dataset=dataset, method=method, gene=gene,
+                                        native_cossim=native_cosine, cossim=cosine,
+                                        native_evaluable_cells=native_n, evaluable_cells=n,
+                                        n_cells=int(adata.n_obs), source_h5ad=public_locator(path)))
         for column, gene in enumerate(selected):
             new_score, gene_edges, n_edges, n_cells = score_gene(ms_matrix[:, column], mu_matrix[:, column], velocity_s_matrix[:, column], velocity_u_matrix[:, column], labels, neighbors, config["edges"])
             old = old_scores.get((method, gene), {})
@@ -381,7 +375,7 @@ def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_
             if gene not in selected:
                 old = old_scores.get((method, gene), {})
                 score_rows.append({"dataset": dataset, "method": method, "gene": gene, "new_cbdir": float("nan"), "old_cbdir": old.get("old_cbdir", float("nan")), "delta": float("nan"), "absolute_delta": float("nan"), "status": "gene_missing"})
-    return score_rows, edge_rows, neighbor_rows
+    return score_rows, edge_rows, neighbor_rows, unit_rows, cossim_rows
 
 
 def write_csv(path, rows):
@@ -466,15 +460,17 @@ def main():
     )
     parser.add_argument("--neighbor-mode", choices=["reference", "native"], default="reference")
     parser.add_argument("--datasets", nargs="+", default=["retina", "DentateGyrus_lamanno", "branching", "murk", "all"])
+    parser.add_argument("--methods", nargs="+", choices=METHOD_ORDER, default=METHOD_ORDER)
     args = parser.parse_args()
-    global ARTIFACT_ROOT, REFERENCE_NEIGHBOR_ROOT
+    global ARTIFACT_ROOT
     ARTIFACT_ROOT = resolve_artifact_root(args.artifact_root)
-    REFERENCE_NEIGHBOR_ROOT = ARTIFACT_ROOT / "indicators" / "cell" / "reference_neighbors"
     output_root = args.output_root if args.output_root.is_absolute() else REPOSITORY_ROOT / args.output_root
+    if output_root.exists() and any(output_root.iterdir()):
+        raise FileExistsError(f"Preserve existing outputs; choose an empty output root: {output_root}")
     output_root.mkdir(parents=True, exist_ok=True)
     neighbor_root = output_root / "reference_neighbors"
     neighbor_root.mkdir(parents=True, exist_ok=True)
-    all_scores, all_edges, all_neighbors = [], [], []
+    all_scores, all_edges, all_neighbors, all_units, all_cossim = [], [], [], [], []
     provenance = {
         "artifact_root": "artifact://velocity",
         "script": "evaluation/gene/run_reference30_gene_cbdir.py",
@@ -482,7 +478,12 @@ def main():
         "scvelo_version": scv.__version__,
         "scanpy_version": sc.__version__,
         "neighbor_mode": args.neighbor_mode,
-        "only_neighbor_replaced": args.neighbor_mode == "reference",
+        "methods": args.methods,
+        "only_neighbor_replaced": False,
+        "scoring_units": "method-specific moments with veloVI axis min-max transforms reversed for state and velocity",
+        "unit_restoration_script": "evaluation/gene/coordinate_units.py",
+        "unit_restoration_script_sha256": sha256(HERE.with_name("coordinate_units.py")),
+        "historical_comparison": "current units/reference neighbors versus historical native units/neighbors",
         "native_layers_preserved": [
             "Ms", "Mu", "method_spliced_velocity", "method_unspliced_velocity"
         ],
@@ -500,22 +501,22 @@ def main():
             config = REAL_CONFIGS[dataset]
             asset_path = neighbor_root / dataset
             asset_path = asset_path.with_suffix(".npz")
-            reference_info = copy_real_reference_asset(dataset, config["neighbor_asset"], asset_path)
+            reference_info = copy_reference_asset(dataset, asset_path)
             old_path = ARTIFACT_ROOT / "plot" / "final_genes" / dataset / "score.txt"
             old_scores = parse_old_score_file(
                 old_path, {value: key for key, value in METHOD_KEYS.items()}
             )
-            score_rows, edge_rows, neighbor_rows = evaluate_dataset(dataset, config, config["paths"], old_scores, output_root, asset_path, reference_label_path=ARTIFACT_ROOT / config["label_reference"], simulation=False, neighbor_mode=args.neighbor_mode)
+            score_rows, edge_rows, neighbor_rows, unit_rows, cossim_rows = evaluate_dataset(dataset, config, config["paths"], old_scores, output_root, asset_path, reference_label_path=ARTIFACT_ROOT / config["label_reference"], simulation=False, neighbor_mode=args.neighbor_mode, methods=args.methods)
             scope_dir = output_root / "real" / dataset
         elif dataset in SIM_CONFIGS:
             config = SIM_CONFIGS[dataset]
-            asset_path = neighbor_root / f"simulation_{dataset}.npz"
-            reference_info = build_simulation_reference(dataset, config, asset_path)
+            asset_path = neighbor_root / f"{dataset}.npz"
+            reference_info = copy_reference_asset(dataset, asset_path)
             old_path = ARTIFACT_ROOT / "indicators" / "gene" / "simulation" / ("sim_all_analyze" if dataset == "all" else f"{dataset}_analyze") / "results_new" / "score_rerun_results.txt"
             old_scores = parse_old_score_file(
                 old_path, {value: key for key, value in SIM_METHOD_KEYS.items()}
             )
-            score_rows, edge_rows, neighbor_rows = evaluate_dataset(dataset, config, SIM_PATHS[dataset], old_scores, output_root, asset_path, simulation=True, neighbor_mode=args.neighbor_mode)
+            score_rows, edge_rows, neighbor_rows, unit_rows, cossim_rows = evaluate_dataset(dataset, config, SIM_PATHS[dataset], old_scores, output_root, asset_path, simulation=True, neighbor_mode=args.neighbor_mode, methods=args.methods)
             scope_dir = output_root / "simulation" / dataset
         else:
             raise ValueError(f"unknown dataset/scenario: {dataset}")
@@ -525,6 +526,8 @@ def main():
         all_scores.extend(score_rows)
         all_edges.extend(edge_rows)
         all_neighbors.extend(neighbor_rows)
+        all_units.extend(unit_rows)
+        all_cossim.extend(cossim_rows)
         provenance["datasets"][dataset] = {
             "reference": reference_info,
             "old_score_path": public_locator(old_path),
@@ -536,13 +539,25 @@ def main():
                 for method in (REAL_CONFIGS[dataset]["paths"] if dataset in REAL_CONFIGS else SIM_PATHS[dataset])
             },
             "method_paths": (REAL_CONFIGS[dataset]["paths"] if dataset in REAL_CONFIGS else SIM_PATHS[dataset]),
+            "label_reference": public_locator(ARTIFACT_ROOT / config["label_reference"]) if dataset in REAL_CONFIGS else None,
+            "label_reference_sha256": sha256(ARTIFACT_ROOT / config["label_reference"]) if dataset in REAL_CONFIGS else None,
         }
     write_csv(output_root / "gene_cbdir_reference30_all.csv", all_scores)
     write_csv(output_root / "gene_cbdir_edge_details_reference30_all.csv", all_edges)
     write_csv(output_root / "neighbor_audit_all.csv", all_neighbors)
+    write_csv(output_root / "unit_restoration" / "velovi_scale_factors.csv", all_units)
+    write_csv(output_root / "simulation" / "velovi_cossim.csv", all_cossim)
+    provenance["simulation_cossim"] = {
+        "path": "simulation/velovi_cossim.csv",
+        "method": "veloVI",
+        "truth_layers": ["velocity_s_true", "velocity_u_true"],
+        "norm_mask": "prediction norm > 1e-6 and truth norm > 1e-6",
+        "prediction_cleanup": "none",
+        "n_rows": len(all_cossim),
+    }
     comparison_rows = []
     for row in all_scores:
-        comparison_rows.append({**row, "comparison": "new_reference30_vs_old_native_neighbor"})
+        comparison_rows.append({**row, "comparison": "units_restored_reference30_vs_historical_native_neighbor_and_units"})
     write_csv(output_root / "old_vs_reference30_gene_cbdir.csv", comparison_rows)
     write_change_summaries(output_root, all_scores)
     provenance["counts"] = {"score_rows": int(len(all_scores)), "edge_rows": int(len(all_edges)), "neighbor_rows": int(len(all_neighbors)), "finite_new_scores": int(sum(np.isfinite(float(row["new_cbdir"])) for row in all_scores if row.get("new_cbdir") not in (None, ""))), "changed_scores": int(sum(np.isfinite(float(row["delta"])) and abs(float(row["delta"])) > 1e-12 for row in all_scores if row.get("delta") not in (None, "")))}

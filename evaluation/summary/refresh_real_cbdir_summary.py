@@ -21,6 +21,7 @@ def read_csv(path):
 
 def check_summary(path, fields, expected_rows, metric="Real-CBDir"):
     """Check content without requiring identical cross-version float repr."""
+    metrics = {metric} if isinstance(metric, str) else set(metric)
     actual_fields, actual_rows = read_csv(path)
     if actual_fields != fields or len(actual_rows) != len(expected_rows):
         raise SystemExit(f"Outdated {metric} summary schema or coverage: {path}")
@@ -30,7 +31,7 @@ def check_summary(path, fields, expected_rows, metric="Real-CBDir"):
         for field in fields:
             if actual[field] == expected[field]:
                 continue
-            if expected.get("Metric") == metric and field in ("Mean", "Std"):
+            if expected.get("Metric") in metrics and field in ("Mean", "Std"):
                 try:
                     value, reference = float(actual[field]), float(expected[field])
                 except (TypeError, ValueError):
@@ -42,6 +43,12 @@ def check_summary(path, fields, expected_rows, metric="Real-CBDir"):
                         continue
             raise SystemExit(f"Outdated {metric} summary: {path}, "
                              f"{expected.get('Method', expected.get('Figure7_Method'))}, {field}")
+
+
+def set_number(row, field, value):
+    """Retain existing precision when a recomputed value agrees within tolerance."""
+    if not row.get(field) or not math.isclose(float(row[field]), value, rel_tol=0, abs_tol=1e-12):
+        row[field] = repr(value)
 
 
 def main(write):
@@ -89,7 +96,7 @@ def main(write):
         mean, n_genes = canonical[key]
         if int(float(row["N"])) != n_genes:
             raise ValueError(f"Gene count mismatch: {key}")
-        row["Mean"] = repr(mean)
+        set_number(row, "Mean", mean)
         by_method[row["Method"]].append((mean, n_genes))
         count += 1
     if count != 63 or len(by_method) != 9 or any(len(v) != 7 for v in by_method.values()):
@@ -105,8 +112,8 @@ def main(write):
             row["N_raw_genes_or_rows"]
         ) != sum(n for _, n in values):
             raise ValueError(f"Summary count mismatch: {row['Method']}")
-        row["Mean"] = repr(statistics.mean(x for x, _ in values))
-        row["Std"] = repr(statistics.stdev(x for x, _ in values))
+        set_number(row, "Mean", statistics.mean(x for x, _ in values))
+        set_number(row, "Std", statistics.stdev(x for x, _ in values))
 
     for row in wps_rows:
         if row["Figure7_Method"] not in by_method:

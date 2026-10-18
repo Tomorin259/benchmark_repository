@@ -4,13 +4,19 @@ Find a final figure first, then follow its source module for numerical data and
 reproduction commands. Final composites and experiment-level source panels
 have different reconstruction requirements.
 
+[Author-export records](../figures/assembly/pending_exports.json) identify the
+current editable assemblies and completed WPS PDF exports, including page-box
+crops and content-stream hashes. Numerical panels remain reproducible from
+their source modules; whole-figure layout and PDF export use the retained
+editable assemblies and the recorded manual steps.
+
 ## Main figures
 
 | Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
 | 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Retained author source](../figures/assembly/fig1/authoring/source.pptx); independent sources for the corrected final panels are incomplete |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
-| 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | Retained composite; three panel sources are registered in the assembly map |
+| 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); three source-rendered selected-edge panels and the completed author PDF export are registered |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
 | 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
 | 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/) | Quantitative panels are scripted; labelled Dynamo A/E streams retain manual assets |
@@ -18,20 +24,21 @@ have different reconstruction requirements.
 
 ## Supplementary figures
 
-For S1–S8 and S14, the final composite is retained in the manuscript project;
-the links below lead to their repository source panels and numerical data.
+S1–S8 include the final PDFs and editable assemblies in this repository; the
+source links lead to the numerical panels and renderers. S14's final composite
+remains in the manuscript project.
 
 | Figure | Subject | Sources and reproduction |
 | --- | --- | --- |
-| S1 | Dentategyrus_lamanno branching genes | [Gene panels](../evaluation/gene/figures/panels/real/DentateGyrus_lamanno/), [renderer](../evaluation/gene/README.md) |
-| S2 | Mouse retina branching genes | [Gene panels](../evaluation/gene/figures/panels/real/retina/), [renderer](../evaluation/gene/README.md) |
-| S3 | Gastrulation MURK genes, part I | [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
-| S4 | Gastrulation MURK genes, part II | [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
-| S5 | capofibro MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/capo_pre/), [renderer](../evaluation/gene/README.md) |
-| S6 | Human bone marrow MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/bonemarrow/), [renderer](../evaluation/gene/README.md) |
-| S7 | mousebrain MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/mousebrain/), [renderer](../evaluation/gene/README.md) |
-| S8 | Pancreas MURK genes | [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
-| S9 | Matched Cell/Gene comparison | [Retained PDF](../figures/suppFigNine.pdf); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); independent final-composite reconstruction remains incomplete |
+| S1 | Dentategyrus_lamanno branching genes | [Final PDF](../figures/suppFigOne.pdf); [editable assembly](../figures/assembly/suppfig01/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/DentateGyrus_lamanno/), [renderer](../evaluation/gene/README.md) |
+| S2 | Mouse retina branching genes | [Final PDF](../figures/suppFigTwo.pdf); [editable assembly](../figures/assembly/suppfig02/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/retina/), [renderer](../evaluation/gene/README.md) |
+| S3 | Gastrulation MURK genes, part I | [Final PDF](../figures/suppFigThree.pdf); [editable assembly](../figures/assembly/suppfig03/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
+| S4 | Gastrulation MURK genes, part II | [Final PDF](../figures/suppFigFour.pdf); [editable assembly](../figures/assembly/suppfig04/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/gastrulation/), [renderer](../evaluation/gene/README.md) |
+| S5 | capofibro MURK genes | [Final PDF](../figures/suppFigFive.pdf); [editable assembly](../figures/assembly/suppfig05/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/capo_pre/), [renderer](../evaluation/gene/README.md) |
+| S6 | Human bone marrow MURK genes | [Final PDF](../figures/suppFigSix.pdf); [editable assembly](../figures/assembly/suppfig06/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/bonemarrow/), [renderer](../evaluation/gene/README.md) |
+| S7 | mousebrain MURK genes | [Final PDF](../figures/suppFigSeven.pdf); [editable assembly](../figures/assembly/suppfig07/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/mousebrain/), [renderer](../evaluation/gene/README.md) |
+| S8 | Pancreas MURK genes | [Final PDF](../figures/suppFigEight.pdf); [editable assembly](../figures/assembly/suppfig08/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
+| S9 | Matched Cell/Gene comparison | [Final PDF](../figures/suppFigNine.pdf); [editable assembly](../figures/assembly/suppfig09/supfig9.pptx); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); the assembly retains five Cell panels and the source-rendered common-gene panel |
 | S10 | GeoMedian-4 Cell evaluation | [Retained PDF](../figures/suppFigTen.pdf); [ensemble renderer](../ensemble/README.md), [editable assembly](../figures/assembly/suppfig10/suppfig10.pptx) |
 | S11 | veloAE representation diagnostics | [Retained PDF](../figures/suppFigEleven.pdf); [PCA inputs and renderers](../supplement/veloae/README.md); final whole-page reconstruction remains incomplete |
 | S12 | Cell evaluation on three simulations | [Retained PDF](../figures/suppFigTwelve.pdf); [scores, plots and table](../evaluation/cell/simulation/README.md) |

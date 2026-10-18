@@ -1,7 +1,11 @@
 {
   "source_type": "author_editable_powerpoint",
   "path": "figures/assembly/fig5/authoring/source.pptx",
-  "sha256": "2d90b5e25e950a4b944cf9661db6f46caec835577bcb1b88a844f251a1b14736",
-  "author_export_identity_verified": false,
-  "verification_boundary": "Authoring candidate retained; Figure 5D bitmap equivalence remains unverified."
+  "sha256": "405e5b77527fc2e3c0b462591d39605ede5f44fd8511c064f7c14b157eeeda21",
+  "author_export_identity_verified": true,
+  "verification_boundary": "The synchronized editable assembly and current user-exported, cropped WPS PDF are recorded by the author-export manifest. The manual whole-figure export is retained rather than claimed as a scripted reconstruction.",
+  "pending_pdf_export": false,
+  "author_export_sha256": "78771a6d2beebaf2be11f750416d0ff03e3fe112e13533592f4023eecc0bffdf",
+  "current_pdf": "figures/figFive.pdf",
+  "current_pdf_sha256": "b83603874debeda75ef57b4c7e6e69ca5aab6d67147dbb15c866e8be07bc5309"
 }

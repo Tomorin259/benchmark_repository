@@ -1,0 +1,64 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+pancreas,cellDancer,Atp2a2,0.2787868490268974,,cellDancer,Pancreas
+pancreas,cellDancer,Chst8,0.1790047149842742,,cellDancer,Pancreas
+pancreas,cellDancer,Emb,-0.0560204219642592,,cellDancer,Pancreas
+pancreas,cellDancer,G6pc2,0.0475124929012627,,cellDancer,Pancreas
+pancreas,cellDancer,Igf1r,0.232871901702722,,cellDancer,Pancreas
+pancreas,cellDancer,Nxph1,0.1252011136102454,,cellDancer,Pancreas
+pancreas,cellDancer,Rbbp7,0.2094954130997769,,cellDancer,Pancreas
+pancreas,DeepVelo,Atp2a2,0.2237026786812554,,DeepVelo,Pancreas
+pancreas,DeepVelo,Chst8,0.2208926454986566,,DeepVelo,Pancreas
+pancreas,DeepVelo,Emb,0.118081112082965,,DeepVelo,Pancreas
+pancreas,DeepVelo,G6pc2,0.0059717893672437,,DeepVelo,Pancreas
+pancreas,DeepVelo,Igf1r,0.0321576285007572,,DeepVelo,Pancreas
+pancreas,DeepVelo,Nxph1,0.0613852349828824,,DeepVelo,Pancreas
+pancreas,DeepVelo,Rbbp7,0.2963539279330158,,DeepVelo,Pancreas
+pancreas,DeepVelo_scv,Atp2a2,0.098737460377442,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,Chst8,-0.0849951652496096,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,Emb,-0.1103487336551306,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,G6pc2,-0.0835843266931232,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,Nxph1,0.0417106755657271,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,Rbbp7,-0.0040667957128813,,DeepVelo_scv,Pancreas
+pancreas,DeepVelo_scv,Igf1r,,,DeepVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Atp2a2,0.1066754844360222,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Chst8,0.0831081512954348,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Emb,0.3199723142209066,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,G6pc2,0.1458721015099778,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Igf1r,0.0380481979094433,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Nxph1,0.0494333004450063,,GraphVelo_scv,Pancreas
+pancreas,Graphvelo_scv,Rbbp7,0.2336075681782871,,GraphVelo_scv,Pancreas
+pancreas,MultiVelo,Atp2a2,0.1049807244289555,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,Chst8,-0.0274721955254746,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,Emb,0.0376739163313092,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,G6pc2,0.1427602438194386,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,Igf1r,0.1515486275027651,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,Nxph1,-0.019780394043141,,MultiVelo (RNA_only),Pancreas
+pancreas,MultiVelo,Rbbp7,0.1161906329671076,,MultiVelo (RNA_only),Pancreas
+pancreas,scVelo_dyn,Atp2a2,0.113772717900522,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,Chst8,-0.0567430288061059,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,Emb,-0.0634178776219173,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,G6pc2,-0.0129478188435354,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,Igf1r,-0.0048458453275858,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,Nxph1,0.0637953224561948,,scVelo_dyn,Pancreas
+pancreas,scVelo_dyn,Rbbp7,0.0077430349465228,,scVelo_dyn,Pancreas
+pancreas,TIvelo,Atp2a2,0.2934293484091693,,TIvelo,Pancreas
+pancreas,TIvelo,Chst8,0.1822358079238088,,TIvelo,Pancreas
+pancreas,TIvelo,Emb,0.402925148065736,,TIvelo,Pancreas
+pancreas,TIvelo,G6pc2,0.1247872983089158,,TIvelo,Pancreas
+pancreas,TIvelo,Rbbp7,0.5057102209288856,,TIvelo,Pancreas
+pancreas,TIvelo,Igf1r,,,TIvelo,Pancreas
+pancreas,TIvelo,Nxph1,,,TIvelo,Pancreas
+pancreas,UniTVelo,Atp2a2,0.1795311870583062,,UniTVelo,Pancreas
+pancreas,UniTVelo,Chst8,0.0498796565892277,,UniTVelo,Pancreas
+pancreas,UniTVelo,Emb,0.2339569434361176,,UniTVelo,Pancreas
+pancreas,UniTVelo,G6pc2,-0.1447823094969872,,UniTVelo,Pancreas
+pancreas,UniTVelo,Igf1r,-0.1877303632922218,,UniTVelo,Pancreas
+pancreas,UniTVelo,Nxph1,0.0753608305994423,,UniTVelo,Pancreas
+pancreas,UniTVelo,Rbbp7,-0.0272591255668303,,UniTVelo,Pancreas
+pancreas,veloVI,Atp2a2,0.1629682975895519,,veloVI,Pancreas
+pancreas,veloVI,Chst8,0.0079840180365868,,veloVI,Pancreas
+pancreas,veloVI,Emb,-0.0604732650341465,,veloVI,Pancreas
+pancreas,veloVI,G6pc2,0.0224464184231939,,veloVI,Pancreas
+pancreas,veloVI,Igf1r,-0.0402500378614644,,veloVI,Pancreas
+pancreas,veloVI,Nxph1,0.18174966695068,,veloVI,Pancreas
+pancreas,veloVI,Rbbp7,,,veloVI,Pancreas

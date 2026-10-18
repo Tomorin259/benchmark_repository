@@ -1,6 +1,6 @@
 {
   "table": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-  "source_kind": "migrated compact result",
+  "source_kind": "historical compact result with 70 veloVI CosSim fields replaced by own-unit restoration",
   "source_artifacts": {
     "branching": "artifact://velocity/indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
     "murk": "artifact://velocity/indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
@@ -20,9 +20,17 @@
     "CBDir",
     "CosSim"
   ],
-  "consumer": "evaluation/gene/plot_current_gene_assets_from_originals.py",
-  "fallback": "If the compact table is unavailable, the plotting script parses the source score artifacts.",
+  "consumer": "evaluation/gene/plot_gene_assets.py",
+  "fallback": "Recalculate veloVI CosSim with the documented evaluator; historical score files alone cannot recreate the current table.",
   "direct_source_locator": "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv",
   "direct_source_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662",
-  "table_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+  "table_sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+  "direct_source_role": "historical compact source: all 630 historical CBDir fields and the other 560 CosSim rows retained",
+  "unit_restoration": {
+    "path": "evaluation/gene/results/unit_restoration/provenance.json",
+    "sha256": "4740500d8b26dacaab12cc4ed2bb520ea4a6510a09190b58a1cb491a5ba8af95",
+    "updated_method": "veloVI",
+    "updated_field": "CosSim",
+    "updated_rows": 70
+  }
 }

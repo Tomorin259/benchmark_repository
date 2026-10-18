@@ -1,0 +1,163 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+gastrulation,cellDancer,Abcg2,-0.0551825701899256,,cellDancer,Gastrulation
+gastrulation,cellDancer,Alas2,0.1666644793824751,,cellDancer,Gastrulation
+gastrulation,cellDancer,Bpgm,-0.161091590881669,,cellDancer,Gastrulation
+gastrulation,cellDancer,Cdc25b,-0.0905072533442716,,cellDancer,Gastrulation
+gastrulation,cellDancer,Dhrs11,0.1099192807795297,,cellDancer,Gastrulation
+gastrulation,cellDancer,Fam210b,0.2065692551715883,,cellDancer,Gastrulation
+gastrulation,cellDancer,Fech,0.3755078893917281,,cellDancer,Gastrulation
+gastrulation,cellDancer,Gclm,-0.0378480311766918,,cellDancer,Gastrulation
+gastrulation,cellDancer,Gpx1,-0.0240791958467537,,cellDancer,Gastrulation
+gastrulation,cellDancer,Gypa,0.2282540670343791,,cellDancer,Gastrulation
+gastrulation,cellDancer,Hba-x,0.4909160791339995,,cellDancer,Gastrulation
+gastrulation,cellDancer,Hbb-bh1,0.6060713645886266,,cellDancer,Gastrulation
+gastrulation,cellDancer,Hbb-y,0.1783589499850181,,cellDancer,Gastrulation
+gastrulation,cellDancer,Hemgn,0.0124125102777344,,cellDancer,Gastrulation
+gastrulation,cellDancer,Klf3,0.006783029034469,,cellDancer,Gastrulation
+gastrulation,cellDancer,Mllt3,0.3567848140050362,,cellDancer,Gastrulation
+gastrulation,cellDancer,Ncf4,-0.1079368824770349,,cellDancer,Gastrulation
+gastrulation,cellDancer,Rhag,-0.0052373086859225,,cellDancer,Gastrulation
+gastrulation,DeepVelo,Abcg2,-0.083913548176907,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Alas2,0.1632236685018211,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Bpgm,-0.0096955290001061,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Cdc25b,-0.0897590581153914,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Dhrs11,0.0498037658065521,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Fam210b,-0.0664779818946886,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Fech,0.2290421773972195,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Gclm,0.1565585956842448,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Gpx1,0.1176501167006388,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Gypa,-0.3892036539251912,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Hba-x,-0.1552705136634943,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Hbb-bh1,-0.0266107883337327,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Hbb-y,0.3363183481849169,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Hemgn,-0.0482244100685851,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Klf3,-0.0114503626750353,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Mllt3,0.2051665669596004,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Ncf4,-0.048588259413761,,DeepVelo,Gastrulation
+gastrulation,DeepVelo,Rhag,-0.1591056924921317,,DeepVelo,Gastrulation
+gastrulation,DeepVelo_scv,Abcg2,-0.2578024343451854,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Cdc25b,-0.0728689758377037,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Fam210b,-0.1049260939141062,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Fech,0.2540906487002671,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Gclm,-0.2820474898720778,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Gypa,-0.2778393413716435,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Hemgn,-0.1478896914819784,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Klf3,-0.0278194339115964,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Mllt3,0.2989992832537308,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Ncf4,-0.2528907186648186,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Rhag,-0.1258669958866135,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Alas2,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Bpgm,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Dhrs11,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Gpx1,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Hba-x,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Hbb-bh1,,,DeepVelo_scv,Gastrulation
+gastrulation,DeepVelo_scv,Hbb-y,,,DeepVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Abcg2,-0.1262204418904294,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Alas2,-0.0096326043267407,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Bpgm,-0.1022962812980923,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Cdc25b,0.1126644499392036,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Dhrs11,0.013168253960307,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Fam210b,-0.0942427217286668,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Fech,0.0378681880888382,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Gclm,-0.013812333348368,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Gpx1,0.0294832364782932,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Gypa,-0.0233618058831282,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Hba-x,0.1295588158065497,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Hbb-bh1,0.2064927179367919,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Hbb-y,-0.0278480457723348,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Hemgn,-0.0977836243233846,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Klf3,0.0566807172520676,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Mllt3,0.0940034046008911,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Ncf4,0.1242363683110062,,GraphVelo_scv,Gastrulation
+gastrulation,Graphvelo_scv,Rhag,-0.0864653324611499,,GraphVelo_scv,Gastrulation
+gastrulation,MultiVelo,Abcg2,-0.2594238482515631,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Alas2,0.1445111460868216,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Bpgm,0.2757479832191132,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Cdc25b,-0.1319496686012519,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Dhrs11,0.0466648286739099,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Fam210b,-0.0979851229096935,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Fech,0.1770686408830455,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Gclm,-0.2808341492830272,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Gpx1,0.3654822008980187,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Gypa,-0.4693748432925605,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Hba-x,-0.6130672972597394,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Hbb-bh1,-0.7073189287915911,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Hbb-y,0.0952844140219881,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Hemgn,-0.1448276845429574,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Klf3,-0.0218097986206888,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Mllt3,0.2601727671378561,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Ncf4,0.2761271588648285,,MultiVelo (RNA_only),Gastrulation
+gastrulation,MultiVelo,Rhag,-0.1171753531348895,,MultiVelo (RNA_only),Gastrulation
+gastrulation,scVelo_dyn,Abcg2,-0.2580093318464036,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Alas2,0.1207652637901424,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Bpgm,-0.236653081749083,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Cdc25b,-0.1164672429004563,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Dhrs11,0.0724023119366401,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Fam210b,-0.0853502986563481,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Fech,0.3051643412736448,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Gclm,-0.27306650824565,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Gpx1,-0.4674642157374208,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Gypa,-0.3063539777187988,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Hba-x,-0.5031676828504136,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Hbb-bh1,0.1345537118669902,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Hbb-y,-0.3422769751856891,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Hemgn,-0.1647668889344944,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Klf3,0.0168602381311368,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Mllt3,0.2381950332851601,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Ncf4,-0.2119317339392666,,scVelo_dyn,Gastrulation
+gastrulation,scVelo_dyn,Rhag,-0.0886089873217158,,scVelo_dyn,Gastrulation
+gastrulation,TIvelo,Abcg2,0.4873693296461084,,TIvelo,Gastrulation
+gastrulation,TIvelo,Cdc25b,0.3835764729395866,,TIvelo,Gastrulation
+gastrulation,TIvelo,Fam210b,0.3338447367390763,,TIvelo,Gastrulation
+gastrulation,TIvelo,Fech,0.5210659115935629,,TIvelo,Gastrulation
+gastrulation,TIvelo,Gclm,0.5203087231537438,,TIvelo,Gastrulation
+gastrulation,TIvelo,Gypa,0.5145385964319478,,TIvelo,Gastrulation
+gastrulation,TIvelo,Hemgn,0.2462775648065262,,TIvelo,Gastrulation
+gastrulation,TIvelo,Klf3,0.1298333328140329,,TIvelo,Gastrulation
+gastrulation,TIvelo,Mllt3,0.5008283637397819,,TIvelo,Gastrulation
+gastrulation,TIvelo,Ncf4,0.2884289669372387,,TIvelo,Gastrulation
+gastrulation,TIvelo,Rhag,0.1717220499213495,,TIvelo,Gastrulation
+gastrulation,TIvelo,Alas2,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Bpgm,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Dhrs11,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Gpx1,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Hba-x,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Hbb-bh1,,,TIvelo,Gastrulation
+gastrulation,TIvelo,Hbb-y,,,TIvelo,Gastrulation
+gastrulation,UniTVelo,Abcg2,0.2619881437034699,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Alas2,-0.156758627191783,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Bpgm,-0.0209028268024094,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Cdc25b,0.2350332554073021,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Dhrs11,-0.106516156545135,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Fam210b,0.2927205068911976,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Fech,0.4065120889684787,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Gclm,0.2799139841606965,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Gpx1,-0.2386112956936966,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Gypa,0.470151344810379,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Hba-x,-0.2143877602781585,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Hbb-bh1,-0.1062493101414223,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Hbb-y,-0.2516409988600784,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Hemgn,0.2513352597624247,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Klf3,0.0620027403582139,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Mllt3,0.3902658284554443,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Ncf4,0.2836384125094393,,UniTVelo,Gastrulation
+gastrulation,UniTVelo,Rhag,0.1922826006137933,,UniTVelo,Gastrulation
+gastrulation,veloVI,Abcg2,-0.2519794205794725,,veloVI,Gastrulation
+gastrulation,veloVI,Alas2,0.5211685001862236,,veloVI,Gastrulation
+gastrulation,veloVI,Fech,0.4109170075211278,,veloVI,Gastrulation
+gastrulation,veloVI,Hba-x,-0.3198118213580858,,veloVI,Gastrulation
+gastrulation,veloVI,Hbb-bh1,0.6457621273831905,,veloVI,Gastrulation
+gastrulation,veloVI,Hbb-y,-0.1124814937756934,,veloVI,Gastrulation
+gastrulation,veloVI,Hemgn,-0.1694532309354721,,veloVI,Gastrulation
+gastrulation,veloVI,Klf3,-0.0101393328951268,,veloVI,Gastrulation
+gastrulation,veloVI,Mllt3,0.3948531907450462,,veloVI,Gastrulation
+gastrulation,veloVI,Rhag,-0.0760758104440751,,veloVI,Gastrulation
+gastrulation,veloVI,Bpgm,,,veloVI,Gastrulation
+gastrulation,veloVI,Cdc25b,,,veloVI,Gastrulation
+gastrulation,veloVI,Dhrs11,,,veloVI,Gastrulation
+gastrulation,veloVI,Fam210b,,,veloVI,Gastrulation
+gastrulation,veloVI,Gclm,,,veloVI,Gastrulation
+gastrulation,veloVI,Gpx1,,,veloVI,Gastrulation
+gastrulation,veloVI,Gypa,,,veloVI,Gastrulation
+gastrulation,veloVI,Ncf4,,,veloVI,Gastrulation

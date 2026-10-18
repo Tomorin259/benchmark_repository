@@ -1,0 +1,262 @@
+{
+  "inputs": {
+    "Fech": [
+      {
+        "method": "scVelo_dyn",
+        "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+        "sha256": "4381ad967155156281ce63d7500d1643c90645ce5387b3dcd8b5aa5e576b29df",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "MultiVelo",
+        "source": "artifact://velocity/results/multivelo/multivelo_Gastrulation.h5ad",
+        "sha256": "5f552c144be9d1396e30bbc46ff3ef31e22b46f0fa3f5f9c668eb06744271b17",
+        "velocity_s_key": "velo_s",
+        "velocity_u_key": "velo_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "UniTVelo",
+        "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+        "sha256": "0258f8848ecb3ed855ed29bd096033c9999033536c9146c85986be12f69d0d25",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "TIvelo",
+        "source": "artifact://velocity/results/TIvelo/tivelo_Gastrulation.h5ad",
+        "sha256": "82f4ad0cb1b7873f5f9d890fa9da262fd8ed6600fe35a7ceba83e2b69b0cad51",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "veloVI",
+        "source": "artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad",
+        "sha256": "c692c33a66b007a5a7c5f3d847ab2902dabca3c9302dd959857d062f1c646911",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "cellDancer",
+        "source": "artifact://velocity/results/celldancer/celldancer_Gastrulation.h5ad",
+        "sha256": "200bd06c84e575db0efe4a68e3944e81c08ae198a8e063489c55ab093f6a47a5",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo",
+        "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+        "sha256": "3c892432ecb2f27d2ab61858e1015052f71ec7691ca45ceadc946439f329994f",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_unspliced",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo_scv",
+        "source": "artifact://velocity/results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad",
+        "sha256": "e87e01a0590d86e0f5e02613c07eb9f39f0083213822ee19a5b3a38725450ed9",
+        "velocity_s_key": "velocity_reconstructed",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "Graphvelo_scv",
+        "source": "artifact://velocity/results/graphvelo_scv/graphveloGastrulation.h5ad",
+        "sha256": "0584fc72ba846a9df9f90aaa4fa22970e0c51758ac92c28d496a5f0c792a8313",
+        "velocity_s_key": "velocity_gv",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      }
+    ],
+    "Ncald": [
+      {
+        "method": "scVelo_dyn",
+        "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+        "sha256": "aeca474c29b111de30e1df3a30f533f0807941f46c30580a55b06eacbb4763f5",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "MultiVelo",
+        "source": "artifact://velocity/results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
+        "sha256": "b683f4c5d619286ccd82d3a97567af422d60af3ecc78ff4ae84125040602f3bb",
+        "velocity_s_key": "velo_s",
+        "velocity_u_key": "velo_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "UniTVelo",
+        "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+        "sha256": "19d32531230662a89805fa2a016e55070eed4fafa6222aa7ce31cb314c607544",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "TIvelo",
+        "source": "artifact://velocity/results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+        "sha256": "b6bb0deeb3a79f4c429037ba6b38598f2c8efc1d6c8a9a8e418ce6eedd8d6859",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "veloVI",
+        "source": "artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad",
+        "sha256": "4c0c41e7aa0f555af452652a87f1b0ff6cf435b3ac72ee3ff419231d4a63118e",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "cellDancer",
+        "source": "artifact://velocity/results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
+        "sha256": "2de74c44cc42ac6a6869e1303cf81a9834c9c477804ee85b0285f8028ce613d4",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo",
+        "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+        "sha256": "c24cf8f68469973c34a4243ec1be338b7e4cf8ba5e261c52ed00001d13f5eb05",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_unspliced",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo_scv",
+        "source": "artifact://velocity/results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad",
+        "sha256": "99cb0aa49e384f682e07da2893b5f0993d41297d79ad3980880cf759ea3a785f",
+        "velocity_s_key": "velocity_reconstructed",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "Graphvelo_scv",
+        "source": "artifact://velocity/results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad",
+        "sha256": "6ebfe5129de5461f781bbae0233c6017a88c278b563dd06c4f3206db0676fc77",
+        "velocity_s_key": "velocity_gv",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      }
+    ],
+    "FAM111A": [
+      {
+        "method": "scVelo_dyn",
+        "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
+        "sha256": "da6cc1b99431895cdac8e924d5f6902905fd5bcda87d5ec5ba4d6b160e658471",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "MultiVelo",
+        "source": "artifact://velocity/results/multivelo/multivelo_capo_pre.h5ad",
+        "sha256": "9f96a874418ae416803dcff5f3550d29634bd9031979b846a769535dd7ab583b",
+        "velocity_s_key": "velo_s",
+        "velocity_u_key": "velo_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "UniTVelo",
+        "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+        "sha256": "1487de258df7ac912148c0b6f7f2797f7c3fbd3039cdf5b3c937ee5952c762d4",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "TIvelo",
+        "source": "artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad",
+        "sha256": "7e7e74dcf6d00456bea37a32cdc7759b0dda98b3ee95b2a7c535edb9c2681ddb",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "veloVI",
+        "source": "artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad",
+        "sha256": "1285f2cd3274629a8a6457ebc45bead472e2d6d77f5335fd5b217ac8195835f9",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "cellDancer",
+        "source": "artifact://velocity/results/celldancer/celldancer_capo_pre.h5ad",
+        "sha256": "fc3352da73828b3c3997b635727cc3bf96c222639d25b0cb7f53a8542836bb04",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo",
+        "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+        "sha256": "d6b55409d1a47c0c0f21e7bf4c479e7d1fe83f9e6f471b0aaa621c85acb80e37",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_unspliced",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo_scv",
+        "source": "artifact://velocity/results/deepvelo2022/deepvelo_capo_pre_recon.h5ad",
+        "sha256": "f7ae8ff8272d355655511b6b64d679955030f41d7bbd6faa541f24f801d235ec",
+        "velocity_s_key": "velocity_reconstructed",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "Graphvelo_scv",
+        "source": "artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad",
+        "sha256": "121a1447b7d5b11363ce23c1d4c7d8a9cb94e26964344e47f5e51cdef88d1060",
+        "velocity_s_key": "velocity_gv",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      }
+    ]
+  },
+  "sources": {
+    "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
+    "evaluation/gene/results/selected_edge_cell_controls.csv": "ee657ddb8e5252a3849170f4a9e776b73e881bfb650f6f38d2665fc1ca3a0102",
+    "evaluation/gene/plot_selected_edge_panels.py": "81c1f05fe93efc034143633aeff9a6bc0cece911bad9e9c4e35185004778f642"
+  },
+  "display": "native method coordinates; selected-cluster phase portraits; original six-plus-three layout",
+  "scoring": "current selected-edge scores; retained transition-specific Cell controls",
+  "redraw": "complete render from arrays and tables; no numerical overlays on historical images",
+  "rendered_with": {
+    "path": "evaluation/gene/plot_selected_edge_panels.py",
+    "sha256": "d8973091d0d7c1526cc55ee47bbad2070212472ccca41567e1033c59a320b0e3",
+    "scope": "Historical renderer identity for the retained PNG/PDF/SVG outputs."
+  },
+  "table_schema_correction": {
+    "field": "gene",
+    "meaning": "Gene identifier; plotting uses the distinct numeric gene_cbdir field.",
+    "numeric_fields_unchanged": true,
+    "rendered_outputs_unchanged": true,
+    "tables": [
+      {
+        "path": "evaluation/gene/figures/panels/selected_edges/Fech_plotted_scores.csv",
+        "before_sha256": "0d927c6aacc192d3d19ce52bcf2930f86d90e35c9c1b8fd56a4601342493fc58",
+        "sha256": "9dd68d4b2912f942716f4acffbfcf92dd71cc9f9ce116f6eb2782f323f55be41"
+      },
+      {
+        "path": "evaluation/gene/figures/panels/selected_edges/FAM111A_plotted_scores.csv",
+        "before_sha256": "3ae1b7066108cc76150b22a5b8687a2f528f4a66f54de34fb47e5f06e3f0e794",
+        "sha256": "15a923e8d0bfd947b85deb1ca370c31b6ae491cf36e44257927fac752e010eb5"
+      },
+      {
+        "path": "evaluation/gene/figures/panels/selected_edges/Ncald_plotted_scores.csv",
+        "before_sha256": "9c7b31aeb75422bbf9dfde06ede254db735cfe9f9a92353910312952ded6b135",
+        "sha256": "3eb615e1d5987f30f2cd1dd8a61db3ee57d2047a814da58ae17b0e9e6a7ed3ed"
+      }
+    ]
+  }
+}

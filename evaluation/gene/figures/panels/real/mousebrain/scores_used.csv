@@ -1,0 +1,37 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+mousebrain,cellDancer,Adcy1,0.0847807351841262,,cellDancer,mousebrain
+mousebrain,cellDancer,Cacna1e,0.0163143792798435,,cellDancer,mousebrain
+mousebrain,cellDancer,Flrt2,-0.0094839966362423,,cellDancer,mousebrain
+mousebrain,cellDancer,Gria2,0.0622833793782088,,cellDancer,mousebrain
+mousebrain,DeepVelo,Adcy1,0.125527341833099,,DeepVelo,mousebrain
+mousebrain,DeepVelo,Cacna1e,0.089036314143136,,DeepVelo,mousebrain
+mousebrain,DeepVelo,Flrt2,0.1486307566347545,,DeepVelo,mousebrain
+mousebrain,DeepVelo,Gria2,0.1408592976400167,,DeepVelo,mousebrain
+mousebrain,DeepVelo_scv,Adcy1,0.0747937701067247,,DeepVelo_scv,mousebrain
+mousebrain,DeepVelo_scv,Cacna1e,0.0270000806347536,,DeepVelo_scv,mousebrain
+mousebrain,DeepVelo_scv,Flrt2,0.1562183626395873,,DeepVelo_scv,mousebrain
+mousebrain,DeepVelo_scv,Gria2,0.2724911449174038,,DeepVelo_scv,mousebrain
+mousebrain,Graphvelo_scv,Adcy1,0.0907952700278046,,GraphVelo_scv,mousebrain
+mousebrain,Graphvelo_scv,Cacna1e,0.0438791971594549,,GraphVelo_scv,mousebrain
+mousebrain,Graphvelo_scv,Flrt2,0.1607315298287757,,GraphVelo_scv,mousebrain
+mousebrain,Graphvelo_scv,Gria2,0.2690626966890916,,GraphVelo_scv,mousebrain
+mousebrain,MultiVelo,Adcy1,0.1501428520120361,,MultiVelo (RNA_only),mousebrain
+mousebrain,MultiVelo,Cacna1e,-0.2110183419198909,,MultiVelo (RNA_only),mousebrain
+mousebrain,MultiVelo,Flrt2,-0.2324986279606671,,MultiVelo (RNA_only),mousebrain
+mousebrain,MultiVelo,Gria2,0.2600950473659806,,MultiVelo (RNA_only),mousebrain
+mousebrain,scVelo_dyn,Adcy1,0.0062442803527318,,scVelo_dyn,mousebrain
+mousebrain,scVelo_dyn,Cacna1e,0.0358493764131649,,scVelo_dyn,mousebrain
+mousebrain,scVelo_dyn,Flrt2,0.1600369273731288,,scVelo_dyn,mousebrain
+mousebrain,scVelo_dyn,Gria2,0.2808732447053833,,scVelo_dyn,mousebrain
+mousebrain,TIvelo,Adcy1,0.468414423862477,,TIvelo,mousebrain
+mousebrain,TIvelo,Cacna1e,0.3741529258802231,,TIvelo,mousebrain
+mousebrain,TIvelo,Flrt2,0.3881130795718231,,TIvelo,mousebrain
+mousebrain,TIvelo,Gria2,0.4207749527360247,,TIvelo,mousebrain
+mousebrain,UniTVelo,Adcy1,0.2108082874548514,,UniTVelo,mousebrain
+mousebrain,UniTVelo,Cacna1e,0.1596327804158829,,UniTVelo,mousebrain
+mousebrain,UniTVelo,Flrt2,0.2960941521249159,,UniTVelo,mousebrain
+mousebrain,UniTVelo,Gria2,0.3906636872804153,,UniTVelo,mousebrain
+mousebrain,veloVI,Adcy1,0.0566942649298554,,veloVI,mousebrain
+mousebrain,veloVI,Cacna1e,0.0143474352259207,,veloVI,mousebrain
+mousebrain,veloVI,Flrt2,-0.0624825976641351,,veloVI,mousebrain
+mousebrain,veloVI,Gria2,0.2392364171165324,,veloVI,mousebrain

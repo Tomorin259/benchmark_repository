@@ -1,11 +1,11 @@
 {
   "artifact_root": "artifact://velocity",
   "script": "evaluation/gene/run_reference30_gene_cbdir.py",
-  "script_sha256": "96445c76390b80897a2afa4e0b81e24359b9b04204c4e451f245c12e78e06ef1",
+  "script_sha256": "d96df070af002247f5ac5e1b83556b8d561d310b1e3e62af97d0d123f115e477",
   "scvelo_version": "0.2.5",
   "scanpy_version": "1.9.3",
   "neighbor_mode": "reference",
-  "only_neighbor_replaced": true,
+  "only_neighbor_replaced": false,
   "native_layers_preserved": [
     "Ms",
     "Mu",
@@ -446,5 +446,13 @@
     "neighbor_rows": 90,
     "finite_new_scores": 1119,
     "changed_scores": 1119
+  },
+  "source_kind": "historical fixed reference-30 results with veloVI own-unit restoration",
+  "scoring_units": "method-specific moments with additional veloVI axis min-max transforms reversed for state and velocity",
+  "historical_comparison": "new_cbdir versus old_cbdir includes the reference-neighbor change and, for veloVI, unit restoration",
+  "historical_environment_scope": "original reference-30 generation; restoration and current-code replay environments are in unit_restoration/verification.json",
+  "unit_restoration": {
+    "path": "evaluation/gene/results/unit_restoration/provenance.json",
+    "sha256": "4740500d8b26dacaab12cc4ed2bb520ea4a6510a09190b58a1cb491a5ba8af95"
   }
 }

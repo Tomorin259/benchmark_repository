@@ -1,0 +1,235 @@
+{
+  "source_evidence": {
+    "n_genes": 117,
+    "n_real_genes": 47,
+    "n_simulation_genes": 70,
+    "all_234_axis_forward_transforms_exact": true,
+    "max_cbdir_baseline_error": 9.71445146547012e-17,
+    "max_edge_baseline_error": 1.1102230246251565e-16,
+    "max_cossim_baseline_error_vs_five_decimals": 4.891780175764193e-06,
+    "all_edge_and_source_counts_preserved": true,
+    "cossim_cell_mask_changes": 0,
+    "native_clipped_components": 0,
+    "restored_clipped_components": 0,
+    "max_cleanup_commutation_error": 0.0,
+    "all_input_hashes_unchanged": true,
+    "all_tracked_repository_files_unchanged": true,
+    "source_files_unchanged": true,
+    "repository_head": "b529b303e983bec7bb560981d8850420bc0ea27b",
+    "repository_head_unchanged": true,
+    "repository_status_unchanged": true,
+    "python": "3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:21) \n[GCC 9.4.0]",
+    "numpy": "1.21.6",
+    "anndata": "0.8.0",
+    "environment_scope": "isolated original unit-restoration evidence, before promotion"
+  },
+  "current_code_replay": {
+    "cbdir": {
+      "rows": 129,
+      "finite_field_comparisons": 117,
+      "max_absolute_error": 0.0
+    },
+    "edges": {
+      "rows": 1405,
+      "finite_field_comparisons": 1405,
+      "max_absolute_error": 0.0
+    },
+    "cossim": {
+      "rows": 70,
+      "finite_field_comparisons": 70,
+      "max_absolute_error": 0.0
+    },
+    "scale_factors": {
+      "rows": 234,
+      "finite_field_comparisons": 1638,
+      "max_absolute_error": 0.0
+    },
+    "forward_exact_axes": 234,
+    "unchanged_neighbor_assets": {
+      "retina.npz": true,
+      "capo_pre.npz": true,
+      "all.npz": true,
+      "murk.npz": true,
+      "bonemarrow.npz": true,
+      "gastrulation.npz": true,
+      "mousebrain.npz": true,
+      "pancreas.npz": true,
+      "DentateGyrus_lamanno.npz": true,
+      "branching.npz": true
+    },
+    "other_method_rows_unchanged": {
+      "evaluation/gene/results/gene_cbdir_reference30_all.csv": 1032,
+      "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": 11592,
+      "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": 560,
+      "evaluation/gene/results/gene_cbdir_summary_by_dataset_method.csv": 80,
+      "evaluation/gene/results/gene_cbdir_summary_by_method.csv": 8,
+      "evaluation/summary/results/figure7_summary/fig7_gene_metric_summary.csv": 31,
+      "evaluation/summary/results/figure7_summary/fig7_gene_metric_dataset_means.csv": 117,
+      "evaluation/summary/results/figure7_summary/fig7_gene_metric_wps_values.csv": 19
+    },
+    "code_sha256": {
+      "evaluation/gene/coordinate_units.py": "1b38a628d4733d701b1d53d161e0bb5bbd5ec90a54bb8547bbeed13d0bdaeb61",
+      "evaluation/gene/run_reference30_gene_cbdir.py": "d96df070af002247f5ac5e1b83556b8d561d310b1e3e62af97d0d123f115e477"
+    }
+  },
+  "original_inputs": {
+    "input_hashes": [
+      {
+        "role": "veloVI",
+        "dataset": "retina",
+        "locator": "artifact://velocity/results/veloVI/veloVI_retina_full_all.h5ad",
+        "sha256": "f2998612af376efa3040a80cfe804d39ce013ade7b00753f0be4fa5e56c8ed33",
+        "original_sha256": "f2998612af376efa3040a80cfe804d39ce013ade7b00753f0be4fa5e56c8ed33",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "retina",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_retina.h5ad",
+        "sha256": "3b9fa4d632928e069270d8672d211b5fa3e004320e821721014400f57611a22a",
+        "original_sha256": "3b9fa4d632928e069270d8672d211b5fa3e004320e821721014400f57611a22a",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "DentateGyrus_lamanno",
+        "locator": "artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad",
+        "sha256": "4c0c41e7aa0f555af452652a87f1b0ff6cf435b3ac72ee3ff419231d4a63118e",
+        "original_sha256": "4c0c41e7aa0f555af452652a87f1b0ff6cf435b3ac72ee3ff419231d4a63118e",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "DentateGyrus_lamanno",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+        "sha256": "c24cf8f68469973c34a4243ec1be338b7e4cf8ba5e261c52ed00001d13f5eb05",
+        "original_sha256": "c24cf8f68469973c34a4243ec1be338b7e4cf8ba5e261c52ed00001d13f5eb05",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "gastrulation",
+        "locator": "artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad",
+        "sha256": "c692c33a66b007a5a7c5f3d847ab2902dabca3c9302dd959857d062f1c646911",
+        "original_sha256": "c692c33a66b007a5a7c5f3d847ab2902dabca3c9302dd959857d062f1c646911",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "gastrulation",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+        "sha256": "3c892432ecb2f27d2ab61858e1015052f71ec7691ca45ceadc946439f329994f",
+        "original_sha256": "3c892432ecb2f27d2ab61858e1015052f71ec7691ca45ceadc946439f329994f",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "capo_pre",
+        "locator": "artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad",
+        "sha256": "1285f2cd3274629a8a6457ebc45bead472e2d6d77f5335fd5b217ac8195835f9",
+        "original_sha256": "1285f2cd3274629a8a6457ebc45bead472e2d6d77f5335fd5b217ac8195835f9",
+        "unchanged": true
+      },
+      {
+        "role": "actual_preprocessed_input",
+        "dataset": "capo_pre",
+        "locator": "artifact://velocity/data/capo_pre/capo_pre.h5ad",
+        "sha256": "9526c2ef2d35c340c5670bfe01c201b31b5fd6e81439fceca16e8282203497d8",
+        "original_sha256": "9526c2ef2d35c340c5670bfe01c201b31b5fd6e81439fceca16e8282203497d8",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "capo_pre",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+        "sha256": "d6b55409d1a47c0c0f21e7bf4c479e7d1fe83f9e6f471b0aaa621c85acb80e37",
+        "original_sha256": "d6b55409d1a47c0c0f21e7bf4c479e7d1fe83f9e6f471b0aaa621c85acb80e37",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "bonemarrow",
+        "locator": "artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad",
+        "sha256": "756a9fe4074f8b840c84d93e6d543317b1e31d43a036052988aa81de5329564a",
+        "original_sha256": "756a9fe4074f8b840c84d93e6d543317b1e31d43a036052988aa81de5329564a",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "bonemarrow",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad",
+        "sha256": "4537e6095a3af680b8a7b23913a0f29a4e27c49c418b52e7a1ab465075c9001d",
+        "original_sha256": "4537e6095a3af680b8a7b23913a0f29a4e27c49c418b52e7a1ab465075c9001d",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "mousebrain",
+        "locator": "artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad",
+        "sha256": "8e7f120f386a765521082eab78743e4d15cfebed586ec8d0e76f6d6c4fea8315",
+        "original_sha256": "8e7f120f386a765521082eab78743e4d15cfebed586ec8d0e76f6d6c4fea8315",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "mousebrain",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad",
+        "sha256": "9e2db0a39c40572283d2b38bad38dd851d4d2ff2e806c1a4180cd7bcff27569d",
+        "original_sha256": "9e2db0a39c40572283d2b38bad38dd851d4d2ff2e806c1a4180cd7bcff27569d",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "pancreas",
+        "locator": "artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad",
+        "sha256": "442f36d2a1b661f760f030ff15b440d7f4a2d258e125a6814ebcff483a3aafc0",
+        "original_sha256": "442f36d2a1b661f760f030ff15b440d7f4a2d258e125a6814ebcff483a3aafc0",
+        "unchanged": true
+      },
+      {
+        "role": "label_reference",
+        "dataset": "pancreas",
+        "locator": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad",
+        "sha256": "b0aa97e0ae025da0c2d5b512828afc5c83a0b8022b191e549ebe648231ca9306",
+        "original_sha256": "b0aa97e0ae025da0c2d5b512828afc5c83a0b8022b191e549ebe648231ca9306",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "branching",
+        "locator": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad",
+        "sha256": "c0121d6510b360789fc464f8b10302cff0f1d910afec4065b0c00ff4f1015209",
+        "original_sha256": "c0121d6510b360789fc464f8b10302cff0f1d910afec4065b0c00ff4f1015209",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "murk",
+        "locator": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_murk.h5ad",
+        "sha256": "fec57f7fe062ac186a439e83de239f4bc249f0caf749bbd39142a88854cd45c1",
+        "original_sha256": "fec57f7fe062ac186a439e83de239f4bc249f0caf749bbd39142a88854cd45c1",
+        "unchanged": true
+      },
+      {
+        "role": "veloVI",
+        "dataset": "all",
+        "locator": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad",
+        "sha256": "35df38de46dd3773703170c141b7edb523f4f357f1827d0a46fce0a2bca42b52",
+        "original_sha256": "35df38de46dd3773703170c141b7edb523f4f357f1827d0a46fce0a2bca42b52",
+        "unchanged": true
+      }
+    ],
+    "all_original_inputs_unchanged": true,
+    "repository_head": "b529b303e983bec7bb560981d8850420bc0ea27b",
+    "authority_repository_clean": true,
+    "python": "3.9.24"
+  },
+  "replay_environment": {
+    "python": "3.9.24",
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "sklearn": "1.1.3",
+    "scanpy": "1.10.3",
+    "scvelo": "0.3.1"
+  }
+}

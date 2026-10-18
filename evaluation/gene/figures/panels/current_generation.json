@@ -1,0 +1,1152 @@
+{
+  "scoring_units": "evaluation/gene/results/unit_restoration/provenance.json",
+  "phase_generations": {
+    "retina": {
+      "case": "retina",
+      "genes": [
+        "Anks1b",
+        "Cacna1b",
+        "Celf4",
+        "Hcn1",
+        "Myt1l",
+        "Rasgef1b",
+        "Slc17a6",
+        "Snap25",
+        "Zfhx3"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_retina.h5ad",
+          "sha256": "274ed17bd999e6380e75ae723d42cf1e1f871bd83c92f823ed519b86ef5e7e8c",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_retina.h5ad",
+          "sha256": "a55b4ac1f440f7a01fdeabf8a13444c0e8f354ed2195a710f73517b64e1461e2",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_retina_with_velocity_u_mode1.h5ad",
+          "sha256": "242831adf4016fb33e5d87f9a6f19d0b4b8e3e90aa49682323eac554ee85f29f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_retina.h5ad",
+          "sha256": "7c0c3369e38a3671c0b67df543942a0fb2feb1f500db6e9bc00120a913e8e100",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_retina_full_all.h5ad",
+          "sha256": "f2998612af376efa3040a80cfe804d39ce013ade7b00753f0be4fa5e56c8ed33",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_retina.h5ad",
+          "sha256": "ff747c013b445131466341e630f624f37760e7884bed74a9f43dfe14285834e8",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_retina.h5ad",
+          "sha256": "3b9fa4d632928e069270d8672d211b5fa3e004320e821721014400f57611a22a",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_retina_full_recon.h5ad",
+          "sha256": "419f56382edcdc270eb2a6126ed1e8e6281bc4f4e1c9f8352e5a735c74cb0285",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphveloretina.h5ad",
+          "sha256": "d197a076ba7e24efcebd8caa3e4d96426e76b51e67a24e62323ef5e4de4fa348",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "Anks1b_9methods_compare.png": "5341da321ac5b837518df186d9a1a29b92f18dd44d08342f44a817a2ca70f555",
+        "Cacna1b_9methods_compare.png": "9a8f3bb87a54007b6327ff097cc0b883c1833d1da4aa6026a06d790b4cce81d9",
+        "Celf4_9methods_compare.png": "a0be54b36363a6e2a42de8f4761eeeaa57fd9218ea9ebbbf8666b0447a79e5f8",
+        "Hcn1_9methods_compare.png": "43b80ec0b0a47a5fcf620b6bc3dfff21e94911387f69af697db138fd56047f97",
+        "Myt1l_9methods_compare.png": "75cf707179df8b10370f3cee7172803cd0c6f17a9b6fae0b2c1c3bb7cab9932e",
+        "Rasgef1b_9methods_compare.png": "31514a28d61888cc6bf866eb4740025e9dc2cdcc7f858cb24686328aaf7cbc6a",
+        "Slc17a6_9methods_compare.png": "b077bb594d37525f5552a6e4debb035d13a9130f6df08afcdd104d1e34eb4f3d",
+        "Snap25_9methods_compare.png": "39c22276231bd3930f3a2d6683687972393692a5d9d58b8193bad2af836c7c08",
+        "Zfhx3_9methods_compare.png": "fd4ee31d88611e2b2463c57915d11a29568998fbc8f6c1086477def2b4576776",
+        "summary_cbdir.png": "d9a36ea27141b3a8116f2d4f3da15264690692ae91acc1a43e3cd4c3d7cf3480"
+      }
+    },
+    "bonemarrow": {
+      "case": "bonemarrow",
+      "genes": [
+        "FAM178B",
+        "LMNA",
+        "REXO2"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad",
+          "sha256": "de830a3b96c414e9c3b1152b2a027c66a198e06f9726b7740e9176284707d50e",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_bonemarrow.h5ad",
+          "sha256": "be145567234f727055ad118cd0f8a44689947b37f7feb8c8d993d9f8a2d1b3b8",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad",
+          "sha256": "644377ef2c5e39bfedb313e4df882581d55433de92c3edec78480833ccc61b42",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_bonemarrow.h5ad",
+          "sha256": "d0e7498c2cc18272866a8b82e3ffa0b16f52b16165f8b5fe9bad4a1d1b37feef",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad",
+          "sha256": "756a9fe4074f8b840c84d93e6d543317b1e31d43a036052988aa81de5329564a",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_bonemarrow.h5ad",
+          "sha256": "5f6264555205284b37bcab7849388d5b4eb541318c26aa980b40802822d92788",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad",
+          "sha256": "4537e6095a3af680b8a7b23913a0f29a4e27c49c418b52e7a1ab465075c9001d",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad",
+          "sha256": "afe7f148ea0de70516783f5a6550bbd3ec62155bf7143f7b027990706caca874",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad",
+          "sha256": "e81501351289d89d5ec134411bc28c89cb9314d22501ad0a480608a01704403c",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "FAM178B_9methods_compare.png": "15dc38327a5e48d5c6cdc458a43211242ba7ac6d2b9ca7588881a75bc26b964a",
+        "LMNA_9methods_compare.png": "01441b0b4c0894808228544fcf7a3612d60fb239054f402eaf8b1f57465ccd99",
+        "REXO2_9methods_compare.png": "3006d30dd3a61d5618ce5e2f43ad30901f25f030a2c3c65c65832cc11dc314cb",
+        "summary_cbdir.png": "3721a2af51ed585fbbd668f6a2f4d630edcd7fc52409a7c405834371404b0057"
+      }
+    },
+    "capo_pre": {
+      "case": "capo_pre",
+      "genes": [
+        "ALPK2",
+        "C4orf21",
+        "C19orf48",
+        "CLSPN",
+        "DEK",
+        "E2F7",
+        "FAM111A"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
+          "sha256": "da6cc1b99431895cdac8e924d5f6902905fd5bcda87d5ec5ba4d6b160e658471",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_capo_pre.h5ad",
+          "sha256": "9f96a874418ae416803dcff5f3550d29634bd9031979b846a769535dd7ab583b",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+          "sha256": "1487de258df7ac912148c0b6f7f2797f7c3fbd3039cdf5b3c937ee5952c762d4",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad",
+          "sha256": "7e7e74dcf6d00456bea37a32cdc7759b0dda98b3ee95b2a7c535edb9c2681ddb",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad",
+          "sha256": "1285f2cd3274629a8a6457ebc45bead472e2d6d77f5335fd5b217ac8195835f9",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_capo_pre.h5ad",
+          "sha256": "fc3352da73828b3c3997b635727cc3bf96c222639d25b0cb7f53a8542836bb04",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+          "sha256": "d6b55409d1a47c0c0f21e7bf4c479e7d1fe83f9e6f471b0aaa621c85acb80e37",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_capo_pre_recon.h5ad",
+          "sha256": "f7ae8ff8272d355655511b6b64d679955030f41d7bbd6faa541f24f801d235ec",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad",
+          "sha256": "121a1447b7d5b11363ce23c1d4c7d8a9cb94e26964344e47f5e51cdef88d1060",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "ALPK2_9methods_compare.png": "2e955ba00b31560d6971971eb2697d673a123b891345d7812afe7b90d64e0321",
+        "C4orf21_9methods_compare.png": "12691a434b5e723f4f33774964440c54029d2d4747635dc16bf0e579e448c297",
+        "C19orf48_9methods_compare.png": "74388c64b8f281149602ddf6c25a82bc9200280b634d13d70d27468688aff0ec",
+        "CLSPN_9methods_compare.png": "f4c1312740045df597228ce7395e6046c53e99a7778b4664625d613a95eb6258",
+        "DEK_9methods_compare.png": "c94be65a018b0e4532c41a0592f9c1d9ac39a234225e9e339a660b34a885d1a2",
+        "E2F7_9methods_compare.png": "de818d9b80871da239e5da5c9d4e6d78e186638ff9396097cef3f88eab4a2a20",
+        "FAM111A_9methods_compare.png": "6cfc2cbc06de87914ddc1eb9517e1ce7d0e3f6ffedc7921f467a267cb09dcfed",
+        "summary_cbdir.png": "7ed53063c1ff9d7e3617c544ca2f01e1fd09f4d1dd64a0ccf151767a83c1d830"
+      }
+    },
+    "all": {
+      "case": "all",
+      "genes": [
+        "MultiForward_0",
+        "MultiForward_1",
+        "MultiForward_2",
+        "MultiForward_3",
+        "MultiForward_4",
+        "MultiForward_5",
+        "MultiForward_6",
+        "MultiForward_7",
+        "MultiForward_8",
+        "MultiForward_9",
+        "BoostALL_0",
+        "BoostALL_1",
+        "BoostALL_2",
+        "BoostALL_3",
+        "BoostALL_4",
+        "BoostALL_5",
+        "BoostALL_6",
+        "BoostALL_7",
+        "BoostALL_8",
+        "BoostALL_9",
+        "OneSidedBoost_0",
+        "OneSidedBoost_1",
+        "OneSidedBoost_2",
+        "OneSidedBoost_3",
+        "OneSidedBoost_4",
+        "OneSidedBoost_5",
+        "OneSidedBoost_6",
+        "OneSidedBoost_7",
+        "OneSidedBoost_8",
+        "OneSidedBoost_9",
+        "OneSidedBoost2_0",
+        "OneSidedBoost2_1",
+        "OneSidedBoost2_2",
+        "OneSidedBoost2_3",
+        "OneSidedBoost2_4",
+        "OneSidedBoost2_5",
+        "OneSidedBoost2_6",
+        "OneSidedBoost2_7",
+        "OneSidedBoost2_8",
+        "OneSidedBoost2_9"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_all.h5ad",
+          "sha256": "18ccfa8956f0675972f6de6bb4d2c67e09fc60cd4dccdcb309e2efcf0aca646e",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/multivelo/multivelo_all.h5ad",
+          "sha256": "252801e110d7a7783253078d134f4afbf0c1db6627ddc4a3e22b00e8e5039e7b",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": null
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_all.h5ad",
+          "sha256": "2e4bb76c4ee9b1e6011d824ee705769c83d8ce065d02b9e110a1d41ed22e546f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad",
+          "sha256": "9b5ae1c8eaccf8a10dd17dacadb5aa770a0cdfe92afb015986c608e2e40dcb13",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad",
+          "sha256": "35df38de46dd3773703170c141b7edb523f4f357f1827d0a46fce0a2bca42b52",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/celldancer/celldancer_all.h5ad",
+          "sha256": "2f7b286cbafcd0766e99e2aa587c10741e417260205f38035f72d02a5346e355",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_all.h5ad",
+          "sha256": "793a4cf8759eb0b27881c0f233f31b428647ec4b199398b50fb0064fd446162f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_all_recon.h5ad",
+          "sha256": "b65e4566632f9b28b16f55e10a90ed9b827b37e3cb2cf1b52b5dc157a70c34e3",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_all.h5ad",
+          "sha256": "2bb9a4f11551cf40f0ab6a2a57e3b220ae562fd4291be90362b1ba921a52bbf7",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "cda763ce484f5af107255f86aed301b9475cf7b03d58b93162f5ec75cedb3825",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "MultiForward_0_9methods_compare.png": "3766dd1a4ca06945725e960067c3f09da62e88cc097ce0f6d92ac4e307b7e48f",
+        "MultiForward_1_9methods_compare.png": "dec5a12285ec5fd1a18c028a2b3dc03b40dd23e9d420c024dc7cbe0190f04996",
+        "MultiForward_2_9methods_compare.png": "b932329e105c262be29bcb6072ae0e1af13972966737ab4f9579f6ca1a2e3f49",
+        "MultiForward_3_9methods_compare.png": "9d956bf17392d53945b5892d7caafa2e1bd2e84ffe49c04f26677517a6914f2d",
+        "MultiForward_4_9methods_compare.png": "a9111388fb91c1a1e88a6ee2a8ff790ceffeb29d931b65b36674f15ce40bf661",
+        "MultiForward_5_9methods_compare.png": "eaf4bacb84db0fd6ccf2eca0dd8e6bde5648362d889ba1a38189931b014efad7",
+        "MultiForward_6_9methods_compare.png": "6a27392d4ca3147668581769fbd01bbbb0b7932483533bb8e1e6d8eeda778257",
+        "MultiForward_7_9methods_compare.png": "0426b75110a7e079e013ec4a96e40c3d30ad64266ced5c5baf1a37ce7dc02b2f",
+        "MultiForward_8_9methods_compare.png": "7e362870c500d683a24653665afe1ac5e070480aa7aacbc0a938c9f56d8aa6ac",
+        "MultiForward_9_9methods_compare.png": "57a09a40f9f45afcfd161f218f01289412595c2e289148b59fcd7660448f6782",
+        "BoostALL_0_9methods_compare.png": "ba637204e417f84842ae13d057fa88e0302784369ba9da399ccaf7665ed1f6f8",
+        "BoostALL_1_9methods_compare.png": "2870ad93b924d7a1d3d62514d7c5426ee194c65dee896249aa71203ce83917c0",
+        "BoostALL_2_9methods_compare.png": "ece6d1205c43b27ec728342411a81e99439e1034c9e5923a3f3ed528b419f358",
+        "BoostALL_3_9methods_compare.png": "0baee6abceeeab29347a47488f857611b1a85d1902c954275f68cabdc78df9c2",
+        "BoostALL_4_9methods_compare.png": "612c7b3af1781ee8cb84364e76519402492e8a9f023cee3c474e2ff92b53d26f",
+        "BoostALL_5_9methods_compare.png": "8b7b96b2240d5c4239805221c1f4ad56db17c6d6d660e42cde75cb5447eb765d",
+        "BoostALL_6_9methods_compare.png": "65a4f9acf0953c62111ab3f567a685fc9f3615554eae428440489f93db9efc73",
+        "BoostALL_7_9methods_compare.png": "7e79c2f71ad390a48f48931a47741fa303bc3db2bf64be078b514df028a05747",
+        "BoostALL_8_9methods_compare.png": "1a98d42913876a7ee8561443ab3361caf53872dfeb0f12fd407dbd8a614f8494",
+        "BoostALL_9_9methods_compare.png": "6923e1386715c4c833f63af626992ae06ecfda895e14163a1036ba6f32083835",
+        "OneSidedBoost_0_9methods_compare.png": "30b9a45d3b7ee951bb34169002c74aa4429ecfb85d8b89925fbfc93bd4b81d75",
+        "OneSidedBoost_1_9methods_compare.png": "1da4dad161375a143eaa9db06771b743d9eccde00a49b800cbae890b4e812b1d",
+        "OneSidedBoost_2_9methods_compare.png": "f0ffc09d5aec9265188ea031dac477ec04b5ee08a608bfe9195486a8f56d68a2",
+        "OneSidedBoost_3_9methods_compare.png": "6681ed678eeb48df321f8499e44acf7f001efbe6f2ee49e1cb2f8dd40a2e6ad7",
+        "OneSidedBoost_4_9methods_compare.png": "b22bf7d6869b2bafb5917a8412d768ab89e0204d2d5a69ba08e89452cd82268d",
+        "OneSidedBoost_5_9methods_compare.png": "018cde4d76439432b10ca858c4a6e8e8b68dcf443803edfed5ecdf5582dea4e9",
+        "OneSidedBoost_6_9methods_compare.png": "91292aed65273de01af9b07db3d454122c74ad8477a9e07bb48a7d5f0777b2a0",
+        "OneSidedBoost_7_9methods_compare.png": "1b759fcd15cd1dc59088358d030e3fdec764351df37114fc95182310de59d264",
+        "OneSidedBoost_8_9methods_compare.png": "7f8c26b9271a0b42e76a6837a92d252c5bc8f23a3b7f2c2808e9641273fb535d",
+        "OneSidedBoost_9_9methods_compare.png": "06bdd95f63ab8335b69b58cf796a687d935871ba67eb47156c8a747888a0c498",
+        "OneSidedBoost2_0_9methods_compare.png": "f30760903e2761d6b411c3e1b76f204de298db41422990c851413bf9083457a8",
+        "OneSidedBoost2_1_9methods_compare.png": "f8ee940d27b5ea4bd61ec46c7af2782a0254c745fca99f102be86c6e3dfac134",
+        "OneSidedBoost2_2_9methods_compare.png": "8b69b27b9dc1068ed60847efc488c54d9842802963fad9ca8183c0dcc663f99e",
+        "OneSidedBoost2_3_9methods_compare.png": "1b6a4a820b8a21a413379863b9448e3d343af0522ea689888583674496bca705",
+        "OneSidedBoost2_4_9methods_compare.png": "6c55922b5f7e9116b36dc661ab29f32c1da2f9da9f35528204987a65d75d5a0b",
+        "OneSidedBoost2_5_9methods_compare.png": "e45fded27c16e38e4d5a833c2faf08f23b314499d846c2301bbd80bdd6cd323e",
+        "OneSidedBoost2_6_9methods_compare.png": "2e037e2fefa6d6d80bd64a263ead08ed5aa7aa9eb408e3dcec8bbb68ef3c5b82",
+        "OneSidedBoost2_7_9methods_compare.png": "37bec945072e3f996713ad9a0fad0258d4c6d67f1a85d7f1f881931d6efb71d0",
+        "OneSidedBoost2_8_9methods_compare.png": "8cc3927553b1b3fa6189e878707b9dac57ae877674d61b0848583752cbd35f1d",
+        "OneSidedBoost2_9_9methods_compare.png": "e5917652970ca6e4e54efa455a43a29bcd52c8992258e160bd54a65914ef3160",
+        "summary_cbdir_cossim.png": "7f180166bbe70fbd55b20f800431faa60789ff1e0571296c1476c4399f03e421"
+      }
+    },
+    "DentateGyrus_lamanno": {
+      "case": "DentateGyrus_lamanno",
+      "genes": [
+        "Ncald",
+        "Diaph3",
+        "Dab1",
+        "Dpp6",
+        "Malat1",
+        "Tubb3",
+        "Plppr4",
+        "Mmd2"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+          "sha256": "aeca474c29b111de30e1df3a30f533f0807941f46c30580a55b06eacbb4763f5",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
+          "sha256": "b683f4c5d619286ccd82d3a97567af422d60af3ecc78ff4ae84125040602f3bb",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+          "sha256": "19d32531230662a89805fa2a016e55070eed4fafa6222aa7ce31cb314c607544",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+          "sha256": "b6bb0deeb3a79f4c429037ba6b38598f2c8efc1d6c8a9a8e418ce6eedd8d6859",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad",
+          "sha256": "4c0c41e7aa0f555af452652a87f1b0ff6cf435b3ac72ee3ff419231d4a63118e",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
+          "sha256": "2de74c44cc42ac6a6869e1303cf81a9834c9c477804ee85b0285f8028ce613d4",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+          "sha256": "c24cf8f68469973c34a4243ec1be338b7e4cf8ba5e261c52ed00001d13f5eb05",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad",
+          "sha256": "99cb0aa49e384f682e07da2893b5f0993d41297d79ad3980880cf759ea3a785f",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad",
+          "sha256": "6ebfe5129de5461f781bbae0233c6017a88c278b563dd06c4f3206db0676fc77",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "Ncald_9methods_compare.png": "b49d2942a72a19900a2180adeda5a7e70480bf852aa997738e0da37aa5e0f375",
+        "Diaph3_9methods_compare.png": "61e3631cab7fb8b2c4634fa80ab616922f22436f893655ea0bcf62963c89d5e4",
+        "Dab1_9methods_compare.png": "bf48651a18e519efbd25fbb906f61876fda0723289ecc6030eadb570f01b9f95",
+        "Dpp6_9methods_compare.png": "de573491989e2b29f9e9e8cef6118951fa8bba0d022a2820ccec7ca477b4ae9e",
+        "Malat1_9methods_compare.png": "1f9fb4f1a577f6de3d96bb04c12f54c5c3138f94a57f46d23672677ef0800243",
+        "Tubb3_9methods_compare.png": "5108b3481944bea16dbedf141223720c6bf904799191285e127c26a36f0bf3ff",
+        "Plppr4_9methods_compare.png": "e0119755b6f52697c4accfb2035567f660518be1304299549e41d93c695f69e1",
+        "Mmd2_9methods_compare.png": "94630760b17169e6c7f7e217ad6392d33c1075a969f60dab297040e86d907ea8",
+        "summary_cbdir.png": "6061c40ccaf177a8e02cf61861451107b4f2dbbac27c7a05e8292fa0e97c73c5"
+      }
+    },
+    "branching": {
+      "case": "branching",
+      "genes": [
+        "MultiForward_0",
+        "MultiForward_1",
+        "MultiForward_2",
+        "MultiForward_3",
+        "MultiForward_4",
+        "MultiForward_5",
+        "MultiForward_6",
+        "MultiForward_7",
+        "MultiForward_8",
+        "MultiForward_9",
+        "BoostALL_0",
+        "BoostALL_1",
+        "BoostALL_2",
+        "BoostALL_3",
+        "BoostALL_4",
+        "BoostALL_5",
+        "BoostALL_6",
+        "BoostALL_7",
+        "BoostALL_8",
+        "BoostALL_9"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_branching.h5ad",
+          "sha256": "b8f1bda6e561d4fe1a227f7a4b86dfb79faff453f6753dc7acf306a7c99e058d",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/multivelo/multivelo_branching.h5ad",
+          "sha256": "0dbd0144b8475cad4007fcc08fc2103958993e4b65b7b2a05040b306ec557ce8",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": null
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_branching.h5ad",
+          "sha256": "3382c2a9e55a015fb169752606e29e6ee4ae97130494d1ac35eabdd2eb43546f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_branching.h5ad",
+          "sha256": "b0ce87d3576a16e2247908b9963eb3a2270978329da80d0053e57ab3cbb4cf2c",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad",
+          "sha256": "c0121d6510b360789fc464f8b10302cff0f1d910afec4065b0c00ff4f1015209",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/celldancer/celldancer_branching.h5ad",
+          "sha256": "647fe4ac368c79d18552af554d3168ffe61e03fb79b4cab3d97bc3aa13b9b7c9",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_branching.h5ad",
+          "sha256": "7fc3d728937532e6c921fcdd86609135408a992ac59f76519f7145046377f6f2",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_branching_recon.h5ad",
+          "sha256": "f3e331bb51336fcb27650f1cc4d244a13031b91f3b704d9e516df8d6dbcb3d33",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_branching.h5ad",
+          "sha256": "50cfcfb97e7d64e4ccd2c87c8e1aa24872179d35144a55e6b723d96a9bcca0fd",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "cda763ce484f5af107255f86aed301b9475cf7b03d58b93162f5ec75cedb3825",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "MultiForward_0_9methods_compare.png": "26d68a71e70c0b1cd5e7d10fdc04ec723c9998f3d609c7c7251a832de71d17c9",
+        "MultiForward_1_9methods_compare.png": "fb92394d1b7f5a677036c248db7de4e9d6836a63f85305586ffdd226b1db8a08",
+        "MultiForward_2_9methods_compare.png": "b027f020b5a80f959feb2717003b1743048e74a9a599ae3eb429985fcc4a526a",
+        "MultiForward_3_9methods_compare.png": "4938879e2efb3dfef3b19a5396f11e0aa07086885aa6bf27ff932d1aca835db2",
+        "MultiForward_4_9methods_compare.png": "a94aadff43794e99d5825413722267f56a78faeb3e05e8930ea925888990bfc4",
+        "MultiForward_5_9methods_compare.png": "8d439e42dfbaa6de5bb4d09623041ca53a653fbccf8133b3a2c8356ed08178e8",
+        "MultiForward_6_9methods_compare.png": "0a7ae9bd43f18e5f54b680f254808eeb72b89a35730cd8a5aa844a45012bb50f",
+        "MultiForward_7_9methods_compare.png": "0c534cbc33658bc73ed799c011e6ef3302f5c4e02b4ccab8af542932099dd704",
+        "MultiForward_8_9methods_compare.png": "ef2a17628ab821b980bf06879e3d1ee967f3897d6c89f5f8d90ca212b40e46dc",
+        "MultiForward_9_9methods_compare.png": "97421f12d348f01e71d765231c0e62b2b0ce3b376353ad79b0576e7b50217809",
+        "BoostALL_0_9methods_compare.png": "aaa498f1e293870db1be8d4af5f52d0f6cbba37bb68292e44b623cec609f217f",
+        "BoostALL_1_9methods_compare.png": "380972e7f01660ccc6b8cb31b654337bc3f147b86969d9b685ca8446342a4ba8",
+        "BoostALL_2_9methods_compare.png": "35de2ef8886593a7dff7b489bd303f8eada72f290b8a9b0f1f11bfadb12c2674",
+        "BoostALL_3_9methods_compare.png": "d2cfdffd5905b3bd2b42a873ed78c71137649cf666ed55f541b72420ea34b88c",
+        "BoostALL_4_9methods_compare.png": "b0aad21e8f95bf699ae223db57e9266c67b3e1f605a80c823679f378583c5308",
+        "BoostALL_5_9methods_compare.png": "9639f49b7cc547c2743bde3261f3027b33df5732934a474848935bea56a896f2",
+        "BoostALL_6_9methods_compare.png": "3a6c48047fda51a5612422f26f8b8b8fe2b44d046d79a4aed12e07cc846da67d",
+        "BoostALL_7_9methods_compare.png": "dda555afb15e77c7b6ce027acac9b91a4134124c9fb9ae0c1edc34c2babbfb74",
+        "BoostALL_8_9methods_compare.png": "af034ddf2b67b291801c0a3b1df08da2e1467ea5905e65c6a363a3e7f55aa7bf",
+        "BoostALL_9_9methods_compare.png": "8e65f754de02eb36961b41c1bed844a2b4cd0f848711d18bddc49dca517325f4",
+        "summary_cbdir_cossim.png": "3011f1918c2bcf77786f1c8e494b7bce9d30c058e41263d0929c12e17b4a5d84"
+      }
+    },
+    "mousebrain": {
+      "case": "mousebrain",
+      "genes": [
+        "Adcy1",
+        "Cacna1e",
+        "Flrt2",
+        "Gria2"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad",
+          "sha256": "24cc96b5c88126ead8e7e27a35ccb0fd0b397cb7970debf6abcbbd5f8b745593",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_mousebrain.h5ad",
+          "sha256": "9a3701cef16c81ad4452cb4b0cce6ebb0ea389b835d1135f33fe802dd56a598a",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad",
+          "sha256": "d78ddf162324ce08ff65db0655953e919e7717f1a4eed389918e7a0e54bf6d5e",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_mousebrain.h5ad",
+          "sha256": "4fe056c528ea5a33a366fc502b5cc932e51a629e7531efe612ccc05875db34de",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad",
+          "sha256": "8e7f120f386a765521082eab78743e4d15cfebed586ec8d0e76f6d6c4fea8315",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_mousebrain.h5ad",
+          "sha256": "19471ca563538572e528a28aa12a43e77ae8403030986aacf7d0fd71c49ba232",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad",
+          "sha256": "9e2db0a39c40572283d2b38bad38dd851d4d2ff2e806c1a4180cd7bcff27569d",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_mousebrain_recon.h5ad",
+          "sha256": "15a41300481fbf026e3fb6f4647bb66de7c8647ee93708978df3819b8bf86a9f",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphvelomousebrain.h5ad",
+          "sha256": "96babdca143780394a3c314642969c58fab275ff796cb4e167620ed2a43b52ba",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "Adcy1_9methods_compare.png": "b13c7e87679eb694151dc2eaa641b228231571df8a21199c47f2be51fd6f0bad",
+        "Cacna1e_9methods_compare.png": "e326365382d3edbad1bfc5d693b5df43276d6607fbd6a4264fae6c586d3804ab",
+        "Flrt2_9methods_compare.png": "ec44dfa30f38897022d6d6f37bc07e8e28e88c4773e7b187177b436b3dfa4a7a",
+        "Gria2_9methods_compare.png": "922a046c7b7da58d1db04a61d05184491f9ab7d661f8d82e5d5bea451e98d927",
+        "summary_cbdir.png": "70c6a4349d3501bbeebc249e87bce263cc37e96912bce60c639b5e97c17ed520"
+      }
+    },
+    "gastrulation": {
+      "case": "gastrulation",
+      "genes": [
+        "Abcg2",
+        "Alas2",
+        "Fech",
+        "Hba-x",
+        "Hbb-bh1",
+        "Hbb-y",
+        "Hemgn",
+        "Klf3",
+        "Mllt3",
+        "Rhag"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+          "sha256": "4381ad967155156281ce63d7500d1643c90645ce5387b3dcd8b5aa5e576b29df",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_Gastrulation.h5ad",
+          "sha256": "5f552c144be9d1396e30bbc46ff3ef31e22b46f0fa3f5f9c668eb06744271b17",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+          "sha256": "0258f8848ecb3ed855ed29bd096033c9999033536c9146c85986be12f69d0d25",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_Gastrulation.h5ad",
+          "sha256": "82f4ad0cb1b7873f5f9d890fa9da262fd8ed6600fe35a7ceba83e2b69b0cad51",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad",
+          "sha256": "c692c33a66b007a5a7c5f3d847ab2902dabca3c9302dd959857d062f1c646911",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_Gastrulation.h5ad",
+          "sha256": "200bd06c84e575db0efe4a68e3944e81c08ae198a8e063489c55ab093f6a47a5",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+          "sha256": "3c892432ecb2f27d2ab61858e1015052f71ec7691ca45ceadc946439f329994f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad",
+          "sha256": "e87e01a0590d86e0f5e02613c07eb9f39f0083213822ee19a5b3a38725450ed9",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphveloGastrulation.h5ad",
+          "sha256": "0584fc72ba846a9df9f90aaa4fa22970e0c51758ac92c28d496a5f0c792a8313",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "Abcg2_9methods_compare.png": "811229323ea5d1b8580ea81a32f0076af441369b2712caaac449496014df4329",
+        "Alas2_9methods_compare.png": "afcae952288e94c8ceda55c2c9126fb891abe0faef5cb58e5ecec493e240e32a",
+        "Fech_9methods_compare.png": "824f0613cdeab49f85dcfa1d92318d72fe10032f41397f45b2aca6155221a6b0",
+        "Hba-x_9methods_compare.png": "c1f6a01bbb5c171dc00dbacf5c87b6e1dd97cfc1beadd86972e7bf4e05e46584",
+        "Hbb-bh1_9methods_compare.png": "812c71fd836ff89fbd8dfe1c493a37766e8b5bd21591310d69ef97bc40106bac",
+        "Hbb-y_9methods_compare.png": "53a219d5b7c06804b1b0e1ac864e2b97284671c59823a2062e3745d436c3e37b",
+        "Hemgn_9methods_compare.png": "34c41aee9b7aa514710a52608998d8124d51cca420679503fb82035ca916e3dd",
+        "Klf3_9methods_compare.png": "5dfd2e93d81e4ed1d372cd3c7b1aeea9f2e4fadd8045bc4c6fdf34fd8f70f541",
+        "Mllt3_9methods_compare.png": "9ea0a5a01230a75fc198d5fd2961c1725becaa17f3b515c0f7be3994ddbabc37",
+        "Rhag_9methods_compare.png": "c8d6a17e4a3654fbcabf1c6cd5a01c351d0f085d1937fd14040c5bf0436a85a9",
+        "summary_cbdir.png": "37abd85fce9162e17dc57136afdcb4e9772e75eca04f46a507abcf6dd7e82bd4"
+      }
+    },
+    "pancreas": {
+      "case": "pancreas",
+      "genes": [
+        "Atp2a2",
+        "Chst8",
+        "Emb",
+        "G6pc2",
+        "Igf1r",
+        "Nxph1"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Pancreas.h5ad",
+          "sha256": "d500c5f9577022fe562c5823ac0edd57f02fd669dfdbffb67f6f7899f14af4f6",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/results/multivelo/multivelo_Pancreas.h5ad",
+          "sha256": "490b01661a3c99a6b4d1673224cc720ad308d77409926f4d882d19089927fba4",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad",
+          "sha256": "6a5203fa48108f9984bc21138a82882babc0cf8aead2c840e09e994bb03fc027",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/results/TIvelo/tivelo_Pancreas.h5ad",
+          "sha256": "6130f6163e861dcb6eeb5ddc4ca991f7f67e4c8abedb35396adeea89b9a57c4c",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad",
+          "sha256": "442f36d2a1b661f760f030ff15b440d7f4a2d258e125a6814ebcff483a3aafc0",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/results/celldancer/celldancer_Pancreas.h5ad",
+          "sha256": "bd9ecbb139b82c417c2ad84d2c261a9a85a41b74597e9e44944e22da38042e52",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad",
+          "sha256": "b0aa97e0ae025da0c2d5b512828afc5c83a0b8022b191e549ebe648231ca9306",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/results/deepvelo2022/deepvelo_Pancreas_recon.h5ad",
+          "sha256": "7df8b10419699785564fe8fe2435b4236070af280a9413f8a9d07d1a134a6173",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/results/graphvelo_scv/graphveloPancreas.h5ad",
+          "sha256": "264d289d513273d81f92ffdc516572ebbac0927b776d62a2391e20b5317bb3ea",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": "cell_id"
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "Atp2a2_9methods_compare.png": "ed323547fed1fd1d93fb4246f4266ce35da2912e8662f1ee61da475e9da64cd9",
+        "Chst8_9methods_compare.png": "dcf010e60c089d469c6bb2dc958194741f4c4c1917f5a6e6cd190fe656d95182",
+        "Emb_9methods_compare.png": "9530e7788eb714b196d8c8bf679dea041891e73eb73fc2ed1b633d5ea52d81c6",
+        "G6pc2_9methods_compare.png": "bacda2a50152bd0de51a7326bd7475e0aad34ad4158654934db72d96cae59bbb",
+        "Igf1r_9methods_compare.png": "d2baa89a7280ecf277a4c65f7a2565c4e53c263e99a5f63855a4ed26b6cfe827",
+        "Nxph1_9methods_compare.png": "eeaf5689af5a8b8caed9f62a5fffe844771f536ddaf81fb4fa6fdb6a149376e4",
+        "summary_cbdir.png": "aec347d6e0b5bbb093b9980d7cca79526347fd86baf53dd6616d236fda9f71a2"
+      }
+    },
+    "murk": {
+      "case": "murk",
+      "genes": [
+        "OneSidedBoost_0",
+        "OneSidedBoost_1",
+        "OneSidedBoost_2",
+        "OneSidedBoost_3",
+        "OneSidedBoost_4",
+        "OneSidedBoost_5",
+        "OneSidedBoost_6",
+        "OneSidedBoost_7",
+        "OneSidedBoost_8",
+        "OneSidedBoost_9"
+      ],
+      "dpi": 600,
+      "inputs": [
+        {
+          "method": "scVelo_dyn",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_murk.h5ad",
+          "sha256": "451d82c6efd56a02cfccf813a4978bc2e2469d6f96558f056c975f0acdc4c95d",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "MultiVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/multivelo/multivelo_murk.h5ad",
+          "sha256": "c5901144734f824e51099c6336e904bd72be0b99a3b9ba4f09ff072523f3fc12",
+          "velocity_s_key": "velo_s",
+          "velocity_u_key": "velo_u",
+          "label_alignment": null
+        },
+        {
+          "method": "UniTVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_murk.h5ad",
+          "sha256": "47ad659186ca7c33bf6a4ce4baab8c7d8877208e4d1c047bcb59297e26985e8e",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "TIvelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_murk.h5ad",
+          "sha256": "3be3caef759078077b73414c059e0bd16905e5b29978c76b4ff20886b4a4857f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "veloVI",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_murk.h5ad",
+          "sha256": "fec57f7fe062ac186a439e83de239f4bc249f0caf749bbd39142a88854cd45c1",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "cellDancer",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/celldancer/celldancer_murk.h5ad",
+          "sha256": "d6aa2ae5648039908b89d5a05634b42c14487438bce1ea0840d2a2a104e0402f",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_murk.h5ad",
+          "sha256": "f921d0fbbff86b0d0376c58711dd6dcd1a0c9c2c6e8785202d6b8565c9eb9d14",
+          "velocity_s_key": "velocity",
+          "velocity_u_key": "velocity_unspliced",
+          "label_alignment": null
+        },
+        {
+          "method": "DeepVelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_murk_recon.h5ad",
+          "sha256": "e50b461a11f4366ce0a6717fc2cda06764548f9d7acca7926747a8e5763aa113",
+          "velocity_s_key": "velocity_reconstructed",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        },
+        {
+          "method": "Graphvelo_scv",
+          "source": "artifact://velocity/indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_murk.h5ad",
+          "sha256": "5c12ec5cf7b7d373f4da02b22499c3460c8b026d272d7dc2e7f1a4f5d5e12850",
+          "velocity_s_key": "velocity_gv",
+          "velocity_u_key": "velocity_u",
+          "label_alignment": null
+        }
+      ],
+      "source_hashes": {
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
+        "evaluation/gene/plot_gene_assets.py": "cda763ce484f5af107255f86aed301b9475cf7b03d58b93162f5ec75cedb3825",
+        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+      },
+      "phase_plot_version": "gene-phase-log1p-005-010-v1",
+      "display": "native arrays rendered afresh; no raster number overlays",
+      "output_hashes": {
+        "OneSidedBoost_0_9methods_compare.png": "4d6cd388cb2c134e91bdb9d4d2be3e4100c24caf8b193afeeb3a5908d969f2fb",
+        "OneSidedBoost_1_9methods_compare.png": "6fb283ff2735181d1f0f4f3ff64b515613b131eb46344c050690f1680bc49d5f",
+        "OneSidedBoost_2_9methods_compare.png": "86ca4e71e9599a580a40d5636eac5d45960ef7abd7fe5ce790d79cefb77caa06",
+        "OneSidedBoost_3_9methods_compare.png": "a13dfafda706f84430b06ac5c213e9026c1fbe6644fdd3f38099c1d194704707",
+        "OneSidedBoost_4_9methods_compare.png": "6d39e05b6d6241fed6253de428a09156b76d827be875bdf3511d4c6e90e20cf1",
+        "OneSidedBoost_5_9methods_compare.png": "c2a2387072840a8b8242cf3747c7c31ac1d266383166f2b78ef6fe200d824428",
+        "OneSidedBoost_6_9methods_compare.png": "48de38857203aa5e83fbef19a844db55d528c861662850f545c17ed29157f471",
+        "OneSidedBoost_7_9methods_compare.png": "7acd3dd6a2d3b2fe49e65c9e913821a529767f459b787675ca3fcdefd8ca2741",
+        "OneSidedBoost_8_9methods_compare.png": "24c1cbb45ddbd3b2e42dea9c2b10be4805a1131f305f7c847c3a2bd30230f8ee",
+        "OneSidedBoost_9_9methods_compare.png": "d9e71a67f842a564bf41e3a2f6931caec68bf35e398d179b89f73c54c592f55e",
+        "summary_cbdir_cossim.png": "0d19de4ccfb046c77d1602ac1b6d1317b459dfc8d93b5f00680bf18a08b27b8e"
+      }
+    }
+  },
+  "selected_edges": "selected_edges/generation.json",
+  "real_summaries": "real/cross_dataset/generation.json",
+  "historical_generation_retained": "provenance.json"
+}

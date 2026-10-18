@@ -23,6 +23,6 @@ bonemarrow,TIvelo,REXO2,0.4032588584004988,0.40329,-3.1141599501183226e-05,3.114
 bonemarrow,UniTVelo,FAM178B,0.388037800899677,0.38804,-2.199100323008185e-06,2.199100323008185e-06,3,1455,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad,velocity,velocity_u
 bonemarrow,UniTVelo,LMNA,0.09232175931719,0.09232,1.7593171900004423e-06,1.7593171900004423e-06,3,1455,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad,velocity,velocity_u
 bonemarrow,UniTVelo,REXO2,0.20124413182193468,0.20124,4.1318219346775376e-06,4.1318219346775376e-06,3,1455,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad,velocity,velocity_u
-bonemarrow,veloVI,FAM178B,0.12800443039997192,0.128,4.43039997191641e-06,4.43039997191641e-06,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u
-bonemarrow,veloVI,LMNA,-0.015016961959013692,-0.01501,-6.961959013691149e-06,6.961959013691149e-06,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u
-bonemarrow,veloVI,REXO2,0.16062751968887046,0.16067,-4.24803111295502e-05,4.24803111295502e-05,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u
+bonemarrow,veloVI,FAM178B,0.027840661062599543,0.128,-0.10015933893740046,0.10015933893740046,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u
+bonemarrow,veloVI,LMNA,0.07089889818406359,-0.01501,0.08590889818406358,0.08590889818406358,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u
+bonemarrow,veloVI,REXO2,0.18768596139546154,0.16067,0.02701596139546153,0.02701596139546153,3,1455,0,ok,artifact://velocity/results/veloVI/veloVI_bonemarrow_all.h5ad,velocity,velocity_u

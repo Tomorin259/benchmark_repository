@@ -1,8 +1,8 @@
 # Canonical gene-level results
 
 The files in this directory are the fixed-neighbor reference-30 Gene
-evaluation. The two earlier runs had complementary dataset coverage and are
-represented here as one date-free result set:
+evaluation with veloVI's additional per-axis min-max transformations reversed
+for numerical state and velocity scoring:
 
 ```text
 real/<dataset>/
@@ -21,17 +21,33 @@ artifacts. Their public locators use `artifact://velocity/<relative-path>`;
 the evaluator accepts the artifact root through `--artifact-root` or
 `VELOCITY_ARTIFACT_ROOT`.
 
-The metric values are copied from the fixed-neighbor results without
-recalculation. The additional edge, neighbor, and comparison columns are
-retained for supplementary inspection; manuscript summaries use the CBDir
-columns.
+The updated scores cover 47 real and 70 simulated veloVI genes, with 1,405
+edge rows. The other eight methods retain their historical row values.
+`old_cbdir` and `old_edge_score` remain the earlier comparison scores, so their
+deltas include neighbor changes and, for veloVI, unit restoration.
+[unit_restoration/provenance.json](unit_restoration/provenance.json) records
+the 234 exact-forward axis factors, paired native/restored scores, original
+input hashes, unchanged masks/counts and an exact current-code replay.
+[The historical provenance](unit_restoration/historical_reference30_provenance.json)
+retains the original generation identity and neighbor metadata.
 
 `simulation/gene_cbdir_cossim_reference.csv` supplies simulation CosSim
-and retains the historical CBDir values. Its 630 rows come from the three
+and retains the historical CBDir values. Its 630 rows originated from the three
 upstream `results_new/score_rerun_results.txt` files (branching: 180,
 murk: 90, all: 360), with columns Dataset, Gene, Method_raw, Method, CBDir,
-and CosSim. These external sources are recorded in the
-[gene panel manifest](../figures/panels/assembly_manifest.tsv).
+and CosSim. Only the 70 veloVI CosSim fields now use restored units. The
+historical direct-source hash remains separate from the current table hash in
+[the compact-table provenance](simulation/gene_cbdir_cossim_reference.provenance.json).
+The external historical sources remain in the
+[historical panel provenance](../figures/panels/provenance.json). The
+[current panel manifest](../figures/panels/assembly_manifest.tsv) binds CBDir
+annotations to the canonical reference-30 table; current-generation records
+identify the separate CosSim source.
+
+`common_genes/` contains the finite nine-method gene intersection, dataset
+means/sample SDs/ranks, and equal-dataset macro means/ranks for the seven real
+datasets. Rebuild or check these three tables with
+`evaluation/gene/refresh_common_gene_summary.py`.
 
 Current Figure 4D uses `new_cbdir` from `gene_cbdir_reference30_all.csv`
 for CBDir-gene and CosSim from the compact simulation table, paired with

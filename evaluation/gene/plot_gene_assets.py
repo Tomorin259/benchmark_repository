@@ -16,6 +16,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.colors import BoundaryNorm, ListedColormap, to_hex
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -154,8 +155,14 @@ def read_phase_inputs(case, scores, artifact_root, genes):
             plot.layers[target] = values
         if case in REAL_CONFIGS and colors is not None:
             plot.uns["clusters_colors"] = list(colors)
-        elif case in SIM_CONFIGS and "bin_colors" in original.uns:
-            plot.uns["bin_colors"] = original.uns["bin_colors"].copy()
+        elif case in SIM_CONFIGS:
+            # Retain the approved Figure 4 Early--Late progression palette.
+            categories = list(plot.obs["bin"].cat.categories)
+            stages = [int(str(label).rsplit("_", 1)[1]) for label in categories]
+            if any(stage < 0 or stage > 9 for stage in stages):
+                raise ValueError("Simulation progression colors require bins 0--9")
+            palette = [to_hex(plt.get_cmap("plasma")(value)) for value in np.linspace(0.06, 0.94, 10)]
+            plot.uns["bin_colors"] = [palette[stage] for stage in stages]
         inputs.append({"method": item["method"], "source": "artifact://velocity/" + item["path"],
                        "sha256": sha256(path), "velocity_s_key": item["velocity_s"],
                        "velocity_u_key": item["velocity_u"], "label_alignment": label_alignment})
@@ -194,6 +201,31 @@ def plot_phase_panels(case, adatas, scores, genes, output_dir, dpi=600):
                     ha="center", va="bottom", fontsize=14 if simulation else 20)
         path = output_dir / f"{gene}_9methods_compare.png"
         plt.tight_layout()
+        # Square phase axes settle their title positions during the first draw.
+        # Validate the final text extents before exporting the fixed-size panel.
+        for _ in range(3):
+            fig.canvas.draw()
+            renderer = fig.canvas.get_renderer()
+            highest = max(text.get_window_extent(renderer).y1
+                          for ax in axes for text in [ax.title, *ax.texts])
+            overflow = highest - fig.bbox.height + 12
+            if overflow <= 0:
+                break
+            fig.subplots_adjust(top=fig.subplotpars.top - overflow / fig.bbox.height - 0.01)
+        else:
+            raise ValueError(f"Phase-panel titles exceed the canvas: {case}/{gene}")
+        if case == "branching" and gene == "BoostALL_5":
+            palette = [to_hex(plt.get_cmap("plasma")(value)) for value in np.linspace(0.06, 0.94, 10)]
+            cmap = ListedColormap(palette)
+            norm = BoundaryNorm(np.arange(-0.5, 10.5), cmap.N)
+            cax = fig.add_axes([0.84, 0.055, 0.15, 0.018])
+            colorbar = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), cax=cax,
+                                   orientation="horizontal", ticks=[-0.5, 9.5])
+            colorbar.ax.set_xticklabels(["Early", "Late"])
+            colorbar.ax.tick_params(labelsize=14, length=0, pad=3)
+            colorbar.outline.set_visible(False)
+            colorbar.ax.xaxis.set_label_position("top")
+            colorbar.set_label("Cluster order", fontsize=14, labelpad=3)
         fig.savefig(path, dpi=dpi, facecolor="white", transparent=False)
         plt.close(fig)
         outputs.append(path)

@@ -1,0 +1,91 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+retina,cellDancer,Anks1b,0.0433498166594347,,cellDancer,Mouse retina
+retina,cellDancer,Cacna1b,-0.0208393939599442,,cellDancer,Mouse retina
+retina,cellDancer,Calm2,-0.0214668556331629,,cellDancer,Mouse retina
+retina,cellDancer,Celf4,0.4911890037830337,,cellDancer,Mouse retina
+retina,cellDancer,Hcn1,0.2336767280968854,,cellDancer,Mouse retina
+retina,cellDancer,Myt1l,0.0630257910625275,,cellDancer,Mouse retina
+retina,cellDancer,Rasgef1b,0.2061322971696796,,cellDancer,Mouse retina
+retina,cellDancer,Slc17a6,0.0115714193194235,,cellDancer,Mouse retina
+retina,cellDancer,Snap25,0.3133150264922561,,cellDancer,Mouse retina
+retina,cellDancer,Zfhx3,0.2089057919167821,,cellDancer,Mouse retina
+retina,DeepVelo,Anks1b,0.143717716944673,,DeepVelo,Mouse retina
+retina,DeepVelo,Cacna1b,0.4358498443141235,,DeepVelo,Mouse retina
+retina,DeepVelo,Calm2,-0.1961166434132459,,DeepVelo,Mouse retina
+retina,DeepVelo,Celf4,0.3155954860717622,,DeepVelo,Mouse retina
+retina,DeepVelo,Hcn1,0.2064183328181018,,DeepVelo,Mouse retina
+retina,DeepVelo,Myt1l,-0.0259363004505292,,DeepVelo,Mouse retina
+retina,DeepVelo,Rasgef1b,0.2704830180970807,,DeepVelo,Mouse retina
+retina,DeepVelo,Slc17a6,0.0182415417003317,,DeepVelo,Mouse retina
+retina,DeepVelo,Snap25,0.1690255920318203,,DeepVelo,Mouse retina
+retina,DeepVelo,Zfhx3,0.3462972599904492,,DeepVelo,Mouse retina
+retina,DeepVelo_scv,Cacna1b,-0.1143457511886159,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Celf4,-0.0695303590105733,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Myt1l,0.0553340019450392,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Slc17a6,0.0207333022501917,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Snap25,0.2140753333973494,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Zfhx3,0.2698635203735517,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Anks1b,,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Calm2,,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Hcn1,,,DeepVelo_scv,Mouse retina
+retina,DeepVelo_scv,Rasgef1b,,,DeepVelo_scv,Mouse retina
+retina,Graphvelo_scv,Anks1b,0.1050207898038933,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Cacna1b,-0.1196972138160962,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Calm2,0.1834950233161752,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Celf4,0.1913756163039775,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Hcn1,0.2173435929292983,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Myt1l,0.047215622034178,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Rasgef1b,0.0394238362583057,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Slc17a6,0.0143913344444723,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Snap25,0.2274752943213561,,GraphVelo_scv,Mouse retina
+retina,Graphvelo_scv,Zfhx3,0.2516803003938289,,GraphVelo_scv,Mouse retina
+retina,MultiVelo,Anks1b,0.0406203273135936,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Cacna1b,-0.1003539016956685,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Calm2,0.1094601970193859,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Celf4,0.3692108079286759,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Hcn1,0.2335934451948869,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Myt1l,0.0385991528326199,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Rasgef1b,-0.1867629170739975,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Slc17a6,0.0134430596119199,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Snap25,0.2260561194988523,,MultiVelo (RNA_only),Mouse retina
+retina,MultiVelo,Zfhx3,0.269952230795758,,MultiVelo (RNA_only),Mouse retina
+retina,scVelo_dyn,Anks1b,0.0097765009429055,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Cacna1b,-0.1218516933340589,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Calm2,0.0710198127283896,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Celf4,-0.0251765479831212,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Hcn1,0.2123192740374301,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Myt1l,0.0444774086183015,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Rasgef1b,0.1859677054304023,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Slc17a6,0.005875635680449,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Snap25,0.2093444217485175,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Zfhx3,0.2606062319484949,,scVelo_dyn,Mouse retina
+retina,TIvelo,Cacna1b,0.3870895106828969,,TIvelo,Mouse retina
+retina,TIvelo,Celf4,0.4847567529515897,,TIvelo,Mouse retina
+retina,TIvelo,Myt1l,0.0715006417270924,,TIvelo,Mouse retina
+retina,TIvelo,Slc17a6,0.0433273478540134,,TIvelo,Mouse retina
+retina,TIvelo,Snap25,0.3326275817846376,,TIvelo,Mouse retina
+retina,TIvelo,Zfhx3,0.3907694856413919,,TIvelo,Mouse retina
+retina,TIvelo,Anks1b,,,TIvelo,Mouse retina
+retina,TIvelo,Calm2,,,TIvelo,Mouse retina
+retina,TIvelo,Hcn1,,,TIvelo,Mouse retina
+retina,TIvelo,Rasgef1b,,,TIvelo,Mouse retina
+retina,UniTVelo,Anks1b,0.1088477891287883,,UniTVelo,Mouse retina
+retina,UniTVelo,Cacna1b,-0.0893929243182216,,UniTVelo,Mouse retina
+retina,UniTVelo,Calm2,-0.2562503987157018,,UniTVelo,Mouse retina
+retina,UniTVelo,Celf4,0.3827149701544152,,UniTVelo,Mouse retina
+retina,UniTVelo,Hcn1,-0.0047691301016799,,UniTVelo,Mouse retina
+retina,UniTVelo,Myt1l,0.0503559941008877,,UniTVelo,Mouse retina
+retina,UniTVelo,Rasgef1b,0.1266523563822018,,UniTVelo,Mouse retina
+retina,UniTVelo,Slc17a6,0.0269913186958347,,UniTVelo,Mouse retina
+retina,UniTVelo,Snap25,0.2197181023293916,,UniTVelo,Mouse retina
+retina,UniTVelo,Zfhx3,0.2835805244977407,,UniTVelo,Mouse retina
+retina,veloVI,Anks1b,0.0408519562898533,,veloVI,Mouse retina
+retina,veloVI,Cacna1b,-0.0999018621986114,,veloVI,Mouse retina
+retina,veloVI,Celf4,0.4454175600630856,,veloVI,Mouse retina
+retina,veloVI,Hcn1,0.2335474526209867,,veloVI,Mouse retina
+retina,veloVI,Myt1l,0.04051442441385,,veloVI,Mouse retina
+retina,veloVI,Rasgef1b,0.1889889642128257,,veloVI,Mouse retina
+retina,veloVI,Slc17a6,0.0122342522896226,,veloVI,Mouse retina
+retina,veloVI,Snap25,0.2281313641156393,,veloVI,Mouse retina
+retina,veloVI,Zfhx3,0.275107965690583,,veloVI,Mouse retina
+retina,veloVI,Calm2,,,veloVI,Mouse retina

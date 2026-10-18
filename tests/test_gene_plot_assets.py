@@ -17,6 +17,27 @@ from evaluation.gene.plot_gene_assets import (
 
 
 class GeneAssetTests(unittest.TestCase):
+    def test_selected_edge_scores_preserve_gene_ids_and_plotted_values(self):
+        from evaluation.gene.plot_selected_edge_panels import METHODS, metric_rows, draw_metric
+        import matplotlib.pyplot as plt
+
+        folder = ROOT / "evaluation/gene/figures/panels/selected_edges"
+        for gene in ("Fech", "FAM111A", "Ncald"):
+            source = pd.read_csv(folder / f"{gene}_source_data.csv")
+            actual = metric_rows(source, gene)
+            saved = pd.read_csv(folder / f"{gene}_plotted_scores.csv")
+            self.assertEqual(actual.gene.tolist(), [gene] * len(METHODS))
+            self.assertEqual(saved.gene.tolist(), actual.gene.tolist())
+            self.assertEqual(actual.method.tolist(), METHODS)
+            np.testing.assert_allclose(saved.gene_cbdir, actual.gene_cbdir, rtol=0, atol=1e-15)
+            fig, ax = plt.subplots()
+            try:
+                draw_metric(ax, actual)
+                plotted = [float(point.get_offsets()[0, 0]) for point in ax.collections[::3]]
+                np.testing.assert_array_equal(plotted, actual.gene_cbdir)
+            finally:
+                plt.close(fig)
+
     def test_scores_keep_reference30_cbdir_and_exact_cossim_join(self):
         actual = load_scores()
         original = pd.read_csv(CBDIR_CSV)

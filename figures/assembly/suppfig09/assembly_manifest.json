@@ -1,0 +1,91 @@
+{
+  "panels": [
+    {
+      "source": "figures/assembly/suppfig09/cell_panel_01_consistency.png",
+      "sha256": "1d5346f6dc7ceae27d255dcb32f0fa5e9c8144af5e63652c221e13e96810d8a9",
+      "frame_inches": [
+        0.0,
+        -0.00027,
+        2.5,
+        2.109376
+      ],
+      "scope": "retained Cell panel; no numerical recomputation"
+    },
+    {
+      "source": "figures/assembly/suppfig09/cell_panel_02_iccoh.png",
+      "sha256": "b93e58b79e18ea223ff4a19b425b60a563bf488fa71ae60d553099936ed0d133",
+      "frame_inches": [
+        2.5,
+        -0.00027,
+        2.5,
+        2.109376
+      ],
+      "scope": "retained Cell panel; no numerical recomputation"
+    },
+    {
+      "source": "figures/assembly/suppfig09/cell_panel_03_cbdir.png",
+      "sha256": "62dd971460961bca9d183c33f4bd3a5327dd712cb5a819256d9f505ae67c3923",
+      "frame_inches": [
+        5.0,
+        0.000279,
+        2.5,
+        2.108278
+      ],
+      "scope": "retained Cell panel; no numerical recomputation"
+    },
+    {
+      "source": "figures/assembly/suppfig09/cell_panel_04_transcosine.png",
+      "sha256": "5a221652a7b00ff596b592612a4cea2bd5cbca536928fdde983fb66783e0f46b",
+      "frame_inches": [
+        0.0,
+        2.109104,
+        2.5,
+        2.109376
+      ],
+      "scope": "retained Cell panel; no numerical recomputation"
+    },
+    {
+      "source": "figures/assembly/suppfig09/cell_panel_05_batc.png",
+      "sha256": "908f90357383469fe028d417821be4514fae6d380d262e599610726a6b956b53",
+      "frame_inches": [
+        2.5,
+        2.109104,
+        2.5,
+        2.109376
+      ],
+      "scope": "retained Cell panel; no numerical recomputation"
+    },
+    {
+      "source": "evaluation/gene/figures/panels/real/common_genes/common_gene_cbdir.png",
+      "sha256": "44c2356f10531bef60adfb733b21cef253634a37b1171bbafbb3234d9cf1c5e3",
+      "frame_inches": [
+        5.0,
+        2.109104,
+        2.5,
+        2.109376
+      ],
+      "scope": "new numerical plot from canonical common-gene tables"
+    }
+  ],
+  "slides": 1,
+  "slide_size_inches": [
+    7.5,
+    10.830556
+  ],
+  "old_pdf": "figures/suppFigNine.pdf",
+  "old_pdf_sha256": "26a7cec4addcf39bfa71e827fd5a7606555f5fe3de4ab13d23e6afdab40b172b",
+  "reproduction_boundary": "The synchronized A4 portrait authoring PPTX contains all six registered Cell/Gene panel images at the recorded frames. Its user-exported WPS PDF is cropped by page-box adjustment only; the prior 16:9 source is preserved in the local recovery archive.",
+  "assembly": "figures/assembly/suppfig09/supfig9.pptx",
+  "assembly_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "pending_pdf_export": false,
+  "user_export_pdf_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
+  "user_export_source_pdf_sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
+  "user_export_crop_box_pt": [
+    0.0,
+    478.0,
+    540.0,
+    779.8
+  ],
+  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "previous_assembly_sha256": "662f5249a9666a4294178d5029b9c4dddca4762af5a5741ee99a1647d146275f"
+}

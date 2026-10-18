@@ -27,7 +27,7 @@ Neither mode regenerates native chart workbooks or the final PDF.
 | Five Cell metrics | [280 Cell rows](../cell/results/cell_metrics.csv) | Equal weights for 14 datasets per method |
 | Real Gene CBDir | [reference-30 Gene table](../gene/results/gene_cbdir_reference30_all.csv), `new_cbdir` | Available-gene means per dataset, then equal weights for seven datasets |
 | Simulated Gene CBDir | Same `new_cbdir` table | Means for 10/20/40 special genes in MURK/branching/hybrid, then equal weights for three scenarios |
-| Simulation CosSim | [frozen CosSim table](../gene/results/simulation/gene_cbdir_cossim_reference.csv) | Same scenario weighting; historical CBDir in this table is not used |
+| Simulation CosSim | [CosSim table with restored veloVI units](../gene/results/simulation/gene_cbdir_cossim_reference.csv) | Same scenario weighting; historical CBDir in this table is not used |
 | Kinetic parameters | [canonical per-gene scores](../kinetics_recovery/results/central_results/gene_metrics.csv) | Finite-gene means per component, equal organoid-branch means, then equal available-system means |
 
 Cell SD uses `ddof=1`; quartiles use linear interpolation
@@ -41,6 +41,10 @@ Forebrain Cell CBDir uses all 30 shared PCs; BATC uses shared UMAP2.
 Real/Sim Gene validation permits absolute tolerance `1e-12` for unrounded
 means and SDs. Counts, labels, coverage and four-decimal transfer fields
 remain exact checks.
+`refresh_sim_cbdir_summary.py` validates both CBDir and CosSim, including their
+matching 630 gene keys. The eight unaffected methods retain the original
+five-decimal CosSim inputs. Refreshing a value that already agrees within
+tolerance preserves its existing representation.
 
 ## Final chart assembly
 

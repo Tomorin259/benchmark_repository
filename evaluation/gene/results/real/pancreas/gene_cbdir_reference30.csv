@@ -55,10 +55,10 @@ pancreas,UniTVelo,G6pc2,-0.1447823094969872,-0.14478,-2.3094969872072824e-06,2.3
 pancreas,UniTVelo,Igf1r,-0.18773036329222184,-0.18773,-3.63292221833289e-07,3.63292221833289e-07,7,1294,7392,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad,velocity,velocity_u
 pancreas,UniTVelo,Nxph1,0.07536083059944233,0.07536,8.305994423363217e-07,8.305994423363217e-07,7,1294,7392,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad,velocity,velocity_u
 pancreas,UniTVelo,Rbbp7,-0.02725912556683035,-0.02726,8.744331696508567e-07,8.744331696508567e-07,7,1294,7392,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad,velocity,velocity_u
-pancreas,veloVI,Atp2a2,0.1488119104716245,0.20534,-0.056528089528375486,0.056528089528375486,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
-pancreas,veloVI,Chst8,0.008000976090673193,0.04993,-0.04192902390932681,0.04192902390932681,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
-pancreas,veloVI,Emb,0.0440531396462218,0.01765,0.026403139646221804,0.026403139646221804,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
-pancreas,veloVI,G6pc2,0.05724362270313783,0.05482,0.002423622703137826,0.002423622703137826,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
-pancreas,veloVI,Igf1r,-0.06449371400781469,-0.06724,0.0027462859921853072,0.0027462859921853072,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
-pancreas,veloVI,Nxph1,0.18375678464769266,0.15742,0.02633678464769265,0.02633678464769265,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,Atp2a2,0.16296829758955192,0.20534,-0.042371702410448076,0.042371702410448076,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,Chst8,0.007984018036586878,0.04993,-0.04194598196341312,0.04194598196341312,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,Emb,-0.06047326503414651,0.01765,-0.07812326503414652,0.07812326503414652,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,G6pc2,0.02244641842319393,0.05482,-0.032373581576806074,0.032373581576806074,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,Igf1r,-0.04025003786146445,-0.06724,0.026989962138535543,0.026989962138535543,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
+pancreas,veloVI,Nxph1,0.18174966695068004,0.15742,0.024329666950680034,0.024329666950680034,7,1294,0,ok,artifact://velocity/results/veloVI/veloVI_Pancreas_all.h5ad,velocity,velocity_u
 pancreas,veloVI,Rbbp7,nan,nan,nan,nan,,,,gene_missing,,,

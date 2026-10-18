@@ -1,9 +1,44 @@
 {
   "figure": "suppfig09",
   "composite_path": "figures/suppFigNine.pdf",
-  "composite_sha256": "26a7cec4addcf39bfa71e827fd5a7606555f5fe3de4ab13d23e6afdab40b172b",
-  "online_file_git_blob_sha1": "00a1ff06ec504256e8761221d83220eaa4f3f94a",
-  "source_kind": "author_exported_pdf",
-  "verification": "Exact original bytes match the online project file hash.",
-  "reproduction_boundary": "Retained final PDF is directly reusable. A final PDF is not a numerical renderer or proof of independent editable-source reconstruction."
+  "composite_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
+  "source_kind": "user_exported_pdf_cropped_by_page_boxes",
+  "verification": "The current WPS PDF was exported from the synchronized A4 portrait repository PPTX and cropped by changing MediaBox/CropBox only to [0, 478, 540, 779.8] pt. The decoded page content is unchanged. The cropped page was rendered and visually inspected; all six embedded panel hashes match the registered Cell/Gene sources.",
+  "reproduction_boundary": "The current cropped PDF was exported from the synchronized A4 portrait repository assembly. All six embedded Cell/Gene panel hashes match the registered panel sources; cropping changed page boxes only and left the content stream unchanged.",
+  "pending_pdf_export": false,
+  "current_assembly": "figures/assembly/suppfig09/supfig9.pptx",
+  "current_assembly_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "user_export": {
+    "filename": "supfig9.pdf",
+    "sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
+    "creator": "WPS 演示",
+    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
+    "creation_date": "2026-10-19 02:05:32+08:00",
+    "page_count": 1,
+    "source_media_box_pt": [
+      0.0,
+      0.0,
+      540.0,
+      779.8
+    ],
+    "crop_box_pt": [
+      0.0,
+      478.0,
+      540.0,
+      779.8
+    ],
+    "cropped_pdf_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
+    "decoded_content_stream_sha256": "dd65dd9db371e298124f32e918d940613015a1de953c3166a22b7d3e54e0155a",
+    "crop_applied_by_page_boxes_only": true,
+    "visual_reviewed": true,
+    "source_pptx_filename": "supfig9.pptx",
+    "source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+    "source_pptx_slide_size_emu": [
+      6858000,
+      9903460
+    ]
+  },
+  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "repository_assembly_sha256_retained": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "historical_online_file_git_blob_sha1": "00a1ff06ec504256e8761221d83220eaa4f3f94a"
 }

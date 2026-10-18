@@ -1,18 +1,23 @@
 {
   "export": "approved_user_exported_cropped_pdf",
   "paper_figure": "fig4",
-  "composite_status": "current",
+  "composite_status": "user_exported_cropped",
   "composite_path": "figures/figFour.pdf",
-  "composite_sha256": "b56a1abff2f6259e3d1fdde5c2528166ca797986af36691eba9af4783338e5fd",
+  "composite_sha256": "ff7561f0608ab4e09c936d6780a8d2a666c9a3d7eadc35bf14c40cf74051841d",
   "source_pdf": "user-exported local PDF (not committed)",
-  "source_pdf_sha256": "92dc8029e7f4cdb626071fc8095a61ff1ee7350d5d6a55bd0f6be1a30e934951",
-  "crop_box_pt": [0.0, 235.94, 540.0, 779.8],
+  "source_pdf_sha256": "ec4a4a1e63d0ba300e7aa764d771fc5bf94ba83d075f182c1fb295131e554d9b",
+  "crop_box_pt": [
+    0.0,
+    235.94,
+    540.0,
+    779.8
+  ],
   "pages": 1,
   "panels": [
     {
       "panel": "D",
       "source_path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
-      "source_sha256": "035eeb9fe11523d6ccdd5cbceefea0917459ab1508f67aa5da3164219b620d67",
+      "source_sha256": "86fb2d6807b3cce778d42bca1c2fdd745c1443d7687f1f61313bbeb1448e6654",
       "renderer": "evaluation/cell/simulation/plot_simulation_cell_comparison.py",
       "renderer_sha256": "85d714438f03270fb866ff54d935aec03b50f04363ac344b701a6f8c32594085",
       "source_png_dpi": 600,
@@ -27,7 +32,7 @@
   "metric_sources": [
     {
       "path": "evaluation/cell/simulation/results/cross_level_summary.csv",
-      "sha256": "a93eee8d66fc8397399fb191bec8e9e1ea79aa746d92c441009ebd6f22a44e95"
+      "sha256": "14a5ab57e36a9cf052ac2c99783e2ff6b02acbe50d2ecbd77c39b840027f739b"
     },
     {
       "path": "evaluation/cell/simulation/results/cell_metrics.csv",
@@ -35,13 +40,69 @@
     },
     {
       "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
-      "sha256": "4df8c7316a09dd66c1e71d42ae8d4b13b9938debed31c56109e548a8cd5105e0"
+      "sha256": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111"
     },
     {
       "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-      "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+      "sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
     }
   ],
-  "validation": "The user-reexported Figure 4 PDF was cropped without content conversion using the explicit crop box above. Decoded page contents were verified unchanged against the supplied reexport. The cropped page was rendered and visually inspected; A-D, the left gutter labels, and the lower legend remain visible. No scores or panels were recalculated or redrawn. The retained panel-source mappings were not independently revalidated against the manual reexport. Online PDF byte identity was not independently rechecked.",
-  "reproduction_boundary": "The D renderer reproduces the paired panel and summary, not the manually assembled and user-exported whole-figure PDF. Independent A schematic source remains unavailable; B/C source mappings remain in assembly_manifest.tsv. Historical gene-only summaries are supporting analyses, not final D sources."
+  "validation": "The current user-exported WPS PDF was cropped by changing MediaBox/CropBox only. Decoded page content is unchanged; the crop was rendered and visually inspected with panels A-D, gutter labels and lower legend visible. No scores or panels were redrawn in this PDF step; online identity was not checked.",
+  "reproduction_boundary": "The D renderer reproduces the paired panel and summary, not the manually assembled and user-exported whole-figure PDF. Independent A schematic source remains unavailable; B/C source mappings remain in assembly_manifest.tsv. Historical gene-only summaries are supporting analyses, not final D sources.",
+  "pending_pdf_export": false,
+  "last_pdf_export_record": {
+    "panels": [
+      {
+        "panel": "D",
+        "source_path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
+        "source_sha256": "035eeb9fe11523d6ccdd5cbceefea0917459ab1508f67aa5da3164219b620d67",
+        "renderer": "evaluation/cell/simulation/plot_simulation_cell_comparison.py",
+        "renderer_sha256": "85d714438f03270fb866ff54d935aec03b50f04363ac344b701a6f8c32594085",
+        "source_png_dpi": 600,
+        "metrics": [
+          "CBDir",
+          "BATC",
+          "CBDir-gene mean and gene-wise SD",
+          "CosSim mean and gene-wise SD"
+        ]
+      }
+    ],
+    "metric_sources": [
+      {
+        "path": "evaluation/cell/simulation/results/cross_level_summary.csv",
+        "sha256": "a93eee8d66fc8397399fb191bec8e9e1ea79aa746d92c441009ebd6f22a44e95"
+      },
+      {
+        "path": "evaluation/cell/simulation/results/cell_metrics.csv",
+        "sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296"
+      },
+      {
+        "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
+        "sha256": "4df8c7316a09dd66c1e71d42ae8d4b13b9938debed31c56109e548a8cd5105e0"
+      },
+      {
+        "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
+        "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+      }
+    ],
+    "validation": "The user-reexported Figure 4 PDF was cropped without content conversion using the explicit crop box above. Decoded page contents were verified unchanged against the supplied reexport. The cropped page was rendered and visually inspected; A-D, the left gutter labels, and the lower legend remain visible. No scores or panels were recalculated or redrawn. The retained panel-source mappings were not independently revalidated against the manual reexport. Online PDF byte identity was not independently rechecked.",
+    "source_pdf_filename": "图4_0925.pdf",
+    "source_pdf_sha256": "ec4a4a1e63d0ba300e7aa764d771fc5bf94ba83d075f182c1fb295131e554d9b",
+    "source_media_box_pt": [
+      0.0,
+      0.0,
+      540.0,
+      779.8
+    ],
+    "cropped_pdf_sha256": "ff7561f0608ab4e09c936d6780a8d2a666c9a3d7eadc35bf14c40cf74051841d",
+    "crop_box_pt": [
+      0.0,
+      235.94,
+      540.0,
+      779.8
+    ],
+    "decoded_content_stream_sha256": "0584c1118ed2ec7ad2f0b767fb168180dde21a705dd4f334a85c7af1de193cb8",
+    "crop_only_content_preserved": true,
+    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext"
+  }
 }

@@ -1,0 +1,91 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+DentateGyrus_lamanno,cellDancer,Gpm6b,-0.1245476443359416,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Ncald,0.0857250355445242,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Diaph3,-0.0762426058090159,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Dab1,0.1245633917284998,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Dpp6,0.1967329668084803,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Malat1,-0.1620205927227221,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Nnat,-0.0237541859614227,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Tubb3,0.0238879037389503,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Plppr4,0.1441157964516766,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,cellDancer,Mmd2,-0.1101856831737715,,cellDancer,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Gpm6b,0.0706653708321692,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Ncald,0.0785476140036998,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Diaph3,0.2118709425869356,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Dab1,0.098797077737169,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Dpp6,0.2769082229638648,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Malat1,0.0445630848145022,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Nnat,0.0836540974049378,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Tubb3,0.1252921333512519,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Plppr4,0.1734591306939689,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo,Mmd2,-0.0816207682247724,,DeepVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Gpm6b,-0.0395620443013429,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Ncald,0.1371204866976165,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Dab1,0.2400882148067799,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Dpp6,0.2212626433687974,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Malat1,-0.0661371517318822,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Tubb3,0.1102796379318616,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Plppr4,0.2812703380157443,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Mmd2,-0.1653348530660792,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Diaph3,,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,DeepVelo_scv,Nnat,,,DeepVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Gpm6b,-0.0408188554739455,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Ncald,0.1532627406924043,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Diaph3,0.0427666626856588,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Dab1,0.2292190543802409,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Dpp6,0.2274269903562351,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Malat1,-0.0389530851419064,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Nnat,0.1156202187012522,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Tubb3,0.097724916886895,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Plppr4,0.2566655517274644,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,Graphvelo_scv,Mmd2,-0.0591949242975537,,GraphVelo_scv,Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Gpm6b,-0.0411207317964935,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Ncald,0.035496199611796,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Diaph3,-0.004164219660298,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Dab1,-0.1601474872165995,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Dpp6,0.2258911551135366,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Malat1,0.0183785150864039,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Nnat,0.079879210391825,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Tubb3,0.1872390498515754,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Plppr4,0.2715949704252678,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,MultiVelo,Mmd2,-0.1496152145842233,,MultiVelo (RNA_only),Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Gpm6b,-0.0350106715227704,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Ncald,0.1354365415769889,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Diaph3,-0.0107899019318441,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Dab1,0.2621694733534072,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Dpp6,0.2237178335121662,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Malat1,-0.0614507108462453,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Nnat,-0.0448800272528598,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Tubb3,0.1122007466132691,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Plppr4,0.26786762117716,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,scVelo_dyn,Mmd2,-0.1666738937097873,,scVelo_dyn,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Gpm6b,0.4244283040420026,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Ncald,0.3009938075252737,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Diaph3,0.2655810659983695,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Dpp6,0.3536721549228882,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Malat1,0.4247275603225183,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Tubb3,0.3289292454755398,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Plppr4,0.3124135888009202,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Mmd2,0.3835388016630647,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Dab1,,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,TIvelo,Nnat,,,TIvelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Gpm6b,0.0049590228550466,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Ncald,0.1002730537706759,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Diaph3,-0.0011983905596849,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Dab1,-0.1007664818702449,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Dpp6,0.2212116576197603,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Malat1,0.1607962701348349,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Nnat,0.0309150143125566,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Tubb3,-0.0811993383287683,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Plppr4,0.2441768967634961,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,UniTVelo,Mmd2,0.1628306027905346,,UniTVelo,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Ncald,-0.0430624104050878,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Diaph3,0.0523720730941391,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Dab1,0.1613504422876201,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Dpp6,0.155819781398676,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Malat1,-0.1152210708112809,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Tubb3,0.1657656481266225,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Plppr4,0.2615451062220087,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Mmd2,-0.1646562684570486,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Gpm6b,,,veloVI,Dentategyrus_lamanno
+DentateGyrus_lamanno,veloVI,Nnat,,,veloVI,Dentategyrus_lamanno

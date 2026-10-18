@@ -1,0 +1,91 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+murk,cellDancer,OneSidedBoost_0,0.6807877280669488,0.83271,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_1,0.7402561991447845,0.84254,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_2,0.6468842322055901,0.74756,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_3,0.7748976482389388,0.82491,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_4,0.6687941383805153,0.77016,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_5,0.7885959639117889,0.81131,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_6,0.7619926760097073,0.79974,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_7,0.7747769657027552,0.80367,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_8,0.7094447546358894,0.78755,cellDancer,Normal + MURK
+murk,cellDancer,OneSidedBoost_9,0.6166889444612624,0.81166,cellDancer,Normal + MURK
+murk,DeepVelo,OneSidedBoost_0,0.1773306019064745,0.39791,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_1,0.242348037556822,0.26597,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_2,0.2041921121671782,0.36951,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_3,0.2798289171025807,0.26213,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_4,0.1152773546826388,0.16418,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_5,0.2630961217728069,0.2196,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_6,0.4080597681429873,0.5332,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_7,0.3809862587265044,0.35614,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_8,0.3082116816485682,0.31594,DeepVelo,Normal + MURK
+murk,DeepVelo,OneSidedBoost_9,0.1364350123207457,0.24429,DeepVelo,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_0,0.6732519541298839,0.79696,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_1,0.4424764978036466,0.48024,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_2,0.6398109371849906,0.73684,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_3,0.5084673630009221,0.55633,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_4,0.6623083578604962,0.7729,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_5,0.77256220939435,0.82871,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_6,0.4640523540771727,0.44077,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_7,0.7891501795474622,0.80119,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_8,0.4954548752666073,0.48994,DeepVelo_scv,Normal + MURK
+murk,DeepVelo_scv,OneSidedBoost_9,0.5733266300308613,0.72236,DeepVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_0,0.7162626330383148,0.80315,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_1,0.5480834959027425,0.65425,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_2,0.7027781020450707,0.72957,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_3,0.6300153722156138,0.72654,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_4,0.6905652516721008,0.75795,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_5,0.7957386262806008,0.77503,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_6,0.5432076225801445,0.72049,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_7,0.76602284101644,0.77538,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_8,0.6099088295441792,0.65619,GraphVelo_scv,Normal + MURK
+murk,Graphvelo_scv,OneSidedBoost_9,0.5640661754692357,0.78422,GraphVelo_scv,Normal + MURK
+murk,MultiVelo,OneSidedBoost_0,0.289058367012472,0.36116,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_1,0.7424689773862431,0.84357,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_2,0.6074336747290432,0.74959,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_3,0.7856993910949664,0.86077,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_4,0.6802490533884181,0.7894,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_5,0.8032550790169835,0.85774,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_6,0.5939833843382265,0.54835,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_7,0.7996282109496359,0.82355,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_8,0.6636959819474227,0.77793,MultiVelo (RNA_only),Normal + MURK
+murk,MultiVelo,OneSidedBoost_9,0.6253365349366213,0.83128,MultiVelo (RNA_only),Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_0,0.6790609106853362,0.83684,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_1,0.4127793741606769,0.50689,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_2,0.6384782218212189,0.73578,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_3,0.5252083362440984,0.67528,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_4,0.6651382293527704,0.7733,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_5,0.7599633269773487,0.83656,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_6,0.4060102621519625,0.61019,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_7,0.7877940299710597,0.79992,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_8,0.4796215521115119,0.52048,scVelo_dyn,Normal + MURK
+murk,scVelo_dyn,OneSidedBoost_9,0.5296024113620749,0.8186,scVelo_dyn,Normal + MURK
+murk,TIvelo,OneSidedBoost_0,0.6944392905756892,0.6141,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_1,0.7018374757391158,0.65638,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_2,0.697685645679686,0.6776,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_3,0.7654013062554098,0.64304,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_4,0.6846290153915364,0.61691,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_5,0.7667256649756576,0.64206,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_6,0.724630952352309,0.63981,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_7,0.8109392129413174,0.64616,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_8,0.7321507309992339,0.54097,TIvelo,Normal + MURK
+murk,TIvelo,OneSidedBoost_9,0.6461283509324206,0.60528,TIvelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_0,0.685545081009838,0.84477,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_1,0.7466806091296121,0.84327,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_2,0.6399237418318791,0.76043,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_3,0.7767836659197159,0.84967,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_4,0.6846173018252621,0.79314,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_5,0.7986509558046371,0.84657,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_6,0.7489936003627692,0.84871,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_7,0.788478740761522,0.82053,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_8,0.7141491142361891,0.81134,UniTVelo,Normal + MURK
+murk,UniTVelo,OneSidedBoost_9,0.622344804747287,0.84384,UniTVelo,Normal + MURK
+murk,veloVI,OneSidedBoost_0,-0.2442900137087986,-0.2529285670429622,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_1,-0.2561377442824596,-0.253308225640998,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_2,0.0206094770959297,-0.166430194982405,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_3,-0.213361477065611,-0.2068236017677996,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_4,-0.2127894783327307,-0.1756079499885478,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_5,-0.2707110621007278,-0.241744396367595,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_6,-0.176761575737834,-0.2342958895497557,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_7,-0.3138861277687098,-0.2628628215597114,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_8,-0.1720290770258801,-0.2292671218297333,veloVI,Normal + MURK
+murk,veloVI,OneSidedBoost_9,-0.2342389762753673,-0.2368580996494133,veloVI,Normal + MURK

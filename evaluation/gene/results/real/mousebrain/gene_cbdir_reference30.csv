@@ -31,7 +31,7 @@ mousebrain,UniTVelo,Adcy1,0.21080828745485142,0.22696,-0.016151712545148578,0.01
 mousebrain,UniTVelo,Cacna1e,0.1596327804158829,0.16253,-0.0028972195841170945,0.0028972195841170945,4,780,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad,velocity,velocity_u
 mousebrain,UniTVelo,Flrt2,0.2960941521249159,0.30101,-0.0049158478750840895,0.0049158478750840895,4,780,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad,velocity,velocity_u
 mousebrain,UniTVelo,Gria2,0.39066368728041534,0.34918,0.04148368728041535,0.04148368728041535,4,780,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad,velocity,velocity_u
-mousebrain,veloVI,Adcy1,0.06854580555947813,0.06794,0.0006058055594781314,0.0006058055594781314,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
-mousebrain,veloVI,Cacna1e,0.008202907202256991,0.01336,-0.005157092797743009,0.005157092797743009,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
-mousebrain,veloVI,Flrt2,-0.08558211074595629,-0.06423,-0.02135211074595629,0.02135211074595629,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
-mousebrain,veloVI,Gria2,0.268413995008444,0.19923,0.069183995008444,0.069183995008444,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
+mousebrain,veloVI,Adcy1,0.05669426492985544,0.06794,-0.011245735070144564,0.011245735070144564,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
+mousebrain,veloVI,Cacna1e,0.014347435225920743,0.01336,0.0009874352259207422,0.0009874352259207422,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
+mousebrain,veloVI,Flrt2,-0.062482597664135116,-0.06423,0.0017474023358648796,0.0017474023358648796,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
+mousebrain,veloVI,Gria2,0.23923641711653243,0.19923,0.04000641711653244,0.04000641711653244,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u

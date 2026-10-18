@@ -1,0 +1,450 @@
+{
+  "artifact_root": "artifact://velocity",
+  "script": "evaluation/gene/run_reference30_gene_cbdir.py",
+  "script_sha256": "96445c76390b80897a2afa4e0b81e24359b9b04204c4e451f245c12e78e06ef1",
+  "scvelo_version": "0.2.5",
+  "scanpy_version": "1.9.3",
+  "neighbor_mode": "reference",
+  "only_neighbor_replaced": true,
+  "native_layers_preserved": [
+    "Ms",
+    "Mu",
+    "method_spliced_velocity",
+    "method_unspliced_velocity"
+  ],
+  "reference_neighbor_spec": {
+    "n_neighbors": 30,
+    "n_pcs": 30,
+    "use_rep": "X_pca",
+    "metric": "euclidean",
+    "random_state": 0
+  },
+  "result_layout": {
+    "real": "evaluation/gene/results/real/<dataset>/",
+    "simulation": "evaluation/gene/results/simulation/<scenario>/",
+    "reference_neighbors": "evaluation/gene/results/reference_neighbors/<dataset>.npz"
+  },
+  "datasets": {
+    "DentateGyrus_lamanno": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/DentateGyrus_lamanno.npz",
+        "path": "evaluation/gene/results/reference_neighbors/DentateGyrus_lamanno.npz",
+        "source_sha256": "0d95fcbca6366f79ca1da7bfc616be8308de73f6d624840cb12ae01053bb200d",
+        "n_obs": 18213,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/DentateGyrus_lamanno/score.txt",
+      "old_score_sha256": "547fca807f5e41bdf1a741fbee2444f80051c08cc62e353fd1464cad3ccc2819",
+      "n_score_rows": 90,
+      "n_edge_rows": 840,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_DentateGyrus_lamanno.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_DentateGyrus_lamanno_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphveloDentateGyrus_lamanno.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_DentateGyrus_lamanno.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_DentateGyrus_lamanno_cellDancer",
+        "DeepVelo": "gene_h5ad_DentateGyrus_lamanno_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_DentateGyrus_lamanno_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_DentateGyrus_lamanno_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_DentateGyrus_lamanno_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_DentateGyrus_lamanno_scVelo_dyn",
+        "TIvelo": "gene_h5ad_DentateGyrus_lamanno_TIvelo",
+        "UniTVelo": "gene_h5ad_DentateGyrus_lamanno_UniTVelo",
+        "veloVI": "gene_h5ad_DentateGyrus_lamanno_veloVI"
+      }
+    },
+    "all": {
+      "reference": {
+        "source": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+        "path": "evaluation/gene/results/reference_neighbors/all.npz",
+        "n_obs": 2000,
+        "n_neighbors": 30,
+        "reused": false,
+        "metadata": {
+          "dataset": "all",
+          "source": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+          "source_sha256": "9b9bebf9159e02c1bcb880d8aba323982e70b7faa67d6d92c6313db603e72ee2",
+          "scvelo_version": "0.2.5",
+          "filter_and_normalize": {
+            "min_shared_counts": 20,
+            "n_top_genes": 720,
+            "log": true
+          },
+          "neighbors": {
+            "n_neighbors": 30,
+            "n_pcs": 30,
+            "use_rep": "X_pca",
+            "metric": "euclidean",
+            "random_state": 0
+          },
+          "n_vars_after_filter": 720
+        }
+      },
+      "old_score_path": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/results_new/score_rerun_results.txt",
+      "old_score_sha256": "3e280733cd67319a32958eaa309a2f60ddbede817bb7cb8134792d78d737cf0a",
+      "n_score_rows": 360,
+      "n_edge_rows": 6480,
+      "method_paths": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_all.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_all.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_all_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_all.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_all.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_all.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_all.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_all.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_all_cellDancer",
+        "DeepVelo": "gene_h5ad_all_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_all_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_all_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_all_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_all_scVelo_dyn",
+        "TIvelo": "gene_h5ad_all_TIvelo",
+        "UniTVelo": "gene_h5ad_all_UniTVelo",
+        "veloVI": "gene_h5ad_all_veloVI"
+      }
+    },
+    "bonemarrow": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/bonemarrow.npz",
+        "path": "evaluation/gene/results/reference_neighbors/bonemarrow.npz",
+        "source_sha256": "043bb051d40c52c312c9252c8f8b8519d1673d2a64376f79fbd1a800a3f88930",
+        "n_obs": 5780,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/bonemarrow/score.txt",
+      "old_score_sha256": "82f055653a3e99419f5db0ff6d397489d868121c99a8da5983944b4409638f9b",
+      "n_score_rows": 27,
+      "n_edge_rows": 78,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_bonemarrow.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphvelobonemarrow.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_bonemarrow.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_bonemarrow.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_bonemarrow_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_bonemarrow_cellDancer",
+        "DeepVelo": "gene_h5ad_bonemarrow_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_bonemarrow_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_bonemarrow_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_bonemarrow_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_bonemarrow_scVelo_dyn",
+        "TIvelo": "gene_h5ad_bonemarrow_TIvelo",
+        "UniTVelo": "gene_h5ad_bonemarrow_UniTVelo",
+        "veloVI": "gene_h5ad_bonemarrow_veloVI"
+      }
+    },
+    "branching": {
+      "reference": {
+        "source": "artifact://velocity/indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+        "path": "evaluation/gene/results/reference_neighbors/branching.npz",
+        "n_obs": 2000,
+        "n_neighbors": 30,
+        "reused": false,
+        "metadata": {
+          "dataset": "branching",
+          "source": "artifact://velocity/indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+          "source_sha256": "392eccf96cd31f27e8b99327f0b061e475d78a1cfea54c75af4564ddb163fe14",
+          "scvelo_version": "0.2.5",
+          "filter_and_normalize": {
+            "min_shared_counts": 20,
+            "n_top_genes": 620,
+            "log": true
+          },
+          "neighbors": {
+            "n_neighbors": 30,
+            "n_pcs": 30,
+            "use_rep": "X_pca",
+            "metric": "euclidean",
+            "random_state": 0
+          },
+          "n_vars_after_filter": 620
+        }
+      },
+      "old_score_path": "artifact://velocity/indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
+      "old_score_sha256": "ddbb35252df5fbe367c51f2336b1a1bc1046260c048a40b9c9f2cfb0ed7b1f30",
+      "n_score_rows": 180,
+      "n_edge_rows": 3240,
+      "method_paths": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_branching.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_branching.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_branching_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_branching.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_branching.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_branching.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_branching.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_branching.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_branching_cellDancer",
+        "DeepVelo": "gene_h5ad_branching_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_branching_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_branching_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_branching_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_branching_scVelo_dyn",
+        "TIvelo": "gene_h5ad_branching_TIvelo",
+        "UniTVelo": "gene_h5ad_branching_UniTVelo",
+        "veloVI": "gene_h5ad_branching_veloVI"
+      }
+    },
+    "capo_pre": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/capofibro.npz",
+        "path": "evaluation/gene/results/reference_neighbors/capo_pre.npz",
+        "source_sha256": "5fc4650fe76df8188a4c4ab766ed2ee0de977d6887f704a8dfedfd6ccd6578cf",
+        "n_obs": 1222,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/capo_pre/score.txt",
+      "old_score_sha256": "2297f6f14f5e316c84287b11de071de232f03564c24b1bf4a0fc51ad8f7027ad",
+      "n_score_rows": 63,
+      "n_edge_rows": 189,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_capo_pre.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_capo_pre_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphvelocapo_pre.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_capo_pre.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_capo_pre.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_capo_pre_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_capo_pre_cellDancer",
+        "DeepVelo": "gene_h5ad_capo_pre_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_capo_pre_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_capo_pre_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_capo_pre_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_capo_pre_scVelo_dyn",
+        "TIvelo": "gene_h5ad_capo_pre_TIvelo",
+        "UniTVelo": "gene_h5ad_capo_pre_UniTVelo",
+        "veloVI": "gene_h5ad_capo_pre_veloVI"
+      }
+    },
+    "gastrulation": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/gastrulation.npz",
+        "path": "evaluation/gene/results/reference_neighbors/gastrulation.npz",
+        "source_sha256": "60f8aa94e4797245cf9a25e61dd6c29a4b812e14cc179deb518a1b225fb461b6",
+        "n_obs": 9815,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/gastrulation/score.txt",
+      "old_score_sha256": "e502ae3c63c8a33b7500aa6d997bddd77cc8d84c54a4e1d8d33187b6daa38b04",
+      "n_score_rows": 162,
+      "n_edge_rows": 560,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_Gastrulation.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_Gastrulation.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_Gastrulation_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphveloGastrulation.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_Gastrulation.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_Gastrulation.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_Gastrulation_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_gastrulation_cellDancer",
+        "DeepVelo": "gene_h5ad_gastrulation_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_gastrulation_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_gastrulation_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_gastrulation_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_gastrulation_scVelo_dyn",
+        "TIvelo": "gene_h5ad_gastrulation_TIvelo",
+        "UniTVelo": "gene_h5ad_gastrulation_UniTVelo",
+        "veloVI": "gene_h5ad_gastrulation_veloVI"
+      }
+    },
+    "mousebrain": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/mousebrain.npz",
+        "path": "evaluation/gene/results/reference_neighbors/mousebrain.npz",
+        "source_sha256": "8406b8c1b4a78811606fee28bb0f493b2997319e19e243b3d543201d0d445535",
+        "n_obs": 3365,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/mousebrain/score.txt",
+      "old_score_sha256": "6ff6b9b8513a6c5ea2b33af0fb5b7354ace61c3095656311f176e56755633910",
+      "n_score_rows": 36,
+      "n_edge_rows": 144,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_mousebrain.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_mousebrain_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphvelomousebrain.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_mousebrain.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_mousebrain.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_mousebrain_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_mousebrain_cellDancer",
+        "DeepVelo": "gene_h5ad_mousebrain_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_mousebrain_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_mousebrain_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_mousebrain_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_mousebrain_scVelo_dyn",
+        "TIvelo": "gene_h5ad_mousebrain_TIvelo",
+        "UniTVelo": "gene_h5ad_mousebrain_UniTVelo",
+        "veloVI": "gene_h5ad_mousebrain_veloVI"
+      }
+    },
+    "murk": {
+      "reference": {
+        "source": "artifact://velocity/indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+        "path": "evaluation/gene/results/reference_neighbors/murk.npz",
+        "n_obs": 1000,
+        "n_neighbors": 30,
+        "reused": false,
+        "metadata": {
+          "dataset": "murk",
+          "source": "artifact://velocity/indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+          "source_sha256": "e853780b3cb28ae9941972950e0b02098f57b5f7e35908ab0d5d2473fe0e6bc3",
+          "scvelo_version": "0.2.5",
+          "filter_and_normalize": {
+            "min_shared_counts": 20,
+            "n_top_genes": 650,
+            "log": true
+          },
+          "neighbors": {
+            "n_neighbors": 30,
+            "n_pcs": 30,
+            "use_rep": "X_pca",
+            "metric": "euclidean",
+            "random_state": 0
+          },
+          "n_vars_after_filter": 650
+        }
+      },
+      "old_score_path": "artifact://velocity/indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
+      "old_score_sha256": "cd32cb7a9f6210853b89bf845a44e23a48b5725466a61a31d003d7ea59ccb3bc",
+      "n_score_rows": 90,
+      "n_edge_rows": 810,
+      "method_paths": {
+        "cellDancer": "indicators/gene/simulation/results_for_analyze/celldancer/celldancer_murk.h5ad",
+        "DeepVelo": "indicators/gene/simulation/results_for_analyze/deepvelo/deepvelo_murk.h5ad",
+        "DeepVelo_scv": "indicators/gene/simulation/results_for_analyze/deepvelo2022/deepvelo2022_murk_recon.h5ad",
+        "Graphvelo_scv": "indicators/gene/simulation/results_for_analyze/graphvelo_scv/graphvelo_murk.h5ad",
+        "MultiVelo": "indicators/gene/simulation/results_for_analyze/multivelo/multivelo_murk.h5ad",
+        "scVelo_dyn": "indicators/gene/simulation/results_for_analyze/scvelo/scv_dynamic_murk.h5ad",
+        "TIvelo": "indicators/gene/simulation/results_for_analyze/tivelo/tivelo_murk.h5ad",
+        "UniTVelo": "indicators/gene/simulation/results_for_analyze/unitvelo/resultstouse/unitvelo_murk.h5ad",
+        "veloVI": "indicators/gene/simulation/results_for_analyze/velovi/veloVI_murk.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_murk_cellDancer",
+        "DeepVelo": "gene_h5ad_murk_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_murk_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_murk_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_murk_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_murk_scVelo_dyn",
+        "TIvelo": "gene_h5ad_murk_TIvelo",
+        "UniTVelo": "gene_h5ad_murk_UniTVelo",
+        "veloVI": "gene_h5ad_murk_veloVI"
+      }
+    },
+    "pancreas": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/pancreas.npz",
+        "path": "evaluation/gene/results/reference_neighbors/pancreas.npz",
+        "source_sha256": "b07b325ac3525bd368880c37b38ac56917b5e95ff37dbb6ad705b3a31bf34c41",
+        "n_obs": 3696,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/pancreas/score.txt",
+      "old_score_sha256": "8b5a20b4383506fba79dc5715acf3c7d107bac55d7d83d95f1f6168f4af73960",
+      "n_score_rows": 63,
+      "n_edge_rows": 413,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_Pancreas.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_Pancreas_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphveloPancreas.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_Pancreas.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_Pancreas.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_Pancreas.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_Pancreas_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_pancreas_cellDancer",
+        "DeepVelo": "gene_h5ad_pancreas_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_pancreas_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_pancreas_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_pancreas_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_pancreas_scVelo_dyn",
+        "TIvelo": "gene_h5ad_pancreas_TIvelo",
+        "UniTVelo": "gene_h5ad_pancreas_UniTVelo",
+        "veloVI": "gene_h5ad_pancreas_veloVI"
+      }
+    },
+    "retina": {
+      "reference": {
+        "source": "artifact://velocity/indicators/cell/reference_neighbors/retina.npz",
+        "path": "evaluation/gene/results/reference_neighbors/retina.npz",
+        "source_sha256": "5ab9552c846dcdfc5b11c59ac21b71d8fe0b3063de07eeb102e266bd6e3b91a6",
+        "n_obs": 2726,
+        "n_neighbors": 30,
+        "reused": true
+      },
+      "old_score_path": "artifact://velocity/plot/final_genes/retina/score.txt",
+      "old_score_sha256": "26711baa41e042fc1a1c90d756043a56c165afe9abab91ea4b20babb9acb6609",
+      "n_score_rows": 90,
+      "n_edge_rows": 243,
+      "method_paths": {
+        "cellDancer": "results/celldancer/celldancer_retina.h5ad",
+        "DeepVelo": "results/deepvelo/results_with_vu/deepvelo_retina.h5ad",
+        "DeepVelo_scv": "results/deepvelo2022/deepvelo_retina_full_recon.h5ad",
+        "Graphvelo_scv": "results/graphvelo_scv/graphveloretina.h5ad",
+        "MultiVelo": "results/multivelo/multivelo_retina.h5ad",
+        "scVelo_dyn": "results/scvelo_dynamic/scv_dynamic_retina.h5ad",
+        "TIvelo": "results/TIvelo/tivelo_retina.h5ad",
+        "UniTVelo": "results/unitvelo/results_with_vu/unitvelo_retina_with_velocity_u_mode1.h5ad",
+        "veloVI": "results/veloVI/veloVI_retina_full_all.h5ad"
+      },
+      "method_artifact_ids": {
+        "cellDancer": "gene_h5ad_retina_cellDancer",
+        "DeepVelo": "gene_h5ad_retina_DeepVelo",
+        "DeepVelo_scv": "gene_h5ad_retina_DeepVelo_scv",
+        "Graphvelo_scv": "gene_h5ad_retina_Graphvelo_scv",
+        "MultiVelo": "gene_h5ad_retina_MultiVelo",
+        "scVelo_dyn": "gene_h5ad_retina_scVelo_dyn",
+        "TIvelo": "gene_h5ad_retina_TIvelo",
+        "UniTVelo": "gene_h5ad_retina_UniTVelo",
+        "veloVI": "gene_h5ad_retina_veloVI"
+      }
+    }
+  },
+  "counts": {
+    "score_rows": 1161,
+    "edge_rows": 12997,
+    "neighbor_rows": 90,
+    "finite_new_scores": 1119,
+    "changed_scores": 1119
+  }
+}

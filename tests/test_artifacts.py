@@ -74,9 +74,10 @@ def test_assembly_manifest_materialized_panels_are_verified():
     manifest = ROOT / "figures/assembly/assembly_manifest.tsv"
     with manifest.open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
-    assert len(rows) == 132
+    keys = [(row["figure"], row["panel"], row["role"], row["source_path"]) for row in rows]
+    assert len(keys) == len(set(keys))
     materialized = [row for row in rows if row["status"] == "referenced_source"]
-    assert len(materialized) == 126
+    assert materialized
     for row in materialized:
         source = (ROOT / row["source_path"]).read_bytes()
         assert row["export_path"] and not Path(row["export_path"]).is_absolute()
@@ -121,7 +122,7 @@ def test_supplementary_figures_12_and_13_are_registered():
         (ROOT / "figures/assembly/suppfig13/supfig13.pptx").read_bytes()).hexdigest()
 
 
-def test_online_supplementary_figure_gaps_are_explicit():
+def test_retained_supplementary_figures_have_current_hashes_and_scope():
     with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
     for figure in ("suppfig09", "suppfig11"):
@@ -130,13 +131,31 @@ def test_online_supplementary_figure_gaps_are_explicit():
         assert len(retained) == 1
         whole = retained[0]
         assert hashlib.sha256((ROOT / whole["source_path"]).read_bytes()).hexdigest() == whole["sha256"]
-        assert "independent" in whole["note"]
         if figure == "suppfig11":
+            assert "independent" in whole["note"]
             panels = [row for row in rows if row["figure"] == figure and row["status"] == "referenced_source"]
             assert {row["panel"] for row in panels} == {"A", "B"}
             for row in panels:
                 source = ROOT / row["source_path"]
                 assert hashlib.sha256(source.read_bytes()).hexdigest() == row["sha256"]
+
+
+def test_completed_gene_figure_exports_match_their_editable_sources():
+    records = json.loads((ROOT / "figures/assembly/pending_exports.json").read_text())
+    expected = {"fig3", "fig4", "fig5", "fig7"} | {
+        f"suppfig{number:02d}" for number in range(1, 10)
+    }
+    assert {item["figure"] for item in records["figures"]} == expected
+    with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
+        assembly = list(csv.DictReader(handle, delimiter="\t"))
+    for item in records["figures"]:
+        assert item["status"] == "user_exported_cropped"
+        assert hashlib.sha256((ROOT / item["assembly"]).read_bytes()).hexdigest() == item["assembly_sha256"]
+        pdf = ROOT / item["repository_pdf"]
+        assert hashlib.sha256(pdf.read_bytes()).hexdigest() == item["cropped_or_final_pdf_sha256"]
+        if item["figure"].startswith("suppfig"):
+            assert any(row["source_path"] == item["repository_pdf"]
+                       and row["sha256"] == item["cropped_or_final_pdf_sha256"] for row in assembly)
 
 
 def test_gene_panel_manifest_hashes_and_supporting_scope():

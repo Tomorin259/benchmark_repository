@@ -1,0 +1,28 @@
+dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
+bonemarrow,cellDancer,FAM178B,0.2979304078535634,,cellDancer,Human bone marrow
+bonemarrow,cellDancer,LMNA,0.0226310540403035,,cellDancer,Human bone marrow
+bonemarrow,cellDancer,REXO2,-0.1232286144394537,,cellDancer,Human bone marrow
+bonemarrow,DeepVelo,FAM178B,0.3010714712208051,,DeepVelo,Human bone marrow
+bonemarrow,DeepVelo,LMNA,0.2375155587523439,,DeepVelo,Human bone marrow
+bonemarrow,DeepVelo,REXO2,0.200795333649612,,DeepVelo,Human bone marrow
+bonemarrow,DeepVelo_scv,LMNA,0.0629934909096975,,DeepVelo_scv,Human bone marrow
+bonemarrow,DeepVelo_scv,REXO2,-0.1939165463036253,,DeepVelo_scv,Human bone marrow
+bonemarrow,DeepVelo_scv,FAM178B,,,DeepVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,FAM178B,0.1045540128727548,,GraphVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,LMNA,0.0691512934675582,,GraphVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,REXO2,0.141283519689197,,GraphVelo_scv,Human bone marrow
+bonemarrow,MultiVelo,FAM178B,0.2410865290487078,,MultiVelo (RNA_only),Human bone marrow
+bonemarrow,MultiVelo,LMNA,-0.0916315562950183,,MultiVelo (RNA_only),Human bone marrow
+bonemarrow,MultiVelo,REXO2,-0.1973312015763719,,MultiVelo (RNA_only),Human bone marrow
+bonemarrow,scVelo_dyn,FAM178B,0.2373832471871584,,scVelo_dyn,Human bone marrow
+bonemarrow,scVelo_dyn,LMNA,0.0673466187347331,,scVelo_dyn,Human bone marrow
+bonemarrow,scVelo_dyn,REXO2,-0.1937389780506698,,scVelo_dyn,Human bone marrow
+bonemarrow,TIvelo,FAM178B,0.3905213438924613,,TIvelo,Human bone marrow
+bonemarrow,TIvelo,LMNA,0.3013071209335765,,TIvelo,Human bone marrow
+bonemarrow,TIvelo,REXO2,0.4032588584004988,,TIvelo,Human bone marrow
+bonemarrow,UniTVelo,FAM178B,0.388037800899677,,UniTVelo,Human bone marrow
+bonemarrow,UniTVelo,LMNA,0.09232175931719,,UniTVelo,Human bone marrow
+bonemarrow,UniTVelo,REXO2,0.2012441318219346,,UniTVelo,Human bone marrow
+bonemarrow,veloVI,FAM178B,0.0278406610625995,,veloVI,Human bone marrow
+bonemarrow,veloVI,LMNA,0.0708988981840635,,veloVI,Human bone marrow
+bonemarrow,veloVI,REXO2,0.1876859613954615,,veloVI,Human bone marrow

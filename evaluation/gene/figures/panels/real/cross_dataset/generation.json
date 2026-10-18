@@ -1,0 +1,114 @@
+{
+  "renderer": "evaluation/gene/plot_real_comparisons.py",
+  "renderer_sha256": "713a1c928b97b0ba730e89d284258d8aeec524abdcf2f837a8ced3658fe155dc",
+  "source_status": "ACTUAL_RUN",
+  "source_tables": {
+    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+    "evaluation/cell/results/cell_metrics.csv": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453",
+    "evaluation/gene/results/common_genes/dataset_summary.csv": "93a493bc08edaf8d748f1b1415de48ea1881b0ef26a335b4034f9b6c46255a5a",
+    "evaluation/gene/results/common_genes/macro_summary.csv": "4141bc1daadbddce16c6389f066b8cdc61c7963ab4b623dadee3e1cc51d4dff2",
+    "evaluation/gene/results/common_genes/membership.csv": "dd644351be06ec7cad81e179adcac63619731ff0f4406a72e0321dbc22069b18"
+  },
+  "style_sources": {
+    "evaluation/gene/plot_gene_assets.py": "0fca0becb01cf3b74b9dc7dafeb6bc82fa814b9d26a8b84167b4b9e2137df3c9",
+    "evaluation/cell/plots.py": "00ba6101a82c612150761d44db859d660bb5fc55eca3a55ddd3364ea9439ff86",
+    "methods/configurations.tsv": "16e6e6e0a08aa691d7ca8dad7e5e09b1ae8a15ff8d77639f26d197f775905a7d"
+  },
+  "software_versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "matplotlib": "3.9.2",
+    "seaborn": "0.13.2"
+  },
+  "scatter_method_order": {
+    "MURK-five": [
+      "TIvelo",
+      "cellDancer",
+      "UniTVelo",
+      "veloVI",
+      "Graphvelo_scv",
+      "DeepVelo",
+      "MultiVelo",
+      "DeepVelo_scv",
+      "scVelo_dyn"
+    ],
+    "Branching-two": [
+      "TIvelo",
+      "DeepVelo",
+      "veloVI",
+      "Graphvelo_scv",
+      "cellDancer",
+      "UniTVelo",
+      "DeepVelo_scv",
+      "scVelo_dyn",
+      "MultiVelo"
+    ]
+  },
+  "scatter_ordering": "descending pooled-gene mean in adjacent distribution panel; not the scatter metric mean",
+  "scatter_order_datasets": {
+    "MURK-five": [
+      "gastrulation"
+    ],
+    "Branching-two": [
+      "DentateGyrus_lamanno",
+      "retina"
+    ]
+  },
+  "scatter_axis_limits": [
+    -0.25,
+    1
+  ],
+  "scatter_dataset_groups": {
+    "MURK-five": [
+      "gastrulation",
+      "capo_pre",
+      "bonemarrow",
+      "mousebrain",
+      "pancreas"
+    ],
+    "Branching-two": [
+      "DentateGyrus_lamanno",
+      "retina"
+    ]
+  },
+  "scatter_weighting": "within-method valid selected-gene means, then equal dataset weights; primary Cell means",
+  "cell_identifier_aliases": "primary Cell operational methods use evaluation/cell/plots.py; capofibro dataset joins capo_pre",
+  "branching_box_heatmap_weighting": "pooled valid selected genes from two datasets; yellow diamonds pooled means",
+  "common_gene_counts": {
+    "retina": 6,
+    "DentateGyrus_lamanno": 6,
+    "gastrulation": 6,
+    "capo_pre": 7,
+    "bonemarrow": 2,
+    "mousebrain": 4,
+    "pancreas": 4
+  },
+  "common_gene_display_aliases": {
+    "scVelo_dyn": "scVelo_dynamic"
+  },
+  "common_gene_weighting": "seven dataset points per method; yellow diamonds equal-dataset means",
+  "common_gene_boxplot": "median line, interquartile box, 1.5-IQR whiskers; all seven dataset points shown",
+  "jitter": "NumPy default_rng(123), display only",
+  "dpi": 600,
+  "scatter_dpi": 300,
+  "outputs": {
+    "branching_combined_reference30_label_order.pdf": "d419ddfe20ac29d267b2ce2d07176032d6d3284ea7d25f9007514a1d34bfa0a0",
+    "branching_combined_reference30_label_order.png": "b1b6ee87e206e441d2713914ce603ba244dead20fd2e3322b7a8f27a07da143f",
+    "branching_combined_reference30_label_order.svg": "db2e87936e2097009ee46cf93bcaa27623e72fbcfcc46077e670c41fee25e5af",
+    "branching_gene_scores.csv": "1cf61a217a0d8bb540154790f0c139ec5bc756f7396e82c4f7893f343c3a103c",
+    "branching_metric_scatter_ordered.pdf": "8d32c4a2cc7e3f47a28b4a070adf080154710bebf1ddb4b01a760366d81fdc7e",
+    "branching_metric_scatter_ordered.png": "35c63d40df12ff3e8687f0cf324a09420b2c09d95304f3c2a4a95ae436269fdb",
+    "branching_metric_scatter_ordered.svg": "06b94eb44c70211fd5977fe1cc12e5b47ce51d513e365c05cf1b4821e0293cb3",
+    "branching_pooled_means.csv": "7a4ec6e27aef6d80e5e97f5deb55e9aee8a50d8b6feedbdb2fdc69396dd10e48",
+    "common_gene_cbdir.pdf": "4b846d0fe3d940cf1d098b3c741f9b46555de8af5d69f71d456a3b8327cfe689",
+    "common_gene_cbdir.png": "44c2356f10531bef60adfb733b21cef253634a37b1171bbafbb3234d9cf1c5e3",
+    "common_gene_cbdir.svg": "f83992633fa0f37846ef1c8bbadf199ad1259724002132087e39fda5549422a0",
+    "common_gene_dataset_points.csv": "8892ffadbb07219a4a932062f75df6e961616e54e251bc5f1df6f99658a10a24",
+    "common_gene_macro_means.csv": "fe27fcc2f90faf40fbb0bfc4f583efc5364813dfd7679234caf7ebcb0fcbffaf",
+    "cross_dataset_means.csv": "a777c048e35633dc52953e874c6a2a8cfba251e8c4fcb980247200d30861bc94",
+    "murk_metric_scatter_ordered.pdf": "300af18568afdb8720a8819d6a9a2e34c951920eb180d4dbbfa69411d9a812af",
+    "murk_metric_scatter_ordered.png": "b2678369e014a19250edafda3cca34e6071ab02b2254445fed1aedd0bcf128a6",
+    "murk_metric_scatter_ordered.svg": "42e91ad46e65d0caf8c704580ebf0e43586029aac344ab1291015518ac411b0e",
+    "plotted_scores.csv": "10549690a2fc11776ea985d4abc0bf1b07f3783f917d362b9d1e1bd022459615"
+  }
+}

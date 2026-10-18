@@ -3,3 +3,10 @@ evaluation/gene/selection/historical/scripts/*.py -text whitespace=-blank-at-eol
 
 # Frozen PCA source bytes use CRLF; retain identity while accepting CR as EOL.
 supplement/veloae/inputs/pca_comparison.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Matplotlib path separators are valid SVG whitespace; preserve exported bytes.
+evaluation/gene/figures/panels/**/*.svg whitespace=-blank-at-eol
+
+# Frozen Cell controls and historical display-generation inputs retain CRLF.
+evaluation/gene/results/selected_edge_cell_controls.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+site/public/visuals/generation_sources/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

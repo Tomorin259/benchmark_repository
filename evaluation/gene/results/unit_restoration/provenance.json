@@ -1,0 +1,61 @@
+{
+  "method": "veloVI",
+  "scope": "restore only the additional independent per-gene Ms/Mu min-max axes before numerical scoring",
+  "native_h5ads_modified": false,
+  "source_moments": "own saved spliced/unspliced abundance, binary positive connectivities, self connections, row normalization, float32 moments",
+  "preprocessed_input_exception": {
+    "dataset": "capo_pre",
+    "locator": "artifact://velocity/data/capo_pre/capo_pre.h5ad",
+    "reason": "saved final graph is not the graph that generated the model input moments",
+    "validation": "cell/gene identifier alignment, exact own-abundance equality, exact forward min-max reconstruction"
+  },
+  "affine_relation": "saved y = a*x + b; restored state is its source moment x; restored velocity = native velocity / a; translation does not enter velocity",
+  "inverse_multiplier": "float64 reciprocal of the float32 fitted MinMaxScaler.scale_, without replacing it by a rounded range",
+  "forward_requirement": "np.array_equal(MinMaxScaler().fit_transform(source_moments), saved_Ms_or_Mu); fail on any mismatch or nonpositive range",
+  "cbdir": "existing float64 NaN/Inf-to-zero and +/-1e10 cleanup applied after velocity unit restoration; reference-30 graph and registered edges retained",
+  "cossim": "raw restored prediction versus unchanged velocity_s_true/velocity_u_true; prediction and truth norms both >1e-6; no CBDir cleanup",
+  "unchanged": [
+    "other eight method rows",
+    "H5ADs",
+    "truth",
+    "reference neighbors",
+    "genes",
+    "transition edges",
+    "cell masks",
+    "aggregation weights"
+  ],
+  "counts": {
+    "real_genes": 47,
+    "simulation_genes": 70,
+    "axes": 234,
+    "edge_rows": 1405,
+    "cossim_rows": 70,
+    "changed_cossim_masks": 0
+  },
+  "historical_baseline": {
+    "git_commit": "b529b303e983bec7bb560981d8850420bc0ea27b",
+    "result_provenance": "evaluation/gene/results/unit_restoration/historical_reference30_provenance.json",
+    "result_provenance_sha256": "86b8e1bc3257c119efe0ac155dfc7b665986716c339602d365c180a2d726fe8e",
+    "table_sha256": {
+      "evaluation/gene/results/gene_cbdir_reference30_all.csv": "4df8c7316a09dd66c1e71d42ae8d4b13b9938debed31c56109e548a8cd5105e0",
+      "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "fe9cbaf0262b913f8617a75041688ca117939176c88f3c84b1d2ad5bea35ffa8",
+      "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+    }
+  },
+  "source_evidence_generator_sha256": "bead9020ac4429c4d8c5e0d84981411db77d963adbee72fe0159fb6891922288",
+  "reproduction": {
+    "script": "evaluation/gene/run_reference30_gene_cbdir.py",
+    "script_sha256": "d96df070af002247f5ac5e1b83556b8d561d310b1e3e62af97d0d123f115e477",
+    "coordinate_script": "evaluation/gene/coordinate_units.py",
+    "coordinate_script_sha256": "1b38a628d4733d701b1d53d161e0bb5bbd5ec90a54bb8547bbeed13d0bdaeb61",
+    "arguments": "--methods veloVI --datasets retina DentateGyrus_lamanno gastrulation capo_pre bonemarrow mousebrain pancreas branching murk all --neighbor-mode reference --artifact-root <artifact-root> --output-root <empty-output-root>",
+    "cosine_output": "simulation/velovi_cossim.csv",
+    "table_promotion": "join Dataset/Method/Gene and replace only the 70 veloVI CosSim fields; retain all other fields including historical CBDir and the 560 other-method rows"
+  },
+  "evidence": {
+    "velovi_scale_factors.csv": "00c1411d6dca20d042d93b7024666a366b0bbd02dc30f3b9568886c4b6b6cad6",
+    "velovi_score_pairs.csv": "d740426e859ec6bf4c2eb6393f6a8775d98d4c16fd19b083d0fc86720d4fafb0",
+    "velovi_edge_score_pairs.csv": "83412a9a6948dafddc09e50281e29248e78aa6e5d9bf932c9ef71d5f5631eca3",
+    "verification.json": "13c27d0b291e443125473f35372ba8e09190765cb386228ace6b14aefdce8506"
+  }
+}
