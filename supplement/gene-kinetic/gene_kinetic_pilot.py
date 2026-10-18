@@ -17,7 +17,7 @@ import scanpy as sc
 
 
 REPO = Path(__file__).resolve().parents[2]
-OUT = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent
 ARTIFACT_ROOT = None
 REAL_PATHS = {}
 DIAPH3_SCORES = None
@@ -153,7 +153,7 @@ def masked_gene_adata(adata, ref_clusters, display, gene, selected):
     return sub, diagnostics
 
 
-def make_panel(case_name, case, module):
+def make_panel(case_name, case, module, out):
     os.chdir(ARTIFACT_ROOT.parent)
     paths = method_paths(case["token"])
     ref_path = paths["DeepVelo"]
@@ -180,7 +180,7 @@ def make_panel(case_name, case, module):
     if not valid:
         raise RuntimeError(f"No method files found for {case_name}")
     selected = case["clusters"]
-    out = OUT / "figures"; out.mkdir(parents=True, exist_ok=True)
+    out.mkdir(parents=True, exist_ok=True)
     fig, axes = plt.subplots(2, 5, figsize=(14, 6.5), constrained_layout=True)
     phase_mod = module
     score_manifest = {}
@@ -218,7 +218,16 @@ def make_panel(case_name, case, module):
 
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument("--case", choices=["all", *CASES], default="all"); parser.add_argument("--artifact-root", type=Path, default=None); args = parser.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--case", choices=["all", *CASES], default="all")
+    parser.add_argument("--artifact-root", type=Path, default=None)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    args = parser.parse_args()
+    out = args.output_dir.expanduser().resolve()
+    if out.is_relative_to(REPO) and not out.is_relative_to(REPO / "outputs"):
+        parser.error("--output-dir must be outside the repository or under outputs/")
+    if out.exists() and (not out.is_dir() or any(out.iterdir())):
+        parser.error("--output-dir must be an empty directory; use a new directory")
     global ARTIFACT_ROOT
     ARTIFACT_ROOT = args.artifact_root or os.environ.get("VELOCITY_ARTIFACT_ROOT")
     if ARTIFACT_ROOT is None:
@@ -228,7 +237,7 @@ def main():
     from evaluation.gene.run_reference30_gene_cbdir import REAL_CONFIGS
     global REAL_PATHS, DIAPH3_SCORES
     REAL_PATHS = {name: config["paths"] for name, config in REAL_CONFIGS.items()}
-    diaph3_path = OUT / "results" / "diaph3_nipc_to_nbl1.csv"
+    diaph3_path = HERE / "results" / "diaph3_nipc_to_nbl1.csv"
     if diaph3_path.is_file():
         DIAPH3_SCORES = pd.read_csv(diaph3_path)
     from evaluation.gene.plotting import phase_portrait as module
@@ -236,7 +245,7 @@ def main():
     EDGE_SCORES, _ = load_edge_scores()
     chosen = CASES if args.case == "all" else {args.case: CASES[args.case]}
     for name, case in chosen.items():
-        make_panel(name, case, module)
+        make_panel(name, case, module, out)
 
 
 if __name__ == "__main__":

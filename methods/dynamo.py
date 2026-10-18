@@ -42,7 +42,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These are dataset-boundary mappings, not a generic adapter. label_key
+# Fixed dataset inputs and annotation mappings. label_key
 # supplies the standard clusters column. X_umap_ori is the embedding on which
 # Dynamo projects velocity; its name is part of the C07 result contract.
 DATASETS = {

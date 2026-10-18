@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Test whether TIvelo's inferred root/directed neighbors explain simulation errors.
 
-This is an oracle-root sensitivity experiment, not a fair benchmark variant:
-it uses the simulator's known early bins to set the root, while leaving the
-preprocessed cells, expression layers, TIvelo optimizer, and metric unchanged.
-No input H5AD or canonical benchmark table is modified.
+Use the simulator's known early bins to set the root while retaining the
+preprocessed cells, expression layers, TIvelo optimizer and evaluation metric.
 """
 
 import argparse

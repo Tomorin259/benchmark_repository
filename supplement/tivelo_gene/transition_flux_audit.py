@@ -3,7 +3,6 @@
 
 The saved TIvelo H5AD contains the upstream stochastic scVelo velocity graph;
 this script only reads it and constructs scVelo's forward transition matrix.
-It does not rerun or modify the benchmark.
 """
 
 from __future__ import annotations

@@ -4,7 +4,7 @@
 Uses the archived TIvelo AnnData only as a read-only input. It replaces the
 upstream scVelo velocity layer in memory with the simulator's spliced-velocity
 truth, while retaining the archived moments, graph neighbors, and the original
-scVelo velocity-gene subset. This is a diagnostic, not a benchmark variant.
+scVelo velocity-gene subset.
 """
 
 from __future__ import annotations

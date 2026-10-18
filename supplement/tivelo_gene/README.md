@@ -2,7 +2,7 @@
 
 Supplementary Figure 13 examines root-dependent direction in frozen branching
 and hybrid simulations and a paired bone marrow intervention.
-The refits explain sensitivity; primary benchmark scores remain separate.
+The paired refits measure sensitivity to root selection and trajectory ordering.
 
 ## Final materials
 
@@ -54,13 +54,12 @@ branching CBDir-gene/CosSim changes from -0.282741/-0.432665 to
 0.686810/0.672195. The paired bone marrow comparison changes roots Mono_1/HSC_1
 across three optimizer seeds. Mean Cell CBDir changes from 0.109349 to 0.662020
 and BATC from 0.283570 to 0.745330.
-Its child graph, DPT and directed neighbors change together, so it does not
-isolate DPT or establish real-data gene-velocity truth.
+The root intervention jointly recomputes the child graph, DPT and directed
+neighbors before velocity fitting.
 
 Supporting root-decision, upstream-scVelo, ordering-trigger, flux and
 orientation interventions remain linked by their manifests and top-level
-scripts. They answer different intervention questions, not duplicate final
-pairs. In the recorded runs, branching and hybrid fail at different ordering
+scripts. Each records its intervention stage and controlled inputs. In the recorded runs, branching and hybrid fail at different ordering
 stages; the fixed-expression hybrid direction score changes from -19.594465
 to 77.043071. Use the relevant script's `--help` and a fresh output directory
 for a new diagnostic.

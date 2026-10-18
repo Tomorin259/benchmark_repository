@@ -27,7 +27,7 @@
         "outputs": "Paired-finite Spearman correlations for α and γ; reference/prediction trajectories."
       }
     ],
-    "interpretation": "The website displays frozen evaluation results. Changing the visible methods or viewing a velocity field does not change the scored population or calculate a new ranking."
+    "interpretation": "Browse the saved evaluation results by method, dataset and task. Summary statistics follow the gene sets and aggregation rules of the published tables."
   },
   "datasets": {
     "pancreas": {
@@ -452,7 +452,7 @@
       "DeepVelo",
       "UniTVelo"
     ],
-    "note": "Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate signed transition rows from four fixed methods. This is an exploratory post-hoc comparison, outside the 20-method registry; it is not evidence that gene-level kinetics are corrected.",
+    "note": "Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate signed transition rows from four fixed methods. These post-hoc cell-level comparators are evaluated separately against the 20 registered configurations.",
     "ranking_note": "Each variant is ranked independently against the 20 registered methods for the same dataset and metric. The other ensemble variant is excluded. Rank is 1 + the number of method scores strictly above the ensemble score; exact ties use competition rank."
   },
   "provenance": {
@@ -535,7 +535,7 @@
         "key": "cossim",
         "label": "CosSim",
         "definition": "Cosine alignment between inferred and analytical ground-truth vectors in the simulated (s,u) phase plane.",
-        "aggregation": "The mean uses cells for which both vector norms exceed 10⁻⁶. The compact CosSim table does not report this valid-cell count; CBDir cell counts must not be used as its denominator."
+        "aggregation": "The mean uses cells for which both vector norms exceed 10⁻⁶. Valid-cell counts for CosSim are unavailable in the compact table; displayed CBDir counts describe participation in the CBDir calculation."
       }
     ],
     "kinetics": [
@@ -550,7 +550,7 @@
   "interpretation": [
     {
       "title": "Gene sets and method coverage",
-      "text": "The real Gene benchmark contains 39 MURK and 20 branching dataset–gene pairs across five and two datasets. Nine configurations provide both ds/dt and du/dt for this comparison. A method can omit a selected gene; that missing output is not a score of zero."
+      "text": "The real Gene benchmark contains 39 MURK and 20 branching dataset–gene pairs across five and two datasets. Nine configurations provide both ds/dt and du/dt for this comparison. Summaries use each method’s available finite gene scores."
     },
     {
       "title": "Canonical and selected kinetic scores",
@@ -575,8 +575,8 @@
     "input": "Newly synthesized RNA, total RNA and labeling-time information",
     "parameters": "Cell-specific α",
     "tasks": "Kinetic-parameter recovery",
-    "note": "Labelled positive control; not an additional member of the 20-configuration RNA-seq registry."
+    "note": "Metabolic-labeling positive control for kinetic-parameter recovery, reported separately from the 20 RNA-seq configurations."
   },
   "dataset_note": "Modality and trajectory terms follow the manuscript dataset table. Dimensions below describe the registered benchmark input; they can differ from the upstream source object.",
-  "simulation_note": "Historical canonical H5AD inputs are the paper’s fixed realizations. The public cellDancer-based generator deliberately sets no seed, so a new run is an independent realization and does not replace those inputs."
+  "simulation_note": "The benchmark uses the registered simulation H5ADs. The public cellDancer-based generator creates additional simulated datasets."
 }

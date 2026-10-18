@@ -133,9 +133,8 @@ branches equally, then average available system means equally.
 Missing parameters are not zero-filled. These statistics have different gene
 sets and must remain separate.
 
-DeepKINET seed 123 identifies its own H5AD run, not every method's training.
-Current reference alignment differs from the historical seed-123 evaluation;
-matching trajectories need not give matching scores under those two alignments.
+The DeepKINET H5AD uses seed 123. Current scores use the reference alignment
+described above; the historical seed-123 evaluation used an earlier alignment.
 
 ## Saved velocity fields and final assembly
 

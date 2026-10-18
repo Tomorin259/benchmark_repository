@@ -5,7 +5,7 @@
 - `assembly_manifest.json`: panel sources, current artifact hashes and native
   dependencies.
 
-The PDF was exported from PowerPoint and cropped; no claim of byte-exact
-cross-platform PowerPoint export is made. Frozen materials are owned by
+The final figure was assembled in PowerPoint, exported as PDF and cropped.
+Source materials are owned by
 `supplement/tivelo_gene/figures/`. A/B use the compact two-row material, C the
 simulation root pairs, and D the paired bone marrow DPT and metric row.

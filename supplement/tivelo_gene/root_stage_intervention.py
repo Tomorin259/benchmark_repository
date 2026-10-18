@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Compare TIvelo's process_path root, corrected root, and oracle roots.
 
-This is a mechanism experiment, not a benchmark variant. It follows the
-simulation preprocessing and path calls, then fits the same TIvelo velocity
+Follow the simulation preprocessing and path calls, then fit the same TIvelo velocity
 model under each root while holding the prepared data, graph, optimizer, and
 reference-30 scoring fixed.
 """

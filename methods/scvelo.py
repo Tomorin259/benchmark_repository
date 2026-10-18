@@ -24,8 +24,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
-# Edit these two lists for a focused rerun. No extra global random seed is set:
-# the scVelo tutorials do not prescribe one.
+# Edit these two lists for a focused rerun.
 DATASETS_TO_RUN = [
     "bonemarrow",
     "capo_pre",
@@ -44,7 +43,7 @@ DATASETS_TO_RUN = [
 ]
 MODES_TO_RUN = ["deterministic", "stochastic", "dynamical"]
 
-# These are dataset-boundary mappings, not a generic adapter. All 14 inputs
+# Fixed dataset inputs and annotation mappings. All 14 inputs
 # already provide spliced and unspliced. label_key only supplies the standard
 # clusters field used by the benchmark's method-native result files.
 # embedding_key=None means that moments will create X_pca and that X_pca is

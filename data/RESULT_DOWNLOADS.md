@@ -1,11 +1,11 @@
 # Native result downloads
 
 The [Hugging Face output repository](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-is being populated in verified batches. **The complete collection is not yet
-available.** Use its [availability index](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/available_files.tsv)
-for files that have actually been committed and verified, and its
+publishes files in verified batches. Its
+[availability index](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/available_files.tsv)
+lists committed and verified packages; the
 [upload status](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/UPLOAD_STATUS.json)
-for the release boundary. Do not infer availability from the planned inventory.
+records progress toward the complete collection.
 
 The frozen selection contains 384 original scientific files: 370 H5AD and
 14 NPZ, totaling 252,148,325,990 source bytes. Distribution uses 324 lossless
@@ -40,18 +40,18 @@ extraction. Allow space for both the archive and extracted data.
 
 Map extracted members to the evaluator's expected logical source paths using
 `source_locator`, registered artifact IDs and the owning module README.
-Archive grouping paths are not automatic evaluator input roots. Saved files
-shared by several evaluations are stored once, with their aliases retained.
+Arrange the extracted files under the evaluator's input root. Files shared by
+several evaluations are stored once, with their logical aliases retained.
 
 The selection is frozen at code commit
 `0e38d4fef12f71d8e879088de1b15e5510cc40a5`. It covers Cell outputs,
 additional Gene/Kinetics outputs, fixed simulation outputs, ensemble outputs,
 TIvelo controls and evaluation reference moments. Later diagnostic previews,
 checkpoints, logs, environments and failed runs are outside this frozen set.
-No training, simulation regeneration or score recalculation was performed for
-packaging. Compact scores and figures remain in their owning GitHub modules.
+Packaging preserves the original scientific-file bytes. Compact scores and
+figures remain in their owning GitHub modules.
 
 Retain original dataset and method citations and dataset-specific terms; see
 the output repository's SOURCE_TERMS.md and CITATION.cff. Three original
-Battich kinetic-reference tables remain upstream-only and are not provided as
-standalone table copies. No DOI is asserted for this release.
+Battich kinetic-reference tables are obtained from the original study through
+the [reference access guide](UPSTREAM_REFERENCES.md).

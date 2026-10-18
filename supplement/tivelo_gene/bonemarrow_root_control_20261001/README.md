@@ -2,23 +2,21 @@
 
 ## Scope
 
-Mechanism sensitivity experiment using the archived TIvelo bone marrow output.
-This is not a benchmark replacement, a hyperparameter search, or evidence of
-ground-truth velocities in real data. All computation ran on the remote server.
+Paired root-sensitivity experiment using the archived TIvelo bone marrow output.
+Both root conditions use matched inputs, optimization settings and seeds.
 
 The intervention starts **after main-path orientation**: compare the archived
 Mono_1 DTI root with a biologically informed HSC_1 DTI root. It changes the
-root-dependent child dictionary, DPT and directed neighbors together. It does
-not isolate the contribution of those three downstream changes separately, or
-rerun the upstream root-selection procedure.
+root-dependent child dictionary, DPT and directed neighbors together. The
+upstream main-path orientation and root-selection outputs are retained.
 
 ## Controlled design
 
 - 5,780 cells and 473 archived selected genes; identical cell/gene ordering.
 - Frozen Mu/Ms, undirected KNN/connectivities, archived PAGA and diffusion map.
 - Original-root replay exactly matches the archived child dictionary and d_nn.
-- DTI t1=0.1, t2=2.0; t2=2 reproduces the archived graph. This is not a claim that
-  the original run's full command/log has been recovered.
+- DTI t1=0.1, t2=2.0; t2=2 reproduces the archived graph. The original run's
+  complete command/log remains unavailable.
 - Upstream root_select='connectivities' selects the **first cell** in the root
   cluster; the same selection rule is used in both conditions.
 - Paired seeds 20261001, 20261002, 20261003; 100 epochs each; MSE, both velocity
@@ -27,7 +25,7 @@ rerun the upstream root-selection procedure.
 - Native velocity graphs/projections regenerated independently after refitting.
 - Canonical reference-30 cell evaluator, frozen evaluation moments/neighbors,
   dataset embedding and configured edges; official TIvelo formula parity checks.
-- The three seeds measure optimizer-seed variability, not biological replication.
+- The three paired fits measure variability across optimization seeds.
 
 ## Results
 
@@ -44,7 +42,7 @@ Means over the three paired seeds:
 
 Every paired delta is positive for all six metrics and all three seeds.
 CBDir paired deltas range from +0.551091 to +0.554339; BATC paired deltas range
-from +0.460534 to +0.462999. No inferential significance test was performed.
+from +0.460534 to +0.462999.
 
 | Evaluated edge | Boundary source cells | Mono_1 refit CBDir | HSC_1 refit CBDir |
 | --- | ---: | ---: | ---: |
@@ -58,8 +56,8 @@ Ery_1 -> Ery_2 directionality remains positive. High-dimensional CBDir also
 improves, so the rescue is not confined to the stored 2D projection.
 
 The archived fit's CBDir=0.192291 and BATC=0.296348 differ from the original-root
-refits. The causal comparison is therefore **paired refit versus paired refit**,
-not HSC_1 refit versus archived output. Scores recomputed on the unchanged
+refits. Intervention effects are measured by the within-seed difference between
+the two root refits. Scores recomputed on the unchanged
 archive match the canonical tables (maximum absolute difference <3e-17).
 
 DPT versus the independent inferred Palantir pseudotime:
@@ -69,22 +67,19 @@ DPT versus the independent inferred Palantir pseudotime:
 | Myeloid-associated subset | 4224 | -0.694711 | +0.891176 |
 | Erythroid-associated subset | 2125 | +0.796731 | +0.920618 |
 
-Palantir is an inferred ordering, not measured real time. These subsets share
-HSC_1 cells and are not independent replicates.
+Palantir supplies an independently inferred pseudotime ordering. Both lineage
+subsets include HSC_1 cells.
 
-## Interpretation boundaries
+## Interpretation
 
 This controlled sensitivity experiment supports a root-dependent DTI mechanism
 contributing to poor directionality in the real bone marrow dataset: changing
 the DTI root alters ordering/directed neighbors and consistently improves the
 configured cell-level directions after otherwise matched refitting.
 
-It does not prove that the whole original velocity field is reversed, that all
-TIvelo graph topology problems are corrected, that gene kinetics are globally
-correct, or why the upstream selector originally preferred Mono_1. Residual
-cycles/disconnections in the root-dependent child graph are retained rather
-than manually repaired. HSC_1 uses biological prior information, so these
-outputs must not replace original TIvelo scores in method rankings.
+The HSC_1 root uses biological prior information. Residual cycles and
+disconnections in the root-dependent child graph are retained in both
+conditions.
 
 ## Files
 

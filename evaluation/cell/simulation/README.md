@@ -34,8 +34,8 @@ and the retained TiVelo parity checks pass.
   nine Branch-B edges for `murk`, nine per branch for the other scenarios.
 - Method H5ADs and spliced velocity layers match the
   [Gene score sources](../../gene/results/gene_cbdir_reference30_all.csv).
-  The comparison unit is one scenario by one method; new simulation
-  realizations do not replace these historical inputs.
+  The comparison unit is one scenario by one method, using the registered
+  historical inputs.
 - Every method within a scenario shares the fixed 30-neighbor reference graph,
   expression state and historical UMAP. The Cell reference adds distances,
   connectivities and `Ms`/`Mu` to the Gene reference's cell names and indices;
@@ -56,8 +56,8 @@ the existing Gene metrics are not recalculated.
 
 Hybrid MURK and branching subsets share a scenario-level Cell score but retain
 separate Gene means and SDs. SD describes variation across genes, with one
-historical realization per scenario. These rows do not enter the real-data
-Cell table or the 20-method overall ranking.
+historical realization per scenario. The simulation comparison has its own
+result table and scenario-specific summaries.
 
 ## Re-evaluate saved outputs
 
@@ -87,8 +87,8 @@ python evaluation/cell/run_cell_metrics.py \
 
 Reference construction follows Gene simulation preprocessing and verifies its
 cell names and neighbor indices against the stored Gene assets. Evaluation
-writes under `outputs/simulation-evaluation/results/`; it does not retrain
-methods or generate new simulations.
+scores the saved method outputs and writes under
+`outputs/simulation-evaluation/results/`.
 
 ## Export tables and render retained panels
 
@@ -100,11 +100,10 @@ python evaluation/cell/simulation/build_score_table.py \
   --output-root outputs/simulation-tables
 ```
 
-The plotter also reads the saved module tables; it does not select the fresh
-evaluation directory above. **It rewrites
-`evaluation/cell/simulation/results/cross_level_summary.csv` even when
-`--output-dir` is supplied.** Run it in a separate checkout containing the
-retained results when preserving the original bundle:
+The plotter reads the saved module tables, not the fresh evaluation directory
+above. It requires `--output-dir` and writes both plots and a new
+`cross_level_summary.csv` there. Use an empty directory outside the repository
+or under `outputs/`; existing result tables and paper assets stay unchanged:
 
 ```bash
 python evaluation/cell/simulation/plot_simulation_cell_comparison.py \
@@ -112,7 +111,8 @@ python evaluation/cell/simulation/plot_simulation_cell_comparison.py \
 ```
 
 `--cross-level-only` skips the Cell overview but still writes the summary and
-Figure 4D source. Both stems export PDF/SVG/PNG; the Figure 4D PNG uses 600 dpi.
+Figure 4D source into that output directory. Both stems export PDF/SVG/PNG;
+the Figure 4D PNG uses 600 dpi.
 Its 9.0 × 4.125-inch canvas uses alternating method bands, offset markers and
 gene-wise SD. Blue circles denote CBDir-gene, purple triangles CosSim, orange
 diamonds Cell CBDir, and green squares BATC. Names and relative method order
@@ -125,4 +125,6 @@ boundaries in their [Figure 4 manifest](../../../figures/fig4_composite_manifest
 and [S12 manifest](../../../figures/suppfig12_composite_manifest.json).
 S12 contains three nine-method stream rows and a five-metric boxplot row;
 its former heatmap is represented by Table S7. The renderer supplies comparison
-panels, not the manually assembled PDFs or S12 stream panels.
+panels; the manifests identify the remaining stream and assembly sources.
+The Figure 4 manifest retains the renderer hash for its original generation;
+that source is available at [revision 1e2d236](https://github.com/Tomorin259/benchmark_repository/blob/1e2d236fc163ab15cf4181e27383b7175676f9b1/evaluation/cell/simulation/plot_simulation_cell_comparison.py).

@@ -12,9 +12,8 @@ an on-demand material bundle.
 | `authoring_source` | Editable author source |
 | `missing_source` | Independent final panel source is unavailable |
 
-Use [the figure map](../../docs/figure_map.md) for figure-specific sources
-and manual steps. Retained PPTX files do not by themselves prove independent
-reconstruction of the final PDF.
+Use [the figure map](../../docs/figure_map.md) for figure-specific source
+availability, layout and manual PDF-export steps.
 
 ```bash
 python figures/export_materials.py --verify-only

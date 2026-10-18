@@ -24,8 +24,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
-# Edit this list for a focused rerun. The upstream tutorial does not prescribe
-# an additional benchmark-wide random seed.
+# Edit this list for a focused rerun.
 DATASETS_TO_RUN = [
     "bonemarrow",
     "capo_pre",
@@ -43,7 +42,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These are dataset-boundary mappings, not a generic adapter. All 14 inputs
+# Fixed dataset inputs and annotation mappings. All 14 inputs
 # already expose spliced and unspliced. label_key supplies the standard
 # clusters column saved with the method result. Forebrain receives X_pca after
 # moments because its source loom has no precomputed embedding.

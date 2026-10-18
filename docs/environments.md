@@ -20,18 +20,17 @@ plotting-env/bin/python evaluation/gene/plot_gene_assets.py --summaries-only --d
 
 [plotting.requirements.txt](environments/plotting.requirements.txt) lists direct
 dependencies; [plotting.lock.txt](environments/plotting.lock.txt) pins the tested
-environment. It does not include the AnnData/Scanpy/scVelo stack for H5AD phase
-plots or model training. Rendering bytes may differ across platforms.
+environment for CSV-only plotting. H5AD phase plots and model training require
+the AnnData/Scanpy/scVelo stack and method-specific dependencies.
 
 ## Evaluation and method training
 
 Use the dependencies and software versions in the selected module guide and
-run manifest. Reviewed training specifications remain incomplete. Current
-environment probes are not historical environment locks, and successful imports
-do not establish clean installation or result reproduction.
+run manifest. Reviewed training specifications remain incomplete; available
+environment records identify the packages inspected in each recorded runtime.
 
 Source-backed TFvelo, TSvelo and DeepKINET workflows also need the recorded
-source tree or release. Unknown historical source revisions remain unresolved.
+source tree or release. Historical source revisions are identified where recovered.
 A usable specification must identify its configuration, Python and key
 dependencies, any CUDA/hardware constraints, and a checked invocation. Preserve
 upstream license notices and keep private installation paths out of public files.

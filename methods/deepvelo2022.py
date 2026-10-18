@@ -5,7 +5,7 @@ This is intentionally separate from C16's graph-convolutional DeepVelo.
 It follows the archived DeepVelo notebook-style workflow: fit scVelo
 dynamical velocities, train the published TensorFlow reconstruction network,
 then evaluate its reconstructed velocity field on scVelo's selected velocity
-genes.  No model seed is added because the upstream notebook does not set one.
+genes.
 """
 
 from pathlib import Path
@@ -27,8 +27,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "deepvelo2022"
 
-# Edit this list for a focused rerun.  The upstream notebook fixes only the
-# train/test split (random_state=42), not NumPy or TensorFlow's global state.
+# Edit this list for a focused rerun. The train/test split uses random_state=42.
 DATASETS_TO_RUN = [
     "bonemarrow",
     "capo_pre",
@@ -301,7 +300,6 @@ def main():
     scv.settings.presenter_view = True
     scv.set_figure_params("scvelo")
     print(f"scVelo version: {scv.__version__}", flush=True)
-    print("global RNG seed: not set (upstream notebook behavior)", flush=True)
     print("GPU selection: inherited from CUDA_VISIBLE_DEVICES", flush=True)
     for dataset in DATASETS_TO_RUN:
         run_dataset(dataset)

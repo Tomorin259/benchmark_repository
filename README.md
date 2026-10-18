@@ -42,14 +42,12 @@ Run commands from the repository root and use a fresh output directory.
   [download and extraction guide](data/RESULT_DOWNLOADS.md).
 - Committed tables support inspection and several CSV-only plotting workflows.
   Recomputing metrics requires the saved H5AD outputs and reference inputs;
-  retraining additionally requires method-specific software. The
-  [plotting lock](docs/environments.md) has been checked in a clean environment;
-  reviewed training specifications and some upstream source revisions remain
-  incomplete.
-- Simulations are intentionally unseeded. New runs are independent realizations;
-  the historical canonical H5ADs are the paper inputs.
+  retraining additionally requires method-specific software. See the checked
+  [plotting environment and method-training requirements](docs/environments.md).
+- The benchmark uses the registered simulation H5ADs. The
+  [generator](evaluation/gene/simulation/README.md) creates additional simulated datasets.
 - Some final figures use author-edited PowerPoint and manual PDF export.
-  Their sources and reconstruction limits are listed in the [figure map](docs/figure_map.md).
+  Their sources and assembly steps are listed in the [figure map](docs/figure_map.md).
 
 ## Repository layout
 

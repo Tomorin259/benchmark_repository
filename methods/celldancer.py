@@ -4,8 +4,7 @@
 The visible stages are: scVelo preprocessing, conversion of Ms/Mu and a
 two-dimensional embedding to cellDancer's dataframe, cellDancer fitting,
 transfer of its kinetics back to the benchmark AnnData, and scVelo's velocity
-graph/embedding projection.  No extra global seed is imposed because the
-upstream tutorial does not prescribe one.
+graph/embedding projection.
 """
 
 from pathlib import Path
@@ -324,7 +323,6 @@ def main():
     unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
-    print("global RNG seed: not set (official tutorial behavior)", flush=True)
 
     for dataset in DATASETS_TO_RUN:
         run_dataset(dataset)

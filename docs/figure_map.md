@@ -6,9 +6,9 @@ have different reconstruction requirements.
 
 ## Main figures
 
-| Figure | Final PDF | Numerical sources and commands | Assembly / limits |
+| Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
-| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Author source](../figures/assembly/fig1/authoring/source.pptx); corrected final panels are not independently reconstructed from this PPTX |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Retained author source](../figures/assembly/fig1/authoring/source.pptx); independent sources for the corrected final panels are incomplete |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | Retained composite; three panel sources are registered in the assembly map |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
@@ -19,7 +19,7 @@ have different reconstruction requirements.
 ## Supplementary figures
 
 For S1–S8 and S14, the final composite is retained in the manuscript project;
-the links below identify repository source material, not a tracked final PDF.
+the links below lead to their repository source panels and numerical data.
 
 | Figure | Subject | Sources and reproduction |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ verification scope; [the Gene panel manifest](../evaluation/gene/figures/panels/
 records Gene panel/score bindings.
 
 Use [material export](../figures/assembly/README.md) for fresh source copies.
-A saved author PDF or PPTX is reusable evidence, but does not establish
-independent whole-figure reconstruction. Editing a source panel alone does not
-update its composite. Historical kinetics assets named Figure 5 belong to the
+After updating a source panel, assemble and export the corresponding composite.
+Figure-specific source availability is recorded in the table and manifests above.
+Historical kinetics assets named Figure 5 belong to the
 former numbering; current parameter recovery is Figure 6.

@@ -1,8 +1,8 @@
 # Expanded scEU-seq reference evaluation
 
-These supplementary source results are independent of the selected-gene
-Figure 6 panels and the canonical Figure 7 aggregation. They do not replace
-`../central_results/` and are not an overall method ranking.
+Supplementary Figure 14 evaluates kinetic-parameter recovery on expanded
+reference-gene sets. Figure 6 uses selected genes; Figure 7 uses the canonical
+summaries from `../central_results/`.
 
 ## Gene universe
 
@@ -12,8 +12,8 @@ of Table S1 and the conventional inputs (out of 528 reference genes).
 Organoid uses the same 270 genes for both branches: the retained overlap of
 the 295 differentiation-associated genes selected in Table S3 and profiled
 in Table S4. The 25 unavailable selected genes and six housekeeping controls
-are explicitly excluded. This is a broader sensitivity analysis, not the
-19 RPE1 or 6+8 lineage examples in Figure 6.
+are excluded. Figure 6 displays 19 RPE1 and 6+8 organoid examples from these
+reference systems.
 
 Reference: Battich et al., *Science* (2020),
 [doi:10.1126/science.aax3072](https://doi.org/10.1126/science.aax3072),
@@ -51,9 +51,9 @@ only common finite genes, with exact membership in `common_gene_membership.csv`:
 
 Common gene counts for alpha are 250/65/42 in RPE1 and 270/20/11 in each
 organoid branch. Gamma counts are 249 for RPE1 and 270 per organoid branch.
-These are separate sensitivity summaries, not substitutions for each
-method's available-gene boxplot mean. Dynamo remains an information-rich
-label-data comparator; unequal gene and cell coverage still applies.
+Common-gene summaries and available-gene boxplots report their respective
+gene sets. Dynamo uses metabolic-labeling inputs; each method's gene and cell
+coverage is recorded with its results.
 
 ## Reproduction
 
@@ -73,5 +73,5 @@ Three 600-dpi PNGs and one ten-page, 50-genes-per-page PDF are retained at
 `../../figures/expanded_reference/`; extra plot-data CSVs in fresh rendering
 runs are rebuildable and not duplicate committed score sources.
 
-Status: module source materials are ready. A final supplemental PPT/composite,
-manuscript figure number and online insertion are deliberately not registered.
+The online manuscript presents the three boxplots as Supplementary Figure 14.
+See the [figure map](../../../../docs/figure_map.md) for the paper-to-source mapping.

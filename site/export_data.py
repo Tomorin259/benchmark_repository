@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export existing benchmark scores for static browsing; never recompute metrics."""
+"""Export saved benchmark scores and source materials for static browsing."""
 
 from __future__ import annotations
 
@@ -472,7 +472,7 @@ def export_data(root=ROOT, output=None):
         entry['download'] = f'data/files/{relative}'
         downloads['metadata'].append({'label': label, 'description': description, **entry})
     audit_downloads = [
-        ("evaluation/cell/results/cell_metrics_supplementary.csv", "Cell supplementary metrics and evaluability counts", "Supplementary Cell metrics and valid-sample fields; it does not replace the five primary scores."),
+        ("evaluation/cell/results/cell_metrics_supplementary.csv", "Cell supplementary metrics and evaluability counts", "Supplementary Cell metrics and metric-specific valid-sample counts."),
         ("evaluation/cell/results/cell_metrics_edge_details.csv", "Cell edge-level audit", "Edge-level Cell evaluation details under the fixed reference contract."),
         ("evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv", "Gene edge-level audit", "Gene-level edge details underlying the reference-30 CBDir rows."),
         ("evaluation/gene/results/neighbor_audit_all.csv", "Gene neighbor audit", "Neighbor-set provenance and overlap checks for Gene-level evaluation."),
@@ -483,7 +483,7 @@ def export_data(root=ROOT, output=None):
         ("evaluation/cell/reference_neighbors/manifest.json", "Cell reference-neighbor manifest", "Hashes and construction settings for the frozen dataset-level neighbor assets."),
         ("evaluation/gene/results/provenance.json", "Gene result provenance", "Input and neighbor contracts for the frozen Gene evaluation."),
         ("ensemble/results/metadata.json", "Ensemble protocol and provenance", "Frozen input roles, transition settings and macro averages for both variants."),
-        ("supplement/velovi/results/full_dataset_three_condition.csv", "veloVI coordinate diagnostic: full values", "42 dataset/condition rows; this post-hoc coordinate comparison does not replace Cell scores."),
+        ("supplement/velovi/results/full_dataset_three_condition.csv", "veloVI coordinate diagnostic: full values", "42 rows comparing three post-hoc coordinate conditions across 14 datasets."),
         ("supplement/velovi/results/manifest.json", "veloVI coordinate diagnostic manifest", "Conditions, input hashes and output hashes for the coordinate-sensitivity analysis."),
     ]
     for relative, label, description in audit_downloads:

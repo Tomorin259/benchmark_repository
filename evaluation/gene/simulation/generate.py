@@ -1,7 +1,6 @@
-"""Generate the three study simulation inputs as independent random realizations.
+"""Generate additional datasets for the three study simulation scenarios.
 
-This module owns simulation only.  PCA, scVelo preprocessing, and plots are
-deliberately separate downstream operations and are not run here.
+Scenario parameters and randomness settings are recorded in config.json.
 """
 import argparse
 import hashlib
@@ -93,8 +92,7 @@ def generate(scenario_name, output_root):
     import celldancer.simulation as cs
     import pandas as pd
 
-    # CellDancer 1.1.7 and the study parameter sampler both use NumPy's global
-    # random stream.  The study design intentionally does not initialize it.
+    # CellDancer 1.1.7 and the parameter sampler use NumPy's global random stream.
     frames = []
     counts = scenario["genes"]
     stem = None

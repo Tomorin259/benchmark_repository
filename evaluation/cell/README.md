@@ -102,9 +102,8 @@ alignment, fixed graph, reference moments, metrics and parity checks as Cell.
   and the trained model's unspliced extraction. Extraction is not a training
   switch. Dentategyrus_lamanno outputs share 1,290 of their 1,291 genes.
 
-These comparisons measure output-workflow sensitivity; they do not isolate
-appending an unspliced layer or scaling alone.
-The supplementary results leave the canonical 280 rows unchanged.
+These comparisons evaluate the complete output workflows described above.
+The 21 supplementary rows are stored separately from the primary 280-row table.
 
 ```bash
 python evaluation/cell/run_cell_metrics.py \
@@ -122,7 +121,7 @@ python evaluation/cell/run_cell_metrics.py \
 ## Website previews
 
 [streams/preview_manifest.json](streams/preview_manifest.json) binds the 280
-previews to exact input identities. Previews add displays, not scores.
+previews to exact input identities and their stored Cell scores.
 Rebuild with the scVelo 0.2.5 indicators environment in a separate checkout:
 
 ```bash

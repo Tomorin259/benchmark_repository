@@ -25,8 +25,8 @@ source's cell/gene scope.
 
 The [reference-gene usage tables](kinetics_reference_gene_usage/README.md)
 describe the expanded 250-gene RPE1 and 270-gene organoid evaluation, selected
-Figure 6 display flags, and valid/undefined/unavailable coverage. They do not
-contain the original reference trajectories or describe every training gene.
+Figure 6 display flags, and valid/undefined/unavailable coverage. Original rate
+trajectories are obtained through the upstream reference-table route.
 
 ## File identities and layouts
 
@@ -39,12 +39,9 @@ contain the original reference trajectories or describe every training gene.
 | [release_map.tsv](release_map.tsv) | Logical artifacts and materialization paths |
 | [artifacts.tsv](../artifacts.tsv) | Artifact identity, checksum and registered access |
 
-Current publisher downloads and Excel-to-CSV conversions have not been
-verified as byte-identical to the benchmark's three reference CSVs.
-The [reference guide](UPSTREAM_REFERENCES.md) explains how to handle a mismatch.
-For packaged results, archive/member hashes and logical aliases are described
-once in [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md); planned inventory does not
-establish current download availability.
+The [reference guide](UPSTREAM_REFERENCES.md) describes the expected benchmark
+CSV format and checksums. [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md) explains
+archive/member hashes, logical aliases and the current availability index.
 
 ## Release preparation
 
@@ -56,4 +53,4 @@ python data/prepare_release.py --artifact-root /path/to/velocity-artifacts \
 ```
 
 Add `--build` to create a lossless TAR.GZ after source checks pass.
-The tool does not upload files or register public URLs.
+Publish the resulting package and register its download URL as a separate release step.

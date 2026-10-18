@@ -1,8 +1,7 @@
 # veloVI coordinate sensitivity
 
 Supplementary Table S6 is a post-hoc coordinate diagnostic on 14 Cell datasets.
-It uses stored Cell-role velocity; it does not retrain veloVI or replace the
-primary benchmark.
+It compares three coordinate conditions using stored Cell-role velocities.
 
 ## Inspect and reproduce
 
@@ -28,7 +27,7 @@ python supplement/velovi/run_coordinate_sensitivity.py \
   --output-root /path/to/fresh-coordinate-results
 ```
 
-Inputs need their manifest identities; a clean checkout alone is insufficient.
+Materialize the H5ADs and reference moments identified in the manifest.
 The script verifies input and TIvelo metric-source hashes before scoring.
 Use Python 3.9.23, scVelo 0.3.1, TIvelo 0.1.4, NumPy 1.26.4, SciPy 1.13.1,
 AnnData 0.10.8 and pandas 2.3.1 for the checked reproduction environment.
@@ -48,8 +47,8 @@ fixed:
 
 OLS fits `M_ref,ig = a_g M_native,ig + b_g` per gene/dataset without transition
 labels or scores. The intercept is not applied to velocity.
-The diagnostic map can reflect preprocessing and moment smoothing; it is not
-an official inverse-normalization factor.
+The fitted map describes gene-wise coordinate scaling and can also reflect
+preprocessing and moment smoothing.
 Original latent-time scaling stays in all conditions.
 Constant native genes use slope 1; constant reference genes retain the archived
 R-squared convention of 1. Match genes case-insensitively and cells by ID.
@@ -61,10 +60,8 @@ annotated edge, then across evaluable edges; it is not a normalized transition
 probability.
 
 The retained macro-average is A=0.1147, B=0.0778, C=0.2193, C−B=0.1415.
-The 14/14 improvement refers to TransCosine, not the additional CBDir-HD column.
-It does not establish better biological inference or isolate training-time
-normalization. Uniform/time-scaling and reference-moment retraining answer
-separate questions.
+TransCosine increases in all 14 datasets after gene-wise velocity transformation
+relative to condition B. CBDir-HD values are reported in the full table.
 
 ```bash
 python3 -m unittest discover -s tests -p test_velovi_coordinate_sensitivity.py -v

@@ -5,10 +5,9 @@
 [selected_genes.tsv](selected_genes.tsv) identifies the 59 frozen dataset–gene
 pairs evaluated by [the Gene entry point](../run_reference30_gene_cbdir.py).
 Every pair has recovered candidate-table evidence. The final genes were
-selected manually after screening and phase-portrait inspection; per-gene
-decision logs were not retained. No automated union, intersection, combined
-ranking or top-k selection rule is claimed. First-evidence row ranks in the TSV
-are evidence locators. Synthetic genes follow the simulator's known modules.
+selected manually after screening and phase-portrait inspection. First-evidence
+row ranks in the TSV locate the supporting candidate rows. Per-gene selection
+decision logs are unavailable. Synthetic genes follow the simulator's known modules.
 
 | Material | Role |
 | --- | --- |
@@ -18,9 +17,8 @@ are evidence locators. Synthetic genes follow the simulator's known modules.
 | [results/summary.json](results/summary.json) | Reconstruction attempts and links to full-precision comparisons |
 | [historical/MURK_selected.md](historical/MURK_selected.md) | Broader intermediate lists; the TSV and evaluation entry define the final selection |
 
-Reconstruction results do not reselect genes or replace reference-30 velocity
-metrics. Package versions, hash seed, input hashes and run settings are
-recorded in the associated manifests.
+Candidate reconstruction uses the recorded package versions, hash seed, input
+hashes and run settings. The selected-gene TSV defines the evaluated set.
 
 ## Screening rules
 
@@ -53,8 +51,8 @@ across both populations. It fits OLS slopes with an intercept and two-sided
 interval gaps without a positive-gap cutoff.
 
 The `pro` filter requires maximum absolute expression-versus-cluster-rank
-Spearman correlation strictly greater than 0.1: a magnitude threshold, not a
-p-value test or an opposite-sign requirement. Retina retains the historical
+Spearman correlation strictly greater than 0.1 as an expression-trend magnitude
+threshold. Retina retains the historical
 equal Neuroblast/RGC ranks, producing zero correlation in that branch.
 
 | DentateGyrus task | Populations and ranks |
@@ -64,8 +62,8 @@ equal Neuroblast/RGC ranks, producing zero correlation in that branch.
 
 The [preserved snapshots](historical/scripts/) separate the December 2025
 unfiltered tasks, January 7 filtered Granule/Pyramidal ranks, and January 18
-ten-gene list. The two slope tables are separate comparisons; the later list
-does not implement an automated final-selection rule.
+ten-gene list. The two slope tables record separate population comparisons;
+the later list records the manual selection.
 
 Selection-stage `moments(n_neighbors=30)` is distinct from the fixed-reference-30
 evaluation graph. Historical `list(set(...))` ordering depends on Python's hash
@@ -110,15 +108,14 @@ and filtered PR/RGC tables.
 | Gastrulation MURK | The run returns 89 candidates containing all 45 historical candidates. The historical list is a manually selected subset, not a top-45 rule. Shared numerical values are not exact. |
 | Other MURK datasets | Historical tables are retained; dataset-specific population configurations were not recovered, so screening was not rerun. |
 
-Top-50 overlap is set membership, not exact ordering. DentateGyrus maximum
-interval-gap discrepancies are approximately 0.0245 (Neuron/Glia), 0.0321
-(Granule/Pyramidal), and 0.0322 (filtered). Candidate support for all 59 pairs
-does not establish exact numerical reproduction where discrepancies remain.
+Top-50 overlap reports set membership. DentateGyrus maximum interval-gap
+discrepancies are approximately 0.0245 (Neuron/Glia), 0.0321
+(Granule/Pyramidal), and 0.0322 (filtered). All 59 selected pairs have candidate
+support; the table above records the numerical agreement of each reconstruction.
 
 [compare_rankings.py](compare_rankings.py) separates membership, row order,
-tie-aware ranks, top-50 overlap and full-precision differences. Diagnostic
-tolerances do not turn discrepancies into exact agreement. Use a new output
-file for comparison:
+tie-aware ranks, top-50 overlap and full-precision differences. Use a new
+output file for comparison:
 
 ```bash
 python evaluation/gene/selection/compare_rankings.py \

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Diagnose TIvelo gene-level direction on the frozen simulation outputs.
 
-This is a read-only analysis of existing method H5ADs and benchmark tables. It
-does not refit TIvelo, change the evaluation, or replace publication results.
+Read the saved method H5ADs and benchmark tables to summarize directionality.
 """
 
 import argparse

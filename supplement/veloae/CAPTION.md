@@ -17,5 +17,4 @@ velocities. Axis ranges are dataset-specific, and arrows are scaled and
 length-capped for display; arrow lengths must not be compared across datasets.
 
 The repository keeps the A and B source assets and their provenance. The final
-page-level composite is assembled separately and is not represented by an
-additional C panel in the manuscript.
+two-panel composite uses manual author assembly.

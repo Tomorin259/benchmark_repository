@@ -43,9 +43,8 @@ root. Results include per-dataset scores, edge details, neighbor assets and
 audit/provenance records. The committed reference-neighbor NPZs allow graph
 inspection without the original H5ADs.
 
-To generate a new simulation realization, use the separate
-[simulation generator](simulation/README.md). It is intentionally unseeded;
-new outputs do not replace the canonical simulation inputs.
+The benchmark uses the registered simulation H5ADs. Use the
+[simulation generator](simulation/README.md) to create additional datasets.
 
 ## Render summaries and phase portraits
 
@@ -87,11 +86,11 @@ without neighborhood velocity smoothing:
 Real plotting copies replace NaN/Inf velocities by zero and clip to ±1e10;
 simulation vectors keep their native values. Reference H5ADs supply cluster
 labels/colors, including the retained equal-length label-assignment fallback.
-Source H5ADs are not saved or modified. Summary jitter affects display only.
+Rendering uses copies of the source arrays. Summary jitter affects display only.
 
 Exports include `scores_used.csv`, `provenance.json` and
 `assembly_manifest.tsv`. They recreate scripted comparison panels and
-summaries, not retained raw phase plates or whole manually assembled PDFs.
+summaries. Final composites follow the assembly steps in the figure map.
 Figure 4D's final paired Cell/Gene panel belongs to
 [Simulation Cell](../cell/simulation/README.md).
 

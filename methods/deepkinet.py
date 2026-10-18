@@ -7,9 +7,8 @@ cell/gene panel is retained and aligned raw counts are substituted without
 rounding.  The other ten datasets follow the official tutorial's single
 scVelo ``filter_and_normalize`` call before the same raw-count substitution.
 
-The official tutorial does not prescribe a global seed.  The published
-benchmark result is frozen with seed 123 and deterministic PyTorch/CUDA
-settings so that dataset order cannot change the formal result.
+The benchmark uses seed 123 and deterministic PyTorch/CUDA settings, with
+the seed reset before each dataset.
 """
 
 import json

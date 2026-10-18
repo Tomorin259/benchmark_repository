@@ -2,7 +2,7 @@
 
 [Open the website](https://tomorin259.github.io/benchmark_repository/).
 The Vue site displays committed scores, registered images and saved trajectories.
-Python export prepares static data; visitors do not run H5AD analysis.
+Python export prepares the static data consumed by the Vue pages.
 
 ## Build and preview
 
@@ -38,22 +38,21 @@ Run the SSH command from your computer, then open `http://127.0.0.1:4174/`.
 | Kinetics | Canonical scores, selected Figure 6 plot-data and [expanded-reference results](../evaluation/kinetics_recovery/results/expanded_reference/README.md) are separate scopes |
 | Overall | [Committed Figure 7 summaries](../evaluation/summary/README.md), using original-scale scores |
 | Ensemble | [Frozen scores/ranks](../ensemble/README.md); both variants remain outside the method registry |
-| Cross-level | Committed simulation case rows and selected real-data case images; full-dataset links do not relabel scores as selected-edge values |
+| Cross-level | Committed simulation case rows and selected real-data gene–transition images, with links to the corresponding dataset-level results |
 | Diagnostics | Registered veloAE, veloVI and TIvelo materials |
 | Downloads | Curated tables, registered final/summary figures and [actual data access](../data/README.md) |
 
-Filtering changes display rows, not scientific scores or stored means.
+Filters select display rows; summary statistics come from the stored tables.
 Nonfinite values become JSON `null` and display as an em dash.
 Values display to four decimals and sort at source precision.
 Canonical kinetics branch/system weighting, common-valid memberships and
-coverage come from their owning tables; filters do not recompute intersections.
+coverage come from their owning tables.
 Labelled Dynamo has a distinct identity from the RNA-seq configuration.
 
 Cell Forebrain streamlines show PC1/PC2 of the full PCA30 projection used by
 CBDir; BATC uses shared UMAP2. Simulation Cell and its 27 rows are separate
 from the real-data summary.
-RPE1 turnover strategy uses the exact 250-gene memberships and fixed Macro-F1;
-searching genes does not redefine the classification universe.
+RPE1 turnover strategy uses the stored 250-gene memberships and Macro-F1.
 
 ## Regenerate saved visuals
 
@@ -70,22 +69,20 @@ python site/export_visuals.py --output site/public/visuals \
 The destination must be empty; preserve the old bundle outside `public/`
 before replacing it. Cell previews use
 [render_stream_previews.py](../evaluation/cell/README.md#website-previews).
-No methods are trained or benchmark metrics recalculated.
+The visual exporter renders the stored outputs and scores.
 
 RPE1 display curves are independently z-scored with sample SD and keep their
 own 0–1 grids; Dynamo has 290 positions. Organoid prediction ratios and Table S4
 references keep separate labelled axes and gaps, without interpolation.
-Isolated TSvelo organoid trajectories must match the expanded table's 74 rows
-and undefined reasons; they add no canonical/selected scores.
-Kinetics velocity-field images retain their Figure 6 input roles and do not
-borrow canonical Cell scores.
+TSvelo organoid trajectories match the expanded table's 74 rows and undefined
+reasons. Kinetics velocity-field images use the Figure 6 inputs and their
+kinetic-recovery analysis roles.
 
 ## Content and checks
 
 [content/README.md](content/README.md) identifies reader-facing text and image
 sources. The TSV registries own names; the evaluation modules own scientific
-definitions. Update those sources before rebuilding, rather than editing
-generated JSON.
+definitions. Update the owning sources, then rebuild the exported JSON.
 
 ```bash
 python site/export_data.py
@@ -97,8 +94,7 @@ recorded scope before copying files. `manifest.json` records relative sources,
 sizes, schemas, hashes and build identity. Historical visual materialization
 and current validation commits remain distinct.
 Figures marked `pending_pdf_export` are excluded from final-figure downloads.
-Large-file links follow actual published URIs and availability records; planned
-inventory is not a completed download collection.
+Large-file links follow published URIs and the current availability index.
 
 Navigation supports summary/single-gene views, phase/trajectory inspection and
 Cell method comparison. Share links retain selected task, scope and display

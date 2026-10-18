@@ -44,7 +44,7 @@ Missing labels or malformed arrays stop rendering.
 A is exported at 180 mm/600 dpi; the B export retains its native 300-dpi panels.
 [results/ppt_assets_final/](results/ppt_assets_final/) contains the accepted
 source materials and manifest. [CAPTION.md](CAPTION.md) retains caption text.
-The final whole-page PDF remains a separate author assembly with incomplete
-independent reconstruction; no panel C is part of the current figure.
+The final two-panel PDF uses manual author assembly. Independent reconstruction
+of the whole-page layout remains incomplete.
 Superseded layouts are retained at
 [revision 51edf35](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/supplement/veloae/archive/non_online_20260927).

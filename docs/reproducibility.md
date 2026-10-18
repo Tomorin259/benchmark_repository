@@ -15,8 +15,8 @@ settings live in the linked module guides.
 
 Start with the [data guide](../data/README.md). It distinguishes direct input
 downloads, upstream-only references and packaged method outputs.
-Materialize files at the logical paths expected by the selected evaluator;
-archive grouping paths are not automatically valid evaluator roots.
+Map extracted archive members to the logical input paths expected by the
+selected evaluator.
 
 A method produces a native result; evaluation consumes its recorded layers,
 cell/gene IDs and embeddings, then writes compact tables and panels.
@@ -31,21 +31,21 @@ also require manual assembly.
 | Files, layers and alignment used in a comparison | The evaluation module's input map and configuration |
 | Numerical processing and aggregation | The producing module's README and code |
 
-## Randomness and reproducibility limits
+## Randomness and saved results
 
-Use the [environment guide](environments.md) and record the configuration
-used for a rerun. There is no common random seed across the benchmark:
-DeepKINET uses its documented seed-123 deterministic configuration, while
-new simulation generation intentionally leaves the stream unseeded.
+Method-specific randomness settings are listed in
+[methods/configurations.tsv](../methods/configurations.tsv). To recalculate the
+reported scores, use the saved method outputs and reference assets identified
+by the module input maps and manifests. Simulation generation produces new
+realizations; the registered historical H5ADs identify the benchmark inputs.
 
-Reusing a fixed canonical input and generating a new realization are different
-operations. Structural agreement or matching rounded scores does not establish
-byte identity. Kinetics uses the frozen `central_results` inputs, the corrected
-organoid reference direction and the labelled-data Dynamo exceptions described
-in its module guide. Small cross-runtime full-table differences in DeepKINET
-have not been assigned a cause.
+Kinetics uses the `central_results` inputs, the corrected organoid reference
+direction and the labelled-data Dynamo control described in its module guide.
+The [historical comparison](../evaluation/kinetics_recovery/plotting/README.md#historical-comparison)
+documents cross-runtime numerical differences.
 
-Use fresh output directories. Run relevant checks before promoting a new
+Use the [environment guide](environments.md) and fresh output directories.
+Run relevant checks before promoting a new
 result or figure; the [figure map](figure_map.md) distinguishes numerical
 rendering from retained author exports.
 

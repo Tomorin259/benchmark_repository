@@ -220,15 +220,19 @@ def plot_cross_level(summary: pd.DataFrame, method_order: list[str],
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=HERE / "figures")
+    parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--cross-level-only", action="store_true")
     args = parser.parse_args()
+    out = args.output_dir.expanduser().resolve()
+    if out.is_relative_to(REPO) and not out.is_relative_to(REPO / "outputs"):
+        parser.error("--output-dir must be outside the repository or under outputs/")
+    if out.exists() and (not out.is_dir() or any(out.iterdir())):
+        parser.error("--output-dir must be an empty directory; use a new directory")
     plt.rcParams.update({"font.family": "DejaVu Sans", "pdf.fonttype": 42,
                          "ps.fonttype": 42, "svg.fonttype": "none"})
     cell, summary, method_order, display = load_summary()
-    out = args.output_dir
     out.mkdir(parents=True, exist_ok=True)
-    summary.to_csv(HERE / "results/cross_level_summary.csv", index=False,
+    summary.to_csv(out / "cross_level_summary.csv", index=False,
                    float_format="%.17g")
     if not args.cross_level_only:
         plot_cell(cell, method_order, display, out)

@@ -48,7 +48,7 @@ FIT_OPTIONS_TO_RUN = ["1", "2"]
 OUTPUT_DIRECTORY = {"1": "unitvelo", "2": "unitvelo_mode2"}
 GPU_INDEX = 0
 
-# These are dataset-boundary mappings, not a generic adapter. All 14 inputs
+# Fixed dataset inputs and annotation mappings. All 14 inputs
 # already expose spliced and unspliced. label_key supplies the standard
 # clusters column used by UniTVelo. Forebrain receives X_pca after UniTVelo
 # preprocessing because its source loom has no precomputed embedding.

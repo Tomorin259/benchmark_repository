@@ -4,7 +4,7 @@
 Select the historical Cell or Gene workflow explicitly. Cell uses the package
 training defaults and per-gene time scaling; Gene uses the separate historical
 training settings and exports unscaled spliced and unspliced velocities.
-Shared preprocessing and the absence of an extra global seed are retained.
+Both roles retain the shared preprocessing workflow.
 """
 
 import argparse
@@ -29,8 +29,7 @@ from velovi import VELOVI, preprocess_data
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 
-# Edit this list for a focused rerun. veloVI's tutorial does not prescribe an
-# extra global seed, so none is set here.
+# Edit this list for a focused rerun.
 DATASETS_TO_RUN = [
     "bonemarrow",
     "capo_pre",
@@ -48,9 +47,8 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These mappings are the fixed data boundary of this benchmark, not a generic
-# adapter. ``embedding_key=None`` means that preprocessing creates X_pca, which
-# is then used as the stored embedding (the legacy Forebrain convention).
+# Fixed dataset inputs and annotation mappings. ``embedding_key=None`` means
+# preprocessing creates X_pca, retained as the stored embedding for Forebrain.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
