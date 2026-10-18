@@ -1,11 +1,10 @@
 # Native result downloads
 
-The [Hugging Face output repository](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-publishes files in verified batches. Its
-[availability index](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/available_files.tsv)
-lists committed and verified packages; the
-[upload status](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/UPLOAD_STATUS.json)
-records progress toward the complete collection.
+The [Hugging Face output release v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0)
+is complete. All 338 scientific download objects have been committed and their
+remote sizes and SHA-256 identities verified. Source and extracted-member
+hashes were checked during packaging; representative anonymous downloads
+were verified before creating the release tag.
 
 The frozen selection contains 384 original scientific files: 370 H5AD and
 14 NPZ, totaling 252,148,325,990 source bytes. Distribution uses 324 lossless
@@ -14,7 +13,15 @@ bytes. These are method outputs and evaluation assets; original-format
 benchmark inputs remain in the separate
 [input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs).
 
-The output repository provides:
+Choose downloads and their original files through:
+
+- [result_package_manifest.tsv](result_package_manifest.tsv): 338 actual
+  package URLs pinned to `v1.0.0`, their sizes and package SHA-256 values.
+- [result_member_manifest.tsv](result_member_manifest.tsv): 384 original
+  scientific files, their package IDs, archive member paths, original hashes,
+  evaluation roles, registered aliases and source locators.
+
+The output repository also provides:
 
 - `available_files.tsv`: actual committed objects, sizes, SHA-256 values and
   immutable download URLs. Download only the packages you need.
@@ -37,11 +44,17 @@ and original-file hashes identify different byte streams**; native artifact
 hashes in `artifacts.tsv` are not replaced by compressed-package hashes.
 Large members use standard POSIX PAX extensions. NPZ files need no TAR
 extraction. Allow space for both the archive and extracted data.
+The largest archive is about 18.81 GB and contains an approximately 32.13 GB
+H5AD; allow room for both while verifying it.
 
 Map extracted members to the evaluator's expected logical source paths using
 `source_locator`, registered artifact IDs and the owning module README.
 Arrange the extracted files under the evaluator's input root. Files shared by
 several evaluations are stored once, with their logical aliases retained.
+Join a registered artifact ID to `registered_artifact_ids` in the member
+manifest, then join `package_id` to the package manifest. The native artifact
+hash identifies the original member; its URI stays empty when that original
+file is transported inside a TAR.GZ rather than served individually.
 
 The selection is frozen at code commit
 `0e38d4fef12f71d8e879088de1b15e5510cc40a5`. It covers Cell outputs,

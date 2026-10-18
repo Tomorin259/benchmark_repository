@@ -7,7 +7,7 @@ reproduction. Paths must match the selected module's input layout.
 | --- | --- | --- |
 | Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
 | Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
-| Saved method outputs and evaluation assets | [Hugging Face results](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results) | Consult the actual availability index and [extraction guide](RESULT_DOWNLOADS.md) |
+| Saved method outputs and evaluation assets | [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
 | Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |
 
 ## Canonical inputs
@@ -38,6 +38,8 @@ tables use the corresponding `paper_name`.
 | [datasets.tsv](datasets.tsv) | Dataset ID, role, dimensions and upstream source |
 | [input_file_manifest.tsv](input_file_manifest.tsv) | Direct URLs, paths, sizes and hashes for the 25 mirrored files |
 | [input_release_manifest.tsv](input_release_manifest.tsv) | All 28 logical input dependencies and processing roles, including three upstream-only references |
+| [result_package_manifest.tsv](result_package_manifest.tsv) | 338 result-package URLs, sizes and archive SHA-256 values for the verified output release |
+| [result_member_manifest.tsv](result_member_manifest.tsv) | 384 original scientific files, their packages, member sizes/hashes, source locators and logical aliases |
 | [upstream_references.tsv](upstream_references.tsv) | Original table identity, expected benchmark CSV hashes and supported layouts |
 | [release_map.tsv](release_map.tsv) | Logical artifacts and materialization paths |
 | [artifacts.tsv](../artifacts.tsv) | Artifact identity, checksum and registered access |

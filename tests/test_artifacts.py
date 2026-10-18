@@ -25,6 +25,9 @@ def read_artifacts():
 
 def test_artifact_registry_schema_and_paths():
     rows = read_artifacts()
+    with (ROOT / 'data/result_member_manifest.tsv').open(newline='') as handle:
+        packaged = {identifier: member for member in csv.DictReader(handle, delimiter='\t')
+                    for identifier in member['registered_artifact_ids'].split(';') if identifier}
     assert rows
     ids = [row["artifact_id"] for row in rows]
     assert len(ids) == len(set(ids))
@@ -44,7 +47,11 @@ def test_artifact_registry_schema_and_paths():
                 assert row['uri'].startswith('https://')
                 assert 'File size/SHA-256' in row['notes']
             else:
-                assert 'Zenodo URI' in row['notes'] or 'Upstream-only' in row['notes']
+                if row['artifact_id'] in packaged:
+                    assert row['sha256'] == packaged[row['artifact_id']]['member_sha256']
+                    assert 'Package transport: data/result_member_manifest.tsv' in row['notes']
+                else:
+                    assert 'Zenodo URI' in row['notes'] or 'Upstream-only' in row['notes']
 
 
 def test_registry_has_no_deprecated_variant_and_formal_ensemble_is_available():

@@ -219,7 +219,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(len(tables), 17)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
-        self.assertEqual(len(metadata), 9)
+        self.assertEqual(len(metadata), 11)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
         self.assertEqual(len(analyses), 5)
@@ -229,6 +229,8 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
         self.assertEqual({r['path'] for r in metadata}, {
             'data/RESULT_DOWNLOADS.md',
+            'data/result_package_manifest.tsv',
+            'data/result_member_manifest.tsv',
             'data/input_release_manifest.tsv',
             'data/input_file_manifest.tsv',
             'data/upstream_references.tsv',
@@ -258,6 +260,27 @@ class SiteExportTests(unittest.TestCase):
         self.assertFalse({r['artifact_id'] for r in references} & {f['artifact_id'] for f in files})
         self.assertTrue(all(f['url'].endswith(f['path'] + '?download=true') for f in files))
         self.assertFalse(any('.tar.gz' in f['url'] for f in files))
+
+    def test_result_packages_preserve_archive_and_member_identities(self):
+        packages = self.payload['result_packages']
+        members = self.payload['result_members']
+        self.assertEqual(len(packages), 338)
+        self.assertEqual(len(members), 384)
+        self.assertEqual(sum(row['bytes'] for row in packages), 149558222960)
+        self.assertEqual(sum(row['member_bytes'] for row in members), 252148325990)
+        self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 324)
+        self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
+        indexed = {row['package_id']: row for row in packages}
+        for package in packages:
+            selected = [row for row in members if row['package_id'] == package['package_id']]
+            self.assertEqual(len(selected), package['scientific_files'])
+            self.assertEqual(sum(row['member_bytes'] for row in selected), package['source_bytes'])
+        registry = {row['artifact_id']: row for row in self.payload['artifacts']}
+        for member in members:
+            self.assertIn(member['package_id'], indexed)
+            self.assertNotIn('..', Path(member['archive_member']).parts)
+            for identifier in member['registered_artifact_ids'].split(';') if member['registered_artifact_ids'] else []:
+                self.assertEqual(registry[identifier]['sha256'], member['member_sha256'])
 
     def test_visual_source_or_asset_drift_blocks_publication(self):
         with tempfile.TemporaryDirectory() as directory:

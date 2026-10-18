@@ -37,8 +37,10 @@ Run commands from the repository root and use a fresh output directory.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
 - [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-  have a dated [availability index](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/blob/main/available_files.tsv).
-  Check that index for the files needed by your task and follow the
+  are available as the verified `v1.0.0` release: 338 download objects,
+  totaling 149.56 GB. Select packages from the
+  [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ
+  files through the [member manifest](data/result_member_manifest.tsv), and follow the
   [download and extraction guide](data/RESULT_DOWNLOADS.md).
 - Committed tables support inspection and several CSV-only plotting workflows.
   Recomputing metrics requires the saved H5AD outputs and reference inputs;

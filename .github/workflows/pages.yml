@@ -16,6 +16,8 @@ on:
       - data/release_map.tsv
       - data/input_release_manifest.tsv
       - data/input_file_manifest.tsv
+      - data/result_package_manifest.tsv
+      - data/result_member_manifest.tsv
       - data/upstream_references.tsv
       - data/RESULT_DOWNLOADS.md
       - data/UPSTREAM_REFERENCES.md
