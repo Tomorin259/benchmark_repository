@@ -41,10 +41,8 @@ Forebrain Cell CBDir uses all 30 shared PCs; BATC uses shared UMAP2.
 Real/Sim Gene validation permits absolute tolerance `1e-12` for unrounded
 means and SDs. Counts, labels, coverage and four-decimal transfer fields
 remain exact checks.
-`refresh_sim_cbdir_summary.py` validates both CBDir and CosSim, including their
-matching 630 gene keys. The eight unaffected methods retain the original
-five-decimal CosSim inputs. Refreshing a value that already agrees within
-tolerance preserves its existing representation.
+CBDir and CosSim are aligned by dataset/method/gene across 630 rows.
+Aggregation uses the stored source values before display formatting.
 
 ## Final chart assembly
 

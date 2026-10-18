@@ -31,6 +31,3 @@ environment records identify the packages inspected in each recorded runtime.
 
 Source-backed TFvelo, TSvelo and DeepKINET workflows also need the recorded
 source tree or release. Historical source revisions are identified where recovered.
-A usable specification must identify its configuration, Python and key
-dependencies, any CUDA/hardware constraints, and a checked invocation. Preserve
-upstream license notices and keep private installation paths out of public files.

@@ -56,9 +56,7 @@ The runner writes primary/supplementary scores, source audits, edge details and
 TIvelo parity. Extended edge details retain native CBDir edge means/counts and
 BATC pre-max candidate means/winner counts. Complete Forebrain runs also write
 its PCA edge table and manifest. Resume requires matching inputs, code,
-configuration, metric spaces and extended details; old incompatible caches
-are recomputed. Incomplete Forebrain staging runs remove stale complete-run
-audit claims.
+configuration, metric spaces and extended details.
 
 ## Metric coordinates and numerical policy
 

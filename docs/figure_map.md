@@ -5,10 +5,9 @@ reproduction commands. Final composites and experiment-level source panels
 have different reconstruction requirements.
 
 [Author-export records](../figures/assembly/pending_exports.json) identify the
-current editable assemblies and completed WPS PDF exports, including page-box
-crops and content-stream hashes. Numerical panels remain reproducible from
-their source modules; whole-figure layout and PDF export use the retained
-editable assemblies and the recorded manual steps.
+editable assemblies, final PDFs and export settings. Use the source modules
+for numerical panels and the retained editable assemblies for whole-figure
+layout and PDF export.
 
 ## Main figures
 
@@ -16,7 +15,7 @@ editable assemblies and the recorded manual steps.
 | --- | --- | --- | --- |
 | 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Retained author source](../figures/assembly/fig1/authoring/source.pptx); independent sources for the corrected final panels are incomplete |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
-| 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); three source-rendered selected-edge panels and the completed author PDF export are registered |
+| 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
 | 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
 | 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/) | Quantitative panels are scripted; labelled Dynamo A/E streams retain manual assets |
@@ -50,7 +49,7 @@ remains in the manuscript project.
 
 | Table | Subject | Repository source |
 | --- | --- | --- |
-| S1 | Method versions and execution settings | [Method registry and launchers](../methods/README.md), [environment limits](environments.md) |
+| S1 | Method versions and execution settings | [Method registry and launchers](../methods/README.md), [environment guide](environments.md) |
 | S2 | Dataset descriptions | [Dataset registry](../data/datasets.tsv), [simulation configuration](../evaluation/gene/simulation/config.json) |
 | S3 | Cell scores, continued across parts | [Primary Cell table](../evaluation/cell/results/cell_metrics.csv) |
 | S4 | Cross-dataset Cell summaries | [Summary guide](../evaluation/summary/README.md) |
@@ -69,7 +68,6 @@ verification scope; [the Gene panel manifest](../evaluation/gene/figures/panels/
 records Gene panel/score bindings.
 
 Use [material export](../figures/assembly/README.md) for fresh source copies.
-After updating a source panel, assemble and export the corresponding composite.
 Figure-specific source availability is recorded in the table and manifests above.
 Historical kinetics assets named Figure 5 belong to the
 former numbering; current parameter recovery is Figure 6.

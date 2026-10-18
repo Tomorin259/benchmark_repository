@@ -1,9 +1,11 @@
 # Canonical gene panels
 
-This directory contains the paper-used Gene panels as ordinary repository
-files. The panel manifest records each paper-panel mapping and SHA256 value.
+Paper-used Gene panels and their source bindings are recorded in
+[assembly_manifest.tsv](assembly_manifest.tsv).
+[current_generation.json](current_generation.json) identifies their generating
+scripts and score sources.
 
-All phase-portrait panels use the enlarged canonical display contract:
+Phase-portrait arrow lengths use these display settings:
 
 ```text
 log1p compression
@@ -12,7 +14,6 @@ reference length: 0.05
 maximum length: 0.10
 ```
 
-This transformation changes only the display vectors; it does not alter CBDir
-or any source H5AD layer. External method results are referenced through logical artifact
-locators in `provenance.json`, so the panel files do not depend on a machine
-specific filesystem path.
+These settings transform display vectors; CBDir uses the numerical velocities.
+[provenance.json](provenance.json) identifies external method outputs through
+logical artifact locators.

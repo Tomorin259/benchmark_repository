@@ -21,13 +21,12 @@ artifacts. Their public locators use `artifact://velocity/<relative-path>`;
 the evaluator accepts the artifact root through `--artifact-root` or
 `VELOCITY_ARTIFACT_ROOT`.
 
-The updated scores cover 47 real and 70 simulated veloVI genes, with 1,405
-edge rows. The other eight methods retain their historical row values.
+veloVI scores cover 47 real and 70 simulated genes, with 1,405 edge rows.
 `old_cbdir` and `old_edge_score` remain the earlier comparison scores, so their
 deltas include neighbor changes and, for veloVI, unit restoration.
 [unit_restoration/provenance.json](unit_restoration/provenance.json) records
-the 234 exact-forward axis factors, paired native/restored scores, original
-input hashes, unchanged masks/counts and an exact current-code replay.
+234 axis factors, paired native/restored scores, input hashes, scoring masks
+and counts, and the numerical replay.
 [The historical provenance](unit_restoration/historical_reference30_provenance.json)
 retains the original generation identity and neighbor metadata.
 
@@ -35,8 +34,8 @@ retains the original generation identity and neighbor metadata.
 and retains the historical CBDir values. Its 630 rows originated from the three
 upstream `results_new/score_rerun_results.txt` files (branching: 180,
 murk: 90, all: 360), with columns Dataset, Gene, Method_raw, Method, CBDir,
-and CosSim. Only the 70 veloVI CosSim fields now use restored units. The
-historical direct-source hash remains separate from the current table hash in
+and CosSim. The 70 veloVI CosSim values use restored units; the other 560
+values retain their upstream source. Historical source and current table hashes are in
 [the compact-table provenance](simulation/gene_cbdir_cossim_reference.provenance.json).
 The external historical sources remain in the
 [historical panel provenance](../figures/panels/provenance.json). The
