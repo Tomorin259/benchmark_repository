@@ -20,3 +20,8 @@ Result downloads use the verified `data/result_package_manifest.tsv` and
 and `result_members` and copies both manifests into Technical resources.
 Archive hashes and original H5AD/NPZ member hashes remain separate; no
 training or metric calculation is performed by the exporter.
+
+The Full method outputs section reads `result_packages`, with dataset,
+registered-method and output-type filters, 25 packages per page, explicit
+TAR.GZ/NPZ download buttons, package sizes and SHA-256 values. Native H5AD
+artifact URIs are not used as archive download links.
