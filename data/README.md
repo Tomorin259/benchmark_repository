@@ -5,7 +5,7 @@ reproduction. Paths must match the selected module's input layout.
 
 | Needed material | Access | Next step |
 | --- | --- | --- |
-| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution `v1.0.2` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
+| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
 | Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
 | Saved method outputs and evaluation assets | [Hugging Face results](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results) | Consult the actual availability index and [extraction guide](RESULT_DOWNLOADS.md) |
 | Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |

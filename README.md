@@ -33,7 +33,7 @@ Run commands from the repository root and use a fresh output directory.
 ## Data and reproducibility
 
 - [Canonical inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
-  provide 25 original-format files at distribution `v1.0.2`.
+  provide 25 original-format files at distribution `v1.0.0`.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
 - [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
