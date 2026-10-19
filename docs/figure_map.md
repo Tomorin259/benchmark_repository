@@ -13,7 +13,7 @@ layout and PDF export.
 
 | Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
-| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic | [Retained author source](../figures/assembly/fig1/authoring/source.pptx); independent sources for the corrected final panels are incomplete |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic; current cropped author export | [Historical author source](../figures/assembly/fig1/authoring/source.pptx), not asserted to reproduce the current PDF; see [composite provenance](../figures/fig1_composite_manifest.json) |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |

@@ -1,9 +1,29 @@
 {
   "figure": "fig1",
   "composite_path": "figures/figOne.pdf",
-  "composite_sha256": "335dbcabe8d28dbc6b4f0964e30703ca0ae9c807ca1e7969fdc831235a08c3f4",
-  "online_file_git_blob_sha1": "9598b19f9ad829aad2aa3f94847d86c7ac3ab036",
+  "composite_sha256": "44a1f9b33bfb86aacc74a0cc1fb44465e82ff75b30edd8993e0c9e7a4918648e",
   "source_kind": "author_exported_pdf",
-  "verification": "Exact original bytes match the online project file hash.",
-  "reproduction_boundary": "Retained final PDF is directly reusable. A final PDF is not a numerical renderer or proof of independent editable-source reconstruction."
+  "source_pdf": {
+    "filename": "图1_0909.pdf",
+    "sha256": "465a31ecb0350169d619c21306ae7b1f320ff49c260a684055310fba79309f3e",
+    "size_bytes": 2443078
+  },
+  "crop": {
+    "box_points": [0, 345.68, 540, 779.8],
+    "size_points": [540, 434.12],
+    "bottom_white_margin_points": 5,
+    "decoded_page_contents_preserved": true,
+    "text_preserved": true,
+    "render_pixels_equal_source_prefix": true,
+    "render_resolution_dpi": 300
+  },
+  "online_file_identity_verified": false,
+  "verification": "Author-exported PDF cropped without rerendering; content-stream, text and 300-dpi pixel identity checked against the uncropped source. Online replacement is author-managed and has not been independently verified.",
+  "previous_retained_pdf": {
+    "git_revision": "e886e2203417baa79479e4441a3d25ccb706f53d",
+    "path": "figures/figOne.pdf",
+    "sha256": "335dbcabe8d28dbc6b4f0964e30703ca0ae9c807ca1e7969fdc831235a08c3f4",
+    "recorded_online_git_blob_sha1": "9598b19f9ad829aad2aa3f94847d86c7ac3ab036"
+  },
+  "reproduction_boundary": "Retained final PDF is directly reusable. The historical authoring PPTX is not asserted to reproduce this current export; independent final-panel reconstruction remains incomplete."
 }

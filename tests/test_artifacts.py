@@ -265,3 +265,20 @@ def test_figure7_current_assets_are_owned_by_its_composite_manifest():
     )
     assert "figures/figSeven.pdf" not in kinetics["outputs_sha256"]
     assert kinetics["figure7_provenance"] == path
+
+
+def test_figure1_current_author_export_and_overview_agree():
+    composite = json.loads((ROOT / 'figures/fig1_composite_manifest.json').read_text())
+    current = hashlib.sha256((ROOT / composite['composite_path']).read_bytes()).hexdigest()
+    assert composite['composite_sha256'] == current
+    assert composite['source_kind'] == 'author_exported_pdf'
+    assert composite['crop']['decoded_page_contents_preserved']
+    assert composite['crop']['render_pixels_equal_source_prefix']
+    overview = json.loads((ROOT / 'site/public/overview.manifest.json').read_text())
+    assert overview['source'] == composite['composite_path']
+    assert overview['source_sha256'] == current
+    assert overview['preview_sha256'] == hashlib.sha256((ROOT / 'site/public/overview.png').read_bytes()).hexdigest()
+    with (ROOT / 'figures/assembly/assembly_manifest.tsv').open(newline='') as handle:
+        sources = [row for row in csv.DictReader(handle, delimiter='\t') if row['figure'] == 'fig1' and row['panel'] == 'whole']
+    assert len(sources) == 1
+    assert sources[0]['sha256'] == current
