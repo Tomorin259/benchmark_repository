@@ -23,5 +23,6 @@ training or metric calculation is performed by the exporter.
 
 The Full method outputs section reads `result_packages`, with dataset,
 registered-method and output-type filters, 25 packages per page, explicit
-TAR.GZ/NPZ download buttons, package sizes and SHA-256 values. Native H5AD
+TAR.GZ/NPZ download buttons and package sizes. Checksums remain in the
+downloadable manifests. Native H5AD
 artifact URIs are not used as archive download links.

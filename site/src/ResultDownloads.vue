@@ -34,7 +34,7 @@ watch([dataset, method, kind], () => { page.value = 1 })
     <p class="small muted">{{packages[0]?.release_version || 'v1.0.0'}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>
     <div class="guide-links">
       <a href="https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0" target="_blank" rel="noopener">Hugging Face release ↗</a>
-      <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction and verification guide</a>
+      <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction guide</a>
       <a href="./data/files/data/result_package_manifest.tsv" download>Package manifest</a>
       <a href="./data/files/data/result_member_manifest.tsv" download>Original file manifest</a>
     </div>
@@ -49,7 +49,6 @@ watch([dataset, method, kind], () => { page.value = 1 })
         <strong>{{file.datasetLabel}} · {{file.methodLabel || kindName(file.kind)}}</strong>
         <span class="small muted">{{kindName(file.kind)}} · {{file.format.toUpperCase()}} · {{size(file.bytes)}} · {{file.scientific_files}} original {{file.scientific_files === 1 ? 'file' : 'files'}}</span>
         <span class="small package-path">{{file.repository_path.split('/').slice(1).join('/')}}</span>
-        <details class="small checksum"><summary>Package SHA-256</summary><code>{{file.sha256}}</code></details>
       </div>
       <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download {{file.format.toUpperCase()}}</a>
     </div>
@@ -59,11 +58,11 @@ watch([dataset, method, kind], () => { page.value = 1 })
       <button class="button secondary" :disabled="page === 1" @click="page--">Previous</button>
       <button class="button secondary" :disabled="page === pageCount" @click="page++">Next</button>
     </div>
-    <p class="small muted">Verify the package SHA-256, then check extracted H5AD files against the original file manifest. Allow space for both archive and extracted files.</p>
+    <p class="small muted">Extract each TAR.GZ package into a separate folder. NPZ files can be used directly.</p>
   </section>
 </template>
 
 <style scoped>
-.result-package-row>div{min-width:0}.package-path,.checksum code{overflow-wrap:anywhere}.checksum{margin-top:7px}.checksum summary{font-size:11px;font-weight:400}.checksum code{display:block;margin-top:6px;font-size:11px}.result-package-row>a{flex-shrink:0}.pagination{margin-bottom:16px}
+.result-package-row>div{min-width:0}.package-path{overflow-wrap:anywhere}.result-package-row>a{flex-shrink:0}.pagination{margin-bottom:16px}
 @media(max-width:760px){.result-package-row{flex-wrap:wrap}.result-package-row>div{flex-basis:100%}}
 </style>
