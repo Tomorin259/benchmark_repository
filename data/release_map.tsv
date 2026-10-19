@@ -339,3 +339,10 @@ multivelo-diagnostic-branching-refit-default	multivelo-diagnostics-v1.0.0	reposi
 multivelo-diagnostic-branching-on-allow-repression	multivelo-diagnostics-v1.0.0	repository:outputs/multivelo_diagnostic_20261016/candidate_gate_branching/branching_on_allow_repression.h5ad	multivelo/branching_on_allow_repression.h5ad	source_sha_verified_20261019
 multivelo-diagnostic-all-refit-default	multivelo-diagnostics-v1.0.0	repository:outputs/multivelo_diagnostic_20261016/candidate_gate_branching/all_refit_default.h5ad	multivelo/all_refit_default.h5ad	source_sha_verified_20261019
 multivelo-diagnostic-all-on-allow-repression	multivelo-diagnostics-v1.0.0	repository:outputs/multivelo_diagnostic_20261016/candidate_gate_branching/all_on_allow_repression.h5ad	multivelo/all_on_allow_repression.h5ad	source_sha_verified_20261019
+source-data-main	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data.zip	source_data/v1.0.0/Source_Data.zip	source_sha_verified_20261019
+source-data-display-01	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_display_01.zip	source_data/v1.0.0/Source_Data_display_01.zip	source_sha_verified_20261019
+source-data-display-02	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_display_02.zip	source_data/v1.0.0/Source_Data_display_02.zip	source_sha_verified_20261019
+source-data-display-03	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_display_03.zip	source_data/v1.0.0/Source_Data_display_03.zip	source_sha_verified_20261019
+source-data-display-04	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_display_04.zip	source_data/v1.0.0/Source_Data_display_04.zip	source_sha_verified_20261019
+source-data-display-05	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_display_05.zip	source_data/v1.0.0/Source_Data_display_05.zip	source_sha_verified_20261019
+source-data-materials	figure-source-data	velocity:data_release/source_data_v1.0.0/Source_Data_materials.zip	source_data/v1.0.0/Source_Data_materials.zip	source_sha_verified_20261019

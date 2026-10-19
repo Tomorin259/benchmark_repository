@@ -170,7 +170,9 @@ and projection provenance.
 DeepKINET RPE1 may obtain aligned labels/palette from
 `results/scvelo_deterministic/scv_deterministic_rpe1.h5ad`; that file supplies
 no DeepKINET velocities. Some saved projections lack independent provenance.
-Labelled Dynamo A/E retain manual assets without automatic H5AD renderers.
+Labelled Dynamo A/E retain their original image assets. [Source Data](../../data/SOURCE_DATA.md)
+includes saved coordinates and velocities, plus a labelled RPE1 stream renderer
+that reads either the registered H5AD or its extracted arrays.
 
 The final PDF and panel bindings are in the [figure map](../../docs/figure_map.md).
 Earlier kinetics sources and comparison commands are documented in the

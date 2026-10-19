@@ -219,7 +219,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(len(tables), 17)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
-        self.assertEqual(len(metadata), 11)
+        self.assertEqual(len(metadata), 13)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
         self.assertEqual(len(analyses), 5)
@@ -228,6 +228,8 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(r['path'].endswith('.csv') for r in tables))
         self.assertTrue(all(r['path'].endswith(('.png', '.pdf')) for r in figures))
         self.assertEqual({r['path'] for r in metadata}, {
+            'data/SOURCE_DATA.md',
+            'data/source_data_manifest.tsv',
             'data/RESULT_DOWNLOADS.md',
             'data/result_package_manifest.tsv',
             'data/result_member_manifest.tsv',
@@ -248,6 +250,18 @@ class SiteExportTests(unittest.TestCase):
         with (ROOT / 'data/release_map.tsv').open() as handle:
             h5ad_ids = {r['artifact_id'] for r in csv.DictReader(handle, delimiter='\t') if r['member_path'].endswith('.h5ad')}
         self.assertEqual({r['artifact_id'] for r in self.payload['h5ad']}, h5ad_ids)
+
+    def test_source_data_downloads_match_their_registered_archives(self):
+        with (ROOT / 'data/source_data_manifest.tsv').open() as handle:
+            expected = list(csv.DictReader(handle, delimiter='\t'))
+        actual = self.payload['source_data_packages']
+        self.assertEqual(len(actual), len(expected))
+        registry = {row['artifact_id']: row for row in self.payload['artifacts']}
+        for row, source in zip(actual, expected):
+            self.assertEqual(row['bytes'], int(source['bytes']))
+            self.assertEqual(row['sha256'], registry[row['artifact_id']]['sha256'])
+            self.assertEqual(row['url'], registry[row['artifact_id']]['uri'])
+            self.assertRegex(row['url'], r'/resolve/[0-9a-f]{40}/source_data/v1\.0\.0/')
 
     def test_individual_inputs_and_upstream_sources_are_separate(self):
         files = self.payload['input_files']

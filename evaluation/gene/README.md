@@ -126,6 +126,9 @@ listed above; macro means give each dataset equal weight.
 
 ### Display and source boundaries
 
+[Source Data](../../data/SOURCE_DATA.md) includes native phase arrays and runnable
+entries for the Figure 5A/E raw phase portraits and Figure 5D overviews.
+
 [plotting/phase_portrait.py](plotting/phase_portrait.py) keeps linear
 `Ms`/`Mu` coordinates and uses deterministic representative-cell sampling,
 without neighborhood velocity smoothing:

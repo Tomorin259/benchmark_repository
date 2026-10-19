@@ -27,3 +27,6 @@ registered-method and output-type filters, 25 packages per page, explicit
 TAR.GZ/NPZ download buttons and package sizes. Checksums remain in the
 downloadable manifests. Native H5AD
 artifact URIs are not used as archive download links.
+
+The Source data section reads `data/source_data_manifest.tsv`; its ZIP links
+are pinned to the published Hugging Face content commit.

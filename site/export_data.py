@@ -469,6 +469,10 @@ def export_data(root=ROOT, output=None):
         entry['download'] = f'data/files/{relative}'
         downloads['tables'].append({'label': label, **entry})
     metadata_downloads = [
+        ('data/SOURCE_DATA.md', 'Source Data guide',
+         'Figure/table-indexed source values, saved plot arrays and reproduction scripts.'),
+        ('data/source_data_manifest.tsv', 'Source Data download manifest',
+         'Immutable ZIP download URLs, archive sizes and SHA-256 checksums.'),
         ('data/RESULT_DOWNLOADS.md', 'Native result download guide',
          'Versioned output releases, TAR.GZ extraction and separate archive/member checksums.'),
         ('data/result_package_manifest.tsv', 'Result package download manifest',
@@ -815,6 +819,12 @@ def export_data(root=ROOT, output=None):
                          "genes": [{"gene": gene, "reference": strategy_reference[gene],
                                     "predictions": {method: labels[gene] for method, labels in strategy_predictions.items()}}
                                    for gene in sorted(strategy_reference)]}
+    source_data_packages = [{**row, 'bytes': int(row['bytes'])}
+                            for row in read('data/source_data_manifest.tsv', download=False)]
+    for row in source_data_packages:
+        artifact = by_artifact[row['artifact_id']]
+        if (row['sha256'], row['url']) != (artifact['sha256'], artifact['uri']):
+            raise ValueError('Source Data identity differs from the artifact registry')
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
                "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "kinetics": kinetics, "kinetics_summary": summary,
@@ -827,6 +837,7 @@ def export_data(root=ROOT, output=None):
                "kinetics_expanded_scope": {"sceu_rpe1": len(universe["rpe1"]), "sceu_organoid": len(universe["organoid"])},
                "artifacts": artifacts, 'h5ad': h5ad, "input_files": input_files,
                "result_packages": result_packages, "result_members": result_members,
+               "source_data_packages": source_data_packages,
                "upstream_references": upstream_references, "sources": sources}
     for source in sources:
         if hashlib.sha256((root / source["path"]).read_bytes()).hexdigest() != source["sha256"]:

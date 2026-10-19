@@ -20,6 +20,8 @@ on:
       - data/result_member_manifest.tsv
       - data/upstream_references.tsv
       - data/RESULT_DOWNLOADS.md
+      - data/SOURCE_DATA.md
+      - data/source_data_manifest.tsv
       - data/UPSTREAM_REFERENCES.md
       - data/kinetics_reference_gene_usage/**
       - artifacts.tsv
