@@ -1,6 +1,6 @@
 # Native result downloads
 
-The [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0)
+The [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0)
 contain 339 download objects, including four native MultiVelo candidate-gate
 H5ADs in one 17.97 MB archive. The diagnostic archive and all four extracted
 members were verified by anonymous download.
@@ -9,7 +9,7 @@ The index contains 388 original scientific files: 374 H5AD and
 14 NPZ, totaling 252,167,762,795 source bytes. Distribution uses 325 lossless
 TAR.GZ archives and 14 NPZ files, totaling 149,576,197,521 download bytes.
 Original-format benchmark inputs remain in the separate
-[input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs).
+[input release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs).
 
 Choose downloads and their original files through:
 

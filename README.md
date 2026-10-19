@@ -33,11 +33,11 @@ Run commands from the repository root and use a fresh output directory.
 
 ## Data and reproducibility
 
-- [Canonical inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs)
+- [Canonical inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs)
   provide 25 original-format files at distribution `v1.0.0`.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
-- [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
+- [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark)
   are available as `v1.0.0`: 339 download objects totaling 149.58 GB,
   including the MultiVelo diagnostic outputs. Select packages from the
   [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ

@@ -42,7 +42,7 @@ the induction-heavy ground-truth direction distribution.
 
 ## Retained materials
 
-- [Native candidate-gate outputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/resolve/v1.0.0/v1.0.0/diagnostics/multivelo/candidate_gate_outputs.tar.gz?download=true):
+- [Native candidate-gate outputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/v1.0.0/diagnostics/multivelo/candidate_gate_outputs.tar.gz?download=true):
   four H5ADs for the default and gate-open conditions in normal + branching
   and hybrid. The archive contains `multivelo/{branching,all}_{refit_default,on_allow_repression}.h5ad`.
   [The member index](../../data/result_member_manifest.tsv) maps them to their

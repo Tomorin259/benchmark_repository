@@ -33,7 +33,7 @@ watch([dataset, method, kind], () => { page.value = 1 })
     <h2 id="result-download-heading">Full method outputs</h2>
     <p class="small muted">{{packages[0]?.release_version || 'v1.0.0'}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>
     <div class="guide-links">
-      <a href="https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0" target="_blank" rel="noopener">Hugging Face release ↗</a>
+      <a href="https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0" target="_blank" rel="noopener">Hugging Face release ↗</a>
       <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction guide</a>
       <a href="./data/files/data/result_package_manifest.tsv" download>Package manifest</a>
       <a href="./data/files/data/result_member_manifest.tsv" download>Original file manifest</a>

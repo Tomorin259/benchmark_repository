@@ -371,7 +371,7 @@ def export_data(root=ROOT, output=None):
     for package in result_packages:
         if package['release_version'] != 'v1.0.0':
             raise ValueError('Unsupported result release version')
-        if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/resolve/' + package['release_version'] + '/'):
+        if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/' + package['release_version'] + '/'):
             raise ValueError('Result package must point to the verified release tag')
         if not package['url'].endswith(package['repository_path'] + '?download=true'):
             raise ValueError('Result package URL and repository path differ')

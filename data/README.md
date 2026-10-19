@@ -5,9 +5,9 @@ reproduction. Paths must match the selected module's input layout.
 
 | Needed material | Access | Next step |
 | --- | --- | --- |
-| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
+| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
 | Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
-| Saved method outputs and evaluation assets | [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/tree/v1.0.0) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
+| Saved method outputs and evaluation assets | [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
 | Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |
 | Figure/table-indexed Source Data | [Source Data v1.0.0](SOURCE_DATA.md) | Browse individual tables, saved plot inputs and reproduction scripts; file sizes and hashes are in [source_data_manifest.tsv](source_data_manifest.tsv); a complete ZIP is optional |
 
