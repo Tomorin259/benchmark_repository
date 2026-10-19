@@ -31,18 +31,23 @@ def prepare_release(artifact_root, output_root, package=None, build=False, regis
     root, output = Path(artifact_root).resolve(), Path(output_root).resolve()
     if output.exists() and any(output.iterdir()):
         raise ValueError('Output directory must be empty')
-    records, unresolved = [], []
+    records, unresolved, verified_paths = [], [], {}
     for row in chosen:
         expected = registered[row['artifact_id']]['sha256']
         if not row['source_locator'] or not expected:
             unresolved.append({'artifact_id': row['artifact_id'], 'reason': row['source_status']})
             continue
         locator = row['source_locator']
-        if not locator.startswith('velocity:'):
+        if locator.startswith('velocity:'):
+            source_root = root
+            relative = Path(locator.removeprefix('velocity:'))
+        elif locator.startswith('repository:'):
+            source_root = ROOT.resolve()
+            relative = Path(locator.removeprefix('repository:'))
+        else:
             raise ValueError(f'Unsupported locator: {locator}')
-        relative = Path(locator.removeprefix('velocity:'))
-        path = (root / relative).resolve()
-        if relative.is_absolute() or '..' in relative.parts or not path.is_relative_to(root) or not path.is_file():
+        path = (source_root / relative).resolve()
+        if relative.is_absolute() or '..' in relative.parts or not path.is_relative_to(source_root) or not path.is_file():
             unresolved.append({'artifact_id': row['artifact_id'], 'reason': 'missing_source'})
             continue
         actual = digest(path)
@@ -53,6 +58,7 @@ def prepare_release(artifact_root, output_root, package=None, build=False, regis
         if member.is_absolute() or '..' in member.parts or not row['member_path']:
             raise ValueError('Archive member must be a safe relative path')
         records.append({**row, 'sha256': expected, 'bytes': path.stat().st_size})
+        verified_paths[row['artifact_id']] = path
     member_keys = [(r['package_id'], r['member_path']) for r in records]
     if len(set(member_keys)) != len(member_keys):
         raise ValueError('Duplicate archive member paths')
@@ -67,8 +73,7 @@ def prepare_release(artifact_root, output_root, package=None, build=False, regis
             target = output / (identifier + '.tar.gz')
             with tarfile.open(target, 'w:gz') as archive:
                 for record in [r for r in records if r['package_id'] == identifier]:
-                    archive.add((root / record['source_locator'].removeprefix('velocity:')).resolve(),
-                                arcname=record['member_path'], recursive=False)
+                    archive.add(verified_paths[record['artifact_id']], arcname=record['member_path'], recursive=False)
             archives.append({'path': target.name, 'sha256': digest(target), 'bytes': target.stat().st_size})
     report = {'registered': len(chosen), 'verified': records, 'unresolved': unresolved,
               'archives': archives, 'published': False, 'download_uris': 'remain empty until actual publication'}
@@ -78,7 +83,8 @@ def prepare_release(artifact_root, output_root, package=None, build=False, regis
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--artifact-root', type=Path, required=True)
+    parser.add_argument('--artifact-root', type=Path, required=True,
+                        help='Root for velocity: sources; repository: sources use this checkout')
     parser.add_argument('--output-root', type=Path, required=True)
     parser.add_argument('--package')
     parser.add_argument('--build', action='store_true', help='Build only after every selected file passes hash verification')

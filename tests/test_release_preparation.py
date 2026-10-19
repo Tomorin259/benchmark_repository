@@ -5,6 +5,7 @@ from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +52,26 @@ class ReleasePreparationTests(unittest.TestCase):
                 self.assertEqual(row['source_locator'], '')
                 self.assertEqual(row['source_status'], 'input_identity_not_frozen')
             else:
-                self.assertTrue(row['source_locator'].startswith('velocity:'))
+                self.assertTrue(row['source_locator'].startswith(('velocity:', 'repository:')))
+
+    def test_repository_sources_are_packaged_from_the_checkout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            checkout, artifacts = root / 'checkout', root / 'artifacts'
+            checkout.mkdir()
+            artifacts.mkdir()
+            payload = b'registered repository output\n'
+            (checkout / 'output.h5ad').write_bytes(payload)
+            (artifacts / 'output.h5ad').write_bytes(b'different artifact-root file\n')
+            registry, mapping = root / 'registry.tsv', root / 'map.tsv'
+            registry.write_text('artifact_id\tstatus\tsha256\noutput\texternal\t' + hashlib.sha256(payload).hexdigest() + '\n')
+            mapping.write_text('artifact_id\tpackage_id\tsource_locator\tmember_path\tsource_status\noutput\ttoy\trepository:output.h5ad\tmultivelo/output.h5ad\tverified\n')
+            with patch.object(release, 'ROOT', checkout):
+                report = release.prepare_release(artifacts, root / 'packed', build=True,
+                                                 registry=registry, mapping=mapping)
+            self.assertEqual(len(report['verified']), 1)
+            with tarfile.open(root / 'packed/toy.tar.gz') as archive:
+                self.assertEqual(archive.extractfile('multivelo/output.h5ad').read(), payload)
 
 
 if __name__ == '__main__':
