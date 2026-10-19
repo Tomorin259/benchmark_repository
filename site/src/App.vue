@@ -21,15 +21,6 @@ const taskNames = {cell:'Cell',gene:'Gene',kinetics:'Kinetics'}
 const taskKeys = (id, field) => Object.keys(taskNames).filter(key => (key==='cell'?[...data.value.cell,...data.value.cell_simulation]:data.value[key]).some(r => r[field] === id))
 const parameterScores = id => [...new Set(data.value.kinetics.filter(r=>r.method===id).map(r=>r.parameter))].map(rate).join(' · ')
 const diagnostic = id => Object.keys(data.value.diagnostics).find(key=>data.value.diagnostics[key].method===id)
-const downloads = computed(() => [
-  ['Benchmark summaries',data.value.downloads.tables.filter(s=>s.path.includes('/summary/'))],
-  ['Cell-level results',data.value.downloads.tables.filter(s=>s.path.includes('/cell/')&&!s.path.endsWith('/cross_level_summary.csv'))],
-  ['Cross-level comparisons',data.value.downloads.tables.filter(s=>s.path.endsWith('/cross_level_summary.csv'))],
-  ['Gene-level results',data.value.downloads.tables.filter(s=>s.path.includes('/gene/'))],
-  ['Kinetic-parameter recovery',data.value.downloads.tables.filter(s=>s.path.includes('/kinetics_recovery/'))],
-  ['Method-specific analyses',data.value.downloads.analyses],
-  ['Summary figures',data.value.downloads.figures],
-])
 const technicalFiles = computed(()=>[...data.value.downloads.metadata,...data.value.downloads.audit])
 const guides = [['evaluation/cell/README.md','Cell'],['evaluation/gene/README.md','Gene'],['evaluation/kinetics_recovery/README.md','Kinetics'],['ensemble/README.md','Ensemble'],['supplement/veloae/README.md','veloAE'],['supplement/velovi/README.md','veloVI'],['supplement/tivelo_gene/README.md','TIvelo'],['supplement/multivelo/README.md','MultiVelo']]
 function focusMain(){document.getElementById('main').focus()}
@@ -101,13 +92,24 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
       </template>
       <template v-else-if="page==='downloads'">
         <div class="page-heading"><h1>Downloads</h1></div>
-        <section v-for="[label,files] in downloads" :key="label" class="panel downloads-section"><h2>{{label}}</h2><div v-for="s in files" :key="s.path" class="download-row"><div><strong>{{s.label}}</strong><span class="small muted">{{s.path.split('.').at(-1).toUpperCase()}} · {{size(s.bytes)}}</span></div><a class="button secondary" :href="`./${s.download}`" download>Download</a></div></section>
-        <details class="panel downloads-section"><summary>Technical resources <span>{{technicalFiles.length}} files</span></summary><div v-for="s in technicalFiles" :key="s.path" class="download-row"><div><strong>{{s.label}}</strong><span class="small muted">{{s.path.split('.').at(-1).toUpperCase()}} · {{size(s.bytes)}}</span></div><a class="button secondary" :href="`./${s.download}`" download>Download</a></div></details>
+        <section class="panel downloads-section" aria-labelledby="source-data-heading">
+          <h2 id="source-data-heading">Source data</h2>
+          <p class="small muted">v1.0.0 · Figure/table-indexed numerical tables, saved plotting arrays and reproduction scripts. Unzip the parts you need into the same parent folder.</p>
+          <div class="guide-links">
+            <a href="./data/files/data/SOURCE_DATA.md" download>Source Data guide</a>
+            <a href="./data/files/data/source_data_manifest.tsv" download>Sizes and checksums</a>
+          </div>
+          <div v-for="file in data.source_data_packages" :key="file.artifact_id" class="download-row source-data-row">
+            <div><strong>{{file.archive}}</strong><span class="small muted">{{file.content}} · {{size(file.bytes)}}</span></div>
+            <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download ZIP</a>
+          </div>
+        </section>
         <section class="panel downloads-section"><h2>Benchmark input files</h2><p class="small muted">25 original-format files for 17 datasets: 22 H5AD, one loom and two CSVs. Download the files you need and use them directly.</p>
           <div v-for="file in data.input_files" :key="file.artifact_id" class="download-row"><div><strong>{{file.label}}</strong><span class="small muted">{{file.format}} · {{size(file.bytes)}} · {{file.role.replaceAll('_',' ')}}</span><span class="small">{{file.path.split('/').at(-1)}}</span></div><a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download file</a></div>
+          <p class="small muted">Kinetic-reference Tables S1, S3 and S4 are obtained from the original study. <a :href="sourceLink('data/UPSTREAM_REFERENCES.md')" target="_blank" rel="noopener">Acquisition and verification instructions ↗</a></p>
         </section>
-        <section class="panel downloads-section"><h2>Original kinetic-reference tables</h2><p class="small muted">Obtain Tables S1, S3 and S4 through the original study’s supplementary materials using the access guide below.</p><div v-for="reference in data.upstream_references" :key="reference.artifact_id" class="download-row"><strong>{{reference.source_label}}</strong><a :href="reference.source_url" target="_blank" rel="noopener">Original source ↗</a></div><a :href="sourceLink('data/UPSTREAM_REFERENCES.md')" target="_blank" rel="noopener">Acquisition and verification instructions ↗</a></section>
         <ResultDownloads :data="data"/>
+        <details class="panel downloads-section"><summary>Technical resources <span>{{technicalFiles.length}} files</span></summary><p class="small"><a :href="repository" target="_blank" rel="noopener">Repository files ↗</a></p><div v-for="s in technicalFiles" :key="s.path" class="download-row"><div><strong>{{s.label}}</strong><span class="small muted">{{s.path.split('.').at(-1).toUpperCase()}} · {{size(s.bytes)}}</span></div><a class="button secondary" :href="`./${s.download}`" download>Download</a></div></details>
       </template>
       <template v-else-if="page==='documentation'">
         <div class="page-heading"><h1>Documentation</h1></div>
@@ -120,3 +122,8 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
   </main>
   <footer><div class="footer-inner"><span>RNA velocity benchmark</span><a href="#documentation">Documentation & reproducibility</a></div></footer>
 </template>
+
+<style scoped>
+.source-data-row>div{min-width:0}.source-data-row strong{overflow-wrap:anywhere}.source-data-row>a{flex-shrink:0}
+@media(max-width:760px){.source-data-row{flex-wrap:wrap}.source-data-row>div{flex-basis:100%}}
+</style>

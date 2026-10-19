@@ -26,7 +26,7 @@ const caseLabel = c=>c.kind==='real'?`${c.gene} · ${c.transition.join(' → ')}
       <p class="small muted compact-note">SD across evaluated genes.</p>
       <div class="guide-links"><a :href="`#results?level=cell&dataset=${current.dataset}`">{{dataset.paper_name}} · Cell →</a><a :href="`#results?level=gene&dataset=${current.dataset}`">Gene →</a></div>
       <details class="source-details"><summary>All simulated comparisons</summary><button class="phase-image" aria-label="Enlarge all simulated cross-level comparisons" @click="enlarged={...data.result_images['simulation-cross-level'],title:'All simulated comparisons'}"><img :src="'./'+data.result_images['simulation-cross-level'].path" alt="All four simulated Cell/Gene comparisons" loading="lazy"></button></details>
-      <p class="reference-link"><a href="#downloads">Download paired results →</a></p>
+      <p class="reference-link"><a href="#downloads">Source data →</a></p>
       </template>
     </section>
   </div>

@@ -46,7 +46,7 @@ const detailRows = id=>datasets.value.map(d=>({dataset:d,...props.data.cell.find
       </template></tbody></table></div>
     <div v-else class="distribution-grid"><article v-for="[key,label] in cellMetrics" :key="key"><h3>{{label}}</h3><button class="phase-image" :aria-label="`Enlarge ${label} distribution`" @click="enlarged={...data.result_images['cell-'+key],title:label+' · 14 datasets'}"><img :src="'./'+data.result_images['cell-'+key].path" :alt="label+' across 14 real datasets'" loading="lazy"></button></article></div>
     <p v-if="!cellTask" class="small muted compact-note">Mean ± SD · {{task==='gene'?'Real: 7 datasets · Simulation: 3 scenarios':'Available systems · Equal branch and system weights'}}</p>
-    <p class="reference-link"><a href="#downloads">Download summaries →</a></p>
+  <p class="reference-link"><a href="#downloads">Source data →</a></p>
     <ImageViewer v-if="enlarged" :image="enlarged" @close="enlarged=null"/>
   </section>
 </template>

@@ -173,7 +173,11 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-## cellDancer sampling acknowledgment
+## cellDancer simulator and sampling
+
+The three simulated benchmark scenarios were generated using the
+`celldancer.simulation.simulate` interface in cellDancer 1.1.7; see the
+[simulation workflow](evaluation/gene/simulation/README.md).
 
 The [phase-portrait API](evaluation/gene/plotting/phase_portrait.py) was written
 for this benchmark. Its representative-cell sampling strategy was inspired by
@@ -182,11 +186,6 @@ cellDancer 1.1.7. The existing
 retains the upstream BSD 3-Clause notice. This acknowledgment does not attribute
 the complete plotting API to cellDancer.
 
-## DeepVelo_scv: upstream license information unresolved
+## DeepVelo_scv
 
-[The reconstruction launcher](methods/deepvelo2022.py) follows the official
-[DeepVelo Figure2 notebook](https://github.com/aicb-ZhangLabs/deepvelo/blob/908aec4de435788faa951d17bad8b3f2df79c8f0/code/Figure2.ipynb).
-The [official version 1.0.0 archive](https://zenodo.org/records/6968465) identifies
-its license as `other-open` without providing a specific license text. The root
-MIT grant does not cover the upstream-derived reconstruction code; the applicable
-upstream terms remain to be clarified.
+DeepVelo_scv follows the official DeepVelo Figure2 workflow.

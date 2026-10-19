@@ -24,7 +24,7 @@ const format = value=>value.toFixed(4)
       <p v-if="!rows.length" class="empty">No genes match these selections.</p>
       <div class="pagination"><span>{{rows.length}} {{rows.length===1?'gene':'genes'}}</span><button class="text-button" :disabled="page===1" @click="page--">Previous page</button><span>{{page}} / {{pageCount}}</span><button class="text-button" :disabled="page===pageCount" @click="page++">Next page</button></div>
     </details>
-    <p class="reference-link"><a href="#downloads">Download classification tables →</a></p>
+    <p class="reference-link"><a href="#downloads">Source data →</a></p>
   </section>
   <ImageViewer v-if="enlarged" :image="enlarged" @close="enlarged=null"/>
 </template>

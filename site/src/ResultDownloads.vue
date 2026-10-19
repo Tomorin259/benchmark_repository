@@ -29,21 +29,6 @@ watch([dataset, method, kind], () => { page.value = 1 })
 </script>
 
 <template>
-  <section class="panel downloads-section" aria-labelledby="source-data-heading">
-    <h2 id="source-data-heading">Source data</h2>
-    <p class="small muted">v1.0.0 · Figure/table-indexed numerical tables, saved plotting arrays and reproduction scripts. Unzip the parts you need into the same parent folder.</p>
-    <div class="guide-links">
-      <a href="./data/files/data/SOURCE_DATA.md" download>Source Data guide</a>
-      <a href="./data/files/data/source_data_manifest.tsv" download>Sizes and checksums</a>
-    </div>
-    <div v-for="file in data.source_data_packages" :key="file.artifact_id" class="download-row result-package-row">
-      <div>
-        <strong>{{file.archive}}</strong>
-        <span class="small muted">{{file.content}} · {{size(file.bytes)}}</span>
-      </div>
-      <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download ZIP</a>
-    </div>
-  </section>
   <section class="panel downloads-section" aria-labelledby="result-download-heading">
     <h2 id="result-download-heading">Full method outputs</h2>
     <p class="small muted">{{packages[0]?.release_version || 'v1.0.0'}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>

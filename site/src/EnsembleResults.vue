@@ -54,6 +54,6 @@ async function copyLink(){try{await navigator.clipboard.writeText(shareUrl.value
   <details class="panel content-panel"><summary>Independent ranks against 20 configurations</summary><label class="inline-field">Variant<select v-model="rankVariant"><option v-for="variant in variants" :key="variant" :value="variant">{{label(variant)}}</option></select></label><div class="table-scroll"><table>
     <thead><tr><th>Dataset</th><th class="numeric">CBDir rank</th><th class="numeric">BATC rank</th></tr></thead><tbody><tr v-for="r in ranks" :key="r.dataset.dataset_id"><td>{{r.dataset.paper_name}}</td><td class="numeric">{{r.cbdir.rank}} / {{r.cbdir.out_of}}<small v-if="r.cbdir.tie_count">{{r.cbdir.tie_count}} exact ties</small></td><td class="numeric">{{r.batc.rank}} / {{r.batc.out_of}}<small v-if="r.batc.tie_count">{{r.batc.tie_count}} exact ties</small></td></tr></tbody>
   </table></div></details>
-  <p class="reference-link"><a href="#downloads">Score & ranking downloads →</a> · <a :href="`https://github.com/Tomorin259/benchmark_repository/blob/${data.source_commit}/ensemble/README.md`" target="_blank" rel="noopener">Protocol ↗</a></p>
+  <p class="reference-link"><a href="#downloads">Source data →</a> · <a :href="`https://github.com/Tomorin259/benchmark_repository/blob/${data.source_commit}/ensemble/README.md`" target="_blank" rel="noopener">Protocol ↗</a></p>
   <ImageViewer v-if="enlarged" :image="enlarged" @close="enlarged=null"/>
 </template>

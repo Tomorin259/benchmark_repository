@@ -66,6 +66,6 @@ function show(image,title){enlarged.value={...image,title}}
       <div class="table-scroll"><table><thead><tr><th>Metric</th><th class="numeric">Mono_1 root</th><th class="numeric">HSC_1 root</th><th class="numeric">Paired Δ</th></tr></thead><tbody><tr v-for="r in analysis.bonemarrow" :key="r.metric"><td>{{r.metric==='cbdir'?'CBDir':'BATC'}}</td><td class="numeric">{{format(r.original_mean)}}</td><td class="numeric">{{format(r.hsc1_mean)}}</td><td class="numeric">{{format(r.delta_mean)}}</td></tr></tbody></table></div><p class="reference-link"><a :href="`#results?level=cell&dataset=bonemarrow&method=${analysis.method}`">Primary benchmark results →</a></p>
     </section>
   </template>
-  <p class="reference-link"><a href="#downloads">Analysis downloads →</a></p>
+  <p class="reference-link"><a href="#downloads">Source data →</a></p>
   <ImageViewer v-if="enlarged" :image="enlarged" @close="enlarged=null"/>
 </template>
