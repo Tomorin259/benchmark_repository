@@ -28,6 +28,34 @@ describe the expanded 250-gene RPE1 and 270-gene organoid evaluation, selected
 Figure 6 display flags, and valid/undefined/unavailable coverage. Original rate
 trajectories are obtained through the upstream reference-table route.
 
+## Local data roots
+
+Choose the outer directories on your machine. The evaluators use these
+different roots, according to their existing input maps:
+
+| Command / parameter | Directory to supply | Example file below that directory |
+| --- | --- | --- |
+| Method `--data-root` or top-level `DATA_ROOT` | Scientific input directory | `Pancreas/Pancreas.h5ad` |
+| Cell and simulation-Cell `--artifact-root` | Parent of a `velocity/` directory | `velocity/results/...h5ad` |
+| Gene, ensemble, veloVI coordinate diagnostic and gene-case `--artifact-root` | The velocity directory itself | `results/...h5ad` or `indicators/gene/...h5ad` |
+| Cell `--reference-moments-root` | Directory of downloaded reference NPZs | `<evaluation_dataset>.npz` |
+| Kinetics `--artifact-root` | Directory containing the reference and method aliases | `references/kinetics/rpe1_table_s1.csv`, `method-results/kinetics/...h5ad` |
+
+For example, a Cell artifact root can contain `velocity/data/`,
+`velocity/results/` and `velocity/indicators/`. Gene and ensemble receive
+that root's `velocity/` subdirectory; method input roots can point to its
+`velocity/data/` subdirectory. Scientific input-manifest paths already begin
+with `data/`, so download those relative to the velocity directory.
+The checkout's own `data/` directory holds the public registries and guides.
+
+`velocity:<relative-path>` and `artifact://velocity/<relative-path>` identify
+the same logical velocity-root file. A `repository:` locator is relative to
+the checkout. Kinetics aliases are recorded alongside original paths in its
+[run manifest](../evaluation/kinetics_recovery/results/central_results/manifest.json).
+Map a downloaded member to the alias used by the selected evaluator, retaining
+its bytes and checksum. Archive member names are transport paths; the
+[download guide](RESULT_DOWNLOADS.md) explains their mapping.
+
 ## File identities and layouts
 
 Dataset IDs follow `dataset_id` in [datasets.tsv](datasets.tsv); figures and

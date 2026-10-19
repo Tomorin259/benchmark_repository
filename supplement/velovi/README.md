@@ -28,11 +28,21 @@ python supplement/velovi/run_coordinate_sensitivity.py \
 ```
 
 Materialize the H5ADs and reference moments identified in the manifest.
+Here `--artifact-root` is the velocity directory itself: the script removes
+the logical `velocity:` prefix and joins the remaining path to this root.
+Reference moments are `<reference-moments-root>/<dataset>.npz`; the fixed
+neighbor NPZs default to `evaluation/cell/reference_neighbors/`. See the
+[root layouts](../../data/README.md#local-data-roots).
 The script verifies input and TIvelo metric-source hashes before scoring.
 Use Python 3.9.23, scVelo 0.3.1, TIvelo 0.1.4, NumPy 1.26.4, SciPy 1.13.1,
 AnnData 0.10.8 and pandas 2.3.1 for the checked reproduction environment.
 Only scVelo was recorded in the original log; the other versions were inspected
 in the later reproduction environment, not independently archived originally.
+
+Choose any local environment providing those versions. Table-only export
+uses the standard library; full scoring uses the diagnostic's scVelo 0.3.1
+stack. Check the 42 condition rows and input/source checks recorded in the
+new output root when comparing with the saved tables.
 
 ## Conditions
 

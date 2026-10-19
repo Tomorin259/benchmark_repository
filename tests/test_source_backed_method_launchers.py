@@ -1,4 +1,7 @@
+import csv
+import hashlib
 import importlib.util
+import json
 import subprocess
 import sys
 import tempfile
@@ -43,6 +46,23 @@ class SourceBackedLauncherTests(unittest.TestCase):
         self.assertTrue(config[3])
         self.assertIn("10X_multiome_mouse_brain.loom", config[0])
         self.assertEqual(self.tsvelo.normalize_cell_id("RNA_ATAC:AACCTTAAGTAGCGGGx"), "AACCTTAAGTAGCGGG-1")
+
+    def test_source_patches_match_registered_revisions_and_hashes(self):
+        methods = REPOSITORY_ROOT / "methods"
+        sources = json.loads((methods / "source_manifest.json").read_text())["methods"]
+        with (methods / "configurations.tsv").open() as handle:
+            registry = {row["config_id"]: row for row in csv.DictReader(handle, delimiter="\t")}
+        self.assertEqual(set(sources), {"C10", "C13", "C14"})
+        for config_id, source in sources.items():
+            with self.subTest(config_id=config_id):
+                self.assertRegex(source["revision"], r"^[0-9a-f]{40}$")
+                self.assertIn(source["revision"], registry[config_id]["version"])
+                self.assertEqual(source["repository"], registry[config_id]["official_source"])
+                patch = methods / source["patch"]
+                self.assertEqual(hashlib.sha256(patch.read_bytes()).hexdigest(), source["patch_sha256"])
+                self.assertTrue(source["files"])
+                for fingerprint in source["files"].values():
+                    self.assertRegex(fingerprint, r"^[0-9a-f]{64}$")
 
     def test_static_source_and_input_validation(self):
         with tempfile.TemporaryDirectory() as temp_dir:

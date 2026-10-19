@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the official TFvelo demo for the benchmark datasets."""
+"""Run the pinned TFvelo demo with the documented benchmark source patch."""
 
 from pathlib import Path
 import argparse
@@ -88,17 +88,6 @@ def stage_input(input_path, label_key, target_path):
     adata.write_h5ad(target_path)
 
 
-def patch_analysis(source, target):
-    old = 'adata = ad.read_h5ad("TFvelo_results/TFvelo_hematopoiesis_demo/rc.h5ad")'
-    text = (source / "TFvelo_analysis_demo.py").read_text(encoding="utf-8")
-    if text.count(old) != 1:
-        raise RuntimeError("TFvelo_analysis_demo.py input line changed upstream")
-    target.write_text(
-        text.replace(old, "adata = ad.read_h5ad(args.data_path + 'rc.h5ad')"),
-        encoding="utf-8",
-    )
-
-
 def run_dataset(dataset, source, data_root, output_root, overwrite=False):
     input_path, label_key, official_name, basis = DATASETS[dataset]
     destination = output_root / f"TFvelo_{official_name}_demo"
@@ -116,13 +105,11 @@ def run_dataset(dataset, source, data_root, output_root, overwrite=False):
             staged = work / STAGE_PATHS[dataset]
         stage_input(data_root / input_path, label_key, staged)
         (work / "TFvelo_results").mkdir()
-        analysis = work / "TFvelo_analysis_demo_for_benchmark.py"
-        patch_analysis(source, analysis)
         env = os.environ.copy()
         env["PYTHONPATH"] = os.pathsep.join([str(source), env.get("PYTHONPATH", "")]).rstrip(os.pathsep)
         args = ["--dataset_name", official_name, "--basis", basis]
         subprocess.run([sys.executable, str(source / "TFvelo_run_demo.py"), *args], cwd=work, env=env, check=True)
-        subprocess.run([sys.executable, str(analysis), *args], cwd=work, env=env, check=True)
+        subprocess.run([sys.executable, str(source / "TFvelo_analysis_demo.py"), *args], cwd=work, env=env, check=True)
         result = work / "TFvelo_results" / destination.name
         if not (result / "TFvelo.h5ad").exists():
             raise RuntimeError(f"{dataset}: TFvelo.h5ad was not created")
@@ -134,7 +121,7 @@ def run_dataset(dataset, source, data_root, output_root, overwrite=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", choices=[*DATASETS_TO_RUN, "all"], default="all")
-    parser.add_argument("--source-root", help="official TFvelo checkout; defaults to TFVELO_ROOT")
+    parser.add_argument("--source-root", help="pinned TFvelo checkout with benchmark patch; defaults to TFVELO_ROOT")
     parser.add_argument("--data-root", default=str(DATA_ROOT))
     parser.add_argument("--output-root", default=str(OUTPUT_ROOT))
     parser.add_argument("--overwrite", action="store_true")

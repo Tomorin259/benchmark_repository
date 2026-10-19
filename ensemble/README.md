@@ -13,7 +13,13 @@ They are post-hoc comparators outside the 20-method configuration registry.
 | [results/metadata.json](results/metadata.json) | Protocol, input identities, frames, aggregate scores and run provenance |
 | [results/summary.md](results/summary.md), [ranking_summary.md](results/ranking_summary.md) | Human-readable result summaries |
 
-Run from the repository root with the inputs in [config.json](config.json):
+Run from the repository root with the inputs in [config.json](config.json).
+
+Use the [ensemble dependency record](../docs/environments.md#evaluation).
+`--artifact-root` is the velocity directory itself: each `results/...h5ad`
+in the configuration is read below that root. The reference and four method
+inputs can be located through the published member manifest and the
+[local-root guide](../data/README.md#local-data-roots).
 
 ```bash
 python ensemble/benchmark.py \
@@ -27,6 +33,11 @@ Repeat `--dataset` to select a subset; omission runs all configured datasets.
 external staging directory. Compact scores, metadata and summaries use the
 output root. [plot_supfig10.py](plot_supfig10.py) renders S10 from the frozen
 Cell/ensemble tables; [the figure map](../docs/figure_map.md) links final assembly.
+
+Check dataset/variant coverage in `scores.csv` and the recorded input and
+protocol identities in `metadata.json` under the selected output root.
+For new method outputs, use a separate `--config` with their relative paths;
+the default configuration selects the frozen inputs.
 
 ## Aggregation
 

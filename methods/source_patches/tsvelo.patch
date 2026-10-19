@@ -1,0 +1,84 @@
+diff --git a/TSvelo_run.py b/TSvelo_run.py
+--- a/TSvelo_run.py
++++ b/TSvelo_run.py
+@@ -37,7 +37,7 @@
+ if __name__ == '__main__':
+     import argparse
+     parser = argparse.ArgumentParser()
+-    parser.add_argument( '--dataset_name', type=str, default="gastrulation_erythroid", help='gastrulation_erythroid pancreas 10x_mouse_brain pons dentategyrus larry') 
++    parser.add_argument( '--dataset_name', type=str, default="organoid_ori", help='gastrulation_erythroid pancreas 10x_mouse_brain pons dentategyrus larry') 
+     parser.add_argument( '--preprocess', type=int, default=0, help='whether to perform preprocessing')
+     parser.add_argument( '--n_jobs', type=int, default=-1, help='n_jobs')
+     parser.add_argument( '--n_neighbors', type=int, default=30, help='Number of neighbors for KNN graph')
+@@ -45,7 +45,7 @@
+     parser.add_argument( '--n_selected_genes', type=int, default=100, help='number of selected velocity genes')
+     parser.add_argument( '--TF_databases', nargs='+', default='ENCODE ChEA', help='ChEA ENCODE')   
+     parser.add_argument( '--N_steps', type=int, default=1000, help='Number of time steps')
+-    parser.add_argument( '--cuda', type=int, default=3, help='CUDA device id')
++    parser.add_argument( '--cuda', type=int, default=2, help='CUDA device id')
+     parser.add_argument( '--N_EPOCH', type=int, default=30, help='Max number of epochs for EM')
+     parser.add_argument( '--num_epochs', type=int, default=500, help='Max number of epochs for neural ODE')
+     parser.add_argument( '--min_decrease', type=float, default=0, help='Minimum decrease for early stop')
+@@ -53,12 +53,11 @@
+     parser.add_argument( '--save_name', type=str, default='', help='save_name')
+ 
+     args = parser.parse_args() 
+-    args.save_folder = 'TSvelo_'+ args.dataset_name + args.save_name + '/'
++    args.save_folder = 'velocity/methods/TSvelo/results/'+ args.dataset_name + args.save_name + '/'
+     if not os.path.exists(args.save_folder):
+         os.makedirs(args.save_folder)
+     print('********************************************************************************************************')
+     print(args)
+-
+     if args.preprocess or (not os.path.exists(args.save_folder+'l0_pp.h5ad')):
+         preprocess(args) 
+         init_branch(args)
+diff --git a/TSvelo/TSvelo_pp.py b/TSvelo/TSvelo_pp.py
+--- a/TSvelo/TSvelo_pp.py
++++ b/TSvelo/TSvelo_pp.py
+@@ -26,7 +26,7 @@
+     elif args.dataset_name == '10x_mouse_brain':
+         adata = ad.read_h5ad("data/10x_mouse_brain/adata_rna.h5ad") 
+         adata.obs['clusters'] = adata.obs['celltype'].copy()
+-    elif args.dataset_name == 'dentategyrus':
++    elif args.dataset_name == 'dentategyrus1':
+         adata = ad.read_h5ad("data/DentateGyrus/DentateGyrus.h5ad") 
+         adata.obs['clusters'] = adata.obs['ClusterName'].copy()
+         adata.obs['clusters'] = adata.obs['clusters'].replace({'Nbl1': 'Neuroblast', 'Nbl2': 'Neuroblast'})
+@@ -41,6 +41,15 @@
+         adata = ad.read_h5ad("data/larry/larry.h5ad")  
+         adata.obs['clusters'] = adata.obs['state_info']
+         adata.obsm['X_umap'] = np.stack([np.array(adata.obs['SPRING-x']), np.array(adata.obs['SPRING-y'])]).T
++    else:
++        adata=sc.read('velocity/data/organoid/organoids_processed_for_tfvelo.h5ad')
++        print(adata)
++        # adata.obs['clusters'] = adata.obs['ClusterName'].copy()
++        
++        # adata.obsm['X_umap']=adata.obsm['X_tsne']
++        adata.obs['clusters']=adata.obs['cell_type']
++        # adata.obs['clusters'] = adata.obs['Clusters']
++        # adata.obs['clusters'] = adata.obs['celltype'].copy()
+ 
+     if args.dataset_name in ['pancreas', 'pons', 'gastrulation_erythroid']:
+         adata.uns['clusters_colors'] = np.array(['red', 'orange', 'yellow', 'green','skyblue', 'blue','purple', 'pink', '#8fbc8f', '#f4a460', '#fdbf6f', '#ff7f00', '#b2df8a', '#1f78b4',
+diff --git a/TSvelo/TSvelo_pp_utils.py b/TSvelo/TSvelo_pp_utils.py
+--- a/TSvelo/TSvelo_pp_utils.py
++++ b/TSvelo/TSvelo_pp_utils.py
+@@ -65,7 +65,7 @@
+ 
+     else:
+         if 'ENCODE' in databases:
+-            processd_ENCODE_path='ENCODE/processed/'
++            processd_ENCODE_path='velocity/methods/TSvelo/ENCODE/processed/'
+             TF_files = os.listdir(processd_ENCODE_path)
+             for TF_file in TF_files:
+                 TF_name = TF_file.replace('.txt', '')
+@@ -101,7 +101,7 @@
+                     f.close()
+ 
+         if 'ChEA' in databases:
+-            with open('ChEA/ChEA_2016.txt', "r") as f:  
++            with open('velocity/methods/TSvelo/ChEA/ChEA_2016.txt', "r") as f:  
+                 for line in f.readlines():
+                     line = line.strip('\n')  
+                     line = line.split('\t')

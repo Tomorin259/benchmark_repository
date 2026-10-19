@@ -18,10 +18,24 @@ downloads, upstream-only references and packaged method outputs.
 Map extracted archive members to the logical input paths expected by the
 selected evaluator.
 
+The [local-root table](../data/README.md#local-data-roots) defines those
+layouts. Cell takes the parent of `velocity/`; Gene and ensemble take the
+velocity directory; kinetics takes a root containing its reference and
+method-result aliases. Python interpreter paths and environment names belong
+to your installation; [environment roles](environments.md#evaluation)
+identify the required software.
+
 A method produces a native result; evaluation consumes its recorded layers,
 cell/gene IDs and embeddings, then writes compact tables and panels.
 Keep fields consumed by evaluation when retaining an H5AD. A final figure may
 also require manual assembly.
+
+For a new method output, point a separate evaluator input map/configuration
+at its path and actual file identity. The committed input maps select the
+frozen benchmark outputs. Plotting and summary commands state which tables
+they read; selecting a new output directory alone changes where files are
+written. Use the owning module's documented input options to select other
+tables.
 
 | Information | Source |
 | --- | --- |

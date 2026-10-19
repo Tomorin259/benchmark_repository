@@ -30,15 +30,36 @@ tables; `--metrics` and `--supplementary-metrics` select other result tables.
 ## Recalculate metrics
 
 Materialize the [saved method outputs](../../data/RESULT_DOWNLOADS.md) and
-reference moments, and provide the indicators and TIvelo Python environments:
+reference moments. `--artifact-root` points to the parent of `velocity/`;
+each `velocity:<path>` in [inputs.tsv](inputs.tsv) resolves to
+`<artifact-root>/velocity/<path>`. The reference-moments directory contains
+`<evaluation_dataset>.npz`; neighbors and shared embedding assets default
+to their committed directories.
+
+Select two local worker interpreters using the
+[evaluation dependency records](../../docs/environments.md#evaluation):
+
+| Option | Work performed |
+| --- | --- |
+| `--indicators-python` | Runs `prepare_cell_metrics.py`: aligns inputs, installs the fixed reference graph, prepares expression/velocity arrays, computes Consistency/ICCoh/CBDir/BATC and the local TIvelo parity values |
+| `--tivelo-python` | Runs `score_tivelo_metrics.py` on the prepared H5AD using TIvelo 0.1.4's official TransCosine and CBDir-HD functions |
+
+Supply executable paths from your installation. Environment names are arbitrary:
+
+```bash
+CELL_METRICS_PYTHON=/path/to/cell-evaluation/bin/python
+TIVELO_METRICS_PYTHON=/path/to/tivelo-metrics/bin/python
+```
+
+The controller can run with Python 3.9+ and invokes these workers in sequence:
 
 ```bash
 python evaluation/cell/run_cell_metrics.py \
   --artifact-root /path/to/artifacts \
   --reference-moments-root /path/to/reference-moments \
   --output-root outputs/cell-evaluation \
-  --indicators-python /path/to/indicators-python \
-  --tivelo-python /path/to/tivelo-python \
+  --indicators-python "$CELL_METRICS_PYTHON" \
+  --tivelo-python "$TIVELO_METRICS_PYTHON" \
   --prepare-script evaluation/cell/prepare_cell_metrics.py \
   --official-script evaluation/cell/score_tivelo_metrics.py
 ```
@@ -47,6 +68,16 @@ python evaluation/cell/run_cell_metrics.py \
 files, fields, methods, datasets and transitions.
 Use `--inputs` / `--config` for other scopes and a separate output root for
 partial runs. The canonical Cell directory requires all 280 pairs.
+`--method` uses operational IDs and `--dataset` uses `evaluation_dataset`
+values from `inputs.tsv`; both options can be repeated. When a dataset's
+shared frame is read from scVelo deterministic, that reference H5AD is also
+needed for a single-method run. Keep its row in a copied input map.
+
+For a new method result, copy the input map, update its `result_path`,
+`sha256`, size and consumed layer fields, and pass the copy with `--inputs`.
+The logical path must resolve below the chosen artifact root. This keeps the
+new result distinct from the frozen benchmark input.
+
 `--reference-neighbors-root` defaults to the committed
 [reference_neighbors/](reference_neighbors/).
 Temporary pair files and logs use `--work-root`, or an ignored `.work`
@@ -57,6 +88,14 @@ TIvelo parity. Extended edge details retain native CBDir edge means/counts and
 BATC pre-max candidate means/winner counts. Complete Forebrain runs also write
 its PCA edge table and manifest. Resume requires matching inputs, code,
 configuration, metric spaces and extended details.
+
+Results are written to `<output-root>/results/`, including
+`cell_metrics.csv`, `cell_metrics_supplementary.csv`, `cell_metrics_audit.csv`,
+`cell_metrics_edge_details.csv` and `tivelo_parity.csv`. Check the selected
+dataset/method rows, source identities and parity outcomes there; per-pair
+logs are below the work root. `validate_results.py` checks the committed
+canonical bundle. To plot another result table, use the plotter's
+`--metrics` and `--supplementary-metrics` input options.
 
 ## Metric coordinates and numerical policy
 
@@ -109,8 +148,8 @@ python evaluation/cell/run_cell_metrics.py \
   --inputs evaluation/cell/gene_matched/inputs.tsv \
   --reference-moments-root /path/to/reference-moments \
   --output-root outputs/cell-gene-matched \
-  --indicators-python /path/to/indicators-python \
-  --tivelo-python /path/to/tivelo-python \
+  --indicators-python "$CELL_METRICS_PYTHON" \
+  --tivelo-python "$TIVELO_METRICS_PYTHON" \
   --prepare-script evaluation/cell/prepare_cell_metrics.py \
   --official-script evaluation/cell/score_tivelo_metrics.py \
   --method deepvelo --method unitvelo --method veloVI

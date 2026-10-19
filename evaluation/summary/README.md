@@ -20,6 +20,18 @@ Add `--write` only for an intended refresh. Kinetics refresh also updates the
 four affected table checksums in `artifacts.tsv`.
 Neither mode regenerates native chart workbooks or the final PDF.
 
+These checks use the standard library and read the committed evaluation
+tables listed below. Cell's refresher accepts `--metrics` and `--output`;
+the other refreshers declare their source and destination paths in the
+script. Select a different evaluator output directory there before
+summarizing a new result bundle.
+Each refresher expects the full registered comparison scope for its summary.
+
+Successful checks compare the derived rows, coverage and formatted transfer
+values with the saved summary tables. Written Figure 7 tables live under
+`results/figure7_summary/`. Use their source and count fields to identify the
+aggregation represented by each row.
+
 ## Sources and aggregation
 
 | Summary | Source | Aggregation |

@@ -21,9 +21,16 @@ python supplement/veloae/export_ppt_assets.py --input-dir outputs/veloae --outpu
 
 Run from the repository root with fresh destinations.
 The first two commands render A and the B plate; the last exports letter-free
-materials for manual layout. PDF companions depend on the converter.
+materials for manual layout. Projection PDF export calls `rsvg-convert` from
+librsvg when that executable is available on `PATH`; SVG and PNG exports are
+available independently. `--refresh-manifest` can record a PDF converted
+externally. The PCA-summary PDF is produced by Matplotlib.
 The renderers use saved projections, without PCA refitting or metric changes.
 NPZ label arrays contain pickled objects and require trusted input files.
+
+Check exported filenames and `ppt_assets_final/manifest.json` for the assets
+actually produced. Input paths can be selected with `--input-csv` for A and
+`--input-dir` for B; their defaults are the committed compact inputs.
 
 ## Interpretation and display
 

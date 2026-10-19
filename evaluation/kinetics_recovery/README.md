@@ -30,6 +30,16 @@ Run from the repository root. Obtain the [original reference tables](../../data/
 and [saved method outputs](../../data/RESULT_DOWNLOADS.md), with software
 versions from [the current run manifest](results/central_results/manifest.json).
 The quantitative renderer also requires `matplotlib-venn` (recorded run: 1.1.2).
+Use the [kinetics dependency record](../../docs/environments.md#evaluation)
+for numerical evaluation and the plotting dependencies for figures.
+
+`--artifact-root` is the local directory containing both
+`references/kinetics/` and `method-results/kinetics/`. The
+[run manifest](results/central_results/manifest.json) pairs each method-result
+alias with its original velocity-root path and SHA-256; expose the downloaded
+file at the alias consumed by `config.json`. Reference filenames are listed
+below. [Local roots](../../data/README.md#local-data-roots) distinguishes this
+layout from the Cell and Gene roots.
 
 ```bash
 python evaluation/kinetics_recovery/metrics.py \
@@ -46,9 +56,23 @@ python evaluation/kinetics_recovery/plotting/streams.py \
 
 Use fresh output directories. The evaluator resolves reference and
 `method-results/kinetics/` aliases under the kinetics artifact root.
+`--check-only` reads the H5ADs and reference tables, computes the component
+scores and prints them without saving. `--methods` selects a method subset;
+the default evaluates every configured method.
+
+Numerical evaluation writes `gene_metrics.csv`, `component_means.csv`,
+`system_means.csv`, `method_summary.csv` and processed matrices under
+`matrices/`. Check the method/parameter/system/branch fields and finite-gene
+counts when comparing with `results/central_results/`.
 Quantitative plotting reads evaluator output; streams read saved velocity-root
 H5ADs. [Plotting details](plotting/README.md) describe display settings and
 [expanded rendering](results/expanded_reference/README.md).
+
+The Figure 6 renderer's input paths are in
+`plotting/figure6_config.json`. The default complete evaluation supplies its
+configured matrices and scores; a method-subset evaluation supplies only that
+subset. `streams.py` takes the velocity root separately and reads the stored
+velocity fields shown in the native-input table.
 
 ## Selected native inputs
 

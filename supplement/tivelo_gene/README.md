@@ -19,8 +19,8 @@ and assembly manifests.
 
 ## Re-render
 
-Run from the repository root in the TIvelo environment with AnnData, Scanpy,
-Matplotlib, NumPy and pandas. PDF assembly additionally needs pypdf, reportlab
+Run from the repository root with AnnData, Matplotlib, NumPy, pandas and
+SciPy for the saved-data plots. PDF assembly additionally needs pypdf, reportlab
 and the original Arial TTF. Set `VELOCITY_ROOT`, `EXPORT_DIR` (fresh) and
 `ARIAL_TTF` to your local paths.
 
@@ -45,6 +45,13 @@ Native H5ADs are external. Locators prefixed `repository:`, `velocity:`,
 Bone marrow `provenance.json` is the portable record; the original runtime
 manifest/logs remain external. Historical `--resume` requires that runtime
 manifest and matching inputs; independent reruns need a fresh output root.
+
+The lineage plot's `--artifact-root` is the velocity directory containing
+the configured native H5AD paths. Bone marrow refitting instead uses the
+Cell parent-root convention and separate fitting/metric Python roles;
+its [local setup](bonemarrow_root_control_20261001/README.md#reproduction)
+defines those paths. Refits require TIvelo 0.1.4 and the recorded scientific
+dependencies, separately from saved-data rendering.
 
 ## Controls and interpretation
 

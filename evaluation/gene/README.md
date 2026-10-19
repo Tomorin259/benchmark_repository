@@ -26,7 +26,13 @@ simulation IDs are `branching`, `murk` and `all`.
 ## Recalculate CBDir
 
 Run from the repository root with the external artifacts arranged at their
-recorded logical paths:
+recorded logical paths. Here `--artifact-root` is the velocity directory
+itself: a configured `results/...h5ad` is read at
+`<artifact-root>/results/...h5ad`. See the
+[root layouts](../../data/README.md#local-data-roots) and
+[evaluation dependencies](../../docs/environments.md#evaluation).
+Real-data runs also need the `label_reference` file in `config.py`;
+veloVI on `capo_pre` additionally reads `data/capo_pre/capo_pre.h5ad`.
 
 ```bash
 python evaluation/gene/run_reference30_gene_cbdir.py \
@@ -40,12 +46,23 @@ The explicit list covers all ten datasets/scenarios; the script's default list
 is a subset. `--methods veloVI` evaluates veloVI alone; the default evaluates
 all nine methods. The output directory must be empty.
 `VELOCITY_ARTIFACT_ROOT` can supply the artifact root.
-The evaluator also reads the historical comparison-score files named in its
-source/provenance; the saved H5ADs alone do not supply those comparisons.
+Historical comparison-score files named in the source/provenance supply
+`old_cbdir`, old edge scores and their deltas. Missing historical files leave
+those comparison fields undefined; current CBDir and veloVI simulation
+CosSim are calculated from the H5ADs and fixed reference assets.
 
 `--neighbor-mode native` is a controlled comparison, with a separate output
 root. Results include per-dataset scores, edge details, neighbor assets and
 provenance. Reference mode reuses the committed reference-neighbor NPZs.
+
+The output root contains `gene_cbdir_reference30_all.csv`,
+`gene_cbdir_edge_details_reference30_all.csv`, `neighbor_audit_all.csv` and
+`provenance.json`, plus per-dataset tables. veloVI also writes
+`unit_restoration/velovi_scale_factors.csv` and, for simulations,
+`simulation/velovi_cossim.csv`. Compare current scores by dataset/method/gene,
+including status and evaluable counts, against the corresponding formal rows.
+The configured method paths and layer keys select the result family for a
+new run; keep its output root separate from the committed results.
 
 ### veloVI coordinate units
 
@@ -90,6 +107,10 @@ Summaries still cover every registered gene in the selected dataset.
 `--dpi` defaults to 600; output directories must be empty and cannot be the
 committed panel directory. The renderer joins `new_cbdir` and CosSim by
 dataset/method/gene, with registry method names and the Cell color palette.
+
+These rendering commands read the committed CBDir and CosSim CSVs listed
+above. `--output-root` selects the export destination. The resulting
+`scores_used.csv` and `provenance.json` identify the actual score inputs.
 
 ### Common-gene comparison
 

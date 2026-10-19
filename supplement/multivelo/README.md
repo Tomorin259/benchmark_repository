@@ -94,6 +94,10 @@ NumPy 2.0.2 for the verified fitting controls. The expected MultiVelo source
 hash is in `provenance.json`. Rerendering needs NumPy, pandas, AnnData,
 Matplotlib, SciPy and scikit-learn; it performs no fitting.
 The vector/raster A/B assembly additionally requires pypdf and Pillow.
+Select those packages in a local environment of your choice. For refits,
+`--artifact-root` is the velocity directory containing the relative H5AD
+paths in `evaluation/gene/config.py`; `--repository-root` is this checkout.
+The rendering and table commands use the committed compact inputs by default.
 
 ```sh
 python supplement/multivelo/plot_materials.py --output-dir outputs/multivelo-materials

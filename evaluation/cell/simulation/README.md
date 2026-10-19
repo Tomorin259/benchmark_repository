@@ -62,8 +62,10 @@ result table and scenario-specific summaries.
 ## Re-evaluate saved outputs
 
 Materialize the historical artifacts and use compatible scVelo/TiVelo
-environments. Use new directories for reference construction, moments,
-evaluation and temporary work:
+environments from the [Cell dependency instructions](../../../docs/environments.md#evaluation).
+Here `--artifact-root` is the parent of `velocity/`, matching the Cell runner.
+The builder resolves every `velocity:<path>` below that subdirectory. Use new
+directories for reference construction, moments, evaluation and temporary work:
 
 ```bash
 python evaluation/cell/simulation/build_simulation_inputs.py \
@@ -79,8 +81,8 @@ python evaluation/cell/run_cell_metrics.py \
   --reference-moments-root /path/to/new-reference-moments \
   --output-root outputs/simulation-evaluation \
   --work-root /path/to/new-temporary-work \
-  --indicators-python /path/to/indicators-python \
-  --tivelo-python /path/to/tivelo-python \
+  --indicators-python /path/to/cell-evaluation/bin/python \
+  --tivelo-python /path/to/tivelo-metrics/bin/python \
   --prepare-script evaluation/cell/prepare_cell_metrics.py \
   --official-script evaluation/cell/score_tivelo_metrics.py
 ```
@@ -89,6 +91,9 @@ Reference construction follows Gene simulation preprocessing and verifies its
 cell names and neighbor indices against the stored Gene assets. Evaluation
 scores the saved method outputs and writes under
 `outputs/simulation-evaluation/results/`.
+Check scenario/method coverage, source audits and TiVelo parity in that
+directory. Its `inputs.tsv` uses the Cell runner's operational method IDs;
+the builder obtains the corresponding native outputs from the Gene tables.
 
 ## Export tables and render retained panels
 

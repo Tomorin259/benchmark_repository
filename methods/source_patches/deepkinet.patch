@@ -1,0 +1,41 @@
+diff --git a/src/deepkinet/exp.py b/src/deepkinet/exp.py
+--- a/src/deepkinet/exp.py
++++ b/src/deepkinet/exp.py
+@@ -1,6 +1,6 @@
+ import torch
+-from modules import DeepKINET
+-from dataset import DeepKINETDataManager
++from .modules import DeepKINET
++from .dataset import DeepKINETDataManager
+ import numpy as np
+ from statistics import mean
+ 
+diff --git a/src/deepkinet/utils.py b/src/deepkinet/utils.py
+--- a/src/deepkinet/utils.py
++++ b/src/deepkinet/utils.py
+@@ -4,7 +4,7 @@
+ import seaborn as sns
+ from matplotlib import pyplot as plt
+ import torch
+-import exp
++from . import exp
+ import scanpy as sc
+ import umap
+ import anndata as ad
+diff --git a/src/deepkinet/workflow.py b/src/deepkinet/workflow.py
+--- a/src/deepkinet/workflow.py
++++ b/src/deepkinet/workflow.py
+@@ -1,8 +1,11 @@
++import os
+ import torch
+-import utils
++from . import utils
+ import numpy as np
+ 
+-def estimate_kinetics(adata, epoch = 2000, learned_checkpoint = None, loss_mode = 'poisson', checkpoint='.deepkinet_opt.pt', lr = 0.001, weight_decay=0.01, batch_key=None):
++DEFAULT_CHECKPOINT = os.environ.get("DEEPKINET_CHECKPOINT", ".deepkinet_opt.pt")
++
++def estimate_kinetics(adata, epoch = 2000, learned_checkpoint = None, loss_mode = 'poisson', checkpoint=DEFAULT_CHECKPOINT, lr = 0.001, weight_decay=0.01, batch_key=None):
+ 
+     model_params = {}
+     model_params['x_dim'] = adata.n_vars

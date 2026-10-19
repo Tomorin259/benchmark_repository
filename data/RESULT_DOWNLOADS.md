@@ -51,6 +51,17 @@ Map extracted members to the evaluator's expected logical source paths using
 `source_locator`, registered artifact IDs and the owning module README.
 Arrange the extracted files under the evaluator's input root. Files shared by
 several evaluations are stored once, with their logical aliases retained.
+
+For example, the C09 member above has source locator
+`velocity:results/cell2fate/capo_pre/cell2fate_capo_pre.h5ad`. Its evaluation
+location is `<velocity-root>/results/cell2fate/capo_pre/cell2fate_capo_pre.h5ad`,
+regardless of the archive's `cell/` directory. Cell receives the parent of this
+velocity root. Gene and ensemble receive the velocity root directly for the
+methods selected by their own input maps. The
+[local-root table](README.md#local-data-roots) also covers method inputs,
+reference moments and kinetics aliases. Copies or local links can expose
+the required aliases while preserving the original-file identity.
+
 Join a registered artifact ID to `registered_artifact_ids` in the member
 manifest, then join `package_id` to the package manifest. The native artifact
 hash identifies the original member; its URI stays empty when that original

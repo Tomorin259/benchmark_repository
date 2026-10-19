@@ -104,8 +104,27 @@ should identify these coordinates as t-SNE, not newly computed UMAP.
 
 ## Reproduction
 
-Run with the repository TIvelo environment. Use a **new output directory** for
-an independent rerun; `--resume` resumes only hash-verified outputs.
+Use your own TIvelo 0.1.4 installation with the package versions in
+`provenance.json`; [Cell dependencies](../../../docs/environments.md#evaluation)
+describe the separate preparation worker. The fitting interpreter also runs
+the official TIvelo scorer. Choose local paths, for example:
+
+```bash
+TIVELO_PYTHON=/path/to/tivelo-analysis/bin/python
+CELL_METRICS_PYTHON=/path/to/cell-evaluation/bin/python
+ARTIFACT_ROOT=/path/to/artifacts
+VELOCITY_ROOT="$ARTIFACT_ROOT/velocity"
+REPOSITORY_ROOT=/path/to/benchmark_repository
+REFERENCE_MOMENTS_ROOT=/path/to/reference-moments
+NEW_EXPERIMENT_DIR="$VELOCITY_ROOT/outputs/tivelo-bonemarrow-control"
+```
+
+The evaluation stage converts native H5AD paths to Cell `velocity:` locators.
+Both `--source` and the new output directory must therefore be below
+`<artifact-root>/velocity/`. Refits are written to
+`<output-dir>/native_outputs/`, with evaluations and logs in sibling
+subdirectories. Use a **new output directory** for an independent rerun;
+`--resume` resumes only hash-verified outputs.
 
 ```bash
 "$TIVELO_PYTHON" -u supplement/tivelo_gene/bonemarrow_root_control.py \
@@ -113,7 +132,7 @@ an independent rerun; `--resume` resumes only hash-verified outputs.
   --repo-root "$REPOSITORY_ROOT" \
   --source "$VELOCITY_ROOT/results/TIvelo/tivelo_bonemarrow.h5ad" \
   --reference-moments-root "$REFERENCE_MOMENTS_ROOT" \
-  --indicators-python "$INDICATORS_PYTHON" \
+  --indicators-python "$CELL_METRICS_PYTHON" \
   --output-dir "$NEW_EXPERIMENT_DIR" \
   --seeds 20261001 20261002 20261003 --threads 8
 ```

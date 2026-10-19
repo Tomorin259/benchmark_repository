@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the official TSvelo workflow on the 14 benchmark datasets."""
+"""Run the pinned TSvelo workflow with the documented benchmark source patch."""
 
 from pathlib import Path
 import argparse
@@ -94,7 +94,7 @@ def stage_input(input_path, label_key, target_path, normalize_ids=False):
     adata.obs_names_make_unique()
     if label_key not in adata.obs:
         raise KeyError(f"{input_path}: missing obs[{label_key!r}]")
-    # The official fallback loader copies cell_type into clusters.
+    # The patched input loader copies cell_type into clusters.
     adata.obs["cell_type"] = adata.obs[label_key].copy()
     if normalize_ids:
         adata.obs_names = [normalize_cell_id(value) for value in adata.obs_names]
@@ -154,7 +154,7 @@ def run_dataset(dataset, source, data_root, output_root, cuda=2, n_jobs=-1, over
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", choices=[*DATASETS_TO_RUN, "all"], default="all")
-    parser.add_argument("--source-root", help="official TSvelo checkout; defaults to TSVELO_ROOT")
+    parser.add_argument("--source-root", help="pinned TSvelo checkout with benchmark patch; defaults to TSVELO_ROOT")
     parser.add_argument("--data-root", default=str(DATA_ROOT))
     parser.add_argument("--output-root", default=str(OUTPUT_ROOT))
     parser.add_argument("--cuda", type=int, default=2)
