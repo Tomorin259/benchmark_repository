@@ -366,10 +366,12 @@ def export_data(root=ROOT, output=None):
     packages_by_id = keyed(result_packages, ['package_id'])
     keyed(result_packages, ['repository_path'])
     keyed(result_members, ['object_id'])
-    if len(result_packages) != 338 or len(result_members) != 384:
-        raise ValueError('Result release must cover 338 packages and 384 original files')
+    if len(result_packages) != 339 or len(result_members) != 388:
+        raise ValueError('Result release must cover 339 packages and 388 original files')
     for package in result_packages:
-        if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/resolve/v1.0.0/'):
+        if package['release_version'] != 'v1.0.0':
+            raise ValueError('Unsupported result release version')
+        if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results/resolve/' + package['release_version'] + '/'):
             raise ValueError('Result package must point to the verified release tag')
         if not package['url'].endswith(package['repository_path'] + '?download=true'):
             raise ValueError('Result package URL and repository path differ')
@@ -468,11 +470,11 @@ def export_data(root=ROOT, output=None):
         downloads['tables'].append({'label': label, **entry})
     metadata_downloads = [
         ('data/RESULT_DOWNLOADS.md', 'Native result download guide',
-         'Verified v1.0.0 output release, TAR.GZ extraction and separate archive/member checksums.'),
+         'Versioned output releases, TAR.GZ extraction and separate archive/member checksums.'),
         ('data/result_package_manifest.tsv', 'Result package download manifest',
-         '338 public TAR.GZ/NPZ objects with version-pinned URLs, sizes and package SHA-256 values.'),
+         '339 public TAR.GZ/NPZ objects with version-pinned URLs, sizes and package SHA-256 values.'),
         ('data/result_member_manifest.tsv', 'Original result member manifest',
-         '384 original H5AD/NPZ files with package mapping, member hashes and logical artifact aliases.'),
+         '388 original H5AD/NPZ files with package mapping, member hashes and logical artifact aliases.'),
         ('data/input_release_manifest.tsv', 'Input release manifest',
          '28 logical dependencies: 25 mirrored files and three upstream-only reference tables.'),
         ('data/input_file_manifest.tsv', 'Input file download manifest',

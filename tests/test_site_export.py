@@ -264,12 +264,20 @@ class SiteExportTests(unittest.TestCase):
     def test_result_packages_preserve_archive_and_member_identities(self):
         packages = self.payload['result_packages']
         members = self.payload['result_members']
-        self.assertEqual(len(packages), 338)
-        self.assertEqual(len(members), 384)
-        self.assertEqual(sum(row['bytes'] for row in packages), 149558222960)
-        self.assertEqual(sum(row['member_bytes'] for row in members), 252148325990)
-        self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 324)
+        self.assertEqual(len(packages), 339)
+        self.assertEqual(len(members), 388)
+        self.assertEqual(sum(row['bytes'] for row in packages), 149576197521)
+        self.assertEqual(sum(row['member_bytes'] for row in members), 252167762795)
+        self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 325)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
+        self.assertEqual({row['release_version'] for row in packages}, {'v1.0.0'})
+        base = [row for row in packages if '/diagnostics/multivelo/' not in row['repository_path']]
+        self.assertEqual(len(base), 338)
+        self.assertEqual(sum(row['bytes'] for row in base), 149558222960)
+        supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
+        self.assertEqual(len(supplement), 1)
+        self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')
+        self.assertIn('/resolve/v1.0.0/v1.0.0/diagnostics/multivelo/', supplement[0]['url'])
         indexed = {row['package_id']: row for row in packages}
         for package in packages:
             selected = [row for row in members if row['package_id'] == package['package_id']]

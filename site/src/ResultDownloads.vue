@@ -6,7 +6,7 @@ const dataset = ref('all'), method = ref('all'), kind = ref('all'), page = ref(1
 const kinds = [
   ['method_outputs', 'Native method outputs'], ['kinetics_outputs', 'Kinetics outputs'],
   ['simulation_outputs', 'Simulation outputs'], ['ensemble_outputs', 'Ensemble outputs'],
-  ['diagnostics', 'TIvelo controls'], ['evaluation_assets', 'Reference moments'],
+  ['diagnostics', 'TIvelo / MultiVelo controls'], ['evaluation_assets', 'Reference moments'],
 ]
 const packages = computed(() => (props.data.result_packages || []).map(item => ({
   ...item,

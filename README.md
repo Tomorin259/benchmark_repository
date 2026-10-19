@@ -37,8 +37,8 @@ Run commands from the repository root and use a fresh output directory.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
 - [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark-results)
-  are available as the verified `v1.0.0` release: 338 download objects,
-  totaling 149.56 GB. Select packages from the
+  are available as `v1.0.0`: 339 download objects totaling 149.58 GB,
+  including the MultiVelo diagnostic outputs. Select packages from the
   [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ
   files through the [member manifest](data/result_member_manifest.tsv), and follow the
   [download and extraction guide](data/RESULT_DOWNLOADS.md).

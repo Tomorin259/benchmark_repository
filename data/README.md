@@ -38,8 +38,8 @@ tables use the corresponding `paper_name`.
 | [datasets.tsv](datasets.tsv) | Dataset ID, role, dimensions and upstream source |
 | [input_file_manifest.tsv](input_file_manifest.tsv) | Direct URLs, paths, sizes and hashes for the 25 mirrored files |
 | [input_release_manifest.tsv](input_release_manifest.tsv) | All 28 logical input dependencies and processing roles, including three upstream-only references |
-| [result_package_manifest.tsv](result_package_manifest.tsv) | 338 result-package URLs, sizes and archive SHA-256 values for the verified output release |
-| [result_member_manifest.tsv](result_member_manifest.tsv) | 384 original scientific files, their packages, member sizes/hashes, source locators and logical aliases |
+| [result_package_manifest.tsv](result_package_manifest.tsv) | 339 version-pinned result-package URLs, sizes and archive SHA-256 values |
+| [result_member_manifest.tsv](result_member_manifest.tsv) | 388 original scientific files, their packages, member sizes/hashes, source locators and logical aliases |
 | [upstream_references.tsv](upstream_references.tsv) | Original table identity, expected benchmark CSV hashes and supported layouts |
 | [release_map.tsv](release_map.tsv) | Logical artifacts and materialization paths |
 | [artifacts.tsv](../artifacts.tsv) | Artifact identity, checksum and registered access |
