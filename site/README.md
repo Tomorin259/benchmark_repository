@@ -23,7 +23,7 @@ All package URLs are pinned to the `v1.0.0` release.
 Archive hashes and original H5AD/NPZ member hashes remain separate; no
 training or metric calculation is performed by the exporter.
 
-Downloads starts with the figure/table-indexed Source data packages, followed
+Downloads starts with figure/table-oriented Source data directories, followed
 by Benchmark input files and Full method outputs. The original kinetic-reference
 access guide is linked from the input section. Result tables and summary figures
 remain in their owning repository modules; the download page uses Source Data as
@@ -36,5 +36,8 @@ TAR.GZ/NPZ download buttons and package sizes. Checksums remain in the
 downloadable manifests. Native H5AD
 artifact URIs are not used as archive download links.
 
-The Source data section reads `data/source_data_manifest.tsv`; its ZIP links
-are pinned to the published Hugging Face content commit.
+The Source data section reads the individual files in `data/source_data_manifest.tsv`
+and groups them into main figures, supplementary figures and supplementary tables.
+Each directory provides file descriptions. Plotting scripts and retained images are
+linked from the release index; a complete ZIP is available as an optional download.
+All file and directory links are pinned to the published Hugging Face content commit.

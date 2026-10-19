@@ -251,10 +251,10 @@ class SiteExportTests(unittest.TestCase):
             h5ad_ids = {r['artifact_id'] for r in csv.DictReader(handle, delimiter='\t') if r['member_path'].endswith('.h5ad')}
         self.assertEqual({r['artifact_id'] for r in self.payload['h5ad']}, h5ad_ids)
 
-    def test_source_data_downloads_match_their_registered_archives(self):
+    def test_source_data_files_match_the_registry_and_figure_directories(self):
         with (ROOT / 'data/source_data_manifest.tsv').open() as handle:
             expected = list(csv.DictReader(handle, delimiter='\t'))
-        actual = self.payload['source_data_packages']
+        actual = self.payload['source_data_files']
         self.assertEqual(len(actual), len(expected))
         registry = {row['artifact_id']: row for row in self.payload['artifacts']}
         for row, source in zip(actual, expected):
@@ -262,6 +262,20 @@ class SiteExportTests(unittest.TestCase):
             self.assertEqual(row['sha256'], registry[row['artifact_id']]['sha256'])
             self.assertEqual(row['url'], registry[row['artifact_id']]['uri'])
             self.assertRegex(row['url'], r'/resolve/[0-9a-f]{40}/source_data/v1\.0\.0/')
+        self.assertEqual(sum(row['path'].endswith('.npz') for row in actual), 243)
+        self.assertEqual(sum(row['path'].endswith('.zip') for row in actual), 1)
+        self.assertFalse(any('Source_Data_display_' in row['path'] for row in actual))
+        self.assertEqual(self.payload['source_data_archive']['path'], 'Source_Data_complete.zip')
+        groups = self.payload['source_data_groups']
+        self.assertEqual([row['id'] for row in groups],
+                         ['main_figures', 'supplementary_figures', 'supplementary_tables'])
+        for group in groups:
+            files = [row for row in actual if row['path'].startswith(group['id'] + '/')]
+            self.assertTrue(files)
+            self.assertEqual(group['files'], len(files))
+            self.assertEqual(group['bytes'], sum(row['bytes'] for row in files))
+            self.assertEqual(group['url'], self.payload['source_data_root'] + '/' + group['id'])
+            self.assertTrue(any(row['path'] == group['id'] + '/README.md' for row in files))
 
     def test_individual_inputs_and_upstream_sources_are_separate(self):
         files = self.payload['input_files']

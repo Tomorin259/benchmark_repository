@@ -94,14 +94,19 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
         <div class="page-heading"><h1>Downloads</h1></div>
         <section class="panel downloads-section" aria-labelledby="source-data-heading">
           <h2 id="source-data-heading">Source data</h2>
-          <p class="small muted">v1.0.0 · Figure/table-indexed numerical tables, saved plotting arrays and reproduction scripts. Unzip the parts you need into the same parent folder.</p>
+          <p class="small muted">v1.0.0 · Browse by figure or table and download individual CSV, TSV or NPZ files. Each directory explains its contents. The complete ZIP is optional.</p>
           <div class="guide-links">
+            <a :href="data.source_data_root" target="_blank" rel="noopener">Index, plotting scripts and materials ↗</a>
             <a href="./data/files/data/SOURCE_DATA.md" download>Source Data guide</a>
             <a href="./data/files/data/source_data_manifest.tsv" download>Sizes and checksums</a>
           </div>
-          <div v-for="file in data.source_data_packages" :key="file.artifact_id" class="download-row source-data-row">
-            <div><strong>{{file.archive}}</strong><span class="small muted">{{file.content}} · {{size(file.bytes)}}</span></div>
-            <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download ZIP</a>
+          <div v-for="group in data.source_data_groups" :key="group.id" class="download-row source-data-row">
+            <div><strong>{{group.label}}</strong><span class="small muted">{{group.description}}</span><span class="small muted">{{number(group.files)}} files · {{size(group.bytes)}}</span></div>
+            <a class="button secondary" :href="group.url" target="_blank" rel="noopener">Browse files ↗</a>
+          </div>
+          <div class="download-row source-data-row">
+            <div><strong>Complete Source Data</strong><span class="small muted">Optional: all tables, plotting inputs, scripts and retained images · {{size(data.source_data_archive.bytes)}}</span></div>
+            <a class="button secondary" :href="data.source_data_archive.url" target="_blank" rel="noopener">Download complete ZIP</a>
           </div>
         </section>
         <section class="panel downloads-section"><h2>Benchmark input files</h2><p class="small muted">25 original-format files for 17 datasets: 22 H5AD, one loom and two CSVs. Download the files you need and use them directly.</p>
