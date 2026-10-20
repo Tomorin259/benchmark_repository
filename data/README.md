@@ -36,7 +36,8 @@ different roots, according to their existing input maps:
 
 | Command / parameter | Directory to supply | Example file below that directory |
 | --- | --- | --- |
-| Method `--data-root` or top-level `DATA_ROOT` | Scientific input directory | `Pancreas/Pancreas.h5ad` |
+| Real-data method `--data-root` or top-level `DATA_ROOT` | Scientific input directory | `Pancreas/Pancreas.h5ad` |
+| Simulation method `--data-root` | Velocity directory containing the registered simulation paths | `indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad` |
 | Cell and simulation-Cell `--artifact-root` | Parent of a `velocity/` directory | `velocity/results/...h5ad` |
 | Gene, ensemble, veloVI coordinate diagnostic and gene-case `--artifact-root` | The velocity directory itself | `results/...h5ad` or `indicators/gene/...h5ad` |
 | Cell `--reference-moments-root` | Directory of downloaded reference NPZs | `<evaluation_dataset>.npz` |
@@ -44,9 +45,10 @@ different roots, according to their existing input maps:
 
 For example, a Cell artifact root can contain `velocity/data/`,
 `velocity/results/` and `velocity/indicators/`. Gene and ensemble receive
-that root's `velocity/` subdirectory; method input roots can point to its
-`velocity/data/` subdirectory. Scientific input-manifest paths already begin
-with `data/`, so download those relative to the velocity directory.
+that root's `velocity/` subdirectory; real-method input roots can point to its
+`velocity/data/` subdirectory. Preserve each input-file manifest path below
+the velocity directory. Simulation paths begin with `indicators/`, and their
+method commands receive the velocity directory itself.
 The checkout's own `data/` directory holds the public registries and guides.
 
 `velocity:<relative-path>` and `artifact://velocity/<relative-path>` identify
