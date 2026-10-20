@@ -3,8 +3,6 @@
   "recorded_utc": "2026-09-26T16:42:48.709884+00:00",
   "base_commit": "f27a07a5c8700d56939ed11e8bb07dc5e99f1208",
   "input_hash_capture": "after_evaluation; stream input hashes additionally checked before_and_after_rendering",
-  "method_training_rerun": false,
-  "scientific_evaluator_changed": true,
   "central_h5ad_policy": "results_directory_except_labelled_Dynamo",
   "inputs": [
     {
@@ -371,14 +369,7 @@
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.png": "e8ebf47b37221790664a95b3c4978c52f91f8f904986446e9bb9634d89b56d46",
     "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/tsvelo_organoid_stream_title_removed.manifest.json": "1e45b07f10f5a3440fb1dd5bbcaaac17dc613f61e1fe1740b2172c8403c56bba"
   },
-  "historical_preserved_figures_sha256": {
-    "figures/figSeven.pdf": "e2de1a0a932169bcb72cbe17bf55b4351788424092b06189786285369ac85f3f"
-  },
   "figure7_provenance": "figures/fig7_composite_manifest.json",
-  "preserved_tracked_paths_verified_unchanged": [
-    "evaluation/kinetics_recovery/results/final_seed123/"
-  ],
-  "runtime_warning": "Existing rendering environment has SciPy 1.6.2 with NumPy 1.23.0, outside its declared <1.23.0 bound. Rendering completed; C/D and cellDancer E reproduced exact PNGs. No existing environment packages were replaced.",
   "rpe1_export": {
     "bbox_inches": "tight",
     "pad_inches": 0.1,
@@ -389,8 +380,6 @@
     ],
     "scientific_inputs_and_scores_changed": false
   },
-  "promoted_utc": "2026-09-26T16:42:48.709884+00:00",
-  "comparison_archive": "kinetics_archives/dynamo_organoid_metrics_20260927_001744/central_results_before",
   "evaluated_code_sha256": {
     "metrics.py": "4a8663e4f4b6f436e77597021be3c8ac30864d3368f7a054befc86cdcd8a9721",
     "config.json": "9d5c7239077384017ee9057a8ee1573219ab5f0de3ad50da8289424decbc847c",
@@ -406,17 +395,7 @@
     "evaluation/kinetics_recovery/plotting/figure6.py": "1e4f43ae0aeb2e50241504a717be1c4859cde059d978730dfeac3a48b173736b",
     "evaluation/kinetics_recovery/plotting/figure6_config.json": "8c3dadefa319be5eb0b44c70a70f1a712da1f030f6fa4c67fffec5f9155ea010",
     "evaluation/kinetics_recovery/plotting/streams.py": "4b51dc91e32cf8cd4606be9860732796cab6bb92c42b13de3e533cf364e88cea",
-    "evaluation/kinetics_recovery/plotting/stream_config.json": "3057fbb8a530f412c65e7c10aec2dcf19ef5e6325e6238ac9343a793efffe8b7",
-    "evaluation/kinetics_recovery/plotting/compare_figure6.py": "cc23a6dcc219436453008efb59d23f6d39541c9e24ca635aeacc2789b8e3fe60"
-  },
-  "historical_seed123_score_comparison": {
-    "selected_rpe1_genes": 19,
-    "selected_organoid_branch1_genes": 6,
-    "selected_organoid_branch2_genes": 8,
-    "selected_spearman_max_abs_difference": 0.0,
-    "full_deepkinet_score_rows": 790,
-    "full_spearman_max_abs_difference": 8.56320514536213e-05,
-    "cause": "Not established; different recorded evaluation runtimes. No input H5AD change."
+    "evaluation/kinetics_recovery/plotting/stream_config.json": "3057fbb8a530f412c65e7c10aec2dcf19ef5e6325e6238ac9343a793efffe8b7"
   },
   "reference_alignment_change": {
     "organoid_branch1": "reverse Table S4 reference columns before scoring",
@@ -437,12 +416,6 @@
     "score_decimal_places": 4,
     "scientific_inputs_and_scores_changed": false,
     "composite_pdf_updated": true,
-    "previous_outputs_sha256": {
-      "evaluation/kinetics_recovery/figures/fig6/organoid_branch1_boxplot.png": "30fe89802e2f5eae523100f72e1395b9d2060d852c6e279f5dfaac2e29034537",
-      "evaluation/kinetics_recovery/figures/fig6/organoid_branch2_boxplot.png": "bc533cfe723791cad11477576e861fa8da8753a31a371ed77b6b74d7458eb839",
-      "figures/fig6_composite_manifest.json": "235c26cb8452c86ac8bc76ded82afa758378f5c8495ee1c2da3d3fe6cd85a09f",
-      "figures/figSix.pdf": "c719d687cc2de4e1240a6c9ba795d7b639e794757da25d1892c4f8c702291866"
-    },
     "previous_renderer_sha256": "2f20b24b5daf68fba705787ba426160838fc7d13c33ec9f1660cfca75ce0ba78",
     "dynamo_display_label": "Dynamo (scEU)",
     "heatmap_mean_decimal_places": 2,
@@ -466,6 +439,5 @@
     "pending_panel_replacements": [],
     "organoid_tsvelo_scope": "E stream only; no kinetic-parameter score added"
   },
-  "active_figure": "fig6",
-  "archive_root": "evaluation/kinetics_recovery/archive/fig5"
+  "active_figure": "fig6"
 }

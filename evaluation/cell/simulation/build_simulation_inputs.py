@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the shared Cell reference state for the three historical simulations.
 
-Run with the scVelo 0.2.5 indicators environment. The large reference moments
+Run with the Cell preparation dependencies in docs/environments.md, including
+scVelo 0.2.5. The large reference moments
 are written outside Git; compact neighbor graphs and the input manifest live in
 this module. No method-result or historical simulation H5AD is modified.
 """

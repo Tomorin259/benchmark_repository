@@ -65,8 +65,7 @@ the induction-heavy ground-truth direction distribution.
 - `tables/tableS9.tex`: the booktabs source for Supplementary Table S9, with
   four conditions and four-decimal scores for the two branching subsets.
   MURK, smoothing, complete-trajectory and paired-count results remain in
-  the full CSVs. The image files in `tables/` retain that full diagnostic
-  preview; they are not the compact manuscript Table S9.
+  the full CSVs.
 - `materials_manifest.json`: rendering inputs, sampled arrows, output
   checksums, font and resolution for Supplementary Figure S15 A/B and Table S9.
 - `../../figures/assembly/suppfig15/`: the retained editable author assembly,

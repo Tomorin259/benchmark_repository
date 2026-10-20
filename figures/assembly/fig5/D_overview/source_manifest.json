@@ -2,7 +2,7 @@
   "source_pptx": "figures/assembly/fig5/authoring/source.pptx",
   "source_sha256": "2d90b5e25e950a4b944cf9661db6f46caec835577bcb1b88a844f251a1b14736",
   "slide": 1,
-  "identification": "Both images have native slide y-position equal to the d panel label; the old 19800x3600 material was a branching gene boxplot/heatmap summary, not the D dataset overview.",
+  "identification": "The two dataset overview images are identified by their native slide placement beside panel D.",
   "panels": [
     {
       "path": "figures/assembly/fig5/D_overview/overview_left.png",
@@ -15,9 +15,5 @@
       "ppt_member": "ppt/media/image4.png"
     }
   ],
-  "archived_misidentified_asset": {
-    "path": "figures/archive/fig5/legacy_branching_gene_summary.png",
-    "sha256": "8921434613128eb7698e1a74acfc2b15766d34b382f63239467ed8e600f9a178"
-  },
   "verification_boundary": "Exact embedded image bytes and native slide placement are retained; no UMAP, velocity or scores were recomputed. Final repository PDF is unchanged."
 }

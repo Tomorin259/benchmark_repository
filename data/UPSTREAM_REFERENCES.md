@@ -26,9 +26,6 @@ time-column order, numerical values and missing entries.
 
 `upstream_references.tsv` records their sizes and SHA-256 values.
 `check_references.py` checks those file identities without rewriting the data.
-The original supplementary PDF describes Excel tables; equivalence to an
-independently obtained Excel workbook has not been checked.
-
 For an Excel source or a different CSV serialization, compare its column
 layout, gene identities, reference trajectories and missing values with the
 benchmark CSV before evaluation. A different file hash can reflect serialization

@@ -5,5 +5,5 @@
   "online_file_git_blob_sha1": "95ad80ed9c7697dca83e95d197ad97d2968bd96a",
   "source_kind": "author_exported_pdf",
   "verification": "Exact original bytes match the online project file hash.",
-  "reproduction_boundary": "Retained final PDF is directly reusable. A final PDF is not a numerical renderer or proof of independent editable-source reconstruction."
+  "reproduction_boundary": "Panels A and B can be regenerated using the scripts in supplement/veloae/. Whole-figure layout uses manual author assembly. The retained candidate PPTX has not been verified against the final PDF."
 }

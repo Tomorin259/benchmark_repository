@@ -26,7 +26,7 @@ REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO))
 from evaluation.gene.plotting.phase_portrait import plot_phase_portrait
 from evaluation.cell.plots import BENCHMARK_COLORS
-from summarize_controls import CONDITIONS, summarize, manuscript_table
+from summarize_controls import manuscript_table
 
 
 def sha(path):
@@ -157,7 +157,6 @@ def main():
     obj.obs["known_progression"] = pd.Categorical(arrays["bins"], categories=list(range(10)))
     obj.uns["known_progression_colors"] = [plt.get_cmap("plasma")(i / 9) for i in range(10)]
     refits = pd.read_csv(root / "results/multivelo_refits.csv")
-    scv = pd.read_csv(root / "results/scvelo_controls.csv")
     case_scores = refits[(refits.dataset == "branching") & (refits.gene == "BoostALL_5")].set_index("condition")
     diagnostics = []
     phase_specs = [
@@ -196,56 +195,6 @@ def main():
 
     plot_paired_controls(root, args.output_dir, args.dpi)
 
-    summaries, effects = summarize(root / "results")
-    summary = pd.DataFrame(summaries)
-    # Retain the full diagnostic preview; manuscript S9 is a separate compact view.
-    fig = plt.figure(figsize=(7.25, 6.35))
-    ax = fig.add_axes([.03, .025, .94, .95])
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    ax.axis("off")
-    x = [.005, .225, .555, .685, .835, .965]
-    y = .985
-    ax.text(0, y, "Phase-assignment controls: numerical summary", fontsize=10, weight="bold", va="top")
-    y -= .065
-    for section, category, first, second, first_label, second_label, n1, n2 in [
-        ("A", "branching", "branching", "all", "normal + branching", "hybrid: branching", 20, 20),
-        ("B", "MURK", "murk", "all", "normal + MURK", "hybrid: MURK", 10, 20),
-    ]:
-        ax.text(0, y, f"{section}. {category} genes", fontsize=9, weight="bold", va="top")
-        y -= .043
-        ax.text(.62, y, f"{first_label} (n={n1})", fontsize=7.6, ha="center")
-        ax.text(.90, y, f"{second_label} (n={n2})", fontsize=7.6, ha="center")
-        y -= .037
-        for value, position, alignment in [("Method", x[0], "left"), ("Condition", x[1], "left"), (r"$\mathrm{CBDir}_{\mathrm{gene}}$", x[2], "right"), ("CosSim", x[3], "right"), (r"$\mathrm{CBDir}_{\mathrm{gene}}$", x[4], "right"), ("CosSim", x[5], "right")]:
-            ax.text(position, y, value, fontsize=7.6, ha=alignment)
-        ax.plot([0, 1], [y - .012, y - .012], color="black", lw=.7)
-        y -= .044
-        for method, condition, _ in CONDITIONS:
-            if category == "MURK" and condition == "Gate open":
-                continue
-            values = []
-            for dataset in [first, second]:
-                row = summary[(summary.dataset == dataset) & (summary.gene_class == category) & (summary.method == method) & (summary.condition == condition)].iloc[0]
-                values.extend([f"{row.mean_cbdir:.4f}", f"{row.mean_cossim:.4f}"])
-            display_method = "MultiVelo (RNA only)" if method.startswith("MultiVelo") else method
-            for value, position, alignment in [(display_method, x[0], "left"), (condition, x[1], "left")] + [(v, p, "right") for v, p in zip(values, x[2:])]:
-                ax.text(position, y, value, fontsize=7.6, ha=alignment)
-            y -= .037
-        ax.plot([0, 1], [y + .017, y + .017], color="black", lw=.7)
-        y -= .032
-    ax.text(0, y, "C. Gate-open paired checks (number of genes with lower values)", fontsize=8.5, weight="bold")
-    y -= .043
-    ax.text(.0, y, "Subset", fontsize=8)
-    for position, label in zip([.55, .75, .96], [r"$\mathrm{CBDir}_{\mathrm{gene}}$", "CosSim", "Fitting loss"]):
-        ax.text(position, y, label, fontsize=8, ha="right")
-    y -= .038
-    for row in effects:
-        ax.text(0, y, "normal + branching" if row["dataset"] == "branching" else "hybrid: branching", fontsize=8)
-        for position, metric in zip([.55, .75, .96], ["cbdir", "cossim", "fit_loss"]):
-            ax.text(position, y, f"{row['n_lower_' + metric]}/{row['n_gene_pairs']}", fontsize=8, ha="right")
-        y -= .037
-    export(fig, args.output_dir, "controls_table_preview", args.dpi)
     (args.output_dir / "tableS9.tex").write_text(manuscript_table(root))
     assert all(sha(root / name) == value for name, value in before.items())
     manifest = dict(inputs=before, input_hashes_unchanged=True, script_sha256=sha(__file__), font=font, dpi=args.dpi, phase_diagnostics=diagnostics, panel_letters=False, primary_results_modified=False, figure="S15", table="S9", phase_score_scope="Mean of cell-wise CosSim over all 2000 cells of BoostALL_5; branch-specific scores use 1000 cells", style_reference=dict(path="supplement/veloae/plot_pca_summary.py", sha256=sha(REPO / "supplement/veloae/plot_pca_summary.py")), method_registry_sha256=sha(REPO / "methods/configurations.tsv"), condition_key={"Default": "saved native output or matching default refit", "Modified": {"scVelo_dyn": "force_induction_fit_tau_smoothed", "MultiVelo": "on_allow_repression"}}, outputs={p.name: sha(p) for p in args.output_dir.iterdir() if p.is_file()})

@@ -3,7 +3,7 @@
 
 Replots at full assembly width with equal-square maps, shared DPT scale,
 and the same circle-to-diamond paired-score encoding and font sizes as C.
-Reads matched refits; never fits a method or changes benchmark measurements.
+Renders saved paired refits and metric tables.
 """
 
 import argparse

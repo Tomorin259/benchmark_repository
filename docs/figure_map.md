@@ -8,7 +8,7 @@ have different reconstruction requirements.
 saved plotting arrays and reproduction scripts as individual files, with an
 optional complete ZIP.
 
-[Author-export records](../figures/assembly/pending_exports.json) identify the
+[Author-export records](../figures/assembly/author_exports.json) identify the
 editable assemblies, final PDFs and export settings. Use the source modules
 for numerical panels and the retained editable assemblies for whole-figure
 layout and PDF export.
@@ -17,7 +17,7 @@ layout and PDF export.
 
 | Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
-| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic; current cropped author export | [Historical PPTX](../figures/assembly/fig1/authoring/source.pptx); the [composite provenance](../figures/fig1_composite_manifest.json) distinguishes this source from the current PDF |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Manually drawn study-design and benchmark-framework schematic | [Historical PowerPoint drawing](../figures/assembly/fig1/authoring/source.pptx); [final PDF provenance](../figures/fig1_composite_manifest.json) |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
@@ -66,7 +66,7 @@ remains in the manuscript project.
 ## Source identity and manual assembly
 
 [assembly_manifest.tsv](../figures/assembly/assembly_manifest.tsv) gives exact
-panel paths, checksums and missing-source flags. Figure-specific composite
+panel paths, checksums and material types. Figure-specific composite
 manifests in [figures/](../figures/) record final export identity and its
 verification scope; [the Gene panel manifest](../evaluation/gene/figures/panels/assembly_manifest.tsv)
 records Gene panel/score bindings.

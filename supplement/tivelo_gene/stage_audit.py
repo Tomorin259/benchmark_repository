@@ -142,9 +142,8 @@ def prepare(artifact_root, rel_path):
                 adata.obsm["X_umap"] = adata.obsm[candidate].copy()
                 break
     raw_shape = list(adata.shape)
-    if adata.n_vars != 2000 and adata.n_vars != 936:
-        scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)
-        scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
+    scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)
+    scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
     if "X_umap" not in adata.obsm:
         for candidate in ("X_cdr", "X_pca", "X_tsne"):
             if candidate in adata.obsm:

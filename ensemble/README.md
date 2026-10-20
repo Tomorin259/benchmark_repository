@@ -84,9 +84,3 @@ For each dataset and metric, rank is
 (21 participants); variants do not enter each other's candidate set.
 Ranking is dataset-specific, not a cross-dataset average.
 The config alias `dentate_lamanno` maps to Cell `DentateGyrus_lamanno`.
-
-Historical schema-6 Forebrain fields used PCA under UMAP names.
-Their original bytes remain retained; current schema-7 artifacts distinguish
-both frames. Numerical and migration evidence is kept in the
-[registered historical record](../docs/fixed_neighbor_reproduction_20260912.md)
-and current metadata, outside the instructions needed for a new run.

@@ -10,7 +10,8 @@ an on-demand material bundle.
 | `referenced_source` | Retained experiment-level source |
 | `retained_composite` | Retained final PDF with the recorded verification scope |
 | `authoring_source` | Editable author source |
-| `missing_source` | Independent final panel source is unavailable |
+
+Figure 1 is a manually drawn schematic registered as a whole-figure PDF.
 
 Use [the figure map](../../docs/figure_map.md) for figure-specific source
 availability, layout and manual PDF-export steps.

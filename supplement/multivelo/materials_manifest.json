@@ -1066,7 +1066,6 @@
     }
   },
   "outputs": {
-    "tables/controls_table_preview.png": "9735ae1930451a2ae2c5b02397348608d2094fe1c6615061284118a2644d93cf",
     "tables/tableS9.tex": "b48fbe772fe6a56932cb48a671458db94ede9823b5702407e6286c9d1404a9b3",
     "figures/phase_multivelo_gate_open.png": "3b430b4b016ba7b914439460c39fbfcacd9a666355eda37e33f10ee6b04b92aa",
     "figures/scores_used.csv": "a08c5b5505852bcd18cf336db817a78e68e49f9c01bef72dc9a1e6c9b967b3b7",
@@ -1075,7 +1074,6 @@
     "figures/phase_multivelo_default.png": "c17244591a9fe7ee28ff2c99e46f3ca808968213a722016c8c2d9cfc9bde1b0e",
     "figures/phase_multivelo_default.svg": "91e660572b31516e8954d752d58386a386fbe3eec8c7925ecf8a2ddfc6ab3d42",
     "figures/phase_truth.svg": "3f9851b6f50a1d90480eb9bb3d1882fbf7c1e53d416d5f15da4b08afb9c85c32",
-    "tables/controls_table_preview.svg": "a886c8ca035d5ecd5dc267e0c61527a58d18f4c7e5c23a1ea78658dc80a8461c",
     "figures/progression_key.svg": "be6dd949ab6f7261037877c31a408a36481a2ee7c312af5e53a82d750f57e76c",
     "figures/progression_key.png": "096f36c60811d145ca0df0209c1ff4cf64976603fdb3731a52afd398cf8bf333",
     "figures/paired_controls.png": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a",
@@ -1084,7 +1082,6 @@
     "figures/paired_controls.svg": "c32ce99b148d8665c50cdf4541be8582d46c1db043f72f20a77d27de3cc86e75",
     "figures/phase_truth.pdf": "5f4093e64e7685a985f5e8cea78e5d468419340cd071963d56145efce5cacbba",
     "figures/paired_controls.pdf": "99ec9d0025e29bfe34f0cb5abf1d95693d7d9c92a636be09e420ff66ac823bb2",
-    "tables/controls_table_preview.pdf": "be04b48dc1fc1599439b29ec505410e102ddfee0c7b155311c16c8e4e69c0c01",
     "figures/phase_multivelo_default.pdf": "65ab1572b4bab5cbd7839fd831764b0d0a9c12accdeff96525ad74fce559a596"
   },
   "scope": "Source materials for manuscript Supplementary Figure S15 A/B and Table S9",

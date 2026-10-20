@@ -64,6 +64,7 @@ Run commands from the repository root and use a fresh output directory.
 | `figures/` | Paper composites and editable assembly sources |
 | `site/` | Static results website |
 | `tests/` | Scientific and file-format regression checks |
+| `tools/` | Maintainer release and comparison utilities |
 
 Names come from [methods/configurations.tsv](methods/configurations.tsv) and
 [data/datasets.tsv](data/datasets.tsv). [artifacts.tsv](artifacts.tsv) identifies

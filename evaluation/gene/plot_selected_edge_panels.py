@@ -288,7 +288,7 @@ def main():
         "inputs": input_records, "sources": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
         "display": "native method coordinates; selected-cluster phase portraits; original six-plus-three layout",
         "scoring": "current selected-edge scores; retained transition-specific Cell controls",
-        "redraw": "complete render from arrays and tables; no numerical overlays on historical images"}, indent=2) + "\n")
+        "redraw": "rendered from native phase arrays and joined score tables"}, indent=2) + "\n")
 
 
 if __name__ == "__main__":

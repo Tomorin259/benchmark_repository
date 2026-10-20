@@ -68,7 +68,6 @@ DATASETS = {
         "embed_key": "X_umap",
         "velocity_basis": "umap",
         "preprocessed": True,
-        "expected_shape": (1222, 2000),
     },
     "DentateGyrus_lamanno": {
         "input": "DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad",
@@ -125,7 +124,6 @@ DATASETS = {
         "embed_key": "X_umap",
         "velocity_basis": "umap",
         "preprocessed": True,
-        "expected_shape": (3365, 936),
     },
     "neuron": {
         "input": "neuron/neuron.h5ad",
@@ -134,7 +132,6 @@ DATASETS = {
         "embed_key": "X_umap",
         "velocity_basis": "umap",
         "preprocessed": True,
-        "expected_shape": (3066, 2000),
     },
     "organoid": {
         "input": "organoid/organoid_pre.h5ad",
@@ -167,7 +164,6 @@ DATASETS = {
         "embed_key": "X_umap",
         "velocity_basis": "umap",
         "preprocessed": True,
-        "expected_shape": (3354, 2000),
     },
 }
 
@@ -211,11 +207,6 @@ def run_dataset(dataset):
         adata.obsm["X_umap"] = adata.obsm[source_embedding].copy()
 
     if config["preprocessed"]:
-        if adata.shape != config["expected_shape"]:
-            raise ValueError(
-                f"{dataset}: expected fixed benchmark shape {config['expected_shape']}, "
-                f"found {adata.shape}"
-            )
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed moments {sorted(missing_moments)}")

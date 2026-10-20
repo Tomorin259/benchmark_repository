@@ -13,11 +13,6 @@
     "restored_clipped_components": 0,
     "max_cleanup_commutation_error": 0.0,
     "all_input_hashes_unchanged": true,
-    "all_tracked_repository_files_unchanged": true,
-    "source_files_unchanged": true,
-    "repository_head": "b529b303e983bec7bb560981d8850420bc0ea27b",
-    "repository_head_unchanged": true,
-    "repository_status_unchanged": true,
     "python": "3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:21) \n[GCC 9.4.0]",
     "numpy": "1.21.6",
     "anndata": "0.8.0",
@@ -220,8 +215,6 @@
       }
     ],
     "all_original_inputs_unchanged": true,
-    "repository_head": "b529b303e983bec7bb560981d8850420bc0ea27b",
-    "authority_repository_clean": true,
     "python": "3.9.24"
   },
   "replay_environment": {

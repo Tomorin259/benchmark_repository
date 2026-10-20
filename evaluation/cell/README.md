@@ -117,7 +117,7 @@ before maximization. A zero fallback can exceed a finite negative score.
 Upstream `np.nanargmax` is undefined for all-NaN sources in
 `bonemarrow/TSvelo` and `rpe1_gen/TFvelo`; the other 278 pairs matched the
 benchmark exactly under the original-policy check, as did all 28 ensemble
-scores. See the [historical numerical record](../../docs/fixed_neighbor_reproduction_20260912.md).
+scores. See the [historical numerical record](https://github.com/Tomorin259/benchmark_repository/blob/959c80edca5e3239828f234d966ee387eff0d781/docs/fixed_neighbor_reproduction_20260912.md).
 
 Stored CSVs retain full precision. Individual/summary annotations and formal
 tables use four decimals, dense heatmaps two; ranking uses unrounded scores.
@@ -164,7 +164,8 @@ python evaluation/cell/run_cell_metrics.py \
 
 [streams/preview_manifest.json](streams/preview_manifest.json) binds the 280
 previews to exact input identities and their stored Cell scores.
-Rebuild with the scVelo 0.2.5 indicators environment in a separate checkout:
+Rebuild in a separate checkout using the
+[Cell preparation dependencies](../../docs/environments.md#evaluation), including scVelo 0.2.5:
 
 ```bash
 python evaluation/cell/render_stream_previews.py \

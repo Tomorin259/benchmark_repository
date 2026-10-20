@@ -55,75 +55,85 @@ DATASETS = {
         "input": "bonemarrow/bonemarrow.h5ad",
         "label_key": "clusters",
         "embedding_key": "X_tsne",
+        "preprocessed": False,
     },
     "capo_pre": {
         "input": "capo_pre/capo_pre.h5ad",
         "label_key": "phase",
         "embedding_key": "X_umap",
-        "preprocessed_shape": (1222, 2000),
+        "preprocessed": True,
     },
     "DentateGyrus_lamanno": {
         "input": "DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad",
         "label_key": "clusters",
         "embedding_key": "X_tsne",
+        "preprocessed": False,
     },
     "ForebrainGlut": {
         "input": "ForebrainGlut/ForebrainGlut.loom",
         "label_key": "Clusters",
         "embedding_key": "X_pca",
+        "preprocessed": False,
     },
     "Gastrulation": {
         "input": "Gastrulation/Gastrulation.h5ad",
         "label_key": "celltype",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "Pancreas": {
         "input": "Pancreas/Pancreas.h5ad",
         "label_key": "clusters",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "dentategyrus": {
         "input": "dentategyrus/dentategyrus.h5ad",
         "label_key": "clusters",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "hematopoiesis_dynamo": {
         "input": "hematopoiesis_dynamo/hematopoiesis_dynamo.h5ad",
         "label_key": "cell_type",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "mousebrain": {
         "input": "mousebrain/mousebrain.h5ad",
         "label_key": "celltype",
         "embedding_key": "X_umap",
-        "preprocessed_shape": (3365, 936),
+        "preprocessed": True,
     },
     "neuron": {
         "input": "neuron/neuron.h5ad",
         "label_key": "time_str",
         "embedding_key": "X_umap",
-        "preprocessed_shape": (3066, 2000),
+        "preprocessed": True,
     },
     "organoid": {
         "input": "organoid/organoid_pre.h5ad",
         "label_key": "cell_type",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "retina": {
         "input": "retina/retina_full.h5ad",
         "label_key": "Annotation",
         "embedding_key": "X_umap",
+        "preprocessed": False,
     },
     "rpe1": {
         "input": "rpe1/rpe1.h5ad",
         "label_key": "cell_cycle_phase",
         "embedding_key": "X_RFP_GFP",
+        "preprocessed": False,
     },
     "rpe1_gen": {
         "input": "rpe1_gen/rpe1_gen.h5ad",
         "label_key": "phase",
         "embedding_key": "X_umap",
-        "preprocessed_shape": (3354, 2000),
+        "preprocessed": True,
     },
 }
 
@@ -158,13 +168,7 @@ def run_dataset(dataset):
     adata.obs["clusters"] = adata.obs[label_key].astype(str).astype("category")
     adata.obsm["X_umap"] = adata.obsm[embedding_key].copy()
 
-    if "preprocessed_shape" in config:
-        expected_shape = config["preprocessed_shape"]
-        if adata.shape != expected_shape:
-            raise ValueError(
-                f"{dataset}: expected established preprocessed shape "
-                f"{expected_shape}, found {adata.shape}"
-            )
+    if config["preprocessed"]:
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(

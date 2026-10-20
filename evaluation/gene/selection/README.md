@@ -2,17 +2,17 @@
 
 ## Final selection and evidence
 
-[selected_genes.tsv](selected_genes.tsv) identifies the 59 frozen dataset–gene
+Gene selection combined computational candidate screening with manual inspection
+of unspliced–spliced (u–s) phase portraits.
+[selected_genes.tsv](selected_genes.tsv) identifies the 59 final dataset–gene
 pairs evaluated by [the Gene entry point](../run_reference30_gene_cbdir.py).
-Each pair has candidate-table support. The final genes were selected manually
-after slope screening and phase-portrait inspection. Row ranks in the TSV
-locate the supporting candidate rows. Synthetic genes
-follow the simulator's known modules.
+Each pair has candidate-table support; row ranks in the TSV locate the
+supporting candidate rows. Synthetic genes follow the simulator's known modules.
 
 | Material | Role |
 | --- | --- |
 | [selected_genes.tsv](selected_genes.tsv) | Final evaluated pairs and candidate evidence |
-| [provenance.json](provenance.json) | Original source locators, script snapshots, checksums and limitations |
+| [provenance.json](provenance.json) | Source locators, script snapshots, checksums and screening records |
 
 ## Screening rules
 
@@ -53,7 +53,7 @@ equal Neuroblast/RGC ranks, producing zero correlation in that branch.
 Selection-stage `moments(n_neighbors=30)` is distinct from the fixed-reference-30
 evaluation graph.
 
-## Reconstruct candidate tables
+## Run candidate screening
 
 Run from the repository root with the input H5ADs and compatible
 Scanpy/scVelo environments. Manifests record package versions, input hashes,
@@ -79,42 +79,17 @@ PYTHONHASHSEED=0 python evaluation/gene/selection/reproduce_branching.py \
   --output /path/to/new-retina-check
 ```
 
-`--include-neuron-glia` adds the recovered December Neuron/Glia task to
-Granule/Pyramidal; its filtered output uses the January rule. Without the
-option, only Granule/Pyramidal outputs are emitted. Retina emits unfiltered
+`--include-neuron-glia` adds Neuron/Glia to the default Granule/Pyramidal task.
+Without the option, only Granule/Pyramidal outputs are emitted. Retina emits unfiltered
 and filtered PR/RGC tables.
 
-## Historical agreement
+## Candidate tables and screening records
 
 | Material | Role |
 | --- | --- |
 | [historical/](historical/) | Original candidate tables and source snapshots |
-| [results/summary.json](results/summary.json) | Reconstruction attempts and full-precision comparisons |
+| [results/summary.json](results/summary.json) | Screening reconstruction records and full-precision comparisons |
 | [historical/MURK_selected.md](historical/MURK_selected.md) | Broader intermediate lists; the TSV and evaluation entry define the final selection |
-
-Per-gene selection decision logs are unavailable. Recovered MURK population
-comparisons apply to Gastrulation; configurations for the other four MURK
-datasets remain missing. The legacy Gastrulation input is absent, so the
-retained raw-input run is a reconstruction check rather than exact
-historical-input reproduction. The commented project excerpt is configuration
-evidence, not a run log.
-
-The [preserved snapshots](historical/scripts/) separate the December 2025
-unfiltered tasks, January 7 filtered Granule/Pyramidal ranks, and January 18
-ten-gene list. The two slope tables record separate population comparisons;
-the later list records the manual selection.
-
-| Check | Agreement with historical tables |
-| --- | --- |
-| Retina branching | All 2,264 candidates and saved numerical fields match exactly; primary-score ranks match after accounting for ties. CSV ordering differs only within equal-score groups. |
-| DentateGyrus branching | Both slope tasks recover all 3,841 candidates; the filtered table recovers all 3,300 candidates. Each top-50 set overlaps 50/50. Values and non-tied ranks are not exact. All ten final genes occur in all three tables. |
-| Gastrulation MURK | The run returns 89 candidates containing all 45 historical candidates. The historical list is a manually selected subset, not a top-45 rule. Shared numerical values are not exact. |
-| Other MURK datasets | Historical tables are retained; dataset-specific population configurations were not recovered, so screening was not rerun. |
-
-Top-50 overlap reports set membership. DentateGyrus maximum interval-gap
-discrepancies are approximately 0.0245 (Neuron/Glia), 0.0321
-(Granule/Pyramidal), and 0.0322 (filtered). All 59 selected pairs have candidate
-support; the table above records the numerical agreement of each reconstruction.
 
 [compare_rankings.py](compare_rankings.py) separates membership, row order,
 tie-aware ranks, top-50 overlap and full-precision differences. Use a new

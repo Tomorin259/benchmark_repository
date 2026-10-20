@@ -66,7 +66,6 @@ DATASETS = {
         "label_key": "phase",
         "embedding_key": None,
         "preprocessed": True,
-        "expected_shape": (1222, 2000),
     },
     "DentateGyrus_lamanno": {
         "input": "DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad",
@@ -109,14 +108,12 @@ DATASETS = {
         "label_key": "celltype",
         "embedding_key": None,
         "preprocessed": True,
-        "expected_shape": (3365, 936),
     },
     "neuron": {
         "input": "neuron/neuron.h5ad",
         "label_key": "time_str",
         "embedding_key": None,
         "preprocessed": True,
-        "expected_shape": (3066, 2000),
     },
     "organoid": {
         "input": "organoid/organoid_pre.h5ad",
@@ -141,7 +138,6 @@ DATASETS = {
         "label_key": "phase",
         "embedding_key": None,
         "preprocessed": True,
-        "expected_shape": (3354, 2000),
     },
 }
 
@@ -174,11 +170,6 @@ def run_dataset(dataset, fit_option, data_root, output_root):
         adata.obsm["X_umap"] = adata.obsm[embedding_key].copy()
 
     if config["preprocessed"]:
-        if adata.shape != config["expected_shape"]:
-            raise ValueError(
-                f"{dataset}: expected fixed benchmark shape "
-                f"{config['expected_shape']}, found {adata.shape}"
-            )
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")

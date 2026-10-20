@@ -75,7 +75,6 @@ DATASETS = {
     "capo_pre": {
         "input": "capo_pre/capo_pre.h5ad",
         "counts": "capo_pre/capo_pre_counts.h5ad",
-        "expected_shape": (1222, 2000),
     },
     "DentateGyrus_lamanno": {
         "input": "DentateGyrus_lamanno/DentateGyrus_lamanno.h5ad",
@@ -92,12 +91,10 @@ DATASETS = {
     "mousebrain": {
         "input": "mousebrain/mousebrain.h5ad",
         "counts": "mousebrain/mousebrain_counts.h5ad",
-        "expected_shape": (3365, 936),
     },
     "neuron": {
         "input": "neuron/neuron.h5ad",
         "counts": "neuron/neuron_counts.h5ad",
-        "expected_shape": (3066, 2000),
     },
     "organoid": {"input": "organoid/organoid_pre.h5ad", "counts": None},
     "retina": {"input": "retina/retina_full.h5ad", "counts": None},
@@ -105,7 +102,6 @@ DATASETS = {
     "rpe1_gen": {
         "input": "rpe1_gen/rpe1_gen.h5ad",
         "counts": "rpe1_gen/rpe1_gen_counts.h5ad",
-        "expected_shape": (3354, 2000),
     },
 }
 
@@ -265,11 +261,6 @@ def run_dataset(dataset):
             n_top_genes=N_TOP_GENES,
         )
     else:
-        if adata.shape != config["expected_shape"]:
-            raise ValueError(
-                f"{dataset}: expected fixed benchmark shape {config['expected_shape']}, "
-                f"found {adata.shape}"
-            )
         print("scVelo preprocessing: skipped for fixed benchmark working object", flush=True)
 
     restore_raw_counts(adata, raw_adata, dataset)

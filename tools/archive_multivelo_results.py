@@ -11,6 +11,8 @@ import json
 import shutil
 import sys
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -38,7 +40,7 @@ def publish_materials(source_root, output):
         assert Path(name).name == name
         source = source_root / name
         assert sha(source) == expected
-        folder = "tables" if name.startswith("controls_table_preview.") or name == "tableS9.tex" else "figures"
+        folder = "tables" if name == "tableS9.tex" else "figures"
         target = output / folder / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
@@ -52,7 +54,7 @@ def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--diagnostics-root", type=Path)
     parser.add_argument("--artifact-root", type=Path)
-    parser.add_argument("--output-root", type=Path, default=Path(__file__).resolve().parent)
+    parser.add_argument("--output-root", type=Path, default=ROOT / "supplement/multivelo")
     parser.add_argument("--materials-dir", type=Path, help="Accepted output of plot_materials.py")
     parser.add_argument("--materials-only", action="store_true", help="Publish verified rendering without regenerating frozen scientific inputs or results")
     args = parser.parse_args()
@@ -65,7 +67,7 @@ def main():
     if args.diagnostics_root is None or args.artifact_root is None:
         parser.error("Full result import requires --diagnostics-root and --artifact-root")
     root = args.diagnostics_root.resolve()
-    repo = Path(__file__).resolve().parents[2]
+    repo = ROOT
     for name in ["results", "inputs"]:
         (output / name).mkdir(parents=True, exist_ok=True)
 
@@ -131,7 +133,7 @@ def main():
             arrays[f"{prefix}_{key}"] = np.asarray(obj.layers[key])
     np.savez_compressed(output / "inputs/phase_case.npz", **arrays)
 
-    from summarize_controls import summarize
+    from supplement.multivelo.summarize_controls import summarize
     summaries, effects = summarize(output / "results")
     write(output / "results/condition_summary.csv", summaries)
     write(output / "results/candidate_gate_effects.csv", effects)

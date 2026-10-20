@@ -1,8 +1,33 @@
 {
   "schema_version": 1,
-  "source_registration_commit": "ccdab5f3a4270a6cf6b0ec838e4cda72e6cd7450",
+  "source_registration_commit": "959c80edca5e3239828f234d966ee387eff0d781",
   "projection_renderer_sha256": "771980ecb406090f4b010e933a1243315eeb5555d720ee87e76bc68b55b096b9",
   "assets": [
+    {
+      "id": "mv-phase-truth",
+      "source": "supplement/multivelo/figures/phase_truth.png",
+      "sha256": "574a14fe1d0813f6b4b2015626f760db3f226357e3daf5be059dc7bef820f055"
+    },
+    {
+      "id": "mv-phase-default",
+      "source": "supplement/multivelo/figures/phase_multivelo_default.png",
+      "sha256": "c17244591a9fe7ee28ff2c99e46f3ca808968213a722016c8c2d9cfc9bde1b0e"
+    },
+    {
+      "id": "mv-phase-gate-open",
+      "source": "supplement/multivelo/figures/phase_multivelo_gate_open.png",
+      "sha256": "3b430b4b016ba7b914439460c39fbfcacd9a666355eda37e33f10ee6b04b92aa"
+    },
+    {
+      "id": "mv-paired-scores",
+      "source": "supplement/multivelo/figures/paired_controls.png",
+      "sha256": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a"
+    },
+    {
+      "id": "mv-progression-key",
+      "source": "supplement/multivelo/figures/progression_key.png",
+      "sha256": "096f36c60811d145ca0df0209c1ff4cf64976603fdb3731a52afd398cf8bf333"
+    },
     {
       "id": "ae-summary",
       "source": "supplement/veloae/results/ppt_assets_final/pca_summary.svg",

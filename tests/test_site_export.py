@@ -451,6 +451,51 @@ class SiteExportTests(unittest.TestCase):
             self.assertEqual((ROOT / image['source']).read_bytes(), (self.output / image['path'].removeprefix('data/')).read_bytes())
         self.assertEqual(len(self.payload['cell']), 280)
 
+    def test_multivelo_summary_matches_the_paper_subsets_and_plotted_gene_scores(self):
+        mv = self.payload['diagnostics']['multivelo']
+        self.assertEqual(mv['method'], 'C04')
+        self.assertEqual(len(mv['rows']), 8)
+        conditions = {('C03', 'Original'): ('scVelo_dyn', 'saved'),
+                      ('C03', 'Induction only'): ('scVelo_dyn', 'force_induction_fit_tau_smoothed'),
+                      ('C04', 'Default'): ('MultiVelo', 'refit_default'),
+                      ('C04', 'Gate open'): ('MultiVelo', 'on_allow_repression')}
+        actual = EXPORT.keyed(mv['rows'], ['dataset', 'method', 'condition'])
+        self.assertEqual(set(actual), {(dataset, method, condition)
+                                      for dataset in ['sim_only_branching', 'sim_hybrid']
+                                      for method, condition in conditions})
+        with (ROOT / 'supplement/multivelo/results/condition_summary.csv').open() as handle:
+            summaries = [r for r in csv.DictReader(handle) if r['gene_class'] == 'branching']
+        with (ROOT / 'supplement/multivelo/figures/scores_used.csv').open() as handle:
+            genes = list(csv.DictReader(handle))
+        self.assertEqual(len(genes), 160)
+        for row in mv['rows']:
+            source_method, source_condition = conditions[(row['method'], row['condition'])]
+            original = next(r for r in summaries if EXPORT.SIM_IDS[r['dataset']] == row['dataset']
+                            and r['condition'] == row['condition']
+                            and r['method'].startswith(source_method))
+            paired = [r for r in genes if EXPORT.SIM_IDS[r['dataset']] == row['dataset']
+                      and r['method'] == source_method and r['condition'] == source_condition]
+            self.assertEqual(row['n_genes'], 20)
+            self.assertEqual(len({r['gene'] for r in paired}), 20)
+            for metric in ['cbdir', 'cossim']:
+                self.assertEqual(row[metric], float(original['mean_' + metric]))
+                self.assertAlmostEqual(row[metric], sum(float(r[metric]) for r in paired) / 20, places=14)
+
+    def test_multivelo_reuses_registered_images_and_published_source_data(self):
+        mv = self.payload['diagnostics']['multivelo']
+        self.assertEqual(mv['case'], {'dataset': 'sim_only_branching', 'gene': 'BoostALL_5', 'n_cells': 2000})
+        self.assertEqual([r['label'] for r in mv['phase_panels']], ['Ground truth', 'Default', 'Gate open'])
+        manifest = json.loads((ROOT / 'supplement/multivelo/materials_manifest.json').read_text())
+        for image in mv['phase_panels'] + [mv['paired_scores'], mv['progression_key']]:
+            relative = image['source'].removeprefix('supplement/multivelo/')
+            self.assertEqual(image['sha256'], manifest['outputs'][relative])
+            self.assertEqual((ROOT / image['source']).read_bytes(), (self.output / image['path'].removeprefix('data/')).read_bytes())
+        source_files = {r['path'].rsplit('/', 1)[-1]: r for r in self.payload['source_data_files']
+                        if r['path'].startswith('supplementary_figures/Supplementary_Figure_15/')}
+        self.assertTrue({'BoostALL_5_phase.npz', 'B_gene_scores.csv', 'B_condition_summary.csv'} <= set(source_files))
+        genes = (ROOT / 'supplement/multivelo/figures/scores_used.csv').read_bytes()
+        self.assertEqual(source_files['B_gene_scores.csv']['sha256'], hashlib.sha256(genes).hexdigest())
+
     def test_visual_bundle_generation_and_validation_commits_are_distinct(self):
         historical = json.loads((ROOT / 'site/public/visuals/index.json').read_text())['source_commit']
         visual = self.payload['visuals']

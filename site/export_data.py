@@ -705,6 +705,33 @@ def export_data(root=ROOT, output=None):
         entry = register_file(relative, download=False)
         entry["download"] = f"data/files/{relative}"
         downloads["analyses"].append({"label": label, **entry})
+
+    mv = "supplement/multivelo/"
+    mv_manifest_path = mv + "materials_manifest.json"
+    mv_manifest = json.loads((root / mv_manifest_path).read_text())
+    register_file(mv_manifest_path, download=False)
+    for relative, checksum in mv_manifest["inputs"].items():
+        if register_file(mv + relative, download=False)["sha256"] != checksum:
+            raise ValueError("MultiVelo diagnostic input differs from its material manifest")
+    mv_conditions = {
+        ("scVelo_dyn", "Original"): "C03",
+        ("scVelo_dyn", "Induction only"): "C03",
+        ("MultiVelo (RNA_only)", "Default"): "C04",
+        ("MultiVelo (RNA_only)", "Gate open"): "C04",
+    }
+    mv_rows = [{"dataset": SIM_IDS[r["dataset"]], "method": mv_conditions[(r["method"], r["condition"])],
+                "condition": r["condition"], "n_genes": int(r["n_genes"]),
+                "cbdir": numeric(r["mean_cbdir"]), "cossim": numeric(r["mean_cossim"])}
+               for r in read(mv + "results/condition_summary.csv", download=False)
+               if r["dataset"] in ["branching", "all"] and r["gene_class"] == "branching"
+               and (r["method"], r["condition"]) in mv_conditions]
+    expected_mv_rows = {(SIM_IDS[dataset], method, condition)
+                        for dataset in ["branching", "all"]
+                        for (_, condition), method in mv_conditions.items()}
+    if set(keyed(mv_rows, ["dataset", "method", "condition"])) != expected_mv_rows or any(r["n_genes"] != 20 for r in mv_rows):
+        raise ValueError("MultiVelo summary requires four conditions on two 20-gene branching subsets")
+    phase_case = mv_manifest["phase_diagnostics"][0]
+    register_file(mv + "README.md", download=False)
     diagnostics = {
         "veloae": {"method": "C11", "summary": diagnostic_images["ae-summary"],
                    "plate": diagnostic_images["ae-plate"], "panels": ae_panels,
@@ -718,6 +745,15 @@ def export_data(root=ROOT, output=None):
                    "bonemarrow": bone_pairs, "displayed_seed": bone_manifest["displayed_seed"],
                    "simulation_csv": "data/files/"+ti+"figures/simulation_plotted_pairs.csv",
                    "bone_csv": "data/files/"+ti+"figures/plotted_seed_pairs.csv"},
+        "multivelo": {"method": "C04", "rows": mv_rows,
+                      "case": {"dataset": SIM_IDS["branching"], "gene": phase_case["gene"],
+                               "n_cells": phase_case["n_obs"]},
+                      "phase_panels": [{"label": label, **diagnostic_images[asset]}
+                                       for label, asset in [("Ground truth", "mv-phase-truth"),
+                                                            ("Default", "mv-phase-default"),
+                                                            ("Gate open", "mv-phase-gate-open")]],
+                      "progression_key": diagnostic_images["mv-progression-key"],
+                      "paired_scores": diagnostic_images["mv-paired-scores"]},
     }
     for relative, label in [
         (SUMMARY + "fig7_cell_metric_summary.csv", "Cell-level overall statistics"),

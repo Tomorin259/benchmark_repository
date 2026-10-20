@@ -3,6 +3,11 @@
 Source for the [published benchmark results website](https://tomorin259.github.io/benchmark_repository/).
 The site displays the saved scores and figure materials from the evaluation modules.
 
+Diagnostics includes MultiVelo's RNA-only phase-assignment controls at
+`#diagnostics?method=multivelo`: the retained phase portraits and paired-score
+figure from Supplementary Figure 15, plus the four-condition summary in
+Supplementary Table 9. Download links use the published Source Data files.
+
 Requires Python 3.9+ and Node.js 18+. From the repository root:
 
 ```bash

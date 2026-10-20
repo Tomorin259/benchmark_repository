@@ -169,51 +169,13 @@
       "sha256": "bf8b059a5aef36acf8b5ed0838c5c5e961493fef899c2c8c6e92ddc259fc16d8"
     }
   ],
-  "previous_export_verification": {
-    "evaluator": "Codex agent",
-    "human_signoff": false,
-    "desktop_gene_workbook_cells_updated": 48,
-    "native_chart_count": 10,
-    "chart_cache_values_checked": 352,
-    "slide_layout_xml_unchanged": true,
-    "native_application_opened": true,
-    "numeric_chart_columns_changed": [
-      "Real_CBDir",
-      "alpha_Spearman",
-      "gamma_Spearman"
-    ],
-    "pixel_differences_outside_changed_columns": 0,
-    "comparison_baseline_pdf_sha256": "158ec56fc87099200b8ccd7815d4bfc7b012b38e17cb0ef8b5628680629c67d5",
-    "author_reexport_pixel_differences_from_updated_native_export": 0,
-    "author_reexport_comparison_resolution_pixels": [
-      2200,
-      1893
-    ]
-  },
   "verification": {
     "native_chart_count": 10,
-    "changed_chart_parts": [
-      6,
-      7,
-      8
-    ],
-    "changed_gene_workbooks": [
-      6,
-      7,
-      8,
-      9,
-      10
-    ],
-    "other_package_parts_byte_identical": true,
     "chart_cache_values_checked": 352,
-    "native_application_opened": false,
-    "final_pdf_export_verified": false,
     "current_pdf_crop_verified": true,
     "current_pdf_content_stream_unchanged": true
   },
   "last_pdf_verification": {
-    "evaluator": "Codex",
-    "human_signoff": false,
     "user_export_creator": "WPS 演示",
     "user_export_producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
     "user_export_sha256": "d2eaf739ac2682a0ed6bbf352e7dd583954a7653cc86875c996e68ec0fdbcb56",
@@ -233,55 +195,7 @@
     "decoded_content_stream_sha256": "f0e71c608b6d0c3f4ab8085839a4b7f3c828bdac1300523c3118b591c9c2dfb3",
     "cropped_pdf_content_stream_unchanged": true,
     "crop_applied_by_page_boxes_only": true,
-    "visual_render_inspected": true,
-    "online_pdf_identity_checked": false,
-    "chart_value_reconciliation_in_crop_step": false
+    "visual_render_inspected": true
   },
-  "pending_pdf_export": false,
-  "verification_before_unit_restoration": {
-    "evaluator": "Codex agent",
-    "human_signoff": false,
-    "native_chart_count": 10,
-    "slide_layout_xml_unchanged": true,
-    "numeric_chart_columns_changed": [
-      "Cell_CBDir"
-    ],
-    "native_chart_cache_values_checked": 60,
-    "cell_workbook_target_cells_checked": 160,
-    "other_nine_chart_parts_unchanged": true,
-    "gene_and_kinetics_workbooks_unchanged": true,
-    "final_pdf_export_verified": true,
-    "cropped_pdf_content_stream_unchanged": true,
-    "author_export_cbdir_bars_checked": 20,
-    "author_export_other_bars_unchanged": 114,
-    "pdf_bar_width_max_residual_points": 0.000444901,
-    "author_export_cbdir_sd_errorbar_sides_checked": 40,
-    "pdf_sd_endpoint_max_residual_points": 0.000591828,
-    "author_export_text_unchanged": true
-  },
-  "previous_last_pdf_verification_before_gene_unit_reexport": {
-    "evaluator": "Codex agent",
-    "human_signoff": false,
-    "native_chart_count": 10,
-    "native_application_opened": true,
-    "slide_layout_xml_unchanged": true,
-    "layout_comparison_source": "Author-provided editable assembly before the simulated CBDir-gene update",
-    "desktop_gene_workbook_cells_updated": 18,
-    "numeric_chart_columns_changed": [
-      "Sim_CBDir"
-    ],
-    "native_chart_cache_values_changed": 9,
-    "simulation_reference30_scenario_means_checked": 27,
-    "simulation_equal_scenario_means_checked": 9,
-    "other_nine_chart_parts_unchanged": true,
-    "author_reexport_sim_cbdir_bar_values_checked": 9,
-    "pdf_bar_width_max_residual_points": 0.0003344894343335625,
-    "pixel_differences_outside_changed_column": 0,
-    "author_reexport_comparison_resolution_pixels": [
-      2400,
-      2065
-    ],
-    "cropped_pdf_content_stream_unchanged": true,
-    "comparison_baseline_pdf_sha256": "0fa175f59d1d88772612338295b9d3d8bb6db253664bc84b5106a7c1ff31e506"
-  }
+  "pending_pdf_export": false
 }

@@ -175,7 +175,7 @@ class VeloVIRoleTests(unittest.TestCase):
                                 settings=SimpleNamespace()),
             plt=SimpleNamespace(close=Mock()), preprocess_data=lambda adata: adata,
             DATASETS={"Pancreas": {"input": "Pancreas/Pancreas.h5ad", "label_key": "clusters",
-                                  "embedding_key": None, "preprocessed": True, "expected_shape": (3, 2)}},
+                                  "embedding_key": None, "preprocessed": True}},
             DATASETS_TO_RUN=["Pancreas"], DATA_ROOT=self.root,
         )
 
@@ -234,6 +234,28 @@ class VeloVIRoleTests(unittest.TestCase):
 
 
 class NativeModeTests(unittest.TestCase):
+    def test_tivelo_simulations_preprocess_at_any_gene_count(self):
+        path = ROOT / "supplement/tivelo_gene/stage_audit.py"
+        prepare = next(node for node in ast.parse(path.read_text()).body
+                       if isinstance(node, ast.FunctionDef) and node.name == "prepare")
+        for n_genes in (620, 936, 2000):
+            with self.subTest(n_genes=n_genes):
+                data = ad.AnnData(np.ones((3, n_genes)))
+                data.layers["spliced"] = data.X.copy()
+                data.layers["unspliced"] = data.X.copy()
+                data.obs["clusters"] = ["a", "a", "b"]
+                data.obsm["X_umap"] = np.zeros((3, 2))
+                normalize, moments = Mock(), Mock()
+                namespace = {"sc": SimpleNamespace(read=Mock(return_value=data)),
+                             "scv": SimpleNamespace(pp=SimpleNamespace(
+                                 filter_and_normalize=normalize, moments=moments))}
+                exec(compile(ast.Module(body=[prepare], type_ignores=[]), str(path), "exec"), namespace)
+                result, raw_shape, _ = namespace["prepare"](ROOT, "simulation.h5ad")
+                self.assertIs(result, data)
+                self.assertEqual(raw_shape, [3, n_genes])
+                normalize.assert_called_once_with(data, min_shared_counts=20, n_top_genes=2000)
+                moments.assert_called_once_with(data, n_pcs=30, n_neighbors=30)
+
     def test_unitvelo_gene_derivative_and_shared_time_mask(self):
         from methods.unitvelo_velocity_u import add_velocity_u
 
@@ -290,7 +312,7 @@ class NativeModeTests(unittest.TestCase):
                         adata = ad.AnnData(np.ones((3, 2)))
                         for key in ("spliced", "unspliced", "Ms", "Mu"):
                             adata.layers[key] = np.ones((3, 2))
-                        adata.obs["clusters"] = ["a", "a", "b"]
+                        adata.obs["celltype"] = ["a", "a", "b"]
                         adata.obsm["X_umap"] = np.zeros((3, 2))
 
                         def velocity(adata, **kwargs):
@@ -322,22 +344,20 @@ class NativeModeTests(unittest.TestCase):
                             ),
                             pkg_resources=SimpleNamespace(get_distribution=lambda name: SimpleNamespace(version="0.2.5.2")),
                             utv=SimpleNamespace(config=SimpleNamespace(Configuration=SimpleNamespace), run_model=unit_model),
-                            DATASETS={"Pancreas": {"input": "Pancreas/Pancreas.h5ad", "label_key": "clusters",
-                                                  "embedding_key": None, "preprocessed": True, "expected_shape": (3, 2)}},
                         )
                         previous = Path.cwd()
                         with contextlib.redirect_stdout(io.StringIO()):
-                            workflow.run_dataset("Pancreas", mode, root, root / name)
+                            workflow.run_dataset("mousebrain", mode, root, root / name)
                         self.assertEqual(Path.cwd(), previous)
                         if name == "scvelo":
                             velocity_call.assert_called_once_with(adata, mode=mode)
                             self.assertEqual(recover.call_count, int(mode == "dynamical"))
                             directory = "scvelo_dynamic" if mode == "dynamical" else f"scvelo_{mode}"
-                            filename = f"{workflow.OUTPUT_PREFIX[mode]}_Pancreas.h5ad"
+                            filename = f"{workflow.OUTPUT_PREFIX[mode]}_mousebrain.h5ad"
                             mode_key = "mode"
                         else:
                             directory = workflow.OUTPUT_DIRECTORY[mode]
-                            filename = "unitvelo_Pancreas.h5ad"
+                            filename = "unitvelo_mousebrain.h5ad"
                             mode_key = "FIT_OPTION"
                         path = root / name / directory / filename
                         saved = ad.read_h5ad(path)
@@ -345,7 +365,7 @@ class NativeModeTests(unittest.TestCase):
                         self.assertEqual(saved.uns["benchmark_run"]["operational_id"], directory)
                         np.testing.assert_array_equal(saved.layers["velocity"], np.ones((3, 2)))
                         with self.assertRaises(FileExistsError):
-                            workflow.run_dataset("Pancreas", mode, root, root / name)
+                            workflow.run_dataset("mousebrain", mode, root, root / name)
                         self.assertEqual(read.call_count, 1)
 
     def test_command_line_selection_dispatches_only_requested_mode_and_dataset(self):

@@ -97,8 +97,8 @@ follow the retained workflows.
 
 [source_manifest.json](source_manifest.json) records the commits, patches and
 SHA-256 hashes of the resulting runtime files and required TF databases.
-The pinned commits and patches reproduce the retained source content;
-historical checkout fingerprints were not recorded.
+The pinned revisions and patches reconstruct the retained runtime files.
+File hashes and source-matching details are recorded in the manifest.
 
 Run these commands from the benchmark repository root, using your own source
 directories and the selected method's environment. Install the dependencies

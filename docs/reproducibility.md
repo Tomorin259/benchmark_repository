@@ -59,18 +59,6 @@ states the five-decimal precision of the historical CosSim logs.
 
 Kinetics uses the `central_results` inputs, the corrected organoid reference
 direction and the labelled-data Dynamo control described in its module guide.
-The [historical comparison](../evaluation/kinetics_recovery/plotting/README.md#historical-comparison)
-documents cross-runtime numerical differences.
 
 Use the [environment guide](environments.md) and fresh output directories.
-Run relevant checks before promoting a new
-result or figure; the [figure map](figure_map.md) distinguishes numerical
-rendering from retained author exports.
-
-## Historical evidence
-
-The [fixed-neighbor reproduction record](fixed_neighbor_reproduction_20260912.md)
-is a checksum-registered historical record.
-The earlier simulation audit is retained at
-[revision 8b4db85](https://github.com/Tomorin259/benchmark_repository/blob/8b4db85127b3333e6d60960d1e73359f5a5a81b6/docs/simulation_reproduction_audit_20260914.md).
-Use the current module guides for runnable workflows.
+The [figure map](figure_map.md) describes panel rendering and manual assembly.

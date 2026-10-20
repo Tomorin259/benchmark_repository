@@ -1,6 +1,6 @@
 # Environments
 
-The benchmark uses method-specific Python environments.
+The benchmark methods were trained in method-specific Conda environments.
 Supplementary Table S1 reports package versions and execution devices;
 [methods/configurations.tsv](../methods/configurations.tsv) records method
 versions and source references.
@@ -66,12 +66,11 @@ dependencies. The public launchers import the following method interfaces:
 | `deepvelo2022.py` | Official Figure 2 AE workflow using TensorFlow/Keras and scVelo 0.2.4; C18 is distinct from C16 |
 | `tfvelo.py`, `tsvelo.py`, `deepkinet.py` | Upstream source-backed software; see [source requirements](../methods/README.md#source-backed-methods) |
 
-The [method guide](../methods/README.md#source-backed-methods) provides fixed
-TFvelo/TSvelo sources and DeepKINET installation patches, with file identities
-in [source_manifest.json](../methods/source_manifest.json). These source-content
-records complement the available historical training-environment records.
-Historical training-environment records are incomplete for some configurations.
-Use the selected method's record when matching a frozen output.
+For each method, use the package versions in the registry and the corresponding
+upstream installation instructions. The
+[method guide](../methods/README.md#source-backed-methods) provides fixed
+TFvelo/TSvelo sources and DeepKINET installation patches, with runtime-file
+identities in [source_manifest.json](../methods/source_manifest.json).
 
 The retained DeepKINET installation reports Python 3.9.23, deepkinet 0.0.1,
 PyTorch 2.1.0+cu118, scVelo 0.2.5, Scanpy 1.9.6, AnnData 0.10.3 and

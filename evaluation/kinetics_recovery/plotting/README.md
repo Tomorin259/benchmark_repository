@@ -41,33 +41,3 @@ separate from selected Figure 6 scores.
 Streams reuse saved X/V after alignment, dimension, finite-value and configured
 reference checks. Casting the reference to the saved dtype may account for
 storage precision; rendering does not recompute neighbors, moments or graphs.
-
-## Historical comparison
-
-<details>
-<summary>Earlier kinetics sources and comparison commands</summary>
-
-The retained `../archive/fig5/` contains unique historical sources.
-These use the former kinetics Figure 5 numbering; current Figure 5 is
-gene-level evaluation. Current Figure 7 hashes belong to its own composite
-manifest, not the historical Figure 7 hash retained inside the kinetics
-promotion record.
-
-Materialize the full original bundle, then use `compare_figure6.py` with
-explicit historical/current directories and a fresh comparison directory:
-
-```bash
-mkdir -p /path/to/historical-kinetics
-git archive bed37b629dbc966109c8cb92dd22aca0810caf2f evaluation/kinetics_recovery/archive/fig5 \
-  | tar -x -C /path/to/historical-kinetics
-python evaluation/kinetics_recovery/plotting/compare_figure6.py \
-  --old /path/to/historical-kinetics/evaluation/kinetics_recovery/archive/fig5/panels \
-  --new evaluation/kinetics_recovery/figures/fig6 \
-  --output /path/to/fresh-comparison
-```
-
-Archived-source rendering requires explicit `--legacy-config`,
-`--legacy-artifact-root` and `--metrics-root`.
-Use the source identities in the manifests.
-
-</details>

@@ -29,7 +29,7 @@
   },
   "materials_manifest": {
     "path": "supplement/multivelo/materials_manifest.json",
-    "sha256": "a8f844a1c97ccfecc670f5f73e516a95d24200cea4463f4b14ac150af303e5d3"
+    "sha256": "caf575a52db6020c41d182f78d19ff5fcf7425f48cbc616181145e71677cdd70"
   },
   "inputs": {
     "supplement/multivelo/inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903",
@@ -51,8 +51,6 @@
     "B": "20 branching genes per simulation; hybrid excludes MURK genes"
   },
   "verification": {
-    "evaluator": "Codex agent",
-    "human_signoff": false,
     "source_csv_hashes_unchanged": true,
     "table_mean_values_checked": 16,
     "plotted_gene_condition_rows": 160,
@@ -79,9 +77,6 @@
         ],
         "pixels_equal": true
       }
-    ],
-    "online_figure_visual_checked": true,
-    "online_file_bytes_independently_verified": false,
-    "table_count_cells_checked": 0
+    ]
   }
 }

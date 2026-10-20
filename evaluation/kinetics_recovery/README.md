@@ -12,7 +12,6 @@ method training is a separate step.
 | [figures/fig6/plot_data/](figures/fig6/plot_data/) | Exact selected rows plotted in Figure 6 |
 | [figures/fig6/](figures/fig6/) | Current parameter panels and saved velocity fields |
 | [results/expanded_reference/](results/expanded_reference/README.md) | Sensitivity analysis on 250 RPE1 and 270 organoid reference genes per branch |
-| [results/final_seed123/](results/final_seed123/) | Historical input provenance, not current scoring/summary input |
 
 Figure 6B/C displays 19 RPE1 genes surviving evaluator intersection from the
 configured 32. Figure 6F displays six branch-1 and eight branch-2 genes.
@@ -157,8 +156,7 @@ branches equally, then average available system means equally.
 Missing parameters are not zero-filled. These statistics have different gene
 sets and must remain separate.
 
-The DeepKINET H5AD uses seed 123. Current scores use the reference alignment
-described above; the historical seed-123 evaluation used an earlier alignment.
+The DeepKINET H5AD uses seed 123.
 
 ## Saved velocity fields and final assembly
 
@@ -168,12 +166,12 @@ configured comparison embedding. DeepKINET checks also include recorded graph
 and projection provenance.
 
 DeepKINET RPE1 may obtain aligned labels/palette from
-`results/scvelo_deterministic/scv_deterministic_rpe1.h5ad`; that file supplies
-no DeepKINET velocities. Some saved projections lack independent provenance.
+`results/scvelo_deterministic/scv_deterministic_rpe1.h5ad`; DeepKINET velocities
+come from its own saved H5AD. Rendering manifests record input identities and
+validation checks; records of the original projection computation are retained
+where available.
 Labelled Dynamo A/E retain their original image assets. [Source Data](../../data/SOURCE_DATA.md)
 includes saved coordinates and velocities, plus a labelled RPE1 stream renderer
 that reads either the registered H5AD or its extracted arrays.
 
 The final PDF and panel bindings are in the [figure map](../../docs/figure_map.md).
-Earlier kinetics sources and comparison commands are documented in the
-[historical comparison guide](plotting/README.md#historical-comparison).

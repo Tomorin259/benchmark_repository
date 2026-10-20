@@ -20,7 +20,7 @@ class KineticsPlottingContractTests(unittest.TestCase):
         import sys
         import pandas as pd
         from PIL import Image
-        from evaluation.kinetics_recovery.plotting import compare_figure6 as compare
+        from tools import compare_figure6 as compare
 
         with tempfile.TemporaryDirectory() as directory:
             old, new, output = [Path(directory) / name for name in ["old", "new", "comparison"]]
@@ -199,9 +199,6 @@ class KineticsPlottingContractTests(unittest.TestCase):
             "evaluation/kinetics_recovery/figures/fig6/figure6E_organoid/"
             "dynamo_organoid_stream_title_removed.manifest.json":
                 "promoted_canonical_figure6E_label_data_stream",
-            "evaluation/kinetics_recovery/archive/fig5/panels/figure5E_organoid/"
-            "dynamo_organoid_stream_title_removed.manifest.json":
-                "review_only_not_manuscript_figure",
         }
         for relative, expected_status in manifests.items():
             manifest = json.loads((root / relative).read_text())

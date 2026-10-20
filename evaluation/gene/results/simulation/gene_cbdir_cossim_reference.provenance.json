@@ -27,7 +27,7 @@
   "direct_source_role": "historical compact source: all 630 historical CBDir fields and the other 560 CosSim rows retained",
   "unit_restoration": {
     "path": "evaluation/gene/results/unit_restoration/provenance.json",
-    "sha256": "4740500d8b26dacaab12cc4ed2bb520ea4a6510a09190b58a1cb491a5ba8af95",
+    "sha256": "d7fc7534f4d1800b5172d183f3462a77cd30d0fb672e465af0cc0216f575d43a",
     "updated_method": "veloVI",
     "updated_field": "CosSim",
     "updated_rows": 70

@@ -139,16 +139,20 @@ def test_retained_supplementary_figures_have_current_hashes_and_scope():
         whole = retained[0]
         assert hashlib.sha256((ROOT / whole["source_path"]).read_bytes()).hexdigest() == whole["sha256"]
         if figure == "suppfig11":
-            assert "independent" in whole["note"]
             panels = [row for row in rows if row["figure"] == figure and row["status"] == "referenced_source"]
             assert {row["panel"] for row in panels} == {"A", "B"}
             for row in panels:
                 source = ROOT / row["source_path"]
                 assert hashlib.sha256(source.read_bytes()).hexdigest() == row["sha256"]
+            asset_root = ROOT / "supplement/veloae/results/ppt_assets_final"
+            assets = json.loads((asset_root / "manifest.json").read_text())
+            for asset in assets["files"]:
+                source = asset_root / asset["name"]
+                assert hashlib.sha256(source.read_bytes()).hexdigest() == asset["sha256"], source
 
 
 def test_completed_gene_figure_exports_match_their_editable_sources():
-    records = json.loads((ROOT / "figures/assembly/pending_exports.json").read_text())
+    records = json.loads((ROOT / "figures/assembly/author_exports.json").read_text())
     expected = {"fig3", "fig4", "fig5", "fig7"} | {
         f"suppfig{number:02d}" for number in range(1, 10)
     }

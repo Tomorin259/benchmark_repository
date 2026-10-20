@@ -1,8 +1,0 @@
-Method,Parameter,Mean,N_systems,N_genes
-DeepVelo,alpha,0.25841557143244837,2,790
-Dynamo(label data),alpha,0.7970731475417075,1,116
-TSvelo,alpha,0.49267118761885603,1,65
-cellDancer,alpha,-0.015067101438776272,2,790
-DeepKINET,gamma,-0.007146436306316192,2,790
-DeepVelo,gamma,0.05517573322572404,2,789
-cellDancer,gamma,-0.140131931013304,2,790

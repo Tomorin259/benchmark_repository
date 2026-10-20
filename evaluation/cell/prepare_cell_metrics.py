@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Prepare one audited cell-metric input with fixed 30-NN evaluation state.
 
-This program runs only in the indicators environment (scvelo 0.2.5).  It
-never changes a method result: it writes a separate temporary AnnData object
+Run with the Cell preparation dependencies in docs/environments.md, including
+scVelo 0.2.5. The script writes a separate temporary AnnData object
 that contains the configured velocity layer, canonical neighbours, a canonical
 UMAP, and a freshly computed scvelo velocity graph.  It preserves each
 method's stored 2-D velocity projection except for explicitly registered

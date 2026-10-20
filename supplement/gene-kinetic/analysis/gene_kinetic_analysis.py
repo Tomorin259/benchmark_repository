@@ -657,8 +657,6 @@ def main():
     coverage_fields = ["case", "dataset", "gene", "source", "target", "expected_methods", "valid_gene_methods",
                        "missing_gene_methods", "cell_matched_methods", "cell_match_count"]
     write_csv(os.path.join(output_dir, "candidate_coverage_summary.csv"), candidate_coverage(observations), coverage_fields)
-    # Keep the previous filename as a compatibility alias for the edge-method aggregate table.
-    write_csv(os.path.join(output_dir, "gene_method_aggregate.csv"), aggregated, agg_fields)
     corr_fields = ["level", "scope", "metric", "centering", "n_pairs", "n_unique_edges", "n_unique_genes", "pearson", "spearman",
                    "sign_match_count", "sign_match_fraction", "interpretation"]
     write_csv(os.path.join(output_dir, "correlation_summary.csv"), correlations, corr_fields)

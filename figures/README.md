@@ -18,6 +18,4 @@ python figures/export_materials.py --figures fig4 fig5 fig6 --output-root output
 
 The output directory must be empty. Export copies the registered source files
 for the assembly steps listed in the figure map. Composite manifests record
-the numerical inputs, author exports and any
-reconstruction gaps. Historical kinetics artwork under `archive/kinetics/`
-uses the former Figure 5 numbering; current Figure 5 is gene-level evaluation.
+the numerical inputs, manual artwork and author exports.

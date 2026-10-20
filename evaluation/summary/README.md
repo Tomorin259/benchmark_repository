@@ -47,7 +47,7 @@ Cell SD uses `ddof=1`; quartiles use linear interpolation
 means. Kinetics reports sample SD across systems, undefined for a single system.
 Counts are finite gene scores, not cells; unavailable parameters are not zero.
 Kinetics includes the corrected organoid reference direction and labelled
-Dynamo alpha, not historical `final_seed123` or the selected Figure 6 genes.
+Dynamo alpha, using the canonical finite-gene scores.
 
 Forebrain Cell CBDir uses all 30 shared PCs; BATC uses shared UMAP2.
 Real/Sim Gene validation permits absolute tolerance `1e-12` for unrounded

@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('prepare_release', ROOT / 'data/prepare_release.py')
+spec = importlib.util.spec_from_file_location('prepare_release', ROOT / 'tools/prepare_release.py')
 release = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(release)
 
