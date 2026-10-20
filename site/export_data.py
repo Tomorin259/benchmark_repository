@@ -506,7 +506,7 @@ def export_data(root=ROOT, output=None):
         ("evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv", "Gene edge-level audit", "Gene-level edge details underlying the reference-30 CBDir rows."),
         ("evaluation/gene/results/neighbor_audit_all.csv", "Gene neighbor audit", "Neighbor-set provenance and overlap checks for Gene-level evaluation."),
         ("ensemble/results/scores.csv", "Post-hoc ensemble scores", "Mean-4 and RowGeometricMedian-4 scores across the 14 real datasets."),
-        ("ensemble/results/rankings_vs_20.csv", "Post-hoc ensemble rankings", "Independent per-dataset CBDir/BATC comparisons with the 20 registered configurations."),
+        ("ensemble/results/rankings_vs_20.csv", "Post-hoc ensemble rankings", "Per-dataset CBDir/BATC rankings against the 20 registered configurations."),
         ("supplement/velovi/results/table_s6.csv", "veloVI coordinate-sensitivity summary", "A/B/C coordinate diagnostics and C − B differences across 14 datasets; primary Cell scoring is condition B."),
         ("evaluation/cell/results/cell_metrics_audit.csv", "Cell source and status audit", "Logical source identity, velocity layers, invalid-value handling and status for each method/dataset."),
         ("evaluation/cell/reference_neighbors/manifest.json", "Cell reference-neighbor manifest", "Hashes and construction settings for the frozen dataset-level neighbor assets."),

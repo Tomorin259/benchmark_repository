@@ -323,11 +323,8 @@ def run_dataset(dataset):
 
 
 def main():
-    try:
-        torch.set_num_threads(1)
-        torch.set_num_interop_threads(1)
-    except RuntimeError:
-        pass
+    torch.set_num_threads(1)
+    torch.set_num_interop_threads(1)
     if scv.__version__ != "0.2.5":
         raise RuntimeError(f"scVelo 0.2.5 is required, found {scv.__version__}")
     unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)

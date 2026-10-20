@@ -1,6 +1,6 @@
 # Signed-transition ensemble
 
-Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate four saved Cell outputs:
+Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate four selected Cell outputs:
 TIvelo, veloVI without-vu, the DeepVelo root no-vu result family, and UniTVelo.
 They are post-hoc comparators outside the 20-method configuration registry.
 
@@ -9,7 +9,7 @@ They are post-hoc comparators outside the 20-method configuration registry.
 | File | Use |
 | --- | --- |
 | [results/scores.csv](results/scores.csv) | Dataset-level scores for the two variants |
-| [results/rankings_vs_20.csv](results/rankings_vs_20.csv) | Independent ranks against the 20 Cell configurations |
+| [results/rankings_vs_20.csv](results/rankings_vs_20.csv) | Per-dataset ranks against the 20 Cell configurations |
 | [results/metadata.json](results/metadata.json) | Protocol, input identities, frames, aggregate scores and run provenance |
 | [results/summary.md](results/summary.md), [ranking_summary.md](results/ranking_summary.md) | Human-readable result summaries |
 

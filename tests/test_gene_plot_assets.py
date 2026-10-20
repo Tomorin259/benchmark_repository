@@ -80,7 +80,7 @@ class GeneAssetTests(unittest.TestCase):
                 load_scores(cossim_path=path)
 
     def test_phase_inputs_preserve_native_coordinates_and_h5ad_bytes(self):
-        from anndata import AnnData
+        from anndata import AnnData, read_h5ad
 
         scores = load_scores()
         case, gene = "bonemarrow", "LMNA"
@@ -110,6 +110,43 @@ class GeneAssetTests(unittest.TestCase):
                 np.testing.assert_array_equal(data.layers["velocity_u"], [[0.0], [-1e10]])
                 self.assertNotIn("neighbors", data.uns)
             self.assertEqual(originals, {path: sha256(path) for path in originals})
+
+            path = root / source_inputs(case, scores)[0]["path"]
+            reordered = read_h5ad(path)[["c1", "c0"]].copy()
+            reordered.write_h5ad(path)
+            aligned, _ = read_phase_inputs(case, scores, root, [gene])
+            self.assertEqual(aligned[0].obs["clusters"].tolist(), ["b", "a"])
+            reordered.obs_names = ["c1", "missing_cell"]
+            reordered.write_h5ad(path)
+            with self.assertRaisesRegex(ValueError, "reference labels cannot be aligned"):
+                read_phase_inputs(case, scores, root, [gene])
+
+    def test_missing_velocity_component_is_rejected_and_explicit_zero_is_retained(self):
+        from anndata import AnnData
+        from evaluation.gene.run_reference30_gene_cbdir import velocity_matrix
+
+        data = AnnData(np.zeros((2, 1)))
+        data.layers["velocity"] = np.ones((2, 1))
+        with self.assertRaisesRegex(KeyError, "velocity_u"):
+            velocity_matrix(data, "cellDancer", [0])
+        data.layers["velocity_u"] = np.zeros((2, 1))
+        spliced, unspliced, invalid = velocity_matrix(data, "cellDancer", [0])
+        np.testing.assert_array_equal(spliced, np.ones((2, 1)))
+        np.testing.assert_array_equal(unspliced, np.zeros((2, 1)))
+        self.assertEqual(invalid, 0)
+
+    def test_history_parser_reports_invalid_record_instead_of_dropping_it(self):
+        from evaluation.gene.run_reference30_gene_cbdir import parse_old_score_file
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "scores.txt"
+            self.assertEqual(parse_old_score_file(path, {"scv": "scVelo_dyn"}), {})
+            path.write_text("scv: GeneA: 0.25 | Raw_Scores: {('A', 'B'): 0.25}\n")
+            records = parse_old_score_file(path, {"scv": "scVelo_dyn"})
+            self.assertEqual(records["scVelo_dyn", "GeneA"]["old_cbdir"], 0.25)
+            path.write_text(path.read_text() + "scv: GeneB: invalid\n")
+            with self.assertRaisesRegex(ValueError, "scores.txt:2: invalid historical score"):
+                parse_old_score_file(path, {"scv": "scVelo_dyn"})
 
     def test_summaries_run_without_h5ad_root_or_external_plot_scripts(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -129,15 +129,10 @@ def read_phase_inputs(case, scores, artifact_root, genes):
             if "Annotation" in obs:
                 obs["clusters"] = obs["Annotation"].copy()
             aligned = labels.reindex(original.obs_names)
-            if aligned.notna().all():
-                obs["clusters"] = aligned.copy()
-                label_alignment = "cell_id"
-            elif len(labels) == original.n_obs:
-                # Retained historical plotting fallback, recorded in provenance.
-                obs["clusters"] = labels.copy()
-                label_alignment = "equal_length_historical_fallback"
-            else:
+            if aligned.isna().any():
                 raise ValueError(f"{case}/{item['method']}: reference labels cannot be aligned")
+            obs["clusters"] = aligned.copy()
+            label_alignment = "cell_id"
         elif "bin" not in obs and "clusters" in obs:
             obs["bin"] = obs["clusters"].copy()
         plot = ad.AnnData(X=np.zeros((original.n_obs, len(present)), dtype=np.float32),

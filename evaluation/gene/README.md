@@ -5,6 +5,10 @@ fixed simulation scenarios. The canonical CBDir comparison uses the fixed
 reference-30 graph. Native H5ADs are retained; numerical scoring reverses
 veloVI's additional independent min-max axes for both state and velocity.
 
+Cell and Gene analyses use the recorded task-specific output workflows.
+The [matched-output comparison](../cell/README.md#gene-output-matched-cell-comparison)
+in Supplementary Figure S9 evaluates DeepVelo, UniTVelo and veloVI on seven datasets.
+
 ## Results and selection
 
 | Source | Use |
@@ -142,9 +146,13 @@ without neighborhood velocity smoothing:
 
 Real plotting copies replace NaN/Inf velocities by zero and clip to ±1e10;
 simulation vectors keep their native values. Reference H5ADs supply cluster
-labels/colors, including the retained equal-length label-assignment fallback.
+labels/colors aligned by cell ID; every plotted cell requires a reference label.
 Rendering uses copies of the source arrays. Summary jitter affects display only.
 Simulation colors follow the Figure 4 progression-bin gradient from early to late.
+
+Phase portraits retain the saved native coordinates. veloVI numerical scores
+use restored pre-min-max coordinates and corresponding velocity units, as
+described under [coordinate units](#velovi-coordinate-units).
 
 Exports include `scores_used.csv`, `provenance.json` and
 `assembly_manifest.tsv`. They recreate scripted comparison panels and

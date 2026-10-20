@@ -5,7 +5,8 @@ source references, scientific options and required result keys.
 
 `config_id` identifies a benchmark configuration, `operational_id` is used in
 file paths and table joins, and `manuscript_name` gives its display name.
-DeepVelo and DeepVelo_scv are distinct configurations; GraphVelo_scv and
+DeepVelo and DeepVelo_scv are distinct configurations. DeepVelo_scv follows
+the official DeepVelo Figure 2 AE reconstruction workflow; GraphVelo_scv and
 GraphVelo_dyn use different upstream velocity inputs. The operational ID
 `velovi` is displayed as **veloVI**.
 
@@ -94,9 +95,8 @@ follow the retained workflows.
 
 [source_manifest.json](source_manifest.json) records the commits, patches and
 SHA-256 hashes of the resulting runtime files and required TF databases.
-These commits reconstruct retained source content. The original training
-records did not capture source fingerprints, so the reconstruction is not a
-contemporaneous record of each historical checkout.
+The pinned commits and patches reproduce the retained source content;
+historical checkout fingerprints were not recorded.
 
 Run these commands from the benchmark repository root, using your own source
 directories and the selected method's environment. Install the dependencies

@@ -212,16 +212,13 @@ def compute_batc(
     edge_cosines = {}
     edge_list = [(str(a), str(b)) for a, b in edges]
     for source, target in edge_list:
-        source_ids = indices.get(source, np.empty(0, dtype=np.int64))
-        target_ids = indices.get(target, np.empty(0, dtype=np.int64))
-        if source_ids.size == 0 and target_ids.size == 0:
-            continue
+        source_ids = indices[source]
+        target_ids = indices[target]
         combined = np.concatenate((source_ids, target_ids))
-        fallback_center = embedding[combined].mean(axis=0)
         curve, parameters, order, orientation = _fit_batc_curve(
             embedding[combined],
-            centers.get(source, fallback_center),
-            centers.get(target, fallback_center),
+            centers[source],
+            centers[target],
             n_bins=n_bins,
             min_per_bin=min_per_bin,
             n_samples=n_samples,

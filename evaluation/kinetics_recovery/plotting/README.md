@@ -18,7 +18,9 @@ boundaries; color encodes mean, not count. Missing cells remain white
 D shows the three turnover-category Venn diagrams and Macro-F1.
 F uses available selected-gene means by method, parameter and branch.
 DeepKINET supplies gamma only; TSvelo rates use lineage files, while its
-velocity field uses the merged file. Labelled Dynamo A/E are manual assets.
+velocity field uses the merged file. The labelled Dynamo RPE1 panel has a
+[Source Data renderer and inputs](../../../data/SOURCE_DATA.md); the organoid
+panel is retained as an author-assembled image.
 
 Individual/summary annotations and formal tables use four decimals, dense
 heatmaps and C's `Mean (n)` use two, and D's Macro-F1 uses three.

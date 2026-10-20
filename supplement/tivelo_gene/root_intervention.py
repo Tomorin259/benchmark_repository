@@ -159,7 +159,7 @@ def main():
           mean_fraction_opposed=("fraction_opposed", "mean")).reset_index()
     summary.to_csv(args.output_dir / "root_intervention_summary.csv", index=False)
     manifest = {
-        "type": "exploratory oracle-root intervention, not a benchmark correction",
+        "type": "exploratory oracle-root sensitivity analysis",
         "method_settings": {
             "n_epochs": 100, "loss_fun": "mse", "only_s": False, "constrain": True,
             "alpha_1": 1, "alpha_2": 0.1, "batch_size": 1024, "filter_genes": False,

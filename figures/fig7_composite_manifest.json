@@ -112,7 +112,7 @@
   ],
   "numerical_contract": {
     "method_configurations": 20,
-    "cell_values": "280 canonical Cell rows; Forebrain CBDir uses the shared 30-PC projection. Each method averages 14 datasets equally; sample SD and linear-interpolation quartiles. Native means retain the existing +1 shift.",
+    "cell_values": "280 canonical Cell rows; Forebrain CBDir uses the shared 30-PC projection. Each method averages 14 datasets equally; sample SD and linear-interpolation quartiles. CBDir, TransCosine and BATC means are shifted by +1 for display; Consistency and ICCoh retain their original scales.",
     "gene_and_kinetics_values": "Current Figure 7 summary inputs; plotting means retain their existing +1 transform, SD and counts are unshifted.",
     "missing_results": "Retain blanks and sparse native chart caches; do not create bars for unavailable results.",
     "native_gene_workbook_label_aliases": {

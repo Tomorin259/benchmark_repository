@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the TIvelo simulation call chain without changing benchmark artifacts.
+"""Audit the TIvelo simulation call chain and intermediate direction scores.
 
 The audit mirrors methods/tivelo/tivelo_main_simulation.py, but exposes each
 intermediate state: preprocessing, process_path, correct_path, directed
@@ -173,7 +173,7 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     summary_rows, root_rows, path_rows_all, child_rows_all = [], [], [], []
     paga_rows, orientation_rows, stage_score_rows, dnn_rows = [], [], [], []
-    manifest = {"purpose": "TIvelo call-chain mechanism audit; not a benchmark replacement",
+    manifest = {"purpose": "TIvelo call-chain mechanism audit",
                 "seed": args.seed, "settings": {"group_key": "bin", "emb_key": "X_umap",
                 "start_mode": "stochastic", "rev_stat": "mean", "t1": 0.1, "t2": 2,
                 "loss_fun": "mse", "only_s": False, "constrain": True, "alpha_1": 1,

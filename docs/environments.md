@@ -45,9 +45,9 @@ through the Python executables supplied to `--indicators-python` and
 `--tivelo-python`. Use Python 3.9 or later for the controller. These options
 identify worker roles, so environment names and installation paths are arbitrary.
 
-Package metadata is a record of an installed combination. The plotting lock
-above has a separate clean-install check; evaluation validation is described
-in the linked run records. The original Gene reference-30 provenance records
+The table records installed evaluation environments; the plotting lock above
+was checked by clean installation. Evaluation checks are in the linked run
+records. The original Gene reference-30 provenance records
 scVelo 0.2.5 / Scanpy 1.9.3; current unit-restoration replay has its own record.
 
 ### Method execution
@@ -63,21 +63,20 @@ dependencies. The public launchers import the following method interfaces:
 | `graphvelo_scv.py`, `graphvelo_dynamo.py` | `graphvelo`; upstream scVelo or Dynamo stack according to the configuration |
 | `veloae.py` | Distribution `veloae`, providing the `veloproj` import |
 | `deepvelo.py` | `deepvelo`, PyTorch and scVelo 0.2.5; the launcher checks the scVelo version |
-| `deepvelo2022.py` | TensorFlow/Keras reconstruction code in the launcher, plus Scanpy/scVelo; C18 is a distinct configuration |
+| `deepvelo2022.py` | Official Figure 2 AE workflow using TensorFlow/Keras and scVelo 0.2.4; C18 is distinct from C16 |
 | `tfvelo.py`, `tsvelo.py`, `deepkinet.py` | Upstream source-backed software; see [source requirements](../methods/README.md#source-backed-methods) |
 
-Complete historical training environments are not recorded for every
-configuration. The [method guide](../methods/README.md#source-backed-methods)
-provides fixed TFvelo/TSvelo sources and DeepKINET installation patches;
-[source fingerprints](../methods/source_manifest.json) identify the reconstructed
-files. Original training records did not capture these fingerprints. C18's
-full historical software identity remains as recorded in the registry.
-Use the selected module's source and run record when matching a frozen output.
+The [method guide](../methods/README.md#source-backed-methods) provides fixed
+TFvelo/TSvelo sources and DeepKINET installation patches, with file identities
+in [source_manifest.json](../methods/source_manifest.json). These source-content
+records complement the available historical training-environment records.
+Historical training-environment records are incomplete for some configurations.
+Use the selected method's record when matching a frozen output.
 
 The retained DeepKINET installation reports Python 3.9.23, deepkinet 0.0.1,
 PyTorch 2.1.0+cu118, scVelo 0.2.5, Scanpy 1.9.6, AnnData 0.10.3 and
-NumPy 1.23.5. This is installed-package evidence, rather than a clean-install
-lock. Install the patched package in your own environment; the public launcher
+NumPy 1.23.5 (retained installation metadata). Install the patched package in
+your own environment; the public launcher
 requires scVelo 0.2.5 and records per-dataset checkpoints and randomness.
 
 ### Hardware and rendering tools

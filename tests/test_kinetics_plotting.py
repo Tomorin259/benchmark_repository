@@ -16,6 +16,42 @@ PLOTTING_ROOT = (
 
 
 class KineticsPlottingContractTests(unittest.TestCase):
+    def test_comparison_report_uses_the_supplied_data_instead_of_historical_claims(self):
+        import sys
+        import pandas as pd
+        from PIL import Image
+        from evaluation.kinetics_recovery.plotting import compare_figure6 as compare
+
+        with tempfile.TemporaryDirectory() as directory:
+            old, new, output = [Path(directory) / name for name in ["old", "new", "comparison"]]
+            for root in [old, new]:
+                (root / "plot_data").mkdir(parents=True)
+            pd.DataFrame({"Method": ["Example"], "G1": [0.1]}).to_csv(
+                old / "plot_data/example_heatmap.csv", index=False)
+            pd.DataFrame({"Method": ["Example"], "G1": [0.6], "G2": [0.2]}).to_csv(
+                new / "plot_data/example_heatmap.csv", index=False)
+            for root, prefix in [(old, "figure5"), (new, "figure6")]:
+                paths = [f"{prefix}A_rpe1/{m}.png" for m in ["celldancer", "deepvelo", "deepkinet", "tsvelo"]]
+                paths += [f"{prefix}E_organoid/{m}_organoid_stream_title_removed.png"
+                          for m in ["celldancer", "DeepKINET", "deepvelo"]]
+                paths += [stem + ".png" for stem in ["rpe1_alpha_trajectories", "rpe1_gamma_trajectories",
+                          "rpe1_alpha_gamma_heatmap", "rpe1_celldancer_kinetic_classes",
+                          "rpe1_deepvelo_kinetic_classes", "organoid_branch1_boxplot", "organoid_branch2_boxplot"]]
+                for name in paths:
+                    path = root / name
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    Image.new("RGB", (2, 2), "white").save(path)
+            with patch.object(sys, "argv", ["compare", "--old", str(old), "--new", str(new), "--output", str(output)]):
+                compare.main()
+            result = pd.read_csv(output / "numeric_summary.csv").iloc[0]
+            self.assertEqual((result.Old_Rows, result.New_Rows, result.Added_Rows), (1, 2, 1))
+            self.assertAlmostEqual(result.Max_Absolute_Delta, 0.5)
+            report = (output / "README.md").read_text()
+            self.assertIn("| example_heatmap.csv | 1 / 2 | 1 / 0 | 1 | 0.5 |", report)
+            self.assertNotIn("0.001%", report)
+            self.assertNotIn("same 19 genes", report)
+            self.assertNotIn("trajectory_source_validation.csv", report)
+
     def test_venn_macro_f1_preserves_counts_and_membership(self):
         import pandas as pd
         from evaluation.kinetics_recovery.plotting.figure6 import plot_venn, venn2

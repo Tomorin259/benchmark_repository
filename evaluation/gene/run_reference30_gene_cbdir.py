@@ -183,12 +183,9 @@ def velocity_matrix(adata, method, gene_indices, unit_multipliers=None):
     if velocity_s_key not in adata.layers:
         raise KeyError(f"missing layers/{velocity_s_key}")
     spliced_velocity = dense_values(adata.layers[velocity_s_key][:, gene_indices]).astype(np.float64, copy=False)
-    if velocity_u_key is None:
-        unspliced_velocity = np.zeros_like(spliced_velocity)
-    else:
-        if velocity_u_key not in adata.layers:
-            raise KeyError(f"missing layers/{velocity_u_key}")
-        unspliced_velocity = dense_values(adata.layers[velocity_u_key][:, gene_indices]).astype(np.float64, copy=False)
+    if velocity_u_key not in adata.layers:
+        raise KeyError(f"missing layers/{velocity_u_key}")
+    unspliced_velocity = dense_values(adata.layers[velocity_u_key][:, gene_indices]).astype(np.float64, copy=False)
     if unit_multipliers is not None:
         spliced_velocity = spliced_velocity * unit_multipliers[0]
         unspliced_velocity = unspliced_velocity * unit_multipliers[1]
@@ -205,19 +202,19 @@ def parse_old_score_file(path, method_map):
     if not path.is_file():
         return records
     with path.open(encoding="utf-8") as handle:
-        for line in handle:
+        for line_number, line in enumerate(handle, start=1):
             line = line.strip()
             if not line or line.startswith("#") or "ERROR" in line:
                 continue
             try:
                 parts = line.split("|")
                 prefix = parts[0].strip().split(":", 2)
-                if len(prefix) != 3:
-                    continue
-                raw_key, gene, score = prefix
-                method = method_map.get(raw_key.strip())
+                method = method_map.get(prefix[0].strip())
                 if method is None:
                     continue
+                if len(prefix) != 3:
+                    raise ValueError("expected method: gene: score")
+                raw_key, gene, score = prefix
                 old_edges = {}
                 raw_text = next((part.split("Raw_Scores:", 1)[1].strip() for part in parts if "Raw_Scores:" in part), "{}")
                 parsed = ast.literal_eval(raw_text)
@@ -228,8 +225,8 @@ def parse_old_score_file(path, method_map):
                     if "CosSim:" in part:
                         cossim = float(part.split("CosSim:", 1)[1].strip())
                 records[(method, gene.strip())] = {"old_cbdir": float(score.strip()), "old_edges": old_edges, "old_cossim": cossim}
-            except Exception:
-                continue
+            except (ValueError, SyntaxError, TypeError, AttributeError, IndexError) as error:
+                raise ValueError(f"{path}:{line_number}: invalid historical score record") from error
     return records
 
 

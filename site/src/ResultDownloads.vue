@@ -8,7 +8,7 @@ const kinds = [
   ['simulation_outputs', 'Simulation outputs'], ['ensemble_outputs', 'Ensemble outputs'],
   ['diagnostics', 'TIvelo / MultiVelo controls'], ['evaluation_assets', 'Reference moments'],
 ]
-const packages = computed(() => (props.data.result_packages || []).map(item => ({
+const packages = computed(() => props.data.result_packages.map(item => ({
   ...item,
   kind: item.repository_path.split('/')[1],
   datasetIds: item.dataset_ids.split(';').filter(Boolean),
@@ -31,7 +31,7 @@ watch([dataset, method, kind], () => { page.value = 1 })
 <template>
   <section class="panel downloads-section" aria-labelledby="result-download-heading">
     <h2 id="result-download-heading">Full method outputs</h2>
-    <p class="small muted">{{packages[0]?.release_version || 'v1.0.0'}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>
+    <p class="small muted">{{packages[0].release_version}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>
     <div class="guide-links">
       <a href="https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0" target="_blank" rel="noopener">Hugging Face release ↗</a>
       <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction guide</a>

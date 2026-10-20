@@ -1,8 +1,7 @@
 """BATC metric computation utilities.
 
-This module packages the ad-hoc BATC (Branch-Aware Tangent Consistency)
-computation that was previously performed in notebookss./script The metric
-quantifies how well per-cell velocity vectors align with principal curves that
+BATC (Branching-aware Trajectory Consistency) measures how per-cell velocity
+vectors align with principal curves that
 connect successive cell clusters along a lineage graph.
 
 The implementation follows these high-level steps:
@@ -17,8 +16,8 @@ The implementation follows these high-level steps:
 4. Aggregate cosine scores per edge, per cell (taking the best outgoing branch
    when multiple exist), and overall.
 
-The public entry-point :func:`compute_batc` exposes configuration knobs while
-keeping the original behaviour intact. Results can optionally be written back
+The public entry-point :func:`compute_batc` returns the aggregate score and
+optional edge diagnostics. Results can optionally be written back
 into ``adata.obs``/``adata.uns`` for downstream inspection.
 """
 
@@ -29,13 +28,11 @@ from typing import Dict, Sequence, Tuple, Union
 import numpy as np
 from scipy.interpolate import PchipInterpolator
 from scipy.spatial import cKDTree
-try:  # Optional progress feedback – silently skip if tqdm is absent.
+try:
     from tqdm import tqdm
-except Exception:  # pragma: no cover - dependency not guaranteed
+except ImportError:  # Optional progress display.
     def tqdm(iterable, **kwargs):  # type: ignore
         return iterable
-
-# from ..utils import log_verbose
 
 __all__ = ["compute_batc"]
 
@@ -85,49 +82,15 @@ def _extract_embedding_and_velocity(
     embedding_key: str,
     velocity_key: str,
 ) -> Tuple[ArrayLike, ArrayLike]:
-    """Return ``(X, V)`` matrices from an :class:`AnnData` object.
-
-    The logic mirrors the original script: first attempt direct keys, then fall
-    back to ``X_<key>`` / ``velocity_<key>`` style lookups, and finally try the
-    ``layers`` container.
-    """
-
-    if hasattr(adata, "obsm"):
-        if embedding_key in adata.obsm and velocity_key in adata.obsm:
-            return np.asarray(adata.obsm[embedding_key]), np.asarray(adata.obsm[velocity_key])
-
-        if embedding_key.startswith("X_"):
-            X_key = embedding_key
-            base = embedding_key[1:]
-        else:
-            X_key = f"X_{embedding_key}"
-            base = embedding_key
-
-        V_key = velocity_key
-        if base and f"{velocity_key}_{base}" in adata.obsm:
-            V_key = f"{velocity_key}_{base}"
-        elif base.startswith("_") and f"{velocity_key}{base}" in adata.obsm:
-            V_key = f"{velocity_key}{base}"
-
-        if X_key in adata.obsm and V_key in adata.obsm:
-            return np.asarray(adata.obsm[X_key]), np.asarray(adata.obsm[V_key])
-
-    if hasattr(adata, "layers"):
-        layers = getattr(adata, "layers", {})
-        if embedding_key in layers and velocity_key in layers:
-            return np.asarray(layers[embedding_key]), np.asarray(layers[velocity_key])
-        if embedding_key.startswith("X_"):
-            base = embedding_key[1:]
-        else:
-            base = embedding_key
-        alt_X = base
-        alt_V = f"{velocity_key}_{base}" if base else velocity_key
-        if alt_X in layers and alt_V in layers:
-            return np.asarray(layers[alt_X]), np.asarray(layers[alt_V])
-
-    raise KeyError(
-        f"Could not find a matching embedding/velocity pair for keys '{embedding_key}' and '{velocity_key}'."
-    )
+    """Read explicit obsm keys, or the conventional X_basis/velocity_basis pair."""
+    if embedding_key in adata.obsm and velocity_key in adata.obsm:
+        return np.asarray(adata.obsm[embedding_key]), np.asarray(adata.obsm[velocity_key])
+    x_key = embedding_key if embedding_key in adata.obsm else f"X_{embedding_key}"
+    basis = x_key[2:] if x_key.startswith("X_") else x_key
+    v_key = f"{velocity_key}_{basis}"
+    if v_key not in adata.obsm:
+        v_key = velocity_key
+    return np.asarray(adata.obsm[x_key]), np.asarray(adata.obsm[v_key])
 
 
 def _fit_curve_pchip(

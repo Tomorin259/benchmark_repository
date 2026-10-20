@@ -4,9 +4,9 @@
 
 [selected_genes.tsv](selected_genes.tsv) identifies the 59 frozen dataset–gene
 pairs evaluated by [the Gene entry point](../run_reference30_gene_cbdir.py).
-Every pair has recovered candidate-table evidence. The final genes were
-selected manually after screening and phase-portrait inspection. First-evidence
-row ranks in the TSV locate the supporting candidate rows. Synthetic genes
+Each pair has candidate-table support. The final genes were selected manually
+after slope screening and phase-portrait inspection. Row ranks in the TSV
+locate the supporting candidate rows. Synthetic genes
 follow the simulator's known modules.
 
 | Material | Role |

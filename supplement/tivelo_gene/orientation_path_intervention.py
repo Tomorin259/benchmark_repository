@@ -4,7 +4,7 @@
 The input layers and preprocessing are held fixed.  Only the ordered
 cluster path supplied to ``correct_path`` is changed, allowing us to separate
 path-order effects from the upstream velocity and from the later optimizer.
-This is exploratory and never writes benchmark artifacts.
+Exploratory analysis of the path-orientation step.
 """
 
 from __future__ import annotations
@@ -82,7 +82,7 @@ def main():
     pd.DataFrame(rows).to_csv(args.output_dir / "orientation_by_controlled_path.csv", index=False)
     pd.DataFrame(path_rows).to_csv(args.output_dir / "controlled_paths.csv", index=False)
     (args.output_dir / "manifest.json").write_text(json.dumps({
-        "purpose": "Path-only TIvelo orientation audit; not a benchmark replacement",
+        "purpose": "TIvelo path-orientation sensitivity analysis",
         "seed": args.seed,
         "held_fixed": "mirrored simulation preprocessing and saved input layers",
         "changed": "ordered path supplied to tivelo.direction.correct.correct_path",

@@ -1,7 +1,6 @@
 """Render Supplementary Figure S15 materials and Supplementary Table S9.
 
-Consumes only committed compact diagnostic inputs. It does not fit a method,
-reconstruct velocities, or modify a PowerPoint or manuscript.
+Reads committed compact diagnostic inputs and exports panels and table rows.
 """
 from pathlib import Path
 import argparse

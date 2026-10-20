@@ -53,9 +53,13 @@ def main():
     if panel.endswith("_manual"):
         for spec in specs:
             resolve(spec["asset"], root)
+        if panel == "rpe1_manual":
+            instructions = "Use the Figure 6A labelled Dynamo renderer and inputs linked in data/SOURCE_DATA.md"
+        else:
+            instructions = "The organoid labelled Dynamo panel is a retained author-assembled image"
         if not args.check_only:
-            raise ValueError("Dynamo is a recorded labelled-data manual panel; no renderer")
-        print(f"{panel} manual asset exists; H5AD rendering provenance remains unverified")
+            raise ValueError(instructions)
+        print(f"{panel} asset exists. {instructions}")
         return
 
     import matplotlib

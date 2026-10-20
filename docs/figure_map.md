@@ -5,7 +5,8 @@ reproduction commands. Final composites and experiment-level source panels
 have different reconstruction requirements.
 
 [Source Data](../data/SOURCE_DATA.md) collects the figure/table-indexed values,
-saved plotting arrays, and reproduction scripts in downloadable ZIP files.
+saved plotting arrays and reproduction scripts as individual files, with an
+optional complete ZIP.
 
 [Author-export records](../figures/assembly/pending_exports.json) identify the
 editable assemblies, final PDFs and export settings. Use the source modules
@@ -16,7 +17,7 @@ layout and PDF export.
 
 | Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
-| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic; current cropped author export | [Historical author source](../figures/assembly/fig1/authoring/source.pptx), not asserted to reproduce the current PDF; see [composite provenance](../figures/fig1_composite_manifest.json) |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Study-design schematic; current cropped author export | [Historical PPTX](../figures/assembly/fig1/authoring/source.pptx); the [composite provenance](../figures/fig1_composite_manifest.json) distinguishes this source from the current PDF |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
@@ -42,7 +43,7 @@ remains in the manuscript project.
 | S8 | Pancreas MURK genes | [Final PDF](../figures/suppFigEight.pdf); [editable assembly](../figures/assembly/suppfig08/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
 | S9 | Matched Cell/Gene comparison | [Final PDF](../figures/suppFigNine.pdf); [editable assembly](../figures/assembly/suppfig09/supfig9.pptx); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); the assembly retains five Cell panels and the source-rendered common-gene panel |
 | S10 | GeoMedian-4 Cell evaluation | [Retained PDF](../figures/suppFigTen.pdf); [ensemble renderer](../ensemble/README.md), [editable assembly](../figures/assembly/suppfig10/suppfig10.pptx) |
-| S11 | veloAE representation diagnostics | [Retained PDF](../figures/suppFigEleven.pdf); [PCA inputs and renderers](../supplement/veloae/README.md); final whole-page reconstruction remains incomplete |
+| S11 | veloAE representation diagnostics | [Final author PDF](../figures/suppFigEleven.pdf); [PCA inputs and panel renderers](../supplement/veloae/README.md); [source/export identity](../figures/assembly/suppfig11/authoring/manifest.json) |
 | S12 | Cell evaluation on three simulations | [Retained PDF](../figures/suppFigTwelve.pdf); [scores, plots and table](../evaluation/cell/simulation/README.md) |
 | S13 | TIvelo root and ordering controls | [Retained PDF](../figures/assembly/suppfig13/suppFigThirteen.pdf); [diagnostics](../supplement/tivelo_gene/README.md), [editable assembly](../figures/assembly/suppfig13/README.md) |
 | S14 | Expanded reference-gene parameter recovery | [Expanded scores](../evaluation/kinetics_recovery/results/expanded_reference/README.md), [renderers](../evaluation/kinetics_recovery/plotting/README.md) |
@@ -56,7 +57,7 @@ remains in the manuscript project.
 | S2 | Dataset descriptions | [Dataset registry](../data/datasets.tsv), [simulation configuration](../evaluation/gene/simulation/config.json) |
 | S3 | Cell scores, continued across parts | [Primary Cell table](../evaluation/cell/results/cell_metrics.csv) |
 | S4 | Cross-dataset Cell summaries | [Summary guide](../evaluation/summary/README.md) |
-| S5 | Signed-transition ensemble | [Scores and independent ranking](../ensemble/README.md) |
+| S5 | Signed-transition ensemble | [Scores and per-dataset ranking](../ensemble/README.md) |
 | S6 | veloVI coordinate sensitivity | [CSV, transformation and table export](../supplement/velovi/README.md) |
 | S7 | Cell scores on simulations | [Simulation Cell table exporter](../evaluation/cell/simulation/README.md) |
 | S8 | Gene sets, coverage and scores | [Selected genes and screening evidence](../evaluation/gene/selection/README.md), [Gene scores](../evaluation/gene/results/README.md) |

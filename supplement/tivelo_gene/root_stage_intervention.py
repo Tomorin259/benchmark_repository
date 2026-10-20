@@ -70,7 +70,7 @@ def main():
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     score_rows, edge_rows, path_rows = [], [], []
-    manifest = {"type": "root-stage intervention; not a benchmark correction", "seed": args.seed,
+    manifest = {"type": "exploratory root-stage sensitivity analysis", "seed": args.seed,
                 "held_fixed": "simulation input, mirrored preprocessing, reference-30 neighbors, gene metric, TIvelo optimizer",
                 "variants": ["process_path_root", "correct_path_root", "oracle_early_root"]}
 

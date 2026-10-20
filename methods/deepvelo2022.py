@@ -20,6 +20,7 @@ if _SCRIPT_DIR in sys.path:
 import numpy as np
 import scanpy as sc
 import scvelo as scv
+from scipy import sparse
 from sklearn.model_selection import train_test_split
 
 
@@ -218,8 +219,7 @@ def run_dataset(dataset):
     if not velocity_genes.any():
         raise ValueError(f"{dataset}: scVelo selected no velocity genes")
 
-    X_raw = adata_raw.X.A if hasattr(adata_raw.X, "A") else np.asarray(adata_raw.X)
-    X_raw = np.asarray(X_raw)
+    X_raw = adata_raw.X.toarray() if sparse.issparse(adata_raw.X) else np.asarray(adata_raw.X)
     X = np.tile(X_raw[:, velocity_genes], (5, 1))
     Y = np.tile(adata.layers["velocity"][:, velocity_genes], (5, 1))
     noise_sigma = (X_raw.std() / 70) ** 2

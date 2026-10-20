@@ -26,6 +26,7 @@ const caseLabel = c=>c.kind==='real'?`${c.gene} · ${c.transition.join(' → ')}
       <p class="small muted compact-note">SD across evaluated genes.</p>
       <div class="guide-links"><a :href="`#results?level=cell&dataset=${current.dataset}`">{{dataset.paper_name}} · Cell →</a><a :href="`#results?level=gene&dataset=${current.dataset}`">Gene →</a></div>
       <details class="source-details"><summary>All simulated comparisons</summary><button class="phase-image" aria-label="Enlarge all simulated cross-level comparisons" @click="enlarged={...data.result_images['simulation-cross-level'],title:'All simulated comparisons'}"><img :src="'./'+data.result_images['simulation-cross-level'].path" alt="All four simulated Cell/Gene comparisons" loading="lazy"></button></details>
+      <p v-if="current.kind==='real'" class="small muted">Cell and Gene analyses use task-specific output workflows. <a :href="`https://github.com/Tomorin259/benchmark_repository/blob/${data.source_commit}/evaluation/cell/README.md#gene-output-matched-cell-comparison`" target="_blank" rel="noopener">Matched-output comparison (Supplementary Fig. S9) ↗</a></p>
       <p class="reference-link"><a href="#downloads">Source data →</a></p>
       </template>
     </section>

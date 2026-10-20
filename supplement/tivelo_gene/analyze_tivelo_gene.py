@@ -213,7 +213,7 @@ def main():
     real_summary.to_csv(output / "real_method_context.csv", index=False)
 
     manifest = {
-        "purpose": "Exploratory TIvelo direction diagnosis; not a corrected benchmark",
+        "purpose": "Exploratory TIvelo direction diagnosis",
         "expected_bin_direction": "BranchA_0 to BranchA_9; BranchB_0 to BranchB_9",
         "inputs": [
             {"locator": f"artifact://velocity/indicators/gene/simulation/results_for_analyze/tivelo/tivelo_{scenario}.h5ad",

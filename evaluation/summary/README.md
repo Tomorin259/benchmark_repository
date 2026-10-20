@@ -59,9 +59,12 @@ Aggregation uses the stored source values before display formatting.
 ## Final chart assembly
 
 [fig7.pptx](../../figures/assembly/fig7/fig7.pptx) retains ten editable charts and
-their embedded workbooks. Native charts apply the existing `mean + 1`
-display transform, with unshifted SDs; statistical summaries use the original
-scale. The website reads unshifted values.
+their embedded workbooks. CBDir, TransCosine, BATC and Gene/kinetics means use
+`mean + 1` for display. Consistency, ICCoh, SDs and source statistics retain
+their original scales. The website reads unshifted values.
+
+The retained chart label Dynamo refers to Dynamo(RNA_seq) in Cell panels and
+the separate Dynamo(scEU-seq) labelled-data comparator in kinetic-parameter panels.
 
 To reproduce [figSeven.pdf](../../figures/figSeven.pdf), export the single slide
 as a vector PDF in WPS Office, retaining positions, colors and axes. Set

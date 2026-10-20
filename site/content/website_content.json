@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "source_note": "Scope and terms transcribed from the current online manuscript and repository registries on 2026-10-13. Figure numbering and captions are intentionally not encoded here.",
+  "source_note": "Task descriptions and metric interpretation follow the repository registries and module guides.",
   "scope": {
-    "question": "A two-level benchmark of cell-level trajectory inference and gene-level kinetics.",
+    "question": "Evaluation of cell-level trajectories, gene-level velocity directions and kinetic-parameter recovery.",
     "summary": "20 RNA velocity method configurations across 14 real datasets and three simulated scenarios. The two scEU-seq systems are included among the 14 real datasets.",
     "tasks": [
       {
@@ -14,9 +14,9 @@
       },
       {
         "id": "gene",
-        "label": "Gene-level kinetics",
+        "label": "Gene-level velocity evaluation",
         "object": "7 real datasets + 3 scenarios · 9 configurations",
-        "inputs": "Both spliced and unspliced gene-velocity components in the method-native phase plane.",
+        "inputs": "Spliced and unspliced velocity components in each method’s scoring coordinates.",
         "outputs": "Gene-level CBDir; CosSim against known velocities in simulations; phase portraits."
       },
       {
@@ -453,7 +453,7 @@
       "UniTVelo"
     ],
     "note": "Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate signed transition rows from four fixed methods. These post-hoc cell-level comparators are evaluated separately against the 20 registered configurations.",
-    "ranking_note": "Each variant is ranked independently against the 20 registered methods for the same dataset and metric. The other ensemble variant is excluded. Rank is 1 + the number of method scores strictly above the ensemble score; exact ties use competition rank."
+    "ranking_note": "Each variant is ranked separately against the 20 registered configurations for the same dataset and metric. Rank is 1 + the number of configuration scores strictly above the ensemble score; exact ties use competition rank."
   },
   "provenance": {
     "manuscript": {
@@ -528,7 +528,7 @@
       {
         "key": "cbdir",
         "label": "Gene-level CBDir",
-        "definition": "Directional agreement in the method-native spliced–unspliced phase plane.",
+        "definition": "Directional agreement between gene velocity and state displacement in the spliced–unspliced phase plane.",
         "aggregation": "Fixed reference-30 target neighbors define displacement vectors. Source-cell cosines are averaged per transition; valid transitions receive equal weight. Zero-norm velocity and zero-length displacement contribute zero. Source-cell observations count participation per edge; one cell can contribute to more than one transition."
       },
       {
@@ -567,6 +567,10 @@
     {
       "title": "Display units and missing values",
       "text": "α denotes transcription, β splicing and γ degradation. RPE1 curves are independently z-scored using sample SD for display only. Organoid predictions retain the early-50-bin baseline ratio and references retain their saved source scale on a separate axis. Gaps remain gaps. Missing genes, unavailable parameters and undefined correlations are distinguished; non-finite scores are excluded from summaries, without filling them with zero."
+    },
+    {
+      "title": "Phase portraits and numerical scores",
+      "text": "Phase portraits retain saved native coordinates. veloVI numerical scores use restored pre-min–max coordinates and corresponding velocity units. The Gene guide describes the transformations."
     }
   ],
   "method_note": "Model characteristics describe the retained paper table. “—” means no explicit entry in that table. Gene-level coverage describes the saved benchmark components and may include repository post-processing; it is separate from the model’s native du/dt output.",

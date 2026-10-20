@@ -108,7 +108,7 @@ def main():
     pd.DataFrame(root_rows).to_csv(args.output_dir / "scvelo_root_end_by_bin.csv", index=False)
     pd.DataFrame(velocity_rows).to_csv(args.output_dir / "scvelo_velocity_truth_by_bin.csv", index=False)
     pd.DataFrame(graph_rows).to_csv(args.output_dir / "scvelo_graph_true_edge_scores.csv", index=False)
-    manifest = {"purpose": "Audit upstream stochastic scVelo direction used by TIvelo; not a benchmark replacement",
+    manifest = {"purpose": "Audit the upstream stochastic scVelo direction used by TIvelo",
                 "seeds": args.seeds, "n_jobs": args.n_jobs,
                 "held_fixed": "TIvelo simulation preprocessing and input H5ADs",
                 "stages": ["scv.tl.velocity(mode='stochastic')", "scv.tl.velocity_graph", "scv.tl.terminal_states"]}

@@ -2,11 +2,8 @@
 
 The sampling idea is adapted from the cellDancer cdplt.scatter_gene API and
 sampling_neighbors (BSD 3-Clause; https://github.com/GuangyuWangLab2021/cellDancer).
-This implementation is maintained in the benchmark repository, does not
-import cellDancer, and changes only how arrows are displayed. The source
-AnnData object and all metric inputs remain untouched.
-
-The main figure contract is intentionally conservative:
+This independent implementation reads the method-native phase coordinates and
+velocity components. Display settings are:
 
 * phase coordinates stay linear and use the method-native layers;
 * real cells are sampled deterministically from a normalized phase grid;
@@ -286,10 +283,8 @@ def plot_phase_portrait(
 ) -> Any:
     """Plot one gene's phase portrait with a stable, bounded arrow field.
 
-    The displayed arrows are a visualization transform only. The source
-    velocity layers and all values used by gene-level metrics are unchanged.
-    Both velocity components are required because a missing component would
-    otherwise silently create a misleading horizontal or vertical field.
+    Both spliced and unspliced velocity components are required. Arrow lengths
+    are scaled for display; the input arrays are read into plotting copies.
     """
     if gene not in adata.var_names:
         raise ValueError(f"Gene {gene!r} is not present in the AnnData object.")

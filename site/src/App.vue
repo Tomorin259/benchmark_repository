@@ -40,6 +40,7 @@ async function load(){
     if(!response.ok)throw Error(`HTTP ${response.status}`)
     const payload=await response.json()
     if(payload.schema_version!==1||payload.content?.schema_version!==1||!payload.diagnostics)throw Error('Unsupported website data version')
+    if(!Array.isArray(payload.result_packages)||!payload.result_packages.length)throw Error('Missing native result download index')
     data.value=payload;await navigate()
   }catch(e){console.error(e);error.value='Results could not be loaded. Please try again.'}
 }

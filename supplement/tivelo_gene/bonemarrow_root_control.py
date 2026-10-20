@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Paired post-orientation TIvelo root intervention on archived bone marrow.
 
-This is a mechanism sensitivity experiment, not a replacement benchmark.
+Paired sensitivity analysis of TIvelo root selection and trajectory ordering.
 Cells, selected genes, moments, undirected neighbors, PAGA and diffusion map
 are frozen. Each seed is used for both the archived Mono_1 root and HSC_1.
 The canonical two-environment reference-30 cell evaluator scores all outputs.
@@ -335,12 +335,12 @@ def main():
                   cell / "results/cell_metrics.csv", cell / "results/cell_metrics_supplementary.csv",
                   cell / "run_cell_metrics.py", cell / "prepare_cell_metrics.py", cell / "score_tivelo_metrics.py"]
         manifest = {
-            "status": "running", "type": "post-orientation root mechanism sensitivity, not benchmark correction",
+            "status": "running", "type": "post-orientation root sensitivity analysis",
             "seeds": args.seeds, "fit_settings": FIT_SETTINGS, "threads": args.threads,
             "root_settings": {"t1": 0.1, "t2": 2.0, "root_select": "connectivities (first cell in root cluster)"},
             "held_fixed": ["cells and selected genes", "Mu/Ms", "undirected KNN", "PAGA", "diffusion map", "optimizer and paired seeds", "reference-30 evaluation pipeline"],
             "changed": ["DTI root", "root-dependent child_dict and DPT", "directed neighbors and refitted velocities"],
-            "notes": ["Palantir pseudotime is an independent inferred reference, not measured time", "HSC_1 is a biological-root intervention, not a new competing method", "X_umap stores the archived t-SNE coordinates in this dataset", "Native velocity projection regenerated before frozen-reference evaluation"],
+            "notes": ["Palantir pseudotime is an independent inferred reference, not measured time", "HSC_1 is the biologically specified root in the paired intervention", "X_umap stores the archived t-SNE coordinates in this dataset", "Native velocity projection regenerated before frozen-reference evaluation"],
             "package_versions": {key: importlib.metadata.version(key) for key in ("tivelo", "scvelo", "scanpy", "anndata", "torch", "numpy")},
             "script_sha256": sha256(Path(__file__).resolve()),
             "input_hashes": {str(path): sha256(path) for path in frozen}, "graphs": {}, "fits": {},

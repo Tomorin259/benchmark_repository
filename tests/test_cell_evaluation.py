@@ -312,6 +312,11 @@ class CellEvaluationTests(unittest.TestCase):
         )
         self.assertEqual(score, detailed_score)
         self.assertEqual(score, detail["overall"])
+        self.assertEqual(score, compute_batc(
+            adata, edges, embedding_key="X_umap", velocity_key="velocity_umap", **options
+        ))
+        adata.obsm["velocity"] = np.zeros_like(coordinates)
+        self.assertEqual(score, compute_batc(adata, edges, **options))
         self.assertEqual(
             sum(item["branch_winner_source_cells"] for item in detail["edges"]), 30
         )
@@ -594,7 +599,7 @@ class CellEvaluationTests(unittest.TestCase):
             root = Path(directory)
             (root / "result.h5ad").write_bytes(b"test")
             self.assertEqual(
-                resolve_artifact(root, "result.h5ad"), root / "result.h5ad"
+                resolve_artifact(root, "result.h5ad"), (root / "result.h5ad").resolve()
             )
             with self.assertRaises(ValueError):
                 resolve_artifact(root, "/tmp/result.h5ad")

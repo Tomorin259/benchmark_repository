@@ -57,6 +57,30 @@ class ArrayTensor:
 
 
 class PackageImportTests(unittest.TestCase):
+    def test_deepvelo_reconstruction_expression_is_dense_for_sparse_and_dense_inputs(self):
+        from scipy import sparse
+
+        path = ROOT / "methods/deepvelo2022.py"
+        run = next(node for node in ast.parse(path.read_text()).body
+                   if isinstance(node, ast.FunctionDef) and node.name == "run_dataset")
+        assignment = next(node for node in run.body if isinstance(node, ast.Assign)
+                          and any(isinstance(t, ast.Name) and t.id == "X_raw" for t in node.targets))
+        code = compile(ast.Module(body=[assignment], type_ignores=[]), str(path), "exec")
+        expected = np.array([[1., 0.], [0., 2.]])
+        for matrix in [expected, sparse.csr_matrix(expected)]:
+            namespace = {"np": np, "sparse": sparse, "adata_raw": SimpleNamespace(X=matrix)}
+            exec(code, namespace)
+            np.testing.assert_array_equal(namespace["X_raw"], expected)
+            self.assertEqual(namespace["X_raw"].ndim, 2)
+
+    def test_deepkinet_thread_configuration_failure_stops_the_run(self):
+        workflow = load_workflow("deepkinet", {"main"}, torch=SimpleNamespace(
+            set_num_threads=Mock(side_effect=RuntimeError("thread configuration failed")),
+            set_num_interop_threads=Mock(),
+        ))
+        with self.assertRaisesRegex(RuntimeError, "thread configuration failed"):
+            workflow.main()
+
     def test_direct_launchers_resolve_installed_packages_instead_of_sibling_scripts(self):
         stdlib = {"argparse", "datetime", "importlib", "inspect", "json", "os",
                   "pathlib", "random", "sys", "time"}

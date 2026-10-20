@@ -30,12 +30,14 @@ and counts, and the numerical replay.
 [The historical provenance](unit_restoration/historical_reference30_provenance.json)
 retains the original generation identity and neighbor metadata.
 
-`simulation/gene_cbdir_cossim_reference.csv` supplies simulation CosSim
-and retains the historical CBDir values. Its 630 rows originated from the three
-upstream `results_new/score_rerun_results.txt` files (branching: 180,
+Use `simulation/gene_cbdir_cossim_reference.csv` for simulation CosSim. Its
+`CBDir` column retains historical comparison values; current CBDir is
+`new_cbdir` in `gene_cbdir_reference30_all.csv`.
+Its 630 rows originated from three saved benchmark score logs named
+`results_new/score_rerun_results.txt` (branching: 180,
 murk: 90, all: 360), with columns Dataset, Gene, Method_raw, Method, CBDir,
 and CosSim. The 70 veloVI CosSim values use restored units; the other 560
-values retain their upstream source. Historical source and current table hashes are in
+values retain their original benchmark scores. Historical source and current table hashes are in
 [the compact-table provenance](simulation/gene_cbdir_cossim_reference.provenance.json).
 The external historical sources remain in the
 [historical panel provenance](../figures/panels/provenance.json). The
