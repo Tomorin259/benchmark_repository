@@ -66,3 +66,38 @@ def test_velovi_cossim_matches_paired_restoration_without_mask_changes():
         assert float(row["CosSim"]) == float(source["restored_cossim"])
         assert source["native_cossim_cells"] == source["restored_cossim_cells"]
         assert int(source["cossim_mask_changes"]) == 0
+
+
+def test_simulation_replay_scores_other_methods_with_raw_velocity_masks(tmp_path, monkeypatch):
+    import anndata as ad
+    import numpy as np
+    import pandas as pd
+    from evaluation.gene import run_reference30_gene_cbdir as replay
+
+    data = ad.AnnData(np.ones((4, 1)),
+                     obs=pd.DataFrame({"bin": ["A", "A", "B", "B"]},
+                                      index=["a", "b", "c", "d"]),
+                     var=pd.DataFrame(index=["g"]))
+    for key, values in {"Ms": [0., 1., 2., 3.], "Mu": [1., 2., 3., 4.],
+                        "velocity_s_true": [1.] * 4, "velocity_u_true": [0.] * 4}.items():
+        data.layers[key] = np.array(values)[:, None]
+    reference = tmp_path / "neighbors.npz"
+    np.savez(reference, obs_names=np.asarray(data.obs_names).astype(str),
+             indices=np.tile(np.arange(4), (4, 1)))
+    monkeypatch.setattr(replay, "ARTIFACT_ROOT", tmp_path)
+    methods = [method for method in replay.METHOD_ORDER if method != "veloVI"]
+    paths = {}
+    for method in methods:
+        s_key, u_key = replay.VELOCITY_KEYS[method]
+        data.layers[s_key] = np.array([1., 0., np.nan, -1.])[:, None]
+        data.layers[u_key] = np.zeros((4, 1))
+        paths[method] = f"{method}.h5ad"
+        data.write_h5ad(tmp_path / paths[method])
+    *_, cosines = replay.evaluate_dataset(
+        "synthetic", {"genes": ["g"], "edges": [("A", "B")]}, paths, {},
+        tmp_path, reference, simulation=True, methods=methods)
+    assert len(cosines) == 8
+    assert {row["method"] for row in cosines} == set(methods)
+    for row in cosines:
+        assert row["cossim"] == 0.
+        assert row["evaluable_cells"] == 2

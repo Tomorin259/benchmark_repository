@@ -52,6 +52,10 @@ Method-specific randomness settings are listed in
 reported scores, use the saved method outputs and reference assets identified
 by the module input maps and manifests. Simulation generation produces new
 realizations; the registered historical H5ADs identify the benchmark inputs.
+The [simulation method instructions](../methods/README.md#run-methods-on-simulations)
+connect those three fixed inputs to nine method launchers. Gene evaluation
+replays all 630 simulation CBDir and CosSim comparisons; its results guide
+states the five-decimal precision of the historical CosSim logs.
 
 Kinetics uses the `central_results` inputs, the corrected organoid reference
 direction and the labelled-data Dynamo control described in its module guide.

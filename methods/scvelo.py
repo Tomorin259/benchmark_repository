@@ -21,6 +21,8 @@ import scvelo as scv
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
@@ -139,6 +141,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 OUTPUT_PREFIX = {
     "deterministic": "scv_deterministic",
     "stochastic": "scv_stochastic",
@@ -195,6 +199,8 @@ def run_dataset(dataset, mode, data_root, output_root):
         adata.obsm["X_umap"] = adata.obsm["X_pca"].copy()
 
     if mode == "dynamical":
+        if config.get("simulation"):
+            adata.var["velocity_genes"] = True
         scv.tl.recover_dynamics(adata, n_jobs=N_JOBS)
     scv.tl.velocity(adata, mode=mode)
     scv.tl.velocity_graph(adata, n_jobs=N_JOBS)
@@ -228,6 +234,8 @@ def main():
     args = parser.parse_args()
     datasets = args.datasets or DATASETS_TO_RUN
     modes = args.modes or MODES_TO_RUN
+    if any(DATASETS[name].get("simulation") for name in datasets) and modes != ["dynamical"]:
+        raise ValueError("Simulation benchmark uses --mode dynamical")
     if scv.__version__ != "0.3.3":
         raise RuntimeError(f"scVelo 0.3.3 is required, found {scv.__version__}")
     unknown_datasets = set(datasets) - set(DATASETS)

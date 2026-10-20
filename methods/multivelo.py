@@ -7,6 +7,7 @@ second time; every other dataset follows the scVelo preprocessing used before
 the RNA-only MultiVelo fit.
 """
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -21,6 +22,8 @@ import scvelo as scv
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
@@ -137,6 +140,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 N_JOBS = 8
 MULTIVELO_N_JOBS = 12
 
@@ -146,6 +151,8 @@ def run_dataset(dataset):
     input_path = DATA_ROOT / config["input"]
     output_dir = OUTPUT_ROOT / "multivelo"
     output_path = output_dir / f"multivelo_{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
 
     print(f"\n=== MultiVelo RNA-only: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
@@ -219,11 +226,20 @@ def run_dataset(dataset):
 
 
 def main():
+    global DATA_ROOT, OUTPUT_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
+    OUTPUT_ROOT = args.output_root.expanduser().resolve()
+    datasets = args.datasets or DATASETS_TO_RUN
     if mv.__version__ != "0.1.0":
         raise RuntimeError(f"MultiVelo 0.1.0 is required, found {mv.__version__}")
     if scv.__version__ != "0.3.3":
         raise RuntimeError(f"scVelo 0.3.3 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets={sorted(unknown_datasets)}")
 
@@ -234,7 +250,7 @@ def main():
     scv.set_figure_params("scvelo")
     print(f"MultiVelo version: {mv.__version__}", flush=True)
     print(f"scVelo version: {scv.__version__}", flush=True)
-    for dataset in DATASETS_TO_RUN:
+    for dataset in datasets:
         run_dataset(dataset)
 
 

@@ -73,5 +73,7 @@ records Gene panel/score bindings.
 
 Use [material export](../figures/assembly/README.md) for fresh source copies.
 Figure-specific source availability is recorded in the table and manifests above.
+Verification fields in composite manifests describe operations at their recorded
+source/export identities. Human sign-off is recorded when explicitly supplied.
 Historical kinetics assets named Figure 5 belong to the
 former numbering; current parameter recovery is Figure 6.

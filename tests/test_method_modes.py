@@ -234,6 +234,52 @@ class VeloVIRoleTests(unittest.TestCase):
 
 
 class NativeModeTests(unittest.TestCase):
+    def test_unitvelo_gene_derivative_and_shared_time_mask(self):
+        from methods.unitvelo_velocity_u import add_velocity_u
+
+        time = np.array([-.6, -.1, .3, .8])
+        data = ad.AnnData(np.ones((4, 3)))
+        for key, value in {"fit_a": 1., "fit_h": 1., "fit_t": 0.,
+                           "fit_offset": 0., "fit_gamma": 2., "fit_beta": 3.,
+                           "fit_intercept": .4}.items():
+            data.var[key] = value
+        data.var["velocity_genes"] = [True, False, True]
+        data.var.loc[data.var_names[2], "fit_beta"] = 0.
+        data.layers["fit_t"] = np.column_stack([time, np.full(4, np.nan), time])
+        data.layers["velocity"] = np.full((4, 3), 17.)
+        before = {key: value.copy() for key, value in data.layers.items()}
+        add_velocity_u(data)
+        # An independent finite difference of u(t), rather than the stored
+        # closed-form derivative, checks both the rate and offset conventions.
+        def u(t):
+            return (-2 * t + 2) * np.exp(-t ** 2) / 3 + .4
+        epsilon = 1e-5
+        numerical = (u(time + epsilon) - u(time - epsilon)) / (2 * epsilon)
+        np.testing.assert_allclose(data.layers["velocity_u"][:, 0], numerical, atol=2e-10)
+        self.assertTrue(np.isnan(data.layers["velocity_u"][:, 1:]).all())
+        for key, value in before.items():
+            np.testing.assert_array_equal(data.layers[key], value)
+
+    def test_simulation_inputs_use_published_files_and_preserve_real_defaults(self):
+        import csv
+        from methods.simulation_inputs import simulation_inputs
+
+        simulations = simulation_inputs()
+        with (ROOT / "data/input_file_manifest.tsv").open() as handle:
+            published = {row["dataset_id"]: row["path"]
+                         for row in csv.DictReader(handle, delimiter="\t")
+                         if row["role"] == "fixed_simulation"}
+        self.assertEqual({key: row["input"] for key, row in simulations.items()}, published)
+        self.assertEqual(set(simulations), {"sim_only_murk", "sim_only_branching", "sim_hybrid"})
+        for name in ["scvelo", "unitvelo", "velovi", "deepvelo", "deepvelo2022",
+                     "graphvelo_scv", "multivelo", "tivelo", "celldancer"]:
+            tree = ast.parse((ROOT / "methods" / f"{name}.py").read_text())
+            defaults = next(ast.literal_eval(node.value) for node in tree.body
+                            if isinstance(node, ast.Assign) and any(
+                                isinstance(t, ast.Name) and t.id == "DATASETS_TO_RUN" for t in node.targets))
+            self.assertEqual(len(defaults), 14)
+            self.assertTrue(set(defaults).isdisjoint(simulations))
+
     def test_scvelo_and_unitvelo_select_modes_and_isolate_saved_results(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -328,7 +374,7 @@ class DeepVeloRoleTests(unittest.TestCase):
                     "deepvelo", {"main"}, Path=Path, json=json, datetime=datetime, timezone=timezone,
                     parse_args=lambda: SimpleNamespace(
                         datasets=["Pancreas"], evaluation_role=role, output_root=output,
-                        reset_seed_per_dataset=False,
+                        reset_seed_per_dataset=False, data_root=Path(temp),
                     ),
                     DATASETS_TO_RUN=["Pancreas"], DATASETS={"Pancreas": {}},
                     scv=SimpleNamespace(__version__="0.2.5", settings=SimpleNamespace(), set_figure_params=Mock()),

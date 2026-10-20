@@ -97,5 +97,224 @@
         "TSvelo_run.py": "eaadeff85208b7a1bd1ab1360d59883f8338f7b7e2f9010b400d36f6e9e059e1"
       }
     }
+  },
+  "simulation_workflows": {
+    "C03": {
+      "entry": "methods/scvelo.py",
+      "historical_source": "artifact://velocity/methods/scvelo_dynamic/dynamic_main_simulation.py",
+      "historical_source_sha256": "4ef18221d453ae59fce070a6c130ab580e57dccbd2d9977eef28e9a446b0084f",
+      "settings": {
+        "mode": "dynamical",
+        "velocity_genes_before_recover_dynamics": "all"
+      }
+    },
+    "C04": {
+      "entry": "methods/multivelo.py",
+      "historical_source": "artifact://velocity/methods/multivelo/multivelo_for_simulation.py",
+      "historical_source_sha256": "b58b701531ec6c87ce22be7fe9c6c0f6e77fe6e1b969a568671834f160ecfed6",
+      "settings": {
+        "rna_only": true,
+        "max_iter": 5,
+        "n_anchors": 500
+      }
+    },
+    "C05": {
+      "entry": "methods/unitvelo.py",
+      "historical_source": "artifact://velocity/methods/unitvelo/unitvelo_main_simulation.py",
+      "historical_source_sha256": "8c05a680caaaeab523ddc04217f30d98558c49232c5fcbe21c38dc221a3d7976",
+      "settings": {
+        "FIT_OPTION": "1",
+        "R2_ADJUST": true,
+        "IROOT": null,
+        "AGENES_R2": 1
+      }
+    },
+    "C08": {
+      "entry": "methods/tivelo.py",
+      "historical_source": "artifact://velocity/methods/tivelo/tivelo_main_simulation.py",
+      "historical_source_sha256": "6155a8c6e71ba9bb90991e810fd0b032166f4449776824ff3d4393774ef30a35",
+      "settings": {
+        "group_key": "bin",
+        "filter_genes": false,
+        "only_s": false,
+        "n_epochs": 100,
+        "njobs": 12
+      }
+    },
+    "C12": {
+      "entry": "methods/velovi.py",
+      "historical_source": "artifact://velocity/methods/veloVI/veloVI_main_simulation.py",
+      "historical_source_sha256": "e9c357a678861ba453eaf9809abc25cfcd8060c386a9b9683600c23007d35b73",
+      "settings": {
+        "evaluation_role": "gene",
+        "max_epochs": 1000,
+        "gpu_batch_size": 64,
+        "cpu_batch_size": 32,
+        "n_posterior_samples": 25
+      }
+    },
+    "C15": {
+      "entry": "methods/celldancer.py",
+      "historical_source": "artifact://velocity/methods/celldancer/celldancer_main_simulation.py",
+      "historical_source_sha256": "8531d2410af5557a55d46c969eccede7581f94f6d187cf077f7c4a00ba93b8a7",
+      "settings": {
+        "permutation_ratio": 0.125,
+        "n_jobs": 12
+      }
+    },
+    "C16": {
+      "entry": "methods/deepvelo.py",
+      "historical_source": "artifact://velocity/methods/deepvelo/deepvelo_main_simulation.py",
+      "historical_source_sha256": "5790358260d6cea6e05e23c2d77f3249e9d3faccf2c322c9a10b7ca6debe44c0",
+      "settings": {
+        "evaluation_role": "gene",
+        "pred_unspliced": true,
+        "seed": 123,
+        "reset": "per_dataset",
+        "mask_zero": false
+      }
+    },
+    "C18": {
+      "entry": "methods/deepvelo2022.py",
+      "historical_source": "artifact://velocity/methods/deepvelo-main/code/deepvelo_main_simulation.py",
+      "historical_source_sha256": "b2f9c7d33a70fb93a39b5a8f711c0736322022ebbe568d88d09bd5edef4b3c31",
+      "settings": {
+        "velocity_genes": "all",
+        "epochs": 50,
+        "batch_size": 4,
+        "learning_rate": 5e-05
+      }
+    },
+    "C19": {
+      "entry": "methods/graphvelo_scv.py",
+      "historical_source": "artifact://velocity/methods/graphvelo/graphvelo_scvelo_simulation.py",
+      "historical_source_sha256": "6109f20a021e1b810a53c42e3cb0255f0a6cd0bac5641075e934ca2ee8a94816",
+      "settings": {
+        "upstream_mode": "dynamical",
+        "velocity_genes_before_recover_dynamics": "all",
+        "xkey": "Ms",
+        "vkey": "velocity"
+      }
+    }
+  },
+  "derived_outputs": {
+    "unitvelo_gene_layers": {
+      "entry": "methods/unitvelo_velocity_u.py",
+      "historical_source": "artifact://velocity/methods/unitvelo/get_velocity_unspliced.py",
+      "historical_source_sha256": "b2b680420334221d21e0f730f0f445f961449d10316a62d9835b6a7e06283924",
+      "validation": {
+        "datasets": 7,
+        "exact_layers_per_dataset": 4,
+        "numpy": "1.21.6",
+        "anndata": "0.8.0",
+        "inputs": [
+          {
+            "dataset": "retina",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_retina.h5ad",
+                "sha256": "6fa1229fee71bee65df29295c4d6205655b8d731faf0ea6db54c3b43053543e9",
+                "bytes": 153580414
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_retina_with_velocity_u_mode1.h5ad",
+                "sha256": "242831adf4016fb33e5d87f9a6f19d0b4b8e3e90aa49682323eac554ee85f29f",
+                "bytes": 328046782
+              }
+            ]
+          },
+          {
+            "dataset": "DentateGyrus_lamanno",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_DentateGyrus_lamanno.h5ad",
+                "sha256": "7c53787df3e1546150a93ea6c22ae188c8c3250c2da1a8389f00ab16f1f5bced",
+                "bytes": 1039061802
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_DentateGyrus_lamanno_with_velocity_u_mode1.h5ad",
+                "sha256": "19d32531230662a89805fa2a016e55070eed4fafa6222aa7ce31cb314c607544",
+                "bytes": 2204696082
+              }
+            ]
+          },
+          {
+            "dataset": "Gastrulation",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_Gastrulation.h5ad",
+                "sha256": "8f6e9542bd770fca58a4ee559af0849c3ff167e59f6d9fe78fd92bc68fb28734",
+                "bytes": 558656482
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_Gastrulation_with_velocity_u_mode1.h5ad",
+                "sha256": "0258f8848ecb3ed855ed29bd096033c9999033536c9146c85986be12f69d0d25",
+                "bytes": 1186818906
+              }
+            ]
+          },
+          {
+            "dataset": "capo_pre",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_capo_pre.h5ad",
+                "sha256": "f3651687ce6f48aa89919a8645d3ec97ae3a8b982a005be9be276950ef04765f",
+                "bytes": 85297980
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+                "sha256": "1487de258df7ac912148c0b6f7f2797f7c3fbd3039cdf5b3c937ee5952c762d4",
+                "bytes": 163508020
+              }
+            ]
+          },
+          {
+            "dataset": "bonemarrow",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_bonemarrow.h5ad",
+                "sha256": "3a53621b7e47dac019b6af581833860fb814d8e6d3ae2b2bf0d0db85e363f38a",
+                "bytes": 293221876
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_bonemarrow_with_velocity_u_mode1.h5ad",
+                "sha256": "644377ef2c5e39bfedb313e4df882581d55433de92c3edec78480833ccc61b42",
+                "bytes": 663143996
+              }
+            ]
+          },
+          {
+            "dataset": "mousebrain",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_mousebrain.h5ad",
+                "sha256": "33f7b81cc48066cb1ff562bcb7fb5d51c0fe83629d8845e677c3680d55bed02d",
+                "bytes": 88585342
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_mousebrain_with_velocity_u_mode1.h5ad",
+                "sha256": "d78ddf162324ce08ff65db0655953e919e7717f1a4eed389918e7a0e54bf6d5e",
+                "bytes": 189375606
+              }
+            ]
+          },
+          {
+            "dataset": "Pancreas",
+            "files": [
+              {
+                "path": "results/unitvelo/unitvelo_Pancreas.h5ad",
+                "sha256": "e370160df055e0d60757478ecbb3d5420eaf8ae2ca55c0ffa35178a885fb26a3",
+                "bytes": 193053352
+              },
+              {
+                "path": "results/unitvelo/results_with_vu/unitvelo_Pancreas_with_velocity_u_mode1.h5ad",
+                "sha256": "6a5203fa48108f9984bc21138a82882babc0cf8aead2c840e09e994bb03fc027",
+                "bytes": 429599496
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

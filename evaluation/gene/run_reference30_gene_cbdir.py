@@ -322,16 +322,18 @@ def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_
                                       moment_source=public_locator(moment_source), **factor))
         velocity_s_matrix, velocity_u_matrix, invalid_velocity = velocity_matrix(
             adata, method, positions, unit_multipliers=unit_multipliers)
-        if simulation and method == "veloVI":
+        if simulation:
             # CosSim historically uses raw predictions and a norm mask, without
             # CBDir's NaN/Inf replacement or clipping. Truth stays in its units.
-            raw_s = dense_values(adata.layers["velocity"][:, positions]).astype(np.float64)
-            raw_u = dense_values(adata.layers["velocity_u"][:, positions]).astype(np.float64)
+            s_key, u_key = VELOCITY_KEYS[method]
+            raw_s = dense_values(adata.layers[s_key][:, positions]).astype(np.float64)
+            raw_u = dense_values(adata.layers[u_key][:, positions]).astype(np.float64)
             truth_s = dense_values(adata.layers["velocity_s_true"][:, positions]).astype(np.float64)
             truth_u = dense_values(adata.layers["velocity_u_true"][:, positions]).astype(np.float64)
             for column, gene in enumerate(selected):
                 native = np.column_stack([raw_s[:, column], raw_u[:, column]])
-                restored = native * np.array([inverse_s[column], inverse_u[column]])
+                restored = (native * np.array([unit_multipliers[0][column], unit_multipliers[1][column]])
+                            if unit_multipliers is not None else native)
                 truth = np.column_stack([truth_s[:, column], truth_u[:, column]])
                 native_cosine, native_n = velocity_cosine(native, truth)
                 cosine, n = velocity_cosine(restored, truth)
@@ -543,10 +545,12 @@ def main():
     write_csv(output_root / "gene_cbdir_edge_details_reference30_all.csv", all_edges)
     write_csv(output_root / "neighbor_audit_all.csv", all_neighbors)
     write_csv(output_root / "unit_restoration" / "velovi_scale_factors.csv", all_units)
-    write_csv(output_root / "simulation" / "velovi_cossim.csv", all_cossim)
+    write_csv(output_root / "simulation" / "gene_cossim.csv", all_cossim)
+    write_csv(output_root / "simulation" / "velovi_cossim.csv",
+              [row for row in all_cossim if row["method"] == "veloVI"])
     provenance["simulation_cossim"] = {
-        "path": "simulation/velovi_cossim.csv",
-        "method": "veloVI",
+        "path": "simulation/gene_cossim.csv",
+        "methods": args.methods,
         "truth_layers": ["velocity_s_true", "velocity_u_true"],
         "norm_mask": "prediction norm > 1e-6 and truth norm > 1e-6",
         "prediction_cleanup": "none",

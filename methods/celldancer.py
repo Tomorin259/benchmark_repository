@@ -7,6 +7,7 @@ transfer of its kinetics back to the benchmark AnnData, and scVelo's velocity
 graph/embedding projection.
 """
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -25,6 +26,8 @@ import celldancer as cd
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "celldancer"
 
@@ -168,6 +171,10 @@ DATASETS = {
     },
 }
 
+DATASETS.update({key: {**value, "source_embedding": None, "embed_key": "X_umap",
+                        "velocity_basis": "umap"}
+                 for key, value in simulation_inputs().items()})
+
 MIN_SHARED_COUNTS = 20
 N_TOP_GENES = 2000
 CELL_DANCER_N_JOBS = 12
@@ -180,6 +187,8 @@ def run_dataset(dataset):
     input_path = DATA_ROOT / config["input"]
     output_dir = OUTPUT_ROOT / dataset
     output_path = OUTPUT_ROOT / f"celldancer_{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
     dataframe_path = output_dir / "cell_type_u_s.csv"
     fit_dir = output_dir / "fit"
 
@@ -318,13 +327,22 @@ def run_dataset(dataset):
 
 
 def main():
+    global DATA_ROOT, OUTPUT_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
+    OUTPUT_ROOT = args.output_root.expanduser().resolve()
+    datasets = args.datasets or DATASETS_TO_RUN
     if scv.__version__ != "0.2.4":
         raise RuntimeError(f"scVelo 0.2.4 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
 
-    for dataset in DATASETS_TO_RUN:
+    for dataset in datasets:
         run_dataset(dataset)
 
 

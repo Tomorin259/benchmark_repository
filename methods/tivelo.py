@@ -8,6 +8,7 @@ published TIVelo call.
 """
 
 from importlib.metadata import version
+import argparse
 from pathlib import Path
 import sys
 
@@ -22,6 +23,8 @@ import tivelo
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
@@ -124,12 +127,17 @@ DATASETS = {
     },
 }
 
+DATASETS.update({key: {**value, "embedding_key": "X_umap"}
+                 for key, value in simulation_inputs().items()})
+
 
 def run_dataset(dataset):
     config = DATASETS[dataset]
     input_path = DATA_ROOT / config["input"]
     output_dir = OUTPUT_ROOT / "tivelo"
     output_path = output_dir / f"tivelo_{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
     tivelo_cache = output_dir / dataset / "tivelo.h5ad"
 
     print(f"\n=== TIVelo: {dataset} ===", flush=True)
@@ -179,13 +187,13 @@ def run_dataset(dataset):
 
     adata = tivelo.tivelo(
         adata,
-        group_key="clusters",
+        group_key="bin" if config.get("simulation") else "clusters",
         emb_key="X_umap",
         data_name=dataset,
         save_folder=str(output_dir),
-        njobs=-1,
+        njobs=12 if config.get("simulation") else -1,
         show_fig=False,
-        filter_genes=True,
+        filter_genes=not config.get("simulation", False),
         constrain=True,
         loss_fun="mse",
         only_s=False,
@@ -220,6 +228,15 @@ def run_dataset(dataset):
 
 
 def main():
+    global DATA_ROOT, OUTPUT_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
+    OUTPUT_ROOT = args.output_root.expanduser().resolve()
+    datasets = args.datasets or DATASETS_TO_RUN
     expected_versions = {
         "tivelo": "0.1.4",
         "scvelo": "0.3.1",
@@ -236,10 +253,10 @@ def main():
     scv.settings.presenter_view = True
     scv.set_figure_params("scvelo")
 
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets={sorted(unknown_datasets)}")
-    for dataset in DATASETS_TO_RUN:
+    for dataset in datasets:
         run_dataset(dataset)
 
 

@@ -61,6 +61,8 @@ its bytes and checksum. Archive member names are transport paths; the
 
 Dataset IDs follow `dataset_id` in [datasets.tsv](datasets.tsv); figures and
 tables use the corresponding `paper_name`.
+`release_status=mirrored_input` identifies inputs available in the public
+manifest; the source/accession fields retain their original study attribution.
 
 | File | Purpose |
 | --- | --- |

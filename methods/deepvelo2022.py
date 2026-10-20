@@ -8,6 +8,7 @@ then evaluate its reconstructed velocity field on scVelo's selected velocity
 genes.
 """
 
+import argparse
 from pathlib import Path
 import sys
 import time
@@ -25,6 +26,8 @@ from sklearn.model_selection import train_test_split
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "deepvelo2022"
 
@@ -141,6 +144,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 N_JOBS = 8
 
 
@@ -150,6 +155,8 @@ def run_dataset(dataset):
     output_dir = OUTPUT_ROOT / dataset
     output_stem = config.get("output_stem", dataset)
     output_path = output_dir / f"deepvelo_{output_stem}_recon.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
     model_path = output_dir / f"deepvelo_{output_stem}.h5"
 
     print(f"\n=== DeepVelo reconstruction: {dataset} ===", flush=True)
@@ -201,7 +208,11 @@ def run_dataset(dataset):
         adata.obsm["X_umap"] = adata.obsm["X_pca"].copy()
 
     # The upstream reconstruction target is a scVelo dynamical velocity.
+    if config.get("simulation"):
+        adata.var["velocity_genes"] = True
     scv.tl.recover_dynamics(adata, n_jobs=N_JOBS)
+    if config.get("simulation"):
+        adata.var["velocity_genes"] = True
     scv.tl.velocity(adata, mode="dynamical")
     scv.tl.velocity_graph(adata, n_jobs=N_JOBS)
 
@@ -215,6 +226,8 @@ def run_dataset(dataset):
 
     if "velocity_genes" not in adata.var:
         raise KeyError(f"{dataset}: scVelo did not produce var['velocity_genes']")
+    if config.get("simulation"):
+        adata.var["velocity_genes"] = True
     velocity_genes = adata.var["velocity_genes"].to_numpy(dtype=bool)
     if not velocity_genes.any():
         raise ValueError(f"{dataset}: scVelo selected no velocity genes")
@@ -290,9 +303,18 @@ def run_dataset(dataset):
 
 
 def main():
+    global DATA_ROOT, OUTPUT_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
+    OUTPUT_ROOT = args.output_root.expanduser().resolve()
+    datasets = args.datasets or DATASETS_TO_RUN
     if scv.__version__ != "0.2.4":
         raise RuntimeError(f"scVelo 0.2.4 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
 
@@ -301,7 +323,7 @@ def main():
     scv.set_figure_params("scvelo")
     print(f"scVelo version: {scv.__version__}", flush=True)
     print("GPU selection: inherited from CUDA_VISIBLE_DEVICES", flush=True)
-    for dataset in DATASETS_TO_RUN:
+    for dataset in datasets:
         run_dataset(dataset)
 
 

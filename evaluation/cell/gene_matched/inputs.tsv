@@ -27,3 +27,10 @@ C16	deepvelo	gastrulation	gastrulation	velocity:results/deepvelo/results_with_vu
 C16	deepvelo	mousebrain	mousebrain	velocity:results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad	velocity	X_umap	velocity_umap	direct	3365	gene_matched_cell	true
 C16	deepvelo	pancreas	pancreas	velocity:results/deepvelo/results_with_vu/deepvelo_Pancreas.h5ad	velocity	X_umap	velocity_umap	direct	3696	gene_matched_cell	true
 C16	deepvelo	retina	retina	velocity:results/deepvelo/results_with_vu/deepvelo_retina.h5ad	velocity	X_umap	velocity_umap	direct	2726	gene_matched_cell	true
+C04	multivelo	bonemarrow	bonemarrow	velocity:results/multivelo/multivelo_bonemarrow.h5ad	velo_s	X_umap	velocity_umap	direct	5780	gene_matched_cell	not_applicable
+C04	multivelo	capo_pre	capofibro	velocity:results/multivelo/multivelo_capo_pre.h5ad	velo_s	X_umap	velocity_umap	direct	1222	gene_matched_cell	not_applicable
+C04	multivelo	dentategyrus_lamanno	DentateGyrus_lamanno	velocity:results/multivelo/multivelo_DentateGyrus_lamanno.h5ad	velo_s	X_umap	velocity_umap	direct	18213	gene_matched_cell	not_applicable
+C04	multivelo	gastrulation	gastrulation	velocity:results/multivelo/multivelo_Gastrulation.h5ad	velo_s	X_umap	velocity_umap	direct	9815	gene_matched_cell	not_applicable
+C04	multivelo	mousebrain	mousebrain	velocity:results/multivelo/multivelo_mousebrain.h5ad	velo_s	X_umap	velocity_umap	direct	3365	gene_matched_cell	not_applicable
+C04	multivelo	pancreas	pancreas	velocity:results/multivelo/multivelo_Pancreas.h5ad	velo_s	X_umap	velocity_umap	direct	3696	gene_matched_cell	not_applicable
+C04	multivelo	retina	retina	velocity:results/multivelo/multivelo_retina.h5ad	velo_s	X_umap	velocity_umap	direct	2726	gene_matched_cell	not_applicable

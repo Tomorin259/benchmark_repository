@@ -33,6 +33,8 @@ from deepvelo.utils.preprocess import autoset_coeff_s
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 
 # Edit this list for a focused rerun.  The explicit seed below is part of the
@@ -148,6 +150,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 SEED = 123
 N_JOBS = 8
 
@@ -162,6 +166,7 @@ def seed_everything():
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
     parser.add_argument(
         "--evaluation-role",
         choices=("cell", "gene", "kinetics"),
@@ -190,9 +195,11 @@ def parse_args():
 
 
 def run_dataset(dataset, output_root, pred_unspliced, evaluation_role, reset_seed_per_dataset):
-    if reset_seed_per_dataset:
+    if reset_seed_per_dataset or DATASETS[dataset].get("simulation"):
         seed_everything()
     config = DATASETS[dataset]
+    if config.get("simulation") and evaluation_role != "gene":
+        raise ValueError("Simulation benchmark uses --evaluation-role gene")
     input_path = DATA_ROOT / config["input"]
     output_dir = output_root / dataset
     output_path = output_dir / f"deepvelo_{dataset}.h5ad"
@@ -260,6 +267,8 @@ def run_dataset(dataset, output_root, pred_unspliced, evaluation_role, reset_see
     # Official DeepVelo training starts from its initial velocity estimate.
     velocity(adata, mask_zero=False)
     train(adata, configs)
+    if config.get("simulation"):
+        adata.layers["velocity_u"] = adata.layers["velocity_unspliced"].copy()
 
     scv.tl.velocity_graph(adata, n_jobs=N_JOBS)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -303,7 +312,9 @@ def run_dataset(dataset, output_root, pred_unspliced, evaluation_role, reset_see
 
 
 def main():
+    global DATA_ROOT
     args = parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
     if scv.__version__ != "0.2.5":
         raise RuntimeError(f"scVelo 0.2.5 is required, found {scv.__version__}")
     datasets = args.datasets or DATASETS_TO_RUN
@@ -338,6 +349,7 @@ def main():
         "evaluation_role": args.evaluation_role,
         "pred_unspliced": pred_unspliced,
         "reset_seed_per_dataset": args.reset_seed_per_dataset,
+        "simulation_seed_scope": "per_dataset",
         "seed": SEED,
         "n_jobs": N_JOBS,
         "datasets": datasets,

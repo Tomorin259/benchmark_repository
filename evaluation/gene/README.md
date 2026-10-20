@@ -7,7 +7,9 @@ veloVI's additional independent min-max axes for both state and velocity.
 
 Cell and Gene analyses use the recorded task-specific output workflows.
 The [matched-output comparison](../cell/README.md#gene-output-matched-cell-comparison)
-in Supplementary Figure S9 evaluates DeepVelo, UniTVelo and veloVI on seven datasets.
+in Supplementary Figure S9 evaluates DeepVelo, UniTVelo, veloVI and MultiVelo
+on seven datasets. MultiVelo selects `velo_s` instead of the primary Cell
+analysis's `velocity` layer from the same H5AD.
 
 ## Results and selection
 
@@ -52,7 +54,7 @@ all nine methods. The output directory must be empty.
 `VELOCITY_ARTIFACT_ROOT` can supply the artifact root.
 Historical comparison-score files named in the source/provenance supply
 `old_cbdir`, old edge scores and their deltas. Missing historical files leave
-those comparison fields undefined; current CBDir and veloVI simulation
+those comparison fields undefined; current CBDir and all nine methods' simulation
 CosSim are calculated from the H5ADs and fixed reference assets.
 
 `--neighbor-mode native` is a controlled comparison, with a separate output
@@ -63,7 +65,9 @@ The output root contains `gene_cbdir_reference30_all.csv`,
 `gene_cbdir_edge_details_reference30_all.csv`, `neighbor_audit_all.csv` and
 `provenance.json`, plus per-dataset tables. veloVI also writes
 `unit_restoration/velovi_scale_factors.csv` and, for simulations,
-`simulation/velovi_cossim.csv`. Compare current scores by dataset/method/gene,
+`simulation/velovi_cossim.csv`. All selected simulation methods write
+`simulation/gene_cossim.csv` (630 rows for all three scenarios and nine methods).
+Compare current scores by dataset/method/gene,
 including status and evaluable counts, against the corresponding formal rows.
 The configured method paths and layer keys select the result family for a
 new run; keep its output root separate from the committed results.
@@ -78,12 +82,13 @@ forward min-max transform must reproduce saved `Ms`/`Mu` exactly. Per axis,
 `y = a*x + b` gives `v_x = v_y/a`; translation affects state only. Other
 methods use their existing numerical units.
 
-Simulation runs write `simulation/velovi_cossim.csv`, comparing raw restored
-velocities with `velocity_s_true`/`velocity_u_true` using the historical norm
-mask (`>1e-6` for both vectors), without CBDir's velocity cleanup. The compact
-CosSim table combines these 70 veloVI values with the other eight methods by
-dataset/method/gene; [the results guide](results/README.md) describes its fields
-and source coverage.
+Simulation CosSim compares raw predictions with `velocity_s_true`/`velocity_u_true`
+using the historical norm mask (`>1e-6` for both vectors), without CBDir's
+velocity cleanup. veloVI uses restored units and also writes its 70-row
+`simulation/velovi_cossim.csv` subset. The full `simulation/gene_cossim.csv`
+contains all nine methods. Join by dataset/method/gene when comparing with
+the compact formal table; its other eight methods retain five-decimal
+historical scores. [The results guide](results/README.md) describes the fields.
 
 The benchmark uses the registered simulation H5ADs. Use the
 [simulation generator](simulation/README.md) to create additional datasets.

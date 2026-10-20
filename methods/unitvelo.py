@@ -23,6 +23,8 @@ import unitvelo as utv
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs"
 
@@ -143,6 +145,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 
 def run_dataset(dataset, fit_option, data_root, output_root):
     config = DATASETS[dataset]
@@ -193,6 +197,10 @@ def run_dataset(dataset, fit_option, data_root, output_root):
     velo_config = utv.config.Configuration()
     velo_config.FIT_OPTION = fit_option
     velo_config.GPU = GPU_INDEX
+    if config.get("simulation"):
+        velo_config.R2_ADJUST = True
+        velo_config.IROOT = None
+        velo_config.AGENES_R2 = 1
     previous_cwd = Path.cwd()
     os.chdir(work_dir)
     try:
@@ -241,6 +249,8 @@ def main():
     args = parser.parse_args()
     datasets = args.datasets or DATASETS_TO_RUN
     fit_options = args.fit_options or FIT_OPTIONS_TO_RUN
+    if any(DATASETS[name].get("simulation") for name in datasets) and fit_options != ["1"]:
+        raise ValueError("Simulation benchmark uses --fit-option 1")
     version = pkg_resources.get_distribution("unitvelo").version
     if version != "0.2.5.2":
         raise RuntimeError(f"UniTVelo 0.2.5.2 is required, found {version}")

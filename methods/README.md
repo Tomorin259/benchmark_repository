@@ -2,6 +2,8 @@
 
 [configurations.tsv](configurations.tsv) lists the 20 configurations, versions,
 source references, scientific options and required result keys.
+`release_status=public_launcher` records code access; version and source fields
+retain the available historical identity.
 
 `config_id` identifies a benchmark configuration, `operational_id` is used in
 file paths and table joins, and `manuscript_name` gives its display name.
@@ -36,13 +38,13 @@ through separate input maps.
 | `scvelo.py` | `--data-root`, `--output-root`, repeated `--dataset` and `--mode` | `scvelo_<mode>/scv_<mode>_<dataset>.h5ad`; dynamical uses `scvelo_dynamic/scv_dynamic_<dataset>.h5ad` |
 | `unitvelo.py` | `--data-root`, `--output-root`, repeated `--dataset`, `--fit-option` | `unitvelo/` or `unitvelo_mode2/`, then `unitvelo_<dataset>.h5ad` |
 | `velovi.py` | `--data-root`, `--output-root`, repeated `--dataset`, `--evaluation-role` | `<dataset>/veloVI_<dataset>_all.h5ad` |
-| `deepvelo.py` | Top-level `DATA_ROOT`; `--output-root`, repeated `--dataset`, `--evaluation-role` | `<dataset>/deepvelo_<dataset>.h5ad`, plus `run_config.json` |
+| `deepvelo.py` | `--data-root`, `--output-root`, repeated `--dataset`, `--evaluation-role` | `<dataset>/deepvelo_<dataset>.h5ad`, plus `run_config.json` |
 | `tfvelo.py`, `tsvelo.py` | `--source-root`, `--data-root`, `--output-root`, `--dataset` | `TFvelo_<official_name>_demo/TFvelo.h5ad` or `<official_name>/TSvelo.h5ad` |
 | `cell2fate.py` | Top-level `DATA_ROOT`, `RESULTS_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | `cell2fate/<dataset>/cell2fate_<dataset>.h5ad` |
-| `dynamo.py`, `multivelo.py`, `tivelo.py`, `veloae.py` | Top-level `DATA_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | Method subdirectory, then `<prefix><dataset>.h5ad`; prefixes are `dynamo_`, `multivelo_`, `tivelo_` and `veloAE_` |
-| `celldancer.py`, `deepkinet.py` | Top-level `DATA_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | `celldancer_<dataset>.h5ad` or `DeepKINET_<dataset>.h5ad` |
-| `deepvelo2022.py`, `sdevelo.py` | Top-level `DATA_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | Dataset subdirectory with the configured output stem; C18 uses `deepvelo_<stem>_recon.h5ad` |
-| `graphvelo_scv.py`, `graphvelo_dynamo.py` | Top-level `DATA_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | `<dataset>/graphvelo<dataset>.h5ad` or `<dataset>/graphvelo_dynamo_<dataset>.h5ad` |
+| `multivelo.py`, `tivelo.py` | `--data-root`, `--output-root`, repeated `--dataset` | `multivelo/multivelo_<dataset>.h5ad` or `tivelo/tivelo_<dataset>.h5ad` |
+| `celldancer.py` | `--data-root`, `--output-root`, repeated `--dataset` | `celldancer_<dataset>.h5ad` |
+| `deepvelo2022.py`, `graphvelo_scv.py` | `--data-root`, `--output-root`, repeated `--dataset` | `<dataset>/deepvelo_<stem>_recon.h5ad` or `<dataset>/graphvelo<dataset>.h5ad` |
+| `dynamo.py`, `veloae.py`, `deepkinet.py`, `sdevelo.py`, `graphvelo_dynamo.py` | Top-level `DATA_ROOT`, `OUTPUT_ROOT`, `DATASETS_TO_RUN` | Method-native output path declared in the script |
 
 In constant-configured scripts, `OUTPUT_ROOT` is the exact root used in the
 source; its default may already include the method name. Dataset names in
@@ -73,7 +75,7 @@ python methods/deepvelo.py --evaluation-role cell \
 scVelo and UniTVelo accept repeated `--dataset` selections, plus `--data-root`
 and `--output-root`; modes use separate directories and reject existing H5ADs.
 scVelo dynamical results use `scvelo_dynamic/`.
-veloVI also accepts `--data-root`; DeepVelo uses its top-level `DATA_ROOT`.
+veloVI and DeepVelo also accept `--data-root`.
 Use separate empty roots for distinct evaluation roles.
 
 ### Hardware selection
@@ -197,6 +199,85 @@ PY
 - **DeepVelo (C16):** Cell sets `pred_unspliced=false`; Gene and Kinetics set
   it to true, changing the training head and required outputs.
   `--reset-seed-per-dataset` reproduces the documented historical RNG scope.
+
+### UniTVelo Gene layers
+
+Run C05 (`--fit-option 1`), then differentiate its saved fitted curve with
+[unitvelo_velocity_u.py](unitvelo_velocity_u.py):
+
+```bash
+python methods/unitvelo_velocity_u.py \
+  --input /path/to/unitvelo-run/unitvelo/unitvelo_Pancreas.h5ad \
+  --output /path/to/unitvelo-gene/unitvelo_Pancreas_with_velocity_u_mode1.h5ad
+```
+
+This is the retained benchmark `get_velocity_unspliced.py` calculation.
+It adds `velocity_u`, `velocity_s_reconstructed`, `fit_s_reconstructed` and
+`fit_u_reconstructed`, using the saved Gaussian curve, `fit_t`, fitted rates
+and `velocity_genes` mask. Mode-1 missing times use the first complete shared
+cell-time column; near-zero beta gives undefined reconstructed values.
+The existing `velocity`, `Ms` and `Mu` are retained. This step uses AnnData,
+NumPy and SciPy and performs no model fitting. Select the new output in the
+Gene input configuration.
+
+### Run methods on simulations
+
+The nine Gene methods accept `sim_only_murk`, `sim_only_branching` and
+`sim_hybrid` through `--dataset`. Their inputs are the three `fixed_simulation`
+rows in [input_file_manifest.tsv](../data/input_file_manifest.tsv), selected
+by [simulation_inputs.py](simulation_inputs.py). Supply the **velocity root**
+as `--data-root`: these paths start with `indicators/gene/simulation/`.
+Real-data commands keep the scientific-input root described above.
+
+Select the method's environment before each command. For example, run the
+normal + branching scenario with separate output directories:
+
+```bash
+SIM_INPUT_ROOT=/path/to/velocity-artifacts
+SIM_OUTPUT_ROOT=/path/to/new-simulation-runs
+python methods/scvelo.py --dataset sim_only_branching --mode dynamical \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/scvelo"
+python methods/unitvelo.py --dataset sim_only_branching --fit-option 1 \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/unitvelo"
+python methods/velovi.py --dataset sim_only_branching --evaluation-role gene \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/velovi"
+python methods/deepvelo.py --dataset sim_only_branching --evaluation-role gene \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/deepvelo"
+python methods/deepvelo2022.py --dataset sim_only_branching \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/deepvelo2022"
+python methods/graphvelo_scv.py --dataset sim_only_branching \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/graphvelo"
+python methods/multivelo.py --dataset sim_only_branching \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/multivelo"
+python methods/tivelo.py --dataset sim_only_branching \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/tivelo"
+python methods/celldancer.py --dataset sim_only_branching \
+  --data-root "$SIM_INPUT_ROOT" --output-root "$SIM_OUTPUT_ROOT/celldancer"
+```
+
+Repeat `--dataset` for the other two scenarios. Fourteen real datasets remain
+the default; simulations require explicit selection. The output filenames use
+the selected dataset ID. Gene evaluation's frozen aliases `murk`, `branching`
+and `all` correspond to `sim_only_murk`, `sim_only_branching` and `sim_hybrid`;
+point its input configuration at the new native files before reevaluation.
+UniTVelo additionally needs the four-layer reconstruction above.
+
+The simulation workflows preserve 20-count/2,000-gene preprocessing and
+30-PC/30-neighbor moments. Historical settings include:
+
+| Method | Simulation-specific setting |
+| --- | --- |
+| scVelo_dyn / GraphVelo_scv | All genes marked before dynamical recovery |
+| DeepVelo_scv | All genes used for the AE reconstruction target |
+| UniTVelo | Mode 1, `R2_ADJUST=True`, `IROOT=None`, `AGENES_R2=1` |
+| TIvelo | `group_key=bin`, `filter_genes=False`, 100 epochs, 12 workers |
+| DeepVelo | Unspliced head, seed 123 reset per scenario, `mask_zero=False` |
+| veloVI | Gene training and posterior extraction described above |
+
+[source_manifest.json](source_manifest.json), `simulation_workflows`, records
+the retained source hashes and settings. The public entry points use explicit
+input and output paths. Retraining stochastic models produces a new run;
+the published native files remain the inputs for replaying reported scores.
 
 ## Use the results
 

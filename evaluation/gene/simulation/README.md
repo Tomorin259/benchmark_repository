@@ -5,6 +5,11 @@ scenarios used by the gene-level benchmark. It contains simulation only;
 preprocessing, dimensionality reduction, and plotting remain separate
 downstream operations.
 
+To fit methods on the three saved benchmark inputs, follow the nine
+[simulation method commands](../../../methods/README.md#run-methods-on-simulations).
+The [Gene evaluation guide](../README.md#recalculate-cbdir) then recalculates
+CBDir and CosSim from the method outputs.
+
 The scientific parameters live in [`config.json`](config.json), not in the
 command line. The entries preserve the audited CellDancer 1.1.7 logic for
 `murk`, `branching`, and `hybrid`. The branching BoostALL parameters are

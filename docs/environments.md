@@ -79,6 +79,14 @@ NumPy 1.23.5 (retained installation metadata). Install the patched package in
 your own environment; the public launcher
 requires scVelo 0.2.5 and records per-dataset checkpoints and randomness.
 
+The [UniTVelo Gene reconstruction](../methods/README.md#unitvelo-gene-layers)
+uses AnnData, NumPy and SciPy, independently of TensorFlow fitting. Seven
+saved mode-1 outputs reproduced all four added layers exactly with NumPy
+1.21.6 and AnnData 0.8.0; source/input identities are in
+`derived_outputs` of [the source manifest](../methods/source_manifest.json).
+Simulation fitting uses each method's own environment and the explicit
+[simulation settings and commands](../methods/README.md#run-methods-on-simulations).
+
 ### Hardware and rendering tools
 
 The registry identifies the execution devices used for each configuration.

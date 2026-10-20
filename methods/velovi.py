@@ -27,6 +27,8 @@ from velovi import VELOVI, preprocess_data
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 
 # Edit this list for a focused rerun.
@@ -140,6 +142,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 # Gene's historical training settings. Cell retains the bare vae.train() call
 # (velovi 0.3.1 defaults: max_epochs=500, batch_size=256).
 GENE_MAX_EPOCHS = 1000
@@ -153,6 +157,8 @@ def run_dataset(dataset, evaluation_role, data_root, output_root):
     if evaluation_role not in {"cell", "gene"}:
         raise ValueError(f"unknown veloVI evaluation role: {evaluation_role}")
     config = DATASETS[dataset]
+    if config.get("simulation") and evaluation_role != "gene":
+        raise ValueError("Simulation benchmark uses --evaluation-role gene")
     input_path = data_root / config["input"]
     output_dir = output_root / dataset
     output_path = output_dir / f"veloVI_{dataset}_all.h5ad"

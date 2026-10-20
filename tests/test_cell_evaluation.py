@@ -390,8 +390,8 @@ class CellEvaluationTests(unittest.TestCase):
         reference = [row for row in inputs if row["evaluation_role"] == "reference_only"]
         scored = [row for row in inputs if row["evaluation_role"] == "gene_matched_cell"]
         self.assertEqual(len(reference), 7)
-        self.assertEqual(len(scored), 21)
-        self.assertEqual(len({(r["evaluation_dataset"], r["operational_id"]) for r in inputs}), 28)
+        self.assertEqual(len(scored), 28)
+        self.assertEqual(len({(r["evaluation_dataset"], r["operational_id"]) for r in inputs}), 35)
         for row in reference:
             matches = [
                 item for item in canonical
@@ -406,7 +406,8 @@ class CellEvaluationTests(unittest.TestCase):
                 for item in gene_rows
                 if item["status"] == "ok"
                 and item["dataset"].casefold() == row["dataset_id"].casefold()
-                and item["method"] == names[row["config_id"]]
+                and item["method"] == ("MultiVelo" if row["config_id"] == "C04"
+                                       else names[row["config_id"]])
             }
             self.assertEqual(len(matches), 1)
             source, velocity_key = matches.pop()
@@ -439,14 +440,14 @@ class CellEvaluationTests(unittest.TestCase):
         audit = rows(result_root / "cell_metrics_audit.csv")
         parity = rows(result_root / "tivelo_parity.csv")
         for table in (primary, supplementary, audit):
-            self.assertEqual(len(table), 21)
+            self.assertEqual(len(table), 28)
             self.assertEqual({(r["dataset"], r["method"]) for r in table}, set(sources))
         for row in audit:
             key = row["dataset"], row["method"]
             self.assertEqual(row["result_path"], sources[key])
             self.assertEqual(len(row["result_sha256"]), 64)
             self.assertEqual(row["status"], "ok")
-        self.assertEqual(len(parity), 42)
+        self.assertEqual(len(parity), 56)
         self.assertTrue(all(row["raw_values_match"] == "True" for row in parity))
         self.assertTrue(all(float(row["aggregate_abs_difference"]) <= 1e-7 for row in parity))
 

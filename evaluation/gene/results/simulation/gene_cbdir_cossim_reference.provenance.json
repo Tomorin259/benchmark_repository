@@ -21,7 +21,6 @@
     "CosSim"
   ],
   "consumer": "evaluation/gene/plot_gene_assets.py",
-  "fallback": "Recalculate veloVI CosSim with the documented evaluator; historical score files alone cannot recreate the current table.",
   "direct_source_locator": "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv",
   "direct_source_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662",
   "table_sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
@@ -32,5 +31,65 @@
     "updated_method": "veloVI",
     "updated_field": "CosSim",
     "updated_rows": 70
+  },
+  "reproduction": {
+    "script": "evaluation/gene/run_reference30_gene_cbdir.py",
+    "script_sha256": "5fb583bbe2f950951200f5896a7ff892b426ae449ed85de84a55cc23eaa77308",
+    "output": "simulation/gene_cossim.csv",
+    "comparison_precision": "five decimals for 560 historical scores; full precision for 70 restored veloVI scores",
+    "verification": {
+      "cossim_rows": 630,
+      "by_method": {
+        "cellDancer": {
+          "rows": 70,
+          "max_error": 4.8987402128108926e-06,
+          "round5_mismatches": 0
+        },
+        "DeepVelo": {
+          "rows": 70,
+          "max_error": 4.942049302347762e-06,
+          "round5_mismatches": 0
+        },
+        "DeepVelo_scv": {
+          "rows": 70,
+          "max_error": 4.978337668271049e-06,
+          "round5_mismatches": 0
+        },
+        "Graphvelo_scv": {
+          "rows": 70,
+          "max_error": 4.9933944840097055e-06,
+          "round5_mismatches": 0
+        },
+        "MultiVelo": {
+          "rows": 70,
+          "max_error": 4.910591551054999e-06,
+          "round5_mismatches": 0
+        },
+        "scVelo_dyn": {
+          "rows": 70,
+          "max_error": 4.781971256861972e-06,
+          "round5_mismatches": 0
+        },
+        "TIvelo": {
+          "rows": 70,
+          "max_error": 4.979499024448941e-06,
+          "round5_mismatches": 0
+        },
+        "UniTVelo": {
+          "rows": 70,
+          "max_error": 4.991694418532422e-06,
+          "round5_mismatches": 0
+        },
+        "veloVI": {
+          "rows": 70,
+          "max_error": 0.0,
+          "round5_mismatches": 0
+        }
+      },
+      "mismatches": [],
+      "CBDir_rows": 630,
+      "maximum_CBDir_error": 0.0
+    },
+    "reference": "Frozen inputs and reference-neighbor identities remain recorded in results/provenance.json and unit_restoration/provenance.json"
   }
 }

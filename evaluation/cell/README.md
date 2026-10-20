@@ -125,13 +125,16 @@ tables use four decimals, dense heatmaps two; ranking uses unrounded scores.
 ## Gene-output-matched cell comparison
 
 [gene_matched/inputs.tsv](gene_matched/inputs.tsv) selects Gene-analysis outputs
-for DeepVelo, UniTVelo and veloVI on seven real datasets: 21 scored rows, plus
+for DeepVelo, UniTVelo, veloVI and MultiVelo on seven real datasets: 28 scored rows, plus
 seven reference-only scVelo locators for the canonical UMAP. It uses the same
 alignment, fixed graph, reference moments, metrics and parity checks as Cell.
 
 - DeepVelo changes `pred_unspliced=false` (Cell) to `true` (Gene/Kinetics),
   changing the training head and spliced output.
 - UniTVelo adds four Gene layers; shared arrays and all six Cell metrics match.
+- MultiVelo uses `velo_s` from the same H5AD, matching Gene evaluation;
+  the primary Cell analysis uses `velocity`. Its seven matched rows supply
+  the MultiVelo points in Supplementary Figure S9.
 - veloVI Cell and Gene are distinct training runs. Both register native
   `Ms`/`Mu`. Cell uses package-default training (up to 500 epochs, batch 256)
   and divides spliced velocity by `20 / max(latent_time)` per gene.
@@ -140,7 +143,9 @@ alignment, fixed graph, reference moments, metrics and parity checks as Cell.
   switch. Dentategyrus_lamanno outputs share 1,290 of their 1,291 genes.
 
 These comparisons evaluate the complete output workflows described above.
-The 21 supplementary rows are stored separately from the primary 280-row table.
+The 28 supplementary rows are stored separately from the primary 280-row table.
+Together with the other five methods' primary Cell rows, they reproduce S9's
+315 scores (nine methods × seven datasets × five displayed metrics).
 
 ```bash
 python evaluation/cell/run_cell_metrics.py \
@@ -152,7 +157,7 @@ python evaluation/cell/run_cell_metrics.py \
   --tivelo-python "$TIVELO_METRICS_PYTHON" \
   --prepare-script evaluation/cell/prepare_cell_metrics.py \
   --official-script evaluation/cell/score_tivelo_metrics.py \
-  --method deepvelo --method unitvelo --method veloVI
+  --method deepvelo --method unitvelo --method veloVI --method multivelo
 ```
 
 ## Website previews

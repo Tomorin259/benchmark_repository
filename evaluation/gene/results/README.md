@@ -37,7 +37,12 @@ Its 630 rows originated from three saved benchmark score logs named
 `results_new/score_rerun_results.txt` (branching: 180,
 murk: 90, all: 360), with columns Dataset, Gene, Method_raw, Method, CBDir,
 and CosSim. The 70 veloVI CosSim values use restored units; the other 560
-values retain their original benchmark scores. Historical source and current table hashes are in
+values retain their original benchmark scores, saved to five decimal places.
+The [Gene evaluator](../run_reference30_gene_cbdir.py) recalculates all nine
+methods into `simulation/gene_cossim.csv` in a fresh output root. Compare
+the eight historical methods after rounding the replay to five decimals;
+compare veloVI with its full-precision restored values.
+Historical source and current table hashes are in
 [the compact-table provenance](simulation/gene_cbdir_cossim_reference.provenance.json).
 The external historical sources remain in the
 [historical panel provenance](../figures/panels/provenance.json). The

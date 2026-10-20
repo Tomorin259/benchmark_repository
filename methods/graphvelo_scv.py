@@ -7,6 +7,7 @@ the benchmark embedding.  This is distinct from C20, which uses Dynamo's
 ``M_s`` and ``velocity_S`` input instead.
 """
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -22,6 +23,8 @@ from graphvelo.utils import adj_to_knn
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPOSITORY_ROOT))
+from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 OUTPUT_ROOT = REPOSITORY_ROOT / "outputs" / "graphvelo_scv"
 
@@ -134,6 +137,8 @@ DATASETS = {
     },
 }
 
+DATASETS.update(simulation_inputs())
+
 N_JOBS = 8
 
 
@@ -142,6 +147,8 @@ def run_dataset(dataset):
     input_path = DATA_ROOT / config["input"]
     output_dir = OUTPUT_ROOT / dataset
     output_path = output_dir / f"graphvelo{dataset}.h5ad"
+    if output_path.exists():
+        raise FileExistsError(f"output exists: {output_path}; choose a new output root")
 
     print(f"\n=== GraphVelo / scVelo: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
@@ -183,6 +190,8 @@ def run_dataset(dataset):
         adata.obsm["X_umap"] = adata.obsm["X_pca"].copy()
 
     # scVelo supplies the initial gene-space velocity that GraphVelo corrects.
+    if config.get("simulation"):
+        adata.var["velocity_genes"] = True
     scv.tl.recover_dynamics(adata, n_jobs=N_JOBS)
     scv.tl.velocity(adata, mode="dynamical")
     scv.tl.latent_time(adata)
@@ -234,9 +243,18 @@ def run_dataset(dataset):
 
 
 def main():
+    global DATA_ROOT, OUTPUT_ROOT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", dest="datasets", action="append", choices=sorted(DATASETS))
+    args = parser.parse_args()
+    DATA_ROOT = args.data_root.expanduser().resolve()
+    OUTPUT_ROOT = args.output_root.expanduser().resolve()
+    datasets = args.datasets or DATASETS_TO_RUN
     if scv.__version__ != "0.2.4":
         raise RuntimeError(f"scVelo 0.2.4 is required, found {scv.__version__}")
-    unknown_datasets = set(DATASETS_TO_RUN) - set(DATASETS)
+    unknown_datasets = set(datasets) - set(DATASETS)
     if unknown_datasets:
         raise ValueError(f"unknown datasets: {sorted(unknown_datasets)}")
 
@@ -244,7 +262,7 @@ def main():
     scv.settings.presenter_view = True
     scv.set_figure_params("scvelo")
     print(f"scVelo version: {scv.__version__}", flush=True)
-    for dataset in DATASETS_TO_RUN:
+    for dataset in datasets:
         run_dataset(dataset)
 
 

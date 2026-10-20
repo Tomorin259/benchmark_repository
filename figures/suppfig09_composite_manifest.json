@@ -40,5 +40,20 @@
   },
   "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
   "repository_assembly_sha256_retained": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
-  "historical_online_file_git_blob_sha1": "00a1ff06ec504256e8761221d83220eaa4f3f94a"
+  "historical_online_file_git_blob_sha1": "00a1ff06ec504256e8761221d83220eaa4f3f94a",
+  "numerical_sources": {
+    "cell_primary": "evaluation/cell/results/cell_metrics.csv",
+    "cell_gene_matched": "evaluation/cell/gene_matched/results/cell_metrics.csv",
+    "matched_inputs": "evaluation/cell/gene_matched/inputs.tsv",
+    "matched_methods": [
+      "deepvelo",
+      "unitvelo",
+      "veloVI",
+      "multivelo"
+    ],
+    "multivelo_primary_layer": "velocity",
+    "multivelo_matched_layer": "velo_s",
+    "gene_common_set": "evaluation/gene/results/common_genes/",
+    "scope": "Nine methods on the seven real Gene datasets; five Cell panels plus the common-gene panel"
+  }
 }
