@@ -72,9 +72,7 @@
     7.5,
     10.830556
   ],
-  "old_pdf": "figures/suppFigNine.pdf",
-  "old_pdf_sha256": "26a7cec4addcf39bfa71e827fd5a7606555f5fe3de4ab13d23e6afdab40b172b",
-  "reproduction_boundary": "The synchronized A4 portrait authoring PPTX contains all six registered Cell/Gene panel images at the recorded frames. Its user-exported WPS PDF is cropped by page-box adjustment only; the prior 16:9 source is preserved in the local recovery archive.",
+  "reproduction_boundary": "The retained A4 portrait PowerPoint assembly contains all six registered Cell/Gene panel images at the recorded frames. The final PDF uses page-box cropping after author export.",
   "assembly": "figures/assembly/suppfig09/supfig9.pptx",
   "assembly_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
   "pending_pdf_export": false,
@@ -86,6 +84,5 @@
     540.0,
     779.8
   ],
-  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
-  "previous_assembly_sha256": "662f5249a9666a4294178d5029b9c4dddca4762af5a5741ee99a1647d146275f"
+  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a"
 }

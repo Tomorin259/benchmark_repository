@@ -3,9 +3,8 @@
   "path": "figures/assembly/fig4/authoring/source.pptx",
   "sha256": "e863c3ae7ed13d576f80d42b583c91f0e0010b3ed88e5a9e5986d23788ea5dd1",
   "author_export_identity_verified": true,
-  "verification_boundary": "The synchronized editable assembly and current user-exported, cropped WPS PDF are recorded by the author-export manifest. The manual whole-figure export is retained rather than claimed as a scripted reconstruction.",
+  "verification_boundary": "The current editable assembly and manually exported, cropped PDF are identified in figures/assembly/author_exports.json.",
   "pending_pdf_export": false,
-  "historical_author_export_sha256": "c256e6406fd0d0191141f185ae4f40ff8ed06c4903b74aa5634dadb6d6252c0f",
   "author_export_sha256": "ec4a4a1e63d0ba300e7aa764d771fc5bf94ba83d075f182c1fb295131e554d9b",
   "current_pdf": "figures/figFour.pdf",
   "current_pdf_sha256": "ff7561f0608ab4e09c936d6780a8d2a666c9a3d7eadc35bf14c40cf74051841d"

@@ -101,8 +101,9 @@ canonical bundle. To plot another result table, use the plotter's
 
 The stored reference graphs use 30 neighbors, 30 PCs, Euclidean distance,
 `X_pca` and random state 0. Installing a graph transfers its neighbor indices,
-distances and connectivities. Method-native expression/velocity spaces supply
-the velocity-graph cosines.
+distances and connectivities. For the primary Cell benchmark, velocity-graph
+cosines use reference `Ms` aligned to each method's cells and genes, together
+with its prepared velocity. veloAE retains its native latent state and velocity.
 
 Forebrain CBDir uses the full shared PCA30 velocity projection and streamlines
 show its first two components. BATC uses the frozen shared UMAP2.

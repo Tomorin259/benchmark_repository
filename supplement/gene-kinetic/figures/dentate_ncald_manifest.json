@@ -89,8 +89,6 @@
     "arrow_reference_quantile": 0.9,
     "reference_length": 0.05,
     "max_length": 0.1,
-    "previous_reference_length": 0.075,
-    "previous_max_length": 0.15,
     "s": 12,
     "alpha": 0.6,
     "axes_hidden": true

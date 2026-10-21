@@ -3,7 +3,7 @@
   "composite_status": "current",
   "paper_figure": "fig6",
   "pages": 1,
-  "validation": "Agent rendered and inspected the complete A-F layout. All 17 embedded panels match the accepted PPT media within PDF JPEG-encoding tolerance, including the retained 25-pixel F-panel white-margin crops. The current E/F positions match the author-saved PPT. C retains its source aspect ratio within PDF coordinate rounding. Only bottom whitespace was cropped; content stream, text and embedded image bytes are unchanged. The downloaded online figSix.pdf and the promoted composite are byte-identical.",
+  "validation": "The complete A-F layout was rendered and inspected. All 17 embedded panels match the accepted PPT media within PDF JPEG-encoding tolerance, including the retained 25-pixel F-panel white-margin crops. The current E/F positions match the author-saved PPT. C retains its source aspect ratio within PDF coordinate rounding. Only bottom whitespace was cropped; content stream, text and embedded image bytes are unchanged. The downloaded online figSix.pdf and the promoted composite are byte-identical.",
   "panels": [
     {
       "panel": "C",
@@ -94,7 +94,6 @@
   ],
   "composite_path": "figures/figSix.pdf",
   "composite_sha256": "0028351d392148926f95050203dd25334241dac582a36788d40f652d10c81db9",
-  "previous_composite_sha256": "11ff893136dcf813af3a96a741b1680f234f2ff00ad86ce534c8e30723dd1ccb",
   "pending_panel_replacements": [],
   "update_note": "Promoted the online-matched author export containing C summary heatmap cells, bottom D Macro-F1 annotations, and five organoid streams including TSvelo. All source panels and the formal PDF are synchronized; correlations, class memberships, and parameter-scoring gene scopes are unchanged.",
   "source_export_sha256": "220a07cc291eb542abf597d8c9f122ea87b5fb1bb0445cf14011c2cdd392e7a9",

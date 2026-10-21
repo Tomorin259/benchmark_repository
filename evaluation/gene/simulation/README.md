@@ -19,7 +19,8 @@ the values above come from the canonical H5AD parameter layers and were
 validated by a full regenerated branching workflow. Hashes of all three
 audited source scripts are retained in `config.json`.
 
-Run from the repository root with a relative output directory:
+The generator requires cellDancer 1.1.7 and `setuptools<81`, which provides
+`pkg_resources`. Run from the repository root with a relative output directory:
 
 ```bash
 python evaluation/gene/simulation/generate.py \
