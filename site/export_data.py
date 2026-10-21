@@ -470,7 +470,7 @@ def export_data(root=ROOT, output=None):
         downloads['tables'].append({'label': label, **entry})
     metadata_downloads = [
         ('data/SOURCE_DATA.md', 'Source Data guide',
-         'Figure/table-indexed source values, saved plot arrays and reproduction scripts.'),
+         'Figure/table-indexed source values and saved plot arrays.'),
         ('data/source_data_manifest.tsv', 'Source Data download manifest',
          'Individual file URLs, sizes and SHA-256 checksums, plus the optional complete ZIP.'),
         ('data/RESULT_DOWNLOADS.md', 'Native result download guide',
@@ -865,7 +865,7 @@ def export_data(root=ROOT, output=None):
     source_data_root = source_data_archive['url'].rsplit('/', 1)[0].replace('/resolve/', '/tree/')
     source_data_groups = []
     for directory, label, description in [
-        ('main_figures', 'Main figures', 'Figures 2–7: numerical tables and saved plotting inputs. Figure 1 is a schematic.'),
+        ('main_figures', 'Main figures', 'Figures 1–7: numerical tables, saved plotting inputs and the Figure 1 schematic.'),
         ('supplementary_figures', 'Supplementary figures', 'Figures S1–S15: numerical tables and saved plotting inputs.'),
         ('supplementary_tables', 'Supplementary tables', 'Tables S1–S9: full-precision source values and metadata.'),
     ]:

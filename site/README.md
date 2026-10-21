@@ -43,6 +43,5 @@ artifact URIs are not used as archive download links.
 
 The Source data section reads the individual files in `data/source_data_manifest.tsv`
 and groups them into main figures, supplementary figures and supplementary tables.
-Each directory provides file descriptions. Plotting scripts and retained images are
-linked from the release index; a complete ZIP is available as an optional download.
+Each directory provides file descriptions. A complete ZIP is available as an optional download.
 All file and directory links are pinned to the published Hugging Face content commit.

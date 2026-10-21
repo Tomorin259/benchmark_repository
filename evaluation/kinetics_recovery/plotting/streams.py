@@ -38,7 +38,7 @@ def main():
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--output", type=Path)
     parser.add_argument(
-        "--panel", choices=("organoid", "organoid_manual", "rpe1", "rpe1_manual", "rpe1_deepkinet"),
+        "--panel", choices=("organoid", "organoid_manual", "rpe1", "rpe1_deepkinet"),
         default="organoid",
     )
     parser.add_argument("--dpi", type=int, default=600)
@@ -53,10 +53,7 @@ def main():
     if panel.endswith("_manual"):
         for spec in specs:
             resolve(spec["asset"], root)
-        if panel == "rpe1_manual":
-            instructions = "Use the Figure 6A labelled Dynamo renderer and inputs linked in data/SOURCE_DATA.md"
-        else:
-            instructions = "The organoid labelled Dynamo panel is a retained author-assembled image"
+        instructions = "The organoid labelled Dynamo panel is a retained author-assembled image"
         if not args.check_only:
             raise ValueError(instructions)
         print(f"{panel} asset exists. {instructions}")
@@ -84,10 +81,11 @@ def main():
         if adata.obs_names.has_duplicates:
             raise ValueError(f"{path}: duplicate cell IDs")
         vkey = spec["velocity_layer"]
-        projection_key = f"{vkey}_umap"
+        embedding_key = spec.get("embedding_key", "X_umap")
+        projection_key = spec.get("projection_key", f"{vkey}_umap")
         if vkey not in adata.layers or projection_key not in adata.obsm:
             raise KeyError(f"{path}: missing {vkey} or {projection_key}")
-        X = np.asarray(adata.obsm["X_umap"])
+        X = np.asarray(adata.obsm[embedding_key])
         V = np.asarray(adata.obsm[projection_key])
         if X.shape != (adata.n_obs, 2) or V.shape != X.shape:
             raise ValueError(f"{path}: invalid embedding/projection shape")
@@ -96,7 +94,7 @@ def main():
         record = {
             "method": spec["method"], "input": spec["result"], "input_sha256": source_hash,
             "n_cells": adata.n_obs, "n_genes": adata.n_vars,
-            "embedding_key": "X_umap", "projection_key": projection_key,
+            "embedding_key": embedding_key, "projection_key": projection_key,
             "projection_recomputed": False,
         }
         if spec.get("reference"):
@@ -134,9 +132,13 @@ def main():
         )
         print(f"Validated {spec['method']} {panel}: {projection_key}", flush=True)
         if not args.check_only:
+            # Normalize saved field names in memory for the shared scVelo call.
+            adata.obsm["X_umap"] = X
+            adata.obsm[f"{vkey}_umap"] = V
             axis = scv.pl.velocity_embedding_stream(
                 adata, basis="umap", vkey=vkey, X=X, V=V, recompute=False,
-                color="clusters", title="", legend_fontsize=9 if panel == "rpe1" else None,
+                color="clusters", title="",
+                legend_fontsize=9 if panel == "rpe1" else None,
                 show=False,
             )
             stem = spec["output_stem"]

@@ -14,7 +14,7 @@ and kinetic-parameter recovery against two scEU-seq reference systems.
 | Goal | Entry |
 | --- | --- |
 | Inspect scores without running methods | [Cell](evaluation/cell/results/cell_metrics.csv), [Gene](evaluation/gene/results/README.md), [kinetic parameters](evaluation/kinetics_recovery/README.md#results-and-scope) and [Figure 7 summaries](evaluation/summary/README.md) |
-| Download figure and table source data | [Source Data](data/SOURCE_DATA.md): tables, saved plot inputs and reproduction scripts |
+| Download figure and table source data | [Source Data](data/SOURCE_DATA.md): tables and saved plot inputs |
 | Recalculate metrics from saved method outputs | [Cell evaluation](evaluation/cell/README.md), [Gene evaluation](evaluation/gene/README.md), [kinetics recovery](evaluation/kinetics_recovery/README.md) |
 | Run a velocity method | [Method launchers](methods/README.md) and [environment requirements](docs/environments.md) |
 | Reproduce plots or assemble paper figures | [Figure map](docs/figure_map.md) |

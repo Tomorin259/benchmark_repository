@@ -5,7 +5,7 @@ reproduction commands. Final composites and experiment-level source panels
 have different reconstruction requirements.
 
 [Source Data](../data/SOURCE_DATA.md) collects the figure/table-indexed values,
-saved plotting arrays and reproduction scripts as individual files, with an
+saved plotting arrays as individual files, with an
 optional complete ZIP.
 
 [Author-export records](../figures/assembly/author_exports.json) identify the
@@ -22,7 +22,7 @@ layout and PDF export.
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
 | 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
-| 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/); [Source Data](../data/SOURCE_DATA.md) includes labelled Dynamo arrays and the RPE1 stream renderer | Quantitative panels are scripted; retained labelled Dynamo images follow the composite manifest |
+| 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/); [Source Data](../data/SOURCE_DATA.md) includes saved velocity-field arrays | Quantitative panels and all five RPE1 streams are scripted; the labelled organoid Dynamo image follows the composite manifest |
 | 7 — integrated comparison | [figSeven.pdf](../figures/figSeven.pdf) | [Summary tables and refresh commands](../evaluation/summary/README.md) | [Editable charts](../figures/assembly/fig7/fig7.pptx); manual WPS export and crop |
 
 ## Supplementary figures

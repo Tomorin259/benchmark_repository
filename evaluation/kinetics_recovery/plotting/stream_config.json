@@ -24,6 +24,15 @@
       "output_stem": "tsvelo",
       "result": "results/TSvelo/rpe1/TSvelo.h5ad",
       "velocity_layer": "velocity"
+    },
+    {
+      "method": "Dynamo",
+      "output_stem": "dynamo",
+      "result": "indicators/gene/scEU_rpe1_analyze/dynamo/dynamo_rpe1.h5ad",
+      "velocity_layer": "velocity_T",
+      "embedding_key": "X_RFP_GFP",
+      "projection_key": "velocity_RFP_GFP",
+      "reference": "results/scvelo_deterministic/scv_deterministic_rpe1.h5ad"
     }
   ],
   "organoid": [
@@ -52,12 +61,6 @@
       "result": "results/TSvelo/organoid_ori/TSvelo.h5ad",
       "velocity_layer": "velocity",
       "reference": "results/scvelo_deterministic/scv_deterministic_organoid.h5ad"
-    }
-  ],
-  "rpe1_manual": [
-    {
-      "method": "Dynamo",
-      "asset": "benchmark_repository/evaluation/kinetics_recovery/figures/fig6/figure6A_rpe1/dynamo.png"
     }
   ],
   "organoid_manual": [

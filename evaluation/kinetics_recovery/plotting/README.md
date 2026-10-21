@@ -5,7 +5,7 @@ Use [the kinetics guide](../README.md) for inputs, processing and commands.
 | Entry | Input and output |
 | --- | --- |
 | `figure6.py` / `figure6_config.json` | Evaluator output; renders B–D/F and exact plot-data |
-| `streams.py` / `stream_config.json` | Saved velocity-root H5ADs; four RPE1 and four conventional organoid methods |
+| `streams.py` / `stream_config.json` | Saved velocity-root H5ADs; all five RPE1 methods and four conventional organoid methods |
 | `expanded_reference.py` | Expanded scores; three boxplots and a ten-page RPE1 trajectory PDF |
 
 ## Display settings
@@ -18,9 +18,10 @@ boundaries; color encodes mean, not count. Missing cells remain white
 D shows the three turnover-category Venn diagrams and Macro-F1.
 F uses available selected-gene means by method, parameter and branch.
 DeepKINET supplies gamma only; TSvelo rates use lineage files, while its
-velocity field uses the merged file. The labelled Dynamo RPE1 panel has a
-[Source Data renderer and inputs](../../../data/SOURCE_DATA.md); the organoid
-panel is retained as an author-assembled image.
+velocity field uses the merged file. All five RPE1 methods use the same scVelo
+stream call and shared RFP/GFP layout; configured source fields are mapped to
+the standard plotting names in memory. The labelled organoid Dynamo panel
+is retained as an author-assembled image.
 
 Individual/summary annotations and formal tables use four decimals, dense
 heatmaps and C's `Mean (n)` use two, and D's Macro-F1 uses three.

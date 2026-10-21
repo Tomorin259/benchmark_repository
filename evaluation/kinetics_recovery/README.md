@@ -170,8 +170,10 @@ DeepKINET RPE1 may obtain aligned labels/palette from
 come from its own saved H5AD. Rendering manifests record input identities and
 validation checks; records of the original projection computation are retained
 where available.
-Labelled Dynamo A/E retain their original image assets. [Source Data](../../data/SOURCE_DATA.md)
-includes saved coordinates and velocities, plus a labelled RPE1 stream renderer
-that reads either the registered H5AD or its extracted arrays.
+`streams.py --panel rpe1` renders all five Figure 6A methods with the same
+scVelo call on the shared RFP/GFP layout. The configured Dynamo fields are
+mapped to the standard plotting names in memory. Labelled organoid Dynamo
+retains its original image asset. [Source Data](../../data/SOURCE_DATA.md)
+includes the saved coordinates and velocities.
 
 The final PDF and panel bindings are in the [figure map](../../docs/figure_map.md).

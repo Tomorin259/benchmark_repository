@@ -97,7 +97,7 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
           <h2 id="source-data-heading">Source data</h2>
           <p class="small muted">v1.0.0 · Browse by figure or table and download individual CSV, TSV or NPZ files. Each directory explains its contents. The complete ZIP is optional.</p>
           <div class="guide-links">
-            <a :href="data.source_data_root" target="_blank" rel="noopener">Index, plotting scripts and materials ↗</a>
+            <a :href="data.source_data_root" target="_blank" rel="noopener">Source values and file index ↗</a>
             <a href="./data/files/data/SOURCE_DATA.md" download>Source Data guide</a>
             <a href="./data/files/data/source_data_manifest.tsv" download>Sizes and checksums</a>
           </div>

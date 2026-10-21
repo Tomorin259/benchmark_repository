@@ -264,6 +264,17 @@ class SiteExportTests(unittest.TestCase):
             self.assertRegex(row['url'], r'/resolve/[0-9a-f]{40}/source_data/v1\.0\.0/')
         self.assertEqual(sum(row['path'].endswith('.npz') for row in actual), 243)
         self.assertEqual(sum(row['path'].endswith('.zip') for row in actual), 1)
+        self.assertFalse(any(row['path'].startswith('reproduction/') or
+                             row['path'].endswith('.py') for row in actual))
+        self.assertTrue({
+            'metadata/ARRAY_DICTIONARY.tsv',
+            'main_figures/Figure_1/Figure_1.pdf',
+            'main_figures/Figure_5/Figure_5A_gastrulation_raw_phase.npz',
+            'main_figures/Figure_5/Figure_5D_left_overview.npz',
+            'main_figures/Figure_5/Figure_5D_right_overview.npz',
+            'main_figures/Figure_5/Figure_5E_DentateGyrus_raw_phase.npz',
+            'main_figures/Figure_6/Figure_6A_Dynamo_labelled_native_input.npz',
+        } <= {row['path'] for row in actual})
         self.assertFalse(any('Source_Data_display_' in row['path'] for row in actual))
         self.assertEqual(self.payload['source_data_archive']['path'], 'Source_Data_complete.zip')
         groups = self.payload['source_data_groups']

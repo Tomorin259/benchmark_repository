@@ -172,17 +172,23 @@ class KineticsPlottingContractTests(unittest.TestCase):
             [spec["velocity_layer"] for spec in specs],
             ["velocity", "DeepKINET_velocity", "velocity", "velocity"],
         )
-        self.assertEqual([spec["method"] for spec in config["rpe1_manual"]], ["Dynamo"])
+        self.assertNotIn("rpe1_manual", config)
         self.assertEqual([spec["method"] for spec in config["organoid_manual"]], ["Dynamo"])
         rpe1_specs = config["rpe1"]
         self.assertEqual([spec["method"] for spec in rpe1_specs],
-                         ["cellDancer", "DeepVelo", "DeepKINET", "TSvelo"])
+                         ["cellDancer", "DeepVelo", "DeepKINET", "TSvelo", "Dynamo"])
         self.assertEqual([spec["output_stem"] for spec in rpe1_specs],
-                         ["celldancer", "deepvelo", "deepkinet", "tsvelo"])
+                         ["celldancer", "deepvelo", "deepkinet", "tsvelo", "dynamo"])
         self.assertEqual([spec["velocity_layer"] for spec in rpe1_specs],
-                         ["velocity", "velocity", "DeepKINET_velocity", "velocity"])
+                         ["velocity", "velocity", "DeepKINET_velocity", "velocity", "velocity_T"])
+        dynamo = rpe1_specs[-1]
+        self.assertEqual(dynamo["embedding_key"], "X_RFP_GFP")
+        self.assertEqual(dynamo["projection_key"], "velocity_RFP_GFP")
+        self.assertEqual(dynamo["reference"], rpe1_specs[2]["reference"])
+        self.assertEqual(dynamo["result"],
+                         "indicators/gene/scEU_rpe1_analyze/dynamo/dynamo_rpe1.h5ad")
         for panel in ("rpe1", "organoid"):
-            self.assertTrue(all(spec["result"].startswith("results/")
+            self.assertTrue(all(spec["result"].startswith(("results/", "indicators/"))
                                 for spec in config[panel]))
 
     def test_stream_paths_are_relative(self):
