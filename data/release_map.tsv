@@ -517,9 +517,7 @@ source-data-main-figures-figure-7-real-gene-scores-csv	figure-source-data	veloci
 source-data-main-figures-figure-7-simulation-gene-scores-csv	figure-source-data	velocity:data_release/source_data_v1.0.0/main_figures/Figure_7/simulation_gene_scores.csv	source_data/v1.0.0/main_figures/Figure_7/simulation_gene_scores.csv	source_sha256_verified
 source-data-main-figures-readme-md	figure-source-data	velocity:data_release/source_data_v1.0.0/main_figures/README.md	source_data/v1.0.0/main_figures/README.md	source_sha256_verified
 source-data-metadata-array-dictionary-tsv	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/ARRAY_DICTIONARY.tsv	source_data/v1.0.0/metadata/ARRAY_DICTIONARY.tsv	source_sha256_verified
-source-data-metadata-coverage-tsv	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/COVERAGE.tsv	source_data/v1.0.0/metadata/COVERAGE.tsv	source_sha256_verified
 source-data-metadata-files-tsv	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/files.tsv	source_data/v1.0.0/metadata/files.tsv	source_sha256_verified
-source-data-metadata-native-file-downloads-tsv	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/native_file_downloads.tsv	source_data/v1.0.0/metadata/native_file_downloads.tsv	source_sha256_verified
 source-data-metadata-phase-availability-csv	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/phase_availability.csv	source_data/v1.0.0/metadata/phase_availability.csv	source_sha256_verified
 source-data-metadata-release-json	figure-source-data	velocity:data_release/source_data_v1.0.0/metadata/release.json	source_data/v1.0.0/metadata/release.json	source_sha256_verified
 source-data-supplementary-figures-readme-md	figure-source-data	velocity:data_release/source_data_v1.0.0/supplementary_figures/README.md	source_data/v1.0.0/supplementary_figures/README.md	source_sha256_verified
