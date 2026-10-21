@@ -54,6 +54,9 @@ the induction-heavy ground-truth direction distribution.
 - `results/condition_summary.csv`: per-subset gene means and sample SDs. The SD
   describes variation across the evaluated genes.
 - `results/candidate_gate_effects.csv`: paired counts for the two branching subsets.
+- [Candidate-gate diff](results/candidate_gate_only.patch): the in-memory source
+  change exported by [the diagnostic driver](run_multivelo_controls.py), paired
+  with [validation results](results/patch_validation.json).
 - Branch-level, pilot cell-state, native scVelo state, source-input identity,
   default reproduction and initialization checks remain under `results/`.
 - `inputs/phase_case.npz`: exact coordinates and velocity arrays for the selected

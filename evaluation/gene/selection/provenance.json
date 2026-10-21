@@ -114,22 +114,16 @@
     },
     {
       "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_select.py",
-      "editor_history_entry": "-7a6dea03/bO1P.py",
-      "editor_history_timestamp_utc": "2025-12-16T17:40:39.428Z",
       "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_20251216.py",
       "sha256": "4371ba7c525391dce7e28066afe5cf0c48a2567c5ec71521181cccee3aa55b34"
     },
     {
       "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_select_pro.py",
-      "editor_history_entry": "-3db14db1/xwlW.py",
-      "editor_history_timestamp_utc": "2026-01-07T06:51:15.268Z",
       "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_pro_20260107.py",
       "sha256": "c0557fe764e2789181c0aab184f5ee8794fa1859b0cc191c565f87ae2bb994a5"
     },
     {
       "source_id": "artifact://velocity/indicators/gene/DentateGyrus_lamanno_analyze/branching_gene_analyze.py",
-      "editor_history_entry": "57848069/vhMC.py",
-      "editor_history_timestamp_utc": "2026-01-18T10:13:30.808Z",
       "snapshot": "historical/scripts/branching_DentateGyrus_lamanno_analyze_20260118.py",
       "sha256": "dd6b2cd9cd39048d6086eeb1a439a842b2ff4f133bd20f4a536fa03f75c8c690"
     },
