@@ -15,8 +15,7 @@ upstream main-path orientation and root-selection outputs are retained.
 - 5,780 cells and 473 archived selected genes; identical cell/gene ordering.
 - Frozen Mu/Ms, undirected KNN/connectivities, archived PAGA and diffusion map.
 - Original-root replay exactly matches the archived child dictionary and d_nn.
-- DTI t1=0.1, t2=2.0; t2=2 reproduces the archived graph. The original run's
-  complete command/log remains unavailable.
+- DTI t1=0.1, t2=2.0; t2=2 reproduces the archived graph.
 - Upstream root_select='connectivities' selects the **first cell** in the root
   cluster; the same selection rule is used in both conditions.
 - Paired seeds 20261001, 20261002, 20261003; 100 epochs each; MSE, both velocity
@@ -93,11 +92,11 @@ conditions.
 - `dpt_reference_correlations.csv`: the two prespecified ordering checks.
 - `provenance.json`: portable source and evaluator hashes, settings, package versions,
   graph replay, output hashes and read-only input verification.
-- `manifest.json`: machine-specific runtime record retained on the execution
-  host and ignored by Git; required for historical `--resume`.
+- `manifest.json`: generated in each run's output directory, recording inputs,
+  fits and evaluation progress for `--resume`.
 - `native_outputs/*.h5ad`: six refitted outputs retained remotely for plotting.
-- `evaluations/*/inputs.tsv`, `.work/pairs/*.json`, `.work/logs/*`, `logs/*`:
-  per-case evaluation inputs, edge evidence, parity checks and evaluator logs.
+- `evaluations/` and `logs/`: per-case evaluation inputs, edge evidence,
+  parity checks and runtime logs generated alongside the refits.
 
 Native X_umap equals the archived X_tsne in this dataset: future visualizations
 should identify these coordinates as t-SNE, not newly computed UMAP.

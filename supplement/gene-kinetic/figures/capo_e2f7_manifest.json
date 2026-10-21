@@ -55,8 +55,8 @@
       "S\u2192G2M: +0.011"
     ],
     "veloVI": [
-      "G1\u2192S: +0.417",
-      "S\u2192G2M: +0.377"
+      "G1\u2192S: +0.392",
+      "S\u2192G2M: +0.303"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -99,7 +99,7 @@
       "n_sampled": 200,
       "n_drawn": 200,
       "reference_magnitude": 0.1133544388910382,
-      "display_magnitude_max": 0.07668369388826547,
+      "display_magnitude_max": 0.07668369388826546,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.21483180414891986
     },

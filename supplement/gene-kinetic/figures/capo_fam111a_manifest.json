@@ -55,8 +55,8 @@
       "S\u2192G2M: -0.167"
     ],
     "veloVI": [
-      "G1\u2192S: +0.014",
-      "S\u2192G2M: +0.609"
+      "G1\u2192S: -0.053",
+      "S\u2192G2M: -0.153"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -129,7 +129,7 @@
       "n_sampled": 219,
       "n_drawn": 219,
       "reference_magnitude": 0.13941309356317017,
-      "display_magnitude_max": 0.07423767720393434,
+      "display_magnitude_max": 0.07423767720393433,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.25076143759938313
     },
@@ -139,7 +139,7 @@
       "n_sampled": 219,
       "n_drawn": 219,
       "reference_magnitude": 0.2614452213261383,
-      "display_magnitude_max": 0.059376101874808115,
+      "display_magnitude_max": 0.05937610187480811,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.3340255678719686
     },
@@ -159,7 +159,7 @@
       "n_sampled": 219,
       "n_drawn": 219,
       "reference_magnitude": 0.2170840889880889,
-      "display_magnitude_max": 0.08463740916326444,
+      "display_magnitude_max": 0.08463740916326441,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.4846878064608043
     },

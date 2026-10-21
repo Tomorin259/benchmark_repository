@@ -47,7 +47,7 @@
       "V-SVZ\u2192Upper Layer: +0.628"
     ],
     "veloVI": [
-      "V-SVZ\u2192Upper Layer: -0.214"
+      "V-SVZ\u2192Upper Layer: -0.095"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -110,7 +110,7 @@
       "n_sampled": 191,
       "n_drawn": 191,
       "reference_magnitude": 0.11382977251023331,
-      "display_magnitude_max": 0.05916238205018098,
+      "display_magnitude_max": 0.05916238205018097,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.14466329490949076
     },

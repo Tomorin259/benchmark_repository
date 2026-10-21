@@ -171,7 +171,7 @@ def main():
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     summary_rows, root_rows, path_rows_all, child_rows_all = [], [], [], []
-    paga_rows, orientation_rows, stage_score_rows, dnn_rows = [], [], [], []
+    orientation_rows, stage_score_rows, dnn_rows = [], [], []
     manifest = {"purpose": "TIvelo call-chain mechanism audit",
                 "seed": args.seed, "settings": {"group_key": "bin", "emb_key": "X_umap",
                 "start_mode": "stochastic", "rev_stat": "mean", "t1": 0.1, "t2": 2,
@@ -271,7 +271,6 @@ def main():
     pd.DataFrame(root_rows).to_csv(args.output_dir / "root_end_scores_at_process_path.csv", index=False)
     pd.DataFrame(path_rows_all).to_csv(args.output_dir / "path_edges_by_stage.csv", index=False)
     pd.DataFrame(child_rows_all).to_csv(args.output_dir / "child_edges_after_correct_path.csv", index=False)
-    pd.DataFrame(paga_rows).to_csv(args.output_dir / "paga_edges.csv", index=False)
     pd.DataFrame(orientation_rows).to_csv(args.output_dir / "orientation_scores.csv", index=False)
     pd.DataFrame(dnn_rows).to_csv(args.output_dir / "dnn_direction_summary.csv", index=False)
     pd.DataFrame(stage_score_rows).to_csv(args.output_dir / "stage_final_gene_scores.csv", index=False)

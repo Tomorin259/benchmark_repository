@@ -1,0 +1,43 @@
+{
+  "analysis": "exploratory gene\u2013cell directionality cases",
+  "inputs_sha256": {
+    "supplement/gene-kinetic/figures/capo_e2f7_manifest.json": "bce3c439deccc1e588197362436a3f8cdc617ad916674cc91439cd7683122925",
+    "supplement/gene-kinetic/figures/capo_fam111a_manifest.json": "26421a36af5692ba0f910b846d50fe9ea31d1e12a018aae43a7658a59bf39e5d",
+    "supplement/gene-kinetic/figures/dentate_dab1_manifest.json": "04c866913f38eaf0feec4a793ffa4cd744c1c9c0e7c14776f2e6c54046f6dcb1",
+    "supplement/gene-kinetic/figures/dentate_diaph3_manifest.json": "78bc0bd84d026d60084a0c144c1ef715622ccc37bc7630d2d921c8679a39abf7",
+    "supplement/gene-kinetic/figures/dentate_ncald_manifest.json": "5aef161c4c9ec9cbe0dd2192595056db8fbc9ece49374456b75d224cfdcbd36e",
+    "supplement/gene-kinetic/figures/gastrulation_alas2_manifest.json": "25d8a1aa1c071ce62d19a807fdff9162d2920c52c2bd5f082251c1685a6ce01f",
+    "supplement/gene-kinetic/figures/gastrulation_fam210b_manifest.json": "3c98b53ac33c442e8173a7e7c4068ef5ed9572194fc1e5f753d7dea078bd8e8b",
+    "supplement/gene-kinetic/figures/gastrulation_fech_manifest.json": "d2286290e476ef68026fcb34db3f9c974038b916b0ebe754ebaa3b0cc93ef6b6",
+    "supplement/gene-kinetic/figures/gastrulation_gypa_manifest.json": "7e4ca59334f6b0bd697193699609c23b229d54502d96f1d74386ae7cdc3c89b5",
+    "supplement/gene-kinetic/figures/gastrulation_hbax_manifest.json": "4de64ce5a0df082d140e8f792296a4477c538437a4fd4830b0369c7dc7844f57",
+    "supplement/gene-kinetic/figures/gastrulation_hemgn_manifest.json": "c64209eecd4888b86d8eb0043b31c4f032da2c88292e5313a6a582fd1ef1f64f",
+    "supplement/gene-kinetic/figures/gastrulation_klf3_manifest.json": "596543642fd6255b14f51246f9d1fcf44e8bff2f706280f40b580db83d249754",
+    "supplement/gene-kinetic/figures/mousebrain_flrt2_manifest.json": "ed8cb9df73e24a02c55359b2b8b2ad4efff42d92f87017c81a91ef20f335e1b8",
+    "supplement/gene-kinetic/figures/pancreas_g6pc2_manifest.json": "bd53f78d55b36a75cb6bf462d55cc8b91a5f9d4f9b34f7a921aeea0735a11c09",
+    "supplement/gene-kinetic/figures/retina_celf4_manifest.json": "33cf274f223a88fc7accef2f2f12f85f66fd4bdb80e167cfc8c3c5442a62b986",
+    "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
+    "supplement/gene-kinetic/results/diaph3_nipc_to_nbl1.csv": "ae9e50a46ffdcfe532a13162462d60625a0db2e2fcb67af6be36a5fd9570909d",
+    "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_edge_details_extended.csv": "398b02cddb7e667d9c69c7350e8d9270b40f492532bb41409fdf0c5aa879b36a",
+    "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_audit.csv": "0edec4b723bd993609ee0b1612c1541161a0a584e3c5c807d79b49034a058552",
+    "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_edge_details_extended.csv": "9abebb7fae3a71fc055073aa2a060e8b6c7e8ea90f23e1c73d3e406118ad91b7",
+    "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_audit.csv": "5649c3175755d8debde60088b6abdce6e9117b7972ec7b214b59be7475975667",
+    "supplement/gene-kinetic/analysis/gene_kinetic_analysis.py": "f09432aa7eeb00a96d4e0c6f956faba17d0688c5a3b02f6776ccfe4a0f9dd751"
+  },
+  "outputs_sha256": {
+    "aggregated_edge_method_pairs.csv": "996472cb2523003b3e2a61e7eb7c4ceff2cbf75f0c472dee667a9fd92d3cd6bc",
+    "branching_winner_share.csv": "a0492697f79dd87224a5eab9eb18fe6eea410ede0392d8e8a3be6b7b8bc6de1f",
+    "candidate_coverage_summary.csv": "443bb28fa4b4ea391829ba140c71b325ee636f3fa804a66c3e6ddc63b7852727",
+    "cell_match_pairs.csv": "5746c5c86ccc8b6f7db6fbd984f875f5295b9cd0c45aa34cd2e22b4ebdc4c3d2",
+    "correlation_by_method.csv": "a8e0728487457a84bd532a3d79bbf2a8168b0895adb29ede77b2293d4f2048b3",
+    "correlation_summary.csv": "0141e34e7f51da004a11263c4272807a19f38ebd475a996dddfb828d97ac4581",
+    "edge_correlation_summary.csv": "129cb17aef9a8f65240408fe2cceaba0d0889a15f36fb95c61a2f3e32cdffe8e",
+    "edge_method_rank_sign.csv": "40d1dfa5e1d9526852a0b9566c0c35e8856a46963301531c632a38b6cde0a0bd",
+    "edge_rank_summary.csv": "05ab6a70c2e831a7e8fe6fc9a5768a02d26dd4a2504d46e54d8ea36949fce129",
+    "manifest_edge_observations.csv": "55cb2894a9c91ac5f7e2083f722965348e5769ab35f03ae89254240b1e8ab06c",
+    "method_overall_summary.csv": "ef1afc1438eaf71986e8f8138a7171c8712744205145cc2dbe2f3174e153cb6c",
+    "primary_edge_observations.csv": "d2261be87f5d423d22116042d5d2d6a8974eb597d8c43c73ceaab0ab4e1e1ed4",
+    "source_mapping_audit.csv": "c4962270f5bee264cfab6bd9e49a428196815137ee67203e964b9070a5fb7272",
+    "gene_cell_edge_analysis.md": "7de63b069638868c2c14934c1eb002150101237bef227cf1cbc9ed7151195040"
+  }
+}

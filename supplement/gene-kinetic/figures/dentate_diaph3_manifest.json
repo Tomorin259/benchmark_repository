@@ -56,7 +56,7 @@
     ],
     "veloVI": [
       "nIPC\u2192Nbl1: +0.459",
-      "Nbl1\u2192Nbl2: -0.185"
+      "Nbl1\u2192Nbl2: -0.207"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -109,7 +109,7 @@
       "n_sampled": 309,
       "n_drawn": 309,
       "reference_magnitude": 3.020186413105905,
-      "display_magnitude_max": 0.07054821043594917,
+      "display_magnitude_max": 0.07054821043594915,
       "capped_fraction": 0.0,
       "input_magnitude_max": 5.010936989088488
     },
@@ -159,7 +159,7 @@
       "n_sampled": 309,
       "n_drawn": 309,
       "reference_magnitude": 0.96414710419119,
-      "display_magnitude_max": 0.0503703254062772,
+      "display_magnitude_max": 0.05037032540627719,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.9740720359421369
     },

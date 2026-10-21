@@ -1,5 +1,5 @@
 {
-  "purpose": "TIvelo call-chain mechanism audit; not a benchmark replacement",
+  "purpose": "TIvelo call-chain mechanism audit",
   "seed": 20260926,
   "settings": {
     "group_key": "bin",

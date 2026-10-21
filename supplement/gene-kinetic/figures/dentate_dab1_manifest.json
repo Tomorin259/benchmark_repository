@@ -47,7 +47,7 @@
       "CA\u2192CA1-Sub: -0.100"
     ],
     "veloVI": [
-      "CA\u2192CA1-Sub: +0.534"
+      "CA\u2192CA1-Sub: +0.748"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -130,7 +130,7 @@
       "n_sampled": 234,
       "n_drawn": 234,
       "reference_magnitude": 0.4762839187116512,
-      "display_magnitude_max": 0.057556187695845897,
+      "display_magnitude_max": 0.05755618769584588,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.5814798735917436
     },

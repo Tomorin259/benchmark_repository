@@ -57,7 +57,7 @@ A is exported at 180 mm/600 dpi; the B export retains its native 300-dpi panels.
 [results/ppt_assets_final/](results/ppt_assets_final/) contains the accepted
 source materials and manifest.
 The final two-panel PDF uses manual author assembly. The scripted A/B panels
-and final PDF are available; the [candidate PPTX record](../../figures/assembly/suppfig11/authoring/manifest.json)
-documents its difference from the final export.
+and final PDF are available; the [composite manifest](../../figures/suppfig11_composite_manifest.json)
+records the final PDF identity.
 Superseded layouts are retained at
 [revision 51edf35](https://github.com/Tomorin259/benchmark_repository/tree/51edf35695e2b1db1449596f2878c1be3ee466c3/supplement/veloae/archive/non_online_20260927).

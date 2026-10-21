@@ -55,8 +55,8 @@
       "Neuroblast\u2192AC/HC: +0.449"
     ],
     "veloVI": [
-      "Neuroblast\u2192RGC: +0.569",
-      "Neuroblast\u2192AC/HC: +0.510"
+      "Neuroblast\u2192RGC: +0.566",
+      "Neuroblast\u2192AC/HC: +0.515"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -99,7 +99,7 @@
       "n_sampled": 234,
       "n_drawn": 234,
       "reference_magnitude": 0.15892353048852642,
-      "display_magnitude_max": 0.07107894195683351,
+      "display_magnitude_max": 0.0710789419568335,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.2667984522329263
     },
@@ -169,7 +169,7 @@
       "n_sampled": 234,
       "n_drawn": 234,
       "reference_magnitude": 0.9438184813733199,
-      "display_magnitude_max": 0.06069806982349773,
+      "display_magnitude_max": 0.06069806982349772,
       "capped_fraction": 0.0,
       "input_magnitude_max": 1.2455923946657865
     },

@@ -70,8 +70,7 @@ file is transported inside a TAR.GZ rather than served individually.
 The selection is frozen at code commit
 `0e38d4fef12f71d8e879088de1b15e5510cc40a5`. It covers Cell outputs,
 additional Gene/Kinetics outputs, fixed simulation outputs, ensemble outputs,
-TIvelo and MultiVelo controls and evaluation reference moments. Diagnostic previews,
-checkpoints, logs, environments and failed runs are outside this frozen set.
+TIvelo and MultiVelo controls and evaluation reference moments.
 Packaging preserves the original scientific-file bytes. Compact scores and
 figures remain in their owning GitHub modules.
 

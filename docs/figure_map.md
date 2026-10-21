@@ -17,7 +17,7 @@ layout and PDF export.
 
 | Figure | Final PDF | Numerical sources and commands | Assembly |
 | --- | --- | --- | --- |
-| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Manually drawn study-design and benchmark-framework schematic | [Historical PowerPoint drawing](../figures/assembly/fig1/authoring/source.pptx); [final PDF provenance](../figures/fig1_composite_manifest.json) |
+| 1 — benchmark framework | [figOne.pdf](../figures/figOne.pdf) | Manually drawn study-design and benchmark-framework schematic | Retained final PDF; [provenance](../figures/fig1_composite_manifest.json) |
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
@@ -43,7 +43,7 @@ remains in the manuscript project.
 | S8 | Pancreas MURK genes | [Final PDF](../figures/suppFigEight.pdf); [editable assembly](../figures/assembly/suppfig08/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
 | S9 | Matched Cell/Gene comparison | [Final PDF](../figures/suppFigNine.pdf); [editable assembly](../figures/assembly/suppfig09/supfig9.pptx); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); the assembly retains five Cell panels and the source-rendered common-gene panel |
 | S10 | GeoMedian-4 Cell evaluation | [Retained PDF](../figures/suppFigTen.pdf); [ensemble renderer](../ensemble/README.md), [editable assembly](../figures/assembly/suppfig10/suppfig10.pptx) |
-| S11 | veloAE representation diagnostics | [Final author PDF](../figures/suppFigEleven.pdf); [PCA inputs and panel renderers](../supplement/veloae/README.md); [source/export identity](../figures/assembly/suppfig11/authoring/manifest.json) |
+| S11 | veloAE representation diagnostics | [Final author PDF](../figures/suppFigEleven.pdf); [PCA inputs and panel renderers](../supplement/veloae/README.md); [final PDF identity](../figures/suppfig11_composite_manifest.json) |
 | S12 | Cell evaluation on three simulations | [Retained PDF](../figures/suppFigTwelve.pdf); [scores, plots and table](../evaluation/cell/simulation/README.md) |
 | S13 | TIvelo root and ordering controls | [Retained PDF](../figures/assembly/suppfig13/suppFigThirteen.pdf); [diagnostics](../supplement/tivelo_gene/README.md), [editable assembly](../figures/assembly/suppfig13/README.md) |
 | S14 | Expanded reference-gene parameter recovery | [Expanded scores](../evaluation/kinetics_recovery/results/expanded_reference/README.md), [renderers](../evaluation/kinetics_recovery/plotting/README.md) |
@@ -74,6 +74,4 @@ records Gene panel/score bindings.
 Use [material export](../figures/assembly/README.md) for fresh source copies.
 Figure-specific source availability is recorded in the table and manifests above.
 Verification fields in composite manifests describe operations at their recorded
-source/export identities. Human sign-off is recorded when explicitly supplied.
-Historical kinetics assets named Figure 5 belong to the
-former numbering; current parameter recovery is Figure 6.
+source/export identities.

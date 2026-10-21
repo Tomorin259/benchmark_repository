@@ -556,10 +556,6 @@ def main():
         "prediction_cleanup": "none",
         "n_rows": len(all_cossim),
     }
-    comparison_rows = []
-    for row in all_scores:
-        comparison_rows.append({**row, "comparison": "units_restored_reference30_vs_historical_native_neighbor_and_units"})
-    write_csv(output_root / "old_vs_reference30_gene_cbdir.csv", comparison_rows)
     write_change_summaries(output_root, all_scores)
     provenance["counts"] = {"score_rows": int(len(all_scores)), "edge_rows": int(len(all_edges)), "neighbor_rows": int(len(all_neighbors)), "finite_new_scores": int(sum(np.isfinite(float(row["new_cbdir"])) for row in all_scores if row.get("new_cbdir") not in (None, ""))), "changed_scores": int(sum(np.isfinite(float(row["delta"])) and abs(float(row["delta"])) > 1e-12 for row in all_scores if row.get("delta") not in (None, "")))}
     (output_root / "provenance.json").write_text(json.dumps(provenance, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")

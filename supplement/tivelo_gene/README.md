@@ -42,9 +42,9 @@ python "$MODULE/figures/scripts/plot_tivelo_bonemarrow_dpt_assets.py" \
 
 Native H5ADs are external. Locators prefixed `repository:`, `velocity:`,
 `artifact-root:` or `environment:` use caller-supplied roots.
-Bone marrow `provenance.json` is the portable record; the original runtime
-manifest/logs remain external. Historical `--resume` requires that runtime
-manifest and matching inputs; independent reruns need a fresh output root.
+Bone marrow `provenance.json` records the published experiment. Independent
+reruns use a fresh output root; each run saves its own manifest and logs for
+subsequent `--resume`.
 
 The lineage plot's `--artifact-root` is the velocity directory containing
 the configured native H5AD paths. Bone marrow refitting instead uses the

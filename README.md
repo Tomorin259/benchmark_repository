@@ -19,7 +19,7 @@ and kinetic-parameter recovery against two scEU-seq reference systems.
 | Run a velocity method | [Method launchers](methods/README.md) and [environment requirements](docs/environments.md) |
 | Reproduce plots or assemble paper figures | [Figure map](docs/figure_map.md) |
 | Generate a new simulation realization | [Simulation generator](evaluation/gene/simulation/README.md) |
-| Inspect supplementary controls | [veloAE](supplement/veloae/README.md), [veloVI](supplement/velovi/README.md), [TIvelo](supplement/tivelo_gene/README.md), [MultiVelo](supplement/multivelo/README.md) and [gene–transition cases](supplement/gene-kinetic/README.md) |
+| Inspect supplementary controls | [veloAE](supplement/veloae/README.md), [veloVI](supplement/velovi/README.md), [TIvelo](supplement/tivelo_gene/README.md), [MultiVelo](supplement/multivelo/README.md) and [exploratory gene–transition cases](supplement/gene-kinetic/README.md) |
 
 For example, render Gene summary plots from the committed CSVs after installing
 the [plotting environment](docs/environments.md):

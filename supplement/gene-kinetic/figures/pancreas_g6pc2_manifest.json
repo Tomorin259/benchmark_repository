@@ -55,8 +55,8 @@
       "Pre-endocrine\u2192Alpha: -0.214"
     ],
     "veloVI": [
-      "Pre-endocrine\u2192Beta: +0.262",
-      "Pre-endocrine\u2192Alpha: -0.041"
+      "Pre-endocrine\u2192Beta: +0.137",
+      "Pre-endocrine\u2192Alpha: -0.039"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -139,7 +139,7 @@
       "n_sampled": 198,
       "n_drawn": 198,
       "reference_magnitude": 0.1360583410361186,
-      "display_magnitude_max": 0.08576459676599907,
+      "display_magnitude_max": 0.08576459676599904,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.3107070214963709
     },

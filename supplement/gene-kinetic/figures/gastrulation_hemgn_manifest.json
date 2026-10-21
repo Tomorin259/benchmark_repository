@@ -55,8 +55,8 @@
       "Erythroid2\u2192Erythroid3: +0.436"
     ],
     "veloVI": [
-      "Erythroid1\u2192Erythroid2: +0.072",
-      "Erythroid2\u2192Erythroid3: -0.193"
+      "Erythroid1\u2192Erythroid2: -0.205",
+      "Erythroid2\u2192Erythroid3: -0.426"
     ]
   },
   "edge_score_source": "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
@@ -129,7 +129,7 @@
       "n_sampled": 239,
       "n_drawn": 239,
       "reference_magnitude": 0.13155302567891347,
-      "display_magnitude_max": 0.061951692791427544,
+      "display_magnitude_max": 0.06195169279142754,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.17896527257988512
     },
@@ -179,7 +179,7 @@
       "n_sampled": 239,
       "n_drawn": 239,
       "reference_magnitude": 0.18355991458036822,
-      "display_magnitude_max": 0.07307792718529867,
+      "display_magnitude_max": 0.07307792718529865,
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.3219745968345428
     }

@@ -18,5 +18,5 @@
     "render_resolution_dpi": 300
   },
   "verification": "Author-exported PDF cropped without rerendering; content-stream, text and 300-dpi pixel identity checked against the uncropped source.",
-  "reproduction_boundary": "Manually drawn study-design and benchmark-framework schematic. Reuse the retained final PDF; the historical PowerPoint drawing is retained separately."
+  "reproduction_boundary": "Manually drawn study-design and benchmark-framework schematic. Reuse the retained final PDF."
 }
