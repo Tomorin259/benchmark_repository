@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""Build reference Ms/Mu for the union of auditable gene-space method outputs.
+"""Build reference Ms/Mu for the union of reference HVGs and mapped method genes.
 
-The fixed 30-NN graph is reused exactly.  Unlike the initial 2,000-HVG asset,
-this program retains every reference gene needed by at least one gene-space
-method, so a method is never scored in an unrelated HVG subset.  VeloAE is
-intentionally excluded because its released `new_velocity` is a 100-D latent
-representation with no recoverable gene identifiers.
+Gene-space methods share the fixed 30-NN smoothing graph. veloAE is evaluated
+in its native 100-D latent representation.
 """
 
 from __future__ import print_function

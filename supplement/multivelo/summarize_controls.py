@@ -82,7 +82,7 @@ def manuscript_table(module_root=ROOT):
 
 
 def main():
-    parser = argparse.ArgumentParser(__doc__)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--result-root", type=Path, default=ROOT / "results")
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--table-only", action="store_true", help="Export compact manuscript S9 without regenerating scientific CSVs")

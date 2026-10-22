@@ -14,7 +14,8 @@
       {"path": "indicators/gene/simulation/test_only_branching.py", "sha256": "bfdbf960032c68f1947d921ba3912a2d48f4b25cf144d0854d67437f28f18e75"},
       {"path": "indicators/gene/simulation/test_all.py", "sha256": "8146259ffc8183ad70d3924480861f17a5a63ded88f6383cc29052b9879f152d"}
     ],
-    "canonical_boundary": "Generated outputs are independent random realizations; historical canonical H5AD files remain external artifacts."
+    "canonical_boundary": "Generated outputs are independent random realizations; historical canonical H5AD files remain external artifacts.",
+    "branching_parameter_source": "Canonical H5AD parameter layers, validated by a full regenerated branching workflow; the retained historical branching script contains an older Branch-B setting."
   },
   "gene_parameters": {
     "housekeeping": {"kinetic_type": "multi_forward", "alpha1": 5, "alpha2": 5, "beta1": 1, "beta2": 1, "gamma1": 0.5, "gamma2": 0.5},

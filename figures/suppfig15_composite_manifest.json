@@ -8,7 +8,7 @@
   },
   "assembly": {
     "path": "figures/assembly/suppfig15/supfig15.pptx",
-    "sha256": "5df23be7651ae72626cde801688546b3ba571242f7799a75b4dfa47290f403b6",
+    "sha256": "99bb89991f7e226d6f752c15f02c1e72ed6223eb846f951782198e250bcea578",
     "process": "Author-manual PPTX layout and PDF export; existing cropped PDF retained unchanged"
   },
   "panels": [
@@ -25,7 +25,7 @@
   ],
   "generator": {
     "path": "figures/assembly/suppfig15/assemble_materials.py",
-    "sha256": "d96ca88d4a5294b585da232a43aaf26f9404931127e636d5e2e8ac1540704b45"
+    "sha256": "baf29241cd0ac03efe86822093557a58e7d37ebda530fcfa6b16ae219b66b321"
   },
   "materials_manifest": {
     "path": "supplement/multivelo/materials_manifest.json",

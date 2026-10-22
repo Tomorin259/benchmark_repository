@@ -125,11 +125,7 @@ def _selected_box(ax, x0, y0, x1, y1):
 
 
 def draw_transition_graph(ax, case):
-    """Draw the full biological relation below the cluster legend.
-
-    The old ``edge:`` key is intentionally not rendered. The dashed box is
-    the only indicator of the evaluated transition.
-    """
+    """Draw the biological relation with a dashed box marking the evaluated transition."""
     colors = {label: color for color, label in case["clusters"]}
     source = case["source"]
     target = case["target"]

@@ -1,6 +1,7 @@
-# Cell-level evaluation
+# Cell-level velocity evaluation
 
-Evaluate five trajectory metrics for 20 configurations on 14 real datasets.
+Evaluate cell-level velocity predictions from 20 configurations on 14 real
+datasets using five metrics.
 The committed [primary table](results/cell_metrics.csv) has 280 rows.
 [Simulation Cell](simulation/README.md) and the
 [gene-output-matched comparison](#gene-output-matched-cell-comparison) are

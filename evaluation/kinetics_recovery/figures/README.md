@@ -4,7 +4,7 @@
 
 Quantitative panels use `../results/central_results/`. The assembly copies and hashes are under `../../../figures/assembly/fig6/` and its manifest. The current composite is `../../../figures/figSix.pdf`; `../../../figures/fig6_composite_manifest.json` records the source-panel and composite checksums.
 
-`expanded_reference/` contains three reviewed 600-dpi boxplot PNGs and one
-10-page RPE1 250-gene trajectory PDF. They are supplementary source materials,
-not replacements for `fig6/` and not a registered paper composite. Their
-numerical scope and hashes are owned by `../results/expanded_reference/manifest.json`.
+`expanded_reference/` contains three 600-dpi boxplot PNGs providing source
+panels for Supplementary Figure S14, and a 10-page trajectory PDF displaying
+the 250 RPE1 reference genes. Their numerical scope and hashes are recorded
+in `../results/expanded_reference/manifest.json`.

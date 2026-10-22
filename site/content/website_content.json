@@ -2,12 +2,12 @@
   "schema_version": 1,
   "source_note": "Task descriptions and metric interpretation follow the repository registries and module guides.",
   "scope": {
-    "question": "Evaluation of cell-level trajectories, gene-level velocity directions and kinetic-parameter recovery.",
+    "question": "Evaluation of cell-level velocity predictions, gene-level velocity directions and kinetic-parameter recovery.",
     "summary": "20 RNA velocity method configurations across 14 real datasets and three simulated scenarios. The two scEU-seq systems are included among the 14 real datasets.",
     "tasks": [
       {
         "id": "cell",
-        "label": "Cell-level trajectory inference",
+        "label": "Cell-level velocity evaluation",
         "object": "14 real datasets · 20 configurations",
         "inputs": "Method-specific cellular velocities and annotated transitions.",
         "outputs": "Consistency, ICCoh, CBDir, TransCosine and BATC; method-specific velocity fields."

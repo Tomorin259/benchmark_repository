@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Reconstruct saved branching slope rankings without replacing historical CSVs.
-
-The numerical operations follow the preserved project scripts. DentateGyrus
-groups and granule/pyramidal ranks are recovered from dated editor snapshots.
-"""
+"""Compute branching candidate-gene slope rankings for the configured populations."""
 import argparse
 import hashlib
 import json

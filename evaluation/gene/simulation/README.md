@@ -14,10 +14,8 @@ The scientific parameters live in [`config.json`](config.json), not in the
 command line. The entries preserve the audited CellDancer 1.1.7 logic for
 `murk`, `branching`, and `hybrid`. The branching BoostALL parameters are
 `alpha1=5, alpha2=4, beta1=1, beta2=2, gamma1=5, gamma2=1`.
-The archived historical branching script contained an older Branch-B setting;
-the values above come from the canonical H5AD parameter layers and were
-validated by a full regenerated branching workflow. Hashes of all three
-audited source scripts are retained in `config.json`.
+These values follow the canonical H5AD parameter layers. Simulator source
+hashes and the parameter-source record are retained in `config.json`.
 
 The generator requires cellDancer 1.1.7 and `setuptools<81`, which provides
 `pkg_resources`. Run from the repository root with a relative output directory:

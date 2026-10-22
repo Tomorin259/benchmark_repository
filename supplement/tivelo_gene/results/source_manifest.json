@@ -1,5 +1,5 @@
 {
-  "purpose": "Exploratory TIvelo direction diagnosis; not a corrected benchmark",
+  "purpose": "Exploratory TIvelo direction diagnosis",
   "expected_bin_direction": "BranchA_0 to BranchA_9; BranchB_0 to BranchB_9",
   "inputs": [
     {

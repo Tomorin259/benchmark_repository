@@ -1,5 +1,5 @@
 {
-  "type": "root-stage intervention; not a benchmark correction",
+  "type": "exploratory root-stage sensitivity analysis",
   "seed": 20260927,
   "held_fixed": "simulation input, mirrored preprocessing, reference-30 neighbors, gene metric, TIvelo optimizer",
   "variants": [

@@ -20,7 +20,7 @@
   "assembly": [
     {
       "file": "supfig13.pptx",
-      "sha256": "35611db3836d54be7076a4963a02eef210aa3799784538418ceac649b1f765e5"
+      "sha256": "31982156715bb86d977a2898e0af4fa047782c4cec1568a1a71f42039a7f73db"
     },
     {
       "file": "suppFigThirteen.pdf",
@@ -33,37 +33,37 @@
       "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261001",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261001.h5ad",
       "sha256": "43ca983cdd06a5c4f112868c31fb2379fd79cef67565caad89beaeb987d3d367",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     },
     {
       "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261002",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261002.h5ad",
       "sha256": "8032ee2197ac0a536f37fd87396072150109db01e03deceb8c541b5889760359",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     },
     {
       "id": "tivelo-bonemarrow-hsc1_root_refit_seed20261003",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/hsc1_root_refit_seed20261003.h5ad",
       "sha256": "ed89e5e1d9c83d067eac3a9f007c6be7bde5a5e3021febdf18b40dc54ee451dc",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     },
     {
       "id": "tivelo-bonemarrow-original_root_refit_seed20261001",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261001.h5ad",
       "sha256": "bbf7220d8f6b82d77c9f0756d040b0d4569c873645fd5e9dd0b6522b75b4fb9c",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     },
     {
       "id": "tivelo-bonemarrow-original_root_refit_seed20261002",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261002.h5ad",
       "sha256": "57145c336af34f3568189d0997e43a5a83b357ff83eb513c7afbda27f65e9ba9",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     },
     {
       "id": "tivelo-bonemarrow-original_root_refit_seed20261003",
       "location": "supplement/tivelo_gene/bonemarrow_root_control_20261001/native_outputs/original_root_refit_seed20261003.h5ad",
       "sha256": "b599df90eada2925006ada30cd75d8dfc93dc3366bd556f27f2bd2923647b273",
-      "availability": "external execution-host artifact; no public URI assigned"
+      "availability": "Published in the v1.0.0 result package; resolve sha256 through data/result_member_manifest.tsv and data/result_package_manifest.tsv."
     }
   ],
   "scripts": [

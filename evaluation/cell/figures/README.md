@@ -6,4 +6,3 @@ are generated from `../results/cell_metrics.csv` and
 `../plots.py`.
 
 The repository-root paper composites are maintained outside this Cell bundle.
-Historical baseline panels are intentionally not retained here.

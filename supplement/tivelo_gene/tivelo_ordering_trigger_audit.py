@@ -97,7 +97,7 @@ def main():
     pd.DataFrame(cell_rows).to_csv(args.output_dir / "cell_orders.csv", index=False)
     pd.DataFrame(order_rows).to_csv(args.output_dir / "dpt_bin_correlations.csv", index=False)
     (args.output_dir / "manifest.json").write_text(json.dumps({
-        "purpose": "Ordering-only orientation diagnostic; no velocity fit or benchmark changes",
+        "purpose": "TIvelo path-ordering sensitivity analysis",
         "seed": args.seed, "inputs": input_rows,
         "held_fixed": ["cells within each paired path", "Mu", "Ms", "selected genes", "orient_score defaults"],
         "changed": "cell ordering only",

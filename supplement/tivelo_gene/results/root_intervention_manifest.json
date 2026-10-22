@@ -1,5 +1,5 @@
 {
-  "type": "exploratory oracle-root intervention, not a benchmark correction",
+  "type": "exploratory oracle-root sensitivity analysis",
   "method_settings": {
     "n_epochs": 100,
     "loss_fun": "mse",

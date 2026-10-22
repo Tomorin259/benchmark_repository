@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render a gene-only simulation summary, not the final paired Figure 4D."""
+"""Render gene-level simulation summaries.
+
+Figure 4D is rendered by the Cell simulation module.
+"""
 from __future__ import annotations
 
 import argparse

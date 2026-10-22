@@ -17,8 +17,8 @@ The implementation follows these high-level steps:
    when multiple exist), and overall.
 
 The public entry-point :func:`compute_batc` returns the aggregate score and
-optional edge diagnostics. Results can optionally be written back
-into ``adata.obs``/``adata.uns`` for downstream inspection.
+optional edge diagnostics. The aggregate score can optionally be stored
+in ``adata.uns['batc_overall']``.
 """
 
 from __future__ import annotations
@@ -185,7 +185,7 @@ def compute_batc(
 ) -> Union[float, Tuple[float, dict]]:
 
 
-    """Compute the Branching-aware Trajectory Consistency (BATC) score.
+    r"""Compute the Branching-aware Trajectory Consistency (BATC) score.
 
     BATC evaluates RNA velocity fields on predefined lineage graphs by fitting
     smooth principal curves between successive clusters and comparing their
@@ -195,31 +195,32 @@ def compute_batc(
     on the edge is projected onto the curve and the cosine similarity between the
     local tangent :math:`\tau_c` and its velocity :math:`v_c` is recorded:
 
-    . math::
+    .. math::
 
-        \mathrm{BATC}_{A\to B} = \frac{1}{|I_{A\cup B}|}
-        \sum_{c \in I_{A\cup B}}
+        q_c^{(A\to B)} =
         \frac{v_c \cdot \tau_c}{\lVert v_c \rVert\,\lVert \tau_c \rVert}.
 
-    To handle branching, for each source cluster :math:`A` with outgoing targets
-    :math:`B_1, \ldots, B_m` we compute these cosine scores for every outgoing
-    edge and, for each cell :math:`c \in I_A`, keep the best matching branch
+    Zero-norm vectors produce ``nan`` candidate scores. The benchmark replaces
+    these NaN candidates with zero before branch maximization; denote the
+    processed candidates by :math:`\widetilde{q}_c^{(A\to B)}`.
+    For each source cluster :math:`A` with outgoing targets :math:`B_1, \ldots, B_m`,
+    each source cell :math:`c \in I_A` takes the best processed candidate:
 
-    . math::
+    .. math::
 
         b_c^{(A)} = \max_{B \in \mathrm{Out}(A)}
-        \frac{v_c \cdot \tau_c^{(A\to B)}}{\lVert v_c \rVert\,\lVert \tau_c^{(A\to B)} \rVert}.
+        \widetilde{q}_c^{(A\to B)}.
 
     The final dataset-level BATC is the cell-weighted mean of these branch-aware
     scores over all source clusters:
 
-    . math::
+    .. math::
 
         \mathrm{BATC}_{\mathrm{overall}} =
         \frac{1}{\sum_A |I_A|} \sum_A \sum_{c \in I_A} b_c^{(A)}.
 
-    Zero-norm vectors are mapped to ``nan`` scores, and all averages use
-    ``numpy.nanmean`` for robustness.
+    Cells outside the configured source clusters remain unscored and are
+    excluded from the final mean.
 
     Parameters
     ----------
@@ -243,8 +244,8 @@ def compute_batc(
     n_samples:
         Number of evaluation points used to project cells onto each curve.
     store_in_adata:
-        If ``True`` (default) write per-cell and aggregate scores back to the
-        ``adata.obs``/``adata.uns`` containers.
+        If ``True`` (default), store the aggregate score in
+        ``adata.uns['batc_overall']``.
     progress:
         Whether to display a progress bar over edges (requires ``tqdm``).
     return_details:

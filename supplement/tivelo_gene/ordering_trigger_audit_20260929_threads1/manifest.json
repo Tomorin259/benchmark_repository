@@ -1,5 +1,5 @@
 {
-  "purpose": "Ordering-only orientation diagnostic; no velocity fit or benchmark changes",
+  "purpose": "TIvelo path-ordering sensitivity analysis",
   "seed": 20260926,
   "inputs": [
     {

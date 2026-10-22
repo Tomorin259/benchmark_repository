@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Execute the pinned Barile notebook on an explicit Gastrulation input.
-
-Only the input read is redirected; numerical notebook cells remain unchanged.
-This is a reconstruction check, not a replacement of the frozen gene list.
-"""
+"""Compute MURK candidate-gene rankings with the pinned Barile notebook."""
 import argparse
 import hashlib
 import json

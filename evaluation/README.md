@@ -5,7 +5,7 @@ plotting entry points.
 
 | Task | Results and commands |
 | --- | --- |
-| Cell-level trajectories on 14 real datasets | [Cell](cell/README.md) |
+| Cell-level velocity evaluation on 14 real datasets | [Cell](cell/README.md) |
 | Gene-level velocity directions on real and simulated data | [Gene](gene/README.md) |
 | Rates against RPE1 and organoid scEU-seq references | [Kinetic-parameter recovery](kinetics_recovery/README.md) |
 | Figure 7 and cross-experiment summaries | [Summary](summary/README.md) |

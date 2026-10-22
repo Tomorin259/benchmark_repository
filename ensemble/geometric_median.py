@@ -315,7 +315,7 @@ def row_geometric_median4(
     The output is the Euclidean geometric median of the four native
     off-diagonal rows.  It is not L1-renormalized: loss of directional mass is
     retained as an interpretable consequence of row-level disagreement and is
-    completed to the diagonal by ``operator_from_offdiagonal``.
+    completed to the diagonal by ``ensemble.core.complete_signed_operator``.
     """
     values = np.asarray(method_values, dtype=np.float64)
     gram, row_ids = _row_gram_matrices(template, values)

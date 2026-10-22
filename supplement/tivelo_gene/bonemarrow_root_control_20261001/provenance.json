@@ -247,7 +247,7 @@
   "n_genes": 473,
   "notes": [
     "Palantir pseudotime is an independent inferred reference, not measured time",
-    "HSC_1 is a biological-root intervention, not a new competing method",
+    "HSC_1 supplies biological prior information for the root intervention",
     "X_umap stores the archived t-SNE coordinates in this dataset",
     "Native velocity projection regenerated before frozen-reference evaluation"
   ],

@@ -1,5 +1,5 @@
 {
-  "purpose": "Audit upstream stochastic scVelo direction used by TIvelo; not a benchmark replacement",
+  "purpose": "Audit the upstream stochastic scVelo direction used by TIvelo",
   "seeds": [
     20260926,
     20260927

@@ -2,7 +2,7 @@
 
 Code, compact results and figure sources for a benchmark of 20 RNA velocity
 method configurations across 14 real datasets and three simulated scenarios.
-The study evaluates cell-level trajectories, gene-level velocity directions
+The study evaluates cell-level velocity predictions, gene-level velocity directions
 and kinetic-parameter recovery against two scEU-seq reference systems.
 
 [Browse results](https://tomorin259.github.io/benchmark_repository/) ·

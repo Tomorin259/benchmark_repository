@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build isolated expanded-reference summaries; never change canonical scores.
+"""Build kinetic-parameter recovery summaries for the expanded reference genes.
 
 Without --artifact-root, regenerate compact summaries from committed scores.
 With --artifact-root, also validate frozen sources, rebuild the gene scope,

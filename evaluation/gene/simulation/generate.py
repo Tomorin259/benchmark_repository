@@ -159,7 +159,7 @@ def generate(scenario_name, output_root):
         "runtime_versions": _runtime_versions(),
         "canonical_artifact_id": scenario["artifact_id"],
         "canonical_match_claim": False,
-        "note": "Independent random realization; does not replace historical canonical input."
+        "note": "Independent stochastic realization generated with the recorded scenario configuration."
     }
     (output.with_suffix(".invocation.json")).write_text(json.dumps(metadata, indent=2) + "\n")
     return output

@@ -51,7 +51,7 @@ def publish_materials(source_root, output):
 
 
 def main():
-    parser = argparse.ArgumentParser(__doc__)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--diagnostics-root", type=Path)
     parser.add_argument("--artifact-root", type=Path)
     parser.add_argument("--output-root", type=Path, default=ROOT / "supplement/multivelo")
@@ -150,7 +150,7 @@ def main():
     archive_sources = {portable(str(path)): sha(path) for path in copies.values()}
     archive_sources.update({portable(str(root / name)): sha(root / name) for name in ["all_gene_paired_phase_refits/paired_refit_scores.csv", "velocity_smoothing_ablation/paired_refit_scores.csv", "candidate_gate_branching/paired_refit_scores.csv"]})
     provenance = dict(
-        scope="Post-hoc diagnostics; primary benchmark results and rankings are unchanged",
+        scope="Post-hoc phase-assignment diagnostics",
         versions=dict(multivelo="0.1.0", scvelo="0.3.3", python="3.9.24", numpy="2.0.2"),
         source_versions={"multivelo_module_sha256": "ac9a998a9b896ed142f0113b19416ef1e0afcf9cc1978487419ca842d9d34020", "multivelo_url": "https://github.com/welch-lab/MultiVelo", "scvelo_url": "https://github.com/theislab/scvelo"},
         reference_neighbors="evaluation/gene/results/reference_neighbors/{dataset}.npz",

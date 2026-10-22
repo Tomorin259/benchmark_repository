@@ -123,7 +123,7 @@ def main():
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=20261001,
-                        help="Prespecified first paired seed; not selected by score or appearance")
+                        help="Paired-refit seed displayed in the maps; use the first recorded seed")
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = args.data_root / "manifest.json"

@@ -93,7 +93,7 @@ def main():
 
     pd.DataFrame(exported).to_csv(args.output_dir / "branch_cell_orders.csv", index=False)
     pd.DataFrame(correlations).to_csv(args.output_dir / "branch_dpt_correlations.csv", index=False)
-    manifest = {"purpose": "Fixed-path branch DPT export only; no model/metric changes",
+    manifest = {"purpose": "Fixed-path branch DPT export",
                 "seed": frozen_manifest["seed"], "source_main_csv": str((frozen_dir / "cell_orders.csv").relative_to(args.audit_root)),
                 "path_table_sha256": hashlib.sha256(edges_path.read_bytes()).hexdigest(),
                 "inputs": [frozen_inputs[name] for name in ("branching", "all")], "checks": checks,

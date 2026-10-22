@@ -125,7 +125,7 @@ def plot_paired_controls(root, output, dpi):
 
 
 def main():
-    parser = argparse.ArgumentParser(__doc__)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--module-root", type=Path, default=HERE)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--dpi", type=int, default=600)

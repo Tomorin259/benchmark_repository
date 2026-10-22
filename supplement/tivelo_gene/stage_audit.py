@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Audit the TIvelo simulation call chain and intermediate direction scores.
 
-The audit mirrors methods/tivelo/tivelo_main_simulation.py, but exposes each
-intermediate state: preprocessing, process_path, correct_path, directed
-neighbor construction, and the final velocity fit. It writes only diagnostic
-CSV/JSON files below the requested output directory.
+This diagnostic exposes preprocessing, process_path, correct_path,
+directed-neighbor construction and velocity fitting as separate stages.
+See methods/tivelo.py for method execution and methods/source_manifest.json
+for retained source identities.
 """
 
 from __future__ import annotations
@@ -119,7 +119,7 @@ def prepare(artifact_root, rel_path):
     input_path = artifact_root / rel_path
     adata = sc.read(input_path)
     adata.var_names_make_unique()
-    # This block intentionally mirrors tivelo_main_simulation.py.
+    # Prepare the saved simulation input with the recorded TIvelo preprocessing.
     if "spliced" not in adata.layers:
         if "X_spliced" in adata.layers:
             adata.layers["spliced"] = adata.layers["X_spliced"]

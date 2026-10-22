@@ -1,5 +1,5 @@
 {
-  "purpose": "Fixed-path branch DPT export only; no model/metric changes",
+  "purpose": "Fixed-path branch DPT export",
   "seed": 20260926,
   "source_main_csv": "ordering_trigger_audit_20260929_threads1/cell_orders.csv",
   "path_table_sha256": "008410688619ddadca84983f10cbacdc8b0c8eda2155dfe9c491500ed08e78db",
