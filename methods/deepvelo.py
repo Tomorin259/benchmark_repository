@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """Reproduce C16 (DeepVelo GCN) with the benchmark's direct workflow.
 
-The raw benchmark inputs follow DeepVelo's scVelo preprocessing sequence.
-The four fixed scVelo-preprocessed inputs retain their established cell/gene
-panels and existing ``Ms``/``Mu`` moments.  GPU selection is intentionally
-left to the shell environment; this script never overwrites
-``CUDA_VISIBLE_DEVICES``.
+Inputs and preprocessing follow the dataset configuration below.
+Select the device with ``CUDA_VISIBLE_DEVICES``.
 """
 
 import argparse
@@ -37,9 +34,7 @@ sys.path.insert(0, str(REPOSITORY_ROOT))
 from methods.simulation_inputs import simulation_inputs
 DATA_ROOT = REPOSITORY_ROOT.parent / "data"
 
-# Edit this list for a focused rerun.  The explicit seed below is part of the
-# benchmark's historical DeepVelo configuration, rather than an added
-# benchmark-wide seed policy.
+# Edit this list for a focused rerun; the seed is configured below.
 DATASETS_TO_RUN = [
     "bonemarrow",
     "capo_pre",
@@ -57,8 +52,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These are dataset-boundary mappings.  Every benchmark input already has
-# spliced/unspliced layers; no new/total conversion is performed here.
+# Dataset inputs, preprocessing settings and annotation mappings.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
@@ -224,7 +218,7 @@ def run_dataset(dataset, output_root, pred_unspliced, evaluation_role, reset_see
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         # DeepVelo's official tutorial starts from this scVelo sequence.
         scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)

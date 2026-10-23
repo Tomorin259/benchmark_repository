@@ -40,9 +40,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# The four listed entries already contain the scVelo moments required by
-# VeloAE. The remaining ten inputs are preprocessed with the parameters used
-# by the original benchmark script.
+# Dataset inputs, preprocessing settings and annotation mappings.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",

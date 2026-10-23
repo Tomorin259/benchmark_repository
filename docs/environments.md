@@ -34,8 +34,8 @@ the AnnData/Scanpy/scVelo stack and method-specific dependencies.
 
 | Task | Python and key packages | Version evidence / entry |
 | --- | --- | --- |
-| Cell preparation and local metrics | Python 3.7.12; scVelo 0.2.5, UniTVelo 0.2.5.2, Scanpy 1.9.3, AnnData 0.8.0, NumPy 1.21.6, SciPy 1.7.3, pandas 1.3.5 | Retained worker package metadata, inspected 2026-10-19; [Cell instructions](../evaluation/cell/README.md#recalculate-metrics) |
-| Official TIvelo Cell metrics | Python 3.9.23; TIvelo 0.1.4, scVelo 0.3.1, Scanpy 1.10.3, AnnData 0.10.8, NumPy 1.26.4, SciPy 1.13.1, pandas 2.3.1 | Retained metric-worker package metadata, inspected 2026-10-19; [official scorer](../evaluation/cell/score_tivelo_metrics.py) |
+| Cell preparation and local metrics | Python 3.7.12; scVelo 0.2.5, UniTVelo 0.2.5.2, Scanpy 1.9.3, AnnData 0.8.0, NumPy 1.21.6, SciPy 1.7.3, pandas 1.3.5 | [Cell instructions](../evaluation/cell/README.md#recalculate-metrics) |
+| Official TIvelo Cell metrics | Python 3.9.23; TIvelo 0.1.4, scVelo 0.3.1, Scanpy 1.10.3, AnnData 0.10.8, NumPy 1.26.4, SciPy 1.13.1, pandas 2.3.1 | [Official scorer](../evaluation/cell/score_tivelo_metrics.py) |
 | Gene coordinate restoration and score replay | Python 3.9.24; scVelo 0.3.1, Scanpy 1.10.3, NumPy 1.26.4, SciPy 1.13.1, scikit-learn 1.1.3; AnnData and pandas for H5AD/CSV input | [Recorded replay environment](../evaluation/gene/results/unit_restoration/verification.json); [Gene instructions](../evaluation/gene/README.md) |
 | Kinetic-parameter evaluation | Python 3.9+; recorded packages NumPy 1.26.4, pandas 2.3.1, SciPy 1.13.1, AnnData 0.10.8; h5py for H5AD input | [Evaluation manifest](../evaluation/kinetics_recovery/results/central_results/manifest.json), `evaluator_versions`; [kinetics instructions](../evaluation/kinetics_recovery/README.md) |
 | Signed-transition ensemble | scVelo 0.3.4 with AnnData, Scanpy, NumPy, pandas, SciPy, scikit-learn and UniTVelo | [Protocol](../ensemble/config.json) and [ensemble instructions](../ensemble/README.md) |
@@ -45,10 +45,8 @@ through the Python executables supplied to `--indicators-python` and
 `--tivelo-python`. Use Python 3.9 or later for the controller. These options
 identify worker roles, so environment names and installation paths are arbitrary.
 
-The table records installed evaluation environments; the plotting lock above
-was checked by clean installation. Evaluation checks are in the linked run
-records. The original Gene reference-30 provenance records
-scVelo 0.2.5 / Scanpy 1.9.3; current unit-restoration replay has its own record.
+The table records evaluation environments; the plotting lock above was checked
+by clean installation. Linked run records provide version evidence.
 
 ### Method execution
 
@@ -79,9 +77,8 @@ your own environment; the public launcher
 requires scVelo 0.2.5 and records per-dataset checkpoints and randomness.
 
 The [UniTVelo Gene reconstruction](../methods/README.md#unitvelo-gene-layers)
-uses AnnData, NumPy and SciPy, independently of TensorFlow fitting. Seven
-saved mode-1 outputs reproduced all four added layers exactly with NumPy
-1.21.6 and AnnData 0.8.0; source/input identities are in
+uses NumPy 1.21.6, AnnData 0.8.0 and SciPy, independently of TensorFlow fitting.
+Source/input identities are in
 `derived_outputs` of [the source manifest](../methods/source_manifest.json).
 Simulation fitting uses each method's own environment and the explicit
 [simulation settings and commands](../methods/README.md#run-methods-on-simulations).

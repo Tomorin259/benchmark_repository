@@ -19,8 +19,8 @@ upstream main-path orientation and root-selection outputs are retained.
 - Upstream root_select='connectivities' selects the **first cell** in the root
   cluster; the same selection rule is used in both conditions.
 - Paired seeds 20261001, 20261002, 20261003; 100 epochs each; MSE, both velocity
-  components, constrain=True, alpha_1=1, alpha_2=0.1, batch_size=1024.
-- filter_genes=False preserves the already selected archived 473 genes.
+  components, constrain=True, alpha_1=1, alpha_2=0.1, batch_size=1024,
+  filter_genes=False.
 - Native velocity graphs/projections regenerated independently after refitting.
 - Canonical reference-30 cell evaluator, frozen evaluation moments/neighbors,
   dataset embedding and configured edges; official TIvelo formula parity checks.

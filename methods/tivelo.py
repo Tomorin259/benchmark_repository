@@ -45,11 +45,8 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These mappings are part of the benchmark data contract. TIVelo uses
-# clusters only for path inference and visualization; it still estimates a
-# cell-level velocity from spliced and unspliced counts. The four entries
-# marked preprocessed already contain scVelo moments and their established
-# neighbor graph, so they must enter TIVelo unchanged.
+# Dataset inputs, preprocessing settings and annotation mappings.
+# Clusters supply the path inference and visualization labels.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",

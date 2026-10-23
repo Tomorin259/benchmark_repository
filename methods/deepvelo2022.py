@@ -180,7 +180,7 @@ def run_dataset(dataset):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         # The original DeepVelo notebook carries a non-logged companion object
         # through gene selection to construct the reconstruction-network input.

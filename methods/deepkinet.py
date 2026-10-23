@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """Reproduce C13 (DeepKINET) with the upstream raw-count workflow.
 
-DeepKINET requires raw spliced/unspliced counts even after gene selection.
-For the four count-sensitive benchmark datasets, the established working
-cell/gene panel is retained and aligned raw counts are substituted without
-rounding.  The other ten datasets follow the official tutorial's single
-scVelo ``filter_and_normalize`` call before the same raw-count substitution.
+Raw spliced/unspliced counts are aligned to the configured cells and genes
+before fitting. Inputs and preprocessing follow the dataset configuration below.
 
 The benchmark uses seed 123 and deterministic PyTorch/CUDA settings, with
 the seed reset before each dataset.
@@ -67,9 +64,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These are the benchmark's fixed input contracts. A separate ``counts`` path
-# means that the working object's cells/genes are retained while both raw count
-# layers are aligned from that native count artifact.
+# Input paths and optional raw-count sources, aligned by cell and gene ID.
 DATASETS = {
     "bonemarrow": {"input": "bonemarrow/bonemarrow.h5ad", "counts": None},
     "capo_pre": {
@@ -261,7 +256,7 @@ def run_dataset(dataset):
             n_top_genes=N_TOP_GENES,
         )
     else:
-        print("scVelo preprocessing: skipped for fixed benchmark working object", flush=True)
+        print("aligning raw counts to the configured cells and genes", flush=True)
 
     restore_raw_counts(adata, raw_adata, dataset)
     print(f"model input: {adata.shape}", flush=True)

@@ -110,16 +110,10 @@ Forebrain CBDir uses the full shared PCA30 velocity projection and streamlines
 show its first two components. BATC uses the frozen shared UMAP2.
 [reference_embeddings/](reference_embeddings/) and
 `reference_neighbors/forebrain.npz` retain those frames with cell-order and
-coordinate checks. Native H5ADs are unchanged. The 120 Forebrain transition
-rows retain exact-zero/empty-edge exclusion; DeepVelo Cell uses its no-vu output.
+coordinate checks. Exact-zero and empty CBDir edges are excluded.
 
 BATC follows GRAVITY's curve fitting, tangent-cosine and per-cell branch
-maximization, with one benchmark adaptation: NaN branch scores become zero
-before maximization. A zero fallback can exceed a finite negative score.
-Upstream `np.nanargmax` is undefined for all-NaN sources in
-`bonemarrow/TSvelo` and `rpe1_gen/TFvelo`; the other 278 pairs matched the
-benchmark exactly under the original-policy check, as did all 28 ensemble
-scores. See the [historical numerical record](https://github.com/Tomorin259/benchmark_repository/blob/959c80edca5e3239828f234d966ee387eff0d781/docs/fixed_neighbor_reproduction_20260912.md).
+maximization. NaN branch scores become zero before maximization.
 
 Stored CSVs retain full precision. Individual/summary annotations and formal
 tables use four decimals, dense heatmaps two; ranking uses unrounded scores.
@@ -141,8 +135,7 @@ alignment, fixed graph, reference moments, metrics and parity checks as Cell.
   `Ms`/`Mu`. Cell uses package-default training (up to 500 epochs, batch 256)
   and divides spliced velocity by `20 / max(latent_time)` per gene.
   Gene uses up to 1,000 epochs, batch 64 GPU/32 CPU, unscaled spliced velocity
-  and the trained model's unspliced extraction. Extraction is not a training
-  switch. Dentategyrus_lamanno outputs share 1,290 of their 1,291 genes.
+  and the trained model's unspliced extraction.
 
 These comparisons evaluate the complete output workflows described above.
 The 28 supplementary rows are stored separately from the primary 280-row table.

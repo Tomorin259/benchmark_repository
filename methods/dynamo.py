@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Reproduce C07: conventional RNA-seq Dynamo on the 14 benchmark datasets.
 
-The benchmark's C07 outputs use Dynamo's conventional stochastic model for all
-14 datasets. The two inputs that also carry metabolic-labeling layers have
-those auxiliary layers removed before preprocessing so that Dynamo retains the
-same conventional-RNA experiment definition.
+C07 uses Dynamo's conventional stochastic model with unspliced/spliced RNA.
+Inputs and preprocessing follow the dataset configuration below.
 """
 
 from importlib.metadata import version

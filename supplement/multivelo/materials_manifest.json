@@ -1055,7 +1055,7 @@
   "phase_score_scope": "Mean of cell-wise CosSim over all 2000 cells of BoostALL_5; branch-specific scores use 1000 cells",
   "style_reference": {
     "path": "supplement/veloae/plot_pca_summary.py",
-    "sha256": "6b604117965f5319a1faef4ed4d6947f24577e80dabd02b149c2a821ff9f61c1"
+    "sha256": "62fc12f70813876dbe058ae0332fda3b8e747e02bc01cfe4c547df3d1c8bec43"
   },
   "method_registry_sha256": "0769ca5c4664768bdac9f60653f0a857adf1bf31f6ce9472708a3e0dabbf1314",
   "condition_key": {

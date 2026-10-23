@@ -210,7 +210,7 @@ def run_dataset(dataset):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed moments {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         scv.pp.filter_and_normalize(
             adata,

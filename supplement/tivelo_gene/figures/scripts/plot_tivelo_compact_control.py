@@ -1,4 +1,4 @@
-"""Replot the approved simulation pairs on a fixed, shorter canvas."""
+"""Plot paired TIvelo simulation root-control scores on a fixed canvas."""
 
 import argparse
 import hashlib

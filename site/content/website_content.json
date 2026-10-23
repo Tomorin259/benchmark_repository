@@ -71,7 +71,7 @@
       "technology": "10x Multiome (RNA + ATAC)",
       "trajectory_pattern": "branching",
       "trajectory_annotation": "lineages toward neurons and astrocytes",
-      "input_note": "The source modality includes RNA and ATAC. The evaluated MultiVelo configuration uses RNA only; the benchmark working object retains 936 genes."
+      "input_note": "MultiVelo is evaluated in RNA-only mode."
     },
     "hematopoiesis": {
       "context": "human hematopoiesis",
@@ -101,8 +101,7 @@
       "context": "mouse cortical neuron activation",
       "technology": "scNT-seq",
       "trajectory_pattern": "transient",
-      "trajectory_annotation": "KCl stimulation time course",
-      "input_note": "The benchmark uses a fixed 2,000-gene subset; the manuscript source context lists 44,021 genes."
+      "trajectory_annotation": "KCl stimulation time course"
     },
     "capo_pre": {
       "context": "human dermal fibroblasts",
@@ -396,7 +395,7 @@
         "beta_gamma": "—",
         "du_dt": "from scVelo"
       },
-      "workflow_note": "Precomputed scVelo input; MacK-based pseudotime-dependent gene selection was not applied."
+      "workflow_note": "GraphVelo projects scVelo dynamical velocities using Ms as the expression coordinates."
     },
     "C20": {
       "gene_components": "not included in Gene-level nine-method comparison",
@@ -410,7 +409,7 @@
         "beta_gamma": "—",
         "du_dt": "—"
       },
-      "workflow_note": "Precomputed Dynamo input; MacK-based pseudotime-dependent gene selection was not applied."
+      "workflow_note": "GraphVelo projects Dynamo velocity_S using M_s as the expression coordinates."
     }
   },
   "simulations": {
@@ -480,7 +479,7 @@
   "protocol": [
     {
       "title": "Inputs and preprocessing",
-      "text": "The common preprocessing uses the top 2,000 highly variable genes where applicable; method-specific filtering and native input requirements are retained. Raw-count, total-expression and upstream-velocity configurations have their own input contracts."
+      "text": "Preprocessing parameters and required input layers are specified in the Methods guide and method launchers."
     },
     {
       "title": "Fixed reference neighbors",

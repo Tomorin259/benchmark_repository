@@ -4,7 +4,7 @@
     {
       "panels": "A,B",
       "source": "supplement/tivelo_gene/figures/ab_right_legend_material.pdf",
-      "sha256": "e476b3918235e3856c38fa0203d6406ebe995bbcb7b4c088639d112937bd15b6"
+      "sha256": "2278e5e06519f3a85f67af9c2310173f1a195f1396859f799caf9bc870418b64"
     },
     {
       "panels": "C",
@@ -81,7 +81,7 @@
     },
     {
       "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_compact_control.py",
-      "sha256": "b426b286179a3d21503963ecab8d9b697c76687ef9d14f7c3f769508023048d6"
+      "sha256": "878dd8a636b0cd6c40e86dc7345dd470a01150f6fb47dacab29ff389ebdc0b6a"
     },
     {
       "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_full_lineage_shared_dpt.py",

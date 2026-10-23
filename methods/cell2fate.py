@@ -44,9 +44,8 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# Inputs ending in _counts contain raw UMI counts. For the three full-gene
-# inputs, template preserves the benchmark cells, labels and visualization
-# embedding before Cell2fate selects its own 2,000 training genes.
+# Count inputs provide raw UMI layers; templates supply aligned cell
+# annotations and embeddings.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",

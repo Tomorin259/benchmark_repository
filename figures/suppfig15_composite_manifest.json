@@ -29,7 +29,7 @@
   },
   "materials_manifest": {
     "path": "supplement/multivelo/materials_manifest.json",
-    "sha256": "caf575a52db6020c41d182f78d19ff5fcf7425f48cbc616181145e71677cdd70"
+    "sha256": "6a59efd63a78aa017b6d5a38839f4be11eb98cbe558ce304318773c8211b1c98"
   },
   "inputs": {
     "supplement/multivelo/inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903",

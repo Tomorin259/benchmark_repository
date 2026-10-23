@@ -11,7 +11,6 @@
 
 # #Read data
 
-# # dir_data = '/mnt/second19T/zhaozelin/velocity/data'
 
 # # adata_tot = scv.read(dir_data + '/Gastrulation/erythroid_lineage.h5ad')
 # # adata_tot = sc.read_h5ad(dir_data + "/Gastrulation/erythroid_lineage.h5ad")

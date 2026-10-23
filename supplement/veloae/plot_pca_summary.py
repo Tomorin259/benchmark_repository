@@ -1,4 +1,4 @@
-"""Retain the accepted paired PCA design; export at 600 dpi by default."""
+"""Plot paired state/velocity PCA summaries; export at 600 dpi by default."""
 import argparse
 import csv
 import hashlib

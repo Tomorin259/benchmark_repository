@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce C04: RNA-only MultiVelo on the 14 benchmark datasets.
 
-Set DATA_ROOT to the archived input artifacts before running. The four
-already-preprocessed benchmark objects are intentionally not preprocessed a
-second time; every other dataset follows the scVelo preprocessing used before
-the RNA-only MultiVelo fit.
+Inputs and preprocessing follow the dataset configuration below.
 """
 
 import argparse
@@ -45,10 +42,8 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# Fixed dataset inputs and annotation mappings. All 14 inputs
-# already expose spliced and unspliced. label_key supplies the standard
-# clusters column saved with the method result. Forebrain receives X_pca after
-# moments because its source loom has no precomputed embedding.
+# Dataset inputs, preprocessing settings and annotation mappings.
+# label_key supplies clusters; Forebrain uses the PCA coordinates.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
@@ -173,7 +168,7 @@ def run_dataset(dataset):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         # The scVelo preprocessing preceding the RNA-only MultiVelo fit.
         scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)

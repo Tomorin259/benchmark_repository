@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Reproduce C12 (veloVI) with the upstream tutorial workflow.
 
-Select the historical Cell or Gene workflow explicitly. Cell uses the package
-training defaults and per-gene time scaling; Gene uses the separate historical
-training settings and exports unscaled spliced and unspliced velocities.
-Both roles retain the shared preprocessing workflow.
+Select the Cell or Gene workflow explicitly. Cell uses package-default training
+and per-gene time scaling; Gene uses its configured training settings and
+exports unscaled spliced and unspliced velocities. Inputs and preprocessing
+follow the dataset configuration below.
 """
 
 import argparse
@@ -140,7 +140,7 @@ DATASETS = {
 
 DATASETS.update(simulation_inputs())
 
-# Gene's historical training settings. Cell retains the bare vae.train() call
+# Gene training settings. Cell uses the vae.train() defaults
 # (velovi 0.3.1 defaults: max_epochs=500, batch_size=256).
 GENE_MAX_EPOCHS = 1000
 GENE_GPU_BATCH_SIZE = 64
@@ -181,10 +181,9 @@ def run_dataset(dataset, evaluation_role, data_root, output_root):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed moments {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
-        # The finalized benchmark uses the same 20-count / 2,000-HVG settings
-        # as its historical veloVI run.
+        # Apply the shared scVelo preprocessing settings.
         scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)
         scv.pp.moments(adata, n_pcs=30, n_neighbors=30)
 

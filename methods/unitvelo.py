@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce C05 and C06 with the UniTVelo tutorial workflow.
 
-Set DATA_ROOT to the archived input artifacts before running. The four fixed
-scVelo-preprocessed benchmark objects use UniTVelo's normalize=False path;
-the other ten use the package's normal preprocessing path.
+Inputs and preprocessing follow the dataset configuration below.
 """
 
 import argparse
@@ -50,10 +48,8 @@ FIT_OPTIONS_TO_RUN = ["1", "2"]
 OUTPUT_DIRECTORY = {"1": "unitvelo", "2": "unitvelo_mode2"}
 GPU_INDEX = 0
 
-# Fixed dataset inputs and annotation mappings. All 14 inputs
-# already expose spliced and unspliced. label_key supplies the standard
-# clusters column used by UniTVelo. Forebrain receives X_pca after UniTVelo
-# preprocessing because its source loom has no precomputed embedding.
+# Dataset inputs, preprocessing settings and annotation mappings.
+# label_key supplies clusters; Forebrain uses the PCA coordinates.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
@@ -173,7 +169,7 @@ def run_dataset(dataset, fit_option, data_root, output_root):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
 
     # UniTVelo writes its own temporary res directory relative to the current
     # directory when it receives an AnnData object. Keep that package side

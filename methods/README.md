@@ -181,8 +181,8 @@ PY
 
 ## Method-specific inputs and workflows
 
-- **cell2fate and DeepKINET:** raw-count inputs, integer-count checks, cell/gene
-  alignment and protection against repeated preprocessing follow the launcher.
+- **cell2fate and DeepKINET:** use raw spliced/unspliced counts aligned by
+  cell and gene ID.
 - **DeepKINET (C13):** the benchmark uses seed 123 with deterministic
   PyTorch/CUDA settings. Source identity is recorded in the registry.
 - **TFvelo (C10):** provide the patched checkout above with `--source-root` or

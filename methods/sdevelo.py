@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """Reproduce C17 (SDEvelo) with its direct SDENN workflow.
 
-Raw inputs receive one scVelo ``filter_and_normalize -> moments`` pass.
-The four fixed benchmark objects already contain the intended moments and are
-passed to SDEvelo with ``args.process = False`` so they are never processed a
-second time.  Select a physical GPU outside this script with
-``CUDA_VISIBLE_DEVICES``; SDEvelo then uses device 0 within that visible set.
+Inputs and preprocessing follow the dataset configuration below.
+SDENN receives prepared moments with ``process=False``.
+Select the device with ``CUDA_VISIBLE_DEVICES``; SDEvelo uses device 0
+within that visible set.
 """
 
 from pathlib import Path
@@ -43,8 +42,7 @@ DATASETS_TO_RUN = [
     "rpe1_gen",
 ]
 
-# These mappings are only the necessary data-format boundary for the 14
-# benchmark inputs. Every input already provides spliced and unspliced RNA.
+# Dataset inputs, preprocessing settings and annotation mappings.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
@@ -166,7 +164,7 @@ def run_dataset(dataset):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         # SDEvelo's supplied SDENN workflow starts from these scVelo moments.
         scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)
@@ -177,9 +175,8 @@ def run_dataset(dataset):
             raise KeyError(f"{dataset}: preprocessing did not provide X_pca for the benchmark embedding")
         adata.obsm["X_umap"] = adata.obsm["X_pca"].copy()
 
-    # ``process=False`` is essential: preprocessing has already happened in
-    # the visible block above.  The default Config keeps the upstream SDENN
-    # seed (0), 300 epochs, mode=2, and its original SDE simulation.
+    # SDENN consumes the prepared moments with the upstream seed (0),
+    # 300 epochs, mode=2 and SDE simulation settings.
     args = sdevelo.Config()
     args.process = False
     args.cuda_device = 0

@@ -18,8 +18,8 @@ and two gene-usage CSVs, covering 17 benchmark datasets. These are individual
 downloads, with no TAR extraction. Dataset-specific source terms apply;
 the release does not assign one new license to all third-party data.
 
-The scEU labelled sources retain `sl`, `su`, `ul` and `uu` layers:
-RPE1 has 5,422 cells × 11,848 genes, and organoid has 3,831 × 9,157.
+The scEU labelled sources retain `sl`, `su`, `ul` and `uu` layers and are
+identified in [input_release_manifest.tsv](input_release_manifest.tsv).
 They are separate from the benchmark main inputs and from Dynamo method outputs.
 RPE1 alignment uses `Gene_Id`; the organoid main input lies within the labelled
 source's cell/gene scope.

@@ -8,9 +8,7 @@ on:
       - evaluation/**
       - ensemble/**
       - figures/**
-      - supplement/veloae/**
-      - supplement/velovi/**
-      - supplement/tivelo_gene/**
+      - supplement/**
       - methods/configurations.tsv
       - data/datasets.tsv
       - data/release_map.tsv

@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce C01--C03 with the scVelo tutorial workflow.
 
-Set DATA_ROOT to the archived input artifacts before running. The four
-already-preprocessed benchmark objects are intentionally not preprocessed a
-second time; every other dataset follows scVelo's
-filter_and_normalize -> moments sequence.
+Inputs and preprocessing follow the dataset configuration below.
 """
 
 import argparse
@@ -45,11 +42,8 @@ DATASETS_TO_RUN = [
 ]
 MODES_TO_RUN = ["deterministic", "stochastic", "dynamical"]
 
-# Fixed dataset inputs and annotation mappings. All 14 inputs
-# already provide spliced and unspliced. label_key only supplies the standard
-# clusters field used by the benchmark's method-native result files.
-# embedding_key=None means that moments will create X_pca and that X_pca is
-# then retained as the benchmark embedding, as in the legacy Forebrain run.
+# Dataset inputs, preprocessing settings and annotation mappings.
+# label_key supplies clusters; embedding_key=None uses the PCA coordinates.
 DATASETS = {
     "bonemarrow": {
         "input": "bonemarrow/bonemarrow.h5ad",
@@ -178,7 +172,7 @@ def run_dataset(dataset, mode, data_root, output_root):
         missing_moments = {"Ms", "Mu"} - set(adata.layers)
         if missing_moments:
             raise KeyError(f"{dataset}: missing fixed preprocessing layers {sorted(missing_moments)}")
-        print("using the fixed scVelo-preprocessed benchmark object", flush=True)
+        print("input moments: Ms, Mu", flush=True)
     else:
         # scVelo tutorial preprocessing for raw benchmark inputs.
         scv.pp.filter_and_normalize(adata, min_shared_counts=20, n_top_genes=2000)
