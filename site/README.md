@@ -55,10 +55,11 @@ versions. The diagrams share the reference cell labels and published palette.
 PNG/SVG downloads and the complete transition list are available beside each
 image.
 
-Generate the static diagrams with the plotting dependencies in
-[docs/environments.md](../docs/environments.md), including h5py:
+Use the [plotting environment](../docs/environments.md#csv-only-plotting)
+with h5py. Run from the repository root:
 
 ```bash
+python -m pip install h5py
 python site/render_transition_references.py \
   --artifact-root /path/to/velocity-artifacts \
   --output site/public/transitions

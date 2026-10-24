@@ -67,10 +67,10 @@ manifest, then join `package_id` to the package manifest. The native artifact
 hash identifies the original member; its URI stays empty when that original
 file is transported inside a TAR.GZ rather than served individually.
 
-The selection is frozen at code commit
-`0e38d4fef12f71d8e879088de1b15e5510cc40a5`. It covers Cell outputs,
-additional Gene/Kinetics outputs, fixed simulation outputs, ensemble outputs,
-TIvelo and MultiVelo controls and evaluation reference moments.
+The package and member manifests above define the published file selection.
+It covers Cell outputs, additional Gene/Kinetics outputs, fixed simulation
+outputs, ensemble outputs, TIvelo and MultiVelo controls and evaluation
+reference moments.
 Packaging preserves the original scientific-file bytes. Compact scores and
 figures remain in their owning GitHub modules.
 
