@@ -1,0 +1,1665 @@
+{
+  "schema_version": 1,
+  "node_position": "group-wise coordinate median",
+  "sources": [
+    {
+      "path": "data/datasets.tsv",
+      "sha256": "8ae371428432c593664e3d387d6c5f95e29b0f7b8f87564726d24168b56847a8"
+    },
+    {
+      "path": "evaluation/cell/inputs.tsv",
+      "sha256": "7aa49d26fb6a5440bb2bd22b0ad846552d306a6ba4ebda2c744eaec519133396"
+    },
+    {
+      "path": "evaluation/cell/config.json",
+      "sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721"
+    },
+    {
+      "path": "evaluation/cell/stream_preview_config.json",
+      "sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c"
+    },
+    {
+      "path": "evaluation/cell/simulation/config.json",
+      "sha256": "1cdd16bf4388f92d37cab69a34ef3c1d7aad97b1887c433cd4c2ddd54e46d1fc"
+    },
+    {
+      "path": "evaluation/cell/simulation/reference_manifest.json",
+      "sha256": "4628c64bca32d31ec0614f9af389e23d780380ce106f658a00edd6f3f8d25981"
+    },
+    {
+      "path": "evaluation/gene/config.py",
+      "sha256": "dbe5d19b47e154cfc08142f122bca1283d9c04fd57935b6ae3d53cd237263b5b"
+    },
+    {
+      "path": "evaluation/gene/plot_gene_assets.py",
+      "sha256": "b227edaaa813e0a899932107dcf3304f07649093ce3b60656dec83cd0ff5e5af"
+    },
+    {
+      "path": "evaluation/cell/reference_neighbors/forebrain.npz",
+      "sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2"
+    },
+    {
+      "path": "site/render_transition_references.py",
+      "sha256": "6d85f864b846c2f8d10e36e1c61094cf295a973f2445104bbcb8448cfd574227"
+    }
+  ],
+  "entries": [
+    {
+      "dataset": "bonemarrow",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Human bone marrow",
+      "frame": "umap",
+      "edges": [
+        [
+          "HSC_1",
+          "Ery_1"
+        ],
+        [
+          "HSC_1",
+          "HSC_2"
+        ],
+        [
+          "Ery_1",
+          "Ery_2"
+        ]
+      ],
+      "nodes": {
+        "HSC_1": [
+          17.865328046338792,
+          15.093251265569293
+        ],
+        "Ery_1": [
+          17.273508456899485,
+          -15.133312172934179
+        ],
+        "HSC_2": [
+          2.932082526485778,
+          0.03568353080464292
+        ],
+        "Ery_2": [
+          7.700618305253416,
+          -27.885502427932945
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/bonemarrow.png",
+          "sha256": "6445dacee7bec751c490dbc9d3c0b9730ddaa8dab511743ca4bced4e187e7b5e",
+          "bytes": 174241,
+          "width": 856,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/bonemarrow.svg",
+          "sha256": "f5e316a197390a2a15ca91c3d7f708fc494bc72f8726c6a18226f911e01be37b",
+          "bytes": 184439
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_bonemarrow.h5ad",
+        "sha256": "4ab18ff345c2dcb39a33de4e7b9aeb468a879a65b916ca772c17fcf1d59fd37a",
+        "label_key": "clusters",
+        "n_cells": 5780,
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca",
+        "cell_order_sha256": "06f5d4f0f8bc69aa116906532a469cb339d71a166f09d1aa66c2a45bb5957691"
+      }
+    },
+    {
+      "dataset": "capo_pre",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "capofibro (VeloCycle)",
+      "frame": "umap",
+      "edges": [
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
+      ],
+      "nodes": {
+        "G1": [
+          -3.1488869190216064,
+          2.5032577514648438
+        ],
+        "S": [
+          1.3675593137741089,
+          3.34022855758667
+        ],
+        "G2M": [
+          1.8883951902389526,
+          -0.9692221283912659
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/capo_pre.png",
+          "sha256": "53f4e6afb3a327253538253f8f4f345d80910f252cdbcfeed2bf588b1c468241",
+          "bytes": 69981,
+          "width": 963,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/capo_pre.svg",
+          "sha256": "77ca6a7cebfafa64cbb007da5711a3471bdc4c8d107ecc864c71b136bfbd56cf",
+          "bytes": 66319
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_capo_pre.h5ad",
+        "sha256": "ed69046dce1be5807b9cebb62b648916dc7b1e04b96dfbedd0fee4dd0326009e",
+        "label_key": "clusters",
+        "n_cells": 1222,
+        "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c",
+        "cell_order_sha256": "22b53a5dd5305995335e7becbada21b23681616115474f34048e36a443d694b8"
+      }
+    },
+    {
+      "dataset": "dentategyrus_lamanno",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Dentategyrus_lamanno",
+      "frame": "umap",
+      "edges": [
+        [
+          "nIPC",
+          "GlialProg"
+        ],
+        [
+          "GlialProg",
+          "ImmAstro"
+        ],
+        [
+          "GlialProg",
+          "OPC"
+        ],
+        [
+          "Nbl1",
+          "Nbl2"
+        ],
+        [
+          "Nbl2",
+          "ImmGranule1"
+        ],
+        [
+          "ImmGranule1",
+          "ImmGranule2"
+        ],
+        [
+          "ImmGranule2",
+          "Granule"
+        ],
+        [
+          "Nbl2",
+          "CA"
+        ],
+        [
+          "CA",
+          "CA1-Sub"
+        ],
+        [
+          "CA",
+          "CA2-3-4"
+        ]
+      ],
+      "nodes": {
+        "nIPC": [
+          -4.868635389214505,
+          -10.25320971578805
+        ],
+        "GlialProg": [
+          -7.48000614740339,
+          -16.2654782580485
+        ],
+        "ImmAstro": [
+          -16.9848907707619,
+          -15.19487401324455
+        ],
+        "OPC": [
+          -3.566145361290155,
+          -18.49182792125915
+        ],
+        "Nbl1": [
+          -5.87499913073956,
+          -6.2550504516827
+        ],
+        "Nbl2": [
+          -1.41596527935751,
+          -1.57258099371388
+        ],
+        "ImmGranule1": [
+          8.543878826533604,
+          -1.9726532362028002
+        ],
+        "ImmGranule2": [
+          15.8276270702723,
+          -4.93753831226312
+        ],
+        "Granule": [
+          23.7015122472686,
+          -3.46217550879169
+        ],
+        "CA": [
+          -0.267213271025169,
+          9.87822733481236
+        ],
+        "CA1-Sub": [
+          -8.83091300295407,
+          15.951118348413349
+        ],
+        "CA2-3-4": [
+          4.10771332991173,
+          19.8948495737059
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/dentategyrus_lamanno.png",
+          "sha256": "b30491313347ed905eee22e10a6f008fa59da38cc64f6c54293effce01e3888f",
+          "bytes": 298024,
+          "width": 912,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/dentategyrus_lamanno.svg",
+          "sha256": "af4d88aee403e28e782d2fd8056aacc75752418796ec4768057253405429bfa3",
+          "bytes": 299510
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_DentateGyrus_lamanno.h5ad",
+        "sha256": "32bbe258bb9d3b72369eda5d6b65ea6d49dfa65e782e84dc75d8e0213f0ceba8",
+        "label_key": "clusters",
+        "n_cells": 18213,
+        "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105",
+        "cell_order_sha256": "17c579d92f2cb839bb08d2938ad5952b9d0f76160c9bf077a6abcee8a97e4847"
+      }
+    },
+    {
+      "dataset": "dentategyrus",
+      "tasks": [
+        "cell"
+      ],
+      "name": "Dentategyrus",
+      "frame": "umap",
+      "edges": [
+        [
+          "nIPC",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "Granule immature"
+        ],
+        [
+          "Granule immature",
+          "Granule mature"
+        ],
+        [
+          "Radial Glia-like",
+          "Astrocytes"
+        ],
+        [
+          "OPC",
+          "OL"
+        ]
+      ],
+      "nodes": {
+        "nIPC": [
+          -1.9448597860549828,
+          7.294939410026593
+        ],
+        "Neuroblast": [
+          -2.094294534616487,
+          3.007186756372454
+        ],
+        "Granule immature": [
+          2.164518060964985,
+          -5.1926706465491295
+        ],
+        "Granule mature": [
+          0.8900078113330774,
+          -9.130483931353972
+        ],
+        "Radial Glia-like": [
+          -1.3284106109469713,
+          10.367315608940737
+        ],
+        "Astrocytes": [
+          -0.587200386213105,
+          12.70070707323087
+        ],
+        "OPC": [
+          10.79758288509691,
+          1.1879651836780656
+        ],
+        "OL": [
+          13.39643952272947,
+          1.6763740422032216
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/dentategyrus.png",
+          "sha256": "4ceb2f7af542fff54740e40bf91072d4c77e022bbb46047a2a8b21f404d84cb5",
+          "bytes": 147908,
+          "width": 947,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/dentategyrus.svg",
+          "sha256": "8462d997672445e42e2ab5ecb6133181c419e6ee9fcc3ed9a84ec8053da87287",
+          "bytes": 145253
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_dentategyrus.h5ad",
+        "sha256": "efcef6ccffc5491aad6a63a5889e31c7942d150b637b6342d86df80c055ddc16",
+        "label_key": "clusters",
+        "n_cells": 2930,
+        "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb",
+        "cell_order_sha256": "99aeec03a1b96929790d5a3ca169c8695fc1a493b717d781b3459429a35dd599"
+      }
+    },
+    {
+      "dataset": "forebrain",
+      "tasks": [
+        "cell"
+      ],
+      "name": "ForebrainGlut",
+      "frame": "pca",
+      "edges": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "2"
+        ],
+        [
+          "2",
+          "3"
+        ],
+        [
+          "3",
+          "4"
+        ],
+        [
+          "4",
+          "5"
+        ],
+        [
+          "5",
+          "6"
+        ]
+      ],
+      "nodes": {
+        "0": [
+          11.2794771194458,
+          -1.5583337545394897
+        ],
+        "1": [
+          9.972541809082031,
+          -0.7914525270462036
+        ],
+        "2": [
+          4.913072109222412,
+          3.810056686401367
+        ],
+        "3": [
+          -3.438688278198242,
+          4.601025581359863
+        ],
+        "4": [
+          -5.281390190124512,
+          1.9637469053268433
+        ],
+        "5": [
+          -6.323781490325928,
+          -1.6760061979293823
+        ],
+        "6": [
+          -6.486940383911133,
+          -4.807222366333008
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/forebrain.png",
+          "sha256": "22fc8a5752b5d0549abc441ba33e8de5c981e4ed0fcec92a7cd4a2074e9e877d",
+          "bytes": 101928,
+          "width": 1198,
+          "height": 852
+        },
+        "svg": {
+          "path": "transitions/forebrain.svg",
+          "sha256": "f51f8ecfd270c8a31639802b856ce2fdc710ff7cffa32a62890a7f7e57aa5ad3",
+          "bytes": 115978
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_ForebrainGlut.h5ad",
+        "sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+        "label_key": "Clusters",
+        "n_cells": 1720,
+        "coordinate_sha256": "2e8b42ff4adfc468d93f9115ef404f12efb5e3dd5949dba276a2ba68bfc5ff43",
+        "cell_order_sha256": "c0f7beac1988cc87033ce21d8a0a34000801f0e7726ff65257da5dd1ff600cd4"
+      }
+    },
+    {
+      "dataset": "gastrulation",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Gastrulation",
+      "frame": "umap",
+      "edges": [
+        [
+          "Blood progenitors 1",
+          "Blood progenitors 2"
+        ],
+        [
+          "Blood progenitors 2",
+          "Erythroid1"
+        ],
+        [
+          "Erythroid1",
+          "Erythroid2"
+        ],
+        [
+          "Erythroid2",
+          "Erythroid3"
+        ]
+      ],
+      "nodes": {
+        "Blood progenitors 1": [
+          0.841520414395689,
+          13.794046445045199
+        ],
+        "Blood progenitors 2": [
+          4.347052079061971,
+          14.6485498670474
+        ],
+        "Erythroid1": [
+          7.6874374017278395,
+          12.3091567331061
+        ],
+        "Erythroid2": [
+          8.883016005283888,
+          9.433871245224779
+        ],
+        "Erythroid3": [
+          9.148378987773212,
+          6.757976662811981
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/gastrulation.png",
+          "sha256": "6a9cc64519569d9dd014fb98031f340953bcf0af060ff85b1c618fd523a3b526",
+          "bytes": 273325,
+          "width": 932,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/gastrulation.svg",
+          "sha256": "1f180fdbb80a7ef9e25b199658bbd42f13f51a95f93616b960e07d701864d648",
+          "bytes": 264725
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_Gastrulation.h5ad",
+        "sha256": "ba812755a48b48566aafdca520f7067676d6ff9522ac5573938b48cf6461a937",
+        "label_key": "celltype",
+        "n_cells": 9815,
+        "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b",
+        "cell_order_sha256": "4b08efca6ef0b55da6b7d4106b75de6ea25da1e21eed97d8d3149a8881d4d532"
+      }
+    },
+    {
+      "dataset": "hematopoiesis",
+      "tasks": [
+        "cell"
+      ],
+      "name": "Human hematopoiesis",
+      "frame": "umap",
+      "edges": [
+        [
+          "HSC",
+          "GMP-like"
+        ],
+        [
+          "HSC",
+          "MEP-like"
+        ],
+        [
+          "GMP-like",
+          "Neu"
+        ],
+        [
+          "GMP-like",
+          "Mon"
+        ],
+        [
+          "MEP-like",
+          "Ery"
+        ],
+        [
+          "MEP-like",
+          "Meg"
+        ],
+        [
+          "MEP-like",
+          "Bas"
+        ]
+      ],
+      "nodes": {
+        "HSC": [
+          9.605392456054688,
+          9.50919246673584
+        ],
+        "GMP-like": [
+          11.043705940246582,
+          11.032892227172852
+        ],
+        "MEP-like": [
+          12.662878036499023,
+          8.819173812866211
+        ],
+        "Neu": [
+          10.12077522277832,
+          14.572884559631348
+        ],
+        "Mon": [
+          13.02888011932373,
+          13.01534366607666
+        ],
+        "Ery": [
+          15.77569580078125,
+          8.012247085571289
+        ],
+        "Meg": [
+          14.11061954498291,
+          4.30909538269043
+        ],
+        "Bas": [
+          16.506214141845703,
+          11.05095100402832
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/hematopoiesis.png",
+          "sha256": "89592b43c8632e73cbca8a6f54487ad10d9d725f243b778abf9586ed36f982d6",
+          "bytes": 111877,
+          "width": 695,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/hematopoiesis.svg",
+          "sha256": "c03d3d3282fae93d2cab93b248dbaae99995f67b81daa4db91bc46c47a49eb32",
+          "bytes": 101974
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_hematopoiesis_dynamo.h5ad",
+        "sha256": "11c20c9f79892c3b14e40e90b4941e3133bc83abaeb430d19da9d4b1fa644e95",
+        "label_key": "cell_type",
+        "n_cells": 1947,
+        "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025",
+        "cell_order_sha256": "954d91f998a3ea13e37e7295efcd285b49026b2ea60ab506722f97fd596f3b8c"
+      }
+    },
+    {
+      "dataset": "mousebrain",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "mousebrain",
+      "frame": "umap",
+      "edges": [
+        [
+          "RG, Astro, OPC",
+          "IPC"
+        ],
+        [
+          "IPC",
+          "V-SVZ"
+        ],
+        [
+          "V-SVZ",
+          "Upper Layer"
+        ],
+        [
+          "Upper Layer",
+          "Deeper Layer"
+        ]
+      ],
+      "nodes": {
+        "RG, Astro, OPC": [
+          8.367600440979004,
+          2.171725034713745
+        ],
+        "IPC": [
+          5.525850772857666,
+          -0.2301487922668457
+        ],
+        "V-SVZ": [
+          2.920334815979004,
+          0.8387312889099121
+        ],
+        "Upper Layer": [
+          -0.8938426971435547,
+          1.8005080223083496
+        ],
+        "Deeper Layer": [
+          -0.7027275562286377,
+          6.8841705322265625
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/mousebrain.png",
+          "sha256": "688dc01dde9a65fbf6b12d06cc4d5207d3dfd4e83a5b04e59056d9406120c4e7",
+          "bytes": 164097,
+          "width": 980,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/mousebrain.svg",
+          "sha256": "3cbb7890b5e220f930588f1c12edf00c671e34fbe6674e3a76447843dd062fe5",
+          "bytes": 173440
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_mousebrain.h5ad",
+        "sha256": "e97ae2a807c94b7262ec7d684c77d8239f6a05f281eeef6d0322dceb94c5cbb8",
+        "label_key": "clusters",
+        "n_cells": 3365,
+        "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9",
+        "cell_order_sha256": "691870a15a7a88592364aebccabaf9b2b08f6863baf01ab9c24861e8e4432a9b"
+      }
+    },
+    {
+      "dataset": "scnt_neuron",
+      "tasks": [
+        "cell"
+      ],
+      "name": "scNT_neuron",
+      "frame": "umap",
+      "edges": [
+        [
+          "0",
+          "15"
+        ],
+        [
+          "15",
+          "30"
+        ],
+        [
+          "30",
+          "60"
+        ],
+        [
+          "60",
+          "120"
+        ]
+      ],
+      "nodes": {
+        "0": [
+          2.5741615,
+          -4.3855014
+        ],
+        "15": [
+          5.6796656,
+          -8.151931
+        ],
+        "30": [
+          5.626868,
+          -9.485889
+        ],
+        "60": [
+          4.403877250000001,
+          -10.699381500000001
+        ],
+        "120": [
+          2.9116817,
+          -10.224274
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/scnt_neuron.png",
+          "sha256": "fd9825111f89d2feba0219dc0d9c3c435d4dec22b043da811486092fc06d7687",
+          "bytes": 150226,
+          "width": 592,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/scnt_neuron.svg",
+          "sha256": "b3da9f3e1b4e6f3647758514fad45e226e15f491e6a5a0e35be7074ab9f2af23",
+          "bytes": 177254
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_neuron.h5ad",
+        "sha256": "4907eddc5d271e68598a0ae02e9c7fc0530723f5d92e0056fe09d3f835963f80",
+        "label_key": "time_str",
+        "n_cells": 3066,
+        "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea",
+        "cell_order_sha256": "ff4293c7f2c79b32822ff665b8851467aee636add195241b4635508f69f58a54"
+      }
+    },
+    {
+      "dataset": "sceu_organoid",
+      "tasks": [
+        "cell"
+      ],
+      "name": "organoid",
+      "frame": "umap",
+      "edges": [
+        [
+          "Stem cells",
+          "TA cells"
+        ],
+        [
+          "Stem cells",
+          "Goblet cells"
+        ]
+      ],
+      "nodes": {
+        "Stem cells": [
+          20.1263179779,
+          -2.12774896622
+        ],
+        "TA cells": [
+          23.31472492215,
+          -2.89723300934
+        ],
+        "Goblet cells": [
+          14.294573307050001,
+          -2.0976122617749997
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/sceu_organoid.png",
+          "sha256": "4b8342c52244794ae35f57a7995b6bb18c131843b82c5c6490f30c3f8db678c8",
+          "bytes": 160846,
+          "width": 1198,
+          "height": 517
+        },
+        "svg": {
+          "path": "transitions/sceu_organoid.svg",
+          "sha256": "4e2f0e9bad579bdf42200b1951dc1dabed5f1c023b815710c3e115db6cac1291",
+          "bytes": 166043
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_organoid.h5ad",
+        "sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+        "label_key": "cell_type",
+        "n_cells": 3831,
+        "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce",
+        "cell_order_sha256": "921636bdddf322b9ea777cb3107b4838a0e15508d7881256303d9baf2235a911"
+      }
+    },
+    {
+      "dataset": "pancreas",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Pancreas",
+      "frame": "umap",
+      "edges": [
+        [
+          "Ductal",
+          "Ngn3 low EP"
+        ],
+        [
+          "Ngn3 low EP",
+          "Ngn3 high EP"
+        ],
+        [
+          "Ngn3 high EP",
+          "Pre-endocrine"
+        ],
+        [
+          "Pre-endocrine",
+          "Beta"
+        ],
+        [
+          "Pre-endocrine",
+          "Alpha"
+        ],
+        [
+          "Pre-endocrine",
+          "Delta"
+        ],
+        [
+          "Pre-endocrine",
+          "Epsilon"
+        ]
+      ],
+      "nodes": {
+        "Ductal": [
+          -10.406791687011719,
+          1.3948936462402344
+        ],
+        "Ngn3 low EP": [
+          -9.194263458251953,
+          0.07081767916679382
+        ],
+        "Ngn3 high EP": [
+          -2.1474900245666504,
+          -3.9102792739868164
+        ],
+        "Pre-endocrine": [
+          4.868896961212158,
+          -2.296069860458374
+        ],
+        "Beta": [
+          4.409221172332764,
+          3.4373342990875244
+        ],
+        "Alpha": [
+          7.327534198760986,
+          3.493380308151245
+        ],
+        "Delta": [
+          8.694219589233398,
+          -1.1449916362762451
+        ],
+        "Epsilon": [
+          2.794210195541382,
+          1.3833773136138916
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/pancreas.png",
+          "sha256": "2539363ebd0fbca33864108e60537360f4de036d91f62ebed3e0cd26e6d125f9",
+          "bytes": 195193,
+          "width": 1198,
+          "height": 684
+        },
+        "svg": {
+          "path": "transitions/pancreas.svg",
+          "sha256": "9d37f3c1d207c2e3dcc90eb76de56247952e46d60e0acd0ec677c4c4a3b15bf5",
+          "bytes": 194977
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_Pancreas.h5ad",
+        "sha256": "3c3d8906a39141e7266caa73fc06d43764a7f60e2f1a3aa6dc6ebcb99c5af7ab",
+        "label_key": "clusters",
+        "n_cells": 3696,
+        "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4",
+        "cell_order_sha256": "54d54e586ed91fcf40075ca742993101175e6cc1a9b0269f9cbc73d647c2fd9d"
+      }
+    },
+    {
+      "dataset": "retina",
+      "tasks": [
+        "cell"
+      ],
+      "name": "Mouse retina",
+      "frame": "umap",
+      "edges": [
+        [
+          "Progenitor",
+          "Neuroblast"
+        ],
+        [
+          "Neuroblast",
+          "PR"
+        ],
+        [
+          "Neuroblast",
+          "AC/HC"
+        ],
+        [
+          "Neuroblast",
+          "RGC"
+        ]
+      ],
+      "nodes": {
+        "Progenitor": [
+          -2.6368355751037598,
+          -5.768418312072754
+        ],
+        "Neuroblast": [
+          -3.001677989959717,
+          0.13118146359920502
+        ],
+        "PR": [
+          -4.384237766265869,
+          4.973776340484619
+        ],
+        "AC/HC": [
+          0.007091325242072344,
+          8.516256332397461
+        ],
+        "RGC": [
+          8.103038787841797,
+          1.356926679611206
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/retina_cell.png",
+          "sha256": "8ec316040d0186bc62edaa113eea265d526adada07d63c079edd2485cf62f18f",
+          "bytes": 124557,
+          "width": 749,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/retina_cell.svg",
+          "sha256": "7441f20e621c7f095351ddbf940ccf826412fd229d37f4b32a653a80762d15d4",
+          "bytes": 112589
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_retina.h5ad",
+        "sha256": "917a1b27efae4ddb423cbbb912524e4f5c78cd7d4d67f56f617d705a18475848",
+        "label_key": "Annotation",
+        "n_cells": 2726,
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9",
+        "cell_order_sha256": "dc71890c21ac8d6000c9ff4189eae13a36c7ee92031eacf7e64ab13e14b94a28"
+      }
+    },
+    {
+      "dataset": "retina",
+      "tasks": [
+        "gene"
+      ],
+      "name": "Mouse retina",
+      "frame": "umap",
+      "edges": [
+        [
+          "Neuroblast",
+          "PR"
+        ],
+        [
+          "Neuroblast",
+          "AC/HC"
+        ],
+        [
+          "Neuroblast",
+          "RGC"
+        ]
+      ],
+      "nodes": {
+        "Neuroblast": [
+          -3.001677989959717,
+          0.13118146359920502
+        ],
+        "PR": [
+          -4.384237766265869,
+          4.973776340484619
+        ],
+        "AC/HC": [
+          0.007091325242072344,
+          8.516256332397461
+        ],
+        "RGC": [
+          8.103038787841797,
+          1.356926679611206
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/retina_gene.png",
+          "sha256": "b1a89b89bca5d73adbf4c2964e8789bf6dc250549a838b0c6520ab4b98f30ab7",
+          "bytes": 122562,
+          "width": 749,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/retina_gene.svg",
+          "sha256": "14a64e0ff6886803980949c1bd5fdd94cf56dc6b4ecbb77876fa7aecee729697",
+          "bytes": 110791
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_retina.h5ad",
+        "sha256": "917a1b27efae4ddb423cbbb912524e4f5c78cd7d4d67f56f617d705a18475848",
+        "label_key": "Annotation",
+        "n_cells": 2726,
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9",
+        "cell_order_sha256": "dc71890c21ac8d6000c9ff4189eae13a36c7ee92031eacf7e64ab13e14b94a28"
+      }
+    },
+    {
+      "dataset": "sceu_rpe1",
+      "tasks": [
+        "cell"
+      ],
+      "name": "rpe1",
+      "frame": "umap",
+      "edges": [
+        [
+          "M",
+          "M-G1"
+        ],
+        [
+          "M-G1",
+          "G1-S"
+        ],
+        [
+          "G1-S",
+          "S"
+        ],
+        [
+          "S",
+          "G2-M"
+        ]
+      ],
+      "nodes": {
+        "M": [
+          0.6349792480468751,
+          1.943145751953125
+        ],
+        "M-G1": [
+          0.5814208984375006,
+          2.66461181640625
+        ],
+        "G1-S": [
+          1.8841552734375,
+          2.97918701171875
+        ],
+        "S": [
+          2.55487060546875,
+          2.91131591796875
+        ],
+        "G2-M": [
+          2.861785888671875,
+          1.7855224609374998
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/sceu_rpe1.png",
+          "sha256": "da5ffd86393fe24bda86047b763326b7cfcbbea8ad9f47f9cee1100d9e42177a",
+          "bytes": 141595,
+          "width": 793,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/sceu_rpe1.svg",
+          "sha256": "d1f20618e959abe1f848f740a57e0ead4b2b1b45631d3dfb61fbf1daaf60f3ce",
+          "bytes": 189854
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_rpe1.h5ad",
+        "sha256": "a8ed4d121100487564c869c86a89f752f7ae21a48978c2e1da423381c5d19b2b",
+        "label_key": "cell_cycle_phase",
+        "n_cells": 2793,
+        "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370",
+        "cell_order_sha256": "966e050ebcae36c828c25a1df36a04430038e2bad64bf1fcd01b401d46bc02a0"
+      }
+    },
+    {
+      "dataset": "rpe1_gen",
+      "tasks": [
+        "cell"
+      ],
+      "name": "rpe1 (VeloCycle)",
+      "frame": "umap",
+      "edges": [
+        [
+          "G1",
+          "S"
+        ],
+        [
+          "S",
+          "G2M"
+        ],
+        [
+          "G2M",
+          "G1"
+        ]
+      ],
+      "nodes": {
+        "G1": [
+          5.432264804840088,
+          11.194136619567871
+        ],
+        "S": [
+          8.241422653198242,
+          8.166400909423828
+        ],
+        "G2M": [
+          12.239068984985352,
+          7.876873016357422
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/rpe1_gen.png",
+          "sha256": "bce9cf3f564790308bb02356986cb2dddf56c49ebd0d37cc90ae1246096c53d2",
+          "bytes": 153372,
+          "width": 1083,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/rpe1_gen.svg",
+          "sha256": "bc98820642244b73772ff713a6350d192c5418d490ee21c0fc98ced90cedb946",
+          "bytes": 169041
+        }
+      },
+      "reference": {
+        "source": "velocity:results/scvelo_deterministic/scv_deterministic_rpe1_gen.h5ad",
+        "sha256": "1db50ced62b73bc6b0a16c7414c1de7e08e85394a7b799c2b1451d10ab03b0e9",
+        "label_key": "clusters",
+        "n_cells": 3354,
+        "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc",
+        "cell_order_sha256": "c67049f72090c33546f02f02e5b1ef8e0f09ed5c4b9db715717efec4dcf0a5f3"
+      }
+    },
+    {
+      "dataset": "sim_only_murk",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Normal + MURK",
+      "frame": "umap",
+      "edges": [
+        [
+          "BranchB_0",
+          "BranchB_1"
+        ],
+        [
+          "BranchB_1",
+          "BranchB_2"
+        ],
+        [
+          "BranchB_2",
+          "BranchB_3"
+        ],
+        [
+          "BranchB_3",
+          "BranchB_4"
+        ],
+        [
+          "BranchB_4",
+          "BranchB_5"
+        ],
+        [
+          "BranchB_5",
+          "BranchB_6"
+        ],
+        [
+          "BranchB_6",
+          "BranchB_7"
+        ],
+        [
+          "BranchB_7",
+          "BranchB_8"
+        ],
+        [
+          "BranchB_8",
+          "BranchB_9"
+        ]
+      ],
+      "nodes": {
+        "BranchB_0": [
+          8.656779289245605,
+          1.3532403707504272
+        ],
+        "BranchB_1": [
+          4.998641014099121,
+          1.832686185836792
+        ],
+        "BranchB_2": [
+          1.3843271732330322,
+          5.5562849044799805
+        ],
+        "BranchB_3": [
+          -0.6283998489379883,
+          10.289863586425781
+        ],
+        "BranchB_4": [
+          1.2895350456237793,
+          14.761262893676758
+        ],
+        "BranchB_5": [
+          5.07937479019165,
+          17.86431884765625
+        ],
+        "BranchB_6": [
+          5.278623580932617,
+          23.008995056152344
+        ],
+        "BranchB_7": [
+          1.396134614944458,
+          26.041311264038086
+        ],
+        "BranchB_8": [
+          -3.5148229598999023,
+          24.698020935058594
+        ],
+        "BranchB_9": [
+          -6.3739013671875,
+          20.781816482543945
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/sim_only_murk.png",
+          "sha256": "90fa620147ac606e226a130f4797fe8d2bad1531e3ca6d67546facda3bec5f9a",
+          "bytes": 70540,
+          "width": 550,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/sim_only_murk.svg",
+          "sha256": "421af7ca4b236734ac7a909728e4512faee6f52479c6346c0aba0a96d5f83bb6",
+          "bytes": 70528
+        }
+      },
+      "reference": {
+        "source": "velocity:indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+        "sha256": "e853780b3cb28ae9941972950e0b02098f57b5f7e35908ab0d5d2473fe0e6bc3",
+        "label_key": "bin",
+        "n_cells": 1000,
+        "coordinate_sha256": "33478777c29038e7e68b80669f53a0142416cf22981fe2cbfe2118d36d8387e6",
+        "cell_order_sha256": "cdcaf63295eb44b199f8945bea9040fc067d26c0af90e23fefc77367534bc75e"
+      }
+    },
+    {
+      "dataset": "sim_only_branching",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Normal + branching",
+      "frame": "umap",
+      "edges": [
+        [
+          "BranchA_0",
+          "BranchA_1"
+        ],
+        [
+          "BranchA_1",
+          "BranchA_2"
+        ],
+        [
+          "BranchA_2",
+          "BranchA_3"
+        ],
+        [
+          "BranchA_3",
+          "BranchA_4"
+        ],
+        [
+          "BranchA_4",
+          "BranchA_5"
+        ],
+        [
+          "BranchA_5",
+          "BranchA_6"
+        ],
+        [
+          "BranchA_6",
+          "BranchA_7"
+        ],
+        [
+          "BranchA_7",
+          "BranchA_8"
+        ],
+        [
+          "BranchA_8",
+          "BranchA_9"
+        ],
+        [
+          "BranchB_0",
+          "BranchB_1"
+        ],
+        [
+          "BranchB_1",
+          "BranchB_2"
+        ],
+        [
+          "BranchB_2",
+          "BranchB_3"
+        ],
+        [
+          "BranchB_3",
+          "BranchB_4"
+        ],
+        [
+          "BranchB_4",
+          "BranchB_5"
+        ],
+        [
+          "BranchB_5",
+          "BranchB_6"
+        ],
+        [
+          "BranchB_6",
+          "BranchB_7"
+        ],
+        [
+          "BranchB_7",
+          "BranchB_8"
+        ],
+        [
+          "BranchB_8",
+          "BranchB_9"
+        ]
+      ],
+      "nodes": {
+        "BranchA_0": [
+          4.89539098739624,
+          0.9851705431938171
+        ],
+        "BranchA_1": [
+          4.430748462677002,
+          4.280012130737305
+        ],
+        "BranchA_2": [
+          3.781604766845703,
+          9.432086944580078
+        ],
+        "BranchA_3": [
+          1.2704963684082031,
+          13.663455963134766
+        ],
+        "BranchA_4": [
+          3.168982982635498,
+          17.462316513061523
+        ],
+        "BranchA_5": [
+          5.03525447845459,
+          21.24343490600586
+        ],
+        "BranchA_6": [
+          6.3194403648376465,
+          25.625839233398438
+        ],
+        "BranchA_7": [
+          8.089187622070312,
+          29.588191986083984
+        ],
+        "BranchA_8": [
+          9.893559455871582,
+          33.175933837890625
+        ],
+        "BranchA_9": [
+          10.814627647399902,
+          36.50358581542969
+        ],
+        "BranchB_0": [
+          5.139718055725098,
+          0.8857504725456238
+        ],
+        "BranchB_1": [
+          4.8989763259887695,
+          4.255162239074707
+        ],
+        "BranchB_2": [
+          5.757523536682129,
+          9.85228157043457
+        ],
+        "BranchB_3": [
+          10.259088516235352,
+          13.995797157287598
+        ],
+        "BranchB_4": [
+          13.751004219055176,
+          18.328596115112305
+        ],
+        "BranchB_5": [
+          18.397903442382812,
+          19.961122512817383
+        ],
+        "BranchB_6": [
+          22.54143714904785,
+          18.662105560302734
+        ],
+        "BranchB_7": [
+          26.482776641845703,
+          16.993144989013672
+        ],
+        "BranchB_8": [
+          30.211681365966797,
+          17.302494049072266
+        ],
+        "BranchB_9": [
+          33.87533187866211,
+          18.215187072753906
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/sim_only_branching.png",
+          "sha256": "256303a7cad9a05e427dbc3be4a92a0c948bff94e315e4765938104176883ac0",
+          "bytes": 82725,
+          "width": 780,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/sim_only_branching.svg",
+          "sha256": "e47ff090c330040c99bf08f054d21c317c4e92ece5943987bd68027eaa25f921",
+          "bytes": 95058
+        }
+      },
+      "reference": {
+        "source": "velocity:indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+        "sha256": "392eccf96cd31f27e8b99327f0b061e475d78a1cfea54c75af4564ddb163fe14",
+        "label_key": "bin",
+        "n_cells": 2000,
+        "coordinate_sha256": "e3bdf7b01091ecd24b5fc65c3f6d3a6faeec1171c40be1fa62b0353fbf802b05",
+        "cell_order_sha256": "ca41d4e70c834e2139fe78fe0061f99b6a9a0f157eacd2601c90ee5dbf41cbac"
+      }
+    },
+    {
+      "dataset": "sim_hybrid",
+      "tasks": [
+        "cell",
+        "gene"
+      ],
+      "name": "Hybrid (normal + MURK + branching)",
+      "frame": "umap",
+      "edges": [
+        [
+          "BranchA_0",
+          "BranchA_1"
+        ],
+        [
+          "BranchA_1",
+          "BranchA_2"
+        ],
+        [
+          "BranchA_2",
+          "BranchA_3"
+        ],
+        [
+          "BranchA_3",
+          "BranchA_4"
+        ],
+        [
+          "BranchA_4",
+          "BranchA_5"
+        ],
+        [
+          "BranchA_5",
+          "BranchA_6"
+        ],
+        [
+          "BranchA_6",
+          "BranchA_7"
+        ],
+        [
+          "BranchA_7",
+          "BranchA_8"
+        ],
+        [
+          "BranchA_8",
+          "BranchA_9"
+        ],
+        [
+          "BranchB_0",
+          "BranchB_1"
+        ],
+        [
+          "BranchB_1",
+          "BranchB_2"
+        ],
+        [
+          "BranchB_2",
+          "BranchB_3"
+        ],
+        [
+          "BranchB_3",
+          "BranchB_4"
+        ],
+        [
+          "BranchB_4",
+          "BranchB_5"
+        ],
+        [
+          "BranchB_5",
+          "BranchB_6"
+        ],
+        [
+          "BranchB_6",
+          "BranchB_7"
+        ],
+        [
+          "BranchB_7",
+          "BranchB_8"
+        ],
+        [
+          "BranchB_8",
+          "BranchB_9"
+        ]
+      ],
+      "nodes": {
+        "BranchA_0": [
+          6.8771514892578125,
+          3.3262939453125
+        ],
+        "BranchA_1": [
+          9.053979873657227,
+          -0.29952555894851685
+        ],
+        "BranchA_2": [
+          9.740875244140625,
+          -5.459688663482666
+        ],
+        "BranchA_3": [
+          8.957353591918945,
+          -9.878168106079102
+        ],
+        "BranchA_4": [
+          6.404906749725342,
+          -13.371423721313477
+        ],
+        "BranchA_5": [
+          3.4162347316741943,
+          -15.85460090637207
+        ],
+        "BranchA_6": [
+          0.46804702281951904,
+          -18.32463836669922
+        ],
+        "BranchA_7": [
+          -3.178661823272705,
+          -20.69406509399414
+        ],
+        "BranchA_8": [
+          -6.786399841308594,
+          -21.3123779296875
+        ],
+        "BranchA_9": [
+          -9.935094833374023,
+          -19.6820011138916
+        ],
+        "BranchB_0": [
+          4.952469348907471,
+          4.839097499847412
+        ],
+        "BranchB_1": [
+          0.5372117757797241,
+          5.229684829711914
+        ],
+        "BranchB_2": [
+          -2.250380516052246,
+          1.4758238792419434
+        ],
+        "BranchB_3": [
+          0.2113274335861206,
+          -1.6331117153167725
+        ],
+        "BranchB_4": [
+          4.084015846252441,
+          -3.6881515979766846
+        ],
+        "BranchB_5": [
+          3.9113423824310303,
+          -7.864577293395996
+        ],
+        "BranchB_6": [
+          -0.4583125114440918,
+          -7.421456813812256
+        ],
+        "BranchB_7": [
+          -5.728059768676758,
+          -7.090730667114258
+        ],
+        "BranchB_8": [
+          -10.425355911254883,
+          -7.834353923797607
+        ],
+        "BranchB_9": [
+          -14.835309982299805,
+          -7.876917362213135
+        ]
+      },
+      "files": {
+        "png": {
+          "path": "transitions/sim_hybrid.png",
+          "sha256": "749ef7fc4a6f52ae61a7dc8b064c816d29de82e3c075ec740e53778e81680e15",
+          "bytes": 114728,
+          "width": 824,
+          "height": 888
+        },
+        "svg": {
+          "path": "transitions/sim_hybrid.svg",
+          "sha256": "88d09af516db6cd2dbcf2ae08149ae8cd30d54e28b84b1d633a25bd86419f022",
+          "bytes": 114433
+        }
+      },
+      "reference": {
+        "source": "velocity:indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+        "sha256": "9b9bebf9159e02c1bcb880d8aba323982e70b7faa67d6d92c6313db603e72ee2",
+        "label_key": "bin",
+        "n_cells": 2000,
+        "coordinate_sha256": "6976918f37c979dcca63723094968bfc2b62e326fbb36bae71aa31af2311029c",
+        "cell_order_sha256": "ca41d4e70c834e2139fe78fe0061f99b6a9a0f157eacd2601c90ee5dbf41cbac"
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import runpy
 import shutil
 import subprocess
 
@@ -576,6 +577,43 @@ def export_data(root=ROOT, output=None):
         target = f"previews/{entry['dataset']}/{entry['method']}.png"
         streams.append({'dataset':entry['dataset'],'method':entry['method'],'path':'data/'+target,'legend':entry['legend']})
         stream_copies.append((image,target))
+    transition_path = 'site/public/transitions/index.json'
+    transition_index = json.loads((root / transition_path).read_text())
+    register_file(transition_path, download=False)
+    for source in transition_index['sources']:
+        registered = register_file(source['path'], download=False)
+        if registered['sha256'] != source['sha256']:
+            raise ValueError(f"Transition reference source changed: {source['path']}")
+    definitions = runpy.run_path(str(root / 'site/render_transition_references.py'))['reference_definitions'](root)
+    expected_transitions = {(d['dataset'], task): (d, edges)
+                            for d in definitions for task, edges in d['tasks'].items()}
+    displayed_transitions = {}
+    transition_references = []
+    for entry in transition_index['entries']:
+        for task in entry['tasks']:
+            key = (entry['dataset'], task)
+            if key in displayed_transitions:
+                raise ValueError(f'Duplicate transition reference: {key}')
+            definition, edges = expected_transitions[key]
+            if (set(map(tuple, entry['edges'])) != set(map(tuple, edges)) or
+                    entry['frame'] != definition['frame'] or
+                    entry['reference']['source'] != definition['source'] or
+                    entry['reference']['sha256'] != definition['source_sha256']):
+                raise ValueError(f'Transition reference differs from evaluation: {key}')
+            displayed_transitions[key] = entry
+        if set(entry['nodes']) != {node for edge in entry['edges'] for node in edge}:
+            raise ValueError(f"Transition reference nodes differ from its edges: {entry['dataset']}")
+        for image in entry['files'].values():
+            relative = Path('site/public') / image['path']
+            if not (root / relative).resolve().is_relative_to((root / 'site/public/transitions').resolve()):
+                raise ValueError('Transition image path escapes its directory')
+            registered = register_file(str(relative), download=False)
+            if (registered['sha256'], registered['bytes']) != (image['sha256'], image['bytes']):
+                raise ValueError(f'Transition image changed: {relative}')
+        transition_references.append({key: entry[key] for key in
+                                      ('dataset', 'tasks', 'name', 'frame', 'edges', 'files')})
+    if set(displayed_transitions) != set(expected_transitions):
+        raise ValueError('Transition references must cover all Cell and Gene datasets')
     overview_path = 'site/public/overview.manifest.json'
     overview = json.loads((root / overview_path).read_text())
     for relative, checksum in [(overview['source'],overview['source_sha256']),('site/public/overview.png',overview['preview_sha256'])]:
@@ -875,6 +913,7 @@ def export_data(root=ROOT, output=None):
                                    'url': source_data_root + '/' + directory})
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
                "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
+               "transition_references": transition_references,
                "kinetics": kinetics, "kinetics_summary": summary,
                "kinetics_common_membership": common_membership, "kinetics_method_order": kinetics_order,
                "kinetics_colors": kinetics_colors,

@@ -45,3 +45,27 @@ The Source data section reads the individual files in `data/source_data_manifest
 and groups them into main figures, supplementary figures and supplementary tables.
 Each directory provides file descriptions. A complete ZIP is available as an optional download.
 All file and directory links are pinned to the published Hugging Face content commit.
+
+## Annotated evaluation transitions
+
+Single-dataset Cell results and Gene CBDir results include a reference diagram
+on the saved UMAP coordinates (PC1/PC2 for Forebrain). Arrows come from the
+corresponding evaluation configuration; Retina has separate Cell and Gene
+versions. The diagrams share the reference cell labels and published palette.
+PNG/SVG downloads and the complete transition list are available beside each
+image.
+
+Generate the static diagrams with the plotting dependencies in
+[docs/environments.md](../docs/environments.md), including h5py:
+
+```bash
+python site/render_transition_references.py \
+  --artifact-root /path/to/velocity-artifacts \
+  --output site/public/transitions
+```
+
+Here the artifact root is the velocity directory itself, as for Gene evaluation.
+The renderer verifies registered input hashes and records the source files,
+coordinate identity, task-specific edges and output hashes in
+`site/public/transitions/index.json`. The normal website build checks the
+committed diagrams without reading external H5ADs or recalculating scores.

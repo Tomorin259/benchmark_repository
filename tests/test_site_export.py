@@ -1,5 +1,6 @@
 """Verify the website projection against its scientific source tables."""
 import csv
+from collections import defaultdict
 import hashlib
 import importlib.util
 import json
@@ -7,6 +8,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import shutil
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("site_export", ROOT / "site/export_data.py")
@@ -24,6 +26,36 @@ class SiteExportTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.temp.cleanup()
+
+    def test_transition_references_match_the_actual_scored_edges(self):
+        with (ROOT / 'evaluation/cell/inputs.tsv').open() as handle:
+            dataset_ids = {r['evaluation_dataset']: r['dataset_id'] for r in csv.DictReader(handle, delimiter='\t')}
+        expected = defaultdict(set)
+        for relative, task in [('evaluation/cell/results/cell_metrics_edge_details.csv', 'cell'),
+                               ('evaluation/cell/simulation/results/cell_metrics_edge_details.csv', 'cell'),
+                               ('evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv', 'gene')]:
+            with (ROOT / relative).open() as handle:
+                for row in csv.DictReader(handle):
+                    dataset = EXPORT.SIM_IDS.get(row['dataset'], dataset_ids.get(row['dataset'], row['dataset'].lower()))
+                    expected[(dataset, task)].add((row['source'], row['target']))
+        actual = {}
+        for entry in self.payload['transition_references']:
+            for task in entry['tasks']:
+                key = (entry['dataset'], task)
+                self.assertNotIn(key, actual)
+                actual[key] = set(map(tuple, entry['edges']))
+            for file in entry['files'].values():
+                self.assertEqual(hashlib.sha256((ROOT / 'site/public' / file['path']).read_bytes()).hexdigest(), file['sha256'])
+            svg = ET.parse(ROOT / 'site/public' / entry['files']['svg']['path'])
+            arrow_paths = [element for element in svg.iter()
+                           if element.tag.endswith('}path') and
+                           'stroke: #27323c' in element.attrib.get('style', '')]
+            self.assertEqual(len(arrow_paths), 2 * len(entry['edges']))
+        self.assertEqual(actual, expected)
+        self.assertEqual(len(self.payload['transition_references']), 18)
+        self.assertEqual(len(actual), 27)
+        self.assertIn(('Progenitor', 'Neuroblast'), actual[('retina', 'cell')])
+        self.assertNotIn(('Progenitor', 'Neuroblast'), actual[('retina', 'gene')])
 
     def test_every_cell_value_matches_frozen_input_identity(self):
         with (ROOT / EXPORT.CELL).open() as handle:

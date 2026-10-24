@@ -5,6 +5,7 @@ import OverallResults from './OverallResults.vue'
 import CrossLevel from './CrossLevel.vue'
 import StrategyResults from './StrategyResults.vue'
 import KineticsStreams from './KineticsStreams.vue'
+import TransitionReference from './TransitionReference.vue'
 
 const props = defineProps({ data:Object, initialLevel:{type:String,default:'cell'} })
 const levels=['overall','cell','gene','kinetics','cross']
@@ -16,6 +17,12 @@ const visualIndex=ref(null), visualLoading=ref(false), visualError=ref(''), read
 const streamMethods=ref([]), compareOpen=ref(false), enlarged=ref(null), dialog=ref(null), copied=ref(false)
 const summaryTask=ref('cell'), summaryStatistic=ref('mean'), summaryView=ref('table'), crossCase=ref(props.data.cross_cases[0].id)
 const allReal=computed(()=>mode.value==='cell'&&dataset.value==='__all_real__')
+const transitionReference=computed(()=>
+  mode.value==='cell'||mode.value==='gene'&&metric.value==='cbdir'
+    ? props.data.transition_references.find(r=>r.dataset===dataset.value&&r.tasks.includes(mode.value))
+    : null)
+const referenceOpen=ref(true)
+watch([dataset,mode],()=>{referenceOpen.value=true})
 const standard=computed(()=>['cell','gene','kinetics'].includes(mode.value))
 const specialKinetics=computed(()=>mode.value==='kinetics'&&['strategy','streams'].includes(scope.value))
 const strategyQuery=ref(''), strategyClass=ref(''), kineticMethods=ref([]), kineticCompareOpen=ref(false)
@@ -181,11 +188,16 @@ onMounted(async()=>{
   <OverallResults v-else-if="allReal" :data="data" cell-only v-model:statistic="summaryStatistic" v-model:view="summaryView"/>
   <section v-else class="panel result-panel"><div class="result-heading"><div><h2>{{ datasetName }}<span v-if="mode!=='cell'&&gene!=='__summary__'"> · {{ gene }}</span></h2><div class="scope-tags"><span v-if="scopeLabel" class="tag">{{ scopeLabel }}</span><span v-if="mode==='cell'&&dataset.startsWith('sim_')" class="tag">Simulation · Matched method outputs</span><span v-if="mode==='kinetics'&&branch" class="tag">{{ branch==='1'?'Secretory':'Enterocyte' }} branch</span></div></div><div class="guide-links"><a v-if="localCase" class="text-link" :href="`#results?level=cross&case=${localCase.id}`">Local comparison →</a><a class="text-link" href="#directory">Data & methods →</a></div></div>
     <div v-if="mode!=='cell'" class="result-context"><details class="metric-help" @keydown.esc="$event.currentTarget.open=false"><summary>{{ activeMetric.label }} ⓘ</summary><p>{{ activeMetric.definition }}</p><a href="#documentation">Metric reference →</a></details><span v-if="mode==='kinetics'&&scope==='expanded'&&comparison!=='available'" class="tag" :title="'Fixed for ' + commonMethods.map(m=>names[m]).join(', ')">Fixed common genes · {{ commonGenes.length }}</span></div>
+    <div class="result-content" :class="{'gene-summary-layout':mode==='gene'&&gene==='__summary__'&&transitionReference&&referenceOpen}">
+    <div v-if="transitionReference||mode==='cell'&&streamRows.length" class="dataset-visuals" :class="{'paired-reference':referenceOpen&&transitionReference&&mode==='cell'&&streamRows.length===1}">
+    <TransitionReference v-if="transitionReference" v-model:open="referenceOpen" :reference="transitionReference" :task="mode"/>
     <section v-if="mode==='cell'&&streamRows.length" id="stream-preview" class="stream-preview">
       <p v-if="dataset==='forebrain'" class="small">Display: PC1/PC2 · CBDir: 30 PCs · BATC: 2D UMAP</p>
       <div class="stream-grid" :class="{single:streamRows.length===1}"><article v-for="r in streamRows" :key="r.method"><div class="image-heading"><h3>{{ r.name }}</h3><a v-if="diagnosticFor(r.method)" class="small" :href="diagnosticLink(r.method)">Diagnostics →</a></div><button v-if="r.asset" class="phase-image" :aria-label="`Enlarge ${r.name} streamlines`" @click="enlarged=r"><img :src="`./${r.asset.path}`" :alt="`${datasetName}: ${r.name} cell velocity field`" loading="lazy"></button><p v-else>Streamlines unavailable.</p><dl class="metric-values"><div v-for="[key,label] in cellMetrics" :key="key"><dt>{{ label }}</dt><dd>{{ format(r[key]) }}</dd></div></dl><details v-if="r.n_cells<r.n_reference" class="coverage-note"><summary>Partial cell coverage</summary><p>{{ r.n_cells }} of {{ r.n_reference }} reference cells are aligned for this method. Metric-specific valid-sample counts are reported in the evaluation tables.</p></details></article></div>
       <div class="cell-legend" v-if="streamRows[0]?.asset"><span v-for="item in streamRows[0].asset.legend" :key="item.label"><i :style="{background:item.color}"></i>{{ item.label }}</span></div>
     </section>
+    </div>
+    <div class="score-content">
     <div class="table-toolbar"><div class="view-switch"><button class="text-button" :aria-pressed="display==='table'" @click="display='table'">{{ mode==='cell'?'All metrics':'Table' }}</button><button class="text-button" :aria-pressed="display==='plot'" @click="display='plot'">Score plot</button><button v-if="mode!=='cell'" class="text-button" :disabled="gene==='__summary__'" :aria-pressed="display==='visual'" @click="display='visual'">{{ mode==='gene'?'Phase portraits':'Trajectories' }}</button></div><div class="table-controls"><label v-if="mode==='cell'&&display==='plot'" class="order-label" for="plot-metric">Plot metric<select id="plot-metric" v-model="metric"><option v-for="[key,label] in cellMetrics" :key="key" :value="key">{{label}}</option></select></label><label class="order-label">Order<select v-model="order"><option value="method">Method</option><option value="descending">{{mode==='cell'?metricName+' ↓':'Score ↓'}}</option><option value="ascending">{{mode==='cell'?metricName+' ↑':'Score ↑'}}</option></select></label></div></div>
     <div v-if="display==='table'&&mode==='cell'" class="table-scroll"><table class="cell-scores"><thead><tr><th>Method</th><th class="numeric" v-for="[key,label] in cellMetrics" :key="key"><button @click="sortMetric(key)" :aria-label="`Sort by ${label}`">{{ label }}{{ metric===key&&order!=='method'?(order==='descending'?' ↓':' ↑'):'' }}</button></th></tr></thead><tbody><tr v-for="r in rows" :key="r.method"><td><button v-if="previewChoices.length" class="method-link" @click="preview(r.method)">{{ r.name }}</button><span v-else>{{r.name}}</span></td><td class="numeric" v-for="[key] in cellMetrics" :key="key">{{ format(r[key]) }}</td></tr></tbody></table></div>
     <div v-else-if="display==='table'" class="table-scroll"><table><thead><tr><th>Method</th><th class="numeric">{{ metricName }}</th><th v-if="metric!=='cossim'" class="numeric">{{ gene==='__summary__'?'Valid genes':mode==='gene'?'Source-cell observations':'Paired positions' }}</th><th v-if="hasStatus">Status</th></tr></thead><tbody><tr v-for="r in rows" :key="r.method"><td>{{ r.name }}<a v-if="diagnosticFor(r.method)" class="diagnostic-row-link" :href="diagnosticLink(r.method)">Diagnostics →</a><small v-if="r.method==='dynamo_labelled'" class="muted">Labeling-data comparator</small></td><td class="numeric" :title="String(r.value)">{{ format(r.value) }}</td><td v-if="metric!=='cossim'" class="numeric">{{ r.n_genes??r.n_cells??r.n_samples??'—' }}</td><td v-if="hasStatus">{{ status(r) }}</td></tr></tbody></table></div>
@@ -193,6 +205,7 @@ onMounted(async()=>{
     <template v-if="display==='visual'&&rows.length"><GeneVisual v-if="visualIndex" :index="visualIndex" :colors="data.kinetics_colors" :level="mode" :dataset="dataset" :gene="gene" :branch="branch" :parameter="parameter" :rows="rows"/><p v-else-if="visualLoading" role="status">Loading visual…</p><p v-else role="alert">{{ visualError||'No visual is available for this gene.' }}</p></template>
     <p v-if="!rows.length" class="empty">No methods match these selections.</p>
     <details v-if="mode==='kinetics'&&scope==='expanded'" class="source-details"><summary>Gene coverage</summary><span class="small muted">Available genes per method</span><div class="table-scroll"><table><thead><tr><th>Method</th><th>Candidate</th><th>Present</th><th>Valid</th><th>Undefined</th><th>Unavailable</th></tr></thead><tbody><tr v-for="r in coverageRows" :key="r.method"><td>{{ names[r.method] }}</td><td>{{ r.candidate_n }}</td><td>{{ r.present_n }}</td><td>{{ r.n_genes }}</td><td>{{ r.undefined_n }}</td><td>{{ r.unavailable_n }}</td></tr></tbody></table></div></details>
+    </div></div>
     <p class="reference-link"><a href="#documentation">Metric definitions & evaluation settings</a> · <a href="#downloads">Source data downloads</a></p>
   </section></div>
   <dialog v-if="enlarged" ref="dialog" class="image-dialog" :aria-label="`${enlarged.name} streamlines`" @cancel.prevent="enlarged=null" @click.self="enlarged=null"><div><button autofocus class="button secondary" @click="enlarged=null">Close</button><h3>{{ datasetName }} · {{ enlarged.name }}</h3><img :src="`./${enlarged.asset.path}`" :alt="`${enlarged.name} streamlines`"></div></dialog>
