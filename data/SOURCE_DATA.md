@@ -1,21 +1,21 @@
 # Source Data
 
-[Browse Source Data v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0) for the main and supplementary figures
+[Browse Source Data v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0) for the main and supplementary figures
 and tables. Files are available individually: 88 numerical/metadata tables,
 243 saved NPZ plot inputs, and the Figure 1 framework schematic PDF.
 Each figure/table directory describes its files and their corresponding panels.
 
 | Material | Browse |
 | --- | --- |
-| Main figures | [Figures 1–7](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/main_figures), including the Figure 1 schematic |
-| Supplementary figures | [Figures S1–S15](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/supplementary_figures) |
-| Supplementary tables | [Tables S1–S9](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/supplementary_tables) |
-| Figure/panel-to-file index | [SOURCE_INDEX.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/SOURCE_INDEX.tsv?download=true) |
-| Array field descriptions | [ARRAY_DICTIONARY.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/metadata/ARRAY_DICTIONARY.tsv?download=true) |
+| Main figures | [Figures 1–7](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/main_figures), including the Figure 1 schematic |
+| Supplementary figures | [Figures S1–S15](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/supplementary_figures) |
+| Supplementary tables | [Tables S1–S9](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/supplementary_tables) |
+| Figure/panel-to-file index | [SOURCE_INDEX.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/SOURCE_INDEX.tsv?download=true) |
+| Array field descriptions | [ARRAY_DICTIONARY.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/metadata/ARRAY_DICTIONARY.tsv?download=true) |
 
 Download only the CSV, TSV or NPZ files you need; individual files require no
 ZIP extraction. For all files, use the optional
-[Source_Data_complete.zip](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/ee269f4d3aad015f6a5089a403bff8e1f839f05c/source_data/v1.0.0/Source_Data_complete.zip?download=true) (175.03 MB).
+[Source_Data_complete.zip](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/db207997dd7cd76b04fdfb5ad023229080e837f0/source_data/v1.0.0/Source_Data_complete.zip?download=true) (175.03 MB).
 It extracts into Source_Data/ with the same directory layout. The
 [download manifest](source_data_manifest.tsv) records every individual file
 and the optional archive, with immutable URLs, sizes and SHA-256 checksums.
@@ -28,7 +28,7 @@ from huggingface_hub import snapshot_download
 snapshot_download(
     repo_id="Zelin259/rna-velocity-benchmark",
     repo_type="dataset",
-    revision="ee269f4d3aad015f6a5089a403bff8e1f839f05c",
+    revision="db207997dd7cd76b04fdfb5ad023229080e837f0",
     allow_patterns="source_data/v1.0.0/**",
     ignore_patterns="*.zip",
     local_dir="benchmark-results",
