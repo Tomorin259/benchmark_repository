@@ -293,8 +293,8 @@ class SiteExportTests(unittest.TestCase):
             self.assertEqual(row['bytes'], int(source['bytes']))
             self.assertEqual(row['sha256'], registry[row['artifact_id']]['sha256'])
             self.assertEqual(row['url'], registry[row['artifact_id']]['uri'])
-            self.assertRegex(row['url'], r'/resolve/[0-9a-f]{40}/source_data/v1\.0\.0/')
-        self.assertEqual(sum(row['path'].endswith('.npz') for row in actual), 243)
+            self.assertRegex(row['url'], r'/resolve/(?:v1\.0\.1|[0-9a-f]{40})/source_data/v1\.0\.1/')
+        self.assertEqual(sum(row['path'].endswith('.npz') for row in actual), 246)
         self.assertEqual(sum(row['path'].endswith('.zip') for row in actual), 1)
         self.assertFalse(any(row['path'].startswith('reproduction/') or
                              row['path'].endswith('.py') for row in actual))
@@ -311,14 +311,15 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(self.payload['source_data_archive']['path'], 'Source_Data_complete.zip')
         groups = self.payload['source_data_groups']
         self.assertEqual([row['id'] for row in groups],
-                         ['main_figures', 'supplementary_figures', 'supplementary_tables'])
+                         ['main_figures', 'supplementary_figures', 'supplementary_tables', 'metadata/simulation_truth'])
         for group in groups:
             files = [row for row in actual if row['path'].startswith(group['id'] + '/')]
             self.assertTrue(files)
             self.assertEqual(group['files'], len(files))
             self.assertEqual(group['bytes'], sum(row['bytes'] for row in files))
             self.assertEqual(group['url'], self.payload['source_data_root'] + '/' + group['id'])
-            self.assertTrue(any(row['path'] == group['id'] + '/README.md' for row in files))
+            index_name = 'manifest.json' if group['id'] == 'metadata/simulation_truth' else 'README.md'
+            self.assertTrue(any(row['path'] == group['id'] + '/' + index_name for row in files))
 
     def test_individual_inputs_and_upstream_sources_are_separate(self):
         files = self.payload['input_files']
@@ -337,18 +338,18 @@ class SiteExportTests(unittest.TestCase):
         members = self.payload['result_members']
         self.assertEqual(len(packages), 339)
         self.assertEqual(len(members), 388)
-        self.assertEqual(sum(row['bytes'] for row in packages), 149576197521)
-        self.assertEqual(sum(row['member_bytes'] for row in members), 252167762795)
+        self.assertEqual(sum(row['bytes'] for row in packages), 150607413075)
+        self.assertEqual(sum(row['member_bytes'] for row in members), 253295202347)
         self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 325)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
-        self.assertEqual({row['release_version'] for row in packages}, {'v1.0.0'})
+        self.assertEqual({row['release_version'] for row in packages}, {'v1.0.1'})
         base = [row for row in packages if '/diagnostics/multivelo/' not in row['repository_path']]
         self.assertEqual(len(base), 338)
-        self.assertEqual(sum(row['bytes'] for row in base), 149558222960)
+        self.assertEqual(sum(row['bytes'] for row in base), 150589438514)
         supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
         self.assertEqual(len(supplement), 1)
         self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')
-        self.assertIn('/resolve/v1.0.0/v1.0.0/diagnostics/multivelo/', supplement[0]['url'])
+        self.assertIn('/resolve/v1.0.1/v1.0.1/diagnostics/multivelo/', supplement[0]['url'])
         indexed = {row['package_id']: row for row in packages}
         for package in packages:
             selected = [row for row in members if row['package_id'] == package['package_id']]
@@ -537,7 +538,14 @@ class SiteExportTests(unittest.TestCase):
                         if r['path'].startswith('supplementary_figures/Supplementary_Figure_15/')}
         self.assertTrue({'BoostALL_5_phase.npz', 'B_gene_scores.csv', 'B_condition_summary.csv'} <= set(source_files))
         genes = (ROOT / 'supplement/multivelo/figures/scores_used.csv').read_bytes()
-        self.assertEqual(source_files['B_gene_scores.csv']['sha256'], hashlib.sha256(genes).hexdigest())
+        current = hashlib.sha256(genes).hexdigest()
+        pending = manifest.get('pending_source_data_release')
+        if pending:
+            self.assertEqual(pending['prepared_gene_scores_sha256'], current)
+            self.assertEqual(source_files['B_gene_scores.csv']['sha256'], pending['published_gene_scores_sha256'])
+            self.assertNotEqual(pending['published_gene_scores_sha256'], current)
+        else:
+            self.assertEqual(source_files['B_gene_scores.csv']['sha256'], current)
 
     def test_visual_bundle_generation_and_validation_commits_are_distinct(self):
         historical = json.loads((ROOT / 'site/public/visuals/index.json').read_text())['source_commit']

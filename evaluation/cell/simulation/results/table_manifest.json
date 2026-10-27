@@ -1,6 +1,6 @@
 {
   "source": "evaluation/cell/simulation/results/cell_metrics.csv",
-  "source_sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296",
+  "source_sha256": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008",
   "scenarios": [
     "Normal + MURK",
     "Normal + branching",
@@ -20,7 +20,7 @@
   "score_count": 135,
   "display_format": ".4f",
   "source_precision": "Unchanged full-precision CSV",
-  "scores_rounding_to_one_at_two_decimals": 16,
+  "scores_rounding_to_one_at_two_decimals": 18,
   "scores_rounding_to_one_at_four_decimals": 2,
   "latex_dependencies": [
     "booktabs",

@@ -67,7 +67,7 @@ DentateGyrus_lamanno,cellDancer,0.2482865696819138,,cell_cbdir
 DentateGyrus_lamanno,DeepVelo,0.6624536983380375,,cell_cbdir
 DentateGyrus_lamanno,DeepVelo_scv,0.1457488944203644,,cell_cbdir
 DentateGyrus_lamanno,Graphvelo_scv,0.3593058855220187,,cell_cbdir
-DentateGyrus_lamanno,MultiVelo,0.3987371191713229,,cell_cbdir
+DentateGyrus_lamanno,MultiVelo,0.3753293352302484,,cell_cbdir
 DentateGyrus_lamanno,scVelo_dyn,0.1880970937940659,,cell_cbdir
 DentateGyrus_lamanno,UniTVelo,0.5099564108484648,,cell_cbdir
 DentateGyrus_lamanno,veloVI,0.6559982809791071,,cell_cbdir
@@ -76,7 +76,7 @@ bonemarrow,cellDancer,-0.7925886826844661,,cell_cbdir
 bonemarrow,DeepVelo,-0.7772617700226849,,cell_cbdir
 bonemarrow,DeepVelo_scv,-0.8396250029078346,,cell_cbdir
 bonemarrow,Graphvelo_scv,0.5078385495166576,,cell_cbdir
-bonemarrow,MultiVelo,-0.8185442810568121,,cell_cbdir
+bonemarrow,MultiVelo,-0.5149981871954755,,cell_cbdir
 bonemarrow,scVelo_dyn,-0.8392597668975381,,cell_cbdir
 bonemarrow,UniTVelo,0.7329803734511212,,cell_cbdir
 bonemarrow,veloVI,-0.4225881557509667,,cell_cbdir
@@ -85,7 +85,7 @@ capo_pre,cellDancer,-0.0673429604047642,,cell_cbdir
 capo_pre,DeepVelo,0.3766789947350811,,cell_cbdir
 capo_pre,DeepVelo_scv,0.3986683223765913,,cell_cbdir
 capo_pre,Graphvelo_scv,0.4300901190760934,,cell_cbdir
-capo_pre,MultiVelo,0.4209840689014409,,cell_cbdir
+capo_pre,MultiVelo,-0.5094038266952993,,cell_cbdir
 capo_pre,scVelo_dyn,0.3959534978605352,,cell_cbdir
 capo_pre,UniTVelo,0.1412689866678591,,cell_cbdir
 capo_pre,veloVI,0.4398233392944326,,cell_cbdir
@@ -94,7 +94,7 @@ gastrulation,cellDancer,0.6691701687640763,,cell_cbdir
 gastrulation,DeepVelo,0.3943322917776723,,cell_cbdir
 gastrulation,DeepVelo_scv,-0.4447555043087796,,cell_cbdir
 gastrulation,Graphvelo_scv,0.2664116122937067,,cell_cbdir
-gastrulation,MultiVelo,0.1243185218448583,,cell_cbdir
+gastrulation,MultiVelo,-0.6683684139873194,,cell_cbdir
 gastrulation,scVelo_dyn,-0.1782621576295438,,cell_cbdir
 gastrulation,UniTVelo,0.8361920582206784,,cell_cbdir
 gastrulation,veloVI,0.04439078527205,,cell_cbdir
@@ -103,7 +103,7 @@ mousebrain,cellDancer,0.149323476523822,,cell_cbdir
 mousebrain,DeepVelo,0.4063396169801062,,cell_cbdir
 mousebrain,DeepVelo_scv,0.3895512417929038,,cell_cbdir
 mousebrain,Graphvelo_scv,0.5300688319681865,,cell_cbdir
-mousebrain,MultiVelo,0.5104802917190007,,cell_cbdir
+mousebrain,MultiVelo,0.3435411233396056,,cell_cbdir
 mousebrain,scVelo_dyn,0.3858012824356577,,cell_cbdir
 mousebrain,UniTVelo,0.6039506791827005,,cell_cbdir
 mousebrain,veloVI,0.3998360990354789,,cell_cbdir
@@ -112,7 +112,7 @@ pancreas,cellDancer,0.4560370369540037,,cell_cbdir
 pancreas,DeepVelo,0.564963680994926,,cell_cbdir
 pancreas,DeepVelo_scv,0.4872034895058652,,cell_cbdir
 pancreas,Graphvelo_scv,0.4699439893082579,,cell_cbdir
-pancreas,MultiVelo,0.5374908135210122,,cell_cbdir
+pancreas,MultiVelo,0.5410464763241477,,cell_cbdir
 pancreas,scVelo_dyn,0.4861008725815743,,cell_cbdir
 pancreas,UniTVelo,0.5420330134165275,,cell_cbdir
 pancreas,veloVI,0.5607357030743839,,cell_cbdir
@@ -121,7 +121,7 @@ retina,cellDancer,0.4006793938040004,,cell_cbdir
 retina,DeepVelo,0.6114664294347745,,cell_cbdir
 retina,DeepVelo_scv,0.4602525591852933,,cell_cbdir
 retina,Graphvelo_scv,0.6620911552697988,,cell_cbdir
-retina,MultiVelo,0.4932084621028551,,cell_cbdir
+retina,MultiVelo,0.5437886327967041,,cell_cbdir
 retina,scVelo_dyn,0.4673575938734121,,cell_cbdir
 retina,UniTVelo,0.4492882925711127,,cell_cbdir
 retina,veloVI,0.574798272428174,,cell_cbdir
@@ -130,7 +130,7 @@ DentateGyrus_lamanno,cellDancer,0.0879454810326346,,batc
 DentateGyrus_lamanno,DeepVelo,0.7322850908565786,,batc
 DentateGyrus_lamanno,DeepVelo_scv,0.2039345211894488,,batc
 DentateGyrus_lamanno,Graphvelo_scv,0.4106280207882955,,batc
-DentateGyrus_lamanno,MultiVelo,0.3827516215549849,,batc
+DentateGyrus_lamanno,MultiVelo,0.6097245269451608,,batc
 DentateGyrus_lamanno,scVelo_dyn,0.2281124798004305,,batc
 DentateGyrus_lamanno,UniTVelo,0.6879207175100388,,batc
 DentateGyrus_lamanno,veloVI,0.7439349148494911,,batc
@@ -139,7 +139,7 @@ bonemarrow,cellDancer,-0.5848407029874179,,batc
 bonemarrow,DeepVelo,-0.5492540147718309,,batc
 bonemarrow,DeepVelo_scv,-0.5996543042706675,,batc
 bonemarrow,Graphvelo_scv,0.549337695348408,,batc
-bonemarrow,MultiVelo,-0.5570492357056496,,batc
+bonemarrow,MultiVelo,-0.0523165713276216,,batc
 bonemarrow,scVelo_dyn,-0.5959678740922328,,batc
 bonemarrow,UniTVelo,0.7633539366719791,,batc
 bonemarrow,veloVI,-0.2229079769480889,,batc
@@ -148,7 +148,7 @@ capo_pre,cellDancer,-0.3606881543261594,,batc
 capo_pre,DeepVelo,0.2567781168515188,,batc
 capo_pre,DeepVelo_scv,0.4015147121654975,,batc
 capo_pre,Graphvelo_scv,0.4531429511539405,,batc
-capo_pre,MultiVelo,0.39720243489194,,batc
+capo_pre,MultiVelo,-0.5987533255426297,,batc
 capo_pre,scVelo_dyn,0.4006338414555135,,batc
 capo_pre,UniTVelo,0.4169322382854936,,batc
 capo_pre,veloVI,0.488858848144383,,batc
@@ -157,7 +157,7 @@ gastrulation,cellDancer,0.7616628851553089,,batc
 gastrulation,DeepVelo,0.7299382894448381,,batc
 gastrulation,DeepVelo_scv,-0.2568079391886628,,batc
 gastrulation,Graphvelo_scv,0.5044119901948294,,batc
-gastrulation,MultiVelo,0.3793975373842527,,batc
+gastrulation,MultiVelo,-0.4830213163361073,,batc
 gastrulation,scVelo_dyn,0.0260596560620816,,batc
 gastrulation,UniTVelo,0.9569085943880188,,batc
 gastrulation,veloVI,0.2389056412447987,,batc
@@ -166,7 +166,7 @@ mousebrain,cellDancer,0.1425336630915946,,batc
 mousebrain,DeepVelo,0.4370972498293466,,batc
 mousebrain,DeepVelo_scv,0.2173966639589364,,batc
 mousebrain,Graphvelo_scv,0.5879520177703205,,batc
-mousebrain,MultiVelo,0.5073215164043507,,batc
+mousebrain,MultiVelo,0.3868257246176071,,batc
 mousebrain,scVelo_dyn,0.2166199951116352,,batc
 mousebrain,UniTVelo,0.7595751399703475,,batc
 mousebrain,veloVI,0.5403876519093121,,batc
@@ -175,7 +175,7 @@ pancreas,cellDancer,0.7082521858814216,,batc
 pancreas,DeepVelo,0.7378796680396963,,batc
 pancreas,DeepVelo_scv,0.5180592977206121,,batc
 pancreas,Graphvelo_scv,0.5858845009242724,,batc
-pancreas,MultiVelo,0.6529739880859224,,batc
+pancreas,MultiVelo,0.5907968615244377,,batc
 pancreas,scVelo_dyn,0.5164717646641493,,batc
 pancreas,UniTVelo,0.8118445964901301,,batc
 pancreas,veloVI,0.6348952052150697,,batc
@@ -184,7 +184,7 @@ retina,cellDancer,0.3765422453650128,,batc
 retina,DeepVelo,0.1440078075311153,,batc
 retina,DeepVelo_scv,0.4135432602692256,,batc
 retina,Graphvelo_scv,0.4764857325530167,,batc
-retina,MultiVelo,0.0496538363742011,,batc
+retina,MultiVelo,0.2818880529015335,,batc
 retina,scVelo_dyn,0.3995384288379156,,batc
 retina,UniTVelo,0.0806257924502089,,batc
 retina,veloVI,0.3337466032631007,,batc

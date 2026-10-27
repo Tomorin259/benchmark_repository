@@ -261,13 +261,30 @@ def score_gene(ms, mu, velocity_s, velocity_u, labels, neighbors, edges):
     return global_score, edge_rows, len(edge_means), evaluable_source_cells
 
 
-def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_asset_path, reference_label_path=None, simulation=False, neighbor_mode="reference", methods=METHOD_ORDER):
+def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_asset_path, reference_label_path=None, simulation=False, truth_path=None, neighbor_mode="reference", methods=METHOD_ORDER):
     reference_names, reference_indices = read_reference_asset(reference_asset_path)
     neighbor_rows = []
     score_rows = []
     edge_rows = []
     unit_rows = []
     cossim_rows = []
+    truth_reference = None
+    if simulation:
+        if truth_path is None:
+            raise ValueError("Simulation CosSim requires a noise-free truth asset")
+        with np.load(truth_path, allow_pickle=False) as saved:
+            cells = saved["cell_ids"].astype(str)
+            genes = saved["gene_names"].astype(str)
+            truth_reference = {
+                "cells": cells,
+                "genes": genes,
+                "s": saved["velocity_s_true"].astype(np.float64),
+                "u": saved["velocity_u_true"].astype(np.float64),
+            }
+        if len(set(cells)) != len(cells) or len(set(genes)) != len(genes):
+            raise ValueError("Simulation truth cell/gene identifiers are not unique")
+        if truth_reference["s"].shape != (len(cells), len(genes)) or truth_reference["u"].shape != truth_reference["s"].shape:
+            raise ValueError("Simulation truth shape differs from cell/gene identifiers")
     for method in methods:
         path = ARTIFACT_ROOT / paths[method]
         if not path.is_file():
@@ -323,13 +340,21 @@ def evaluate_dataset(dataset, config, paths, old_scores, output_root, reference_
         velocity_s_matrix, velocity_u_matrix, invalid_velocity = velocity_matrix(
             adata, method, positions, unit_multipliers=unit_multipliers)
         if simulation:
-            # CosSim historically uses raw predictions and a norm mask, without
-            # CBDir's NaN/Inf replacement or clipping. Truth stays in its units.
+            # CosSim uses raw predictions and the original norm mask; only the
+            # reference velocity changes to the paired noise-free ODE state.
             s_key, u_key = VELOCITY_KEYS[method]
             raw_s = dense_values(adata.layers[s_key][:, positions]).astype(np.float64)
             raw_u = dense_values(adata.layers[u_key][:, positions]).astype(np.float64)
-            truth_s = dense_values(adata.layers["velocity_s_true"][:, positions]).astype(np.float64)
-            truth_u = dense_values(adata.layers["velocity_u_true"][:, positions]).astype(np.float64)
+            cell_index = {name: row for row, name in enumerate(truth_reference["cells"])}
+            gene_index = {name: column for column, name in enumerate(truth_reference["genes"])}
+            if len(names) != len(truth_reference["cells"]) or set(names) != set(cell_index):
+                raise ValueError(f"{dataset}/{method}: truth cells do not match method output")
+            if not set(selected).issubset(gene_index):
+                raise ValueError(f"{dataset}/{method}: truth genes do not cover method output")
+            truth_rows = np.asarray([cell_index[name] for name in names], dtype=np.int64)
+            truth_columns = np.asarray([gene_index[gene] for gene in selected], dtype=np.int64)
+            truth_s = truth_reference["s"][np.ix_(truth_rows, truth_columns)]
+            truth_u = truth_reference["u"][np.ix_(truth_rows, truth_columns)]
             for column, gene in enumerate(selected):
                 native = np.column_stack([raw_s[:, column], raw_u[:, column]])
                 restored = (native * np.array([unit_multipliers[0][column], unit_multipliers[1][column]])
@@ -515,7 +540,8 @@ def main():
             old_scores = parse_old_score_file(
                 old_path, {value: key for key, value in SIM_METHOD_KEYS.items()}
             )
-            score_rows, edge_rows, neighbor_rows, unit_rows, cossim_rows = evaluate_dataset(dataset, config, SIM_PATHS[dataset], old_scores, output_root, asset_path, simulation=True, neighbor_mode=args.neighbor_mode, methods=args.methods)
+            truth_path = REPOSITORY_ROOT / "evaluation/gene/simulation/truth" / f"{dataset}_truth.npz"
+            score_rows, edge_rows, neighbor_rows, unit_rows, cossim_rows = evaluate_dataset(dataset, config, SIM_PATHS[dataset], old_scores, output_root, asset_path, simulation=True, truth_path=truth_path, neighbor_mode=args.neighbor_mode, methods=args.methods)
             scope_dir = output_root / "simulation" / dataset
         else:
             raise ValueError(f"unknown dataset/scenario: {dataset}")
@@ -540,6 +566,8 @@ def main():
             "method_paths": (REAL_CONFIGS[dataset]["paths"] if dataset in REAL_CONFIGS else SIM_PATHS[dataset]),
             "label_reference": public_locator(ARTIFACT_ROOT / config["label_reference"]) if dataset in REAL_CONFIGS else None,
             "label_reference_sha256": sha256(ARTIFACT_ROOT / config["label_reference"]) if dataset in REAL_CONFIGS else None,
+            "simulation_truth": public_locator(truth_path) if dataset in SIM_CONFIGS else None,
+            "simulation_truth_sha256": sha256(truth_path) if dataset in SIM_CONFIGS else None,
         }
     write_csv(output_root / "gene_cbdir_reference30_all.csv", all_scores)
     write_csv(output_root / "gene_cbdir_edge_details_reference30_all.csv", all_edges)
@@ -552,6 +580,7 @@ def main():
         "path": "simulation/gene_cossim.csv",
         "methods": args.methods,
         "truth_layers": ["velocity_s_true", "velocity_u_true"],
+        "truth_source": "evaluation/gene/simulation/truth/{scenario}_truth.npz",
         "norm_mask": "prediction norm > 1e-6 and truth norm > 1e-6",
         "prediction_cleanup": "none",
         "n_rows": len(all_cossim),

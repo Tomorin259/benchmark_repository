@@ -1,21 +1,21 @@
 Figure7_Method,Source_Method_Key,Real_CBDir_mean_plus_1,Real_CBDir_SD,Real_CBDir_n_datasets,Real_CBDir_n_gene_rows,Sim_CBDir_mean_plus_1,Sim_CBDir_n_scenarios,Sim_CosSim_mean_plus_1,Sim_CosSim_n_scenarios,Kinetic_Spearman_alpha_mean_plus_1,Kinetic_Spearman_alpha_n_systems,Kinetic_Spearman_alpha_n_gene_rows,Kinetic_Spearman_gamma_mean_plus_1,Kinetic_Spearman_gamma_n_systems,Kinetic_Spearman_gamma_n_gene_rows
 scVelo_deterministic,,,,,,,,,,,,,,,
 scVelo_stochastic,,,,,,,,,,,,,,,
-scVelo_dynamic,scVelo_dyn,1.0425,0.0813,7.0,59.0,1.4618,3,1.6289,3,,,,,,
-MultiVelo (RNA_only),MultiVelo,1.0565,0.1088,7.0,59.0,1.5640,3,1.7573,3,,,,,,
-UniTVelo,UniTVelo,1.1627,0.1189,7.0,59.0,1.2751,3,1.3737,3,,,,,,
+scVelo_dynamic,scVelo_dyn,1.0425,0.0813,7.0,59.0,1.4618,3,1.6899,3,,,,,,
+MultiVelo (RNA_only),MultiVelo,1.0565,0.1088,7.0,59.0,1.5640,3,1.8447,3,,,,,,
+UniTVelo,UniTVelo,1.1627,0.1189,7.0,59.0,1.2751,3,1.3899,3,,,,,,
 UniTVelo(mode2),,,,,,,,,,,,,,,
 Dynamo(label data),Dynamo,,,,,,,,,1.6443091561579468,2,535,,,
-TIvelo,TIvelo,1.3353,0.0544,7.0,44.0,1.0141,3,0.9314,3,,,,,,
+TIvelo,TIvelo,1.3353,0.0544,7.0,44.0,1.0141,3,0.9161,3,,,,,,
 cell2fate,,,,,,,,,,,,,,,
 TFvelo,,,,,,,,,,,,,,,
 veloAE,,,,,,,,,,,,,,,
-veloVI,veloVI,1.1032,0.0573,7.0,47.0,1.0445,3,1.0765,3,,,,,,
+veloVI,veloVI,1.1032,0.0573,7.0,47.0,1.0445,3,1.0689,3,,,,,,
 DeepKINET,DeepKINET,,,,,,,,,,,,0.9616437570186175,2,790
 TSvelo,TSvelo,,,,,,,,,1.492671187618856,1,65,,,
-cellDancer,cellDancer,1.0724,0.0709,7.0,59.0,1.5156,3,1.6726,3,0.9836105844466401,2,790,0.8596805263336675,2,790
-DeepVelo,DeepVelo,1.1197,0.0785,7.0,59.0,1.1943,3,1.2590,3,1.3150070141443386,2,790,1.0632843444677784,2,789
+cellDancer,cellDancer,1.0724,0.0709,7.0,59.0,1.5156,3,1.7453,3,0.9836105844466401,2,790,0.8596805263336675,2,790
+DeepVelo,DeepVelo,1.1197,0.0785,7.0,59.0,1.1943,3,1.3262,3,1.3150070141443386,2,790,1.0632843444677784,2,789
 SDEvelo,,,,,,,,,,,,,,,
-DeepVelo_scv,DeepVelo_scv,1.0293,0.0881,7.0,44.0,1.4694,3,1.6101,3,,,,,,
-GraphVelo_scv,Graphvelo_scv,1.1235,0.0714,7.0,59.0,1.5211,3,1.6624,3,,,,,,
+DeepVelo_scv,DeepVelo_scv,1.0293,0.0881,7.0,44.0,1.4694,3,1.6695,3,,,,,,
+GraphVelo_scv,Graphvelo_scv,1.1235,0.0714,7.0,59.0,1.5211,3,1.7258,3,,,,,,
 GraphVelo_dyn,,,,,,,,,,,,,,,

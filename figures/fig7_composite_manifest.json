@@ -3,29 +3,29 @@
   "figure": "Figure 7",
   "assembly": {
     "path": "figures/assembly/fig7/fig7.pptx",
-    "sha256": "c7c60245af8ab8d5f9a1b08ed9d0e1b9e71a41c6f148175772cb8d5d8c704f4b"
+    "sha256": "36a868469e5597ae43b476584b453d1003e575b4faf25122cfeb1ea8a9052743"
   },
   "output": {
     "path": "figures/figSeven.pdf",
-    "sha256": "8716d7a7e5e61aeeba4886d24cfb34c6be5e47f314ddc8e7fd681ba28f23d1e0",
-    "status": "current_user_export_cropped"
+    "sha256": "b267721bf095d493aa765dd7532fead94144b8b74d47a82370ae54130f341b3d",
+    "status": "author_exported_cropped_pdf"
   },
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
+      "sha256": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_wps_values.csv",
-      "sha256": "2a815d3e93b4dbd1506a8543fee10d6de9923f9816bfe4c6596b10a00726dbf8"
+      "sha256": "2ca0a57a12c9ec3b152e5d51311475391f59b9129ae9729a291fe5354ca87e64"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_dataset_means.csv",
-      "sha256": "bdee3492d99395a9aa8df491830e21df8410544810bb8aecc3d44b174ccf891a"
+      "sha256": "5f463bf604ddbb6f82ddbcf607fd33d0462021e2c250ffe741c5fec722fa9d79"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_gene_metric_summary.csv",
-      "sha256": "73cf723f1b168940d8bcd5eee10c5ddc97833185f5518ac2667ff24454e0fc0a"
+      "sha256": "8b148a667cf7fdfca90740aebd81cbb7eb3fbce1cd2bb507f4b3499b47ab1cbd"
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_kinetic_component_means.csv",
@@ -33,7 +33,7 @@
     },
     {
       "path": "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv",
-      "sha256": "0841fa02fa66b7bef3640ea518a613fb78493396100a596ace401a138497b9b6"
+      "sha256": "3484b0f59f834d296b87cf4017ac3acc4a76f9531d28a1a36ed6db94fa6e89b9"
     }
   ],
   "export": {
@@ -53,61 +53,59 @@
     ],
     "assembly_mode": "The author re-exported the updated native editable PowerPoint. Only the blank lower slide area is cropped; vector content, chart geometry, colors and text are preserved.",
     "source_pdf": {
-      "filename": "图7.pdf",
-      "sha256": "d2eaf739ac2682a0ed6bbf352e7dd583954a7653cc86875c996e68ec0fdbcb56",
-      "creator": "WPS 演示",
-      "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
-      "creation_date": "2026-10-19 01:40:18+08:00",
+      "filename": "\u56fe7.pdf",
+      "sha256": "d4b72ac5dde15cd6e68e1ebcd7f8a23b3892811f4b04927f7d2089d3dbf9faea",
       "page_count": 1,
       "media_box_points": [
-        0.0,
-        0.0,
-        540.0,
+        0,
+        0,
+        540,
         779.8
-      ]
+      ],
+      "creation_date": "2026-10-27T03:16:45+08:00"
     },
     "applies_to_previous_pdf": false
   },
   "embedded_workbooks": [
     {
       "path": "ppt/embeddings/Workbook1.xlsx",
-      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
+      "sha256": "ac7c819ad4addfdb5a6db5a3e926510fb77b532c96484fa733ba44e44440d2a4"
     },
     {
       "path": "ppt/embeddings/Workbook10.xlsx",
-      "sha256": "20d476ae76e0f5c312b46218231e1e7a9408e0f91a8261d72a412f20f013ad6c"
+      "sha256": "9e74b8426c71bb1b355c491d1f45099c0a90f34d3fb8b33dff5b95646f736394"
     },
     {
       "path": "ppt/embeddings/Workbook2.xlsx",
-      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
+      "sha256": "ac7c819ad4addfdb5a6db5a3e926510fb77b532c96484fa733ba44e44440d2a4"
     },
     {
       "path": "ppt/embeddings/Workbook3.xlsx",
-      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
+      "sha256": "ac7c819ad4addfdb5a6db5a3e926510fb77b532c96484fa733ba44e44440d2a4"
     },
     {
       "path": "ppt/embeddings/Workbook4.xlsx",
-      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
+      "sha256": "ac7c819ad4addfdb5a6db5a3e926510fb77b532c96484fa733ba44e44440d2a4"
     },
     {
       "path": "ppt/embeddings/Workbook5.xlsx",
-      "sha256": "1ff7ee508f60da472aa8092b330279f19e7a24d3701148c8e8869b90238b173e"
+      "sha256": "ad2bf9c9ebef3e50ec49d21e1affcd110768ada910c45a5f36da1a8c0468734c"
     },
     {
       "path": "ppt/embeddings/Workbook6.xlsx",
-      "sha256": "20d476ae76e0f5c312b46218231e1e7a9408e0f91a8261d72a412f20f013ad6c"
+      "sha256": "9e74b8426c71bb1b355c491d1f45099c0a90f34d3fb8b33dff5b95646f736394"
     },
     {
       "path": "ppt/embeddings/Workbook7.xlsx",
-      "sha256": "20d476ae76e0f5c312b46218231e1e7a9408e0f91a8261d72a412f20f013ad6c"
+      "sha256": "9e74b8426c71bb1b355c491d1f45099c0a90f34d3fb8b33dff5b95646f736394"
     },
     {
       "path": "ppt/embeddings/Workbook8.xlsx",
-      "sha256": "20d476ae76e0f5c312b46218231e1e7a9408e0f91a8261d72a412f20f013ad6c"
+      "sha256": "9e74b8426c71bb1b355c491d1f45099c0a90f34d3fb8b33dff5b95646f736394"
     },
     {
       "path": "ppt/embeddings/Workbook9.xlsx",
-      "sha256": "20d476ae76e0f5c312b46218231e1e7a9408e0f91a8261d72a412f20f013ad6c"
+      "sha256": "9e74b8426c71bb1b355c491d1f45099c0a90f34d3fb8b33dff5b95646f736394"
     }
   ],
   "numerical_contract": {
@@ -132,7 +130,7 @@
     },
     {
       "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-      "sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
+      "sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
     },
     {
       "path": "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv",
@@ -176,26 +174,37 @@
     "current_pdf_content_stream_unchanged": true
   },
   "last_pdf_verification": {
-    "user_export_creator": "WPS 演示",
-    "user_export_producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
-    "user_export_sha256": "d2eaf739ac2682a0ed6bbf352e7dd583954a7653cc86875c996e68ec0fdbcb56",
-    "cropped_pdf_sha256": "8716d7a7e5e61aeeba4886d24cfb34c6be5e47f314ddc8e7fd681ba28f23d1e0",
-    "source_media_box_points": [
-      0.0,
-      0.0,
-      540.0,
-      779.8
-    ],
-    "final_media_and_crop_box_points": [
+    "filename": "\u56fe7.pdf",
+    "source_pdf_sha256": "d4b72ac5dde15cd6e68e1ebcd7f8a23b3892811f4b04927f7d2089d3dbf9faea",
+    "cropped_pdf_sha256": "b267721bf095d493aa765dd7532fead94144b8b74d47a82370ae54130f341b3d",
+    "author_assembly_filename": "\u56fe7.pptx",
+    "author_assembly_sha256": "638315d8d0cb857bf7c5f6a46d3eb4c7be3dbb7fc862fa4d2eb854558828263e",
+    "crop_box_pt": [
       0.0,
       315.395,
       540.0,
       779.8
     ],
-    "decoded_content_stream_sha256": "f0e71c608b6d0c3f4ab8085839a4b7f3c828bdac1300523c3118b591c9c2dfb3",
-    "cropped_pdf_content_stream_unchanged": true,
-    "crop_applied_by_page_boxes_only": true,
-    "visual_render_inspected": true
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
   },
-  "pending_pdf_export": false
+  "pending_pdf_export": false,
+  "pending_shared_assembly": false,
+  "input_role": "Current numerical materials and accepted author-exported composite.",
+  "pending_material_assembly": false,
+  "author_export": {
+    "filename": "\u56fe7.pdf",
+    "source_pdf_sha256": "d4b72ac5dde15cd6e68e1ebcd7f8a23b3892811f4b04927f7d2089d3dbf9faea",
+    "cropped_pdf_sha256": "b267721bf095d493aa765dd7532fead94144b8b74d47a82370ae54130f341b3d",
+    "author_assembly_filename": "\u56fe7.pptx",
+    "author_assembly_sha256": "638315d8d0cb857bf7c5f6a46d3eb4c7be3dbb7fc862fa4d2eb854558828263e",
+    "crop_box_pt": [
+      0.0,
+      315.395,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
+  }
 }

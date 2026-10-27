@@ -32,10 +32,12 @@ and the retained TiVelo parity checks pass.
   `all` (hybrid). Historical reference H5ADs and directed adjacent-bin edges
   follow `SIM_CONFIGS` in [the Gene evaluator](../../gene/run_reference30_gene_cbdir.py):
   nine Branch-B edges for `murk`, nine per branch for the other scenarios.
-- Method H5ADs and spliced velocity layers match the
+- Method outputs follow the
   [Gene score sources](../../gene/results/gene_cbdir_reference30_all.csv).
-  The comparison unit is one scenario by one method, using the registered
-  historical inputs.
+  MultiVelo Cell scoring uses the official `velo_s_norm` and matching projection
+  derived from the same native fit; [native_outputs.tsv](../native_outputs.tsv)
+  records the fit and Cell output identities. The comparison unit is one
+  scenario by one method, using the registered historical inputs.
 - Every method within a scenario shares the fixed 30-neighbor reference graph,
   expression state and historical UMAP. The Cell reference adds distances,
   connectivities and `Ms`/`Mu` to the Gene reference's cell names and indices;

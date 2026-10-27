@@ -1,0 +1,12 @@
+{
+  "reference": "make_truth_reference.py --all-genes",
+  "selected_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  },
+  "outputs_sha256": {
+    "truth_velocity_root_end_by_bin.csv": "3b937b45b594945f8963e359216e19749541037a23c4e7f62850fdc90d07bb3d",
+    "truth_velocity_transition_flux_by_bin.csv": "9b3968ee871cd77c70f8d2382e5544ae4d5fb9fe7ef68f9eebd398b70c35d256"
+  }
+}

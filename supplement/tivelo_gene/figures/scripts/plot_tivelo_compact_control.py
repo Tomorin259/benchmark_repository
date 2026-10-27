@@ -68,7 +68,7 @@ def main():
                         textcoords="offset points", ha="right" if index == 0 else "left",
                         va="center", color=color, fontsize=7)
     ax.axhline(0, color="#737B81", lw=0.7, zorder=0)
-    ax.set(xlim=(-0.48, 3.82), ylim=(-0.8, 0.98), ylabel="Score")
+    ax.set(xlim=(-0.48, 3.82), ylim=(-0.9, 0.98), ylabel="Score")
     ax.set_xticks(centers, [group[2] for group in groups])
     ax.set_yticks([-0.5, 0, 0.5])
     ax.grid(axis="y", color="#EEF0F2", lw=0.5)
@@ -80,6 +80,8 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     for suffix in ("pdf", "svg", "png"):
         fig.savefig(args.output_dir / f"tivelo_root_control_gene_metrics.{suffix}", dpi=300)
+    svg = args.output_dir / "tivelo_root_control_gene_metrics.svg"
+    svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)
     pd.DataFrame(plotted).to_csv(args.output_dir / "simulation_plotted_pairs.csv", index=False)
     manifest = {"generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

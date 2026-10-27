@@ -411,11 +411,19 @@ class CellEvaluationTests(unittest.TestCase):
             }
             self.assertEqual(len(matches), 1)
             source, velocity_key = matches.pop()
-            self.assertEqual(
-                row["result_path"],
-                "velocity:" + source.replace("artifact://velocity/", "", 1),
-            )
-            self.assertEqual(row["velocity_layer_key"], velocity_key)
+            if row["operational_id"] != "multivelo":
+                self.assertEqual(row["result_path"], "velocity:" + source.replace("artifact://velocity/", "", 1))
+            if row["operational_id"] == "multivelo":
+                native = next(r for r in csv.DictReader(
+                    (root / "evaluation/cell/native_outputs.tsv").open(), delimiter="\t")
+                    if r["evaluation_dataset"] == row["evaluation_dataset"] and r["scope"] == "real")
+                self.assertEqual(native["fit_result_path"], "velocity:" + source.replace("artifact://velocity/", "", 1))
+                self.assertEqual(row["result_path"], native["result_path"])
+                self.assertEqual(row["velocity_layer_key"], "velo_s_norm")
+                self.assertEqual(row["velocity_embedding_key"], "velo_s_norm_umap")
+                self.assertEqual(velocity_key, "velo_s")
+            else:
+                self.assertEqual(row["velocity_layer_key"], velocity_key)
             if row["operational_id"] == "deepvelo":
                 self.assertEqual(row["pred_unspliced"], "true")
 
@@ -456,7 +464,7 @@ class CellEvaluationTests(unittest.TestCase):
             for row in rows(root / "evaluation/cell/results/cell_metrics.csv")
         }
         for row in primary:
-            if row["method"] == "unitvelo":
+            if row["method"] in {"unitvelo", "multivelo"}:
                 for metric in ("consistency", "iccoh", "cbdir", "transcosine", "batc"):
                     self.assertEqual(float(row[metric]), float(canonical[row["dataset"], row["method"]][metric]))
 
@@ -499,8 +507,18 @@ class CellEvaluationTests(unittest.TestCase):
             }
             self.assertEqual(len(matches), 1)
             source, velocity_key = matches.pop()
-            self.assertEqual(row["result_path"], source.replace("artifact://velocity/", "velocity:", 1))
-            self.assertEqual(row["velocity_layer_key"], velocity_key)
+            if row["operational_id"] == "multivelo":
+                native = next(r for r in csv.DictReader(
+                    (root / "evaluation/cell/native_outputs.tsv").open(), delimiter="\t")
+                    if r["evaluation_dataset"] == row["evaluation_dataset"] and r["scope"] == "simulation")
+                self.assertEqual(native["fit_result_path"], source.replace("artifact://velocity/", "velocity:", 1))
+                self.assertEqual(row["result_path"], native["result_path"])
+                self.assertEqual(row["velocity_layer_key"], "velo_s_norm")
+                self.assertEqual(row["velocity_embedding_key"], "velo_s_norm_umap")
+                self.assertEqual(velocity_key, "velo_s")
+            else:
+                self.assertEqual(row["result_path"], source.replace("artifact://velocity/", "velocity:", 1))
+                self.assertEqual(row["velocity_layer_key"], velocity_key)
 
         for table in (primary, supplementary, audit):
             self.assertEqual(len(table), 27)
@@ -532,9 +550,12 @@ class CellEvaluationTests(unittest.TestCase):
                 "normal + MURK": 10, "normal + branching": 20,
                 "hybrid: MURK": 20, "hybrid: branching": 20,
             }[row["category"]])
-            source = source_by_key[row["dataset"], method].replace(
-                "velocity:", "artifact://velocity/", 1
-            )
+            source_locator = source_by_key[row["dataset"], method]
+            if method == "multivelo":
+                source_locator = next(r["fit_result_path"] for r in csv.DictReader(
+                    (root / "evaluation/cell/native_outputs.tsv").open(), delimiter="\t")
+                    if r["scope"] == "simulation" and r["evaluation_dataset"] == row["dataset"])
+            source = source_locator.replace("velocity:", "artifact://velocity/", 1)
             config_id = next(item["config_id"] for item in inputs
                              if (item["evaluation_dataset"], item["operational_id"])
                              == (row["dataset"], method))

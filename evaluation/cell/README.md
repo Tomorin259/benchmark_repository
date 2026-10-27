@@ -67,6 +67,11 @@ python evaluation/cell/run_cell_metrics.py \
 
 [inputs.tsv](inputs.tsv) and [config.json](config.json) define the selected
 files, fields, methods, datasets and transitions.
+For MultiVelo, [native_outputs.tsv](native_outputs.tsv) binds each Cell output
+to its native fit. Cell scoring selects `velo_s_norm`, `velo_s_norm_genes`,
+`velo_s_norm_params` and `velo_s_norm_umap` from the official MultiVelo graph
+and projection workflow. The global normalization follows MultiVelo 0.1.0.
+The native fit files used for Gene scoring remain separately identified.
 Use `--inputs` / `--config` for other scopes and a separate output root for
 partial runs. The canonical Cell directory requires all 280 pairs.
 `--method` uses operational IDs and `--dataset` uses `evaluation_dataset`
@@ -128,9 +133,10 @@ alignment, fixed graph, reference moments, metrics and parity checks as Cell.
 - DeepVelo changes `pred_unspliced=false` (Cell) to `true` (Gene/Kinetics),
   changing the training head and spliced output.
 - UniTVelo adds four Gene layers; shared arrays and all six Cell metrics match.
-- MultiVelo uses `velo_s` from the same H5AD, matching Gene evaluation;
-  the primary Cell analysis uses `velocity`. Its seven matched rows supply
-  the MultiVelo points in Supplementary Figure S9.
+- MultiVelo uses the official normalization of native `velo_s`, selecting
+  `velo_s_norm` with its corresponding gene mask, parameters and projection.
+  Primary and matched Cell evaluations use this same output on the seven
+  shared datasets; Gene scoring uses native `velo_s` and `velo_u`.
 - veloVI Cell and Gene are distinct training runs. Both register native
   `Ms`/`Mu`. Cell uses package-default training (up to 500 epochs, batch 256)
   and divides spliced velocity by `20 / max(latent_time)` per gene.
@@ -141,6 +147,12 @@ These comparisons evaluate the complete output workflows described above.
 The 28 supplementary rows are stored separately from the primary 280-row table.
 Together with the other five methods' primary Cell rows, they reproduce S9's
 315 scores (nine methods × seven datasets × five displayed metrics).
+Render its five Cell panels directly from these current tables:
+
+```bash
+python evaluation/cell/plots.py --gene-matched --output outputs/s9-cell-panels
+```
+
 
 ```bash
 python evaluation/cell/run_cell_metrics.py \
@@ -172,5 +184,19 @@ python evaluation/cell/render_stream_previews.py \
 
 Use the frozen [palette](stream_preview_config.json) and assemble the complete
 dataset fragments before [website export](../../site/README.md).
+Figure 2 and Supplementary Figure 12 stream rows can be rendered from
+[Source Data](../../data/SOURCE_DATA.md) display arrays, with the selected
+MultiVelo native projection supplied by `inputs.tsv`:
+
+```bash
+python evaluation/cell/plot_cell_stream_panels.py \
+  --source-data-root /path/to/source-data \
+  --artifact-root /path/to/velocity-artifacts \
+  --output-root outputs/cell-stream-panels
+```
+
+`--dataset` selects a registered stream panel; omission renders all five.
+The two real-data reference panels retain their annotated prior geometry in
+[figures/references/](figures/references/).
 Forebrain uses the reference-30 projection; other previews reuse the selected
 native velocities and reference coordinates.

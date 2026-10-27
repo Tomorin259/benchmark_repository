@@ -3,30 +3,30 @@
   "figure": "Figure 2",
   "assembly": {
     "path": "figures/assembly/fig2/fig2.pptx",
-    "sha256": "83bf83068dba0ee05915429a72d04ec08d3c3f153b5fce1524005310381dc8d5"
+    "sha256": "cc01793ecce28da9c6c374722409511158c5b8483a0eaedbc327f41008c6cd98"
   },
   "pending_pdf_export": false,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
+      "sha256": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505"
     }
   ],
   "panels": [
     {
       "panel": "A",
       "path": "evaluation/cell/figures/gastrulation_20methods_3x7_BATC.png",
-      "sha256": "680148db284d61b18b137d29f0eb7731b331ed344bf48bc4983c210f8d9aadd3"
+      "sha256": "d2a46f8f1a7377d5074fc478b31217d4e8f0d8c4edfcc5f369cf678924f2f526"
     },
     {
       "panel": "B",
       "path": "evaluation/cell/figures/DentateGyrus_lamanno_20methods_3x7_CBDir.png",
-      "sha256": "1cfe48b1c32a8101784107bb1138170f903e06e8b9e325ac34e993a6614966f7"
+      "sha256": "1d0289c7eb8fddd377dfdd32606c37a03845480795555c1cb18d3cc4279fea7c"
     },
     {
       "panel": "C",
       "path": "evaluation/cell/figures/fig2_cell_metrics_5panel.png",
-      "sha256": "fdb9f0f543a0c4d4e79b91ad3ec98f16a8bf96ffcf8b40e383d7e1b444ceb413"
+      "sha256": "0b72dbacea91d1f3c4eeb63cec01ed119eeb067bdc2984ba6630054126550c92"
     }
   ],
   "export": {
@@ -34,38 +34,73 @@
     "format": "author PDF; page content and resources retained",
     "status": "verified",
     "crop_box_points": [
-      0,
+      0.0,
       116.08,
-      540,
+      540.0,
       779.8
     ],
     "media_box_points": [
-      0,
+      0.0,
       116.08,
-      540,
+      540.0,
       779.8
     ],
     "source_pdf": {
       "filename": "\u56fe2_0909_update.pdf",
-      "sha256": "4bc31599473c88dc380188a531d7ac2d3bb8a52bc8a73fb9e116a1f442025acf",
-      "creation_date": "D:20261014030758+08'00'",
-      "page_count": 1
+      "sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
+      "page_count": 1,
+      "media_box_points": [
+        0,
+        0,
+        540,
+        779.8
+      ],
+      "creation_date": "2026-10-27T03:32:35+08:00"
     }
   },
   "verification": {
-    "slide_layout_xml_unchanged": true,
-    "final_pdf_export_verified": true,
-    "unchanged_panels": [
-      "A",
-      "B"
-    ],
-    "five_metric_panel_pixel_changes": "CBDir only; zero pixel differences in the other four metric columns",
-    "cropped_pdf_content_stream_unchanged": true,
-    "source_panels_checked": 3
+    "prepared_sources_verified": true,
+    "author_export_pending": true
   },
   "output": {
     "path": "figures/figTwo.pdf",
-    "sha256": "8157abde96b7ec61efcede8d6dd6104a9bf1f59afef0cf96bc410bd4de93b444",
-    "status": "current_author_export"
+    "sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
+    "status": "author_exported_cropped_pdf"
+  },
+  "last_pdf_verification": {
+    "filename": "\u56fe2_0909_update.pdf",
+    "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
+    "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
+    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
+    "crop_box_pt": [
+      0.0,
+      116.08,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
+  },
+  "pending_ppt_assembly": false,
+  "pending_material_assembly": false,
+  "montage_generation": {
+    "path": "evaluation/cell/figures/fig2_montage_generation.json",
+    "sha256": "0cd3ca127ddb952082eeca336c244c13dcc3586a3fba29c911bd975ce9b623c8"
+  },
+  "author_export": {
+    "filename": "\u56fe2_0909_update.pdf",
+    "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
+    "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
+    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
+    "crop_box_pt": [
+      0.0,
+      116.08,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
   }
 }

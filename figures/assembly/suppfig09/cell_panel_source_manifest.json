@@ -1,29 +1,18 @@
 {
-  "source": "figures/suppFigNine.pdf",
-  "source_sha256": "26a7cec4addcf39bfa71e827fd5a7606555f5fe3de4ab13d23e6afdab40b172b",
-  "page_size_points": [
-    691.2,
-    388.8
-  ],
+  "generator": "evaluation/cell/plots.py --gene-matched",
+  "generator_sha256": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
+  "source_tables": {
+    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/cell/gene_matched/results/cell_metrics.csv": "7e6251ee23bc41fd4c4afdd22867d99d41b1697eaa746a837bcba95e666c5412"
+  },
+  "scope": "Nine methods, seven datasets; each panel displays seven equally weighted dataset scores",
   "slide_size_inches": [
     9.600000000000001,
     5.4
   ],
-  "source_kind": "retained author-exported PDF with one 2880 x 1620 JPEG (300 dpi native)",
-  "cropping": "PDF cropbox; PNG rendering at 600 dpi; no numeric redrawing or image-content edits",
-  "cell_panel_boundary": "Five original Cell panels retained exactly as displayed; raster source remains raster",
-  "generator": "crop_s9_reference_panels.py",
-  "generator_sha256": "afcbea32d1d718d4d2040f4149fabc4c67ee583ceda1728b3a707aadab744453",
   "panels": [
     {
       "panel": "consistency",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        0.0,
-        194.4,
-        230.4,
-        388.8
-      ],
       "placement_inches_top_left": [
         0.0,
         0.0,
@@ -31,20 +20,13 @@
         2.7
       ],
       "pdf": "cell_panel_01_consistency.pdf",
-      "pdf_sha256": "3d3685c4105de3c47649e0262fdc6f036a5736b834dae67bf654e1ac58a4bcf6",
       "png": "cell_panel_01_consistency.png",
-      "png_sha256": "1d5346f6dc7ceae27d255dcb32f0fa5e9c8144af5e63652c221e13e96810d8a9",
-      "png_dpi": 600
+      "png_dpi": 600,
+      "png_sha256": "32f6f6db1b838ad2641fc7b9efcc519ba069df0851aa3d3bfaf2d66afe7b74b5",
+      "pdf_sha256": "29558dbdaf193560274335d601b319e3baf42fd05880ab5ef6a681dcc6be3a0a"
     },
     {
       "panel": "iccoh",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        230.4,
-        194.4,
-        460.8,
-        388.8
-      ],
       "placement_inches_top_left": [
         3.2,
         0.0,
@@ -52,20 +34,13 @@
         2.7
       ],
       "pdf": "cell_panel_02_iccoh.pdf",
-      "pdf_sha256": "73489716042e8260cd915e5ce467c050624038c317391bc770532fe49daaedcd",
       "png": "cell_panel_02_iccoh.png",
-      "png_sha256": "b93e58b79e18ea223ff4a19b425b60a563bf488fa71ae60d553099936ed0d133",
-      "png_dpi": 600
+      "png_dpi": 600,
+      "png_sha256": "86324f361f7c7184a807f6058d198cb325cd6375bb59b9ab7f7beea2d454d6ef",
+      "pdf_sha256": "69512c67595cacd5f78f77defeae729bcd3b28719e06d41db8dc97ef6a45dd3f"
     },
     {
       "panel": "cbdir",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        460.8,
-        194.4,
-        691.2,
-        388.8
-      ],
       "placement_inches_top_left": [
         6.4,
         0.0,
@@ -73,20 +48,13 @@
         2.7
       ],
       "pdf": "cell_panel_03_cbdir.pdf",
-      "pdf_sha256": "85b0d8cfcee7cac81d7691d5b103ade81ea0c6f7019ebe88bfc13c00236cd3ee",
       "png": "cell_panel_03_cbdir.png",
-      "png_sha256": "62dd971460961bca9d183c33f4bd3a5327dd712cb5a819256d9f505ae67c3923",
-      "png_dpi": 600
+      "png_dpi": 600,
+      "png_sha256": "03dc35a7f5228d4edd0348b3e9fedb7bc9572eb0139e4f9cdab923072eda3ed8",
+      "pdf_sha256": "491f514dce62d89f046d98a72ddffd05124974bbdb9b9c034ae2a8fda11977f3"
     },
     {
       "panel": "transcosine",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        0.0,
-        0.0,
-        230.4,
-        194.4
-      ],
       "placement_inches_top_left": [
         0.0,
         2.7,
@@ -94,20 +62,13 @@
         2.7
       ],
       "pdf": "cell_panel_04_transcosine.pdf",
-      "pdf_sha256": "10d56420bbcc52f93f3d06a76a0ad48a665afb95e7068cb21abb8ebf57037cd5",
       "png": "cell_panel_04_transcosine.png",
-      "png_sha256": "5a221652a7b00ff596b592612a4cea2bd5cbca536928fdde983fb66783e0f46b",
-      "png_dpi": 600
+      "png_dpi": 600,
+      "png_sha256": "eac7cef85605c9e9ddd0db07e32a291db620e04b7b880c6eb8db9f298fdd0e59",
+      "pdf_sha256": "8064aa7c0a9179f5cc88132339a6444e3b0e5fdf6632c889bf508831503e8129"
     },
     {
       "panel": "batc",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        230.4,
-        0.0,
-        460.8,
-        194.4
-      ],
       "placement_inches_top_left": [
         3.2,
         2.7,
@@ -115,27 +76,10 @@
         2.7
       ],
       "pdf": "cell_panel_05_batc.pdf",
-      "pdf_sha256": "fcaaa50bae7ba031c3c6c060ac125ea2bfc70126319316566424f118fcd0b120",
       "png": "cell_panel_05_batc.png",
-      "png_sha256": "908f90357383469fe028d417821be4514fae6d380d262e599610726a6b956b53",
-      "png_dpi": 600
-    },
-    {
-      "panel": "common_gene_cbdir",
-      "source_page": 1,
-      "pdf_cropbox_points_bottom_left": [
-        460.8,
-        0.0,
-        691.2,
-        194.4
-      ],
-      "placement_inches_top_left": [
-        6.4,
-        2.7,
-        3.2,
-        2.7
-      ],
-      "replacement_asset": "../rendered/common_gene_cbdir.png"
+      "png_dpi": 600,
+      "png_sha256": "0abcd3653e51cc11c58556589e3c6c75943eada300e2d4bb5a6ddadc0c0d7412",
+      "pdf_sha256": "3ee9420d50cd73548d309fbd87e7a5a44608c638457a1bfe6b8e3052df6ae422"
     }
   ]
 }

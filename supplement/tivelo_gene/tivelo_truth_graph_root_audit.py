@@ -10,6 +10,7 @@ scVelo velocity-gene subset.
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -23,7 +24,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--truth-root", type=Path, required=True, help="All-gene noise-free ODE reference directory")
     args = parser.parse_args()
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    from evaluation.gene.simulation.reference import load_velocity_reference
+    if args.output_dir.exists() and any(args.output_dir.iterdir()):
+        raise ValueError("Use an empty output directory")
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     score_rows = []
@@ -33,7 +39,7 @@ def main() -> None:
         adata = ad.read_h5ad(input_path)
         labels = adata.obs["bin"].astype(str).to_numpy()
         selected_genes = adata.var_names[np.asarray(adata.var["velocity_genes"], bool)]
-        adata.layers["velocity_truth"] = np.asarray(adata.layers["velocity_s_true"])
+        adata.layers["velocity_truth"], _ = load_velocity_reference(scenario, adata.obs_names, adata.var_names, args.truth_root)
         adata.uns["velocity_truth_params"] = {"mode": "stochastic"}
         scv.tl.velocity_graph(
             adata,

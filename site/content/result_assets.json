@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "sources": {
-    "evaluation/cell/results/cell_metrics.csv": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453",
-    "evaluation/cell/plots.py": "00ba6101a82c612150761d44db859d660bb5fc55eca3a55ddd3364ea9439ff86",
-    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "0841fa02fa66b7bef3640ea518a613fb78493396100a596ace401a138497b9b6",
-    "evaluation/cell/simulation/results/cross_level_summary.csv": "14a5ab57e36a9cf052ac2c99783e2ff6b02acbe50d2ecbd77c39b840027f739b",
-    "figures/fig4_composite_manifest.json": "a055176c157969037f8094b8aa7306adb19cfda9a6075c190745fb570ed450c4",
+    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
+    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "3484b0f59f834d296b87cf4017ac3acc4a76f9531d28a1a36ed6db94fa6e89b9",
+    "evaluation/cell/simulation/results/cross_level_summary.csv": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6",
+    "figures/fig4_composite_manifest.json": "ba95ba1be598eb5b0daddde2b1f321d02f19044b27d2fbc83c957b506aad2141",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
@@ -15,51 +15,51 @@
     {
       "id": "cell-consistency",
       "path": "evaluation/cell/figures/fig2_cell_metric_consistency.png",
-      "sha256": "b5d7c12b5f27d49ef32a1bd0d0214397e29f6df575e387b3b91021a802371904"
+      "sha256": "2b1e897409ad0c8f2d212d674ae01e26721876a7c85a81dc635da99bdf701986"
     },
     {
       "id": "cell-iccoh",
       "path": "evaluation/cell/figures/fig2_cell_metric_iccoh.png",
-      "sha256": "a9e04abca5b2cb4021e886452045d237b1d6a951f3999662b9928ab3e6c6839b"
+      "sha256": "964bf8c24070b3a10ef0739228cd095330b39c1960bed5203ca0bd6554b11e60"
     },
     {
       "id": "cell-cbdir",
       "path": "evaluation/cell/figures/fig2_cell_metric_cbdir.png",
-      "sha256": "0a73ef7e5939822f5c495706af8fb6dcc474d4c5e25fbdbf7538b2fc4840dcee"
+      "sha256": "ddafdf2e02c691282a3be231b38fe769d772f0a1d69072c072f2023354a17406"
     },
     {
       "id": "cell-transcosine",
       "path": "evaluation/cell/figures/fig2_cell_metric_transcosine.png",
-      "sha256": "8d7f21ebf0b430a6231a06f612854dd05758768e6b9378e83defdeb0fe81b413"
+      "sha256": "34f814d0f85c344e271127de70ebd6d1d4d821826adc5b6dc74b1d8f58bbc873"
     },
     {
       "id": "cell-batc",
       "path": "evaluation/cell/figures/fig2_cell_metric_batc.png",
-      "sha256": "c4e985b5a77216319b7f358dae3f39f3412eba3adcfbed0f95fca6cba89ca265"
+      "sha256": "bddfd73f90874c99c6e0c64a02cb967e93df4a800bc44a5b71deb0ad21c790a5"
     },
     {
       "id": "simulation-cross-level",
       "path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
-      "sha256": "86fb2d6807b3cce778d42bca1c2fdd745c1443d7687f1f61313bbeb1448e6654"
+      "sha256": "a2dab59a6462fd3f044a6478f5ca894577a70bad0bd6db8a05b9c8b9fc924dec"
     },
     {
       "id": "case-fam111a-g1-s",
       "path": "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.png",
-      "sha256": "142e0f81f9897ddc88031e27c93cbe325ae764d7fbbf87d5528e4b72606f5de9",
+      "sha256": "be4577173e97c574c36628fb10fdb40f75ce73b165fac3caa47d87200739e6c9",
       "figure": "fig3",
       "panel": "A"
     },
     {
       "id": "case-ncald-immgranule",
       "path": "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png",
-      "sha256": "799d1e8471054d1a4aab145c162575815d1f526509ba21dfeeee28a8fcf685d1",
+      "sha256": "ebc06e9fcc5cca031f3927b64514a8fe3edb6923bcc1f4425916173e095e441d",
       "figure": "fig3",
       "panel": "B"
     },
     {
       "id": "case-fech-erythroid",
       "path": "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png",
-      "sha256": "511c3b98c249bdb1d8f9b952cd1cd83700e393ca2d0439a240cf1e7a7aecbc50",
+      "sha256": "daa31fee056a6ce6fe5fe927f610ade8e062cebd36ba8d5a4b78eae10568de09",
       "figure": "fig3",
       "panel": "C"
     },
@@ -245,5 +245,6 @@
       "counts": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv",
       "membership": "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_class_membership.csv"
     }
-  ]
+  ],
+  "pending_shared_assembly": {}
 }

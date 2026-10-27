@@ -196,6 +196,29 @@ PY
   saves unscaled spliced velocity and extracts `velocity_u`.
   Both use 25 posterior samples. The evaluation role selects the corresponding
   training and output workflow.
+- **MultiVelo (C04):** the RNA-only workflow retains native `velo_s`/`velo_u`.
+  Cell post-processing calls `mv.velocity_graph` with `vkey="velo_s"`, then
+  projects `velo_s_norm` with scVelo. Cell evaluation uses the corresponding
+  normalized gene mask, parameters and projection. Gene evaluation consumes
+  the native velocity components. [Output identities](../evaluation/cell/native_outputs.tsv)
+  bind the two stages. To construct a Cell output from a saved native fit in
+  the documented MultiVelo environment:
+
+  ```python
+  import scanpy as sc
+  from methods.multivelo import prepare_cell_velocity
+  result = sc.read_h5ad("native_fit.h5ad")
+  prepare_cell_velocity(result)
+  result.write_h5ad("native_cell_output.h5ad")
+  ```
+
+  For the saved Forebrain fit, use the frozen UMAP2 from
+  `evaluation.cell.reference_embeddings.load_forebrain_frames` for this
+  projection, aligned to the fit's cell IDs. Save that frame as
+  `obsm["X_multivelo_umap"]` and retain the original `X_umap` separately.
+  Forebrain evaluation constructs the registered PCA30 and UMAP2 metric
+  projections from the native normalized velocity.
+
 - **DeepVelo (C16):** Cell sets `pred_unspliced=false`; Gene and Kinetics set
   it to true, changing the training head and required outputs.
   `--reset-seed-per-dataset` reproduces the documented historical RNG scope.

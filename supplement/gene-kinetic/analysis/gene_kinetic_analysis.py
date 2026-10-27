@@ -2,7 +2,7 @@
 """Reproducible gene-kinetic gene/cell edge analysis.
 
 Inputs are the 15 gene-kinetic manifests, the fixed reference-30 gene edge
-table, the Diaph3 supplement, and the 2026-09-20 canonical/gene-matched
+table, the Diaph3 supplement, and the current canonical/gene-matched
 cell-level CBDir/BATC edge tables.  The script uses gene-matched cell output
 for DeepVelo, UniTVelo, and veloVI; all other methods use the canonical table.
 It writes only compact CSV/Markdown analysis products.
@@ -37,6 +37,11 @@ CELL_SOURCE = {
     "TIvelo": ("canonical", "TIvelo"),
     "UniTVelo": ("gene_matched", "unitvelo"),
     "veloVI": ("gene_matched", "veloVI"),
+}
+
+CURRENT_AUDITS = {
+    "canonical": "supplement/gene-kinetic/results/current/canonical_audit.csv",
+    "gene_matched": "supplement/gene-kinetic/results/current/gene_matched_audit.csv",
 }
 
 ALIASES = {"scvelodynamic": "scVelo_dyn", "scvelodyn": "scVelo_dyn"}
@@ -191,10 +196,10 @@ def load_gene_records(repo_root):
     return records
 
 
-def load_cell_tables(repo_root):
-    paths = {
-        "canonical": os.path.join(repo_root, "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_edge_details_extended.csv"),
-        "gene_matched": os.path.join(repo_root, "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_edge_details_extended.csv"),
+def load_cell_tables(repo_root, paths=None):
+    paths = paths or {
+        "canonical": os.path.join(repo_root, "supplement/gene-kinetic/results/current/canonical_edges.csv"),
+        "gene_matched": os.path.join(repo_root, "supplement/gene-kinetic/results/current/matched_edges.csv"),
     }
     records = {}
     all_rows = {}
@@ -213,11 +218,8 @@ def load_cell_tables(repo_root):
     return paths, records, all_rows
 
 
-def load_audits(repo_root):
-    paths = {
-        "canonical": os.path.join(repo_root, "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_audit.csv"),
-        "gene_matched": os.path.join(repo_root, "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_audit.csv"),
-    }
+def load_audits(repo_root, paths=None):
+    paths = paths or {key: os.path.join(repo_root, path) for key, path in CURRENT_AUDITS.items()}
     audits = {}
     for table, path in paths.items():
         for row in read_csv(path):
@@ -247,6 +249,8 @@ def build_source_mapping(manifests, audits):
                 layer_note = "exact_name"
             elif phase_layer_s == "velocity" and audit_layer in {"velocity_reconstructed", "velocity_gv"}:
                 layer_note = "phase_velocity_alias_to_audit_layer"
+            elif method == "MultiVelo" and audit_layer.startswith("velo_s_norm"):
+                layer_note = "native_spliced_velocity_normalized_for_cell_projection"
             else:
                 layer_note = "layer_name_mismatch"
             rows.append({
@@ -255,7 +259,7 @@ def build_source_mapping(manifests, audits):
                 "gene": manifest["gene"], "method": method, "cell_table": table,
                 "cell_method_id": source_method, "manifest_source_path": manifest_path,
                 "audit_result_path": result_path,
-                "source_path_match": bool(manifest_path and result_path and normalized_locator(manifest_path) == normalized_locator(result_path)),
+                "source_path_match": bool(manifest_path and result_path and normalized_locator(manifest_path) == normalized_locator(audit.get("native_result_path", result_path))),
                 "phase_contract_velocity_s_key": phase_layer_s,
                 "phase_contract_velocity_u_key": phase_layer_u,
                 "audit_velocity_layer_key": audit_layer,
@@ -624,13 +628,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
     parser.add_argument("--output-dir", default=None)
+    parser.add_argument("--cell-edges")
+    parser.add_argument("--cell-audit")
+    parser.add_argument("--matched-edges")
+    parser.add_argument("--matched-audit")
     args = parser.parse_args()
+    if bool(args.cell_edges) != bool(args.matched_edges):
+        parser.error("--cell-edges and --matched-edges must be supplied together")
+    if bool(args.cell_audit) != bool(args.matched_audit):
+        parser.error("--cell-audit and --matched-audit must be supplied together")
     repo_root = os.path.abspath(args.repo_root)
     output_dir = os.path.abspath(args.output_dir or os.path.join(repo_root, "supplement/gene-kinetic/analysis"))
     manifests = load_manifests(repo_root)
     genes = load_gene_records(repo_root)
-    _, cells, all_cell_rows = load_cell_tables(repo_root)
-    audits = load_audits(repo_root)
+    edge_paths = ({"canonical": args.cell_edges, "gene_matched": args.matched_edges}
+                  if args.cell_edges and args.matched_edges else None)
+    audit_paths = ({"canonical": args.cell_audit, "gene_matched": args.matched_audit}
+                   if args.cell_audit and args.matched_audit else
+                   {key: os.path.join(repo_root, path) for key, path in CURRENT_AUDITS.items()})
+    edge_paths, cells, all_cell_rows = load_cell_tables(repo_root, edge_paths)
+    audits = load_audits(repo_root, audit_paths)
     source_mapping = build_source_mapping(manifests, audits)
     denominators, target_counts = make_branch_denominators(all_cell_rows)
     observations = make_observations(manifests, genes, cells, source_mapping, denominators, target_counts)
@@ -684,9 +701,8 @@ def main():
     inputs = [os.path.join(repo_root, manifest["manifest_path"]) for manifest in manifests]
     inputs += [os.path.join(repo_root, "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"),
                os.path.join(repo_root, "supplement/gene-kinetic/results/diaph3_nipc_to_nbl1.csv")]
-    for folder in ["cell_level_cbdir_batc_rerun_20260920_v2", "cell_level_cbdir_batc_gene_matched_20260920"]:
-        inputs += [os.path.join(repo_root, "supplement/gene-kinetic/results", folder, "results", name)
-                   for name in ["cell_metrics_edge_details_extended.csv", "cell_metrics_audit.csv"]]
+    inputs.extend(edge_paths.values())
+    inputs.extend(audit_paths.values())
     inputs.append(os.path.abspath(__file__))
     outputs = sorted(glob.glob(os.path.join(output_dir, "*.csv"))) + [os.path.join(output_dir, "gene_cell_edge_analysis.md")]
     provenance = {"analysis": "exploratory gene–cell directionality cases",

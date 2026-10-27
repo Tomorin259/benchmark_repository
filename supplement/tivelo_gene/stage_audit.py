@@ -159,7 +159,15 @@ def main():
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent / "stage_audit")
     parser.add_argument("--seed", type=int, default=20260926)
     parser.add_argument("--scenarios", nargs="+", choices=sorted(SCENARIOS), default=sorted(SCENARIOS))
+    parser.add_argument("--root-table", type=Path, help="Recorded root-stage intervention table for fixed-root velocity scoring")
     args = parser.parse_args()
+    recorded_roots = None
+    if args.root_table:
+        table = pd.read_csv(args.root_table)
+        selected = table[table.variant == "correct_path_root"][["scenario", "requested_root"]].drop_duplicates()
+        if selected.scenario.duplicated().any():
+            raise ValueError("Recorded corrected roots are not unique by scenario")
+        recorded_roots = dict(zip(selected.scenario, selected.requested_root.astype(str)))
 
     sys.path.insert(0, str(args.repo_root / "evaluation/gene"))
     from run_reference30_gene_cbdir import SIM_CONFIGS, align_reference_neighbors, read_reference_asset, score_gene
@@ -215,8 +223,11 @@ def main():
         selected_before = set(str(x) for x in velocity_names)
         score_main = np.asarray(adata.uns.get("score_main", []), dtype=float)
         score_branch = np.asarray(adata.uns.get("score_branch_1", []), dtype=float)
+        scoring_path = deepcopy(corrected_path)
+        if recorded_roots is not None:
+            scoring_path["start_node"] = recorded_roots[scenario]
         child_dict, level_dict, threshold_list = get_child_dict(
-            adata, "bin", corrected_path, threshold=0.1, threshold_trans=2, adjust=False
+            adata, "bin", scoring_path, threshold=0.1, threshold_trans=2, adjust=False
         )
         dti_start = list(level_dict.keys())[0]
         d_nn, knn, child_c, same_c = get_d_nn(adata, "bin", child_dict, dti_start,
@@ -236,10 +247,10 @@ def main():
             loss_fun="mse", only_s=False, constrain=True, alpha_1=1, alpha_2=0.1,
             batch_size=1024, filter_genes=False,
         )
-        true_s = dense(adata.layers["velocity_s_true"])
-        true_u = dense(adata.layers["velocity_u_true"])
+        from evaluation.gene.simulation.reference import load_velocity_reference
+        true_s, true_u = load_velocity_reference(scenario, adata.obs_names, genes)
         indices = adata.var_names.get_indexer(genes)
-        cell_cos = cosine_rows(v_s[:, indices], v_u[:, indices], true_s[:, indices], true_u[:, indices])
+        cell_cos = cosine_rows(v_s[:, indices], v_u[:, indices], true_s, true_u)
         for j, gene in enumerate(genes):
             cbdir, _, _, _ = score_gene(
                 dense(adata.layers["Ms"][:, indices[j]]), dense(adata.layers["Mu"][:, indices[j]]),

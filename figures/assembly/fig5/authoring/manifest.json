@@ -1,11 +1,13 @@
 {
   "source_type": "author_editable_powerpoint",
   "path": "figures/assembly/fig5/authoring/source.pptx",
-  "sha256": "30d254a452ad0276d44675fa671fe17413da9ca68f6d51a232505dc7363ad76a",
+  "sha256": "528f6d98d5b03e75e820035135a730f9db08d10f06e4dccf15c2a6f83ec7e90d",
   "author_export_identity_verified": true,
-  "verification_boundary": "The current editable assembly and manually exported, cropped PDF are identified in figures/assembly/author_exports.json.",
+  "verification_boundary": "Current editable source and accepted author PDF; source and export identities are recorded separately.",
   "pending_pdf_export": false,
-  "author_export_sha256": "78771a6d2beebaf2be11f750416d0ff03e3fe112e13533592f4023eecc0bffdf",
+  "author_export_sha256": "20a33c651d442b7ef1053b5dd5742d638a9954bd30c4e0be0529e04741000588",
   "current_pdf": "figures/figFive.pdf",
-  "current_pdf_sha256": "b83603874debeda75ef57b4c7e6e69ca5aab6d67147dbb15c866e8be07bc5309"
+  "current_pdf_sha256": "25fd950fd3f1c85175483963594cfec3d43776d1b1ad4e72d09ec9860c3a5610",
+  "pending_ppt_assembly": false,
+  "author_assembly_sha256": "586d3aca5950169fd70d00507c24fb8bf8d53eb00c4fe6f9a6a5f0e155f4a55f"
 }

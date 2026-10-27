@@ -3,46 +3,46 @@
   "schema_version": 1,
   "output": {
     "path": "figures/suppFigFifteen.pdf",
-    "sha256": "7a26e1f6a0797a995ed4578a2f2b9c588b444d416c25b31f3e0844ac1be851e9",
-    "status": "current_author_export"
+    "sha256": "4422b359ee5204d72c1695cf5f8e3f77ef2aeac9eec51b5906bb16a871b83973",
+    "status": "author_exported_cropped_pdf"
   },
   "assembly": {
     "path": "figures/assembly/suppfig15/supfig15.pptx",
-    "sha256": "99bb89991f7e226d6f752c15f02c1e72ed6223eb846f951782198e250bcea578",
+    "sha256": "bfe679a7a3def5405baaa9dece3b20bfc22ba4df82e016016c634804c8741bbc",
     "process": "Author-manual PPTX layout and PDF export; existing cropped PDF retained unchanged"
   },
   "panels": [
     {
       "panel": "A",
       "path": "figures/assembly/suppfig15/A_phase_portraits.pdf",
-      "sha256": "e5fb11745832cf9441b7c36f4cc0060d4cb4d351faa070b596a4f647f9aec380"
+      "sha256": "abaf8a5bbceb51e991a2ef6228a35837a19dc09132a5333f6c61d9b789d4964a"
     },
     {
       "panel": "B",
       "path": "supplement/multivelo/figures/paired_controls.pdf",
-      "sha256": "99ec9d0025e29bfe34f0cb5abf1d95693d7d9c92a636be09e420ff66ac823bb2"
+      "sha256": "88f82befb48ba310c560508cbda9e60fcd3d6f278396361dbfc7aa005da30f71"
     }
   ],
   "generator": {
     "path": "figures/assembly/suppfig15/assemble_materials.py",
-    "sha256": "baf29241cd0ac03efe86822093557a58e7d37ebda530fcfa6b16ae219b66b321"
+    "sha256": "3b06357c55cf9146b42b85bb67040d1b804b443cc6a7ba4a87908bb668001a60"
   },
   "materials_manifest": {
     "path": "supplement/multivelo/materials_manifest.json",
-    "sha256": "6a59efd63a78aa017b6d5a38839f4be11eb98cbe558ce304318773c8211b1c98"
+    "sha256": "3b0b37b6ebd44206af76baa1595985fa043a2c9d108188001d66ee9cab9db484"
   },
   "inputs": {
-    "supplement/multivelo/inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903",
-    "supplement/multivelo/results/multivelo_refits.csv": "62b5d2376dafe7a6e2b8dc46dfcb014e8d81a70883236af7054464ff57ce93a0",
-    "supplement/multivelo/results/scvelo_controls.csv": "1ff1d104d09bce563b46f6039cd046dc376b8cbeb0df959c63b94a4e860bfa1b",
-    "supplement/multivelo/results/condition_summary.csv": "7f4c88e6415daa77833157f385f60834be7ef303e5c309a13ec4d0c5dac7667a",
-    "supplement/multivelo/results/candidate_gate_effects.csv": "6742444013e3bec964cf4b2ae59110c0022271cee8436b308388c68d5610930c"
+    "supplement/multivelo/inputs/phase_case.npz": "00089c28d5e376dd2683110ad33f8c1cc2ff7b82d1fcb5cd3b8b827c017cffee",
+    "supplement/multivelo/results/multivelo_refits.csv": "98ae37568db8676e2100b8f3bdf52456464ffd959de8c270dc8fa16702d8b769",
+    "supplement/multivelo/results/scvelo_controls.csv": "c4b04ddd20cd12db6187a7032b2cc3dd1d43757e91ecfe272c19292a48116838",
+    "supplement/multivelo/results/condition_summary.csv": "66f41b98885f6c062ed371c198123ae6fca8b31978171f9b96ea42aebbf0a88f",
+    "supplement/multivelo/results/candidate_gate_effects.csv": "5d16bef0ae46c5d2b9e3637c368614220510d7537e03732f55607afe7d56fe47"
   },
   "table": {
     "number": "S9",
     "latex_label": "tab:suppMultiveloPhaseControls",
     "path": "supplement/multivelo/tables/tableS9.tex",
-    "sha256": "b48fbe772fe6a56932cb48a671458db94ede9823b5702407e6286c9d1404a9b3",
+    "sha256": "269af5c62a77b397f1aa04c97d4b9fa44e013f766bafc6027f1ec41fba5e3185",
     "scope": "Four core conditions in the two simulated branching subsets; full control results remain in module CSVs"
   },
   "score_scope": {
@@ -51,32 +51,26 @@
     "B": "20 branching genes per simulation; hybrid excludes MURK genes"
   },
   "verification": {
-    "source_csv_hashes_unchanged": true,
     "table_mean_values_checked": 16,
     "plotted_gene_condition_rows": 160,
-    "materials_vs_author_PPT": [
-      {
-        "material": "A_phase_portraits",
-        "ppt_media": "ppt/media/image1.png",
-        "media_sha256": "add29870c3885121370e9957315be6f20e60e9467cff187134ca23e93a49c6ae",
-        "rendered_png_sha256": "e4add855ec3160ad51f224d4764bc8e6799980308a90ddded1d88d6759f5be53",
-        "size_pixels": [
-          4320,
-          1692
-        ],
-        "pixels_equal": true
-      },
-      {
-        "material": "B_paired_controls",
-        "ppt_media": "ppt/media/image2.png",
-        "media_sha256": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a",
-        "rendered_png_sha256": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a",
-        "size_pixels": [
-          4320,
-          1711
-        ],
-        "pixels_equal": true
-      }
-    ]
+    "author_assembly_pending": false
+  },
+  "pending_pdf_export": false,
+  "input_role": "Current numerical materials and accepted author-exported composite.",
+  "pending_material_assembly": false,
+  "author_export": {
+    "filename": "supfig15.pdf",
+    "source_pdf_sha256": "4df4e1339a47a6996ea498f861ea82e8d171b8134d5ad0537b6dc00532b11fad",
+    "cropped_pdf_sha256": "4422b359ee5204d72c1695cf5f8e3f77ef2aeac9eec51b5906bb16a871b83973",
+    "author_assembly_filename": "supfig15.pptx",
+    "author_assembly_sha256": "66b5268a2b41c748bb1e1956ad58c2038d4c69b94e08a8e06368512fc5fdb465",
+    "crop_box_pt": [
+      0.0,
+      378.32,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
   }
 }

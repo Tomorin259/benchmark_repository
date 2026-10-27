@@ -1,11 +1,11 @@
 {
   "export": "approved_user_exported_cropped_pdf",
   "paper_figure": "fig4",
-  "composite_status": "user_exported_cropped",
+  "composite_status": "current_author_export",
   "composite_path": "figures/figFour.pdf",
-  "composite_sha256": "ff7561f0608ab4e09c936d6780a8d2a666c9a3d7eadc35bf14c40cf74051841d",
+  "composite_sha256": "b09515ee0ba791e9a353e9174e558d578f57cce2c446298133e2edec5236efba",
   "source_pdf": "author-exported PDF",
-  "source_pdf_sha256": "ec4a4a1e63d0ba300e7aa764d771fc5bf94ba83d075f182c1fb295131e554d9b",
+  "source_pdf_sha256": "98a02d3bf75468543a7ef0ddaa52f41101d7ef4b12fd30b65def3b0320b5fbfe",
   "crop_box_pt": [
     0.0,
     235.94,
@@ -17,9 +17,9 @@
     {
       "panel": "D",
       "source_path": "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png",
-      "source_sha256": "86fb2d6807b3cce778d42bca1c2fdd745c1443d7687f1f61313bbeb1448e6654",
+      "source_sha256": "a2dab59a6462fd3f044a6478f5ca894577a70bad0bd6db8a05b9c8b9fc924dec",
       "renderer": "evaluation/cell/simulation/plot_simulation_cell_comparison.py",
-      "renderer_sha256": "85d714438f03270fb866ff54d935aec03b50f04363ac344b701a6f8c32594085",
+      "renderer_sha256": "83dc8586d483857f4cbd6c31ee6c4af41806d77e6645067e047a9fd57f112382",
       "source_png_dpi": 600,
       "metrics": [
         "CBDir",
@@ -32,11 +32,11 @@
   "metric_sources": [
     {
       "path": "evaluation/cell/simulation/results/cross_level_summary.csv",
-      "sha256": "14a5ab57e36a9cf052ac2c99783e2ff6b02acbe50d2ecbd77c39b840027f739b"
+      "sha256": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6"
     },
     {
       "path": "evaluation/cell/simulation/results/cell_metrics.csv",
-      "sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296"
+      "sha256": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008"
     },
     {
       "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
@@ -44,10 +44,42 @@
     },
     {
       "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-      "sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
+      "sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
     }
   ],
   "validation": "The author-exported PDF was cropped by changing MediaBox/CropBox only. Decoded page content is unchanged; the cropped page retains panels A-D, labels and legend.",
   "reproduction_boundary": "Use the retained PowerPoint assembly for whole-figure layout and author PDF export. Numerical panel sources are listed in figures/assembly/assembly_manifest.tsv; panel D is rendered by evaluation/cell/simulation/plot_simulation_cell_comparison.py. Export identities and crop settings are in figures/assembly/author_exports.json.",
-  "pending_pdf_export": false
+  "pending_pdf_export": false,
+  "pending_shared_assembly": false,
+  "input_role": "Current numerical materials and accepted author-exported composite.",
+  "prepared_assembly": {
+    "path": "figures/assembly/fig4/authoring/source.pptx",
+    "sha256": "9a44db8b1df51e103ab2fe607d1ccafc303bfe1bb9283331eefe60159438370f",
+    "updated_panels": [
+      "B",
+      "C",
+      "D"
+    ],
+    "deferred_panels": []
+  },
+  "pending_material_assembly": false,
+  "panel_generation": {
+    "path": "evaluation/cell/simulation/figures/cross_level_generation.json",
+    "sha256": "93715aa42c42eb6396d6697bf44501c5b340405993dca4d96630cb7145d85399"
+  },
+  "author_export": {
+    "filename": "\u56fe4_0925.pdf",
+    "source_pdf_sha256": "98a02d3bf75468543a7ef0ddaa52f41101d7ef4b12fd30b65def3b0320b5fbfe",
+    "cropped_pdf_sha256": "b09515ee0ba791e9a353e9174e558d578f57cce2c446298133e2edec5236efba",
+    "author_assembly_filename": "\u56fe4_0925.pptx",
+    "author_assembly_sha256": "7d42a48c2b9116737aea8b78ccaa5ca596ccf211ddce4986422e1cc9e039d999",
+    "crop_box_pt": [
+      0.0,
+      235.94,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
+  }
 }

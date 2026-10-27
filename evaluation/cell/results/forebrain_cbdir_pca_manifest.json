@@ -53,9 +53,9 @@
     {
       "method": "multivelo",
       "config_id": "C04",
-      "locator": "velocity:results/multivelo/multivelo_ForebrainGlut.h5ad",
-      "sha256": "d597af9fce5031e1863118ac673a42ac22699628d6c669c42965574b7254a48c",
-      "velocity_layer_key": "velocity"
+      "locator": "velocity:results/multivelo/cell/real/multivelo_forebrain.h5ad",
+      "sha256": "13f18070941e6f7ebfd930810547dbd37dcbd6ed95d8215a2794254517e32389",
+      "velocity_layer_key": "velo_s_norm"
     },
     {
       "method": "unitvelo",
@@ -172,25 +172,16 @@
   ],
   "cbdir_aggregation": "UnitVelo edge means; exact-zero and empty edges excluded; remaining edges equally weighted",
   "edge_details_file": "forebrain_cbdir_pca_edge_details.csv",
-  "edge_details_sha256": "7d4c357ff5426ed28553480069e7b46f18b5a1d578c116975504d781d443f034",
+  "edge_details_sha256": "efab08de7a9bf8c3ca85b785c3bb788df3a0630585673567dd3cc6200a097c6c",
   "edge_rows": 120,
   "primary_table": "cell_metrics.csv",
-  "primary_table_sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453",
-  "changed_pairs": 20,
-  "unchanged_metrics": [
-    "consistency",
-    "iccoh",
-    "transcosine",
-    "batc",
-    "highdim_cbdir"
-  ],
-  "non_target_reproduction_max_error": 2.9380009869406365e-08,
+  "primary_table_sha256": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
   "randomness_policy": "Frozen coordinates/neighbor assets; no UMAP/PCA construction or training",
   "guard_tables": {
-    "cell_metrics_supplementary.csv": "f9677243c1700ccc29e8ab6f7669a28876f0f69e98e0033fb88940c4da6d1462",
-    "cell_metrics_audit.csv": "17f5c25f9bb694b793102fc7751c7cc85ab06a8f658e7555a3e1b1c4ff27648f",
-    "cell_metrics_edge_details.csv": "a1c2aa863804799b198b5af28c14ef18173f7f259206f3145c9c07c854f08e8d",
-    "tivelo_parity.csv": "54a03143160d7fea08c85b097f451040fcc30d05100337198942995e879a22ae"
+    "cell_metrics_supplementary.csv": "7c7268a7e5f5b3f9cf009627c6ec145e6532ac11048b2760fb8f6ca1b61e925c",
+    "cell_metrics_audit.csv": "8b35a6271e18627d7af76f067d39d58d46d68767ba61e3d979ea95f42b21229a",
+    "cell_metrics_edge_details.csv": "4a0baa0a8b2e7d2ec5e9c1f0ca981df1a84cf13123acbceb9f448b3b0e837020",
+    "tivelo_parity.csv": "df9e9899231b8d88e3e7992621f3298634d0ebaa5044e57d7bb325bcfd88137f"
   },
   "entry_validation": {
     "methods": [

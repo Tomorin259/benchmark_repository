@@ -5,8 +5,8 @@ primary,DeepVelo_scv,cbdir,7,-0.2423190470389564,-0.2857142857142857,4,0.5714285
 primary,DeepVelo_scv,batc_candidate_source_mean,7,-0.11783638234924136,-0.10714285714285712,3,0.42857142857142855,exploratory_small_n
 primary,Graphvelo_scv,cbdir,7,0.830512992541477,0.3214285714285714,7,1.0,exploratory_small_n
 primary,Graphvelo_scv,batc_candidate_source_mean,7,0.5743874862102526,0.07142857142857142,6,0.8571428571428571,exploratory_small_n
-primary,MultiVelo,cbdir,7,0.8123462295138592,0.7857142857142856,6,0.8571428571428571,exploratory_small_n
-primary,MultiVelo,batc_candidate_source_mean,7,0.7889857168896858,0.8928571428571428,6,0.8571428571428571,exploratory_small_n
+primary,MultiVelo,cbdir,7,0.2815968189997037,0.03571428571428571,4,0.5714285714285714,exploratory_small_n
+primary,MultiVelo,batc_candidate_source_mean,7,0.3854183644193692,0.5714285714285714,4,0.5714285714285714,exploratory_small_n
 primary,TIvelo,cbdir,6,0.9025573551297886,0.37142857142857144,6,1.0,exploratory_small_n
 primary,TIvelo,batc_candidate_source_mean,6,0.925459048689285,0.08571428571428572,6,1.0,exploratory_small_n
 primary,UniTVelo,cbdir,7,-0.5867926526059929,-0.7142857142857142,5,0.7142857142857143,exploratory_small_n
@@ -23,8 +23,8 @@ secondary_control,DeepVelo_scv,cbdir,5,0.21279686925960692,0.29999999999999993,3
 secondary_control,DeepVelo_scv,batc_candidate_source_mean,5,0.18716273805780295,0.29999999999999993,3,0.6,exploratory_small_n
 secondary_control,Graphvelo_scv,cbdir,6,0.3932863762328325,0.6,5,0.8333333333333334,exploratory_small_n
 secondary_control,Graphvelo_scv,batc_candidate_source_mean,6,0.283701090388961,0.37142857142857144,5,0.8333333333333334,exploratory_small_n
-secondary_control,MultiVelo,cbdir,6,0.16902530271284047,-0.02857142857142857,3,0.5,exploratory_small_n
-secondary_control,MultiVelo,batc_candidate_source_mean,6,0.6826721608433024,0.42857142857142855,3,0.5,exploratory_small_n
+secondary_control,MultiVelo,cbdir,6,-0.20089082700271216,-0.4857142857142857,3,0.5,exploratory_small_n
+secondary_control,MultiVelo,batc_candidate_source_mean,6,0.021742258434432112,0.02857142857142857,3,0.5,exploratory_small_n
 secondary_control,TIvelo,cbdir,6,0.6254467719991169,0.5428571428571428,6,1.0,exploratory_small_n
 secondary_control,TIvelo,batc_candidate_source_mean,6,-0.3223889046491359,-0.2,6,1.0,exploratory_small_n
 secondary_control,UniTVelo,cbdir,6,0.8460019095744161,0.7714285714285715,3,0.5,exploratory_small_n
@@ -41,8 +41,8 @@ all_displayed,DeepVelo_scv,cbdir,12,-0.10071489652855749,-0.2867132867132867,7,0
 all_displayed,DeepVelo_scv,batc_candidate_source_mean,12,-0.028430158822476192,-0.06993006993006994,6,0.5,descriptive_candidate_subset
 all_displayed,Graphvelo_scv,cbdir,13,0.6455349306443067,0.25824175824175827,12,0.9230769230769231,descriptive_candidate_subset
 all_displayed,Graphvelo_scv,batc_candidate_source_mean,13,0.39369544873681694,0.016483516483516484,11,0.8461538461538461,descriptive_candidate_subset
-all_displayed,MultiVelo,cbdir,13,0.5807863268985912,0.41208791208791207,9,0.6923076923076923,descriptive_candidate_subset
-all_displayed,MultiVelo,batc_candidate_source_mean,13,0.67811366528556,0.7032967032967034,9,0.6923076923076923,descriptive_candidate_subset
+all_displayed,MultiVelo,cbdir,13,0.05833694054472375,-0.038461538461538464,7,0.5384615384615384,descriptive_candidate_subset
+all_displayed,MultiVelo,batc_candidate_source_mean,13,0.21675835263441734,0.3076923076923077,7,0.5384615384615384,descriptive_candidate_subset
 all_displayed,TIvelo,cbdir,12,0.78222688891938,0.2937062937062937,12,1.0,descriptive_candidate_subset
 all_displayed,TIvelo,batc_candidate_source_mean,12,0.4998645999073339,0.013986013986013986,12,1.0,descriptive_candidate_subset
 all_displayed,UniTVelo,cbdir,13,-0.19643218038357607,0.01098901098901099,8,0.6153846153846154,descriptive_candidate_subset

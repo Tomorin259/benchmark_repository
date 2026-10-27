@@ -41,14 +41,13 @@ def directed_neighbor_types(d_nn, labels):
     }
 
 
-def score_velocity(adata, genes, velocity_s, velocity_u, neighbors, edges, score_gene):
+def score_velocity(adata, genes, velocity_s, velocity_u, neighbors, edges, score_gene, truth):
     indices = adata.var_names.get_indexer(genes)
     if np.any(indices < 0):
         raise ValueError("A benchmark gene is absent from the baseline H5AD")
     cosines = cosine_rows(
         velocity_s[:, indices], velocity_u[:, indices],
-        dense(adata.layers["velocity_s_true"][:, indices]),
-        dense(adata.layers["velocity_u_true"][:, indices]),
+        *truth,
     )
     bins = adata.obs["bin"].astype(str)
     rows = []
@@ -97,6 +96,8 @@ def main():
     args = parser.parse_args()
 
     sys.path.insert(0, str(args.repo_root / "evaluation/gene"))
+    sys.path.insert(0, str(args.repo_root))
+    from evaluation.gene.simulation.reference import load_velocity_reference
     from run_reference30_gene_cbdir import (
         SIM_CONFIGS, align_reference_neighbors, read_reference_asset, score_gene,
     )
@@ -112,6 +113,7 @@ def main():
         h5ad = args.artifact_root / f"indicators/gene/simulation/results_for_analyze/tivelo/tivelo_{scenario}.h5ad"
         original = ad.read_h5ad(h5ad)
         genes = table.loc[table.dataset.eq(scenario), "gene"].tolist()
+        truth = load_velocity_reference(scenario, original.obs_names, genes)
         labels = original.obs["bin"].astype(str).to_numpy()
         reference_names, reference_indices = read_reference_asset(
             args.repo_root / f"evaluation/gene/results/reference_neighbors/{scenario}.npz"
@@ -124,7 +126,7 @@ def main():
                               **directed_neighbor_types(baseline_dnn, labels)})
         archived_s = dense(original.layers["velocity"])
         archived_u = dense(original.layers["velocity_u"])
-        for row in score_velocity(original, genes, archived_s, archived_u, neighbors, edges, score_gene):
+        for row in score_velocity(original, genes, archived_s, archived_u, neighbors, edges, score_gene, truth):
             all_scores.append({"scenario": scenario, "variant": "baseline_archived_velocity", **row})
 
         for variant in ("baseline_refit", "oracle_root_BranchA_0", "oracle_root_BranchB_0"):
@@ -139,7 +141,7 @@ def main():
                                   **directed_neighbor_types(d_nn, labels)})
             same_c = (labels[:, None] == labels[None, :]).astype(float)
             v_s, v_u = fit_velocity(work, d_nn, knn, same_c, args.seed)
-            for row in score_velocity(original, genes, v_s, v_u, neighbors, edges, score_gene):
+            for row in score_velocity(original, genes, v_s, v_u, neighbors, edges, score_gene, truth):
                 all_scores.append({"scenario": scenario, "variant": variant, **row})
             print(f"completed {scenario} / {variant}", flush=True)
 

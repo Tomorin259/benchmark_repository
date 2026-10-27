@@ -1,18 +1,18 @@
 {
   "figure": "suppfig09",
   "composite_path": "figures/suppFigNine.pdf",
-  "composite_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
+  "composite_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
   "source_kind": "user_exported_pdf_cropped_by_page_boxes",
   "verification": "The current WPS PDF was exported from the synchronized A4 portrait repository PPTX and cropped by changing MediaBox/CropBox only to [0, 478, 540, 779.8] pt. The decoded page content is unchanged. The cropped page was rendered and visually inspected; all six embedded panel hashes match the registered Cell/Gene sources.",
   "reproduction_boundary": "The current cropped PDF was exported from the synchronized A4 portrait repository assembly. All six embedded Cell/Gene panel hashes match the registered panel sources; cropping changed page boxes only and left the content stream unchanged.",
   "pending_pdf_export": false,
   "current_assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "current_assembly_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "current_assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
   "user_export": {
     "filename": "supfig9.pdf",
     "sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
-    "creator": "WPS 演示",
-    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
+    "creator": "WPS \u6f14\u793a",
+    "producer": "macOS \u7248\u672c26.6.2\uff08\u7248\u53f725G83\uff09 Quartz PDFContext",
     "creation_date": "2026-10-19 02:05:32+08:00",
     "page_count": 1,
     "source_media_box_pt": [
@@ -54,5 +54,20 @@
     "multivelo_matched_layer": "velo_s",
     "gene_common_set": "evaluation/gene/results/common_genes/",
     "scope": "Nine methods on the seven real Gene datasets; five Cell panels plus the common-gene panel"
+  },
+  "author_export": {
+    "filename": "supfig9.pdf",
+    "source_pdf_sha256": "0fb26b297cf80ba12f89adbaa56f51764f591abe3c89dd276a2bf27c785f2436",
+    "cropped_pdf_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
+    "author_assembly_filename": "supfig9.pptx",
+    "author_assembly_sha256": "029f55a2a2271fade67ecba5e62ee46bbfc9ecea5658cb8f1ac3478c24aa2533",
+    "crop_box_pt": [
+      0.0,
+      478.0,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
   }
 }

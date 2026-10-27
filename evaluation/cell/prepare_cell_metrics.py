@@ -110,6 +110,12 @@ def save_npz_atomic(path: Path, **payload) -> None:
 def prepare_velocity(adata: ad.AnnData, layer_key: str) -> int:
     if layer_key not in adata.layers:
         raise KeyError(f"missing layers/{layer_key!r}")
+    if layer_key.startswith("velo_s_norm"):
+        mask_key, params_key = f"{layer_key}_genes", f"{layer_key}_params"
+        if mask_key not in adata.var or params_key not in adata.uns:
+            raise KeyError("MultiVelo Cell velocity requires its native mask and params")
+        adata.var["velocity_genes"] = adata.var[mask_key].copy()
+        adata.uns["velocity_params"] = dict(adata.uns[params_key])
     values = dense(adata.layers[layer_key]).astype(np.float64, copy=False)
     invalid = int(np.size(values) - np.count_nonzero(np.isfinite(values)))
     # This preserves the historical evaluator's explicit invalid-value policy.
@@ -503,6 +509,10 @@ def install_native_2d_velocity(
     native_coordinates: np.ndarray,
 ) -> dict:
     """Install a checked native 2-D velocity field in the canonical UMAP frame."""
+    if row["velocity_layer_key"].startswith("velo_s_norm") and (
+        row["velocity_embedding_key"] != f"{row['velocity_layer_key']}_umap"
+    ):
+        raise ValueError("MultiVelo native Cell velocity requires its matching projection")
     if dataset == "forebrain" or row["alignment_mode"] == "reference_graph_projection":
         return {
             "mode": "reference_graph_projection",
@@ -697,6 +707,7 @@ def main() -> None:
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--prepared-output", type=Path, required=True)
     parser.add_argument("--indicators-output", type=Path, required=True)
+    parser.add_argument("--projection-output", type=Path)
     parser.add_argument("--n-jobs", type=int, default=8)
     args = parser.parse_args()
 
@@ -850,6 +861,18 @@ def main() -> None:
         adata, label, config["datasets"][args.dataset]["cluster_edges"]
     )
     native = evaluate_four_native_metrics(adata, args.dataset, label, config)
+    if args.projection_output:
+        args.projection_output.parent.mkdir(parents=True, exist_ok=True)
+        arrays = {
+            "cell_ids": np.asarray(adata.obs_names).astype(str),
+            "X_umap": np.asarray(adata.obsm["X_umap"]),
+            "velocity_umap": np.asarray(adata.obsm["velocity_umap"]),
+            "group": np.asarray(adata.obs[label]).astype(str),
+        }
+        if args.dataset == "forebrain":
+            arrays.update(X_pca=np.asarray(adata.obsm["X_pca"]),
+                          velocity_pca=np.asarray(adata.obsm["velocity_pca"]))
+        save_npz_atomic(args.projection_output, **arrays)
     plt.close("all")
     args.prepared_output.parent.mkdir(parents=True, exist_ok=True)
     args.indicators_output.parent.mkdir(parents=True, exist_ok=True)

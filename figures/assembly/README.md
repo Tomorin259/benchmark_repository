@@ -25,3 +25,10 @@ Run from the repository root with a fresh output directory.
 The exporter checks source identity and copies materials without changing
 canonical panels. Manual author layout and PDF export remain required where
 listed in the figure map.
+
+A composite manifest with `pending_pdf_export: true` distinguishes prepared
+source materials from the retained previous author export. Its
+`exported_from_revision` identifies the input snapshot of that previous export;
+the current source hashes describe the materials awaiting assembly. Such an
+export is not offered as an updated summary download until author export is
+complete. Native PPT/PDF identities remain recorded during preparation.

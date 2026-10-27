@@ -43,7 +43,7 @@ INPUT_COLUMNS = (
     "config_id", "operational_id", "dataset_id", "evaluation_dataset",
     "result_path", "velocity_layer_key", "source_embedding_key",
     "velocity_embedding_key", "alignment_mode", "n_common",
-    "evaluation_role", "pred_unspliced",
+    "evaluation_role", "pred_unspliced", "sha256",
 )
 
 
@@ -101,6 +101,18 @@ def read_gene_sources() -> dict:
     expected = {(dataset, method) for dataset in SCENARIOS for method in METHODS}
     if set(result) != expected:
         raise ValueError(f"missing gene sources: {sorted(expected - set(result))}")
+    with (REPO / "evaluation/cell/native_outputs.tsv").open(newline="") as handle:
+        native = [row for row in csv.DictReader(handle, delimiter="\t")
+                  if row["scope"] == "simulation"]
+    if len(native) != len(SCENARIOS) or {row["evaluation_dataset"] for row in native} != set(SCENARIOS):
+        raise ValueError("MultiVelo Cell outputs must cover all three simulation scenarios")
+    for row in native:
+        key = (row["evaluation_dataset"], "MultiVelo")
+        fit, _ = result[key]
+        if row["fit_result_path"] != fit.replace("artifact://velocity/", "velocity:", 1):
+            raise ValueError(f"MultiVelo Cell/Gene fit differs: {key[0]}")
+        result[key] = (row["result_path"].replace("velocity:", "artifact://velocity/", 1),
+                       row["velocity_layer_key"])
     return result
 
 
@@ -240,23 +252,23 @@ def main() -> None:
         for method in METHOD_ORDER:
             external_locator, layer_key = gene_sources[dataset, method]
             operational = METHODS[method]
+            result_path = external_locator.replace("artifact://velocity/", "velocity:", 1)
             rows.append({
                 "config_id": registry[operational],
                 "operational_id": operational,
                 "dataset_id": dataset_config["dataset_id"],
                 "evaluation_dataset": dataset,
-                "result_path": external_locator.replace(
-                    "artifact://velocity/", "velocity:", 1
-                ),
+                "result_path": result_path,
                 "velocity_layer_key": layer_key,
                 "source_embedding_key": "X_umap",
-                "velocity_embedding_key": "velocity_umap",
+                "velocity_embedding_key": "velo_s_norm_umap" if method == "MultiVelo" else "velocity_umap",
                 "alignment_mode": (
                     "reference_graph_projection" if method == "DeepVelo" else "direct"
                 ),
                 "n_common": str(EXPECTED_CELLS[dataset]),
                 "evaluation_role": "simulation_gene_matched_cell",
                 "pred_unspliced": "true" if method == "DeepVelo" else "not_applicable",
+                "sha256": sha256(resolve(args.artifact_root, result_path)),
             })
     args.output_root.mkdir(parents=True, exist_ok=True)
     with (args.output_root / "inputs.tsv").open("w", encoding="utf-8", newline="") as handle:

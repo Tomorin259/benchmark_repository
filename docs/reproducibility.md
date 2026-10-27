@@ -54,8 +54,9 @@ by the module input maps and manifests. Simulation generation produces new
 realizations; the registered historical H5ADs identify the benchmark inputs.
 The [simulation method instructions](../methods/README.md#run-methods-on-simulations)
 connect those three fixed inputs to nine method launchers. Gene evaluation
-replays all 630 simulation CBDir and CosSim comparisons; its results guide
-states the five-decimal precision of the historical CosSim logs.
+replays all 630 simulation CBDir and CosSim comparisons. CosSim uses the
+paired noise-free ODE reference with full-precision source scores; the
+Gene results guide identifies inputs and numerical units.
 
 Kinetics uses the `central_results` inputs, the corrected organoid reference
 direction and the labelled-data Dynamo control described in its module guide.

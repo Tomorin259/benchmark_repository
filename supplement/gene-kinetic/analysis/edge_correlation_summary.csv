@@ -1,29 +1,29 @@
 dataset,cell_dataset,source,target,edge_role,metric,n_methods,pearson,spearman,sign_match_count,sign_match_fraction,interpretation
-DentateGyrus_lamanno,DentateGyrus_lamanno,CA,CA1-Sub,primary,cbdir,8,0.008892557181037023,-0.42857142857142855,4,0.5,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,CA,CA1-Sub,primary,batc_candidate_source_mean,8,0.10738525713292636,-0.16666666666666666,3,0.375,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule1,ImmGranule2,primary,cbdir,9,0.15912297944920967,0.35,8,0.8888888888888888,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule1,ImmGranule2,primary,batc_candidate_source_mean,9,0.07451201711228661,0.31666666666666665,7,0.7777777777777778,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule2,Granule,secondary_control,cbdir,9,-0.30993740175412077,0.18333333333333332,6,0.6666666666666666,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule2,Granule,secondary_control,batc_candidate_source_mean,9,-0.18819010589571258,0.033333333333333326,6,0.6666666666666666,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,Nbl1,Nbl2,secondary_control,cbdir,8,-0.02849850419810957,0.30952380952380953,3,0.375,exploratory_small_n
-DentateGyrus_lamanno,DentateGyrus_lamanno,Nbl1,Nbl2,secondary_control,batc_candidate_source_mean,8,0.005963587963563236,0.09523809523809523,3,0.375,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,CA,CA1-Sub,primary,cbdir,8,-0.45948189063009715,-0.7619047619047619,3,0.375,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,CA,CA1-Sub,primary,batc_candidate_source_mean,8,-0.5589979837299869,-0.5952380952380952,2,0.25,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule1,ImmGranule2,primary,cbdir,9,0.1581813805704265,0.39999999999999997,8,0.8888888888888888,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule1,ImmGranule2,primary,batc_candidate_source_mean,9,0.07457919778796655,0.3833333333333333,7,0.7777777777777778,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule2,Granule,secondary_control,cbdir,9,-0.3044360314068647,0.18333333333333332,6,0.6666666666666666,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,ImmGranule2,Granule,secondary_control,batc_candidate_source_mean,9,-0.37185293223634197,-0.1333333333333333,6,0.6666666666666666,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,Nbl1,Nbl2,secondary_control,cbdir,8,0.14577437301942348,0.5238095238095238,3,0.375,exploratory_small_n
+DentateGyrus_lamanno,DentateGyrus_lamanno,Nbl1,Nbl2,secondary_control,batc_candidate_source_mean,8,0.1714572973179186,0.4523809523809524,3,0.375,exploratory_small_n
 DentateGyrus_lamanno,DentateGyrus_lamanno,nIPC,Nbl1,primary,cbdir,0,,,0,,exploratory_small_n
 DentateGyrus_lamanno,DentateGyrus_lamanno,nIPC,Nbl1,primary,batc_candidate_source_mean,0,,,0,,exploratory_small_n
-capo_pre,capofibro,G1,S,primary,cbdir,9,0.5083249573655877,0.2833333333333333,8,0.8888888888888888,exploratory_small_n
-capo_pre,capofibro,G1,S,primary,batc_candidate_source_mean,9,0.6623990069368723,0.44999999999999996,8,0.8888888888888888,exploratory_small_n
-capo_pre,capofibro,S,G2M,secondary_control,cbdir,9,0.2564655003547294,0.39999999999999997,5,0.5555555555555556,exploratory_small_n
-capo_pre,capofibro,S,G2M,secondary_control,batc_candidate_source_mean,9,-0.047181317753920836,0.033333333333333326,5,0.5555555555555556,exploratory_small_n
-gastrulation,gastrulation,Erythroid1,Erythroid2,secondary_control,cbdir,9,0.6375855350162051,0.6833333333333332,7,0.7777777777777778,exploratory_small_n
-gastrulation,gastrulation,Erythroid1,Erythroid2,secondary_control,batc_candidate_source_mean,9,0.6329716010020279,0.6666666666666666,6,0.6666666666666666,exploratory_small_n
-gastrulation,gastrulation,Erythroid2,Erythroid3,primary,cbdir,9,0.853020845646913,0.5833333333333333,8,0.8888888888888888,exploratory_small_n
-gastrulation,gastrulation,Erythroid2,Erythroid3,primary,batc_candidate_source_mean,9,0.7956935763884438,0.5833333333333333,8,0.8888888888888888,exploratory_small_n
-mousebrain,mousebrain,V-SVZ,Upper Layer,primary,cbdir,9,0.43481339348715986,0.21666666666666665,6,0.6666666666666666,exploratory_small_n
-mousebrain,mousebrain,V-SVZ,Upper Layer,primary,batc_candidate_source_mean,9,0.5808777812027753,0.3833333333333333,6,0.6666666666666666,exploratory_small_n
-pancreas,pancreas,Pre-endocrine,Alpha,secondary_control,cbdir,9,-0.1923622525663788,-0.4833333333333333,3,0.3333333333333333,exploratory_small_n
-pancreas,pancreas,Pre-endocrine,Alpha,secondary_control,batc_candidate_source_mean,9,-0.5405034860892776,-0.7166666666666666,3,0.3333333333333333,exploratory_small_n
-pancreas,pancreas,Pre-endocrine,Beta,primary,cbdir,9,0.09701450682373629,0.08333333333333333,6,0.6666666666666666,exploratory_small_n
-pancreas,pancreas,Pre-endocrine,Beta,primary,batc_candidate_source_mean,9,-0.5619062249254577,-0.5499999999999999,6,0.6666666666666666,exploratory_small_n
-retina,retina,Neuroblast,AC/HC,secondary_control,cbdir,9,0.24233978068912945,-0.06666666666666665,8,0.8888888888888888,exploratory_small_n
-retina,retina,Neuroblast,AC/HC,secondary_control,batc_candidate_source_mean,9,-0.3604229122653976,-0.41666666666666663,8,0.8888888888888888,exploratory_small_n
-retina,retina,Neuroblast,RGC,primary,cbdir,9,-0.7445025342266018,-0.6333333333333333,7,0.7777777777777778,exploratory_small_n
-retina,retina,Neuroblast,RGC,primary,batc_candidate_source_mean,9,-0.76282126907329,-0.9166666666666665,7,0.7777777777777778,exploratory_small_n
+capo_pre,capofibro,G1,S,primary,cbdir,9,0.6510264883788623,0.5166666666666666,7,0.7777777777777778,exploratory_small_n
+capo_pre,capofibro,G1,S,primary,batc_candidate_source_mean,9,0.7642837056255751,0.6666666666666666,7,0.7777777777777778,exploratory_small_n
+capo_pre,capofibro,S,G2M,secondary_control,cbdir,9,-0.3649193923777913,0.033333333333333326,4,0.4444444444444444,exploratory_small_n
+capo_pre,capofibro,S,G2M,secondary_control,batc_candidate_source_mean,9,-0.46755916242664974,-0.1333333333333333,4,0.4444444444444444,exploratory_small_n
+gastrulation,gastrulation,Erythroid1,Erythroid2,secondary_control,cbdir,9,0.8066210668006458,0.7333333333333333,8,0.8888888888888888,exploratory_small_n
+gastrulation,gastrulation,Erythroid1,Erythroid2,secondary_control,batc_candidate_source_mean,9,0.788234613051079,0.7666666666666666,7,0.7777777777777778,exploratory_small_n
+gastrulation,gastrulation,Erythroid2,Erythroid3,primary,cbdir,9,0.8681397177296653,0.7166666666666666,8,0.8888888888888888,exploratory_small_n
+gastrulation,gastrulation,Erythroid2,Erythroid3,primary,batc_candidate_source_mean,9,0.8381655607326036,0.6833333333333332,8,0.8888888888888888,exploratory_small_n
+mousebrain,mousebrain,V-SVZ,Upper Layer,primary,cbdir,9,0.44731892721183564,0.21666666666666665,6,0.6666666666666666,exploratory_small_n
+mousebrain,mousebrain,V-SVZ,Upper Layer,primary,batc_candidate_source_mean,9,0.5738563166016016,0.3833333333333333,6,0.6666666666666666,exploratory_small_n
+pancreas,pancreas,Pre-endocrine,Alpha,secondary_control,cbdir,9,-0.5463139029585787,-0.7166666666666666,3,0.3333333333333333,exploratory_small_n
+pancreas,pancreas,Pre-endocrine,Alpha,secondary_control,batc_candidate_source_mean,9,-0.6524262607658935,-0.8166666666666665,3,0.3333333333333333,exploratory_small_n
+pancreas,pancreas,Pre-endocrine,Beta,primary,cbdir,9,-0.08624841662893451,-0.21666666666666665,6,0.6666666666666666,exploratory_small_n
+pancreas,pancreas,Pre-endocrine,Beta,primary,batc_candidate_source_mean,9,-0.3756101778177644,-0.21666666666666665,6,0.6666666666666666,exploratory_small_n
+retina,retina,Neuroblast,AC/HC,secondary_control,cbdir,9,0.20974117511356213,0.016666666666666663,8,0.8888888888888888,exploratory_small_n
+retina,retina,Neuroblast,AC/HC,secondary_control,batc_candidate_source_mean,9,-0.30643529135455505,-0.3,8,0.8888888888888888,exploratory_small_n
+retina,retina,Neuroblast,RGC,primary,cbdir,9,-0.6623347164103748,-0.5499999999999999,7,0.7777777777777778,exploratory_small_n
+retina,retina,Neuroblast,RGC,primary,batc_candidate_source_mean,9,-0.7367164974393126,-0.9499999999999998,7,0.7777777777777778,exploratory_small_n

@@ -70,6 +70,12 @@ class GeneCaseResultTests(unittest.TestCase):
 
     def test_analysis_sources_and_outputs_match_provenance(self):
         provenance = json.loads((ANALYSIS / "provenance.json").read_text())
+        current = "supplement/gene-kinetic/results/current/"
+        expected = {current + name for name in ["canonical_edges.csv", "matched_edges.csv",
+                                               "canonical_audit.csv", "gene_matched_audit.csv"]}
+        self.assertTrue(expected.issubset(provenance["inputs_sha256"]))
+        self.assertFalse(any("/cell_level_cbdir_batc_" in path
+                             for path in provenance["inputs_sha256"]))
         for key, base in [("inputs_sha256", ROOT), ("outputs_sha256", ANALYSIS)]:
             for relative, expected in provenance[key].items():
                 self.assertEqual(hashlib.sha256((base / relative).read_bytes()).hexdigest(), expected, relative)

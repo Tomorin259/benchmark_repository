@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "inputs_sha256": "7aa49d26fb6a5440bb2bd22b0ad846552d306a6ba4ebda2c744eaec519133396",
-  "renderer_sha256": "ca87f41b30eda4ce0d3a04298302e378b0653f278a98ee163f4db36c155c1ae0",
+  "inputs_sha256": "97a86c8e27a139b6b679152c67580cee2da0d7e50d9d7fd7accbb17af1c5c014",
+  "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
   "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
   "scvelo_version": "0.2.5",
   "entries": [
@@ -216,12 +216,12 @@
       "dataset": "dentategyrus_lamanno",
       "method": "C04",
       "path": "evaluation/cell/streams/DentateGyrus_lamanno/multivelo.png",
-      "sha256": "f77479ce2d9aac27eefdcb7292ccf37c4fa5f463f155290448a1cb6d5a10c950",
-      "result_path": "velocity:results/multivelo/multivelo_DentateGyrus_lamanno.h5ad",
-      "result_sha256": "b683f4c5d619286ccd82d3a97567af422d60af3ecc78ff4ae84125040602f3bb",
+      "sha256": "c7528eed84ff6a520d62aa16dfa3d1ce6455136facebed19cc8d49ea02863ca2",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_DentateGyrus_lamanno.h5ad",
+      "result_sha256": "3f85268ecfda88946f6d47dfc400bbc1de4ea026181ca9a11ad0cad60ce38a2b",
       "n_reference": 18213,
       "n_common": 18213,
-      "projection": "retained_paper_panel",
+      "projection": "saved_native_projection_in_reference_frame",
       "legend": [
         {
           "label": "CA",
@@ -279,7 +279,17 @@
           "label": "nIPC",
           "color": "#8dd593"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
+      },
+      "render_protocol_sha256": "06a749423a1ca029000860368701de506207ad359804851799c8677cff1c1338"
     },
     {
       "dataset": "dentategyrus_lamanno",
@@ -1548,9 +1558,9 @@
       "dataset": "bonemarrow",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/bonemarrow/C04.png",
-      "sha256": "1f318a7aeda791c6f589f1b754201bdb593da71bca7e7a4ed1294a46f9abc22b",
-      "result_path": "velocity:results/multivelo/multivelo_bonemarrow.h5ad",
-      "result_sha256": "be145567234f727055ad118cd0f8a44689947b37f7feb8c8d993d9f8a2d1b3b8",
+      "sha256": "8702d0b0e8be7ce6a466524d8ac0767c1652229a757749ee4c3b94697c050c93",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_bonemarrow.h5ad",
+      "result_sha256": "a8a2eeda0337d16b421283342bc6b730bdcbae8ccbe6741f3618f1be39409617",
       "n_reference": 5780,
       "n_common": 5780,
       "projection": "saved_native_projection_in_reference_frame",
@@ -1595,7 +1605,17 @@
           "label": "Mega",
           "color": "#ff7f00"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+      },
+      "render_protocol_sha256": "002f4480d2ca42cb9609c640adeb06b6ad648ab016f7c5d58ae30fbb9d1773d4"
     },
     {
       "dataset": "bonemarrow",
@@ -2524,9 +2544,9 @@
       "dataset": "capo_pre",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/capo_pre/C04.png",
-      "sha256": "3ee71b740283a3c30582404a654a1a98d6766efbaae0250b628b0984a5545edd",
-      "result_path": "velocity:results/multivelo/multivelo_capo_pre.h5ad",
-      "result_sha256": "9f96a874418ae416803dcff5f3550d29634bd9031979b846a769535dd7ab583b",
+      "sha256": "885e064b20fae8aeaa661aac77fd6a370522400b3250f66da702c5607bdddca2",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_capofibro.h5ad",
+      "result_sha256": "f640b71d5ef68fb0014e1a5b693d2f05ba1bedaae76467b763b55f1fccf26c5e",
       "n_reference": 1222,
       "n_common": 1222,
       "projection": "saved_native_projection_in_reference_frame",
@@ -2543,7 +2563,17 @@
           "label": "S",
           "color": "#2ca02c"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c"
+      },
+      "render_protocol_sha256": "809eb72bc42bc9e9fd944d1b849d1ba1bcb5afc28c15893238bbcf3372202d63"
     },
     {
       "dataset": "capo_pre",
@@ -3156,9 +3186,9 @@
       "dataset": "dentategyrus",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/dentategyrus/C04.png",
-      "sha256": "120acd4a80cd0e062a78f91671721e20011f110c1ab0efbfcfcfcccfbf4df9e2",
-      "result_path": "velocity:results/multivelo/multivelo_dentategyrus.h5ad",
-      "result_sha256": "531233c3c460b7181a5b542885f51224e287155c37da63eb84475b3c941825b7",
+      "sha256": "c732a8ffefa9e3d212e664eb440eb5303eea693a486a292a997355680bdbbb14",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_dentategyrus.h5ad",
+      "result_sha256": "f5a0b2037996deab22c1c6ec5c984c49a063f006896108b1eaec5c6c4680158d",
       "n_reference": 2930,
       "n_common": 2930,
       "projection": "saved_native_projection_in_reference_frame",
@@ -3219,7 +3249,17 @@
           "label": "nIPC",
           "color": "#d0e1f2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb"
+      },
+      "render_protocol_sha256": "f0f05830dbf294de939198cc622f7489af4792f3a4d6f67fbae19d3f33580a07"
     },
     {
       "dataset": "dentategyrus",
@@ -4482,9 +4522,9 @@
       "dataset": "forebrain",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/forebrain/C04.png",
-      "sha256": "fd643d37fca4af31a0609ff41fed45841541217f042a7a7470abd50e75ad5674",
-      "result_path": "velocity:results/multivelo/multivelo_ForebrainGlut.h5ad",
-      "result_sha256": "d597af9fce5031e1863118ac673a42ac22699628d6c669c42965574b7254a48c",
+      "sha256": "c23ff63c75dd43edde132b46dd82aadd270adc2045b43a218e9e524a364d506b",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_forebrain.h5ad",
+      "result_sha256": "13f18070941e6f7ebfd930810547dbd37dcbd6ed95d8215a2794254517e32389",
       "n_reference": 1720,
       "n_common": 1720,
       "projection": "fixed_reference30_pca30_projection_pc1_pc2",
@@ -4527,7 +4567,7 @@
         ],
         "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
       },
-      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
+      "render_protocol_sha256": "3ce1e1b6344091736e1bc888fe12cb6a9959317f28c4c8fe79e1b6a75239162b"
     },
     {
       "dataset": "forebrain",
@@ -5448,12 +5488,12 @@
       "dataset": "gastrulation",
       "method": "C04",
       "path": "evaluation/cell/streams/gastrulation/multivelo.png",
-      "sha256": "79c0bd7ebbe2f184dbdfceac59d99896b387ba8829a9537006ed165439d35b91",
-      "result_path": "velocity:results/multivelo/multivelo_Gastrulation.h5ad",
-      "result_sha256": "5f552c144be9d1396e30bbc46ff3ef31e22b46f0fa3f5f9c668eb06744271b17",
+      "sha256": "d019c58cc5d1431530215cd5bcf2ab6b57c92a9a562af684d51c59a8331d9b90",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_gastrulation.h5ad",
+      "result_sha256": "2af5534475ee328df0e7298a6a28367aafcdd09ca180c6db1341cf53c3c2a8bd",
       "n_reference": 9815,
       "n_common": 9815,
-      "projection": "retained_paper_panel",
+      "projection": "saved_native_projection_in_reference_frame",
       "legend": [
         {
           "label": "Blood progenitors 1",
@@ -5475,7 +5515,17 @@
           "label": "Erythroid3",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b"
+      },
+      "render_protocol_sha256": "4c59e8f53ef0c8b7f8d3eaba30b74e9d4bc4a8865697fa729bdf4f41fd1110c4"
     },
     {
       "dataset": "gastrulation",
@@ -6144,9 +6194,9 @@
       "dataset": "hematopoiesis",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/hematopoiesis/C04.png",
-      "sha256": "dddb83e0800b611b3a93c0dce5b6014659b1f1d68540d763de4938692b7aa391",
-      "result_path": "velocity:results/multivelo/multivelo_hematopoiesis_dynamo.h5ad",
-      "result_sha256": "35d1c2d4978f90f9c6aa92dc14725fa0cc117cbf430f07e5150ca1cb24d326e8",
+      "sha256": "56abd99d6aae8e2e36f97a5255da106214aafc2e556cd4cb8c2eea257bd564b6",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_hematopoiesis.h5ad",
+      "result_sha256": "d948e4d0505d2d7f324d722e8e075ccd8add83e4aa35a36210daea6b3e7ee6ed",
       "n_reference": 1947,
       "n_common": 1947,
       "projection": "saved_native_projection_in_reference_frame",
@@ -6183,7 +6233,17 @@
           "label": "Neu",
           "color": "#7f7f7f"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025"
+      },
+      "render_protocol_sha256": "f6bc4038bb7596f8ab5409276938e47a9c583ddead7ac094863752ee9c9fc47f"
     },
     {
       "dataset": "hematopoiesis",
@@ -7032,9 +7092,9 @@
       "dataset": "mousebrain",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/mousebrain/C04.png",
-      "sha256": "225c2d879e09ad66e0d165751d2fd55896320c2adc35e2f4b79a59c864d5bf49",
-      "result_path": "velocity:results/multivelo/multivelo_mousebrain.h5ad",
-      "result_sha256": "9a3701cef16c81ad4452cb4b0cce6ebb0ea389b835d1135f33fe802dd56a598a",
+      "sha256": "ce9157d619cdc2265df9c6b01558d0c9901a9a3e15b4e41e90f4d4897c6a0fcb",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_mousebrain.h5ad",
+      "result_sha256": "d3f47ac07062ffcb6e108eefaa8a0c627aa29b969f091b7eaeac61f9bca370dd",
       "n_reference": 3365,
       "n_common": 3365,
       "projection": "saved_native_projection_in_reference_frame",
@@ -7067,7 +7127,17 @@
           "label": "Subplate",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9"
+      },
+      "render_protocol_sha256": "89d3ba47180e9012a8eb2f5e4cd2756c2f8d1ee8ccd0df7b6b4697c52ba8b63f"
     },
     {
       "dataset": "mousebrain",
@@ -7828,9 +7898,9 @@
       "dataset": "scnt_neuron",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/scnt_neuron/C04.png",
-      "sha256": "a70247bc8ee1ab31a83f8efd15e33190ddafeee91b97f88d27f7c8593cac2970",
-      "result_path": "velocity:results/multivelo/multivelo_neuron.h5ad",
-      "result_sha256": "36c142d80eaa8399c5afe4c73e2ed628501cfa2cd3b93c3bd1c39a94c8e41dcc",
+      "sha256": "92ecb8650c739d534dbda8aec3ab7cb5d21d0b224df47dc353c3e1ff135c5b1f",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_neuron.h5ad",
+      "result_sha256": "5151432fde63c167353c7e11f233256c715d165412a82871d3b3f0802b914473",
       "n_reference": 3066,
       "n_common": 3066,
       "projection": "saved_native_projection_in_reference_frame",
@@ -7855,7 +7925,17 @@
           "label": "120",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea"
+      },
+      "render_protocol_sha256": "cb095c4fc966e6ab589a5a578f031cefb285dac78ff6400a3160b79ab70b9926"
     },
     {
       "dataset": "scnt_neuron",
@@ -8524,9 +8604,9 @@
       "dataset": "sceu_organoid",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/sceu_organoid/C04.png",
-      "sha256": "6935c56982786aa5641c1aedafed4b029d7e6d135616b3558f98ef8abdb845a3",
-      "result_path": "velocity:results/multivelo/multivelo_organoid.h5ad",
-      "result_sha256": "83dc2cf8f5dfd95b0558cbfad40bd919e56461955d3012edd92d753da801b5c5",
+      "sha256": "02b66bb0f667b6c7c9b38e57e5c780ec3158b6f4d13a28d722c6ebe0a8930022",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_organoid.h5ad",
+      "result_sha256": "7c884e57097f07fede658ea8d5b9539540d2e39957974cdc0e8869d90774e962",
       "n_reference": 3831,
       "n_common": 3831,
       "projection": "saved_native_projection_in_reference_frame",
@@ -8563,7 +8643,17 @@
           "label": "Tuft cells",
           "color": "#7f7f7f"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce"
+      },
+      "render_protocol_sha256": "20c747686faa971392073a9cf393f2b4e02dc5d89b2488fc0c6346e0926aa043"
     },
     {
       "dataset": "sceu_organoid",
@@ -9424,9 +9514,9 @@
       "dataset": "pancreas",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/pancreas/C04.png",
-      "sha256": "94087d6917902d9f8724bfddfa74170eabc4a56472aceb7294c9aab9e35d7cb6",
-      "result_path": "velocity:results/multivelo/multivelo_Pancreas.h5ad",
-      "result_sha256": "490b01661a3c99a6b4d1673224cc720ad308d77409926f4d882d19089927fba4",
+      "sha256": "b84cacf31e1dbfd7876166e8931cd2a94cb02741c265ed1a3fc97139352a7a95",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_pancreas.h5ad",
+      "result_sha256": "e7ea7811d2e870209cd3cbada9c3b264d8162656715320670d6b45e1f46ee8a9",
       "n_reference": 3696,
       "n_common": 3696,
       "projection": "saved_native_projection_in_reference_frame",
@@ -9463,7 +9553,17 @@
           "label": "Epsilon",
           "color": "#cab2d6"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4"
+      },
+      "render_protocol_sha256": "b340117fadec663372513d356f219cea00525c829eb503b3be27526c7fd7c4a2"
     },
     {
       "dataset": "pancreas",
@@ -10288,9 +10388,9 @@
       "dataset": "retina",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/retina/C04.png",
-      "sha256": "f1584c609d8ea63d6765650713664122a45d17bdc8d76acd6a806caa3338e1b4",
-      "result_path": "velocity:results/multivelo/multivelo_retina.h5ad",
-      "result_sha256": "a55b4ac1f440f7a01fdeabf8a13444c0e8f354ed2195a710f73517b64e1461e2",
+      "sha256": "ff76f66ad3a8043c047108f58988ae40cabf19e90b2c18755455aa77a63730cc",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_retina.h5ad",
+      "result_sha256": "d6f5d64d4383f24264a9870be32aca9dc06bcd296102dfd83ecfe2bb02f11943",
       "n_reference": 2726,
       "n_common": 2726,
       "projection": "saved_native_projection_in_reference_frame",
@@ -10315,7 +10415,17 @@
           "label": "RGC",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9"
+      },
+      "render_protocol_sha256": "59a756be47bf55b598273417b11e7bb44b5ad0d544b9e855875ffd11011a3ade"
     },
     {
       "dataset": "retina",
@@ -10948,9 +11058,9 @@
       "dataset": "sceu_rpe1",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/sceu_rpe1/C04.png",
-      "sha256": "e2f499642f7ded57d4a6b3444f5cce464f95f3f8057fd2a4a31f19746762b273",
-      "result_path": "velocity:results/multivelo/multivelo_rpe1.h5ad",
-      "result_sha256": "479bb234db482ad297c5846f74cb0d08e80706808e44aae7b5f0312466ced422",
+      "sha256": "5f0217e6021f6747cfc721f84f5998a368fc3a993718ece6270619f597261b22",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_rpe1.h5ad",
+      "result_sha256": "7d0bec9bfa0d6f4883fb16a16e7f491d24822ed73d9f9e0c479f90cc27818e6d",
       "n_reference": 2793,
       "n_common": 2793,
       "projection": "saved_native_projection_in_reference_frame",
@@ -10975,7 +11085,17 @@
           "label": "S",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370"
+      },
+      "render_protocol_sha256": "e7e13b4979b3706ce2ea9abc8353037ecf2a8f5a5ac8c4052fad15118d2cee37"
     },
     {
       "dataset": "sceu_rpe1",
@@ -11584,9 +11704,9 @@
       "dataset": "rpe1_gen",
       "method": "C04",
       "path": "evaluation/cell/streams/previews/rpe1_gen/C04.png",
-      "sha256": "cf30f158e20882c7be487f52cbda35e3df6c31c29a3417fd1d759eda9ff51f7d",
-      "result_path": "velocity:results/multivelo/multivelo_rpe1_gen.h5ad",
-      "result_sha256": "e2c0830a3ea342cd796850b7cb4296f725e115d2ffce8f0027e805781ce4ba78",
+      "sha256": "74db01249866e909ef2e9553acb41b623e13d3ba52ffd97e10ef66a6359b782c",
+      "result_path": "velocity:results/multivelo/cell/real/multivelo_rpe1_gen.h5ad",
+      "result_sha256": "3279c9e63b8f711a9eb0e2206d132398bcf33380faa4d8fdf1c653c0978e469b",
       "n_reference": 3354,
       "n_common": 3354,
       "projection": "saved_native_projection_in_reference_frame",
@@ -11603,7 +11723,17 @@
           "label": "S",
           "color": "#2ca02c"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
+      },
+      "render_protocol_sha256": "26a342e1c2d6a65de7c02e9a63ce0029ab70301a431ed9f635012961967e7432"
     },
     {
       "dataset": "rpe1_gen",
@@ -12015,6 +12145,123 @@
         2
       ],
       "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+    },
+    "gastrulation": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b"
+    },
+    "bonemarrow": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+    },
+    "hematopoiesis": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025"
+    },
+    "scnt_neuron": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea"
+    },
+    "sceu_rpe1": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370"
+    },
+    "dentategyrus": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb"
+    },
+    "capo_pre": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c"
+    },
+    "pancreas": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4"
+    },
+    "mousebrain": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9"
+    },
+    "retina": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9"
+    },
+    "rpe1_gen": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
+    },
+    "sceu_organoid": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce"
+    },
+    "dentategyrus_lamanno": {
+      "space": "umap",
+      "projection_dimensions": 2,
+      "display_components": [
+        1,
+        2
+      ],
+      "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
     }
   },
   "render_protocols": {
@@ -12038,6 +12285,261 @@
       "reference_neighbors_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
       "reference_moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
       "direct_pca_projection": false
+    },
+    "gastrulation:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "ba812755a48b48566aafdca520f7067676d6ff9522ac5573938b48cf6461a937",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b"
+      }
+    },
+    "bonemarrow:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4ab18ff345c2dcb39a33de4e7b9aeb468a879a65b916ca772c17fcf1d59fd37a",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+      }
+    },
+    "hematopoiesis:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "11c20c9f79892c3b14e40e90b4941e3133bc83abaeb430d19da9d4b1fa644e95",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025"
+      }
+    },
+    "forebrain:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "reference_neighbors_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
+      "reference_moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
+      "direct_pca_projection": false
+    },
+    "scnt_neuron:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4907eddc5d271e68598a0ae02e9c7fc0530723f5d92e0056fe09d3f835963f80",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea"
+      }
+    },
+    "sceu_rpe1:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "a8ed4d121100487564c869c86a89f752f7ae21a48978c2e1da423381c5d19b2b",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370"
+      }
+    },
+    "dentategyrus:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "efcef6ccffc5491aad6a63a5889e31c7942d150b637b6342d86df80c055ddc16",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb"
+      }
+    },
+    "capo_pre:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "ed69046dce1be5807b9cebb62b648916dc7b1e04b96dfbedd0fee4dd0326009e",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c"
+      }
+    },
+    "pancreas:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "3c3d8906a39141e7266caa73fc06d43764a7f60e2f1a3aa6dc6ebcb99c5af7ab",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4"
+      }
+    },
+    "mousebrain:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "e97ae2a807c94b7262ec7d684c77d8239f6a05f281eeef6d0322dceb94c5cbb8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9"
+      }
+    },
+    "retina:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "917a1b27efae4ddb423cbbb912524e4f5c78cd7d4d67f56f617d705a18475848",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9"
+      }
+    },
+    "rpe1_gen:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "1db50ced62b73bc6b0a16c7414c1de7e08e85394a7b799c2b1451d10ab03b0e9",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
+      }
+    },
+    "sceu_organoid:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce"
+      }
+    },
+    "dentategyrus_lamanno:C04": {
+      "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "32bbe258bb9d3b72369eda5d6b65ea6d49dfa65e782e84dc75d8e0213f0ceba8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
+      }
     }
   }
 }

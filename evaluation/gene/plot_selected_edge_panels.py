@@ -238,6 +238,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--cell-controls", type=Path,
+                        default=HERE / "results/selected_edge_cell_controls.csv")
     args = parser.parse_args()
     output = args.output_root.resolve()
     if output.exists() and any(output.iterdir()):
@@ -245,7 +247,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     scores = load_scores()
     edges = pd.read_csv(HERE / "results/gene_cbdir_edge_details_reference30_all.csv")
-    controls = pd.read_csv(HERE / "results/selected_edge_cell_controls.csv")
+    controls = pd.read_csv(args.cell_controls)
     datasets = {"Fech": "gastrulation", "Ncald": "DentateGyrus_lamanno", "FAM111A": "capo_pre"}
     input_records = {}
     for gene, case in CASES.items():
@@ -279,9 +281,11 @@ def main():
             fig.savefig(folder / f"phase_{method}.png", dpi=300, facecolor="white")
             plt.close(fig)
         assemble(gene, pd.DataFrame(source), output)
-    paths = [HERE / "results/gene_cbdir_edge_details_reference30_all.csv", HERE / "results/selected_edge_cell_controls.csv", Path(__file__)]
+    paths = [HERE / "results/gene_cbdir_edge_details_reference30_all.csv", args.cell_controls, Path(__file__)]
     (output / "provenance.json").write_text(json.dumps({
-        "inputs": input_records, "sources": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
+        "inputs": input_records, "sources": {
+            str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else p.name:
+            hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
         "display": "native method coordinates; selected-cluster phase portraits; original six-plus-three layout",
         "scoring": "current selected-edge scores; retained transition-specific Cell controls",
         "redraw": "rendered from native phase arrays and joined score tables"}, indent=2) + "\n")

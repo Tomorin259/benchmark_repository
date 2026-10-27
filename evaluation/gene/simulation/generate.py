@@ -7,8 +7,6 @@ import hashlib
 import json
 from pathlib import Path
 
-import pkg_resources
-
 HERE = Path(__file__).resolve().parent
 CONFIG_PATH = HERE / "config.json"
 
@@ -22,7 +20,24 @@ def _sha256(path):
 
 
 def _simulate(cs, kinetic_type, kwargs):
-    return cs.simulate(kinetic_type=kinetic_type, **kwargs)
+    import numpy as np
+    original_jitter = cs._jitter
+    clean = []
+
+    def retain_state(u, s, scale):
+        clean.append((np.asarray(u).copy(), np.asarray(s).copy()))
+        return original_jitter(u, s, scale)
+
+    cs._jitter = retain_state
+    try:
+        frame = cs.simulate(kinetic_type=kinetic_type, **kwargs)
+    finally:
+        cs._jitter = original_jitter
+    if not clean or sum(len(u) for u, _ in clean) != len(frame):
+        raise ValueError("cellDancer noise call does not match generated cells")
+    frame["clean_unsplice"] = np.concatenate([u for u, _ in clean])
+    frame["clean_splice"] = np.concatenate([s for _, s in clean])
+    return frame
 
 
 def _base_kwargs(scenario):
@@ -72,6 +87,7 @@ def _truth_layers(s, u, alpha, beta, gamma):
 
 
 def _runtime_versions():
+    import pkg_resources
     return {
         name: pkg_resources.get_distribution(name).version
         for name in ("numpy", "scipy", "pandas", "anndata", "celldancer")
@@ -130,6 +146,8 @@ def generate(scenario_name, output_root):
     genes = sorted(full["gene_name"].unique())
     s = full.pivot(index="cellID", columns="gene_name", values="splice").reindex(columns=genes)
     u = full.pivot(index="cellID", columns="gene_name", values="unsplice").reindex(columns=genes)
+    clean_s = full.pivot(index="cellID", columns="gene_name", values="clean_splice").reindex(columns=genes)
+    clean_u = full.pivot(index="cellID", columns="gene_name", values="clean_unsplice").reindex(columns=genes)
     alpha = full.pivot(index="cellID", columns="gene_name", values="alpha").reindex(columns=genes)
     beta = full.pivot(index="cellID", columns="gene_name", values="beta").reindex(columns=genes)
     gamma = full.pivot(index="cellID", columns="gene_name", values="gamma").reindex(columns=genes)
@@ -144,7 +162,9 @@ def generate(scenario_name, output_root):
     adata.layers["alpha_true"] = alpha.to_numpy()
     adata.layers["beta_true"] = beta.to_numpy()
     adata.layers["gamma_true"] = gamma.to_numpy()
-    adata.layers["velocity_s_true"], adata.layers["velocity_u_true"] = _truth_layers(s.to_numpy(), u.to_numpy(), alpha.to_numpy(), beta.to_numpy(), gamma.to_numpy())
+    adata.layers["clean_spliced"] = clean_s.to_numpy()
+    adata.layers["clean_unspliced"] = clean_u.to_numpy()
+    adata.layers["velocity_s_true"], adata.layers["velocity_u_true"] = _truth_layers(clean_s.to_numpy(), clean_u.to_numpy(), alpha.to_numpy(), beta.to_numpy(), gamma.to_numpy())
     if list(adata.shape) != scenario["expected_shape"]:
         raise ValueError("generated shape %s does not match expected %s" % (adata.shape, scenario["expected_shape"]))
     output = output_root / scenario["output_name"]
@@ -159,6 +179,7 @@ def generate(scenario_name, output_root):
         "runtime_versions": _runtime_versions(),
         "canonical_artifact_id": scenario["artifact_id"],
         "canonical_match_claim": False,
+        "velocity_reference": "ODE velocity at the retained pre-noise state",
         "note": "Independent stochastic realization generated with the recorded scenario configuration."
     }
     (output.with_suffix(".invocation.json")).write_text(json.dumps(metadata, indent=2) + "\n")

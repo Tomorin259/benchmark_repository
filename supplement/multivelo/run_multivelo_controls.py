@@ -17,12 +17,13 @@ assert not args.output.exists();args.output.mkdir(parents=True)
 sys.path.insert(0,str(args.repository_root))
 from evaluation.gene.config import SIM_PATHS,SIM_CONFIGS
 from evaluation.gene.run_reference30_gene_cbdir import score_gene,align_reference_neighbors
+from evaluation.gene.simulation.reference import load_velocity_reference
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def arr(x):return np.asarray(x.toarray() if sparse.issparse(x) else x,dtype=float)
 def score(o,g,c,neighbors):
  j=o.var_names.get_loc(g);ms=arr(o.layers['Ms'][:,j]).ravel();mu=arr(o.layers['Mu'][:,j]).ravel();vs=arr(o.layers['velo_s'][:,j]).ravel();vu=arr(o.layers['velo_u'][:,j]).ravel()
- v=np.column_stack([vs,vu]);gt=np.column_stack([arr(o.layers['velocity_s_true'][:,j]).ravel(),arr(o.layers['velocity_u_true'][:,j]).ravel()]);nv=np.linalg.norm(v,axis=1);nt=np.linalg.norm(gt,axis=1);ok=(nv>1e-6)&(nt>1e-6)
+ v=np.column_stack([vs,vu]);gt=np.column_stack([x.ravel() for x in load_velocity_reference(ds,o.obs_names,[g])]);nv=np.linalg.norm(v,axis=1);nt=np.linalg.norm(gt,axis=1);ok=(nv>1e-6)&(nt>1e-6)
  co=np.clip((v[ok]*gt[ok]).sum(1)/(nv[ok]*nt[ok]),-1,1).mean()
  cb=score_gene(ms,mu,vs,vu,o.obs['bin'].astype(str).to_numpy(),neighbors,c['edges'])[0]
  return float(cb),float(co)
@@ -131,7 +132,7 @@ if args.candidate_gate_control:
       error=float(np.max(np.abs(velocities-archived)))
       assert error<1e-9 and abs(cb-bcb)<1e-10 and abs(co-bco)<1e-10,(ds,g,error,cb-bcb,co-bco)
       baseline_checks.append(dict(dataset=ds,gene=g,max_abs_velocity_error=error,cbdir_error=cb-bcb,cossim_error=co-bco))
-     truth=np.column_stack([arr(result.layers[k][:,j]).ravel() for k in ['velocity_s_true','velocity_u_true']])
+     truth=np.column_stack([x.ravel() for x in load_velocity_reference(ds,result.obs_names,[g])])
      nv=np.linalg.norm(velocities,axis=1);nt=np.linalg.norm(truth,axis=1);valid=(nv>1e-6)&(nt>1e-6)
      cos=np.full(result.n_obs,np.nan);cos[valid]=np.clip((velocities[valid]*truth[valid]).sum(1)/(nv[valid]*nt[valid]),-1,1)
      native_time,native_state=final_state[key];off=native_state>=2

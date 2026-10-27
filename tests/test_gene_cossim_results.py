@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TABLE = ROOT / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
 PROVENANCE = ROOT / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.provenance.json"
-EXPECTED_SHA256 = "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
+EXPECTED_SHA256 = "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
 HISTORICAL_SOURCE_SHA256 = "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
 
 
@@ -21,6 +21,20 @@ def test_simulation_cossim_table_provenance_and_hash():
     assert provenance["direct_source_sha256"] != digest
     assert "historical" in provenance["direct_source_role"]
     assert provenance["table_sha256"] == digest
+    assert provenance["current_truth"]["historical_table_sha256"] == "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
+    identity_rows = list(csv.DictReader(TABLE.open(newline="")))
+    identity = "".join("|".join(row[key] for key in
+                       ("Dataset", "Gene", "Method_raw", "Method", "CBDir")) + "\n"
+                       for row in identity_rows).encode()
+    assert hashlib.sha256(identity).hexdigest() == provenance["current_truth"]["identity_and_cbdir_sha256"]
+    truth = ROOT / provenance["current_truth"]["path"]
+    assert hashlib.sha256(truth.read_bytes()).hexdigest() == provenance["current_truth"]["sha256"]
+    truth_manifest = json.loads(truth.read_text())
+    assert hashlib.sha256((ROOT / "evaluation/gene/simulation/make_truth_reference.py").read_bytes()).hexdigest() == truth_manifest["generator_sha256"]
+    assert hashlib.sha256((ROOT / provenance["reproduction"]["script"]).read_bytes()).hexdigest() == provenance["reproduction"]["script_sha256"]
+    for record in truth_manifest["scenario_records"]:
+        asset = truth.parent / record["output"]
+        assert hashlib.sha256(asset.read_bytes()).hexdigest() == record["output_sha256"]
     restoration = provenance["unit_restoration"]
     assert (restoration["updated_method"], restoration["updated_field"], restoration["updated_rows"]) == ("veloVI", "CosSim", 70)
     path = ROOT / restoration["path"]
@@ -55,15 +69,17 @@ def test_simulation_cossim_table_schema_and_complete_coverage():
     assert all(math.isfinite(float(row["CosSim"])) for row in rows)
 
 
-def test_velovi_cossim_matches_paired_restoration_without_mask_changes():
+def test_velovi_unit_restoration_preserves_historical_cell_masks():
     unit = ROOT / "evaluation/gene/results/unit_restoration"
     with (unit / "velovi_score_pairs.csv").open(newline="") as handle:
         paired = {(row["dataset"], row["gene"]): row for row in csv.DictReader(handle)}
     with TABLE.open(newline="") as handle:
         rows = [row for row in csv.DictReader(handle) if row["Method"] == "veloVI"]
+    assert len(rows) == 70
+    assert any(float(row["CosSim"]) != float(paired[row["Dataset"], row["Gene"]]["restored_cossim"])
+               for row in rows)
     for row in rows:
         source = paired[row["Dataset"], row["Gene"]]
-        assert float(row["CosSim"]) == float(source["restored_cossim"])
         assert source["native_cossim_cells"] == source["restored_cossim_cells"]
         assert int(source["cossim_mask_changes"]) == 0
 
@@ -81,6 +97,13 @@ def test_simulation_replay_scores_other_methods_with_raw_velocity_masks(tmp_path
     for key, values in {"Ms": [0., 1., 2., 3.], "Mu": [1., 2., 3., 4.],
                         "velocity_s_true": [1.] * 4, "velocity_u_true": [0.] * 4}.items():
         data.layers[key] = np.array(values)[:, None]
+    truth = tmp_path / "truth.npz"
+    # Truth rows deliberately differ from method order. Embedded H5AD truth
+    # points the opposite way, so the assertion also checks source selection.
+    data.layers["velocity_s_true"] = -np.ones((4, 1))
+    np.savez(truth, cell_ids=np.asarray(["d", "b", "a", "c"]),
+             gene_names=np.asarray(["g"]), velocity_s_true=np.array([-1., 1., 1., 1.])[:, None],
+             velocity_u_true=np.zeros((4, 1)))
     reference = tmp_path / "neighbors.npz"
     np.savez(reference, obs_names=np.asarray(data.obs_names).astype(str),
              indices=np.tile(np.arange(4), (4, 1)))
@@ -95,9 +118,9 @@ def test_simulation_replay_scores_other_methods_with_raw_velocity_masks(tmp_path
         data.write_h5ad(tmp_path / paths[method])
     *_, cosines = replay.evaluate_dataset(
         "synthetic", {"genes": ["g"], "edges": [("A", "B")]}, paths, {},
-        tmp_path, reference, simulation=True, methods=methods)
+        tmp_path, reference, simulation=True, truth_path=truth, methods=methods)
     assert len(cosines) == 8
     assert {row["method"] for row in cosines} == set(methods)
     for row in cosines:
-        assert row["cossim"] == 0.
+        assert row["cossim"] == 1.
         assert row["evaluable_cells"] == 2

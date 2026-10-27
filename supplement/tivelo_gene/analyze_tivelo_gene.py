@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 import anndata as ad
@@ -17,7 +18,7 @@ import pandas as pd
 
 SCENARIOS = ("murk", "branching", "all")
 LABEL = re.compile(r"^Branch([AB])_(\d+)$")
-REQUIRED_LAYERS = ("velocity", "velocity_u", "velocity_s_true", "velocity_u_true")
+REQUIRED_LAYERS = ("velocity", "velocity_u")
 
 
 def sha256(path):
@@ -47,6 +48,7 @@ def dense(values):
 
 
 def cosine_rows(estimated_s, estimated_u, true_s, true_u):
+    estimated_s, estimated_u = np.asarray(estimated_s, dtype=np.float64), np.asarray(estimated_u, dtype=np.float64)
     dot = estimated_s * true_s + estimated_u * true_u
     estimate_norm = np.hypot(estimated_s, estimated_u)
     truth_norm = np.hypot(true_s, true_u)
@@ -70,6 +72,8 @@ def main():
     args = parser.parse_args()
 
     repo, artifact_root, output = args.repo_root, args.artifact_root, args.output_dir
+    sys.path.insert(0, str(repo))
+    from evaluation.gene.simulation.reference import load_velocity_reference
     canonical_path = repo / "evaluation/gene/results/gene_cbdir_reference30_all.csv"
     cosine_path = repo / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
     canonical = pd.read_csv(canonical_path)
@@ -138,8 +142,7 @@ def main():
             raise ValueError(f"{scenario}: H5AD lacks benchmark genes")
         estimated_s = dense(adata.layers["velocity"][:, indices])
         estimated_u = dense(adata.layers["velocity_u"][:, indices])
-        true_s = dense(adata.layers["velocity_s_true"][:, indices])
-        true_u = dense(adata.layers["velocity_u_true"][:, indices])
+        true_s, true_u = load_velocity_reference(scenario, adata.obs_names, genes)
         cell_cosines = cosine_rows(estimated_s, estimated_u, true_s, true_u)
         for j, gene in enumerate(genes):
             for branch, mask in (

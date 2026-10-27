@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "truth": "noise-free cellDancer ODE state",
+  "cellDancer_version": "1.1.7",
+  "generator_sha256": "e438196ee4bce2d30b562ce429c994cbfcabb5c9b8f00416d76ab43f4e3c3060",
+  "config_sha256": "d0781d24f16716dc1c257351649c32fec66034bd29dae1c4f2ea2b0e2653b5b1",
+  "runtime_versions": {
+    "celldancer": "1.1.7",
+    "numpy": "1.20.3",
+    "scipy": "1.7.2",
+    "pandas": "1.3.4",
+    "anndata": "0.8.0"
+  },
+  "coordinate_order": [
+    "spliced",
+    "unspliced"
+  ],
+  "scenario_records": [
+    {
+      "scenario": "murk",
+      "source": "indicators/gene/simulation/murk_analyze/data/s1_only_murk.h5ad",
+      "source_sha256": "e853780b3cb28ae9941972950e0b02098f57b5f7e35908ab0d5d2473fe0e6bc3",
+      "output": "murk_truth.npz",
+      "output_sha256": "770328bed0e60fe99c74a1a831678cda4a87672eea6f6cb5847ac6482cb75de2",
+      "shape": [
+        1000,
+        10
+      ],
+      "cell_ids_unique": true,
+      "kinetic_parameters_equal": true
+    },
+    {
+      "scenario": "branching",
+      "source": "indicators/gene/simulation/branching_analyze/dataset/s1_branch.h5ad",
+      "source_sha256": "392eccf96cd31f27e8b99327f0b061e475d78a1cfea54c75af4564ddb163fe14",
+      "output": "branching_truth.npz",
+      "output_sha256": "e0ccfd80170865d6878c3922bc210e2cbc35af94245b882e9fe1f6197ee4025c",
+      "shape": [
+        2000,
+        20
+      ],
+      "cell_ids_unique": true,
+      "kinetic_parameters_equal": true
+    },
+    {
+      "scenario": "all",
+      "source": "indicators/gene/simulation/sim_all_analyze/data/sim_all.h5ad",
+      "source_sha256": "9b9bebf9159e02c1bcb880d8aba323982e70b7faa67d6d92c6313db603e72ee2",
+      "output": "all_truth.npz",
+      "output_sha256": "3e78ceb28af3d4158d3f0d2213d975e9afb151e16a602ed470d24b9f190722bd",
+      "shape": [
+        2000,
+        40
+      ],
+      "cell_ids_unique": true,
+      "kinetic_parameters_equal": true
+    }
+  ]
+}

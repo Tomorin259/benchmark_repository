@@ -9,7 +9,7 @@
     {
       "panels": "C",
       "source": "supplement/tivelo_gene/figures/tivelo_root_control_gene_metrics.pdf",
-      "sha256": "379bbca10cb4d7dffac478ad4ad8dbc259878ece28b7d0a47055eaa1492c0944"
+      "sha256": "49fd26618d1719c909fcde8182852021f2c803b44a2f8cc4e89871ea71c57248"
     },
     {
       "panels": "D",
@@ -20,11 +20,11 @@
   "assembly": [
     {
       "file": "supfig13.pptx",
-      "sha256": "31982156715bb86d977a2898e0af4fa047782c4cec1568a1a71f42039a7f73db"
+      "sha256": "29bdef81e109aae3a66737dd7da1d41645369c27c54bc522ff0b2b1531ba7d3d"
     },
     {
       "file": "suppFigThirteen.pdf",
-      "sha256": "59a9ad72d5e24e9135eb3c11997240f6be2fd12e11f600a8160478328af2be3e"
+      "sha256": "4a279082c39161fa78a8c705339e6f0d8811ebabd34d32fc60681fd7a0b5061b"
     }
   ],
   "assembly_process": "Author-approved PowerPoint assembly; exported PDF cropped without rerendering panels",
@@ -81,11 +81,28 @@
     },
     {
       "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_compact_control.py",
-      "sha256": "878dd8a636b0cd6c40e86dc7345dd470a01150f6fb47dacab29ff389ebdc0b6a"
+      "sha256": "1d9b186016997830bce6da4bd86c4bdb04ee1b28e4b896aac0bfa2411e62939a"
     },
     {
       "file": "supplement/tivelo_gene/figures/scripts/plot_tivelo_full_lineage_shared_dpt.py",
       "sha256": "e94006a53973cef8b676fb8d863dc941c9b37695f53664785034167da704a69b"
     }
-  ]
+  ],
+  "pending_pdf_export": false,
+  "source_role": "Current source materials and accepted author-exported composite.",
+  "author_export": {
+    "filename": "supfig13.pdf",
+    "source_pdf_sha256": "cf78931e767b3d814df4dfe439626f7af09a48e80ecc3f67b90dd1b4d646009c",
+    "cropped_pdf_sha256": "4a279082c39161fa78a8c705339e6f0d8811ebabd34d32fc60681fd7a0b5061b",
+    "author_assembly_filename": "supfig13.pptx",
+    "author_assembly_sha256": "24db1d95470eb1f4f3ae8c67f2f13a7591f2f49db7daf34cdcdfaf1f8a861aa9",
+    "crop_box_pt": [
+      0.0,
+      104.2,
+      524.4,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
+  }
 }

@@ -50,7 +50,10 @@ python -m unittest discover -s tests -p test_gene_case_results.py
 
 Gene scores use the current [reference-30 edge table](../../evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv).
 The Cell controls use the recorded matched outputs for DeepVelo, UniTVelo and
-veloVI, and the retained canonical outputs for the other six methods. Source
+veloVI, and the canonical Cell outputs for the other six methods. MultiVelo
+uses its official normalized native spliced velocity and matching projection.
+The [current edge and source tables](results/current/) supply these controls;
+dated snapshots retain their recorded source identities. Source
 H5ADs, velocity layers, method configurations and source-cell sets are recorded
 in the mapping table. Valid pairs require finite scores; missing values remain
 missing.

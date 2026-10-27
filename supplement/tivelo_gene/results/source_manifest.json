@@ -18,12 +18,31 @@
   "tables": [
     {
       "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
-      "sha256": "4df8c7316a09dd66c1e71d42ae8d4b13b9938debed31c56109e548a8cd5105e0"
+      "sha256": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111"
     },
     {
       "path": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-      "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
+      "sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
     }
   ],
-  "max_absolute_cosine_recalculation_difference": 4.979199503707399e-06
+  "max_absolute_cosine_recalculation_difference": 1.6653345369377348e-16,
+  "velocity_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  },
+  "score_outputs_sha256": {
+    "root_intervention_summary.csv": "19a5765318836cc789a9e039c6d3a20f4a639a1e6264ef62f9c8fbb1af361083",
+    "real_method_context.csv": "7eeb6a9725452e9a46d08b34da68a5479797699c86caf99f0d6143766ea7b99d",
+    "root_intervention_neighbor_pairs.csv": "6fc502760c85375564173565df901d95fc7b75a4d1793bbb01c715a141fdd772",
+    "path_summary.csv": "0fc97f1cfe0f534ac4c9482c7908e0dbc4df2fef14c6fb4272bb99e73e4b5118",
+    "root_intervention_gene_scores.csv": "ba29a6afd1d1c9cbbd02c139724074a52305ec1da10eee18254e8a04dc7277cb",
+    "cosine_recalculation_check.csv": "5a9bcd35e7188f3f9e29912b89ecbf0ef072358847fc124ef4405e20645e0739",
+    "velocity_truth_cosine_by_gene_branch.csv": "3a1adea296e9f36c6e32c043352075743c7d6777fdd10b68a3cd999ed90389f8",
+    "root_end_dpt_by_bin.csv": "b9a753675d5c2ac69a64d27a2556d83bfe0b1330efdb13c5a3b986806a2e2304",
+    "tivelo_simulation_summary.csv": "b28cd04bb851d43fb7f9abdb752551d31f34d03afd7766b7bccfa8ba260850e9",
+    "inferred_path_edges.csv": "a3df9639ce11ca3deb64ac212e4f4a740e1fe538d6e89535f31e175b7f6e841b",
+    "directed_neighbor_cluster_edges.csv": "cf2b2913041582d9585f2a9fa8ce14f923efd996ac97a19eaddc49f3e8de5a55",
+    "tivelo_simulation_gene_scores.csv": "ec9348c12cdb9a309ea5b6f2d0e085f37ef484d9a8383317a87ddf3d10d0379c"
+  }
 }

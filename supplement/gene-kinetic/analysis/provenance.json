@@ -18,26 +18,26 @@
     "supplement/gene-kinetic/figures/retina_celf4_manifest.json": "33cf274f223a88fc7accef2f2f12f85f66fd4bdb80e167cfc8c3c5442a62b986",
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
     "supplement/gene-kinetic/results/diaph3_nipc_to_nbl1.csv": "ae9e50a46ffdcfe532a13162462d60625a0db2e2fcb67af6be36a5fd9570909d",
-    "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_edge_details_extended.csv": "398b02cddb7e667d9c69c7350e8d9270b40f492532bb41409fdf0c5aa879b36a",
-    "supplement/gene-kinetic/results/cell_level_cbdir_batc_rerun_20260920_v2/results/cell_metrics_audit.csv": "0edec4b723bd993609ee0b1612c1541161a0a584e3c5c807d79b49034a058552",
-    "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_edge_details_extended.csv": "9abebb7fae3a71fc055073aa2a060e8b6c7e8ea90f23e1c73d3e406118ad91b7",
-    "supplement/gene-kinetic/results/cell_level_cbdir_batc_gene_matched_20260920/results/cell_metrics_audit.csv": "5649c3175755d8debde60088b6abdce6e9117b7972ec7b214b59be7475975667",
-    "supplement/gene-kinetic/analysis/gene_kinetic_analysis.py": "f09432aa7eeb00a96d4e0c6f956faba17d0688c5a3b02f6776ccfe4a0f9dd751"
+    "supplement/gene-kinetic/results/current/canonical_edges.csv": "70e1482199ab2e0c1fae6eb4ca78490d2c4d10c38268fd692dbdb3f98ee5f303",
+    "supplement/gene-kinetic/results/current/matched_edges.csv": "75638008855cc3bf48ba431be20c7b248c91333ffe8eef04689448a829e8a497",
+    "supplement/gene-kinetic/results/current/canonical_audit.csv": "2f4ef676d59f1ea75e4e8565748aa70c197c7fa5f2bcf9a0b8fdd312fc5372ad",
+    "supplement/gene-kinetic/results/current/gene_matched_audit.csv": "f354ce57452ad4d8d31c2a208ea7b09aa14ea6c5773ae6d72724643e9bbd2db9",
+    "supplement/gene-kinetic/analysis/gene_kinetic_analysis.py": "71b1be8b2504e584b16c0a0a23ba1e1649dc9d090ca576c73ca1c1bf5a7522ad"
   },
   "outputs_sha256": {
-    "aggregated_edge_method_pairs.csv": "996472cb2523003b3e2a61e7eb7c4ceff2cbf75f0c472dee667a9fd92d3cd6bc",
-    "branching_winner_share.csv": "a0492697f79dd87224a5eab9eb18fe6eea410ede0392d8e8a3be6b7b8bc6de1f",
+    "aggregated_edge_method_pairs.csv": "e5f44202b98f251dc94c5799a22b33d335a6900fa55f0f4ca2e76771524c3295",
+    "branching_winner_share.csv": "dccafc2659522f4887b830e3572367c674099c4e456f7c18a2d58afb4d81d22e",
     "candidate_coverage_summary.csv": "443bb28fa4b4ea391829ba140c71b325ee636f3fa804a66c3e6ddc63b7852727",
-    "cell_match_pairs.csv": "5746c5c86ccc8b6f7db6fbd984f875f5295b9cd0c45aa34cd2e22b4ebdc4c3d2",
-    "correlation_by_method.csv": "a8e0728487457a84bd532a3d79bbf2a8168b0895adb29ede77b2293d4f2048b3",
-    "correlation_summary.csv": "0141e34e7f51da004a11263c4272807a19f38ebd475a996dddfb828d97ac4581",
-    "edge_correlation_summary.csv": "129cb17aef9a8f65240408fe2cceaba0d0889a15f36fb95c61a2f3e32cdffe8e",
-    "edge_method_rank_sign.csv": "40d1dfa5e1d9526852a0b9566c0c35e8856a46963301531c632a38b6cde0a0bd",
-    "edge_rank_summary.csv": "05ab6a70c2e831a7e8fe6fc9a5768a02d26dd4a2504d46e54d8ea36949fce129",
-    "manifest_edge_observations.csv": "55cb2894a9c91ac5f7e2083f722965348e5769ab35f03ae89254240b1e8ab06c",
+    "cell_match_pairs.csv": "679126a0c83114ee07e39a039506b25a4b1e2e51d55c6de2f8b042de6c5269a3",
+    "correlation_by_method.csv": "e4b2135f4ede624fc08043f1437ca7bce71509ac0978e20a3d124cbe1bc0d8ba",
+    "correlation_summary.csv": "90f66970398e67971dd0c8f19f6bfb4bc87ebe1b1d161227c65d0937183943a4",
+    "edge_correlation_summary.csv": "23a3e466074f558b083dbd44d79f8520d62e64035f5c59917738784f2cb5000e",
+    "edge_method_rank_sign.csv": "e3f24afceff13c964e722543bca3e722f9d654eca4dfe60d6ecced985e92d875",
+    "edge_rank_summary.csv": "537e20667550249aa6442d1c1a8808c1d6d9da072051aa4cb34a7defe1d8f5d7",
+    "manifest_edge_observations.csv": "513b10ca04d68f82295d760aff5b30a4e716b0694b4cc7a90918df6f8d2e4980",
     "method_overall_summary.csv": "ef1afc1438eaf71986e8f8138a7171c8712744205145cc2dbe2f3174e153cb6c",
-    "primary_edge_observations.csv": "d2261be87f5d423d22116042d5d2d6a8974eb597d8c43c73ceaab0ab4e1e1ed4",
-    "source_mapping_audit.csv": "c4962270f5bee264cfab6bd9e49a428196815137ee67203e964b9070a5fb7272",
-    "gene_cell_edge_analysis.md": "7de63b069638868c2c14934c1eb002150101237bef227cf1cbc9ed7151195040"
+    "primary_edge_observations.csv": "ca9f0d4c9a28a4bb7417345233d239c287c59dbc2fbcc3c5a1af8291e9cb9ca3",
+    "source_mapping_audit.csv": "0a165ecb85ee02c6a06ba7729a55c1295e146e1f47a671f9657cda692628bc4a",
+    "gene_cell_edge_analysis.md": "a6455fc04ef798fbbb6e3ec7529d210245ab35024af2f54df6f11e68fe6f328b"
   }
 }

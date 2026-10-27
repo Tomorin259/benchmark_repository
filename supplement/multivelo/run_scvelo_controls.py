@@ -14,6 +14,7 @@ assert not a.output.exists();a.output.mkdir(parents=True)
 sys.path.insert(0,str(a.repository_root))
 from evaluation.gene.config import SIM_PATHS,SIM_CONFIGS
 from evaluation.gene.run_reference30_gene_cbdir import score_gene,align_reference_neighbors
+from evaluation.gene.simulation.reference import load_velocity_reference
 def sha(path):
  return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -71,7 +72,7 @@ for ds,c in SIM_CONFIGS.items():
   # Keep the native lower clipping used in scVelo's mode='velocity'.
   vs=np.maximum(vs,-arr(obj.layers['Ms']));vu=np.maximum(vu,-arr(obj.layers['Mu']))
   variants[name]=np.stack([vs,vu],axis=-1)
- truth=np.stack([arr(obj.layers['velocity_s_true']),arr(obj.layers['velocity_u_true'])],axis=-1)
+ truth=np.stack(load_velocity_reference(ds,obj.obs_names,c['genes']),axis=-1)
  asset=np.load(a.repository_root/f'evaluation/gene/results/reference_neighbors/{ds}.npz');neighbors=align_reference_neighbors(obj,asset['obs_names'].astype(str),asset['indices'])
  labels=obj.obs['bin'].astype(str).to_numpy();ms,mu=arr(obj.layers['Ms']),arr(obj.layers['Mu'])
  for name,v in variants.items():

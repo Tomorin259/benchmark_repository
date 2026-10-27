@@ -5,11 +5,11 @@ reproduction. Paths must match the selected module's input layout.
 
 | Needed material | Access | Next step |
 | --- | --- | --- |
-| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
+| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.1/v1.0.1/inputs), distribution `v1.0.1` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
 | Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
-| Saved method outputs and evaluation assets | [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
+| Saved method outputs and evaluation assets | [Hugging Face results v1.0.1](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.1) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
 | Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |
-| Figure/table-indexed Source Data | [Source Data v1.0.0](SOURCE_DATA.md) | Browse individual tables and saved plot inputs; file sizes and hashes are in [source_data_manifest.tsv](source_data_manifest.tsv); a complete ZIP is optional |
+| Figure/table-indexed Source Data | [Source Data v1.0.1](SOURCE_DATA.md) | Browse individual tables and saved plot inputs; file sizes and hashes are in [source_data_manifest.tsv](source_data_manifest.tsv); a complete ZIP is optional |
 
 ## Canonical inputs
 
@@ -80,3 +80,7 @@ manifest; the source/accession fields retain their original study attribution.
 The [reference guide](UPSTREAM_REFERENCES.md) describes the expected benchmark
 CSV format and checksums. [RESULT_DOWNLOADS.md](RESULT_DOWNLOADS.md) explains
 archive/member hashes, logical aliases and the current availability index.
+
+## Simulation layers and scientific sources
+
+The three simulation inputs contain noisy observations together with full-gene `clean_spliced` and `clean_unspliced` states. Their `velocity_s_true` and `velocity_u_true` layers are ODE velocities at those clean states; cells, genes, kinetic parameters and observed expression retain the registered realization. The [source identities](source_provenance.tsv) record native method fits and the simulated observations. Current input files and method outputs have their own download and member checksums.

@@ -56,13 +56,27 @@ dependencies, separately from saved-data rendering.
 ## Controls and interpretation
 
 The simulation pairs compare corrected-path roots with known early roots:
-branching CBDir-gene/CosSim changes from -0.282741/-0.432665 to
-0.513026/0.480011; hybrid changes from -0.400341/-0.403071 to
-0.686810/0.672195. The paired bone marrow comparison changes roots Mono_1/HSC_1
+branching CBDir-gene/CosSim changes from -0.282741/-0.476315 to
+0.513026/0.535458; hybrid changes from -0.400341/-0.463156 to
+0.686810/0.745974. The paired bone marrow comparison changes roots Mono_1/HSC_1
 across three optimizer seeds. Mean Cell CBDir changes from 0.109349 to 0.662020
 and BATC from 0.283570 to 0.745330.
 The root intervention jointly recomputes the child graph, DPT and directed
 neighbors before velocity fitting.
+
+Simulation gene-wise CosSim uses the shared noise-free ODE reference in
+`evaluation/gene/simulation/truth/`, matched by cell and gene names.
+The full-expression upstream and truth-graph diagnostics require the
+all-gene reference generated with `make_truth_reference.py --all-genes`;
+pass its directory with `--truth-root`. Their high-dimensional direction
+comparisons and root/graph interventions are distinct from per-gene CosSim.
+
+For a paired replay of retained root interventions, pass the corresponding
+`root_stage_gene_scores.csv` with `root_stage_intervention.py --root-table`
+and its recorded seed. `stage_audit.py --root-table` likewise fixes the root
+used for velocity scoring while retaining the inferred upstream diagnostics.
+Without this option, the scripts run the upstream root-selection procedure;
+its selected root can vary even when the velocity optimizer seed is fixed.
 
 Supporting root-decision, upstream-scVelo, ordering-trigger, flux and
 orientation interventions remain linked by their manifests and top-level

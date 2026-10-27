@@ -50,11 +50,16 @@ def main():
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent / "upstream_scvelo_audit")
     parser.add_argument("--seeds", nargs="+", type=int, default=[20260926, 20260927])
     parser.add_argument("--n-jobs", type=int, default=12)
+    parser.add_argument("--truth-root", type=Path, required=True, help="All-gene noise-free reference from make_truth_reference.py --all-genes")
     args = parser.parse_args()
 
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    sys.path.insert(0, str(args.repo_root / "supplement/tivelo_gene"))
     from stage_audit import SCENARIOS, prepare, set_seed
+    sys.path.insert(0, str(args.repo_root))
+    from evaluation.gene.simulation.reference import load_velocity_reference
 
+    if args.output_dir.exists() and any(args.output_dir.iterdir()):
+        raise ValueError("Use an empty output directory")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     summary_rows, root_rows, velocity_rows, graph_rows = [], [], [], []
     for seed in args.seeds:
@@ -85,7 +90,7 @@ def main():
                                   "mean_end_points": float(end_means[group])})
 
             inferred = dense(adata.layers["velocity"])
-            truth = dense(adata.layers["velocity_s_true"])
+            truth, _ = load_velocity_reference(scenario, adata.obs_names, adata.var_names, args.truth_root)
             cell_cos = row_cosine(inferred, truth)
             for group in groups:
                 values = cell_cos[labels == group]

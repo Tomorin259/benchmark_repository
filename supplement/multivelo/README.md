@@ -42,7 +42,7 @@ the induction-heavy ground-truth direction distribution.
 
 ## Retained materials
 
-- [Native candidate-gate outputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/v1.0.0/diagnostics/multivelo/candidate_gate_outputs.tar.gz?download=true):
+- [Native candidate-gate outputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.1/v1.0.1/diagnostics/multivelo/candidate_gate_outputs.tar.gz?download=true):
   four H5ADs for the default and gate-open conditions in normal + branching
   and hybrid. The archive contains `multivelo/{branching,all}_{refit_default,on_allow_repression}.h5ad`.
   [The member index](../../data/result_member_manifest.tsv) maps them to their
@@ -76,15 +76,16 @@ the induction-heavy ground-truth direction distribution.
   export and its source map are registered in the paper-level figure manifest.
 
 CBDir-gene uses the fixed reference-30 assets owned by `evaluation/gene/`.
-CosSim excludes either predicted or true vectors with norm at or below 1e-6;
+CosSim uses the shared noise-free ODE reference, aligned by cell and gene
+identifiers, and excludes either vector with norm at or below 1e-6;
 the scVelo archive also retains the fixed truth-eligible-cell control. Means and
 SDs are computed from unrounded gene scores. Figure/table display uses four
 decimal places, positive values have no leading plus sign, and source CSVs
 retain full precision. All controls use the registered simulation inputs.
 
 S15A uses BoostALL_5 from normal + branching. Its annotated CosSim averages
-all 2,000 valid cells (default 0.7534, Gate open 0.2074). The supplementary
-text's branch-specific values (0.8037 and -0.2920) use the 1,000 BranchB cells;
+all 2,000 valid cells (default 0.8949, Gate open 0.3327). The supplementary
+text's branch-specific values (0.8339 and -0.2954) use the 1,000 BranchB cells;
 they are a different statistic, not alternative whole-gene scores. In Gate
 open, 722 of those 1,000 cells receive repression assignments. The gene-level
 `on` classification is retained; no cells are removed by the intervention.

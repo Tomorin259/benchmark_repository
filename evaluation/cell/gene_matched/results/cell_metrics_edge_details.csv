@@ -209,73 +209,73 @@ retina,veloVI,transcosine,Neuroblast,AC/HC,0.15529179309562938,41
 retina,veloVI,transcosine,Neuroblast,PR,0.10422346980955738,52
 retina,veloVI,transcosine,Neuroblast,RGC,0.14800340028551334,52
 retina,veloVI,transcosine,Progenitor,Neuroblast,0.09192063197776003,122
-DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA1-Sub,0.11860168976926003,330
-DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA2-3-4,0.05679808033860211,357
-DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,ImmAstro,-0.055085382100817946,71
-DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,OPC,0.19696646059813797,58
-DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.14583620743272382,1002
-DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule2,Granule,-0.004207282218262031,397
-DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl1,Nbl2,0.12525159867260677,129
-DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,CA,0.03180620324527963,255
-DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,ImmGranule1,-0.08979312490186901,324
-DentateGyrus_lamanno,multivelo,highdim_cbdir,nIPC,GlialProg,-0.03227940671705754,130
-DentateGyrus_lamanno,multivelo,transcosine,CA,CA1-Sub,0.11114219557352815,330
-DentateGyrus_lamanno,multivelo,transcosine,CA,CA2-3-4,0.1458072984148944,357
-DentateGyrus_lamanno,multivelo,transcosine,GlialProg,ImmAstro,0.11040856276022297,71
-DentateGyrus_lamanno,multivelo,transcosine,GlialProg,OPC,0.10345415334249365,58
-DentateGyrus_lamanno,multivelo,transcosine,ImmGranule1,ImmGranule2,0.14684513041631903,1002
-DentateGyrus_lamanno,multivelo,transcosine,ImmGranule2,Granule,0.14422966859518066,397
-DentateGyrus_lamanno,multivelo,transcosine,Nbl1,Nbl2,0.11073152402094602,129
-DentateGyrus_lamanno,multivelo,transcosine,Nbl2,CA,0.12217953202369458,255
-DentateGyrus_lamanno,multivelo,transcosine,Nbl2,ImmGranule1,0.15610052195929544,324
-DentateGyrus_lamanno,multivelo,transcosine,nIPC,GlialProg,0.06627764482266055,130
-bonemarrow,multivelo,highdim_cbdir,Ery_1,Ery_2,-0.3448413258555379,291
-bonemarrow,multivelo,highdim_cbdir,HSC_1,Ery_1,-0.4119672758629554,157
-bonemarrow,multivelo,highdim_cbdir,HSC_1,HSC_2,-0.27226254347295864,1007
-bonemarrow,multivelo,transcosine,Ery_1,Ery_2,0.052040414774872014,291
-bonemarrow,multivelo,transcosine,HSC_1,Ery_1,0.034486850071105225,157
-bonemarrow,multivelo,transcosine,HSC_1,HSC_2,0.051852267637927815,1007
-capofibro,multivelo,highdim_cbdir,G1,S,0.14283547501715885,336
-capofibro,multivelo,highdim_cbdir,G2M,G1,0.06675847532361591,169
-capofibro,multivelo,highdim_cbdir,S,G2M,0.05728736774969078,113
-capofibro,multivelo,transcosine,G1,S,0.18395020871858356,336
-capofibro,multivelo,transcosine,G2M,G1,0.2040945902775378,169
-capofibro,multivelo,transcosine,S,G2M,0.31215493172712094,113
-gastrulation,multivelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,0.004485159714463135,332
-gastrulation,multivelo,highdim_cbdir,Blood progenitors 2,Erythroid1,-0.28571749161707927,515
-gastrulation,multivelo,highdim_cbdir,Erythroid1,Erythroid2,-0.5620636110527233,540
-gastrulation,multivelo,highdim_cbdir,Erythroid2,Erythroid3,-0.6727131086686535,423
-gastrulation,multivelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.06747997796523429,332
-gastrulation,multivelo,transcosine,Blood progenitors 2,Erythroid1,0.14771971901408532,515
-gastrulation,multivelo,transcosine,Erythroid1,Erythroid2,0.08357085677702411,540
-gastrulation,multivelo,transcosine,Erythroid2,Erythroid3,0.03514414611559424,423
-mousebrain,multivelo,highdim_cbdir,IPC,V-SVZ,0.31197043268086466,97
-mousebrain,multivelo,highdim_cbdir,"RG, Astro, OPC",IPC,0.2651675099734395,124
-mousebrain,multivelo,highdim_cbdir,Upper Layer,Deeper Layer,0.12672954517185764,227
-mousebrain,multivelo,highdim_cbdir,V-SVZ,Upper Layer,-0.03753457716757878,332
-mousebrain,multivelo,transcosine,IPC,V-SVZ,0.2359021561431516,97
-mousebrain,multivelo,transcosine,"RG, Astro, OPC",IPC,0.07736208859756927,124
-mousebrain,multivelo,transcosine,Upper Layer,Deeper Layer,0.12663468518314908,227
-mousebrain,multivelo,transcosine,V-SVZ,Upper Layer,0.1078286533029971,332
-pancreas,multivelo,highdim_cbdir,Ductal,Ngn3 low EP,0.035313443580813474,796
-pancreas,multivelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.2619804477397076,95
-pancreas,multivelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.21619249579564043,55
-pancreas,multivelo,highdim_cbdir,Pre-endocrine,Alpha,0.2176577777597759,115
-pancreas,multivelo,highdim_cbdir,Pre-endocrine,Beta,0.2903437670961232,140
-pancreas,multivelo,highdim_cbdir,Pre-endocrine,Delta,0.30906279417451105,34
-pancreas,multivelo,highdim_cbdir,Pre-endocrine,Epsilon,0.6327328493899542,59
-pancreas,multivelo,transcosine,Ductal,Ngn3 low EP,0.06078005993441736,796
-pancreas,multivelo,transcosine,Ngn3 high EP,Pre-endocrine,0.22460677215927524,95
-pancreas,multivelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.17411464290185408,55
-pancreas,multivelo,transcosine,Pre-endocrine,Alpha,0.13677974273551904,115
-pancreas,multivelo,transcosine,Pre-endocrine,Beta,0.17923811839095183,140
-pancreas,multivelo,transcosine,Pre-endocrine,Delta,0.17573961396427715,34
-pancreas,multivelo,transcosine,Pre-endocrine,Epsilon,0.4275397195370268,59
-retina,multivelo,highdim_cbdir,Neuroblast,AC/HC,0.23092123957357358,41
-retina,multivelo,highdim_cbdir,Neuroblast,PR,0.0950373488074651,52
-retina,multivelo,highdim_cbdir,Neuroblast,RGC,0.25625888287486737,52
-retina,multivelo,highdim_cbdir,Progenitor,Neuroblast,0.035830684867524214,122
-retina,multivelo,transcosine,Neuroblast,AC/HC,0.28217239623389595,41
-retina,multivelo,transcosine,Neuroblast,PR,0.2196769122965634,52
-retina,multivelo,transcosine,Neuroblast,RGC,0.2728340342683413,52
-retina,multivelo,transcosine,Progenitor,Neuroblast,0.1283561954204161,122
+pancreas,multivelo,highdim_cbdir,Ductal,Ngn3 low EP,0.018401878538309137,796
+pancreas,multivelo,highdim_cbdir,Ngn3 high EP,Pre-endocrine,0.0855289792875014,95
+pancreas,multivelo,highdim_cbdir,Ngn3 low EP,Ngn3 high EP,0.07493918920343413,55
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Alpha,0.041227614441087315,115
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Beta,0.05719807362133861,140
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Delta,0.04377147261282473,34
+pancreas,multivelo,highdim_cbdir,Pre-endocrine,Epsilon,0.09290632405902409,59
+pancreas,multivelo,transcosine,Ductal,Ngn3 low EP,0.02871669318114045,796
+pancreas,multivelo,transcosine,Ngn3 high EP,Pre-endocrine,0.0860621320966043,95
+pancreas,multivelo,transcosine,Ngn3 low EP,Ngn3 high EP,0.08174682903018865,55
+pancreas,multivelo,transcosine,Pre-endocrine,Alpha,0.049305454524152956,115
+pancreas,multivelo,transcosine,Pre-endocrine,Beta,0.06286280783117815,140
+pancreas,multivelo,transcosine,Pre-endocrine,Delta,0.04669803400140475,34
+pancreas,multivelo,transcosine,Pre-endocrine,Epsilon,0.09429281023311255,59
+DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA1-Sub,0.02290071726498296,330
+DentateGyrus_lamanno,multivelo,highdim_cbdir,CA,CA2-3-4,0.02410603143214967,357
+DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,ImmAstro,0.008879779540162638,71
+DentateGyrus_lamanno,multivelo,highdim_cbdir,GlialProg,OPC,0.03277348906405851,58
+DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule1,ImmGranule2,0.028959540553241264,1002
+DentateGyrus_lamanno,multivelo,highdim_cbdir,ImmGranule2,Granule,0.036952947001941204,397
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl1,Nbl2,0.025022277991630034,129
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,CA,0.022959297442846045,255
+DentateGyrus_lamanno,multivelo,highdim_cbdir,Nbl2,ImmGranule1,0.014625966547452213,324
+DentateGyrus_lamanno,multivelo,highdim_cbdir,nIPC,GlialProg,-0.009279708112496312,130
+DentateGyrus_lamanno,multivelo,transcosine,CA,CA1-Sub,0.036419008910624225,330
+DentateGyrus_lamanno,multivelo,transcosine,CA,CA2-3-4,0.0370478147391526,357
+DentateGyrus_lamanno,multivelo,transcosine,GlialProg,ImmAstro,0.005239348107019216,71
+DentateGyrus_lamanno,multivelo,transcosine,GlialProg,OPC,0.038900545854442595,58
+DentateGyrus_lamanno,multivelo,transcosine,ImmGranule1,ImmGranule2,0.04390314231372423,1002
+DentateGyrus_lamanno,multivelo,transcosine,ImmGranule2,Granule,0.04168059773221483,397
+DentateGyrus_lamanno,multivelo,transcosine,Nbl1,Nbl2,0.028081168090318177,129
+DentateGyrus_lamanno,multivelo,transcosine,Nbl2,CA,0.01941955518098742,255
+DentateGyrus_lamanno,multivelo,transcosine,Nbl2,ImmGranule1,0.01616674099452975,324
+DentateGyrus_lamanno,multivelo,transcosine,nIPC,GlialProg,0.023453047059368914,130
+bonemarrow,multivelo,highdim_cbdir,Ery_1,Ery_2,-0.025896695660147684,291
+bonemarrow,multivelo,highdim_cbdir,HSC_1,Ery_1,-0.013732129453279231,157
+bonemarrow,multivelo,highdim_cbdir,HSC_1,HSC_2,0.003212191483089831,1007
+bonemarrow,multivelo,transcosine,Ery_1,Ery_2,0.02195777861494626,291
+bonemarrow,multivelo,transcosine,HSC_1,Ery_1,0.03272371449408412,157
+bonemarrow,multivelo,transcosine,HSC_1,HSC_2,0.0291780754562407,1007
+retina,multivelo,highdim_cbdir,Neuroblast,AC/HC,0.06914347381406943,41
+retina,multivelo,highdim_cbdir,Neuroblast,PR,0.07189056650968949,52
+retina,multivelo,highdim_cbdir,Neuroblast,RGC,0.04382644295619838,52
+retina,multivelo,highdim_cbdir,Progenitor,Neuroblast,0.035404362931275205,122
+retina,multivelo,transcosine,Neuroblast,AC/HC,0.10025624349349882,41
+retina,multivelo,transcosine,Neuroblast,PR,0.10411568756143634,52
+retina,multivelo,transcosine,Neuroblast,RGC,0.07645068106313165,52
+retina,multivelo,transcosine,Progenitor,Neuroblast,0.04091852279619713,122
+mousebrain,multivelo,highdim_cbdir,IPC,V-SVZ,0.05463073182150277,97
+mousebrain,multivelo,highdim_cbdir,"RG, Astro, OPC",IPC,0.02864007994048915,124
+mousebrain,multivelo,highdim_cbdir,Upper Layer,Deeper Layer,0.05600116890314,227
+mousebrain,multivelo,highdim_cbdir,V-SVZ,Upper Layer,0.0352834258908358,332
+mousebrain,multivelo,transcosine,IPC,V-SVZ,0.05701003000428228,97
+mousebrain,multivelo,transcosine,"RG, Astro, OPC",IPC,0.033746874079600184,124
+mousebrain,multivelo,transcosine,Upper Layer,Deeper Layer,0.059153590142616126,227
+mousebrain,multivelo,transcosine,V-SVZ,Upper Layer,0.04484334416079639,332
+capofibro,multivelo,highdim_cbdir,G1,S,-0.032891494365542874,336
+capofibro,multivelo,highdim_cbdir,G2M,G1,-0.05133312906211539,169
+capofibro,multivelo,highdim_cbdir,S,G2M,-0.06342386426034413,113
+capofibro,multivelo,transcosine,G1,S,0.004960417830162777,336
+capofibro,multivelo,transcosine,G2M,G1,0.002649014249874796,169
+capofibro,multivelo,transcosine,S,G2M,0.0012143657775402618,113
+gastrulation,multivelo,highdim_cbdir,Blood progenitors 1,Blood progenitors 2,-0.00020035601930358966,332
+gastrulation,multivelo,highdim_cbdir,Blood progenitors 2,Erythroid1,0.004920779304986473,515
+gastrulation,multivelo,highdim_cbdir,Erythroid1,Erythroid2,-0.023709388635775815,540
+gastrulation,multivelo,highdim_cbdir,Erythroid2,Erythroid3,-0.034131654014786704,423
+gastrulation,multivelo,transcosine,Blood progenitors 1,Blood progenitors 2,0.01439692711436574,332
+gastrulation,multivelo,transcosine,Blood progenitors 2,Erythroid1,0.011669882740852257,515
+gastrulation,multivelo,transcosine,Erythroid1,Erythroid2,0.002726038166568927,540
+gastrulation,multivelo,transcosine,Erythroid2,Erythroid3,0.002600849653450672,423

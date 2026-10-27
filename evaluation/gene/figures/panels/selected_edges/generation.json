@@ -225,38 +225,27 @@
   },
   "sources": {
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
-    "evaluation/gene/results/selected_edge_cell_controls.csv": "ee657ddb8e5252a3849170f4a9e776b73e881bfb650f6f38d2665fc1ca3a0102",
-    "evaluation/gene/plot_selected_edge_panels.py": "81c1f05fe93efc034143633aeff9a6bc0cece911bad9e9c4e35185004778f642"
+    "evaluation/gene/results/selected_edge_cell_controls.csv": "b31f62fae28434b65e0ac470a0d51cfdfaa0fa75c66839831a891b37c2f3338d",
+    "evaluation/gene/plot_selected_edge_panels.py": "946b11a54cceb526f6347f30849d49da229f0a3d263ebb4d769305552e32f8a2"
   },
   "display": "native method coordinates; selected-cluster phase portraits; original six-plus-three layout",
-  "scoring": "current selected-edge scores; retained transition-specific Cell controls",
+  "scoring": "Reference-30 Gene direction and transition-specific Cell CBDir / BATC candidate means",
   "redraw": "complete render from arrays and tables; no numerical overlays on historical images",
-  "rendered_with": {
-    "path": "evaluation/gene/plot_selected_edge_panels.py",
-    "sha256": "d8973091d0d7c1526cc55ee47bbad2070212472ccca41567e1033c59a320b0e3",
-    "scope": "Historical renderer identity for the retained PNG/PDF/SVG outputs."
-  },
-  "table_schema_correction": {
-    "field": "gene",
-    "meaning": "Gene identifier; plotting uses the distinct numeric gene_cbdir field.",
-    "numeric_fields_unchanged": true,
-    "rendered_outputs_unchanged": true,
-    "tables": [
-      {
-        "path": "evaluation/gene/figures/panels/selected_edges/Fech_plotted_scores.csv",
-        "before_sha256": "0d927c6aacc192d3d19ce52bcf2930f86d90e35c9c1b8fd56a4601342493fc58",
-        "sha256": "9dd68d4b2912f942716f4acffbfcf92dd71cc9f9ce116f6eb2782f323f55be41"
-      },
-      {
-        "path": "evaluation/gene/figures/panels/selected_edges/FAM111A_plotted_scores.csv",
-        "before_sha256": "3ae1b7066108cc76150b22a5b8687a2f528f4a66f54de34fb47e5f06e3f0e794",
-        "sha256": "15a923e8d0bfd947b85deb1ca370c31b6ae491cf36e44257927fac752e010eb5"
-      },
-      {
-        "path": "evaluation/gene/figures/panels/selected_edges/Ncald_plotted_scores.csv",
-        "before_sha256": "9c7b31aeb75422bbf9dfde06ede254db735cfe9f9a92353910312952ded6b135",
-        "sha256": "3eb615e1d5987f30f2cd1dd8a61db3ee57d2047a814da58ae17b0e9e6a7ed3ed"
-      }
-    ]
+  "outputs": {
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.svg": "ee207f5da5c2f238bb5bc53f789e5c14ce9c17ecff7f057efc4610a788bbc675",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_source_data.csv": "22ba7257a4e2facc279150828673e01e9542a42d1da4439848057145afe6b88d",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_plotted_scores.csv": "5837d3eca4915e822924bc6496ad7346b562a285bd3580fb06fbd0d24bb87222",
+    "evaluation/gene/figures/panels/selected_edges/Fech_source_data.csv": "75623d79b244b219058c02647da79d528fd795eac4c31c241b5d00126915aa2c",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_source_data.csv": "5f40d615a3148ed08db5bbed444ea687fadd97de30bde078e90f505d9512587e",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png": "ebc06e9fcc5cca031f3927b64514a8fe3edb6923bcc1f4425916173e095e441d",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.pdf": "dffc54be5218fb4be0c1bc0f77451c3d72bf37039e92699a30362deaa9c62502",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_plotted_scores.csv": "a3feb1831cc09080ed130674ef52da4e3445583a19f7b25bb8717a16da25c809",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.png": "be4577173e97c574c36628fb10fdb40f75ce73b165fac3caa47d87200739e6c9",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.pdf": "1c291ae5b8a89ab09e598df1fe86490d4e1d7730e615fd84b6bf0681f20816e8",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.pdf": "e0fb6ad262a6d4a02bf0659ead21f845f1bf6dd0329a51332fc76fd9ef9e20f7",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png": "daa31fee056a6ce6fe5fe927f610ade8e062cebd36ba8d5a4b78eae10568de09",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.svg": "25d969de0b71247e30ea9b2f8d1f095db86ddc3f6cc177bb24be5de65e48dc75",
+    "evaluation/gene/figures/panels/selected_edges/Fech_plotted_scores.csv": "5df1248f32b9c3243b3220aa08799c8eb0ecade366936344116492c8d9405f4a",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.svg": "2d9332ca44efd46c37037e082b19d8504a4ec74c28a8d0feb94ed989a163aa17"
   }
 }

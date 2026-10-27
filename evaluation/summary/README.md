@@ -39,7 +39,7 @@ aggregation represented by each row.
 | Five Cell metrics | [280 Cell rows](../cell/results/cell_metrics.csv) | Equal weights for 14 datasets per method |
 | Real Gene CBDir | [reference-30 Gene table](../gene/results/gene_cbdir_reference30_all.csv), `new_cbdir` | Available-gene means per dataset, then equal weights for seven datasets |
 | Simulated Gene CBDir | Same `new_cbdir` table | Means for 10/20/40 special genes in MURK/branching/hybrid, then equal weights for three scenarios |
-| Simulation CosSim | [CosSim table with restored veloVI units](../gene/results/simulation/gene_cbdir_cossim_reference.csv) | Same scenario weighting; historical CBDir in this table is not used |
+| Simulation CosSim | [Noise-free ODE CosSim table](../gene/results/simulation/gene_cbdir_cossim_reference.csv), with restored veloVI units | Same scenario weighting; historical CBDir in this table is not used |
 | Kinetic parameters | [canonical per-gene scores](../kinetics_recovery/results/central_results/gene_metrics.csv) | Finite-gene means per component, equal organoid-branch means, then equal available-system means |
 
 Cell SD uses `ddof=1`; quartiles use linear interpolation

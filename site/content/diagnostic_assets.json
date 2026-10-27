@@ -6,22 +6,22 @@
     {
       "id": "mv-phase-truth",
       "source": "supplement/multivelo/figures/phase_truth.png",
-      "sha256": "574a14fe1d0813f6b4b2015626f760db3f226357e3daf5be059dc7bef820f055"
+      "sha256": "7e94cba62339dfd4e916e3ae8ff620f6a59f98477ed1c51a06368d1b55c5ff02"
     },
     {
       "id": "mv-phase-default",
       "source": "supplement/multivelo/figures/phase_multivelo_default.png",
-      "sha256": "c17244591a9fe7ee28ff2c99e46f3ca808968213a722016c8c2d9cfc9bde1b0e"
+      "sha256": "46cc0db7b4493dea99fd64be2bfa742f82071d3195667cd9eab233a1a4a831c0"
     },
     {
       "id": "mv-phase-gate-open",
       "source": "supplement/multivelo/figures/phase_multivelo_gate_open.png",
-      "sha256": "3b430b4b016ba7b914439460c39fbfcacd9a666355eda37e33f10ee6b04b92aa"
+      "sha256": "cd0744df78cfb3e9fa7b413b89d9cad6d0463d8035c14d99a3d74af111bea58a"
     },
     {
       "id": "mv-paired-scores",
       "source": "supplement/multivelo/figures/paired_controls.png",
-      "sha256": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a"
+      "sha256": "acedaf3af9506f00a0825f1793f4a74493d3d0ef251d626a644b7e8ca2518071"
     },
     {
       "id": "mv-progression-key",
@@ -46,7 +46,7 @@
     {
       "id": "ti-simulation-scores",
       "source": "supplement/tivelo_gene/figures/tivelo_root_control_gene_metrics.png",
-      "sha256": "d4a20cf3903ceba9ad1f6b2dc393bf2937df0340508bfb6409d19128b653ebf4"
+      "sha256": "6b053308172f8324b667c57ae0911d3dbd121b6374d5c9fd76470f3543370178"
     },
     {
       "id": "ti-bonemarrow",
@@ -137,5 +137,6 @@
       "source": "supplement/veloae/results/panel_14_rpe1_gen.png",
       "sha256": "e454ac94341ba3b094b978ba1be5edab42ee92ef09192b75aa2db797cbaec384"
     }
-  ]
+  ],
+  "pending_shared_assembly": {}
 }

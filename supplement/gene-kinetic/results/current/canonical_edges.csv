@@ -1,0 +1,577 @@
+dataset,method,metric,source,target,score,evaluable_source_cells,raw_nonfinite_source_cells,branch_winner_source_cells
+DentateGyrus_lamanno,TIvelo,cbdir,CA,CA1-Sub,0.6779815199615193,330,0,
+DentateGyrus_lamanno,TIvelo,cbdir,CA,CA2-3-4,0.781406149860062,357,0,
+DentateGyrus_lamanno,TIvelo,cbdir,GlialProg,ImmAstro,0.2477790687642164,71,0,
+DentateGyrus_lamanno,TIvelo,cbdir,GlialProg,OPC,0.9122176422087938,58,0,
+DentateGyrus_lamanno,TIvelo,cbdir,ImmGranule1,ImmGranule2,0.7144562356165686,1002,0,
+DentateGyrus_lamanno,TIvelo,cbdir,ImmGranule2,Granule,0.8668892021673262,397,0,
+DentateGyrus_lamanno,TIvelo,cbdir,Nbl1,Nbl2,0.8805257303456209,129,0,
+DentateGyrus_lamanno,TIvelo,cbdir,Nbl2,CA,0.29673344167073323,255,0,
+DentateGyrus_lamanno,TIvelo,cbdir,Nbl2,ImmGranule1,0.8196184713097423,324,0,
+DentateGyrus_lamanno,TIvelo,cbdir,nIPC,GlialProg,0.5499491864079692,130,0,
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,nIPC,GlialProg,0.32913972012415443,1230,0,1230
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,GlialProg,ImmAstro,-0.5495616121881122,229,0,47
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,GlialProg,OPC,0.6055673535917967,229,0,182
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,Nbl1,Nbl2,0.2775024996081934,419,0,419
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,Nbl2,ImmGranule1,0.9426637131529086,1003,0,716
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.9158479022075138,2460,0,2460
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,ImmGranule2,Granule,0.9115717762889118,2099,0,2099
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,Nbl2,CA,0.7099895902896839,1003,0,287
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,CA,CA1-Sub,0.5951030235157748,2298,0,998
+DentateGyrus_lamanno,TIvelo,batc_candidate_source_mean,CA,CA2-3-4,0.7620983023474078,2298,0,1300
+DentateGyrus_lamanno,celldancer,cbdir,CA,CA1-Sub,-0.5493043042055825,330,0,
+DentateGyrus_lamanno,celldancer,cbdir,CA,CA2-3-4,0.09938127070722144,357,0,
+DentateGyrus_lamanno,celldancer,cbdir,GlialProg,ImmAstro,-0.000991145825047904,71,0,
+DentateGyrus_lamanno,celldancer,cbdir,GlialProg,OPC,0.6910139129161491,58,0,
+DentateGyrus_lamanno,celldancer,cbdir,ImmGranule1,ImmGranule2,-0.48267002075636467,1002,0,
+DentateGyrus_lamanno,celldancer,cbdir,ImmGranule2,Granule,0.5169340636948798,397,0,
+DentateGyrus_lamanno,celldancer,cbdir,Nbl1,Nbl2,0.5979122295945519,129,0,
+DentateGyrus_lamanno,celldancer,cbdir,Nbl2,CA,0.561014936941419,255,0,
+DentateGyrus_lamanno,celldancer,cbdir,Nbl2,ImmGranule1,0.6887299447172096,324,0,
+DentateGyrus_lamanno,celldancer,cbdir,nIPC,GlialProg,0.3608448090347018,130,0,
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,nIPC,GlialProg,0.11464447308095313,1230,0,1230
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,GlialProg,ImmAstro,-0.6234584352604703,229,0,25
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,GlialProg,OPC,0.7121633786794602,229,0,204
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,Nbl1,Nbl2,0.17416885048488354,419,0,419
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,Nbl2,ImmGranule1,0.8808144711240207,1003,0,489
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,ImmGranule1,ImmGranule2,-0.5969413407399158,2460,0,2460
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,ImmGranule2,Granule,0.49841203879317103,2099,0,2099
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,Nbl2,CA,0.7966910185175615,1003,0,514
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,CA,CA1-Sub,-0.33485230456353615,2298,0,935
+DentateGyrus_lamanno,celldancer,batc_candidate_source_mean,CA,CA2-3-4,-0.2511677992291704,2298,0,1363
+DentateGyrus_lamanno,deepvelo,cbdir,CA,CA1-Sub,0.7243036843845367,330,0,
+DentateGyrus_lamanno,deepvelo,cbdir,CA,CA2-3-4,0.5847979928402607,357,0,
+DentateGyrus_lamanno,deepvelo,cbdir,GlialProg,ImmAstro,0.2602846110028571,71,0,
+DentateGyrus_lamanno,deepvelo,cbdir,GlialProg,OPC,0.9274437586505876,58,0,
+DentateGyrus_lamanno,deepvelo,cbdir,ImmGranule1,ImmGranule2,0.7251473091734202,1002,0,
+DentateGyrus_lamanno,deepvelo,cbdir,ImmGranule2,Granule,0.8554113408823384,397,0,
+DentateGyrus_lamanno,deepvelo,cbdir,Nbl1,Nbl2,0.9007102453948577,129,0,
+DentateGyrus_lamanno,deepvelo,cbdir,Nbl2,CA,0.5009734380417442,255,0,
+DentateGyrus_lamanno,deepvelo,cbdir,Nbl2,ImmGranule1,0.7618338296979278,324,0,
+DentateGyrus_lamanno,deepvelo,cbdir,nIPC,GlialProg,0.3836307733118433,130,0,
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,nIPC,GlialProg,-0.015545634979318356,1230,0,1230
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,GlialProg,ImmAstro,-0.6326052404997278,229,0,31
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,GlialProg,OPC,0.709095524885531,229,0,198
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,Nbl1,Nbl2,0.7188558824768783,419,0,419
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,Nbl2,ImmGranule1,0.9139044997291528,1003,0,558
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.8663927829666594,2460,0,2460
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,ImmGranule2,Granule,0.7457136695083736,2099,0,2099
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,Nbl2,CA,0.7765564806309619,1003,0,445
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,CA,CA1-Sub,0.4845560263056434,2298,0,1003
+DentateGyrus_lamanno,deepvelo,batc_candidate_source_mean,CA,CA2-3-4,0.711320539182347,2298,0,1295
+DentateGyrus_lamanno,deepvelo2022,cbdir,CA,CA1-Sub,-0.6750090032816819,330,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,CA,CA2-3-4,-0.29125115513985533,357,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,GlialProg,ImmAstro,0.18851089047482716,71,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,GlialProg,OPC,-0.06466794826214822,58,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,ImmGranule1,ImmGranule2,0.14426998989756684,1002,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,ImmGranule2,Granule,0.5132144851319981,397,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,Nbl1,Nbl2,0.608190456464819,129,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,Nbl2,CA,0.416483405502352,255,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,Nbl2,ImmGranule1,0.7926921469009761,324,0,
+DentateGyrus_lamanno,deepvelo2022,cbdir,nIPC,GlialProg,-0.17494432348520983,130,0,
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,nIPC,GlialProg,0.0853575910017763,1230,0,1230
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,GlialProg,ImmAstro,-0.38328695045458355,229,0,60
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,GlialProg,OPC,0.46581316751506857,229,0,169
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,Nbl1,Nbl2,0.22125818964537902,419,0,419
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,Nbl2,ImmGranule1,0.898513832939089,1003,0,523
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,ImmGranule1,ImmGranule2,-0.012345061422425304,2460,0,2460
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,ImmGranule2,Granule,0.5653594216038758,2099,0,2099
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,Nbl2,CA,0.7389789551568388,1003,0,480
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,CA,CA1-Sub,-0.44075699383517825,2298,0,1114
+DentateGyrus_lamanno,deepvelo2022,batc_candidate_source_mean,CA,CA2-3-4,-0.46581910691219724,2298,0,1184
+DentateGyrus_lamanno,graphvelo_scv,cbdir,CA,CA1-Sub,0.47891832887599023,330,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,CA,CA2-3-4,0.04441950577560241,357,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,GlialProg,ImmAstro,0.5675692285401893,71,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,GlialProg,OPC,0.3987273548310296,58,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,ImmGranule1,ImmGranule2,0.5715536499051651,1002,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,ImmGranule2,Granule,0.8167096305174235,397,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,Nbl1,Nbl2,-0.238708104684256,129,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,Nbl2,CA,0.4788845008094729,255,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,Nbl2,ImmGranule1,0.3005401314537167,324,0,
+DentateGyrus_lamanno,graphvelo_scv,cbdir,nIPC,GlialProg,0.17444462919585296,130,0,
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,nIPC,GlialProg,0.1575949456921253,1230,0,1230
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,GlialProg,ImmAstro,0.3287611117738952,229,0,168
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,GlialProg,OPC,-0.36138309488940606,229,0,61
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,Nbl1,Nbl2,-0.38885370475069175,419,0,419
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,Nbl2,ImmGranule1,0.37500486096082253,1003,0,618
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.2897444127949824,2460,0,2460
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,ImmGranule2,Granule,0.7196079429940101,2099,0,2099
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,Nbl2,CA,0.29122836428141785,1003,0,385
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,CA,CA1-Sub,-0.05377750139931775,2298,0,833
+DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,CA,CA2-3-4,0.27942611868883516,2298,0,1465
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA1-Sub,-0.6552400083293312,330,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA2-3-4,-0.26126860535509,357,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,ImmAstro,0.23361000213194552,71,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,OPC,0.10172476165186951,58,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule1,ImmGranule2,0.21355663872287461,1002,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule2,Granule,0.5918136151576736,397,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl1,Nbl2,0.6331673536886394,129,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,CA,0.3892496629284202,255,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,ImmGranule1,0.7975096727138831,324,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,nIPC,GlialProg,-0.16315215537022412,130,0,
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,nIPC,GlialProg,0.0836425066671257,1230,0,1230
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,ImmAstro,-0.4051911632122068,229,0,61
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,OPC,0.4812235642530249,229,0,168
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl1,Nbl2,0.2597584763072617,419,0,419
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,ImmGranule1,0.898681198915738,1003,0,528
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.02517860907400551,2460,0,2460
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule2,Granule,0.5942369742569157,2099,0,2099
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,CA,0.7308880370517127,1003,0,475
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA1-Sub,-0.4225484514102884,2298,0,1109
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA2-3-4,-0.44159789152173734,2298,0,1189
+DentateGyrus_lamanno,unitvelo,cbdir,CA,CA1-Sub,0.6214807864974327,330,0,
+DentateGyrus_lamanno,unitvelo,cbdir,CA,CA2-3-4,0.7637321356178862,357,0,
+DentateGyrus_lamanno,unitvelo,cbdir,GlialProg,ImmAstro,-0.6583359404703569,71,0,
+DentateGyrus_lamanno,unitvelo,cbdir,GlialProg,OPC,0.9224568008384787,58,0,
+DentateGyrus_lamanno,unitvelo,cbdir,ImmGranule1,ImmGranule2,0.7390588252354876,1002,0,
+DentateGyrus_lamanno,unitvelo,cbdir,ImmGranule2,Granule,0.8597770825115805,397,0,
+DentateGyrus_lamanno,unitvelo,cbdir,Nbl1,Nbl2,0.9283923316635512,129,0,
+DentateGyrus_lamanno,unitvelo,cbdir,Nbl2,CA,0.34611294979021906,255,0,
+DentateGyrus_lamanno,unitvelo,cbdir,Nbl2,ImmGranule1,0.8268586780578512,324,0,
+DentateGyrus_lamanno,unitvelo,cbdir,nIPC,GlialProg,-0.2499695412574833,130,0,
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,nIPC,GlialProg,-0.6461871545732608,1230,0,1230
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,GlialProg,ImmAstro,-0.7838497137630087,229,0,11
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,GlialProg,OPC,0.8643655559307548,229,0,218
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,Nbl1,Nbl2,0.9489881709504099,419,0,419
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,Nbl2,ImmGranule1,0.951150259050705,1003,0,761
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.936905900088306,2460,0,2460
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,ImmGranule2,Granule,0.7558341645491067,2099,0,2099
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,Nbl2,CA,0.7284157005439693,1003,0,242
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,CA,CA1-Sub,0.3970448086911238,2298,0,791
+DentateGyrus_lamanno,unitvelo,batc_candidate_source_mean,CA,CA2-3-4,0.8091742631324228,2298,0,1507
+DentateGyrus_lamanno,veloVI,cbdir,CA,CA1-Sub,0.46499991126361523,330,0,
+DentateGyrus_lamanno,veloVI,cbdir,CA,CA2-3-4,0.8433842071000467,357,0,
+DentateGyrus_lamanno,veloVI,cbdir,GlialProg,ImmAstro,0.5394497586271575,71,0,
+DentateGyrus_lamanno,veloVI,cbdir,GlialProg,OPC,0.9099626085188175,58,0,
+DentateGyrus_lamanno,veloVI,cbdir,ImmGranule1,ImmGranule2,0.6210325803267887,1002,0,
+DentateGyrus_lamanno,veloVI,cbdir,ImmGranule2,Granule,0.6835030906120719,397,0,
+DentateGyrus_lamanno,veloVI,cbdir,Nbl1,Nbl2,0.8645718320687199,129,0,
+DentateGyrus_lamanno,veloVI,cbdir,Nbl2,CA,0.5297741853919532,255,0,
+DentateGyrus_lamanno,veloVI,cbdir,Nbl2,ImmGranule1,0.7583414338954033,324,0,
+DentateGyrus_lamanno,veloVI,cbdir,nIPC,GlialProg,0.344963201986498,130,0,
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,nIPC,GlialProg,-0.11240901600400183,1230,0,1230
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,GlialProg,ImmAstro,-0.47696210500974956,229,0,48
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,GlialProg,OPC,0.4860146743017275,229,0,181
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,Nbl1,Nbl2,0.5805224388658748,419,0,419
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,Nbl2,ImmGranule1,0.9412628659879119,1003,0,612
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.8261274673843829,2460,0,2460
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,ImmGranule2,Granule,0.8904087562427915,2099,0,2099
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,Nbl2,CA,0.822249535346952,1003,0,391
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,CA,CA1-Sub,0.47601217822485264,2298,0,754
+DentateGyrus_lamanno,veloVI,batc_candidate_source_mean,CA,CA2-3-4,0.8010523702216893,2298,0,1544
+capofibro,TIvelo,cbdir,G1,S,-0.2926345671492026,336,0,
+capofibro,TIvelo,cbdir,G2M,G1,-0.12854949827791948,169,0,
+capofibro,TIvelo,cbdir,S,G2M,0.6026317555043087,113,0,
+capofibro,TIvelo,batc_candidate_source_mean,G1,S,-0.49540100666705084,514,0,514
+capofibro,TIvelo,batc_candidate_source_mean,S,G2M,0.04356028949313582,383,0,383
+capofibro,TIvelo,batc_candidate_source_mean,G2M,G1,-0.25938176992598816,325,0,325
+capofibro,celldancer,cbdir,G1,S,-0.11887954447952868,336,0,
+capofibro,celldancer,cbdir,G2M,G1,0.17800534872518387,169,0,
+capofibro,celldancer,cbdir,S,G2M,-0.26115468545994797,113,0,
+capofibro,celldancer,batc_candidate_source_mean,G1,S,-0.46948633063993195,514,0,514
+capofibro,celldancer,batc_candidate_source_mean,S,G2M,-0.5513711895376955,383,0,383
+capofibro,celldancer,batc_candidate_source_mean,G2M,G1,0.036092969093217034,325,0,325
+capofibro,deepvelo,cbdir,G1,S,0.11028192303254947,336,0,
+capofibro,deepvelo,cbdir,G2M,G1,0.2829884076406534,169,0,
+capofibro,deepvelo,cbdir,S,G2M,0.7367666535320407,113,0,
+capofibro,deepvelo,batc_candidate_source_mean,G1,S,-0.08288909144053581,514,0,514
+capofibro,deepvelo,batc_candidate_source_mean,S,G2M,0.6472410247031252,383,0,383
+capofibro,deepvelo,batc_candidate_source_mean,G2M,G1,0.3338293517898292,325,0,325
+capofibro,deepvelo2022,cbdir,G1,S,0.21721207382574037,336,0,
+capofibro,deepvelo2022,cbdir,G2M,G1,0.26423503093316725,169,0,
+capofibro,deepvelo2022,cbdir,S,G2M,0.7145578623708662,113,0,
+capofibro,deepvelo2022,batc_candidate_source_mean,G1,S,0.3323428849853825,514,0,514
+capofibro,deepvelo2022,batc_candidate_source_mean,S,G2M,0.6855553619445492,383,0,383
+capofibro,deepvelo2022,batc_candidate_source_mean,G2M,G1,0.1761816361815044,325,0,325
+capofibro,graphvelo_scv,cbdir,G1,S,0.2319350101961832,336,0,
+capofibro,graphvelo_scv,cbdir,G2M,G1,0.3279303139682983,169,0,
+capofibro,graphvelo_scv,cbdir,S,G2M,0.7304050330637987,113,0,
+capofibro,graphvelo_scv,batc_candidate_source_mean,G1,S,0.21798836235997107,514,0,514
+capofibro,graphvelo_scv,batc_candidate_source_mean,S,G2M,0.7269791229430128,383,0,383
+capofibro,graphvelo_scv,batc_candidate_source_mean,G2M,G1,0.5023435814458957,325,0,325
+capofibro,scvelo_dynamic,cbdir,G1,S,0.21420442235593182,336,0,
+capofibro,scvelo_dynamic,cbdir,G2M,G1,0.2615235144573442,169,0,
+capofibro,scvelo_dynamic,cbdir,S,G2M,0.7121325567683298,113,0,
+capofibro,scvelo_dynamic,batc_candidate_source_mean,G1,S,0.3269609065341096,514,0,514
+capofibro,scvelo_dynamic,batc_candidate_source_mean,S,G2M,0.6909610563429679,383,0,383
+capofibro,scvelo_dynamic,batc_candidate_source_mean,G2M,G1,0.17501096529461105,325,0,325
+capofibro,unitvelo,cbdir,G1,S,0.16042611089204736,336,0,
+capofibro,unitvelo,cbdir,G2M,G1,-0.5117039022667141,169,0,
+capofibro,unitvelo,cbdir,S,G2M,0.775084751378244,113,0,
+capofibro,unitvelo,batc_candidate_source_mean,G1,S,0.6592363967183403,514,0,514
+capofibro,unitvelo,batc_candidate_source_mean,S,G2M,0.8072130458371555,383,0,383
+capofibro,unitvelo,batc_candidate_source_mean,G2M,G1,-0.4262120285661053,325,0,325
+capofibro,veloVI,cbdir,G1,S,0.21142977863071485,336,0,
+capofibro,veloVI,cbdir,G2M,G1,0.34055109460214034,169,0,
+capofibro,veloVI,cbdir,S,G2M,0.7674891446504425,113,0,
+capofibro,veloVI,batc_candidate_source_mean,G1,S,0.3148427581088398,514,0,514
+capofibro,veloVI,batc_candidate_source_mean,S,G2M,0.7545134716597465,383,0,383
+capofibro,veloVI,batc_candidate_source_mean,G2M,G1,0.4510082311347983,325,0,325
+gastrulation,TIvelo,cbdir,Blood progenitors 1,Blood progenitors 2,0.45905475524618294,332,0,
+gastrulation,TIvelo,cbdir,Blood progenitors 2,Erythroid1,0.7830474921492794,515,0,
+gastrulation,TIvelo,cbdir,Erythroid1,Erythroid2,0.8115021402104513,540,0,
+gastrulation,TIvelo,cbdir,Erythroid2,Erythroid3,0.8271485654281322,423,0,
+gastrulation,TIvelo,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.28924051536697626,623,0,623
+gastrulation,TIvelo,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.9449000413856875,2460,0,2460
+gastrulation,TIvelo,batc_candidate_source_mean,Erythroid1,Erythroid2,0.9756183431659919,2929,0,2929
+gastrulation,TIvelo,batc_candidate_source_mean,Erythroid2,Erythroid3,0.9542599285444698,1106,0,1106
+gastrulation,celldancer,cbdir,Blood progenitors 1,Blood progenitors 2,0.7823498949681538,332,0,
+gastrulation,celldancer,cbdir,Blood progenitors 2,Erythroid1,0.7248409542831145,515,0,
+gastrulation,celldancer,cbdir,Erythroid1,Erythroid2,0.5977160443130924,540,0,
+gastrulation,celldancer,cbdir,Erythroid2,Erythroid3,0.5717737814919448,423,0,
+gastrulation,celldancer,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.6974511447043128,623,0,623
+gastrulation,celldancer,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.7146343302972732,2460,0,2460
+gastrulation,celldancer,batc_candidate_source_mean,Erythroid1,Erythroid2,0.8584545416741869,2929,0,2929
+gastrulation,celldancer,batc_candidate_source_mean,Erythroid2,Erythroid3,0.6461035698822035,1106,0,1106
+gastrulation,deepvelo,cbdir,Blood progenitors 1,Blood progenitors 2,0.927698187795294,332,0,
+gastrulation,deepvelo,cbdir,Blood progenitors 2,Erythroid1,0.7381520902852444,515,0,
+gastrulation,deepvelo,cbdir,Erythroid1,Erythroid2,0.6943849529980708,540,0,
+gastrulation,deepvelo,cbdir,Erythroid2,Erythroid3,-0.7829060639679197,423,0,
+gastrulation,deepvelo,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.8040336632170321,623,0,623
+gastrulation,deepvelo,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.9561855745961481,2460,0,2460
+gastrulation,deepvelo,batc_candidate_source_mean,Erythroid1,Erythroid2,0.9286320303101698,2929,0,2929
+gastrulation,deepvelo,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.3412223853534044,1106,0,1106
+gastrulation,deepvelo2022,cbdir,Blood progenitors 1,Blood progenitors 2,-0.1915128327848463,332,0,
+gastrulation,deepvelo2022,cbdir,Blood progenitors 2,Erythroid1,-0.0839468665881237,515,0,
+gastrulation,deepvelo2022,cbdir,Erythroid1,Erythroid2,-0.8082974868100644,540,0,
+gastrulation,deepvelo2022,cbdir,Erythroid2,Erythroid3,-0.6952648310520831,423,0,
+gastrulation,deepvelo2022,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,-0.18706777514240874,623,0,623
+gastrulation,deepvelo2022,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.5278379112389312,2460,0,2460
+gastrulation,deepvelo2022,batc_candidate_source_mean,Erythroid1,Erythroid2,-0.7255656927948713,2929,0,2929
+gastrulation,deepvelo2022,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.799923177832527,1106,0,1106
+gastrulation,graphvelo_scv,cbdir,Blood progenitors 1,Blood progenitors 2,0.7127660553381056,332,0,
+gastrulation,graphvelo_scv,cbdir,Blood progenitors 2,Erythroid1,0.6753281757886908,515,0,
+gastrulation,graphvelo_scv,cbdir,Erythroid1,Erythroid2,0.44768011687060727,540,0,
+gastrulation,graphvelo_scv,cbdir,Erythroid2,Erythroid3,-0.7701278988225763,423,0,
+gastrulation,graphvelo_scv,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.5536618888282242,623,0,623
+gastrulation,graphvelo_scv,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.8323184186515948,2460,0,2460
+gastrulation,graphvelo_scv,batc_candidate_source_mean,Erythroid1,Erythroid2,0.5880779872318421,2929,0,2929
+gastrulation,graphvelo_scv,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.4742409991122752,1106,0,1106
+gastrulation,scvelo_dynamic,cbdir,Blood progenitors 1,Blood progenitors 2,-0.045980105097929595,332,0,
+gastrulation,scvelo_dynamic,cbdir,Blood progenitors 2,Erythroid1,0.648870500750959,515,0,
+gastrulation,scvelo_dynamic,cbdir,Erythroid1,Erythroid2,-0.8189390288120422,540,0,
+gastrulation,scvelo_dynamic,cbdir,Erythroid2,Erythroid3,-0.4969999973591627,423,0,
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,-0.08734349621957746,623,0,623
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.7760225088432627,2460,0,2460
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid1,Erythroid2,-0.3348450456011027,2929,0,2929
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.6223748672641072,1106,0,1106
+gastrulation,unitvelo,cbdir,Blood progenitors 1,Blood progenitors 2,0.9096519033823064,332,0,
+gastrulation,unitvelo,cbdir,Blood progenitors 2,Erythroid1,0.7817458524424347,515,0,
+gastrulation,unitvelo,cbdir,Erythroid1,Erythroid2,0.8174499599795457,540,0,
+gastrulation,unitvelo,cbdir,Erythroid2,Erythroid3,0.8359205170784266,423,0,
+gastrulation,unitvelo,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.816786867070812,623,0,623
+gastrulation,unitvelo,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.9564790838182999,2460,0,2460
+gastrulation,unitvelo,batc_candidate_source_mean,Erythroid1,Erythroid2,0.9857608608839038,2929,0,2929
+gastrulation,unitvelo,batc_candidate_source_mean,Erythroid2,Erythroid3,0.9603843118868262,1106,0,1106
+gastrulation,veloVI,cbdir,Blood progenitors 1,Blood progenitors 2,0.8594051323338971,332,0,
+gastrulation,veloVI,cbdir,Blood progenitors 2,Erythroid1,-0.006977474739018118,515,0,
+gastrulation,veloVI,cbdir,Erythroid1,Erythroid2,0.06007728772866806,540,0,
+gastrulation,veloVI,cbdir,Erythroid2,Erythroid3,-0.7349418042353468,423,0,
+gastrulation,veloVI,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,0.8396784956127985,623,0,623
+gastrulation,veloVI,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.2751457245373006,2460,0,2460
+gastrulation,veloVI,batc_candidate_source_mean,Erythroid1,Erythroid2,0.42463296064690037,2929,0,2929
+gastrulation,veloVI,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.6719690528777821,1106,0,1106
+mousebrain,TIvelo,cbdir,IPC,V-SVZ,0.6297094523860033,97,0,
+mousebrain,TIvelo,cbdir,"RG, Astro, OPC",IPC,0.2549837024106172,124,0,
+mousebrain,TIvelo,cbdir,Upper Layer,Deeper Layer,0.6115001325089406,227,0,
+mousebrain,TIvelo,cbdir,V-SVZ,Upper Layer,0.6694144879759774,332,0,
+mousebrain,TIvelo,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.2756488320712219,501,0,501
+mousebrain,TIvelo,batc_candidate_source_mean,IPC,V-SVZ,0.8228959424969615,183,0,183
+mousebrain,TIvelo,batc_candidate_source_mean,V-SVZ,Upper Layer,0.8319970047754859,632,0,632
+mousebrain,TIvelo,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.28940236452199775,999,0,999
+mousebrain,celldancer,cbdir,IPC,V-SVZ,0.5144146459847174,97,0,
+mousebrain,celldancer,cbdir,"RG, Astro, OPC",IPC,0.19690220622835042,124,0,
+mousebrain,celldancer,cbdir,Upper Layer,Deeper Layer,-0.6356681459378124,227,0,
+mousebrain,celldancer,cbdir,V-SVZ,Upper Layer,0.5216451998200335,332,0,
+mousebrain,celldancer,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.1786461146763647,501,0,501
+mousebrain,celldancer,batc_candidate_source_mean,IPC,V-SVZ,0.524959708687339,183,0,183
+mousebrain,celldancer,batc_candidate_source_mean,V-SVZ,Upper Layer,0.586071788718005,632,0,632
+mousebrain,celldancer,batc_candidate_source_mean,Upper Layer,Deeper Layer,-0.2262274980534327,999,0,999
+mousebrain,deepvelo,cbdir,IPC,V-SVZ,0.5792240285798368,97,0,
+mousebrain,deepvelo,cbdir,"RG, Astro, OPC",IPC,-0.20253776950187427,124,0,
+mousebrain,deepvelo,cbdir,Upper Layer,Deeper Layer,0.7682323460446105,227,0,
+mousebrain,deepvelo,cbdir,V-SVZ,Upper Layer,0.4804398627978519,332,0,
+mousebrain,deepvelo,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.3686909010612377,501,0,501
+mousebrain,deepvelo,batc_candidate_source_mean,IPC,V-SVZ,0.869556548735694,183,0,183
+mousebrain,deepvelo,batc_candidate_source_mean,V-SVZ,Upper Layer,0.7100056333718655,632,0,632
+mousebrain,deepvelo,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.5893311972742405,999,0,999
+mousebrain,deepvelo2022,cbdir,IPC,V-SVZ,0.47237907217419295,97,0,
+mousebrain,deepvelo2022,cbdir,"RG, Astro, OPC",IPC,0.15164142268823372,124,0,
+mousebrain,deepvelo2022,cbdir,Upper Layer,Deeper Layer,0.31086450918134084,227,0,
+mousebrain,deepvelo2022,cbdir,V-SVZ,Upper Layer,0.6233199631278477,332,0,
+mousebrain,deepvelo2022,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.2934989899913763,501,0,501
+mousebrain,deepvelo2022,batc_candidate_source_mean,IPC,V-SVZ,0.7716652556215776,183,0,183
+mousebrain,deepvelo2022,batc_candidate_source_mean,V-SVZ,Upper Layer,0.8026578981970225,632,0,632
+mousebrain,deepvelo2022,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.0018235611725229944,999,0,999
+mousebrain,graphvelo_scv,cbdir,IPC,V-SVZ,0.636844768130896,97,0,
+mousebrain,graphvelo_scv,cbdir,"RG, Astro, OPC",IPC,0.4260335997617772,124,0,
+mousebrain,graphvelo_scv,cbdir,Upper Layer,Deeper Layer,0.6653096919291903,227,0,
+mousebrain,graphvelo_scv,cbdir,V-SVZ,Upper Layer,0.39208726805088295,332,0,
+mousebrain,graphvelo_scv,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.39549830774801975,501,0,501
+mousebrain,graphvelo_scv,batc_candidate_source_mean,IPC,V-SVZ,0.8159760016380448,183,0,183
+mousebrain,graphvelo_scv,batc_candidate_source_mean,V-SVZ,Upper Layer,0.5911073958021398,632,0,632
+mousebrain,graphvelo_scv,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.6407014879978172,999,0,999
+mousebrain,scvelo_dynamic,cbdir,IPC,V-SVZ,0.4616701207982877,97,0,
+mousebrain,scvelo_dynamic,cbdir,"RG, Astro, OPC",IPC,0.15056171796990211,124,0,
+mousebrain,scvelo_dynamic,cbdir,Upper Layer,Deeper Layer,0.3158537083484238,227,0,
+mousebrain,scvelo_dynamic,cbdir,V-SVZ,Upper Layer,0.6151195826260174,332,0,
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.29006619761429603,501,0,501
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,IPC,V-SVZ,0.7696051067649714,183,0,183
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,V-SVZ,Upper Layer,0.8049532823274819,632,0,632
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,Upper Layer,Deeper Layer,-0.002772527808568965,999,0,999
+mousebrain,unitvelo,cbdir,IPC,V-SVZ,0.6315362797137863,97,0,
+mousebrain,unitvelo,cbdir,"RG, Astro, OPC",IPC,0.4481227640936166,124,0,
+mousebrain,unitvelo,cbdir,Upper Layer,Deeper Layer,0.8214141811786984,227,0,
+mousebrain,unitvelo,cbdir,V-SVZ,Upper Layer,0.5147294917447003,332,0,
+mousebrain,unitvelo,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.8231979682551055,501,0,501
+mousebrain,unitvelo,batc_candidate_source_mean,IPC,V-SVZ,0.8831243504729107,183,0,183
+mousebrain,unitvelo,batc_candidate_source_mean,V-SVZ,Upper Layer,0.7767171595452143,632,0,632
+mousebrain,unitvelo,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.6941914574238527,999,0,999
+mousebrain,veloVI,cbdir,IPC,V-SVZ,0.587811437683792,97,0,
+mousebrain,veloVI,cbdir,"RG, Astro, OPC",IPC,0.202376795264942,124,0,
+mousebrain,veloVI,cbdir,Upper Layer,Deeper Layer,0.17410392120593948,227,0,
+mousebrain,veloVI,cbdir,V-SVZ,Upper Layer,0.6350522419872427,332,0,
+mousebrain,veloVI,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.4510653319004336,501,0,501
+mousebrain,veloVI,batc_candidate_source_mean,IPC,V-SVZ,0.7892756738804227,183,0,183
+mousebrain,veloVI,batc_candidate_source_mean,V-SVZ,Upper Layer,0.865979023406965,632,0,632
+mousebrain,veloVI,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.33361110287749896,999,0,999
+pancreas,TIvelo,cbdir,Ductal,Ngn3 low EP,-0.09704166797538001,796,0,
+pancreas,TIvelo,cbdir,Ngn3 high EP,Pre-endocrine,0.7733258812222582,95,0,
+pancreas,TIvelo,cbdir,Ngn3 low EP,Ngn3 high EP,0.8489525023384649,55,0,
+pancreas,TIvelo,cbdir,Pre-endocrine,Alpha,0.4665851836874828,115,0,
+pancreas,TIvelo,cbdir,Pre-endocrine,Beta,0.7711082014718976,140,0,
+pancreas,TIvelo,cbdir,Pre-endocrine,Delta,0.570291088745502,34,0,
+pancreas,TIvelo,cbdir,Pre-endocrine,Epsilon,0.2873063370212839,59,0,
+pancreas,TIvelo,batc_candidate_source_mean,Ductal,Ngn3 low EP,-0.5705797764488196,916,0,916
+pancreas,TIvelo,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.2866994321657684,262,0,262
+pancreas,TIvelo,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9235692529141867,642,0,642
+pancreas,TIvelo,batc_candidate_source_mean,Pre-endocrine,Beta,0.7916569522057727,592,0,180
+pancreas,TIvelo,batc_candidate_source_mean,Pre-endocrine,Alpha,0.7916363026102686,592,0,139
+pancreas,TIvelo,batc_candidate_source_mean,Pre-endocrine,Delta,0.6348702331258328,592,0,97
+pancreas,TIvelo,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.6547822908428548,592,0,176
+pancreas,celldancer,cbdir,Ductal,Ngn3 low EP,0.13477001306771158,796,0,
+pancreas,celldancer,cbdir,Ngn3 high EP,Pre-endocrine,0.34200642114916174,95,0,
+pancreas,celldancer,cbdir,Ngn3 low EP,Ngn3 high EP,0.686972307548788,55,0,
+pancreas,celldancer,cbdir,Pre-endocrine,Alpha,0.5493389958873267,115,0,
+pancreas,celldancer,cbdir,Pre-endocrine,Beta,0.5664888151018979,140,0,
+pancreas,celldancer,cbdir,Pre-endocrine,Delta,0.44903357513202224,34,0,
+pancreas,celldancer,cbdir,Pre-endocrine,Epsilon,0.46364913079111697,59,0,
+pancreas,celldancer,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.6170895156494488,916,0,916
+pancreas,celldancer,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.6959695881553591,262,0,262
+pancreas,celldancer,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.620289510624854,642,0,642
+pancreas,celldancer,batc_candidate_source_mean,Pre-endocrine,Beta,0.7405217408224671,592,0,198
+pancreas,celldancer,batc_candidate_source_mean,Pre-endocrine,Alpha,0.7363015152971034,592,0,136
+pancreas,celldancer,batc_candidate_source_mean,Pre-endocrine,Delta,0.6591869364218663,592,0,124
+pancreas,celldancer,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5865968010888192,592,0,134
+pancreas,deepvelo,cbdir,Ductal,Ngn3 low EP,0.09332901737416009,796,0,
+pancreas,deepvelo,cbdir,Ngn3 high EP,Pre-endocrine,0.7585875755484958,95,0,
+pancreas,deepvelo,cbdir,Ngn3 low EP,Ngn3 high EP,0.8931039164217935,55,0,
+pancreas,deepvelo,cbdir,Pre-endocrine,Alpha,0.4599584699876675,115,0,
+pancreas,deepvelo,cbdir,Pre-endocrine,Beta,0.7374130941565754,140,0,
+pancreas,deepvelo,cbdir,Pre-endocrine,Delta,0.40841703958183834,34,0,
+pancreas,deepvelo,cbdir,Pre-endocrine,Epsilon,0.603936653893951,59,0,
+pancreas,deepvelo,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.43985810752972493,916,0,916
+pancreas,deepvelo,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.8048698843004193,262,0,262
+pancreas,deepvelo,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9254913495001127,642,0,642
+pancreas,deepvelo,batc_candidate_source_mean,Pre-endocrine,Beta,0.7823089126897442,592,0,180
+pancreas,deepvelo,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8271206677049587,592,0,147
+pancreas,deepvelo,batc_candidate_source_mean,Pre-endocrine,Delta,0.6807251004235313,592,0,93
+pancreas,deepvelo,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.6095728417640018,592,0,172
+pancreas,deepvelo2022,cbdir,Ductal,Ngn3 low EP,0.07408072347102444,796,0,
+pancreas,deepvelo2022,cbdir,Ngn3 high EP,Pre-endocrine,0.6819729005582877,95,0,
+pancreas,deepvelo2022,cbdir,Ngn3 low EP,Ngn3 high EP,0.8679434670153114,55,0,
+pancreas,deepvelo2022,cbdir,Pre-endocrine,Alpha,0.691398890973112,115,0,
+pancreas,deepvelo2022,cbdir,Pre-endocrine,Beta,0.7183843036327288,140,0,
+pancreas,deepvelo2022,cbdir,Pre-endocrine,Delta,0.33613763495413185,34,0,
+pancreas,deepvelo2022,cbdir,Pre-endocrine,Epsilon,0.040506505936460574,59,0,
+pancreas,deepvelo2022,batc_candidate_source_mean,Ductal,Ngn3 low EP,-0.06383072947767823,916,0,916
+pancreas,deepvelo2022,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.5704667128004298,262,0,262
+pancreas,deepvelo2022,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9102664456176373,642,0,642
+pancreas,deepvelo2022,batc_candidate_source_mean,Pre-endocrine,Beta,0.777655819732097,592,0,173
+pancreas,deepvelo2022,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8570986372922652,592,0,171
+pancreas,deepvelo2022,batc_candidate_source_mean,Pre-endocrine,Delta,0.7400935330805634,592,0,117
+pancreas,deepvelo2022,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5361951803296259,592,0,131
+pancreas,graphvelo_scv,cbdir,Ductal,Ngn3 low EP,0.033058243352415716,796,0,
+pancreas,graphvelo_scv,cbdir,Ngn3 high EP,Pre-endocrine,0.7549607142937322,95,0,
+pancreas,graphvelo_scv,cbdir,Ngn3 low EP,Ngn3 high EP,0.8894479838189892,55,0,
+pancreas,graphvelo_scv,cbdir,Pre-endocrine,Alpha,0.6523437271605016,115,0,
+pancreas,graphvelo_scv,cbdir,Pre-endocrine,Beta,0.7786696825640329,140,0,
+pancreas,graphvelo_scv,cbdir,Pre-endocrine,Delta,0.6587871862486138,34,0,
+pancreas,graphvelo_scv,cbdir,Pre-endocrine,Epsilon,-0.47765961228048,59,0,
+pancreas,graphvelo_scv,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.08754258600075132,916,0,916
+pancreas,graphvelo_scv,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.7075746802786578,262,0,262
+pancreas,graphvelo_scv,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9127865609906466,642,0,642
+pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Beta,0.7008244423487807,592,0,164
+pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Alpha,0.7602319845327418,592,0,131
+pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Delta,0.6741651978609513,592,0,143
+pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5449598307426843,592,0,154
+pancreas,scvelo_dynamic,cbdir,Ductal,Ngn3 low EP,0.05740280588957762,796,0,
+pancreas,scvelo_dynamic,cbdir,Ngn3 high EP,Pre-endocrine,0.69720744561232,95,0,
+pancreas,scvelo_dynamic,cbdir,Ngn3 low EP,Ngn3 high EP,0.8771137920365661,55,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Alpha,0.6559436824761352,115,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Beta,0.733762594751307,140,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Delta,0.379902117480131,34,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Epsilon,0.0013736698249832504,59,0,
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ductal,Ngn3 low EP,-0.10032319591728558,916,0,916
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.6652494631790653,262,0,262
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.918104169282284,642,0,642
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Beta,0.7808758894244963,592,0,177
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8541681171875369,592,0,164
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Delta,0.7233529641962748,592,0,110
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5534749004740679,592,0,141
+pancreas,unitvelo,cbdir,Ductal,Ngn3 low EP,0.11259826814933312,796,0,
+pancreas,unitvelo,cbdir,Ngn3 high EP,Pre-endocrine,0.7584344058047708,95,0,
+pancreas,unitvelo,cbdir,Ngn3 low EP,Ngn3 high EP,0.8946845095555779,55,0,
+pancreas,unitvelo,cbdir,Pre-endocrine,Alpha,0.6909627774995397,115,0,
+pancreas,unitvelo,cbdir,Pre-endocrine,Beta,0.7814057711987754,140,0,
+pancreas,unitvelo,cbdir,Pre-endocrine,Delta,0.4794406808485043,34,0,
+pancreas,unitvelo,cbdir,Pre-endocrine,Epsilon,0.0767046808591919,59,0,
+pancreas,unitvelo,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.6197154805368243,916,0,916
+pancreas,unitvelo,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.8335084922501953,262,0,262
+pancreas,unitvelo,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9242512289047747,642,0,642
+pancreas,unitvelo,batc_candidate_source_mean,Pre-endocrine,Beta,0.8132768886470272,592,0,166
+pancreas,unitvelo,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8597115352659228,592,0,125
+pancreas,unitvelo,batc_candidate_source_mean,Pre-endocrine,Delta,0.7324182272269026,592,0,114
+pancreas,unitvelo,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.6192590303326428,592,0,187
+pancreas,veloVI,cbdir,Ductal,Ngn3 low EP,0.08414825519123252,796,0,
+pancreas,veloVI,cbdir,Ngn3 high EP,Pre-endocrine,0.7571518688832133,95,0,
+pancreas,veloVI,cbdir,Ngn3 low EP,Ngn3 high EP,0.8798833276356992,55,0,
+pancreas,veloVI,cbdir,Pre-endocrine,Alpha,0.5804650548434518,115,0,
+pancreas,veloVI,cbdir,Pre-endocrine,Beta,0.8018149413445562,140,0,
+pancreas,veloVI,cbdir,Pre-endocrine,Delta,0.6087109714879223,34,0,
+pancreas,veloVI,cbdir,Pre-endocrine,Epsilon,0.21297550213461228,59,0,
+pancreas,veloVI,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.1850499778398821,916,0,916
+pancreas,veloVI,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.7338710385461455,262,0,262
+pancreas,veloVI,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9279464554539887,642,0,642
+pancreas,veloVI,batc_candidate_source_mean,Pre-endocrine,Beta,0.808832713655276,592,0,180
+pancreas,veloVI,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8227866336686421,592,0,140
+pancreas,veloVI,batc_candidate_source_mean,Pre-endocrine,Delta,0.6774005250495815,592,0,101
+pancreas,veloVI,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.6600742246596221,592,0,171
+retina,TIvelo,cbdir,Neuroblast,AC/HC,0.8363313736549692,41,0,
+retina,TIvelo,cbdir,Neuroblast,PR,0.5599103034528992,52,0,
+retina,TIvelo,cbdir,Neuroblast,RGC,0.4355162163005858,52,0,
+retina,TIvelo,cbdir,Progenitor,Neuroblast,-0.2563837232216874,122,0,
+retina,TIvelo,batc_candidate_source_mean,Progenitor,Neuroblast,-0.20843903150539464,1084,0,1084
+retina,TIvelo,batc_candidate_source_mean,Neuroblast,PR,0.8466220330755125,309,0,94
+retina,TIvelo,batc_candidate_source_mean,Neuroblast,AC/HC,0.888403642280095,309,0,120
+retina,TIvelo,batc_candidate_source_mean,Neuroblast,RGC,0.6790227069427389,309,0,95
+retina,celldancer,cbdir,Neuroblast,AC/HC,0.6068661244774702,41,0,
+retina,celldancer,cbdir,Neuroblast,PR,-0.017077589004332993,52,0,
+retina,celldancer,cbdir,Neuroblast,RGC,0.7780126566371024,52,0,
+retina,celldancer,cbdir,Progenitor,Neuroblast,0.23491638310576185,122,0,
+retina,celldancer,batc_candidate_source_mean,Progenitor,Neuroblast,0.2947717868502764,1084,0,1084
+retina,celldancer,batc_candidate_source_mean,Neuroblast,PR,0.5111696068368472,309,0,81
+retina,celldancer,batc_candidate_source_mean,Neuroblast,AC/HC,0.5265870821743153,309,0,101
+retina,celldancer,batc_candidate_source_mean,Neuroblast,RGC,0.5115053742308288,309,0,127
+retina,deepvelo,cbdir,Neuroblast,AC/HC,0.9397591095125293,41,0,
+retina,deepvelo,cbdir,Neuroblast,PR,0.4694950835478363,52,0,
+retina,deepvelo,cbdir,Neuroblast,RGC,0.6399587399977009,52,0,
+retina,deepvelo,cbdir,Progenitor,Neuroblast,0.39665278468103093,122,0,
+retina,deepvelo,batc_candidate_source_mean,Progenitor,Neuroblast,-0.08759655294831095,1084,0,1084
+retina,deepvelo,batc_candidate_source_mean,Neuroblast,PR,0.8757796917845706,309,0,67
+retina,deepvelo,batc_candidate_source_mean,Neuroblast,AC/HC,0.9254482676522257,309,0,133
+retina,deepvelo,batc_candidate_source_mean,Neuroblast,RGC,0.7806842652335796,309,0,109
+retina,deepvelo2022,cbdir,Neuroblast,AC/HC,0.7106071886532866,41,0,
+retina,deepvelo2022,cbdir,Neuroblast,PR,-0.20042361742329465,52,0,
+retina,deepvelo2022,cbdir,Neuroblast,RGC,0.8597257188615914,52,0,
+retina,deepvelo2022,cbdir,Progenitor,Neuroblast,0.47110094664958974,122,0,
+retina,deepvelo2022,batc_candidate_source_mean,Progenitor,Neuroblast,0.26077580039082693,1084,0,1084
+retina,deepvelo2022,batc_candidate_source_mean,Neuroblast,PR,0.7924224386071259,309,0,73
+retina,deepvelo2022,batc_candidate_source_mean,Neuroblast,AC/HC,0.8704547292481679,309,0,142
+retina,deepvelo2022,batc_candidate_source_mean,Neuroblast,RGC,0.8431443958879536,309,0,94
+retina,graphvelo_scv,cbdir,Neuroblast,AC/HC,0.929108370436111,41,0,
+retina,graphvelo_scv,cbdir,Neuroblast,PR,0.4239695376655452,52,0,
+retina,graphvelo_scv,cbdir,Neuroblast,RGC,0.6725107655878279,52,0,
+retina,graphvelo_scv,cbdir,Progenitor,Neuroblast,0.6227759473897108,122,0,
+retina,graphvelo_scv,batc_candidate_source_mean,Progenitor,Neuroblast,0.3483239914742295,1084,0,1084
+retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,PR,0.8189398990938601,309,0,77
+retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,AC/HC,0.8931403867723146,309,0,155
+retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,RGC,0.7857939668232291,309,0,77
+retina,scvelo_dynamic,cbdir,Neuroblast,AC/HC,0.7287768628799366,41,0,
+retina,scvelo_dynamic,cbdir,Neuroblast,PR,-0.19143748059181964,52,0,
+retina,scvelo_dynamic,cbdir,Neuroblast,RGC,0.8590088057709516,52,0,
+retina,scvelo_dynamic,cbdir,Progenitor,Neuroblast,0.47308218743458014,122,0,
+retina,scvelo_dynamic,batc_candidate_source_mean,Progenitor,Neuroblast,0.24265312628206107,1084,0,1084
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,PR,0.7940365200277599,309,0,71
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,AC/HC,0.8726926648149805,309,0,142
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,RGC,0.8435969758003062,309,0,96
+retina,unitvelo,cbdir,Neuroblast,AC/HC,0.9450462224011763,41,0,
+retina,unitvelo,cbdir,Neuroblast,PR,0.4706563901204385,52,0,
+retina,unitvelo,cbdir,Neuroblast,RGC,0.6216546305482651,52,0,
+retina,unitvelo,cbdir,Progenitor,Neuroblast,-0.2402040727854288,122,0,
+retina,unitvelo,batc_candidate_source_mean,Progenitor,Neuroblast,-0.1714212133574063,1084,0,1084
+retina,unitvelo,batc_candidate_source_mean,Neuroblast,PR,0.9144493106130563,309,0,71
+retina,unitvelo,batc_candidate_source_mean,Neuroblast,AC/HC,0.9351465227814842,309,0,133
+retina,unitvelo,batc_candidate_source_mean,Neuroblast,RGC,0.7791219318375167,309,0,105
+retina,veloVI,cbdir,Neuroblast,AC/HC,0.7761697816366174,41,0,
+retina,veloVI,cbdir,Neuroblast,PR,0.605603303777165,52,0,
+retina,veloVI,cbdir,Neuroblast,RGC,0.5052003019549811,52,0,
+retina,veloVI,cbdir,Progenitor,Neuroblast,0.4122197023439328,122,0,
+retina,veloVI,batc_candidate_source_mean,Progenitor,Neuroblast,0.18316859137166158,1084,0,1084
+retina,veloVI,batc_candidate_source_mean,Neuroblast,PR,0.7186380185977106,309,0,95
+retina,veloVI,batc_candidate_source_mean,Neuroblast,AC/HC,0.7567831255459723,309,0,111
+retina,veloVI,batc_candidate_source_mean,Neuroblast,RGC,0.6983487958150796,309,0,103
+DentateGyrus_lamanno,multivelo,cbdir,CA,CA1-Sub,0.6790670220050575,330,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,CA,CA1-Sub,0.5835376224971665,2298,0,1394
+DentateGyrus_lamanno,multivelo,cbdir,CA,CA2-3-4,0.49979580925653283,357,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,CA,CA2-3-4,0.4561855764402598,2298,0,904
+DentateGyrus_lamanno,multivelo,cbdir,GlialProg,ImmAstro,-0.231399988501522,71,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,GlialProg,ImmAstro,-0.603981142840338,229,0,39
+DentateGyrus_lamanno,multivelo,cbdir,GlialProg,OPC,0.8709985880706942,58,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,GlialProg,OPC,0.5367801249414704,229,0,190
+DentateGyrus_lamanno,multivelo,cbdir,ImmGranule1,ImmGranule2,0.7043499083990415,1002,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.9020969136345429,2460,0,2460
+DentateGyrus_lamanno,multivelo,cbdir,ImmGranule2,Granule,0.8374305008536008,397,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,ImmGranule2,Granule,0.8545152088705503,2099,0,2099
+DentateGyrus_lamanno,multivelo,cbdir,Nbl1,Nbl2,0.45408829571043946,129,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,Nbl1,Nbl2,0.1279681742052307,419,0,419
+DentateGyrus_lamanno,multivelo,cbdir,Nbl2,CA,-0.22699368940343098,255,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,Nbl2,CA,0.2689454405686849,1003,0,552
+DentateGyrus_lamanno,multivelo,cbdir,Nbl2,ImmGranule1,-0.14324173080827943,324,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,Nbl2,ImmGranule1,0.3291154732267325,1003,0,451
+DentateGyrus_lamanno,multivelo,cbdir,nIPC,GlialProg,0.3091986353601927,130,0,
+DentateGyrus_lamanno,multivelo,batc_candidate_source_mean,nIPC,GlialProg,-0.3767370301381653,1230,0,1230
+capofibro,multivelo,cbdir,G1,S,-0.3389209644047869,336,0,
+capofibro,multivelo,batc_candidate_source_mean,G1,S,-0.47460721044596615,514,0,514
+capofibro,multivelo,cbdir,G2M,G1,-0.37996776846955155,169,0,
+capofibro,multivelo,batc_candidate_source_mean,G2M,G1,-0.5826651432396446,325,0,325
+capofibro,multivelo,cbdir,S,G2M,-0.8093227472115594,113,0,
+capofibro,multivelo,batc_candidate_source_mean,S,G2M,-0.7790138018041315,383,0,383
+gastrulation,multivelo,cbdir,Blood progenitors 1,Blood progenitors 2,-0.5858093155313318,332,0,
+gastrulation,multivelo,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,-0.3021738127946785,623,0,623
+gastrulation,multivelo,cbdir,Blood progenitors 2,Erythroid1,-0.4869737575410446,515,0,
+gastrulation,multivelo,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.22936824156125812,2460,0,2460
+gastrulation,multivelo,cbdir,Erythroid1,Erythroid2,-0.7851271077425355,540,0,
+gastrulation,multivelo,batc_candidate_source_mean,Erythroid1,Erythroid2,-0.9447141881452412,2929,0,2929
+gastrulation,multivelo,cbdir,Erythroid2,Erythroid3,-0.8155634751343654,423,0,
+gastrulation,multivelo,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.9467174154363569,1106,0,1106
+mousebrain,multivelo,cbdir,IPC,V-SVZ,0.4687069999313033,97,0,
+mousebrain,multivelo,batc_candidate_source_mean,IPC,V-SVZ,0.6463588548844966,183,0,183
+mousebrain,multivelo,cbdir,"RG, Astro, OPC",IPC,-0.16530887698620803,124,0,
+mousebrain,multivelo,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.4915336840446864,501,0,501
+mousebrain,multivelo,cbdir,Upper Layer,Deeper Layer,0.7580876876651288,227,0,
+mousebrain,multivelo,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.6874995796428374,999,0,999
+mousebrain,multivelo,cbdir,V-SVZ,Upper Layer,0.31267868274819854,332,0,
+mousebrain,multivelo,batc_candidate_source_mean,V-SVZ,Upper Layer,0.5326964836852703,632,0,632
+pancreas,multivelo,cbdir,Ductal,Ngn3 low EP,-0.007260741455243964,796,0,
+pancreas,multivelo,batc_candidate_source_mean,Ductal,Ngn3 low EP,0.10375874462627538,916,0,916
+pancreas,multivelo,cbdir,Ngn3 high EP,Pre-endocrine,0.7250424801188268,95,0,
+pancreas,multivelo,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9057127642869116,642,0,642
+pancreas,multivelo,cbdir,Ngn3 low EP,Ngn3 high EP,0.8871383112904114,55,0,
+pancreas,multivelo,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.6936562678986333,262,0,262
+pancreas,multivelo,cbdir,Pre-endocrine,Alpha,0.3715338620169549,115,0,
+pancreas,multivelo,batc_candidate_source_mean,Pre-endocrine,Alpha,0.7993013209953612,592,0,127
+pancreas,multivelo,cbdir,Pre-endocrine,Beta,0.6707985721877828,140,0,
+pancreas,multivelo,batc_candidate_source_mean,Pre-endocrine,Beta,0.7991492501254447,592,0,189
+pancreas,multivelo,cbdir,Pre-endocrine,Delta,0.40634560718514756,34,0,
+pancreas,multivelo,batc_candidate_source_mean,Pre-endocrine,Delta,0.6302874919121934,592,0,106
+pancreas,multivelo,cbdir,Pre-endocrine,Epsilon,0.7337272429251545,59,0,
+pancreas,multivelo,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.6354484219424331,592,0,170
+retina,multivelo,cbdir,Neuroblast,AC/HC,0.8062435838640197,41,0,
+retina,multivelo,batc_candidate_source_mean,Neuroblast,AC/HC,0.9420743553470857,309,0,123
+retina,multivelo,cbdir,Neuroblast,PR,0.7025877975639511,52,0,
+retina,multivelo,batc_candidate_source_mean,Neuroblast,PR,0.908639526994756,309,0,98
+retina,multivelo,cbdir,Neuroblast,RGC,0.30746629838810324,52,0,
+retina,multivelo,batc_candidate_source_mean,Neuroblast,RGC,0.7542754849703143,309,0,88
+retina,multivelo,cbdir,Progenitor,Neuroblast,0.3588568513707424,122,0,
+retina,multivelo,batc_candidate_source_mean,Progenitor,Neuroblast,0.08664118627608101,1084,0,1084

@@ -45,15 +45,18 @@ def gene_category(row: pd.Series) -> str | None:
     return None
 
 
-def load_summary() -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict]:
+def load_summary(cell_scores=None, cossim_scores=None) -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict]:
     inputs = pd.read_csv(HERE / "inputs.tsv", sep="\t", dtype=str)
-    cell = pd.read_csv(HERE / "results/cell_metrics.csv")
+    cell = pd.read_csv(cell_scores or HERE / "results/cell_metrics.csv")
     gene = pd.read_csv(REPO / "evaluation/gene/results/gene_cbdir_reference30_all.csv")
     gene = gene[gene.dataset.isin(SCENARIOS) & gene.status.eq("ok")].copy()
     gene["result_path"] = gene.source_h5ad.str.replace(
         "artifact://velocity/", "velocity:", regex=False
     )
-    source_map = inputs[["evaluation_dataset", "operational_id", "result_path"]]
+    source_map = inputs[["evaluation_dataset", "operational_id", "result_path"]].copy()
+    native = pd.read_csv(HERE.parent / "native_outputs.tsv", sep="\t", dtype=str)
+    fit_paths = native.set_index("result_path").fit_result_path.to_dict()
+    source_map["result_path"] = source_map.result_path.map(lambda path: fit_paths.get(path, path))
     gene = gene.merge(
         source_map, left_on=["dataset", "result_path"],
         right_on=["evaluation_dataset", "result_path"],
@@ -62,7 +65,7 @@ def load_summary() -> tuple[pd.DataFrame, pd.DataFrame, list[str], dict]:
     if gene.operational_id.isna().any():
         raise ValueError("a Gene simulation source has no matched Cell input")
     cossim = pd.read_csv(
-        REPO / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
+        cossim_scores or REPO / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
     ).rename(columns={"Dataset": "dataset", "Gene": "gene", "Method": "method",
                       "CosSim": "gene_cossim"})
     if len(cossim) != len(gene):
@@ -221,7 +224,11 @@ def plot_cross_level(summary: pd.DataFrame, method_order: list[str],
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--cross-level-only", action="store_true")
+    scope = parser.add_mutually_exclusive_group()
+    scope.add_argument("--cross-level-only", action="store_true")
+    scope.add_argument("--cell-only", action="store_true")
+    parser.add_argument("--cell-scores", type=Path)
+    parser.add_argument("--cossim-scores", type=Path)
     args = parser.parse_args()
     out = args.output_dir.expanduser().resolve()
     if out.is_relative_to(REPO) and not out.is_relative_to(REPO / "outputs"):
@@ -230,14 +237,16 @@ def main() -> None:
         parser.error("--output-dir must be an empty directory; use a new directory")
     plt.rcParams.update({"font.family": "DejaVu Sans", "pdf.fonttype": 42,
                          "ps.fonttype": 42, "svg.fonttype": "none"})
-    cell, summary, method_order, display = load_summary()
+    cell, summary, method_order, display = load_summary(args.cell_scores, args.cossim_scores)
     out.mkdir(parents=True, exist_ok=True)
-    summary.to_csv(out / "cross_level_summary.csv", index=False,
-                   float_format="%.17g")
+    if not args.cell_only:
+        summary.to_csv(out / "cross_level_summary.csv", index=False,
+                       float_format="%.17g")
     if not args.cross_level_only:
         plot_cell(cell, method_order, display, out)
-    plot_cross_level(summary, method_order, display, out)
-    print("Wrote cross-level figure" + ("" if args.cross_level_only else " and cell overview"))
+    if not args.cell_only:
+        plot_cross_level(summary, method_order, display, out)
+    print("Wrote selected simulation comparison materials")
 
 
 if __name__ == "__main__":

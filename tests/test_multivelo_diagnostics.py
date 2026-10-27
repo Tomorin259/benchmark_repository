@@ -61,8 +61,8 @@ class MultiVeloDiagnosticsTests(unittest.TestCase):
                     else:
                         self.assertEqual(rebuilt[key], frozen[key])
             by_key = {(r["dataset"], r["gene_class"], r["method"], r["condition"]): r for r in actual}
-            self.assertEqual(f"{float(by_key['branching','branching','MultiVelo (RNA_only)','Gate open']['mean_cossim']):.4f}", "0.2477")
-            self.assertEqual(f"{float(by_key['all','branching','MultiVelo (RNA_only)','Gate open']['mean_cossim']):.4f}", "0.2349")
+            self.assertEqual(f"{float(by_key['branching','branching','MultiVelo (RNA_only)','Gate open']['mean_cossim']):.4f}", "0.3023")
+            self.assertEqual(f"{float(by_key['all','branching','MultiVelo (RNA_only)','Gate open']['mean_cossim']):.4f}", "0.2960")
 
     def test_phase_input_identity_and_no_pickle(self):
         try:

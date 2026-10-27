@@ -370,7 +370,7 @@ def export_data(root=ROOT, output=None):
     if len(result_packages) != 339 or len(result_members) != 388:
         raise ValueError('Result release must cover 339 packages and 388 original files')
     for package in result_packages:
-        if package['release_version'] != 'v1.0.0':
+        if package['release_version'] != 'v1.0.1':
             raise ValueError('Unsupported result release version')
         if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/' + package['release_version'] + '/'):
             raise ValueError('Result package must point to the verified release tag')
@@ -906,6 +906,7 @@ def export_data(root=ROOT, output=None):
         ('main_figures', 'Main figures', 'Figures 1–7: numerical tables, saved plotting inputs and the Figure 1 schematic.'),
         ('supplementary_figures', 'Supplementary figures', 'Figures S1–S15: numerical tables and saved plotting inputs.'),
         ('supplementary_tables', 'Supplementary tables', 'Tables S1–S9: full-precision source values and metadata.'),
+        ('metadata/simulation_truth', 'Simulation velocity references', 'Paired clean states and ODE velocities for the evaluated genes.'),
     ]:
         files = [row for row in source_data_files if row['path'].startswith(directory + '/')]
         source_data_groups.append({'id': directory, 'label': label, 'description': description,

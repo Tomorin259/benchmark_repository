@@ -45,7 +45,7 @@ class InputReleaseManifestTests(unittest.TestCase):
             else:
                 self.assertEqual(row["public_storage"], "huggingface_file")
                 self.assertTrue(row["public_url"].startswith(
-                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/v1.0.0/inputs/"))
+                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.1/v1.0.1/inputs/"))
                 self.assertTrue(row["public_url"].endswith(row["member_path"] + "?download=true"))
             self.assertFalse(re.search(r"/(?:mnt|Users|home)/|[A-Za-z]:\\", row["member_path"]))
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")
@@ -118,8 +118,9 @@ class InputReleaseManifestTests(unittest.TestCase):
         rows = {row["artifact_id"]: row for row in self.read_rows()}
         self.assertEqual(rows["input-labelled-sceu_rpe1"]["layers"], "sl;su;ul;uu")
         self.assertEqual(rows["input-labelled-sceu_organoid"]["layers"], "sl;su;ul;uu")
-        self.assertEqual(rows["dataset-sim-only-murk"]["layers"],
-                         "alpha_true;beta_true;gamma_true;spliced;unspliced;velocity_s_true;velocity_u_true")
+        self.assertEqual(set(rows["input-sim-only-murk-clean"]["layers"].split(';')),
+                         {"alpha_true", "beta_true", "gamma_true", "spliced", "unspliced",
+                          "clean_spliced", "clean_unspliced", "velocity_s_true", "velocity_u_true"})
         self.assertEqual(rows["dataset-mousebrain"]["n_obs"], "3365")
         self.assertEqual(rows["input-counts-mousebrain"]["n_obs"], "3365")
 

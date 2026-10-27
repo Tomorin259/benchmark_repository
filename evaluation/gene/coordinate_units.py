@@ -80,7 +80,7 @@ def restore_velovi_coordinates(adata, gene_indices, preprocessed=None):
 
 
 def velocity_cosine(velocity, truth):
-    """Historical simulation CosSim with the same >1e-6 norm mask."""
+    """Two-component simulation CosSim with the >1e-6 norm mask."""
     nv, nt = np.linalg.norm(velocity, axis=1), np.linalg.norm(truth, axis=1)
     valid = (nv > 1e-6) & (nt > 1e-6)
     if not valid.any():

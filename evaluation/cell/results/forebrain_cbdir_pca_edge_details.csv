@@ -17,12 +17,6 @@ forebrain,C03,scvelo_dynamic,2,3,0.03516968070378601,68,True
 forebrain,C03,scvelo_dynamic,3,4,0.17400975082511244,188,True
 forebrain,C03,scvelo_dynamic,4,5,0.26545681584230757,207,True
 forebrain,C03,scvelo_dynamic,5,6,-0.023448541540045307,142,True
-forebrain,C04,multivelo,0,1,0.2812083208738735,168,True
-forebrain,C04,multivelo,1,2,-0.12947987262175872,41,True
-forebrain,C04,multivelo,2,3,0.14428614695916095,68,True
-forebrain,C04,multivelo,3,4,0.2609279307160472,188,True
-forebrain,C04,multivelo,4,5,0.2435001877847356,207,True
-forebrain,C04,multivelo,5,6,0.19637569971546817,142,True
 forebrain,C05,unitvelo,0,1,-0.091563226221904,168,True
 forebrain,C05,unitvelo,1,2,-0.32822728343534785,41,True
 forebrain,C05,unitvelo,2,3,-0.2190048637103421,68,True
@@ -119,3 +113,9 @@ forebrain,C20,graphvelo_dynamo,2,3,0.14637054878357425,68,True
 forebrain,C20,graphvelo_dynamo,3,4,0.17961470218842274,188,True
 forebrain,C20,graphvelo_dynamo,4,5,0.167178654753185,207,True
 forebrain,C20,graphvelo_dynamo,5,6,-0.11413501603152108,142,True
+forebrain,C04,multivelo,0,1,0.07601738597032386,168,True
+forebrain,C04,multivelo,1,2,-0.04230382758167048,41,True
+forebrain,C04,multivelo,2,3,0.24780297079085348,68,True
+forebrain,C04,multivelo,3,4,0.07687664848158654,188,True
+forebrain,C04,multivelo,4,5,0.10848551195869849,207,True
+forebrain,C04,multivelo,5,6,0.09111834676766822,142,True

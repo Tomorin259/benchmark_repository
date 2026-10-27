@@ -57,10 +57,16 @@ def main():
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[2])
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent / "root_stage_intervention")
     parser.add_argument("--seed", type=int, default=20260926)
+    parser.add_argument("--scenarios", nargs="+", choices=["all", "branching", "murk"], default=["all", "branching", "murk"])
+    parser.add_argument("--variants", nargs="+", choices=["process_path_root", "correct_path_root", "oracle_early_root"], default=["process_path_root", "correct_path_root", "oracle_early_root"])
+    parser.add_argument("--truth-root", type=Path, help="Paired noise-free ODE truth assets; defaults to the repository reference")
+    parser.add_argument("--root-table", type=Path, help="Recorded scenario/variant/requested_root table for a fixed-root replay")
     args = parser.parse_args()
 
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    sys.path.insert(0, str(args.repo_root))
+    sys.path.insert(0, str(args.repo_root / "supplement/tivelo_gene"))
     from stage_audit import SCENARIOS, dense as stage_dense, prepare, set_seed
+    from evaluation.gene.simulation.reference import load_velocity_reference
     sys.path.insert(0, str(args.repo_root / "evaluation/gene"))
     from run_reference30_gene_cbdir import SIM_CONFIGS, align_reference_neighbors, read_reference_asset, score_gene
     from tivelo.direction.correct import correct_path
@@ -68,13 +74,21 @@ def main():
     from tivelo.velocity.DTI import get_child_dict, get_d_nn
     from tivelo.velocity.model import get_velocity
 
+    if args.output_dir.exists() and any(args.output_dir.iterdir()):
+        raise ValueError("Use an empty output directory")
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    recorded_roots = None
+    if args.root_table:
+        table = pd.read_csv(args.root_table).loc[:, ["scenario", "variant", "requested_root"]].drop_duplicates()
+        if table.duplicated(["scenario", "variant"]).any():
+            raise ValueError("Recorded roots are not unique by scenario and variant")
+        recorded_roots = {(row.scenario, row.variant): str(row.requested_root) for row in table.itertuples()}
     score_rows, edge_rows, path_rows = [], [], []
     manifest = {"type": "exploratory root-stage sensitivity analysis", "seed": args.seed,
                 "held_fixed": "simulation input, mirrored preprocessing, reference-30 neighbors, gene metric, TIvelo optimizer",
-                "variants": ["process_path_root", "correct_path_root", "oracle_early_root"]}
+                "variants": args.variants}
 
-    for scenario in sorted(SCENARIOS):
+    for scenario in args.scenarios:
         set_seed(args.seed)
         adata, raw_shape, input_path = prepare(args.artifact_root, SCENARIOS[scenario])
         process_dict, _ = process_path(adata, "bin", "X_umap", njobs=12, start_mode="stochastic")
@@ -86,13 +100,16 @@ def main():
         genes = SIM_CONFIGS[scenario]["genes"]
         ref_names, ref_indices = read_reference_asset(args.repo_root / f"evaluation/gene/results/reference_neighbors/{scenario}.npz")
         neighbors = align_reference_neighbors(adata, ref_names, ref_indices)
-        truth_s = stage_dense(adata.layers["velocity_s_true"])
-        truth_u = stage_dense(adata.layers["velocity_u_true"])
+        truth_s, truth_u = load_velocity_reference(scenario, adata.obs_names, genes, args.truth_root)
         roots = [("process_path_root", process_root), ("correct_path_root", corrected_root)]
         early = "BranchB_0" if scenario == "murk" else "BranchA_0"
         roots.append(("oracle_early_root", early))
 
         for variant, root in roots:
+            if variant not in args.variants:
+                continue
+            if recorded_roots is not None:
+                root = recorded_roots[scenario, variant]
             work = adata.copy()
             child, level, thresholds = get_child_dict(work, "bin", {"start_node": root}, threshold=0.1,
                                                       threshold_trans=2, adjust=False)
@@ -104,7 +121,10 @@ def main():
                                        loss_fun="mse", only_s=False, constrain=True, alpha_1=1, alpha_2=0.1,
                                        batch_size=1024, filter_genes=False)
             indices = work.var_names.get_indexer(genes)
-            cossim = cosine_rows(v_s[:, indices], v_u[:, indices], truth_s[:, indices], truth_u[:, indices])
+            cossim = cosine_rows(v_s[:, indices], v_u[:, indices], truth_s, truth_u)
+            np.savez_compressed(args.output_dir / f"{scenario}_{variant}_predictions.npz",
+                                cell_ids=np.asarray(work.obs_names).astype(str), gene_names=np.asarray(genes).astype(str),
+                                velocity_s=v_s[:, indices], velocity_u=v_u[:, indices])
             edge_rows.append({"scenario": scenario, "variant": variant, "requested_root": root,
                               "dti_root": dti_root, **edge_counts(d_nn, labels)})
             for j, gene in enumerate(genes):
@@ -112,9 +132,10 @@ def main():
                                              stage_dense(work.layers["Mu"][:, indices[j]]), v_s[:, indices[j]],
                                              v_u[:, indices[j]], labels, neighbors, SIM_CONFIGS[scenario]["edges"])
                 valid = cossim[:, j][np.isfinite(cossim[:, j])]
-                score_rows.append({"scenario": scenario, "variant": variant, "requested_root": root,
+                row = {"scenario": scenario, "variant": variant, "requested_root": root,
                                    "dti_root": dti_root, "gene": gene, "cbdir_reference30": float(cbdir),
-                                   "cossim": float(np.mean(valid)), "fraction_cell_cossim_negative": float(np.mean(valid < 0))})
+                                   "cossim": float(np.mean(valid)), "fraction_cell_cossim_negative": float(np.mean(valid < 0))}
+                score_rows.append(row)
             print(f"completed {scenario} / {variant} ({root})", flush=True)
 
     scores = pd.DataFrame(score_rows)
@@ -128,7 +149,9 @@ def main():
         mean_fraction_cell_cossim_negative=("fraction_cell_cossim_negative", "mean"),
     ).reset_index()
     summary.to_csv(args.output_dir / "root_stage_summary.csv", index=False)
-    manifest["scenarios"] = sorted(SCENARIOS)
+    manifest["scenarios"] = args.scenarios
+    manifest["velocity_reference"] = "noise-free ODE state, matched cell/gene identifiers"
+    manifest["root_selection"] = "recorded intervention roots" if recorded_roots is not None else "inferred process/corrected roots and known early roots"
     (args.output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(summary.to_string(index=False), flush=True)
     print(edges.to_string(index=False), flush=True)

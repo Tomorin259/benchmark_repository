@@ -8,7 +8,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SIM = ROOT / "evaluation/gene/simulation"
 sys.path.insert(0, str(ROOT))
-from evaluation.gene.simulation.generate import _bin_labels, _one_sided, _truth_layers
+from evaluation.gene.simulation.generate import _bin_labels, _one_sided, _truth_layers, _simulate
 
 
 class SimulationGenerationTests(unittest.TestCase):
@@ -55,9 +55,14 @@ class SimulationGenerationTests(unittest.TestCase):
 
         class FakeSimulation:
             @staticmethod
+            def _jitter(u, s, scale):
+                return u, s
+
+            @staticmethod
             def simulate(kinetic_type, **kwargs):
                 events.append((kinetic_type, kwargs))
                 size = kwargs["path1_cell_number"] + kwargs["path2_cell_number"]
+                FakeSimulation._jitter(np.zeros(size), np.zeros(size), kwargs["noise_level"])
                 return pd.DataFrame({"cellID": range(size)})
 
         def uniform(low, high):
@@ -85,6 +90,39 @@ class SimulationGenerationTests(unittest.TestCase):
 
     def test_generation_entrypoint_compiles_without_running_scientific_dependencies(self):
         self.assertTrue(__import__("py_compile").compile(str(SIM / "generate.py"), doraise=True))
+
+    def test_clean_capture_preserves_observations_random_stream_and_package(self):
+        import numpy as np
+        import pandas as pd
+
+        class Simulation:
+            @staticmethod
+            def _jitter(u, s, scale):
+                return u + np.random.normal(size=len(u)) * scale, s + np.random.normal(size=len(s)) * scale
+
+            @staticmethod
+            def simulate(kinetic_type, **kwargs):
+                u, s = Simulation._jitter(np.array([1., 2.]), np.array([3., 4.]), .8)
+                return pd.DataFrame({"unsplice": u, "splice": s})
+
+        original = Simulation._jitter
+        state = np.random.get_state()
+        try:
+            baseline = Simulation.simulate("mono")
+            next_draw = np.random.random()
+            np.random.set_state(state)
+            captured = _simulate(Simulation, "mono", {})
+            np.testing.assert_array_equal(captured[["unsplice", "splice"]], baseline)
+            np.testing.assert_array_equal(captured.clean_unsplice, [1., 2.])
+            np.testing.assert_array_equal(captured.clean_splice, [3., 4.])
+            self.assertEqual(np.random.random(), next_draw)
+            self.assertIs(Simulation._jitter, original)
+            with patch.object(Simulation, "simulate", side_effect=RuntimeError("upstream failure")):
+                with self.assertRaises(RuntimeError):
+                    _simulate(Simulation, "mono", {})
+            self.assertIs(Simulation._jitter, original)
+        finally:
+            np.random.set_state(state)
 
     def test_generation_entrypoint_has_no_server_paths(self):
         text = (SIM / "generate.py").read_text()

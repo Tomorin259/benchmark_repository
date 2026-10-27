@@ -39,6 +39,7 @@ METHOD_NAME_MAPPING = {
     'cell2fate': 'cell2fate',
     'TIvelo': 'TIvelo',
     'veloVI': 'veloVI',
+    'velovi': 'veloVI',
     'multivelo': 'MultiVelo (RNA_only)',
     'deepvelo2022': 'DeepVelo_scv',
     'graphvelo_scv': 'GraphVelo_scv',
@@ -267,6 +268,34 @@ def save_highdim_cbdir():
     plt.close(fig)
 
 
+def save_matched_panels():
+    """Render S9 Cell panels from the seven matched-output comparisons."""
+    global METRICS_CSV
+    primary = pd.read_csv(METRICS_CSV)
+    matched = pd.read_csv(MODULE_DIR / 'gene_matched/results/cell_metrics.csv')
+    methods = {'scvelo_dynamic', 'deepvelo2022', 'graphvelo_scv', 'TIvelo',
+               'celldancer', 'deepvelo', 'unitvelo', 'veloVI', 'multivelo'}
+    selected = primary[primary.dataset.isin(matched.dataset) & primary.method.isin(methods)]
+    selected = selected.set_index(['dataset', 'method'])
+    selected.update(matched.set_index(['dataset', 'method']))
+    if len(selected) != 63:
+        raise ValueError('S9 requires nine methods on seven datasets')
+    selected.reset_index().to_csv(OUTDIR / 'cell_scores.csv', index=False)
+    source = METRICS_CSV
+    METRICS_CSV = OUTDIR / 'cell_scores.csv'
+    try:
+        for i, metric in enumerate(METRICS, 1):
+            fig, ax = plt.subplots(figsize=(3.2, 2.7))
+            draw_metric(ax, metric, compact=True)
+            fig.subplots_adjust(left=.42, right=.98, bottom=.14, top=.89)
+            for suffix in ['png', 'pdf', 'svg']:
+                fig.savefig(OUTDIR / f"cell_panel_{i:02d}_{metric['key']}.{suffix}",
+                            dpi=600, facecolor='white')
+            plt.close(fig)
+    finally:
+        METRICS_CSV = source
+
+
 def main():
     global OUTDIR, METRICS_CSV, SUPPLEMENTARY_METRICS_CSV
     parser = argparse.ArgumentParser(
@@ -279,15 +308,19 @@ def main():
         default=DEFAULT_SUPPLEMENTARY_METRICS_CSV,
     )
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTDIR)
+    parser.add_argument('--gene-matched', action='store_true', help='Render the five S9 Cell panels')
     args = parser.parse_args()
     METRICS_CSV = args.metrics.resolve()
     SUPPLEMENTARY_METRICS_CSV = args.supplementary_metrics.resolve()
     OUTDIR = args.output.resolve()
     OUTDIR.mkdir(parents=True, exist_ok=True)
 
-    save_individual_panels()
-    save_five_panel()
-    save_highdim_cbdir()
+    if args.gene_matched:
+        save_matched_panels()
+    else:
+        save_individual_panels()
+        save_five_panel()
+        save_highdim_cbdir()
     print(f"Wrote outputs to {OUTDIR}")
     for path in sorted(OUTDIR.glob('fig2_cell_metric*')):
         print(path)

@@ -10,5 +10,16 @@
     "scv.tl.velocity(mode='stochastic')",
     "scv.tl.velocity_graph",
     "scv.tl.terminal_states"
-  ]
+  ],
+  "velocity_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  },
+  "score_outputs_sha256": {
+    "scvelo_velocity_truth_by_bin.csv": "7bb9b8b8402affc8762454f7219393633ca189d6eb95307b8c37090db4fb91a0",
+    "scvelo_stage_summary.csv": "63d64305dd500f452ac0d80026a0c5ccd2412b698ca0b291108875535f0d9ecb",
+    "scvelo_root_end_by_bin.csv": "652699f7ca9f2ab18684cd073b6814695611849272da19f2744af5add8c0bc42",
+    "scvelo_graph_true_edge_scores.csv": "d3e683f6d60de83acb7d7c72f5009ac56069ee99ec0c0e73d88ed7dc320ee0c9"
+  }
 }

@@ -8,8 +8,10 @@ veloVI's additional independent min-max axes for both state and velocity.
 Cell and Gene analyses use the recorded task-specific output workflows.
 The [matched-output comparison](../cell/README.md#gene-output-matched-cell-comparison)
 in Supplementary Figure S9 evaluates DeepVelo, UniTVelo, veloVI and MultiVelo
-on seven datasets. MultiVelo selects `velo_s` instead of the primary Cell
-analysis's `velocity` layer from the same H5AD.
+on seven datasets. MultiVelo Cell scoring uses its official normalized spliced
+velocity and matching projection, derived from the same native fit whose
+`velo_s` and `velo_u` components are used for Gene scoring. The fit-to-Cell
+output identities are in [native_outputs.tsv](../cell/native_outputs.tsv).
 
 ## Results and selection
 
@@ -82,13 +84,15 @@ forward min-max transform must reproduce saved `Ms`/`Mu` exactly. Per axis,
 `y = a*x + b` gives `v_x = v_y/a`; translation affects state only. Other
 methods use their existing numerical units.
 
-Simulation CosSim compares raw predictions with `velocity_s_true`/`velocity_u_true`
-using the historical norm mask (`>1e-6` for both vectors), without CBDir's
+Simulation CosSim compares raw predictions with the noise-free ODE velocities
+in [`simulation/truth/`](simulation/truth/), aligned by cell and gene identifiers.
+It uses the norm mask (`>1e-6` for both vectors), without CBDir's
 velocity cleanup. veloVI uses restored units and also writes its 70-row
 `simulation/velovi_cossim.csv` subset. The full `simulation/gene_cossim.csv`
 contains all nine methods. Join by dataset/method/gene when comparing with
-the compact formal table; its other eight methods retain five-decimal
-historical scores. [The results guide](results/README.md) describes the fields.
+the full-precision compact formal table. [The results guide](results/README.md)
+describes the fields. The original method H5ADs retain their saved layers;
+the evaluator takes simulation truth from the shared reference assets.
 
 The benchmark uses the registered simulation H5ADs. Use the
 [simulation generator](simulation/README.md) to create additional datasets.

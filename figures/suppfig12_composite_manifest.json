@@ -1,13 +1,48 @@
 {
   "export": "user_exported_cropped_pdf",
   "paper_figure": "suppfig12",
-  "composite_status": "current",
+  "composite_status": "current_author_export",
   "composite_path": "figures/suppFigTwelve.pdf",
-  "composite_sha256": "350d17af6b3ef6082b3b035cd03f89e7d1272303ad6a8a8370e7b98954dbdefd",
+  "composite_sha256": "b15c1f0b1690da67222bef214c4cab213026c21e75915659beb4d8f5e7a26ca1",
   "metric_source_path": "evaluation/cell/simulation/results/cell_metrics.csv",
-  "metric_source_sha256": "a76b39bcb0f6123af494072b4f893d7b318db969ac2ea305069d5c4474251296",
+  "metric_source_sha256": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008",
   "supplementary_table": "S7",
   "table_path": "evaluation/cell/simulation/results/simulation_cell_scores.tex",
-  "validation": "The retained composite PDF matches the registered final material identity. All 135 table scores match the repository full-precision results.",
-  "reproduction_boundary": "The composite uses manual PowerPoint layout and PDF export. Numerical CSV and LaTeX tables are produced by evaluation/cell/simulation/build_score_table.py."
+  "validation": "Prepared numerical tables match full-precision results. The retained author PDF keeps its recorded file identity; source-panel assembly and export are pending.",
+  "reproduction_boundary": "The composite uses manual PowerPoint layout and PDF export. Numerical CSV and LaTeX tables are produced by evaluation/cell/simulation/build_score_table.py.",
+  "pending_pdf_export": false,
+  "pending_ppt_assembly": false,
+  "prepared_panels": [
+    {
+      "path": "evaluation/cell/simulation/figures/A_murk_streams.png",
+      "sha256": "0da3d47936b207329119de5cf9a66e0679ef136d9a24e7379c3338a6d046cc6c"
+    },
+    {
+      "path": "evaluation/cell/simulation/figures/B_branching_streams.png",
+      "sha256": "8a10d0f5fafce86181605abcba982ab9f11d83e619c1be3a5722831cf9ac46de"
+    },
+    {
+      "path": "evaluation/cell/simulation/figures/C_all_streams.png",
+      "sha256": "0d8b0513a87dc8c8a87e7cc29819c1a1d438e819a13213a29baf28c397b3c6d0"
+    },
+    {
+      "path": "evaluation/cell/simulation/figures/D_cell_metrics.png",
+      "sha256": "43ea962224e8000bd8a4147675a8db47582d4a0e1f3af8ffc8b1516266a5c82b"
+    }
+  ],
+  "author_export": {
+    "filename": "supfig12.pdf",
+    "source_pdf_sha256": "5f9e4012215f26ae165001987e590a8bdb52747389bd936ebfcc4eed9b8a535b",
+    "cropped_pdf_sha256": "b15c1f0b1690da67222bef214c4cab213026c21e75915659beb4d8f5e7a26ca1",
+    "author_assembly_filename": "supfig12.pptx",
+    "author_assembly_sha256": "a2c0af11e162445e6e02b6c7836ce5c303bab1a8167083ffdf5ad269d6394c2b",
+    "crop_box_pt": [
+      0.0,
+      468.04,
+      540.0,
+      779.8
+    ],
+    "page_operators_unchanged": true,
+    "resource_streams_unchanged": true
+  }
 }

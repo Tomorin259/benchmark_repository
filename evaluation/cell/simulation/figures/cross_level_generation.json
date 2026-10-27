@@ -1,0 +1,21 @@
+{
+  "renderer": "evaluation/cell/simulation/plot_simulation_cell_comparison.py",
+  "renderer_sha256": "83dc8586d483857f4cbd6c31ee6c4af41806d77e6645067e047a9fd57f112382",
+  "command": "python evaluation/cell/simulation/plot_simulation_cell_comparison.py --cross-level-only --output-dir /path/to/empty-output",
+  "source_tables": {
+    "evaluation/cell/simulation/results/cross_level_summary.csv": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6",
+    "evaluation/cell/simulation/results/cell_metrics.csv": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008",
+    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+    "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
+  },
+  "rows": 36,
+  "methods": 9,
+  "gene_subsets": 4,
+  "gene_statistics": "Arithmetic mean and sample SD over valid genes within each subset",
+  "cell_statistics": "One dataset-level CBDir/BATC pair; hybrid subsets share the same Cell scores",
+  "outputs": {
+    "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.png": "a2dab59a6462fd3f044a6478f5ca894577a70bad0bd6db8a05b9c8b9fc924dec",
+    "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.pdf": "e769613f644d66dd1f8c94883f588638e02fa75dd6a414e854a5d9c5b52cb2fa",
+    "evaluation/cell/simulation/figures/simulation_cross_level_cbdir.svg": "e02e619b7db6db763adddecf598c29bb207e50efbfc45f30333f01af2705851a"
+  }
+}

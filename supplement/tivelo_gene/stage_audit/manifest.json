@@ -57,5 +57,19 @@
       ],
       "n_velocity_layers": 1
     }
-  ]
+  ],
+  "velocity_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  },
+  "score_outputs_sha256": {
+    "dnn_direction_summary.csv": "145359d283d60e18e5b9b9d24a9a485b4c2398e9ab6889ba8bec2de3c6638347",
+    "stage_final_gene_scores.csv": "9130a9c70e39c44815260ed0c9a4ee5683fe685aff20e28bf05d27cc14d554c4",
+    "child_edges_after_correct_path.csv": "2c9725e1d20685e5503879844c4f1713859ec5bd1b178cf4c43299c1317d7bcf",
+    "orientation_scores.csv": "a71e5c52537fbb77df59ae723e9b18f39ed0fc5c6b4385bae75ba989903b3d3c",
+    "stage_summary.csv": "c8c38b675dbc67086323340ec7368ca65751232eb3c53ac4e79bdc64d916e3ea",
+    "root_end_scores_at_process_path.csv": "e0ec66b2f8b25d03c003ad15f4bec83777e543921a5a971d551bf3c06144228b",
+    "path_edges_by_stage.csv": "008410688619ddadca84983f10cbacdc8b0c8eda2155dfe9c491500ed08e78db"
+  }
 }

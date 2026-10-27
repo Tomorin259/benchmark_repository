@@ -233,7 +233,7 @@ def run(command: list[str], log_path: Path) -> None:
 def write_forebrain_cbdir_audit(pairs: list[dict], result_root: Path, config: dict) -> None:
     """Bind a complete Forebrain rerun's edge scores to its current inputs."""
     selected = [pair for pair in pairs if pair["dataset"] == "forebrain"]
-    if {pair["method"] for pair in selected} != set(config["method_order"]):
+    if not selected or {pair["method"] for pair in selected} != set(config.get("method_order", [])):
         for name in ("forebrain_cbdir_pca_edge_details.csv", "forebrain_cbdir_pca_manifest.json"):
             path = result_root / name
             if path.is_file():
@@ -401,6 +401,7 @@ def main() -> None:
     parser.add_argument("--reference-embeddings-root", type=Path, default=MODULE_DIR / "reference_embeddings")
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--work-root", type=Path)
+    parser.add_argument("--projection-root", type=Path)
     parser.add_argument("--indicators-python", type=Path, required=True)
     parser.add_argument("--tivelo-python", type=Path, required=True)
     parser.add_argument("--prepare-script", type=Path, required=True)
@@ -511,6 +512,8 @@ def main() -> None:
                     "--prepared-output", str(prepared),
                     "--indicators-output", str(indicators_json),
                     "--n-jobs", str(n_jobs),
+                    *(["--projection-output", str(args.projection_root / f"{dataset}__{method}.npz")]
+                      if args.projection_root else []),
                 ],
                 log_root / f"{stem}.indicators.log",
             )

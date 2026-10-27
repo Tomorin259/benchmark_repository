@@ -9,8 +9,6 @@ all,deepvelo2022,highdim_cbdir,True,0.0
 all,deepvelo2022,transcosine,True,2.404725263360774e-08
 all,graphvelo_scv,highdim_cbdir,True,0.0
 all,graphvelo_scv,transcosine,True,4.3024598439522777e-08
-all,multivelo,highdim_cbdir,True,0.0
-all,multivelo,transcosine,True,4.808947656753659e-09
 all,scvelo_dynamic,highdim_cbdir,True,0.0
 all,scvelo_dynamic,transcosine,True,3.430137851534454e-08
 all,unitvelo,highdim_cbdir,True,0.0
@@ -27,8 +25,6 @@ branching,deepvelo2022,highdim_cbdir,True,0.0
 branching,deepvelo2022,transcosine,True,6.865668822353399e-08
 branching,graphvelo_scv,highdim_cbdir,True,0.0
 branching,graphvelo_scv,transcosine,True,7.668867951782232e-08
-branching,multivelo,highdim_cbdir,True,0.0
-branching,multivelo,transcosine,True,1.5454526547387104e-08
 branching,scvelo_dynamic,highdim_cbdir,True,0.0
 branching,scvelo_dynamic,transcosine,True,1.0567560715379898e-08
 branching,unitvelo,highdim_cbdir,True,0.0
@@ -45,11 +41,15 @@ murk,deepvelo2022,highdim_cbdir,True,0.0
 murk,deepvelo2022,transcosine,True,6.17136571845478e-08
 murk,graphvelo_scv,highdim_cbdir,True,0.0
 murk,graphvelo_scv,transcosine,True,4.1374800252569344e-08
-murk,multivelo,highdim_cbdir,True,0.0
-murk,multivelo,transcosine,True,1.5370958117433275e-09
 murk,scvelo_dynamic,highdim_cbdir,True,0.0
 murk,scvelo_dynamic,transcosine,True,1.1458890170068514e-08
 murk,unitvelo,highdim_cbdir,True,0.0
 murk,unitvelo,transcosine,True,5.1623805119582755e-08
 murk,velovi,highdim_cbdir,True,0.0
 murk,velovi,transcosine,True,3.385089819563092e-08
+murk,multivelo,highdim_cbdir,True,0.0
+murk,multivelo,transcosine,True,6.083582548832567e-08
+all,multivelo,highdim_cbdir,True,0.0
+all,multivelo,transcosine,True,3.453953478782523e-08
+branching,multivelo,highdim_cbdir,True,0.0
+branching,multivelo,transcosine,True,4.400294484341316e-08

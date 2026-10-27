@@ -24,11 +24,14 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--materials-root", type=Path, help="Fresh plot_materials.py exports")
     args = parser.parse_args()
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise ValueError("Use an empty output directory")
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    material_manifest = json.loads((MODULE / "materials_manifest.json").read_text())
+    materials = args.materials_root.resolve() if args.materials_root else MODULE / "figures"
+    material_manifest = json.loads((materials / "manifest.json" if args.materials_root
+                                    else MODULE / "materials_manifest.json").read_text())
     placements = [
         ("phase_truth", 0, 0),
         ("phase_multivelo_default", 174.6, 0),
@@ -38,18 +41,18 @@ def main():
     inputs = {}
     for stem in [row[0] for row in placements] + ["paired_controls"]:
         for extension in ["pdf", "png"]:
-            relative = f"figures/{stem}.{extension}"
-            source = MODULE / relative
+            relative = f"{stem}.{extension}" if args.materials_root else f"figures/{stem}.{extension}"
+            source = materials / f"{stem}.{extension}"
             assert sha(source) == material_manifest["outputs"][relative]
-            inputs[str(source.relative_to(REPO))] = sha(source)
+            inputs["material:" + source.name] = sha(source)
 
     width, height, dpi = 518.4, 203.04, 600
     page = PageObject.create_blank_page(width=width, height=height)
     canvas = Image.new("RGB", (round(width * dpi / 72), round(height * dpi / 72)), "white")
     for stem, x, y in placements:
-        source = PdfReader(MODULE / "figures" / f"{stem}.pdf").pages[0]
+        source = PdfReader(materials / f"{stem}.pdf").pages[0]
         page.merge_transformed_page(source, Transformation().translate(x, height - y - float(source.mediabox.height)))
-        with Image.open(MODULE / "figures" / f"{stem}.png") as image:
+        with Image.open(materials / f"{stem}.png") as image:
             assert image.width == round(float(source.mediabox.width) * dpi / 72)
             assert image.height == round(float(source.mediabox.height) * dpi / 72)
             canvas.paste(image.convert("RGB"), (round(x * dpi / 72), round(y * dpi / 72)))
@@ -58,7 +61,7 @@ def main():
     writer.write(args.output_dir / "A_phase_portraits.pdf")
     canvas.save(args.output_dir / "A_phase_portraits.png", dpi=(dpi, dpi))
     for extension in ["pdf", "png"]:
-        shutil.copyfile(MODULE / "figures" / f"paired_controls.{extension}", args.output_dir / f"B_paired_controls.{extension}")
+        shutil.copyfile(materials / f"paired_controls.{extension}", args.output_dir / f"B_paired_controls.{extension}")
     record = dict(
         figure="S15", inputs=inputs, placements_A=placements,
         A_size_points=[width, height], panel_scale=1.0,

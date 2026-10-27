@@ -1,14 +1,14 @@
 {
   "inputs": {
-    "inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903",
-    "results/multivelo_refits.csv": "62b5d2376dafe7a6e2b8dc46dfcb014e8d81a70883236af7054464ff57ce93a0",
-    "results/scvelo_controls.csv": "1ff1d104d09bce563b46f6039cd046dc376b8cbeb0df959c63b94a4e860bfa1b",
-    "results/condition_summary.csv": "7f4c88e6415daa77833157f385f60834be7ef303e5c309a13ec4d0c5dac7667a",
-    "results/candidate_gate_effects.csv": "6742444013e3bec964cf4b2ae59110c0022271cee8436b308388c68d5610930c",
+    "inputs/phase_case.npz": "00089c28d5e376dd2683110ad33f8c1cc2ff7b82d1fcb5cd3b8b827c017cffee",
+    "results/multivelo_refits.csv": "98ae37568db8676e2100b8f3bdf52456464ffd959de8c270dc8fa16702d8b769",
+    "results/scvelo_controls.csv": "c4b04ddd20cd12db6187a7032b2cc3dd1d43757e91ecfe272c19292a48116838",
+    "results/condition_summary.csv": "66f41b98885f6c062ed371c198123ae6fca8b31978171f9b96ea42aebbf0a88f",
+    "results/candidate_gate_effects.csv": "5d16bef0ae46c5d2b9e3637c368614220510d7537e03732f55607afe7d56fe47",
     "CAPTION.md": "feeef3f2d75ffa415228dc45b2f6f21bcd3641cf8017f2f1b76906877dc210c6"
   },
   "input_hashes_unchanged": true,
-  "script_sha256": "a6c314d4c452193345b29bd833522e67be061ac82214a315603e554b2608e110",
+  "script_sha256": "e7bd2469f6972df42cbc585483b649726cae29002559fa0a3d9157a42389c41b",
   "font": "DejaVu Sans",
   "dpi": 600,
   "phase_diagnostics": [
@@ -351,9 +351,9 @@
       "arrow_reference_quantile": 0.9,
       "arrow_reference_length": 0.05,
       "arrow_max_length": 0.1,
-      "reference_magnitude": 1.0130187421922234,
-      "input_magnitude_max": 1.704099819695938,
-      "display_magnitude_max": 0.07117083264969692,
+      "reference_magnitude": 0.8368714045516953,
+      "input_magnitude_max": 1.049209889991381,
+      "display_magnitude_max": 0.058615700179447,
       "n_capped": 0,
       "capped_fraction": 0.0
     },
@@ -1057,7 +1057,7 @@
     "path": "supplement/veloae/plot_pca_summary.py",
     "sha256": "62fc12f70813876dbe058ae0332fda3b8e747e02bc01cfe4c547df3d1c8bec43"
   },
-  "method_registry_sha256": "0769ca5c4664768bdac9f60653f0a857adf1bf31f6ce9472708a3e0dabbf1314",
+  "method_registry_sha256": "f18f1501fc913c87310355a438aa1d21b99682e2e27b722d19959947e721fcf1",
   "condition_key": {
     "Default": "saved native output or matching default refit",
     "Modified": {
@@ -1066,56 +1066,23 @@
     }
   },
   "outputs": {
-    "tables/tableS9.tex": "b48fbe772fe6a56932cb48a671458db94ede9823b5702407e6286c9d1404a9b3",
-    "figures/phase_multivelo_gate_open.png": "3b430b4b016ba7b914439460c39fbfcacd9a666355eda37e33f10ee6b04b92aa",
-    "figures/scores_used.csv": "a08c5b5505852bcd18cf336db817a78e68e49f9c01bef72dc9a1e6c9b967b3b7",
-    "figures/progression_key.pdf": "500ba5a79e972f406b0dbeeb248246270facd7ceb9aab7c1d1d6c0bcc6c6dbff",
-    "figures/phase_multivelo_gate_open.svg": "7797ed8ca20b327d160ade787039c3abce95d168a227c90c1d66bcf098a3aa3c",
-    "figures/phase_multivelo_default.png": "c17244591a9fe7ee28ff2c99e46f3ca808968213a722016c8c2d9cfc9bde1b0e",
-    "figures/phase_multivelo_default.svg": "91e660572b31516e8954d752d58386a386fbe3eec8c7925ecf8a2ddfc6ab3d42",
-    "figures/phase_truth.svg": "3f9851b6f50a1d90480eb9bb3d1882fbf7c1e53d416d5f15da4b08afb9c85c32",
-    "figures/progression_key.svg": "be6dd949ab6f7261037877c31a408a36481a2ee7c312af5e53a82d750f57e76c",
+    "tables/tableS9.tex": "269af5c62a77b397f1aa04c97d4b9fa44e013f766bafc6027f1ec41fba5e3185",
+    "figures/phase_multivelo_gate_open.png": "cd0744df78cfb3e9fa7b413b89d9cad6d0463d8035c14d99a3d74af111bea58a",
+    "figures/scores_used.csv": "ef6e4fe8d96d2722c043edce9747d529b9e7ec0c820728b62406f9d8dbf345e5",
+    "figures/progression_key.pdf": "9af3401320cda0b637e25a6d8c99056e0470df67500b75aafdc576be2772ca8c",
+    "figures/phase_multivelo_gate_open.svg": "a2fab82e339d62d806da9b28cfe6d27088cc331cbc41c45663e8cb9936c60eda",
+    "figures/phase_multivelo_default.png": "46cc0db7b4493dea99fd64be2bfa742f82071d3195667cd9eab233a1a4a831c0",
+    "figures/phase_multivelo_default.svg": "afafffde86d367071c431df76b414fcd5a165a6dffb7f4fdd82d6d32c87d3a71",
+    "figures/phase_truth.svg": "5cb72d977a51039d5e2a9e0e3ab26d1ae8258a1df5ec7afa1d6d931728b11652",
+    "figures/progression_key.svg": "6891e3e3b56e9b647ccc5a94152558bf8bcb73f24dcab7a1acb44a907976b0ce",
     "figures/progression_key.png": "096f36c60811d145ca0df0209c1ff4cf64976603fdb3731a52afd398cf8bf333",
-    "figures/paired_controls.png": "75a0e39d78e3de8cdea02f26763401d8ae655071182b1a46cdd26da16fb83a7a",
-    "figures/phase_multivelo_gate_open.pdf": "66d1418c33999b574c2270483fbbfa3eea5815ba8554ac93071ac760f47ccfdf",
-    "figures/phase_truth.png": "574a14fe1d0813f6b4b2015626f760db3f226357e3daf5be059dc7bef820f055",
-    "figures/paired_controls.svg": "c32ce99b148d8665c50cdf4541be8582d46c1db043f72f20a77d27de3cc86e75",
-    "figures/phase_truth.pdf": "5f4093e64e7685a985f5e8cea78e5d468419340cd071963d56145efce5cacbba",
-    "figures/paired_controls.pdf": "99ec9d0025e29bfe34f0cb5abf1d95693d7d9c92a636be09e420ff66ac823bb2",
-    "figures/phase_multivelo_default.pdf": "65ab1572b4bab5cbd7839fd831764b0d0a9c12accdeff96525ad74fce559a596"
+    "figures/paired_controls.png": "acedaf3af9506f00a0825f1793f4a74493d3d0ef251d626a644b7e8ca2518071",
+    "figures/phase_multivelo_gate_open.pdf": "da28541ae65cbb25f068a2fc95cf5ad187e4f58bb5aaedd84898e0ff759e2d16",
+    "figures/phase_truth.png": "7e94cba62339dfd4e916e3ae8ff620f6a59f98477ed1c51a06368d1b55c5ff02",
+    "figures/paired_controls.svg": "1e760a0cf48989d8041daaa6cf501757f3111e93c137f5b0599e1ef972bb9937",
+    "figures/phase_truth.pdf": "ebb4ab5ae3c00db7a72d6f5ecf9f519d9352974d33d5f4b6fdb93d81fd1bb2b7",
+    "figures/paired_controls.pdf": "88f82befb48ba310c560508cbda9e60fcd3d6f278396361dbfc7aa005da30f71",
+    "figures/phase_multivelo_default.pdf": "9d78a91ac600063c62b29b8f567d57b20d9d0ce86a8475506f68d048880a99e3"
   },
-  "scope": "Source materials for manuscript Supplementary Figure S15 A/B and Table S9",
-  "retained_figure_generation": {
-    "commit": "afa70c71d58f8d8e7b64a33bfcb5f62650473fb3",
-    "script_sha256": "a6c314d4c452193345b29bd833522e67be061ac82214a315603e554b2608e110",
-    "inputs": {
-      "inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903",
-      "results/multivelo_refits.csv": "62b5d2376dafe7a6e2b8dc46dfcb014e8d81a70883236af7054464ff57ce93a0",
-      "results/scvelo_controls.csv": "1ff1d104d09bce563b46f6039cd046dc376b8cbeb0df959c63b94a4e860bfa1b",
-      "results/condition_summary.csv": "7f4c88e6415daa77833157f385f60834be7ef303e5c309a13ec4d0c5dac7667a",
-      "results/candidate_gate_effects.csv": "6742444013e3bec964cf4b2ae59110c0022271cee8436b308388c68d5610930c",
-      "CAPTION.md": "ac31aceff95604805ea08b0eae40fee841a471e3f7561abf4857668f1f3ae118"
-    },
-    "scope": "S15 graphics and full diagnostic previews retained without regeneration"
-  },
-  "table_generation": {
-    "generator": "supplement/multivelo/summarize_controls.py --table-only",
-    "generator_sha256": "70375427e50c6298269d3868d51251dfffd28512822bb8eb2909cd0fe519b1ba",
-    "inputs": {
-      "results/condition_summary.csv": "7f4c88e6415daa77833157f385f60834be7ef303e5c309a13ec4d0c5dac7667a",
-      "CAPTION.md": "feeef3f2d75ffa415228dc45b2f6f21bcd3641cf8017f2f1b76906877dc210c6"
-    },
-    "conditions": [
-      "scVelo_dyn: Original",
-      "scVelo_dyn: Induction only",
-      "MultiVelo: Default",
-      "MultiVelo: Gate open"
-    ],
-    "subsets": [
-      "normal + branching: 20 genes",
-      "hybrid branching: 20 genes"
-    ],
-    "mean_values": 16,
-    "sha256": "b48fbe772fe6a56932cb48a671458db94ede9823b5702407e6286c9d1404a9b3"
-  }
+  "scope": "Source materials for Supplementary Figure S15 A/B and Table S9"
 }

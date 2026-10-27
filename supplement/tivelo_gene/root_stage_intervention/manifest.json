@@ -11,5 +11,15 @@
     "all",
     "branching",
     "murk"
-  ]
+  ],
+  "velocity_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  },
+  "score_outputs_sha256": {
+    "root_stage_gene_scores.csv": "62a5c68d615187c663e0cdba151948366d91a750389391d88f0e0359e3249cd7",
+    "root_stage_dnn_summary.csv": "14d0b9b16a1f7ed461eceb14e876c744c106571c0e16ef4832650afce78bc004",
+    "root_stage_summary.csv": "461893bd4de8f634095119acdd9af89eea21e4db9238705589155ec8ea28a4da"
+  }
 }

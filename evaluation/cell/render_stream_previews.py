@@ -27,7 +27,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 
 
-def materialize(artifact_root, moments_root, cache_root, output, datasets, manifest_root):
+def materialize(artifact_root, moments_root, cache_root, output, datasets, manifest_root, methods=None):
     inputs = read_inputs(HERE / 'inputs.tsv')
     config = json.loads((HERE / 'config.json').read_text())
     palettes = json.loads((HERE / 'stream_preview_config.json').read_text())
@@ -87,6 +87,8 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
         legend = [{'label': label, 'color': color} for label, color in
                   zip(settings['categories'], settings['palette'])]
         for _, row in group.iterrows():
+            if methods and row.operational_id not in methods:
+                continue
             source = resolve_source(artifact_root, row.result_path)
             prior = cached.get((row.dataset_id,row.config_id))
             if prior and prior.get('render_protocol_sha256') == protocol_sha and prior.get('frame') == frame_contract and prior['result_sha256'] == row.sha256 and source.stat().st_size == int(row.file_size_bytes) and source.stat().st_mtime <= fragment.stat().st_mtime and sha256(ROOT / prior['path']) == prior['sha256']:
@@ -98,7 +100,7 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
                 raise ValueError(f'Method source changed: {dataset}/{row.operational_id}')
             existing = HERE / 'streams' / dataset / f'{row.operational_id}.png'
             provenance = 'retained_paper_panel'
-            if existing.is_file():
+            if existing.is_file() and row.operational_id != 'multivelo':
                 image = existing
             else:
                 image = output / row.dataset_id / f'{row.config_id}.png'
@@ -177,13 +179,14 @@ if __name__ == '__main__':
     parser.add_argument('--reference-moments-root', type=Path, required=True)
     parser.add_argument('--cache-root', type=Path, required=True)
     parser.add_argument('--datasets', nargs='+')
+    parser.add_argument('--method', action='append', help='Select operational method IDs')
     parser.add_argument('--manifest-root', type=Path, required=True)
     args = parser.parse_args()
     args.manifest_root.mkdir(parents=True,exist_ok=True)
     materialize(args.artifact_root, args.reference_moments_root, args.cache_root,
-                HERE / 'streams' / 'previews', args.datasets, args.manifest_root)
+                HERE / 'streams' / 'previews', args.datasets, args.manifest_root, args.method)
 
-    if args.datasets is None:
+    if args.datasets is None and args.method is None:
         fragments = [json.loads(f.read_text()) for f in sorted(args.manifest_root.glob('*.json'))]
         combined = {k:v for k,v in fragments[0].items() if k!='entries'}
         combined['entries'] = [entry for fragment in fragments for entry in fragment['entries']]

@@ -1584,29 +1584,34 @@
     "scVelo fit_steady_states=False raises an upstream IndexError in this velocity path; no score is reported"
   ],
   "outputs": {
-    "results/candidate_gate_effects.csv": "6742444013e3bec964cf4b2ae59110c0022271cee8436b308388c68d5610930c",
+    "results/candidate_gate_effects.csv": "5d16bef0ae46c5d2b9e3637c368614220510d7537e03732f55607afe7d56fe47",
     "results/candidate_gate_only.patch": "b8b719ae17cf821dbdda56bd682f09da4c30c33f08a6f51dcc52b58fa6c2ebd7",
     "results/scvelo_phase_assignment_case.csv": "e8aa61423c7dc9e9e83644fae92281d3b0b0776f25715f9632256c85090040e8",
     "results/candidate_gate_baseline_reproduction.csv": "fa54aad4ecf553e3849355578cae8e3d75828f177d7ad6a470040d5ae5793bdf",
     "results/input_identity_checks.csv": "adfb9bc53e09abe30d81b0d756e748e86a9bb45824405e600a462edfe573f69a",
     "results/initialization_audit.json": "11b3991639aebfdb045700b98a70612e923203a1d0621f26f590d60c96aec22e",
-    "results/constant_direction_baselines.csv": "73d4e1895104fd045bfa498b05f7e10575c5f121ccc6134de957962576fae6ab",
+    "results/constant_direction_baselines.csv": "8780d93480c0b5c9b701ebe11e28b0665a4d358c34aa64288ddccb893d9cf7ae",
     "results/scvelo_reproduction_checks.csv": "36c98853ace0435777da2391b5544c85b465b98aaff081b49abe2e1dec0cc420",
-    "results/candidate_gate_branch_scores.csv": "1cc63328c16fb3652b652dbe95f8adea0e14265b13ee39020405d82a7cc88175",
-    "results/candidate_gate_pilot_cell_states.csv": "7a0bab573536e74ddfa0cfdc38ec674daf709f8f3d0f7e32e2d9b3bd98b49772",
+    "results/candidate_gate_branch_scores.csv": "e98c0b2f8413ef4d05795362de86aad8887cd474cb2b91093928a4f86bf60c3c",
+    "results/candidate_gate_pilot_cell_states.csv": "2ed57e04711f90de28775cb0d0a3be931d146320ba063c47df06cead0ea6a1e0",
     "results/patch_validation.json": "90f897ea672d5a0e25d4fac97b4f6b514c72cb7ff9714cad35f69abae42e5333",
     "results/phase_rule_inputs.csv": "30900a14eee7c8f777eb77107a7549f1de260c153f5ad81905e648d67a038b57",
-    "results/condition_summary.csv": "7f4c88e6415daa77833157f385f60834be7ef303e5c309a13ec4d0c5dac7667a",
-    "results/multivelo_refits.csv": "62b5d2376dafe7a6e2b8dc46dfcb014e8d81a70883236af7054464ff57ce93a0",
-    "results/scvelo_controls.csv": "1ff1d104d09bce563b46f6039cd046dc376b8cbeb0df959c63b94a4e860bfa1b",
-    "inputs/phase_case.npz": "49328ba3e43f3714fd86ec778879f6355beb57055e9e45c1353f36971bb08903"
+    "results/condition_summary.csv": "66f41b98885f6c062ed371c198123ae6fca8b31978171f9b96ea42aebbf0a88f",
+    "results/multivelo_refits.csv": "98ae37568db8676e2100b8f3bdf52456464ffd959de8c270dc8fa16702d8b769",
+    "results/scvelo_controls.csv": "c4b04ddd20cd12db6187a7032b2cc3dd1d43757e91ecfe272c19292a48116838",
+    "inputs/phase_case.npz": "00089c28d5e376dd2683110ad33f8c1cc2ff7b82d1fcb5cd3b8b827c017cffee"
   },
   "code_sha256": {
-    "inspect_phase_rule.py": "5c7b450e0eae1e7bc55480396b48f727dfcbc8c9a3e262ae08504510bb04e33d",
     "plot_materials.py": "e7bd2469f6972df42cbc585483b649726cae29002559fa0a3d9157a42389c41b",
-    "run_multivelo_controls.py": "6cd08b76da168d3772ff8d62115c8ab4e4e464d0d3c248235a8c15b99b2f716f",
-    "run_scvelo_controls.py": "4bcf81aacaf943ace1b8cd159230189f1e1d4e16f74cd5d60e3c6cfd75d8a95a",
-    "summarize_controls.py": "0040d693ed4c4b0d1270fd47701de20d5afec5350c5bb315a7c5e5f49aaa8656"
+    "summarize_controls.py": "0040d693ed4c4b0d1270fd47701de20d5afec5350c5bb315a7c5e5f49aaa8656",
+    "inspect_phase_rule.py": "5c7b450e0eae1e7bc55480396b48f727dfcbc8c9a3e262ae08504510bb04e33d",
+    "run_scvelo_controls.py": "5e3a82de655f27f489c91fe70e5ec5aa6dfc7c38edada4b91269c26c2e41f279",
+    "run_multivelo_controls.py": "cf015cf39bef167c5fc38c8d3cd7e1271ee7c7cbc04812adfa78fcdfbb98c4b1"
   },
-  "code_identity_scope": "code_sha256 identifies published entry points; source_runs retains historical execution identities"
+  "code_identity_scope": "code_sha256 identifies published entry points; source_runs retains historical execution identities",
+  "velocity_reference": {
+    "path": "evaluation/gene/simulation/truth/manifest.json",
+    "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
+    "definition": "ODE velocity at noise-free simulated abundances; named cell/gene alignment"
+  }
 }
