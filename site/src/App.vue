@@ -95,7 +95,7 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
         <div class="page-heading"><h1>Downloads</h1></div>
         <section class="panel downloads-section" aria-labelledby="source-data-heading">
           <h2 id="source-data-heading">Source data</h2>
-          <p class="small muted">v1.0.0 · Browse by figure or table and download individual CSV, TSV or NPZ files. Each directory explains its contents. The complete ZIP is optional.</p>
+          <p class="small muted">{{data.source_data_archive.release_version}} · Browse by figure or table and download individual CSV, TSV or NPZ files. Each directory explains its contents. The complete ZIP is optional.</p>
           <div class="guide-links">
             <a :href="data.source_data_root" target="_blank" rel="noopener">Source values and file index ↗</a>
             <a href="./data/files/data/SOURCE_DATA.md" download>Source Data guide</a>
