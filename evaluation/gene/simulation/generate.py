@@ -178,9 +178,8 @@ def generate(scenario_name, output_root):
         "output_sha256": _sha256(output),
         "runtime_versions": _runtime_versions(),
         "canonical_artifact_id": scenario["artifact_id"],
-        "canonical_match_claim": False,
         "velocity_reference": "ODE velocity at the retained pre-noise state",
-        "note": "Independent stochastic realization generated with the recorded scenario configuration."
+        "realization": "independent"
     }
     (output.with_suffix(".invocation.json")).write_text(json.dumps(metadata, indent=2) + "\n")
     return output

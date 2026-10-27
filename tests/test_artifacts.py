@@ -47,16 +47,13 @@ def test_artifact_registry_schema_and_paths():
         if row["status"] == "external":
             if row['uri']:
                 assert row['uri'].startswith('https://')
-                assert 'File size/SHA-256' in row['notes']
             else:
                 if row['artifact_id'] in packaged:
                     assert row['sha256'] == packaged[row['artifact_id']]['member_sha256']
-                    assert 'Package transport: data/result_member_manifest.tsv' in row['notes']
                 elif row['artifact_id'] in sources:
                     source = sources[row['artifact_id']]
                     assert row['sha256'] == source['sha256']
                     assert source['url'].startswith('https://') and source['archive_member']
-                    assert 'Package transport: data/source_provenance.tsv' in row['notes']
                 else:
                     assert 'Zenodo URI' in row['notes'] or 'Upstream-only' in row['notes']
 

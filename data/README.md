@@ -5,18 +5,17 @@ reproduction. Paths must match the selected module's input layout.
 
 | Needed material | Access | Next step |
 | --- | --- | --- |
-| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.1/v1.0.1/inputs), distribution `v1.0.1` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
+| Canonical expression and simulation inputs | [Hugging Face inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs), distribution `v1.0.0` | Select direct URLs in [input_file_manifest.tsv](input_file_manifest.tsv), save at their relative paths and check size/SHA-256 |
 | Battich kinetic references, Tables S1/S3/S4 | Original study | Follow [UPSTREAM_REFERENCES.md](UPSTREAM_REFERENCES.md) and check the obtained CSV identities |
-| Saved method outputs and evaluation assets | [Hugging Face results v1.0.1](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.1) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
+| Saved method outputs and evaluation assets | [Hugging Face results v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0) | Select [download packages](result_package_manifest.tsv), map their [original members](result_member_manifest.tsv), and follow the [extraction guide](RESULT_DOWNLOADS.md) |
 | Compact scores and plot-data | Owning `evaluation/` or `supplement/` module in Git | Follow the [evaluation index](../evaluation/README.md) or [figure map](../docs/figure_map.md) |
-| Figure/table-indexed Source Data | [Source Data v1.0.1](SOURCE_DATA.md) | Browse individual tables and saved plot inputs; file sizes and hashes are in [source_data_manifest.tsv](source_data_manifest.tsv); a complete ZIP is optional |
+| Figure/table-indexed Source Data | [Source Data v1.0.0](SOURCE_DATA.md) | Browse individual tables and saved plot inputs; file sizes and hashes are in [source_data_manifest.tsv](source_data_manifest.tsv); a complete ZIP is optional |
 
 ## Canonical inputs
 
 The input release has 25 original-format scientific files: 22 H5AD, one loom
 and two gene-usage CSVs, covering 17 benchmark datasets. These are individual
-downloads, with no TAR extraction. Dataset-specific source terms apply;
-the release does not assign one new license to all third-party data.
+downloads. Dataset-specific source terms accompany the files.
 
 The scEU labelled sources retain `sl`, `su`, `ul` and `uu` layers and are
 identified in [input_release_manifest.tsv](input_release_manifest.tsv).

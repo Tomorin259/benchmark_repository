@@ -88,7 +88,7 @@ def materialize_clean_reference(repository_root, artifact_root, output_root, all
                                 **{k: arrays[k] for k in ['clean_u', 'clean_s', 'velocity_u_true', 'velocity_s_true']})
             records.append(dict(scenario=scenario, source=relative, source_sha256=source_sha,
                                 output=output.name, output_sha256=digest(output),
-                                shape=[len(cells), len(genes)], input_contract='clean_state_layers'))
+                                shape=[len(cells), len(genes)]))
         finally:
             data.file.close()
     manifest = dict(schema_version=1, truth='noise-free cellDancer ODE state',

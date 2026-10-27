@@ -74,18 +74,10 @@ python evaluation/gene/simulation/reference.py \
 
 The all-gene option leaves the registered selected-gene reference unchanged.
 
-## Canonical clean-state inputs
+## Canonical simulation inputs
 
-The input distribution provides all genes of each scenario with noisy observations, clean state layers and their ODE velocities. `reference.py` reads these layers after checking the current input identity; this route requires NumPy and AnnData. `make_truth_reference.py` reconstructs states from the registered source observations using cellDancer 1.1.7 and the recorded simulation configuration. Source identities are in `data/source_provenance.tsv`.
-
-To construct complete input files from full-gene reference arrays, use an empty output directory:
-
-```bash
-python evaluation/gene/simulation/enrich_inputs.py \
-  --artifact-root /path/to/velocity-artifacts \
-  --reference-root outputs/simulation-truth-all-genes \
-  --selected-reference-root evaluation/gene/simulation/truth \
-  --output-root outputs/simulation-inputs
-```
-
-The writer verifies cell/gene ordering, ODE equations, selected-gene reference equality and all protected observation/parameter/annotation fields after reloading each H5AD.
+The input distribution includes noisy observations, full-gene clean states and
+ODE velocities. `reference.py` reads these layers with NumPy and AnnData.
+`make_truth_reference.py` provides reconstruction from the source observations
+with cellDancer 1.1.7 and the recorded configuration. Input and native-fit
+source identities are listed in [source_provenance.tsv](../../../data/source_provenance.tsv).

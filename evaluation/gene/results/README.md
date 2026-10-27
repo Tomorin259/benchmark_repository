@@ -40,7 +40,7 @@ all values retain full precision. The 70 veloVI values use restored units.
 The [Gene evaluator](../run_reference30_gene_cbdir.py) recalculates all nine
 methods into `simulation/gene_cossim.csv` in a fresh output root. Compare by
 dataset/method/gene with absolute tolerance `1e-12`.
-Historical source and current table hashes are in
+Table, velocity-reference and coordinate-unit sources are in
 [the compact-table provenance](simulation/gene_cbdir_cossim_reference.provenance.json).
 The external historical sources remain in the
 [historical panel provenance](../figures/panels/provenance.json). The

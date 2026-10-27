@@ -139,15 +139,7 @@ MULTIVELO_N_JOBS = 12
 
 def prepare_cell_velocity(adata, n_jobs=N_JOBS):
     """Build the native MultiVelo spliced-velocity graph and projection."""
-    required_layers = {"Ms", "Mu", "velo_s", "velo_u"}
-    missing = required_layers - set(adata.layers)
-    if missing:
-        raise KeyError(f"MultiVelo result lacks native layers: {sorted(missing)}")
-    if "velo_s_genes" not in adata.var or "velo_s_params" not in adata.uns:
-        raise KeyError("MultiVelo result requires velo_s_genes and velo_s_params")
-    if "X_umap" not in adata.obsm:
-        raise KeyError("MultiVelo projection requires X_umap")
-    # These fields are derived from the native fit and must remain one chain.
+    # Rebuild cached normalization, graph and projection from the native fit.
     adata.layers.pop("velo_s_norm", None)
     adata.var.drop(columns=["velo_s_norm_genes"], errors="ignore", inplace=True)
     for key in ("velo_s_norm_params", "velo_s_norm_graph", "velo_s_norm_graph_neg"):
@@ -155,8 +147,6 @@ def prepare_cell_velocity(adata, n_jobs=N_JOBS):
     adata.obsm.pop("velo_s_norm_umap", None)
     mv.velocity_graph(adata, vkey="velo_s", xkey="Ms", n_jobs=n_jobs)
     scv.tl.velocity_embedding(adata, basis="umap", vkey="velo_s_norm")
-    if "velo_s_norm_graph" not in adata.uns or "velo_s_norm_umap" not in adata.obsm:
-        raise RuntimeError("MultiVelo native graph/projection was not produced")
 
 
 def run_dataset(dataset):

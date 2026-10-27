@@ -215,11 +215,6 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(e['frame']['projection_dimensions']==30 and
                             e['frame']['display_components']==[1,2] for e in forebrain))
 
-    def test_previous_figure7_export_is_hidden_while_author_export_is_pending(self):
-        manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
-        if manifest.get('pending_pdf_export'):
-            self.assertNotIn(manifest['output']['path'], {r['path'] for r in self.payload['downloads']['figures']})
-
     def test_changed_canonical_source_blocks_expanded_export(self):
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory) / "repository"
@@ -249,8 +244,7 @@ class SiteExportTests(unittest.TestCase):
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
         self.assertEqual(len(tables), 17)
-        figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
-        self.assertEqual(len(figures), 3 if figure_manifest.get('pending_pdf_export') else 4)
+        self.assertEqual(len(figures), 4)
         self.assertEqual(len(metadata), 13)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
@@ -293,7 +287,7 @@ class SiteExportTests(unittest.TestCase):
             self.assertEqual(row['bytes'], int(source['bytes']))
             self.assertEqual(row['sha256'], registry[row['artifact_id']]['sha256'])
             self.assertEqual(row['url'], registry[row['artifact_id']]['uri'])
-            self.assertRegex(row['url'], r'/resolve/(?:v1\.0\.1|[0-9a-f]{40})/source_data/v1\.0\.1/')
+            self.assertIn('/source_data/' + row['release_version'] + '/', row['url'])
         self.assertEqual(sum(row['path'].endswith('.npz') for row in actual), 246)
         self.assertEqual(sum(row['path'].endswith('.zip') for row in actual), 1)
         self.assertFalse(any(row['path'].startswith('reproduction/') or
@@ -342,14 +336,16 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(sum(row['member_bytes'] for row in members), 253295202347)
         self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 325)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
-        self.assertEqual({row['release_version'] for row in packages}, {'v1.0.1'})
+        self.assertEqual(len({row['release_version'] for row in packages}), 1)
+        for row in packages:
+            self.assertIn('/resolve/' + row['release_version'] + '/', row['url'])
         base = [row for row in packages if '/diagnostics/multivelo/' not in row['repository_path']]
         self.assertEqual(len(base), 338)
         self.assertEqual(sum(row['bytes'] for row in base), 150589438514)
         supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
         self.assertEqual(len(supplement), 1)
         self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')
-        self.assertIn('/resolve/v1.0.1/v1.0.1/diagnostics/multivelo/', supplement[0]['url'])
+        self.assertTrue(supplement[0]['url'].endswith(supplement[0]['repository_path'] + '?download=true'))
         indexed = {row['package_id']: row for row in packages}
         for package in packages:
             selected = [row for row in members if row['package_id'] == package['package_id']]

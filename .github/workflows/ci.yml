@@ -43,7 +43,6 @@ jobs:
           evaluation/gene/plotting/phase_portrait.py
           evaluation/gene/simulation/generate.py
           evaluation/gene/simulation/make_truth_reference.py
-          evaluation/gene/simulation/enrich_inputs.py
           evaluation/gene/simulation/reference.py
           evaluation/summary/refresh_real_cbdir_summary.py
           evaluation/summary/refresh_sim_cbdir_summary.py

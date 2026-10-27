@@ -36,6 +36,8 @@ class InputReleaseManifestTests(unittest.TestCase):
         self.assertEqual(sum(row["role"] == "reference_gene_usage" for row in rows), 2)
 
     def test_public_inventory_has_no_private_source_path_or_unverified_url(self):
+        with (ROOT / 'data/input_file_manifest.tsv').open() as handle:
+            downloads = {r['artifact_id']: r['url'] for r in csv.DictReader(handle, delimiter='\t')}
         for row in self.read_rows():
             self.assertFalse(row["source_path"] if "source_path" in row else "")
             self.assertEqual(row["source_status"], "source_sha256_verified")
@@ -44,8 +46,7 @@ class InputReleaseManifestTests(unittest.TestCase):
                 self.assertEqual(row["public_url"], "-")
             else:
                 self.assertEqual(row["public_storage"], "huggingface_file")
-                self.assertTrue(row["public_url"].startswith(
-                    "https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.1/v1.0.1/inputs/"))
+                self.assertEqual(row["public_url"], downloads[row['artifact_id']])
                 self.assertTrue(row["public_url"].endswith(row["member_path"] + "?download=true"))
             self.assertFalse(re.search(r"/(?:mnt|Users|home)/|[A-Za-z]:\\", row["member_path"]))
             self.assertRegex(row["sha256"], r"^[0-9a-f]{64}$")

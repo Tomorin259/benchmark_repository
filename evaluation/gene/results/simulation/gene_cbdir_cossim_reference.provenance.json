@@ -1,11 +1,6 @@
 {
   "table": "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv",
-  "source_kind": "630 noise-free ODE CosSim values from paired simulation states; historical CBDir column retained",
-  "source_artifacts": {
-    "branching": "artifact://velocity/indicators/gene/simulation/branching_analyze/results_new/score_rerun_results.txt",
-    "murk": "artifact://velocity/indicators/gene/simulation/murk_analyze/results_new/score_rerun_results.txt",
-    "all": "artifact://velocity/indicators/gene/simulation/sim_all_analyze/results_new/score_rerun_results.txt"
-  },
+  "table_sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697",
   "row_counts": {
     "branching": 180,
     "murk": 90,
@@ -21,41 +16,28 @@
     "CosSim"
   ],
   "consumer": "evaluation/gene/plot_gene_assets.py",
-  "direct_source_locator": "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv",
-  "direct_source_sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662",
-  "table_sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697",
-  "direct_source_role": "historical compact source: all 630 CBDir fields retained; previous CosSim values are historical comparison only",
-  "current_truth": {
+  "cbdir_source": {
+    "locator": "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv",
+    "sha256": "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662",
+    "role": "Comparison CBDir values; canonical reference-30 scores are in gene_cbdir_reference30_all.csv"
+  },
+  "velocity_reference": {
     "path": "evaluation/gene/simulation/truth/manifest.json",
     "sha256": "b4e538068aae39a7b7d547f59865178212bed24759a01bc5233873796f1ccb18",
     "metric": "CosSim with velocity_s_true and velocity_u_true evaluated at noise-free ODE states",
-    "cell_and_gene_alignment": "exact named cell and gene match; one historical simulation realization per scenario",
-    "source_simulation_h5ads_modified": false,
-    "method_h5ads_modified": false,
-    "other_score_columns_modified": false,
-    "identity_and_cbdir_sha256": "f5dd8ce783a3ad45d06a620374c921e4b245dc93393da0ad061d638ac9da0023",
-    "n_rows": 630,
-    "historical_table_sha256": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
+    "alignment": "Cell and gene identifiers"
   },
-  "unit_restoration": {
+  "coordinate_units": {
     "path": "evaluation/gene/results/unit_restoration/provenance.json",
     "sha256": "d7fc7534f4d1800b5172d183f3462a77cd30d0fb672e465af0cc0216f575d43a",
-    "updated_method": "veloVI",
-    "updated_field": "CosSim",
-    "updated_rows": 70
+    "method": "veloVI",
+    "state_and_velocity": "Inverse per-axis min-max scaling"
   },
   "reproduction": {
     "script": "evaluation/gene/run_reference30_gene_cbdir.py",
     "script_sha256": "15058ad87c411a27e7bd36a242003b53d11d3d41b497c113c3570b05d15d99d6",
     "output": "simulation/gene_cossim.csv",
-    "comparison_precision": "current CosSim source values are full precision; historical scores remain separately identified",
-    "verification": {
-      "cossim_rows": 630,
-      "current_table_sha256": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697",
-      "previous_stored_state_replay_max_error": 4.9933944840097055e-06,
-      "truth_cell_masks_changed": 0,
-      "CBDir_rows_unchanged": 630
-    },
-    "reference": "Frozen inputs and reference-neighbor identities remain recorded in results/provenance.json and unit_restoration/provenance.json"
+    "comparison_precision": "Full precision",
+    "input_manifest": "evaluation/gene/results/provenance.json"
   }
 }

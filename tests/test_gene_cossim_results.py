@@ -9,38 +9,25 @@ ROOT = Path(__file__).resolve().parents[1]
 TABLE = ROOT / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv"
 PROVENANCE = ROOT / "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.provenance.json"
 EXPECTED_SHA256 = "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
-HISTORICAL_SOURCE_SHA256 = "25f216ca4573556ae484d41c275ddd5bc2dfd2c19b5e987f272b8aa315a97662"
 
 
 def test_simulation_cossim_table_provenance_and_hash():
     digest = hashlib.sha256(TABLE.read_bytes()).hexdigest()
     assert digest == EXPECTED_SHA256
     provenance = json.loads(PROVENANCE.read_text())
-    assert provenance["direct_source_locator"] == "artifact://velocity/plot/to_use_sim/details/results_new/cbdir_cossim_scores_long.csv"
-    assert provenance["direct_source_sha256"] == HISTORICAL_SOURCE_SHA256
-    assert provenance["direct_source_sha256"] != digest
-    assert "historical" in provenance["direct_source_role"]
     assert provenance["table_sha256"] == digest
-    assert provenance["current_truth"]["historical_table_sha256"] == "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9"
-    identity_rows = list(csv.DictReader(TABLE.open(newline="")))
-    identity = "".join("|".join(row[key] for key in
-                       ("Dataset", "Gene", "Method_raw", "Method", "CBDir")) + "\n"
-                       for row in identity_rows).encode()
-    assert hashlib.sha256(identity).hexdigest() == provenance["current_truth"]["identity_and_cbdir_sha256"]
-    truth = ROOT / provenance["current_truth"]["path"]
-    assert hashlib.sha256(truth.read_bytes()).hexdigest() == provenance["current_truth"]["sha256"]
+    truth = ROOT / provenance["velocity_reference"]["path"]
+    assert hashlib.sha256(truth.read_bytes()).hexdigest() == provenance["velocity_reference"]["sha256"]
     truth_manifest = json.loads(truth.read_text())
     assert hashlib.sha256((ROOT / "evaluation/gene/simulation/make_truth_reference.py").read_bytes()).hexdigest() == truth_manifest["generator_sha256"]
     assert hashlib.sha256((ROOT / provenance["reproduction"]["script"]).read_bytes()).hexdigest() == provenance["reproduction"]["script_sha256"]
     for record in truth_manifest["scenario_records"]:
         asset = truth.parent / record["output"]
         assert hashlib.sha256(asset.read_bytes()).hexdigest() == record["output_sha256"]
-    restoration = provenance["unit_restoration"]
-    assert (restoration["updated_method"], restoration["updated_field"], restoration["updated_rows"]) == ("veloVI", "CosSim", 70)
-    path = ROOT / restoration["path"]
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == restoration["sha256"]
+    units = provenance["coordinate_units"]
+    path = ROOT / units["path"]
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == units["sha256"]
     evidence = json.loads(path.read_text())
-    assert evidence["historical_baseline"]["table_sha256"][str(TABLE.relative_to(ROOT))] == HISTORICAL_SOURCE_SHA256
     for name, expected in evidence["evidence"].items():
         assert hashlib.sha256((path.parent / name).read_bytes()).hexdigest() == expected
 

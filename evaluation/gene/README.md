@@ -91,8 +91,7 @@ velocity cleanup. veloVI uses restored units and also writes its 70-row
 `simulation/velovi_cossim.csv` subset. The full `simulation/gene_cossim.csv`
 contains all nine methods. Join by dataset/method/gene when comparing with
 the full-precision compact formal table. [The results guide](results/README.md)
-describes the fields. The original method H5ADs retain their saved layers;
-the evaluator takes simulation truth from the shared reference assets.
+describes the fields.
 
 The benchmark uses the registered simulation H5ADs. Use the
 [simulation generator](simulation/README.md) to create additional datasets.

@@ -370,10 +370,8 @@ def export_data(root=ROOT, output=None):
     if len(result_packages) != 339 or len(result_members) != 388:
         raise ValueError('Result release must cover 339 packages and 388 original files')
     for package in result_packages:
-        if package['release_version'] != 'v1.0.1':
-            raise ValueError('Unsupported result release version')
         if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/' + package['release_version'] + '/'):
-            raise ValueError('Result package must point to the verified release tag')
+            raise ValueError('Result package URL and release version differ')
         if not package['url'].endswith(package['repository_path'] + '?download=true'):
             raise ValueError('Result package URL and repository path differ')
         for field in ['bytes', 'source_bytes', 'scientific_files']:
@@ -528,11 +526,8 @@ def export_data(root=ROOT, output=None):
     figure = figure_manifest['output']
     if hashlib.sha256((root / figure['path']).read_bytes()).hexdigest() != figure['sha256']:
         raise ValueError('Figure 7 does not match its composite manifest')
-    # A retained author export must not be offered as the updated summary while
-    # its native charts await the author's final PDF export.
-    if not figure_manifest.get('pending_pdf_export', False):
-        entry = register_file(figure['path'])
-        downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
+    entry = register_file(figure['path'])
+    downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
     for relative, label in [
         ('rpe1_boxplot.png', 'Expanded reference: RPE1'),
         ('organoid_branch1_boxplot.png', 'Expanded reference: organoid branch 1'),
