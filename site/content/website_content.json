@@ -14,9 +14,9 @@
       },
       {
         "id": "gene",
-        "label": "Gene-level velocity evaluation",
+        "label": "Selected-gene velocity evaluation",
         "object": "7 real datasets + 3 scenarios · 9 configurations",
-        "inputs": "Spliced and unspliced velocity components in each method’s scoring coordinates.",
+        "inputs": "Selected MURK and branching genes, evaluated using spliced and unspliced velocity components in each method’s scoring coordinates.",
         "outputs": "Gene-level CBDir; CosSim against known velocities in simulations; phase portraits."
       },
       {
@@ -169,9 +169,9 @@
         "role": "not included"
       },
       "model_parameters": {
-        "alpha": "Gene-specific",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes (model output)"
+        "alpha": "Gene-specific rate parameters",
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Native output"
       }
     },
     "C04": {
@@ -182,9 +182,9 @@
         "role": "not included"
       },
       "model_parameters": {
-        "alpha": "Gene-specific",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes (model output)"
+        "alpha": "Gene-specific rate parameters",
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Native output"
       }
     },
     "C05": {
@@ -196,8 +196,8 @@
       },
       "model_parameters": {
         "alpha": "Gene-specific RBF function",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes, not output"
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Derived from the fitted trajectory"
       }
     },
     "C06": {
@@ -209,8 +209,8 @@
       },
       "model_parameters": {
         "alpha": "Gene-specific RBF function",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes, not output"
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Derived from the fitted trajectory"
       }
     },
     "C07": {
@@ -221,7 +221,7 @@
         "role": "not included"
       },
       "model_parameters": {
-        "alpha": "Constant",
+        "alpha": "Constant rate",
         "beta_gamma": "β fixed; γ gene-specific",
         "du_dt": "—"
       }
@@ -236,7 +236,7 @@
       "model_parameters": {
         "alpha": "—",
         "beta_gamma": "—",
-        "du_dt": "Explicit output"
+        "du_dt": "Native output"
       }
     },
     "C09": {
@@ -248,7 +248,7 @@
       },
       "model_parameters": {
         "alpha": "Module-weighted production",
-        "beta_gamma": "Gene-specific",
+        "beta_gamma": "Gene-specific rate parameters",
         "du_dt": "—"
       }
     },
@@ -286,9 +286,9 @@
         "role": "not included"
       },
       "model_parameters": {
-        "alpha": "Latent state",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes (latent velocity output)"
+        "alpha": "Latent-state parameterization",
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Native output"
       }
     },
     "C13": {
@@ -303,8 +303,8 @@
       },
       "model_parameters": {
         "alpha": "—",
-        "beta_gamma": "Cell-specific (VAE output)",
-        "du_dt": "Yes (model output)"
+        "beta_gamma": "Cell-specific rates (VAE output)",
+        "du_dt": "Native output"
       }
     },
     "C14": {
@@ -318,8 +318,8 @@
       },
       "model_parameters": {
         "alpha": "Continuous function α(t)",
-        "beta_gamma": "Gene-specific",
-        "du_dt": "Yes (model output)"
+        "beta_gamma": "Gene-specific rate parameters",
+        "du_dt": "Native output"
       }
     },
     "C15": {
@@ -334,9 +334,9 @@
         "role": "kinetic-parameter evaluation"
       },
       "model_parameters": {
-        "alpha": "Cell-specific",
-        "beta_gamma": "Cell-specific (DNN output)",
-        "du_dt": "Yes (model output)"
+        "alpha": "Cell-specific rate parameters",
+        "beta_gamma": "Cell-specific rates (DNN output)",
+        "du_dt": "Native output"
       }
     },
     "C16": {
@@ -351,9 +351,9 @@
         "role": "kinetic-parameter evaluation"
       },
       "model_parameters": {
-        "alpha": "Cell-specific",
-        "beta_gamma": "Cell-specific (GCN output)",
-        "du_dt": "Yes (model output)"
+        "alpha": "Cell-specific rate parameters",
+        "beta_gamma": "Cell-specific rates (GCN output)",
+        "du_dt": "Native output"
       }
     },
     "C17": {
@@ -365,7 +365,7 @@
       },
       "model_parameters": {
         "alpha": "Sigmoid function",
-        "beta_gamma": "Gene-specific",
+        "beta_gamma": "Gene-specific rate parameters",
         "du_dt": "—"
       },
       "workflow_note": "The manuscript reports process=False for the benchmark workflow."
@@ -451,7 +451,7 @@
       "DeepVelo",
       "UniTVelo"
     ],
-    "note": "Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate signed transition rows from four fixed methods. These post-hoc cell-level comparators are evaluated separately against the 20 registered configurations.",
+    "note": "We evaluated an exploratory post-hoc signed-transition ensemble of TIvelo, veloVI, DeepVelo and UniTVelo. These methods were selected for their complementary strengths in cell-level evaluation and their compatible outputs for constructing signed-transition operators.",
     "ranking_note": "Each variant is ranked separately against the 20 registered configurations for the same dataset and metric. Rank is 1 + the number of configuration scores strictly above the ensemble score; exact ties use competition rank."
   },
   "provenance": {
@@ -561,7 +561,7 @@
     },
     {
       "title": "Parameter outputs and the labelled comparator",
-      "text": "cellDancer and DeepVelo provide cell-specific α, β and γ; DeepKINET provides β and γ, with γ scored here; TSvelo provides α. Dynamo in the scEU-seq analysis uses newly synthesized RNA, total RNA and labeling time to estimate α. It is a labelled positive control, distinct from Dynamo(RNA_seq)."
+      "text": "cellDancer and DeepVelo provide cell-specific α, β and γ; DeepKINET provides β and γ, with γ scored here; TSvelo provides α. Dynamo (scEU-seq) uses newly synthesized RNA, total RNA and labeling-time information to estimate cell-specific α."
     },
     {
       "title": "Display units and missing values",
@@ -572,13 +572,13 @@
       "text": "Phase portraits retain saved native coordinates. veloVI numerical scores use restored pre-min–max coordinates and corresponding velocity units. The Gene guide describes the transformations."
     }
   ],
-  "method_note": "Model characteristics describe the retained paper table. “—” means no explicit entry in that table. Gene-level coverage describes the saved benchmark components and may include repository post-processing; it is separate from the model’s native du/dt output.",
+  "method_note": "Parameterization and velocity outputs refer to the evaluated configurations. “—” indicates an unspecified entry.",
   "labelled_control": {
     "name": "Dynamo (scEU-seq)",
     "input": "Newly synthesized RNA, total RNA and labeling-time information",
     "parameters": "Cell-specific α",
     "tasks": "Kinetic-parameter recovery",
-    "note": "Metabolic-labeling positive control for kinetic-parameter recovery, reported separately from the 20 RNA-seq configurations."
+    "note": "Metabolic-labeling-informed comparator for kinetic-parameter recovery."
   },
   "dataset_note": "Modality and trajectory terms follow the manuscript dataset table. Dimensions below describe the registered benchmark input; they can differ from the upstream source object.",
   "simulation_note": "The benchmark uses the registered simulation H5ADs. The public cellDancer-based generator creates additional simulated datasets."

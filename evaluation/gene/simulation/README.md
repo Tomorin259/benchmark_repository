@@ -1,5 +1,9 @@
 # Simulation input generation
 
+Benchmark scores use the fixed simulation inputs distributed with the
+[data release](../../../data/README.md#canonical-inputs). The generator creates
+additional simulation realizations.
+
 `generate.py` is the public generation entry point for the three simulation
 scenarios used by the gene-level benchmark. It contains simulation only;
 preprocessing, dimensionality reduction, and plotting remain separate
@@ -29,10 +33,9 @@ The output has the correct scenario-specific name (`sim_only_murk.h5ad`,
 `sim_only_branching.h5ad`, or `sim_hybrid.h5ad`) and a sidecar
 `*.invocation.json` containing its config hash, generator hash, output hash,
 shape, dependency versions, random-stream policy, and canonical artifact ID.
-The benchmark uses the registered simulation realization indexed in
-[`artifacts.tsv`](../../../artifacts.tsv). This generator creates additional
-simulated datasets. Its randomness settings are recorded in `config.json`
-and each output's invocation record.
+The fixed input identities are indexed in [`artifacts.tsv`](../../../artifacts.tsv).
+Randomness settings are recorded in `config.json` and each output's invocation
+record.
 
 ## Velocity reference
 

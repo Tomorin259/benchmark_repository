@@ -1,8 +1,13 @@
 # Signed-transition ensemble
 
-Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate four selected Cell outputs:
-TIvelo, veloVI without-vu, the DeepVelo root no-vu result family, and UniTVelo.
-They are post-hoc comparators outside the 20-method configuration registry.
+We evaluated an exploratory post-hoc signed-transition ensemble of TIvelo,
+veloVI, DeepVelo and UniTVelo. These methods were selected for their complementary
+strengths in cell-level evaluation and their compatible outputs for constructing
+signed-transition operators.
+
+Mean-4 and RowGeometricMedian-4 (GeoMedian-4) aggregate the selected Cell outputs,
+using veloVI without-vu and the DeepVelo root no-vu result family. They are
+evaluated separately against the 20 registered method configurations.
 
 ## Results and reproduction
 

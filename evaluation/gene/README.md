@@ -1,7 +1,8 @@
 # Gene-level velocity evaluation
 
-Nine method configurations are evaluated on seven real datasets and the three
-fixed simulation scenarios. The canonical CBDir comparison uses the fixed
+Nine method configurations are evaluated on selected MURK and branching genes
+across seven real datasets and three fixed simulation scenarios.
+The canonical CBDir comparison uses the fixed
 reference-30 graph. Native H5ADs are retained; numerical scoring reverses
 veloVI's additional independent min-max axes for both state and velocity.
 

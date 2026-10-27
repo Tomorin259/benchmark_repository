@@ -72,14 +72,12 @@ large files and retained assets.
 See the [reproduction guide](docs/reproducibility.md) for required inputs,
 software environments and evaluation commands.
 
-## Authors and license
-
-```toml
-authors = [{name = "Benchmark Contributors"}]
-license = {text = "MIT"}
-```
+## License and contact
 
 Original benchmark source code is licensed under the [MIT License](LICENSE).
 Third-party source files, adapted portions and patches retain their applicable
 upstream terms; see [third-party notices](THIRD_PARTY_NOTICES.md). Data,
 manuscript text and figure/PowerPoint assets are outside this code license grant.
+
+For repository questions and resource requests, use
+[GitHub Issues](https://github.com/Tomorin259/benchmark_repository/issues).

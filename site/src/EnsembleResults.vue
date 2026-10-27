@@ -34,7 +34,7 @@ async function copyLink(){try{await navigator.clipboard.writeText(shareUrl.value
 
 <template>
   <div class="page-heading"><h1>Post-hoc ensemble</h1><button class="button secondary" @click="copyLink">{{copied?'Copied':'Copy link'}}</button></div>
-  <p class="compact-context">{{data.ensemble.methods.join(' · ')}}</p>
+  <p class="compact-context">{{data.content.ensembles.note}}</p>
   <section ref="preview" class="analysis-preview">
     <div class="analysis-toolbar"><label for="ensemble-dataset">Dataset<select id="ensemble-dataset" v-model="dataset"><option v-for="p in pairs" :key="p.dataset.dataset_id" :value="p.dataset.dataset_id">{{p.dataset.paper_name}}</option></select></label><a :href="`#results?level=cell&dataset=${dataset}`" class="text-link">Cell results →</a></div>
     <p v-if="dataset==='forebrain'" class="small">Display: PC1/PC2 · CBDir: 30 PCs · BATC: 2D UMAP</p>
