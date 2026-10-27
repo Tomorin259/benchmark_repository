@@ -52,9 +52,8 @@ Gene scores use the current [reference-30 edge table](../../evaluation/gene/resu
 The Cell controls use the recorded matched outputs for DeepVelo, UniTVelo and
 veloVI, and the canonical Cell outputs for the other six methods. MultiVelo
 uses its official normalized native spliced velocity and matching projection.
-The [current edge and source tables](results/current/) supply these controls;
-dated snapshots retain their recorded source identities. Source
-H5ADs, velocity layers, method configurations and source-cell sets are recorded
+The [current edge and source tables](results/current/) supply these controls.
+Source H5ADs, velocity layers, method configurations and source-cell sets are recorded
 in the mapping table. Valid pairs require finite scores; missing values remain
 missing.
 
