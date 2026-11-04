@@ -110,5 +110,8 @@ The [phase API](../../evaluation/gene/plotting/phase_portrait.py) uses native
 `velocity`/`velocity_u`. Display settings remain a 25 × 25 grid, density
 percentile 15, log1p arrow lengths, reference quantile 0.90, reference length
 0.05, maximum length 0.10, point size 12 and alpha 0.6, with hidden axes/ticks.
-These settings affect display; numerical annotations come from the recorded
-score tables.
+Before display cleaning, a method's selected-cluster phase portrait is skipped
+when neither native velocity component contains any finite values. Finite zeros
+and cases with a finite value in just one component retain the established
+display behavior. These settings affect display; numerical annotations come
+from the recorded score tables.

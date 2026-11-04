@@ -1,7 +1,7 @@
 {
-  "record_scope": "C03 column rendered with the original nine-column geometry; eight other method columns retained from previous panels.",
+  "record_scope": "C03 columns skip unavailable phase portraits in original nine-column geometry; eight other method columns retained from preceding panels.",
   "renderer": "evaluation/gene/plot_gene_assets.py",
-  "renderer_sha256": "b227edaaa813e0a899932107dcf3304f07649093ce3b60656dec83cd0ff5e5af",
+  "renderer_sha256": "0460624de86b1cb126f4ed59bdf9df33c22d7308c6cfba5f7b804aeaf89e89d0",
   "phase_plot_renderer": "evaluation/gene/plotting/phase_portrait.py",
   "phase_plot_renderer_sha256": "528d8817bceebe297d1dfd145a8555f69efbc1126f28c88f239cd9207f1567ae",
   "phase_plot_version": "gene-phase-log1p-005-010-v1",
@@ -45,12 +45,12 @@
     "gene_score": 4,
     "heatmap": 2
   },
-  "real_phase_velocity_cleaning": "C03 uses established real-data NaN/Inf to zero and clipping. The eight other method columns are retained pixel-for-pixel from previous panels.",
+  "real_phase_velocity_cleaning": "Available predictions use the established real-data NaN/Inf to zero and clipping. The eight other method columns are retained pixel-for-pixel from preceding panels.",
   "neighbors_recomputed": false,
   "moments_recomputed": false,
   "stripplot_jitter": "inherits NumPy display RNG; no effect on metric values or ordering",
   "outputs": {
-    "real/retina/Calm2_9methods_compare.png": "ee10fd5a3063dc32b9b5ce64a9ccddabd1e2581764066168d38aa2bb685a837c",
+    "real/retina/Calm2_9methods_compare.png": "debf2bae1429ef1c110b1abc92d6a2237978f46bc3800f4d4ab2e50212515d7e",
     "real/retina/summary_cbdir.png": "276fea5522a3cbabdd8052f5492885072e15cdbf0d088a26ac0cb925c711cd68"
   },
   "configuration_sources": {
@@ -63,17 +63,18 @@
   "panel_composition": [
     {
       "path": "real/retina/Calm2_9methods_compare.png",
-      "sha256": "ee10fd5a3063dc32b9b5ce64a9ccddabd1e2581764066168d38aa2bb685a837c",
-      "previous_panel_sha256": "bd9ac6b28f74f77f787cb40875437309f9544c4971402f82680b4eabdd14a355",
-      "c03_column_sha256": "803f995c5f763f853c63156fdde0c5b1ad4be41770affe937d14213042dac511",
+      "sha256": "debf2bae1429ef1c110b1abc92d6a2237978f46bc3800f4d4ab2e50212515d7e",
+      "previous_panel_sha256": "ee10fd5a3063dc32b9b5ce64a9ccddabd1e2581764066168d38aa2bb685a837c",
+      "c03_column_sha256": "97fd6fe894691b9de38433cd72bd0297e864fb1e957f1e5f65a528958878b840",
       "c03_crop_pixels": [
         0,
         0,
         3000,
         4500
       ],
-      "other_methods": "unchanged pixel-for-pixel from previous panel"
+      "other_methods": "unchanged pixel-for-pixel from preceding panel"
     }
   ],
-  "renderer_note": "C03-only rendering uses the same phase renderer, scores, nine-axis 45 x 7.5 inch layout and 600 dpi as the original entry. Nnat was checked pixel-for-pixel against a full nine-method rendering."
+  "renderer_note": "C03 columns use the same scores, nine-axis 45 x 7.5 inch layout and 600 dpi as the original entry; no phase renderer was called for the seven unavailable predictions.",
+  "phase_velocity_availability": "Skip drawing when neither native velocity component has a finite value; check before display cleaning."
 }

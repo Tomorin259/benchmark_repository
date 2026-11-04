@@ -137,17 +137,22 @@ def read_phase_inputs(case, scores, artifact_root, genes):
             obs["bin"] = obs["clusters"].copy()
         plot = ad.AnnData(X=np.zeros((original.n_obs, len(present)), dtype=np.float32),
                           obs=obs, var=pd.DataFrame(index=present))
+        phase_velocity_available = np.zeros(len(present), dtype=bool)
         for target, source in [("Ms", "Ms"), ("Mu", "Mu"),
                                ("velocity", item["velocity_s"]), ("velocity_u", item["velocity_u"])]:
             if source not in original.layers:
                 raise KeyError(f"{case}/{item['method']}: missing layer {source}")
             values = original[:, present].layers[source]
             values = values.toarray() if sparse.issparse(values) else np.asarray(values).copy()
+            if target.startswith("velocity"):
+                # Check native values before real-panel display cleaning.
+                phase_velocity_available |= np.isfinite(values).any(axis=0)
             if case in REAL_CONFIGS and target.startswith("velocity"):
                 # Match the old real-panel loader's display-only cleaning.
                 values = np.clip(np.nan_to_num(values.astype(np.float64), nan=0.0,
                                               posinf=0.0, neginf=0.0), -1e10, 1e10)
             plot.layers[target] = values
+        plot.var["phase_velocity_available"] = phase_velocity_available
         if case in REAL_CONFIGS and colors is not None:
             plot.uns["clusters_colors"] = list(colors)
         elif case in SIM_CONFIGS:
@@ -183,7 +188,7 @@ def plot_phase_panels(case, adatas, scores, genes, output_dir, dpi=600):
                       if finite else "$\\mathrm{CBDir}_{\\mathrm{gene}}$: N/A")
             if simulation:
                 metric += f"\nCosSim: {row.cossim:.4f}" if finite else "\nCosSim: N/A"
-            if gene in adata.var_names:
+            if gene in adata.var_names and adata.var.loc[gene, "phase_velocity_available"]:
                 plot_phase_portrait(adata, gene, ax=ax, legend_loc=None,
                                     color_key="bin" if simulation else "clusters")
             ax.set_xlabel("")
@@ -397,6 +402,7 @@ def main():
         "phase_genes": {} if args.summaries_only else genes_by_case,
         "score_sources": {p.relative_to(ROOT).as_posix(): sha256(p) for p in [CBDIR_CSV, COSSIM_CSV]},
         "inputs": inputs, "display_precision": {"gene_score": 4, "heatmap": 2},
+        "phase_velocity_availability": "skip if neither native velocity component contains a finite value; check before cleaning",
         "real_phase_velocity_cleaning": "nan/inf to zero; clip to [-1e10, 1e10]; plotting copy only",
         "neighbors_recomputed": False, "moments_recomputed": False,
         "stripplot_jitter": "inherits NumPy display RNG; no effect on metric values or ordering",

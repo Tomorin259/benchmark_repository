@@ -133,16 +133,6 @@
       "capped_fraction": 0.0,
       "input_magnitude_max": 0.10220237719739465
     },
-    "scVelo_dynamic": {
-      "n_obs": 6732,
-      "n_velocity_valid": 6732,
-      "n_sampled": 180,
-      "n_drawn": 180,
-      "reference_magnitude": null,
-      "display_magnitude_max": 0.0,
-      "capped_fraction": 0.0,
-      "input_magnitude_max": 0.0
-    },
     "UniTVelo": {
       "n_obs": 6732,
       "n_velocity_valid": 6732,
@@ -169,16 +159,16 @@
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 0
     },
     "DeepVelo": {
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 0
     },
     "DeepVelo_scv": {
@@ -188,25 +178,23 @@
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 6732,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 6732
     },
     "MultiVelo": {
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 0
     },
     "scVelo_dynamic": {
-      "status": "ok",
+      "status": "no_finite_velocity",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 6732,
-      "velocity_replaced_zero": 6732,
-      "velocity_u_nonfinite_raw": 6732,
-      "velocity_u_replaced_zero": 6732
+      "velocity_u_nonfinite_raw": 6732
     },
     "TIvelo": {
       "status": "unavailable"
@@ -215,16 +203,16 @@
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 6732,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 6732
     },
     "veloVI": {
       "status": "ok",
       "n_obs": 6732,
       "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
       "velocity_u_nonfinite_raw": 0,
+      "velocity_replaced_zero": 0,
       "velocity_u_replaced_zero": 0
     }
   },
@@ -244,6 +232,6 @@
       "velocity",
       "velocity_u"
     ],
-    "display_generation": "rendered from current source using the established real-data cleaning and display rule"
+    "display_generation": "not plotted: neither native velocity component has any finite value; other method panels are pixel-identical to the preceding PNG"
   }
 }

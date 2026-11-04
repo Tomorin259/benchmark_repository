@@ -137,13 +137,19 @@ def masked_gene_adata(adata, ref_clusters, display, gene, selected):
     mask = np.asarray(adata.obs["clusters"].astype(str).isin(selected))
     sub = adata[mask, [gene]].copy()
     diagnostics = {"status": "ok", "n_obs": int(sub.n_obs)}
+    raw_velocity = {}
     for out_key, source_key in [("velocity", source_s), ("velocity_u", source_u)]:
         x = sub.layers[source_key]
         x = x.toarray() if hasattr(x, "toarray") else np.asarray(x)
         x = np.asarray(x, dtype=np.float64)
+        raw_velocity[out_key] = x
         nonfinite = ~np.isfinite(x)
         diagnostics[f"{out_key}_nonfinite_raw"] = int(nonfinite.sum())
-        diagnostics[f"{out_key}_replaced_zero"] = int(nonfinite.sum())
+    if not any(np.isfinite(x).any() for x in raw_velocity.values()):
+        diagnostics["status"] = "no_finite_velocity"
+        return None, diagnostics
+    for out_key, x in raw_velocity.items():
+        diagnostics[f"{out_key}_replaced_zero"] = int((~np.isfinite(x)).sum())
         x = np.nan_to_num(x, nan=0.0, posinf=0.0, neginf=0.0)
         x = np.clip(x, -1e10, 1e10)
         sub.layers[out_key] = x
@@ -192,7 +198,11 @@ def make_panel(case_name, case, module, out):
         score_manifest[display] = labels
         ax.set_title(display + "\n" + "\n".join(labels), fontsize=8, pad=2)
         if a is None or not all(k in a.layers for k in ["Ms", "Mu", "velocity", "velocity_u"]):
-            ax.text(.5, .5, "gene unavailable", ha="center", va="center", transform=ax.transAxes); ax.axis("off"); continue
+            if preprocessing_diagnostics.get(display, {}).get("status") == "no_finite_velocity":
+                ax.set_box_aspect(1)
+            else:
+                ax.text(.5, .5, "gene unavailable", ha="center", va="center", transform=ax.transAxes)
+            ax.axis("off"); continue
         sub = a
         _, diagnostics = phase_mod.plot_phase_portrait(sub, case["gene"], ax=ax, color_key="clusters", legend_loc=None, s=12, alpha=.60, arrow_grid=(25,25), arrow_density_percentile=15.0, arrow_length_mode="log1p", arrow_reference_quantile=.90, arrow_reference_length=.05, arrow_max_length=.10, return_diagnostics=True)
         phase_diagnostics[display] = {key: diagnostics.get(key) for key in ["n_obs", "n_velocity_valid", "n_sampled", "n_drawn", "reference_magnitude", "display_magnitude_max", "capped_fraction", "input_magnitude_max"]}

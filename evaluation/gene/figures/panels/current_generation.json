@@ -1161,15 +1161,56 @@
   "c03_replacement_generations": {
     "DentateGyrus_lamanno": {
       "path": "evaluation/gene/figures/panels/c03_generation_dentate.json",
-      "sha256": "789b1e65b5212d8454cbd62ff540e673ba1227b564759f3b2cfe2f83804d8a34"
+      "sha256": "3998c0db3e69077b785b2d446fe0e5163291536c626ebf354f56bdf34bc7634e"
     },
     "retina": {
       "path": "evaluation/gene/figures/panels/c03_generation_retina.json",
-      "sha256": "ff4426b5251aa400b67f3f3f30e49aaec1ffb90beeb054b1391b2cc7596573b0"
+      "sha256": "a0bb529255054fb5032a192592eace27c03ec96de44783bac88defe615f49e68"
     },
     "gastrulation": {
       "path": "evaluation/gene/figures/panels/c03_generation_gastrulation.json",
-      "sha256": "97770390e2d3ca3175c524894fc31024eee1c7f7ec30cabf293c0b2af8af51df"
+      "sha256": "6182dc242f264d631e87864c981f1c57814159aedfe696c6f4fb72f0263c98a3"
     }
+  },
+  "fig4_author_phase_assets": {
+    "source": "figures/assembly/fig4/authoring/source.pptx",
+    "source_sha256": "9a44db8b1df51e103ab2fe607d1ccafc303bfe1bb9283331eefe60159438370f",
+    "source_author_ppt_sha256": "7d42a48c2b9116737aea8b78ccaa5ca596ccf211ddce4986422e1cc9e039d999",
+    "scope": "Exact embedded author PPT image bytes restored as the three current Figure 4 phase panels; not a new rendering. Existing phase_generations entries record prior generation hashes.",
+    "source_data": "source_data/v1.0.0/main_figures/Figure_4/{B_murk,C_branching}_<method>_phase.npz",
+    "score_sources": {
+      "evaluation/gene/results/gene_cbdir_reference30_all.csv": "af70efe3219014fcc72cb08d82515e0271036cf6a086f77b27a6224a0e691242",
+      "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
+    },
+    "score_columns": {
+      "cbdir": "new_cbdir",
+      "cossim": "CosSim"
+    },
+    "panels": [
+      {
+        "dataset": "murk",
+        "gene": "OneSidedBoost_0",
+        "path": "evaluation/gene/figures/panels/simulation/murk/OneSidedBoost_0_9methods_compare.png",
+        "sha256": "aeaa1d4ddf90324086ca9f28d6716d5cc84affd6cb638e1864308396aba3f03a",
+        "authoring_source_member": "ppt/media/image2.png",
+        "historical_panel_sha256": "4d6cd388cb2c134e91bdb9d4d2be3e4100c24caf8b193afeeb3a5908d969f2fb"
+      },
+      {
+        "dataset": "branching",
+        "gene": "MultiForward_1",
+        "path": "evaluation/gene/figures/panels/simulation/branching/MultiForward_1_9methods_compare.png",
+        "sha256": "efe2c0fa5734f00ef5f4399bfbe2c6339c9776f363b5508ae34bfdee67442cf8",
+        "authoring_source_member": "ppt/media/image3.png",
+        "historical_panel_sha256": "fb92394d1b7f5a677036c248db7de4e9d6836a63f85305586ffdd226b1db8a08"
+      },
+      {
+        "dataset": "branching",
+        "gene": "BoostALL_5",
+        "path": "evaluation/gene/figures/panels/simulation/branching/BoostALL_5_9methods_compare.png",
+        "sha256": "b2adc2b86d0a258992e668388e11939bb7115f950d108c8b1e2bda90c0ed4fe9",
+        "authoring_source_member": "ppt/media/image4.png",
+        "historical_panel_sha256": "9639f49b7cc547c2743bde3261f3027b33df5732934a474848935bea56a896f2"
+      }
+    ]
   }
 }

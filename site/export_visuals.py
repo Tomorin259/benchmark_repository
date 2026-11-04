@@ -187,7 +187,7 @@ def export_visuals(output, gene_root=None, kinetics_root=None):
                 for method, data, provenance in zip(ORDER, adatas, inputs):
                     entry = {'dataset': dataset, 'gene': gene, 'method': GENE_IDS[method],
                              'source': provenance, 'path': None, 'status': 'gene_absent'}
-                    if gene in data.var_names:
+                    if gene in data.var_names and data.var.loc[gene, 'phase_velocity_available']:
                         fig, ax = plt.subplots(figsize=(4, 4))
                         _, diagnostics = plot_phase_portrait(data, gene, ax=ax, legend_loc=None,
                              color_key='bin' if case in SIM_CONFIGS else 'clusters', return_diagnostics=True)
@@ -200,6 +200,8 @@ def export_visuals(output, gene_root=None, kinetics_root=None):
                         plt.close(fig)
                         register(path)
                         entry.update(path=f'visuals/{path.relative_to(output)}', status='available', diagnostics=diagnostics)
+                    elif gene in data.var_names:
+                        entry['status'] = 'no_finite_velocity'
                     phases.append(entry)
             print(f'Exported phase portraits: {case}, {len(genes)} genes', flush=True)
             del adatas

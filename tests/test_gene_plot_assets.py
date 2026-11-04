@@ -1,18 +1,20 @@
 """Contracts for CSV-only summaries and registered native phase inputs."""
 
+import importlib.util
 import json
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
 
 from evaluation.gene.plot_gene_assets import (
     CBDIR_CSV, COSSIM_CSV, ORDER, REAL_CONFIGS, ROOT, SIM_CONFIGS,
-    load_scores, source_inputs, read_phase_inputs, sha256,
+    load_scores, source_inputs, read_phase_inputs, plot_phase_panels, sha256,
 )
 
 
@@ -120,6 +122,73 @@ class GeneAssetTests(unittest.TestCase):
             reordered.write_h5ad(path)
             with self.assertRaisesRegex(ValueError, "reference labels cannot be aligned"):
                 read_phase_inputs(case, scores, root, [gene])
+
+    def test_phase_panels_skip_only_when_both_raw_components_have_no_finite_values(self):
+        from anndata import AnnData
+
+        case = "bonemarrow"
+        present = ["both_missing", "zero", "one_component", "only_u", "infinite"]
+        genes = present + ["absent"]
+        scores = load_scores()
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for item in source_inputs(case, scores):
+                path = root / item["path"]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                data = AnnData(X=np.zeros((2, len(present))),
+                               obs=pd.DataFrame({"clusters": pd.Categorical(["a", "b"])},
+                                                index=["c0", "c1"]),
+                               var=pd.DataFrame(index=present))
+                data.layers["Ms"] = np.ones(data.shape)
+                data.layers["Mu"] = np.ones(data.shape)
+                data.layers[item["velocity_s"]] = np.array([[np.nan, 0, 1, np.nan, np.inf], [np.nan, 0, 1, np.nan, -np.inf]])
+                data.layers[item["velocity_u"]] = np.array([[np.nan, 0, np.nan, 2, -np.inf], [np.nan, 0, np.nan, 2, np.inf]])
+                data.write_h5ad(path)
+            adatas, _ = read_phase_inputs(case, scores, root, genes)
+            for data in adatas:
+                self.assertEqual(data.var.phase_velocity_available.tolist(), [False, True, True, True, False])
+                np.testing.assert_array_equal(data[:, ["both_missing"]].layers["velocity"], [[0], [0]])
+                np.testing.assert_array_equal(data[:, ["one_component"]].layers["velocity_u"], [[0], [0]])
+            display_scores = pd.DataFrame([
+                {"dataset": case, "method": method, "gene": gene, "new_cbdir": 0.25}
+                for method in ORDER for gene in genes
+            ])
+            with patch("evaluation.gene.plot_gene_assets.plot_phase_portrait") as draw:
+                plot_phase_panels(case, adatas, display_scores, genes, root, dpi=30)
+            called_genes = [call.args[1] for call in draw.call_args_list]
+            self.assertEqual(called_genes.count("both_missing"), 0)
+            self.assertEqual(called_genes.count("absent"), 0)
+            self.assertEqual(called_genes.count("zero"), len(ORDER))
+            self.assertEqual(called_genes.count("one_component"), len(ORDER))
+            self.assertEqual(called_genes.count("only_u"), len(ORDER))
+            self.assertEqual(called_genes.count("infinite"), 0)
+
+    def test_masked_phase_uses_raw_availability_before_cleaning(self):
+        from anndata import AnnData
+
+        path = ROOT / "supplement/gene-kinetic/gene_kinetic_pilot.py"
+        spec = importlib.util.spec_from_file_location("gene_kinetic_pilot", path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        genes = ["both_missing", "zero", "one_component", "only_u", "infinite"]
+        obs = pd.DataFrame({"clusters": pd.Categorical(["a", "a"])}, index=["c0", "c1"])
+        data = AnnData(X=np.zeros((2, len(genes))), obs=obs, var=pd.DataFrame(index=genes))
+        data.layers["Ms"] = np.ones(data.shape)
+        data.layers["Mu"] = np.ones(data.shape)
+        data.layers["velocity"] = np.array([[np.nan, 0, 1, np.nan, np.inf], [np.nan, 0, 1, np.nan, -np.inf]])
+        data.layers["velocity_u"] = np.array([[np.nan, 0, np.nan, 2, -np.inf], [np.nan, 0, np.nan, 2, np.inf]])
+        missing, diagnostic = module.masked_gene_adata(data, obs.clusters, "scVelo_dynamic", genes[0], ["a"])
+        self.assertIsNone(missing)
+        self.assertEqual(diagnostic["status"], "no_finite_velocity")
+        for gene in genes[1:4]:
+            plotted, diagnostic = module.masked_gene_adata(data, obs.clusters, "scVelo_dynamic", gene, ["a"])
+            self.assertEqual(diagnostic["status"], "ok")
+            self.assertIsNotNone(plotted)
+            if gene != "only_u":
+                np.testing.assert_array_equal(plotted.layers["velocity_u"], [[0], [0]])
+        infinite, diagnostic = module.masked_gene_adata(data, obs.clusters, "scVelo_dynamic", "infinite", ["a"])
+        self.assertIsNone(infinite)
+        self.assertEqual(diagnostic["status"], "no_finite_velocity")
 
     def test_missing_velocity_component_is_rejected_and_explicit_zero_is_retained(self):
         from anndata import AnnData

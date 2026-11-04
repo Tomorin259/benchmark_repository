@@ -1,6 +1,6 @@
 dataset,method,gene,new_cbdir,cossim,display_method,display_dataset
 branching,cellDancer,MultiForward_0,0.3242481425616892,0.68017,cellDancer,Normal + branching
-branching,cellDancer,MultiForward_1,0.341251229001721,0.68009,cellDancer,Normal + branching
+branching,cellDancer,MultiForward_1,0.341251229001721,0.74634191214222001,cellDancer,Normal + branching
 branching,cellDancer,MultiForward_2,0.3458570538259569,0.69008,cellDancer,Normal + branching
 branching,cellDancer,MultiForward_3,0.2216063172560063,0.65217,cellDancer,Normal + branching
 branching,cellDancer,MultiForward_4,0.3716143275276268,0.68783,cellDancer,Normal + branching
@@ -14,13 +14,13 @@ branching,cellDancer,BoostALL_1,0.4139724732358102,0.57024,cellDancer,Normal + b
 branching,cellDancer,BoostALL_2,0.3848095842354658,0.61372,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_3,0.4242292283430673,0.57408,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_4,0.3335315318267297,0.53429,cellDancer,Normal + branching
-branching,cellDancer,BoostALL_5,0.4181812609286753,0.59423,cellDancer,Normal + branching
+branching,cellDancer,BoostALL_5,0.4181812609286753,0.67131024808647843,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_6,0.5738225752130917,0.60498,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_7,0.4344607990328963,0.66665,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_8,0.4676702898670815,0.59706,cellDancer,Normal + branching
 branching,cellDancer,BoostALL_9,0.3833525265724847,0.61147,cellDancer,Normal + branching
 branching,DeepVelo,MultiForward_0,0.3159024758834841,0.60244,DeepVelo,Normal + branching
-branching,DeepVelo,MultiForward_1,0.1842390532297676,0.49305,DeepVelo,Normal + branching
+branching,DeepVelo,MultiForward_1,0.1842390532297676,0.57630098661624651,DeepVelo,Normal + branching
 branching,DeepVelo,MultiForward_2,0.2923577659649889,0.35863,DeepVelo,Normal + branching
 branching,DeepVelo,MultiForward_3,0.0761946358296533,0.21622,DeepVelo,Normal + branching
 branching,DeepVelo,MultiForward_4,0.1894895082292543,0.48252,DeepVelo,Normal + branching
@@ -34,13 +34,13 @@ branching,DeepVelo,BoostALL_1,0.1092403594630461,-0.00053,DeepVelo,Normal + bran
 branching,DeepVelo,BoostALL_2,-0.004886090793057,-0.15276,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_3,0.0171435724926454,-0.03684,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_4,0.0772496256879097,0.14141,DeepVelo,Normal + branching
-branching,DeepVelo,BoostALL_5,0.1264159416721594,-0.05201,DeepVelo,Normal + branching
+branching,DeepVelo,BoostALL_5,0.1264159416721594,-0.079849022564613029,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_6,-0.1151483927904144,-0.14944,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_7,0.0031362503157881,0.10612,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_8,-0.0652186342645282,-0.13326,DeepVelo,Normal + branching
 branching,DeepVelo,BoostALL_9,-0.2361009907054952,-0.30455,DeepVelo,Normal + branching
 branching,DeepVelo_scv,MultiForward_0,0.4393560265496226,0.83832,DeepVelo_scv,Normal + branching
-branching,DeepVelo_scv,MultiForward_1,0.432182460068354,0.84767,DeepVelo_scv,Normal + branching
+branching,DeepVelo_scv,MultiForward_1,0.432182460068354,0.87563781307187827,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,MultiForward_2,0.4619738452953869,0.86582,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,MultiForward_3,0.3120449421510414,0.84862,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,MultiForward_4,0.4789524628013848,0.84766,DeepVelo_scv,Normal + branching
@@ -54,13 +54,13 @@ branching,DeepVelo_scv,BoostALL_1,0.212123103752312,0.37678,DeepVelo_scv,Normal 
 branching,DeepVelo_scv,BoostALL_2,0.2158111674180377,0.34236,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_3,0.2681744460785791,0.36709,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_4,0.2641506131210765,0.38541,DeepVelo_scv,Normal + branching
-branching,DeepVelo_scv,BoostALL_5,0.3727579425754104,0.39631,DeepVelo_scv,Normal + branching
+branching,DeepVelo_scv,BoostALL_5,0.3727579425754104,0.52611924311653757,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_6,0.3187847813421191,0.34007,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_7,0.4413827872725027,0.44247,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_8,0.3391802965110588,0.39575,DeepVelo_scv,Normal + branching
 branching,DeepVelo_scv,BoostALL_9,0.235975802676252,0.36595,DeepVelo_scv,Normal + branching
 branching,Graphvelo_scv,MultiForward_0,0.4268311528651565,0.76817,GraphVelo_scv,Normal + branching
-branching,Graphvelo_scv,MultiForward_1,0.440037661639561,0.76508,GraphVelo_scv,Normal + branching
+branching,Graphvelo_scv,MultiForward_1,0.440037661639561,0.76728740361751901,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,MultiForward_2,0.4313996070385694,0.77909,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,MultiForward_3,0.3202242622572856,0.75039,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,MultiForward_4,0.4851340877209076,0.7815,GraphVelo_scv,Normal + branching
@@ -74,13 +74,13 @@ branching,Graphvelo_scv,BoostALL_1,0.3320634244317918,0.54166,GraphVelo_scv,Norm
 branching,Graphvelo_scv,BoostALL_2,0.422739351519544,0.56422,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_3,0.4670130532982132,0.56241,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_4,0.4420924437281048,0.5574,GraphVelo_scv,Normal + branching
-branching,Graphvelo_scv,BoostALL_5,0.4742108620015197,0.56796,GraphVelo_scv,Normal + branching
+branching,Graphvelo_scv,BoostALL_5,0.4742108620015197,0.7381845726349362,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_6,0.4509180697729571,0.53248,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_7,0.5699758339363229,0.57575,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_8,0.4649921960137158,0.5578,GraphVelo_scv,Normal + branching
 branching,Graphvelo_scv,BoostALL_9,0.4597512005677578,0.56532,GraphVelo_scv,Normal + branching
 branching,MultiVelo,MultiForward_0,0.444066871569103,0.89308,MultiVelo (RNA_only),Normal + branching
-branching,MultiVelo,MultiForward_1,0.4448919436503567,0.89049,MultiVelo (RNA_only),Normal + branching
+branching,MultiVelo,MultiForward_1,0.4448919436503567,0.94328414256594861,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,MultiForward_2,0.4867389074822597,0.89112,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,MultiForward_3,0.3312315915561353,0.89059,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,MultiForward_4,0.510016434735116,0.89353,MultiVelo (RNA_only),Normal + branching
@@ -94,13 +94,13 @@ branching,MultiVelo,BoostALL_1,0.5267693158679854,0.7466,MultiVelo (RNA_only),No
 branching,MultiVelo,BoostALL_2,0.5003254520691492,0.76067,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_3,0.5887316171655265,0.75375,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_4,0.5809417360733682,0.74865,MultiVelo (RNA_only),Normal + branching
-branching,MultiVelo,BoostALL_5,0.5443202149109513,0.75343,MultiVelo (RNA_only),Normal + branching
+branching,MultiVelo,BoostALL_5,0.5443202149109513,0.89491179673809274,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_6,0.6617012907123443,0.73546,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_7,0.5233321900210154,0.75012,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_8,0.5863570591719747,0.74618,MultiVelo (RNA_only),Normal + branching
 branching,MultiVelo,BoostALL_9,0.4933675206192749,0.7466,MultiVelo (RNA_only),Normal + branching
 branching,scVelo_dyn,MultiForward_0,0.4379302157853514,0.84141,scVelo_dyn,Normal + branching
-branching,scVelo_dyn,MultiForward_1,0.4314892477022111,0.84762,scVelo_dyn,Normal + branching
+branching,scVelo_dyn,MultiForward_1,0.4314892477022111,0.87505284167917774,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,MultiForward_2,0.4609775330556727,0.86492,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,MultiForward_3,0.3109989168242771,0.84746,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,MultiForward_4,0.4787993931262871,0.84559,scVelo_dyn,Normal + branching
@@ -114,13 +114,13 @@ branching,scVelo_dyn,BoostALL_1,0.2104711548372403,0.37486,scVelo_dyn,Normal + b
 branching,scVelo_dyn,BoostALL_2,0.2035767897965694,0.33509,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_3,0.281002851534021,0.36422,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_4,0.2829003661418859,0.38364,scVelo_dyn,Normal + branching
-branching,scVelo_dyn,BoostALL_5,0.3435140057887863,0.39425,scVelo_dyn,Normal + branching
+branching,scVelo_dyn,BoostALL_5,0.3435140057887863,0.52343299010165234,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_6,0.309485229091872,0.33657,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_7,0.4405822836512152,0.43155,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_8,0.3467092169065513,0.39358,scVelo_dyn,Normal + branching
 branching,scVelo_dyn,BoostALL_9,0.2374275144615104,0.36724,scVelo_dyn,Normal + branching
 branching,TIvelo,MultiForward_0,-0.0981013821162188,-0.32459,TIvelo,Normal + branching
-branching,TIvelo,MultiForward_1,-0.0709868944820086,-0.29831,TIvelo,Normal + branching
+branching,TIvelo,MultiForward_1,-0.0709868944820086,-0.34582326766802951,TIvelo,Normal + branching
 branching,TIvelo,MultiForward_2,-0.1195267540445901,-0.2744,TIvelo,Normal + branching
 branching,TIvelo,MultiForward_3,-0.0006315979348009,-0.27498,TIvelo,Normal + branching
 branching,TIvelo,MultiForward_4,-0.0905135046009313,-0.27553,TIvelo,Normal + branching
@@ -134,13 +134,13 @@ branching,TIvelo,BoostALL_1,-0.355527069039353,-0.62506,TIvelo,Normal + branchin
 branching,TIvelo,BoostALL_2,-0.4588037006752619,-0.55689,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_3,-0.5633341228267132,-0.67242,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_4,-0.4554117133042664,-0.57887,TIvelo,Normal + branching
-branching,TIvelo,BoostALL_5,-0.4813889302366704,-0.52177,TIvelo,Normal + branching
+branching,TIvelo,BoostALL_5,-0.4813889302366704,-0.54689741573562334,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_6,-0.5330487611475969,-0.55278,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_7,-0.4557294518099887,-0.6173,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_8,-0.5505474449953723,-0.57497,TIvelo,Normal + branching
 branching,TIvelo,BoostALL_9,-0.5474030495737637,-0.55983,TIvelo,Normal + branching
 branching,UniTVelo,MultiForward_0,0.4526159149699236,0.86371,UniTVelo,Normal + branching
-branching,UniTVelo,MultiForward_1,0.4206480489969646,0.85547,UniTVelo,Normal + branching
+branching,UniTVelo,MultiForward_1,0.4206480489969646,0.94095493741358871,UniTVelo,Normal + branching
 branching,UniTVelo,MultiForward_2,0.5039984697215935,0.87612,UniTVelo,Normal + branching
 branching,UniTVelo,MultiForward_3,0.3302252074564215,0.86037,UniTVelo,Normal + branching
 branching,UniTVelo,MultiForward_4,0.4795187097034774,0.87593,UniTVelo,Normal + branching
@@ -154,13 +154,13 @@ branching,UniTVelo,BoostALL_1,-0.2265047407188392,-0.3441,UniTVelo,Normal + bran
 branching,UniTVelo,BoostALL_2,-0.1800889426166834,-0.34465,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_3,-0.2921682001733681,-0.35249,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_4,-0.3029462546471388,-0.33486,UniTVelo,Normal + branching
-branching,UniTVelo,BoostALL_5,-0.1688149992857277,-0.36009,UniTVelo,Normal + branching
+branching,UniTVelo,BoostALL_5,-0.1688149992857277,-0.47064903759185178,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_6,-0.3538535050458566,-0.3347,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_7,-0.1680508678334153,-0.33399,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_8,-0.272278300902623,-0.3303,UniTVelo,Normal + branching
 branching,UniTVelo,BoostALL_9,-0.2046787190332182,-0.34548,UniTVelo,Normal + branching
 branching,veloVI,MultiForward_0,0.2405845584750949,0.2551406872765526,veloVI,Normal + branching
-branching,veloVI,MultiForward_1,0.1305384318607583,0.2574840430273404,veloVI,Normal + branching
+branching,veloVI,MultiForward_1,0.1305384318607583,0.24196305099187215,veloVI,Normal + branching
 branching,veloVI,MultiForward_2,0.1889940840431639,0.2752885217437806,veloVI,Normal + branching
 branching,veloVI,MultiForward_3,0.1738513432575814,0.251196302789309,veloVI,Normal + branching
 branching,veloVI,MultiForward_4,0.1395760196904057,0.2551740889172276,veloVI,Normal + branching
@@ -174,7 +174,7 @@ branching,veloVI,BoostALL_1,0.0733358749588441,0.2089550848297017,veloVI,Normal 
 branching,veloVI,BoostALL_2,0.1380284284119892,0.2187305235388686,veloVI,Normal + branching
 branching,veloVI,BoostALL_3,0.1438028177073514,0.209651809337434,veloVI,Normal + branching
 branching,veloVI,BoostALL_4,0.2263494771417698,0.2384331495852314,veloVI,Normal + branching
-branching,veloVI,BoostALL_5,0.1991421173044173,0.1827775985644781,veloVI,Normal + branching
+branching,veloVI,BoostALL_5,0.1991421173044173,0.27786751471579102,veloVI,Normal + branching
 branching,veloVI,BoostALL_6,0.1934422629913039,0.1664636155604699,veloVI,Normal + branching
 branching,veloVI,BoostALL_7,0.24421108094146,0.2020543957781295,veloVI,Normal + branching
 branching,veloVI,BoostALL_8,0.2079443861865889,0.2128863712480721,veloVI,Normal + branching

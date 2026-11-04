@@ -153,8 +153,11 @@ without neighborhood velocity smoothing:
 | Maximum length | 0.10 |
 | Grid / density percentile | 25 × 25 / 15 |
 
-Real plotting copies replace NaN/Inf velocities by zero and clip to ±1e10;
-simulation vectors keep their native values. Reference H5ADs supply cluster
+Before display cleaning, a gene is skipped when neither native velocity
+component contains any finite values. A finite zero or a finite value in just
+one component retains the established display behavior. Real plotting copies
+replace NaN/Inf velocities by zero and clip to ±1e10; simulation vectors keep
+their native values. Reference H5ADs supply cluster
 labels/colors aligned by cell ID; every plotted cell requires a reference label.
 Rendering uses copies of the source arrays. Summary jitter affects display only.
 Simulation colors follow the Figure 4 progression-bin gradient from early to late.
