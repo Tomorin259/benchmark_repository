@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "inputs_sha256": "97a86c8e27a139b6b679152c67580cee2da0d7e50d9d7fd7accbb17af1c5c014",
-  "renderer_sha256": "c3f18dc8e61c2853b441a65e885d130d0e7b0645406aa1eeeba75d7c3c327afb",
+  "inputs_sha256": "2c68e222ae6bff83cacff24eb34323672f1e8c2458f2c96a955d9563794cab49",
+  "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
   "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
   "scvelo_version": "0.2.5",
   "entries": [
@@ -146,13 +146,13 @@
     {
       "dataset": "dentategyrus_lamanno",
       "method": "C03",
-      "path": "evaluation/cell/streams/DentateGyrus_lamanno/scvelo_dynamic.png",
-      "sha256": "f9849fa195b3290b92c7172e15f07d99e4f192de9a7df6b959328093d9db4508",
+      "path": "evaluation/cell/streams/previews/dentategyrus_lamanno/C03.png",
+      "sha256": "1e56e16250260b93fef8d095381438d19c96f41e0c6f79aabd92cb9043d1c6be",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
-      "result_sha256": "aeca474c29b111de30e1df3a30f533f0807941f46c30580a55b06eacbb4763f5",
+      "result_sha256": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608",
       "n_reference": 18213,
       "n_common": 18213,
-      "projection": "retained_paper_panel",
+      "projection": "saved_native_projection_in_reference_frame",
       "legend": [
         {
           "label": "CA",
@@ -210,7 +210,17 @@
           "label": "nIPC",
           "color": "#8dd593"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
+      },
+      "render_protocol_sha256": "689f614d7c6ec5324a6d757c1b692eef9e05c70ff7faf3ecac1e269029388618"
     },
     {
       "dataset": "dentategyrus_lamanno",
@@ -1505,9 +1515,9 @@
       "dataset": "bonemarrow",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/bonemarrow/C03.png",
-      "sha256": "77b81ea1446e6b0b25eecccf97521d2b6510f25d15ab7d1f6f70229ae328d3a0",
+      "sha256": "0520d844ef6e40df5bbd101c9f69491208f0531689cc4998d708ef9a533e7127",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad",
-      "result_sha256": "de830a3b96c414e9c3b1152b2a027c66a198e06f9726b7740e9176284707d50e",
+      "result_sha256": "f33685028abd0632653e9fece6f9fe08e8e49a08fdd59f45bfb67200085af286",
       "n_reference": 5780,
       "n_common": 5780,
       "projection": "saved_native_projection_in_reference_frame",
@@ -1552,7 +1562,17 @@
           "label": "Mega",
           "color": "#ff7f00"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+      },
+      "render_protocol_sha256": "2e9e84e5e0a483b6097a7d9c1b141ab29238050052a5a1ec255c486167b66a45"
     },
     {
       "dataset": "bonemarrow",
@@ -2521,7 +2541,7 @@
       "path": "evaluation/cell/streams/previews/capo_pre/C03.png",
       "sha256": "7d3b2aef580e5477b7a9ca5ed83551fb92dd9bd613a71152890b0d894d1c191f",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
-      "result_sha256": "da6cc1b99431895cdac8e924d5f6902905fd5bcda87d5ec5ba4d6b160e658471",
+      "result_sha256": "6ea19aa93fea9e2b0fb9d7b77e180a2df7f2f390458b449b6536d1f9ab96211a",
       "n_reference": 1222,
       "n_common": 1222,
       "projection": "saved_native_projection_in_reference_frame",
@@ -2538,7 +2558,17 @@
           "label": "S",
           "color": "#2ca02c"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c"
+      },
+      "render_protocol_sha256": "b3363c1b314586ea51b2bd59b15cde01269371fb2e40185ab5c7571bcd1af1f3"
     },
     {
       "dataset": "capo_pre",
@@ -3117,9 +3147,9 @@
       "dataset": "dentategyrus",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/dentategyrus/C03.png",
-      "sha256": "0370f3b97366dc3c1d9c9abf0f72ccd3e09e1c9fc969f593012b80c4cbede939",
+      "sha256": "85020e44f6eace98070b07768bfcdf99a16005ef6f387689b3dcd5a2325bd6c7",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_dentategyrus.h5ad",
-      "result_sha256": "94216dd2d90ff071ea1630203e3dedbb99356554c58e4666be365397d2809a16",
+      "result_sha256": "0371c52d83e09efa09523c69b843baa1064b97b59f87e4f2591ed3cc9c683c7f",
       "n_reference": 2930,
       "n_common": 2930,
       "projection": "saved_native_projection_in_reference_frame",
@@ -3180,7 +3210,17 @@
           "label": "nIPC",
           "color": "#d0e1f2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb"
+      },
+      "render_protocol_sha256": "82db7ba1f1fc9f7d0ceb6a646fbe7c9513c13ec4a3f7c9d72d9a4d58ccbc9799"
     },
     {
       "dataset": "dentategyrus",
@@ -4471,9 +4511,9 @@
       "dataset": "forebrain",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/forebrain/C03.png",
-      "sha256": "363b3ed6a68097c54bad792e26b330f6d556bd26e5745af7e2cbfb8fb880fc58",
+      "sha256": "cfb1140168b0480eff7dbc8938e3fdcc5d9da0be7358a479bb8235cbb8bbb1f8",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_ForebrainGlut.h5ad",
-      "result_sha256": "eda14d704f97bf7a34f692fb3f445de02378d5b0370dd11ad9a2a81b11e621b7",
+      "result_sha256": "d563ef633eb9c3ae1823749a61ce1f299f1074130808e2ef040ba9379a0be605",
       "n_reference": 1720,
       "n_common": 1720,
       "projection": "fixed_reference30_pca30_projection_pc1_pc2",
@@ -4516,7 +4556,7 @@
         ],
         "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
       },
-      "render_protocol_sha256": "059370256a489dddb6ec6b1ad07989f47ea61549aab48dd8fe2f512a5823f838"
+      "render_protocol_sha256": "46810e66468dd795b1991846aab7ac9060cb784b961f20f0c515a875e7dcccb1"
     },
     {
       "dataset": "forebrain",
@@ -5454,13 +5494,13 @@
     {
       "dataset": "gastrulation",
       "method": "C03",
-      "path": "evaluation/cell/streams/gastrulation/scvelo_dynamic.png",
-      "sha256": "2d7e78d265d064e270b92c00d61efd8416056c0462608792165d13e3718c4cc4",
+      "path": "evaluation/cell/streams/previews/gastrulation/C03.png",
+      "sha256": "17dd23e585fd64e67a7f404901641833138b388f7d8a011bee3a31b2d05e29f8",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
-      "result_sha256": "4381ad967155156281ce63d7500d1643c90645ce5387b3dcd8b5aa5e576b29df",
+      "result_sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81",
       "n_reference": 9815,
       "n_common": 9815,
-      "projection": "retained_paper_panel",
+      "projection": "saved_native_projection_in_reference_frame",
       "legend": [
         {
           "label": "Blood progenitors 1",
@@ -5482,7 +5522,17 @@
           "label": "Erythroid3",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b"
+      },
+      "render_protocol_sha256": "0b3d2399a9c008624da9f86fbb76b23cbf0801abedf9c77365981f58c12cae44"
     },
     {
       "dataset": "gastrulation",
@@ -6151,7 +6201,7 @@
       "path": "evaluation/cell/streams/previews/hematopoiesis/C03.png",
       "sha256": "8a9dd9104153c1103d3ee10af8004f9432f91b6c61bf27b66b1645cc76b21b64",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_hematopoiesis_dynamo.h5ad",
-      "result_sha256": "e665f203fbb0f4bef068a9ef6f6e160efe0ff35d2695aa78fd17b75fb03a750e",
+      "result_sha256": "05595500f1b76ccf5805d8294a51ed8ece0a66ad38afb0c98391d9928992012a",
       "n_reference": 1947,
       "n_common": 1947,
       "projection": "saved_native_projection_in_reference_frame",
@@ -6188,7 +6238,17 @@
           "label": "Neu",
           "color": "#7f7f7f"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025"
+      },
+      "render_protocol_sha256": "f74fcc198641beb10685ec6f9f5c8d4d2c73323b0c119fc89c65920eaee985a6"
     },
     {
       "dataset": "hematopoiesis",
@@ -7051,9 +7111,9 @@
       "dataset": "mousebrain",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/mousebrain/C03.png",
-      "sha256": "0ac52d2e86fdc0018b4df47ecd119fc379870396eedae066aaf545ddaa1ce4b2",
+      "sha256": "a3e2c83b3d5949e5e9dd8d539bd506709276264a56a14d44efbe3d439a1021dc",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad",
-      "result_sha256": "24cc96b5c88126ead8e7e27a35ccb0fd0b397cb7970debf6abcbbd5f8b745593",
+      "result_sha256": "4bd63f64c7ac87462fa64241ffe9ed12fb887c5e0d433677c35063f2cc361005",
       "n_reference": 3365,
       "n_common": 3365,
       "projection": "saved_native_projection_in_reference_frame",
@@ -7086,7 +7146,17 @@
           "label": "Subplate",
           "color": "#e377c2"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9"
+      },
+      "render_protocol_sha256": "c6c8e5d5cc150ac470cd8d284391732e7c8f11eb1c184b7184785da6cbe07ce7"
     },
     {
       "dataset": "mousebrain",
@@ -7865,9 +7935,9 @@
       "dataset": "scnt_neuron",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/scnt_neuron/C03.png",
-      "sha256": "d00ec937de3471776d199cc32f3dce0725ee12124b0d8b0d7df486150d0e8610",
+      "sha256": "a85f4e620557c487f9cdf260db3c585a239fcb8470680b767852878413362d3f",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_neuron.h5ad",
-      "result_sha256": "bd3c14703457754cb8e9ad55bd538ce6a216c0387717f251a63f2ada95dc6013",
+      "result_sha256": "540a1d506c775cdbe7cb2221352f4c058e576484041a246fe77102accaf52a3d",
       "n_reference": 3066,
       "n_common": 3066,
       "projection": "saved_native_projection_in_reference_frame",
@@ -7892,7 +7962,17 @@
           "label": "120",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea"
+      },
+      "render_protocol_sha256": "2270e6e467ed57786812087e311a260409a7771124fa125d2f85f8df982b6a67"
     },
     {
       "dataset": "scnt_neuron",
@@ -8559,9 +8639,9 @@
       "dataset": "sceu_organoid",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/sceu_organoid/C03.png",
-      "sha256": "2e31b448a06cf597820a86a470b3ced3174e920fa4254166d42dd133e1e295d8",
+      "sha256": "548e465a7658ef3505459f901069d46c07ed396487f493b98513547ae83bded1",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_organoid.h5ad",
-      "result_sha256": "b399a3f4cb3ee3bf6d31dfa3933740be290ddc2c95d3af1f0f4c69d41ffc5e92",
+      "result_sha256": "690e376f429b6fd1a38024c88311a8c09aca42466d6b5b2cdc599577b436407f",
       "n_reference": 3831,
       "n_common": 3831,
       "projection": "saved_native_projection_in_reference_frame",
@@ -8598,7 +8678,17 @@
           "label": "Tuft cells",
           "color": "#7f7f7f"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce"
+      },
+      "render_protocol_sha256": "9507331879a0a5079eba0cd0b0e8550f71f9595a9325eb41c6b68e5755eb71f0"
     },
     {
       "dataset": "sceu_organoid",
@@ -9469,9 +9559,9 @@
       "dataset": "pancreas",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/pancreas/C03.png",
-      "sha256": "053ec18a729d004d1ef5b6c56d8b8e9b0dac612ec29f5b577c1f1635d57792d0",
+      "sha256": "ed03d9023db18281730d3539305ca90b17d1101365f22413b7c2a52e35a98dea",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_Pancreas.h5ad",
-      "result_sha256": "d500c5f9577022fe562c5823ac0edd57f02fd669dfdbffb67f6f7899f14af4f6",
+      "result_sha256": "48a50f763fb7e1b47e33d560a73feed9a33d863b5647b36acf2e96dfee9c935b",
       "n_reference": 3696,
       "n_common": 3696,
       "projection": "saved_native_projection_in_reference_frame",
@@ -9508,7 +9598,17 @@
           "label": "Epsilon",
           "color": "#cab2d6"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4"
+      },
+      "render_protocol_sha256": "50b77785aa2738587759dc5f271b82fb9dc8b1e9a0a096e8bada06850b57397e"
     },
     {
       "dataset": "pancreas",
@@ -10355,9 +10455,9 @@
       "dataset": "retina",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/retina/C03.png",
-      "sha256": "4714ae71425f11ba4f6d9248d02244b07219e4574278eab8cdcf108047acc9f0",
+      "sha256": "274520b175c523713c7eb6cdd5ff3da72a0635b32e697464a3303524fc9e47f3",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_retina.h5ad",
-      "result_sha256": "274ed17bd999e6380e75ae723d42cf1e1f871bd83c92f823ed519b86ef5e7e8c",
+      "result_sha256": "c05feda07d16baa5c8062b5ebe2a6610e2834bf6e4d018c28777ee1b22562f48",
       "n_reference": 2726,
       "n_common": 2726,
       "projection": "saved_native_projection_in_reference_frame",
@@ -10382,7 +10482,17 @@
           "label": "RGC",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9"
+      },
+      "render_protocol_sha256": "557259b07306f1abbcb6f25434f6157f794ecf33cfb7f234c6532adec4f42343"
     },
     {
       "dataset": "retina",
@@ -11025,9 +11135,9 @@
       "dataset": "sceu_rpe1",
       "method": "C03",
       "path": "evaluation/cell/streams/previews/sceu_rpe1/C03.png",
-      "sha256": "cbb9a27c32ba0a75ab5b37c3387e02daa8dc01bd9562ae2720f7701c99c3d97c",
+      "sha256": "2ddc0bf2a9f3ac6ef48cb795cb5f06fbd428d26d830fec13ea4bbe4a5ce43319",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_rpe1.h5ad",
-      "result_sha256": "11be0d59ae4d080089868bc0e3f91ed7bc19d23e0834b958dbfa82e67105dddd",
+      "result_sha256": "1ac52f8289683a44d3113d63ded62fcdec95aaf62daab5ed16ca0e5e82f5d0d6",
       "n_reference": 2793,
       "n_common": 2793,
       "projection": "saved_native_projection_in_reference_frame",
@@ -11052,7 +11162,17 @@
           "label": "S",
           "color": "#9467bd"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370"
+      },
+      "render_protocol_sha256": "66cbeffaa85d8e5cc4757045eaa01aaed480861e6a320758a960ce86a39d94b4"
     },
     {
       "dataset": "sceu_rpe1",
@@ -11681,7 +11801,7 @@
       "path": "evaluation/cell/streams/previews/rpe1_gen/C03.png",
       "sha256": "94546fc3e688862fbb560afe869cb5f9c66521e93a87dc0fc31fd78e3b779ca5",
       "result_path": "velocity:results/scvelo_dynamic/scv_dynamic_rpe1_gen.h5ad",
-      "result_sha256": "65061925b35b64e8b900d318cebc53470fde0ebb4dd4b6b31a2dc44a276efac4",
+      "result_sha256": "30c02e337e5e0091ee2acb43d93599b27783a5fdb9016fd20ded383445dd0cda",
       "n_reference": 3354,
       "n_common": 3354,
       "projection": "saved_native_projection_in_reference_frame",
@@ -11698,7 +11818,17 @@
           "label": "S",
           "color": "#2ca02c"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
+      },
+      "render_protocol_sha256": "5ad2fc77f6d50649676a8be9f7129132ba0ddf4e7025256e164f299e3d96ae75"
     },
     {
       "dataset": "rpe1_gen",
@@ -12539,6 +12669,261 @@
           2
         ],
         "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
+      }
+    },
+    "dentategyrus_lamanno:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "32bbe258bb9d3b72369eda5d6b65ea6d49dfa65e782e84dc75d8e0213f0ceba8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "9a9825279148c6c090b035fcdd0af81807123e6082bc7ae7d1e868d69ee5e105"
+      }
+    },
+    "bonemarrow:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4ab18ff345c2dcb39a33de4e7b9aeb468a879a65b916ca772c17fcf1d59fd37a",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+      }
+    },
+    "capo_pre:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "ed69046dce1be5807b9cebb62b648916dc7b1e04b96dfbedd0fee4dd0326009e",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "d09a34ebf9ac04623a1a2f6467c8d16b899b3eed3570f18af0ca4d5bd1b6cb5c"
+      }
+    },
+    "dentategyrus:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "efcef6ccffc5491aad6a63a5889e31c7942d150b637b6342d86df80c055ddc16",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "05299d1b6d242fd767a11b81a8798a9723183119ad98dc6ec58390a6b6dc61cb"
+      }
+    },
+    "forebrain:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "f0b8fccaf968c8bfbe0e75f005d7a33f28091a17a92ca97b55c29c8310ec03f8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "pca",
+        "projection_dimensions": 30,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb"
+      },
+      "reference_neighbors_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
+      "reference_moments_sha256": "5f6ac51757e396e1a0daeb634169f02568ba754cc9b719a558581c7f2e32cc71",
+      "direct_pca_projection": false
+    },
+    "gastrulation:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "ba812755a48b48566aafdca520f7067676d6ff9522ac5573938b48cf6461a937",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "02d1ac46152ae53c00c3786257169c855f6d764e3aac7320e6e3f6b293d2ef1b"
+      }
+    },
+    "hematopoiesis:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "11c20c9f79892c3b14e40e90b4941e3133bc83abaeb430d19da9d4b1fa644e95",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "f9d47268fabf9eb56b009c191c9f90072bf92257b125028046627a7777ca6025"
+      }
+    },
+    "mousebrain:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "e97ae2a807c94b7262ec7d684c77d8239f6a05f281eeef6d0322dceb94c5cbb8",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5844eebc996a3f839c5e4ecb96da4d06fc61175665b2e214e4f3f8f3dfc570b9"
+      }
+    },
+    "scnt_neuron:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4907eddc5d271e68598a0ae02e9c7fc0530723f5d92e0056fe09d3f835963f80",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "55da1ae4aeb24e061b3cdbef689c7d59846a1b6b00143bf4fed478eb6bc82eea"
+      }
+    },
+    "sceu_organoid:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4e2384066774d6f2369dd273f5ea12b14e8d362ccaf65db2f48b31d3cfc085aa",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "14ca2fac56094d721c40c4a03520ee095eb7b0727885b8a8ec1e286e219a20ce"
+      }
+    },
+    "pancreas:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "3c3d8906a39141e7266caa73fc06d43764a7f60e2f1a3aa6dc6ebcb99c5af7ab",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "268492298191b4caaecf0db424ede3f49c20f81f6f5ef5854abeaae39929a4c4"
+      }
+    },
+    "retina:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "917a1b27efae4ddb423cbbb912524e4f5c78cd7d4d67f56f617d705a18475848",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "8f2f2be4484e4ad9f63a962b2b846f7716f34de27f10a0c3a4d746944e25bae9"
+      }
+    },
+    "sceu_rpe1:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "a8ed4d121100487564c869c86a89f752f7ae21a48978c2e1da423381c5d19b2b",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "5b8a14e5bd9072837d49e0abc02d340dcef61242c3eb7e191701fa1d17847370"
+      }
+    },
+    "rpe1_gen:C03": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "1db50ced62b73bc6b0a16c7414c1de7e08e85394a7b799c2b1451d10ab03b0e9",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
       }
     }
   }

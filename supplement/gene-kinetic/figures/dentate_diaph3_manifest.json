@@ -246,5 +246,20 @@
   "edge_score_sources": [
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv",
     "supplement/gene-kinetic/results/diaph3_nipc_to_nbl1.csv"
-  ]
+  ],
+  "c03_source_verification": {
+    "current": {
+      "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+      "sha256": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608"
+    },
+    "rendered_source_sha256": "aeca474c29b111de30e1df3a30f533f0807941f46c30580a55b06eacbb4763f5",
+    "phase_arrays_equal_to_previous": true,
+    "compared_layers": [
+      "Ms",
+      "Mu",
+      "velocity",
+      "velocity_u"
+    ],
+    "display_generation": "retained previous panel after equality verification"
+  }
 }

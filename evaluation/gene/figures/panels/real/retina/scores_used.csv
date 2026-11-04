@@ -51,7 +51,7 @@ retina,MultiVelo,Snap25,0.2260561194988523,,MultiVelo (RNA_only),Mouse retina
 retina,MultiVelo,Zfhx3,0.269952230795758,,MultiVelo (RNA_only),Mouse retina
 retina,scVelo_dyn,Anks1b,0.0097765009429055,,scVelo_dyn,Mouse retina
 retina,scVelo_dyn,Cacna1b,-0.1218516933340589,,scVelo_dyn,Mouse retina
-retina,scVelo_dyn,Calm2,0.0710198127283896,,scVelo_dyn,Mouse retina
+retina,scVelo_dyn,Calm2,0.0,,scVelo_dyn,Mouse retina
 retina,scVelo_dyn,Celf4,-0.0251765479831212,,scVelo_dyn,Mouse retina
 retina,scVelo_dyn,Hcn1,0.2123192740374301,,scVelo_dyn,Mouse retina
 retina,scVelo_dyn,Myt1l,0.0444774086183015,,scVelo_dyn,Mouse retina

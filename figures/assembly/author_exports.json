@@ -4,7 +4,7 @@
     {
       "figure": "fig3",
       "assembly": "figures/assembly/fig3/authoring/source.pptx",
-      "assembly_sha256": "8cb910be478b43e4a6494376a2602e0c505014835442ff3bc84835e743689794",
+      "assembly_sha256": "e7c39e207b6d90f5a6f44f3e0be1059be7783361b88e487eb6fb35e438391248",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "52780f6e581e4c5929dde14f0cea3d234db207111f3c1c497941a39fc88d1dc5",
       "source_media_box_pt": [
@@ -24,9 +24,12 @@
       "decoded_content_stream_sha256": "76204ab03c5a1a9add9074274de9443a1b0b22f62bfd42645b3e58bdeeb55883",
       "source_pdf_sha256": "10fcbba64fb1d338ce4032b249cc7cc8a9a7431fc0399c3f8df202e968837762",
       "pending_material_assembly": false,
-      "pending_pdf_export": false,
-      "author_assembly_filename": "\u56fe3_0925.pptx",
-      "author_assembly_sha256": "7905471618ad493067e306a78413a08451605dc82350cdc1b1fda96eeebe5c89"
+      "pending_pdf_export": true,
+      "author_assembly_filename": "图3_0925.pptx",
+      "author_assembly_sha256": "7f56308df5c03f01668baf27a70f77639f99650b98f9a6556c138a485a3c90be",
+      "exported_from_assembly_sha256": "8cb910be478b43e4a6494376a2602e0c505014835442ff3bc84835e743689794",
+      "exported_from_author_assembly_sha256": "7905471618ad493067e306a78413a08451605dc82350cdc1b1fda96eeebe5c89",
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "fig4",
@@ -52,13 +55,13 @@
       "source_pdf_sha256": "98a02d3bf75468543a7ef0ddaa52f41101d7ef4b12fd30b65def3b0320b5fbfe",
       "pending_pdf_export": false,
       "pending_material_assembly": false,
-      "author_assembly_filename": "\u56fe4_0925.pptx",
+      "author_assembly_filename": "图4_0925.pptx",
       "author_assembly_sha256": "7d42a48c2b9116737aea8b78ccaa5ca596ccf211ddce4986422e1cc9e039d999"
     },
     {
       "figure": "fig5",
       "assembly": "figures/assembly/fig5/authoring/source.pptx",
-      "assembly_sha256": "528f6d98d5b03e75e820035135a730f9db08d10f06e4dccf15c2a6f83ec7e90d",
+      "assembly_sha256": "3f30ddb5b5033b214d5e1a8e2926006dddb836cf0241cd7a37730c2f2cff2a51",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "25fd950fd3f1c85175483963594cfec3d43776d1b1ad4e72d09ec9860c3a5610",
       "source_media_box_pt": [
@@ -78,14 +81,17 @@
       "decoded_content_stream_sha256": "ec8c5e4ae51954704258400ad683c37d71010eed559af91b98d9ab6a41b50194",
       "source_pdf_sha256": "20a33c651d442b7ef1053b5dd5742d638a9954bd30c4e0be0529e04741000588",
       "pending_material_assembly": false,
-      "pending_pdf_export": false,
-      "author_assembly_filename": "\u56fe5_0925.pptx",
-      "author_assembly_sha256": "586d3aca5950169fd70d00507c24fb8bf8d53eb00c4fe6f9a6a5f0e155f4a55f"
+      "pending_pdf_export": true,
+      "author_assembly_filename": "图5_0925.pptx",
+      "author_assembly_sha256": "2f1c6cc1a05f745c1bedd72dcc2a5758bd70e3322f6b30405e721033d1d0ff86",
+      "exported_from_assembly_sha256": "528f6d98d5b03e75e820035135a730f9db08d10f06e4dccf15c2a6f83ec7e90d",
+      "exported_from_author_assembly_sha256": "586d3aca5950169fd70d00507c24fb8bf8d53eb00c4fe6f9a6a5f0e155f4a55f",
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "fig7",
       "assembly": "figures/assembly/fig7/fig7.pptx",
-      "assembly_sha256": "36a868469e5597ae43b476584b453d1003e575b4faf25122cfeb1ea8a9052743",
+      "assembly_sha256": "6f9b759562d01dbf986c5e890547aad6da48345411cbbafb8bdae6ed67564ce2",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "b267721bf095d493aa765dd7532fead94144b8b74d47a82370ae54130f341b3d",
       "source_media_box_pt": [
@@ -104,15 +110,18 @@
       "repository_pdf": "figures/figSeven.pdf",
       "decoded_content_stream_sha256": "74d2351ed1b8d80b00c5f19f7fc771b3025e0e2c832b5ad04e7b55e5688a0bcf",
       "source_pdf_sha256": "d4b72ac5dde15cd6e68e1ebcd7f8a23b3892811f4b04927f7d2089d3dbf9faea",
-      "pending_pdf_export": false,
+      "pending_pdf_export": true,
       "pending_material_assembly": false,
-      "author_assembly_filename": "\u56fe7.pptx",
-      "author_assembly_sha256": "638315d8d0cb857bf7c5f6a46d3eb4c7be3dbb7fc862fa4d2eb854558828263e"
+      "author_assembly_filename": "图7.pptx",
+      "author_assembly_sha256": "bdb3a980e6b8c4df36e3c907285df0892a7d3ce241e094cde9f86e03918a4520",
+      "exported_from_assembly_sha256": "36a868469e5597ae43b476584b453d1003e575b4faf25122cfeb1ea8a9052743",
+      "exported_from_author_assembly_sha256": "638315d8d0cb857bf7c5f6a46d3eb4c7be3dbb7fc862fa4d2eb854558828263e",
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "suppfig01",
       "assembly": "figures/assembly/suppfig01/authoring/source.pptx",
-      "assembly_sha256": "61a6772fc745eb4ce43f58c0307c7b63804187e6761e6cfc4e68928fed24c93b",
+      "assembly_sha256": "1d37c0013f474c5f818eaa07ee1cf3f122aa255609f02b76f835c3c0d4fbd05e",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "0ad55db0183f2b74140f1dc8952bb2b47d7494e9c0acfd64eab587fa8d69698f",
       "source_media_box_pt": [
@@ -130,12 +139,18 @@
       "crop_applied": true,
       "repository_pdf": "figures/suppFigOne.pdf",
       "decoded_content_stream_sha256": "1982a0370cd70980949e30c175177170b0e21ce0b2ddd7e43b91e65563ea6740",
-      "source_pdf_sha256": "27dcfb52e7040f0acd8c70b7a450a3bfdcea3c75987591390402b56a6124177c"
+      "source_pdf_sha256": "27dcfb52e7040f0acd8c70b7a450a3bfdcea3c75987591390402b56a6124177c",
+      "exported_from_assembly_sha256": "61a6772fc745eb4ce43f58c0307c7b63804187e6761e6cfc4e68928fed24c93b",
+      "author_assembly_sha256": "929746f7e953a3cea6763f828889de03c8bd905e4c696d3ada13c330b807cc21",
+      "author_assembly_filename": "sup_fig1_0909.pptx",
+      "pending_pdf_export": true,
+      "pending_material_assembly": false,
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "suppfig02",
       "assembly": "figures/assembly/suppfig02/authoring/source.pptx",
-      "assembly_sha256": "669c743dee2a6627cc3d2cae1bbeb45f2a30bc8d869aad23252b7d6af8fe63c2",
+      "assembly_sha256": "a752737351155a30a0c5cde2502d25bfa3cd2d7a65afc47e4d6b04bcc1542ded",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "106d8e711faf205519f2fd9cfac1fda10cb876f8053c12c7e72a44d6a85617c6",
       "source_media_box_pt": [
@@ -153,12 +168,18 @@
       "crop_applied": true,
       "repository_pdf": "figures/suppFigTwo.pdf",
       "decoded_content_stream_sha256": "1de2fc0f80209361c7a9463c5ec428b9c92c734d1f3b8a54e74d18ab0caa9bce",
-      "source_pdf_sha256": "ffec4adc0d3f11fd939169ff5449c5247bde9ddf862a66ecc7adecd46619bf5e"
+      "source_pdf_sha256": "ffec4adc0d3f11fd939169ff5449c5247bde9ddf862a66ecc7adecd46619bf5e",
+      "exported_from_assembly_sha256": "669c743dee2a6627cc3d2cae1bbeb45f2a30bc8d869aad23252b7d6af8fe63c2",
+      "author_assembly_sha256": "9bb733725e21efa62cf50af9c8498c776da7ad82d87d1d6d4221296bc178ed16",
+      "author_assembly_filename": "sup_fig2_0909.pptx",
+      "pending_pdf_export": true,
+      "pending_material_assembly": false,
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "suppfig03",
       "assembly": "figures/assembly/suppfig03/authoring/source.pptx",
-      "assembly_sha256": "652aa97736386498728ac8abee0da50d1db9aa50c2d149fdce42e06b9cf6a6f2",
+      "assembly_sha256": "e3a4dfdeabde2b3a595dc1aab734a448f78fa049abf73a73e40409ce9f1702ec",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "9f9a31530d4ec23c8906e9522a4fc751d47c0c9e9a7d054f8d8fc91c8a243118",
       "source_media_box_pt": [
@@ -176,12 +197,18 @@
       "crop_applied": true,
       "repository_pdf": "figures/suppFigThree.pdf",
       "decoded_content_stream_sha256": "6e5c0d12bffb5071526c0d9f0403fbd4bc36037df082e15e23e4451ca8c354b5",
-      "source_pdf_sha256": "3aa7d7971e7aa6b97f859bdb084002cf4fd583c3cd6b6dd17f01d629d29c1f6e"
+      "source_pdf_sha256": "3aa7d7971e7aa6b97f859bdb084002cf4fd583c3cd6b6dd17f01d629d29c1f6e",
+      "exported_from_assembly_sha256": "652aa97736386498728ac8abee0da50d1db9aa50c2d149fdce42e06b9cf6a6f2",
+      "author_assembly_sha256": "8e4a580a4dbb00a3d16d81f51eac60d7e9f5ddafb96945bf30994ce8cc2256bf",
+      "author_assembly_filename": "sup_fig3_0909.pptx",
+      "pending_pdf_export": true,
+      "pending_material_assembly": false,
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "suppfig04",
       "assembly": "figures/assembly/suppfig04/authoring/source.pptx",
-      "assembly_sha256": "dde2ed51e4b2bd44f5fde7ac91fa12b202f6a89f7e7253d3eed2383823b8aa70",
+      "assembly_sha256": "32b5f923b9981caa754397f059788a480c8507711bc5ec250b53aecad0b3a1d4",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "50b30f411c8571e3e0373ee0dca96bacc53dd953588f7c9ad5464b50740b42c7",
       "source_media_box_pt": [
@@ -199,7 +226,13 @@
       "crop_applied": true,
       "repository_pdf": "figures/suppFigFour.pdf",
       "decoded_content_stream_sha256": "ff63783dcbd80bc294def2b8c002d4cf13c4e1ed997744a504b2433edc75dde8",
-      "source_pdf_sha256": "42b96bfc3bd100c6850cee40b1a711e94bda860434d07c0e214c49e7e5f280b6"
+      "source_pdf_sha256": "42b96bfc3bd100c6850cee40b1a711e94bda860434d07c0e214c49e7e5f280b6",
+      "exported_from_assembly_sha256": "dde2ed51e4b2bd44f5fde7ac91fa12b202f6a89f7e7253d3eed2383823b8aa70",
+      "author_assembly_sha256": "fae74bf32c32e177be38fed39f6792f7007337debcd62dd4b74d66b2db80e376",
+      "author_assembly_filename": "sup_fig4_0909.pptx",
+      "pending_pdf_export": true,
+      "pending_material_assembly": false,
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     },
     {
       "figure": "suppfig05",
@@ -296,7 +329,7 @@
     {
       "figure": "suppfig09",
       "assembly": "figures/assembly/suppfig09/supfig9.pptx",
-      "assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
+      "assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
       "status": "user_exported_cropped",
       "cropped_or_final_pdf_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
       "source_media_box_pt": [
@@ -316,9 +349,12 @@
       "decoded_content_stream_sha256": "dd65dd9db371e298124f32e918d940613015a1de953c3166a22b7d3e54e0155a",
       "source_pdf_sha256": "0fb26b297cf80ba12f89adbaa56f51764f591abe3c89dd276a2bf27c785f2436",
       "pending_material_assembly": false,
-      "pending_pdf_export": false,
+      "pending_pdf_export": true,
       "author_assembly_filename": "supfig9.pptx",
-      "author_assembly_sha256": "029f55a2a2271fade67ecba5e62ee46bbfc9ecea5658cb8f1ac3478c24aa2533"
+      "author_assembly_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
+      "exported_from_assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
+      "exported_from_author_assembly_sha256": "029f55a2a2271fade67ecba5e62ee46bbfc9ecea5658cb8f1ac3478c24aa2533",
+      "pdf_identity": "Previous author export; updated PPT awaits a new author PDF export."
     }
   ]
 }

@@ -1,4 +1,7 @@
 dataset,method,gene,new_cbdir,old_cbdir,delta,absolute_delta,n_evaluable_edges,n_evaluable_source_cells,invalid_velocity_values_cleaned_in_memory,status,source_h5ad,velocity_s_key,velocity_u_key
+gastrulation,scVelo_dyn,Hba-x,0.0,-0.50317,0.50317,0.50317,4,1810,98150,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,velocity,velocity_u
+gastrulation,scVelo_dyn,Gpx1,0.0,-0.46746,0.46746,0.46746,4,1810,98150,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,velocity,velocity_u
+gastrulation,scVelo_dyn,Hbb-y,0.0,-0.34228,0.34228,0.34228,4,1810,98150,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,velocity,velocity_u
 gastrulation,veloVI,Hbb-bh1,0.6457621273831905,0.35594,0.2898221273831905,0.2898221273831905,4,1810,0,ok,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,velocity,velocity_u
 capo_pre,TIvelo,DEK,0.1611410559684968,-0.05515,0.2162910559684968,0.2162910559684968,3,618,0,ok,artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad,velocity,velocity_u
 gastrulation,veloVI,Alas2,0.5211685001862236,0.31148,0.20968850018622365,0.20968850018622365,4,1810,0,ok,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,velocity,velocity_u
@@ -10,6 +13,7 @@ mousebrain,DeepVelo,Gria2,0.14085929764001676,0.30098,-0.16012070235998327,0.160
 capo_pre,veloVI,CLSPN,0.3188478717050484,0.4748,-0.1559521282949516,0.1559521282949516,3,618,0,ok,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,velocity,velocity_u
 capo_pre,TIvelo,FAM111A,0.280819577281848,0.13785,0.14296957728184798,0.14296957728184798,3,618,0,ok,artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad,velocity,velocity_u
 capo_pre,veloVI,DEK,0.11735505406673069,0.25826,-0.1409049459332693,0.1409049459332693,3,618,0,ok,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,velocity,velocity_u
+gastrulation,scVelo_dyn,Hbb-bh1,0.0,0.13455,-0.13455,0.13455,4,1810,98150,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,velocity,velocity_u
 all,veloVI,BoostALL_9,0.2323227289190187,0.12114,0.1111827289190187,0.1111827289190187,18,524,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad,velocity,velocity_u
 capo_pre,veloVI,C19orf48,-0.03507324785706375,0.07517,-0.11024324785706374,0.11024324785706374,3,618,0,ok,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,velocity,velocity_u
 all,veloVI,BoostALL_1,0.207435346252286,0.09983,0.10760534625228599,0.10760534625228599,18,524,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad,velocity,velocity_u
@@ -34,7 +38,9 @@ capo_pre,TIvelo,E2F7,0.3033483734788301,0.22853,0.07481837347883008,0.0748183734
 branching,veloVI,BoostALL_2,0.13802842841198926,0.06338,0.07464842841198925,0.07464842841198925,18,535,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad,velocity,velocity_u
 gastrulation,veloVI,Fech,0.4109170075211278,0.33797,0.07294700752112782,0.07294700752112782,4,1810,0,ok,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,velocity,velocity_u
 capo_pre,TIvelo,CLSPN,0.21796098345256346,0.29088,-0.07291901654743657,0.07291901654743657,3,618,0,ok,artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad,velocity,velocity_u
+gastrulation,scVelo_dyn,Dhrs11,0.0,0.0724,-0.0724,0.0724,4,1810,98150,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad,velocity,velocity_u
 retina,Graphvelo_scv,Celf4,0.1913756163039775,0.12025,0.07112561630397751,0.07112561630397751,3,145,2726,ok,artifact://velocity/results/graphvelo_scv/graphveloretina.h5ad,velocity_gv,velocity_u
+retina,scVelo_dyn,Calm2,0.0,0.07102,-0.07102,0.07102,3,145,5452,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_retina.h5ad,velocity,velocity_u
 retina,veloVI,Rasgef1b,0.18898896421282574,0.11853,0.07045896421282574,0.07045896421282574,3,145,0,ok,artifact://velocity/results/veloVI/veloVI_retina_full_all.h5ad,velocity,velocity_u
 all,veloVI,BoostALL_8,0.23291985709077334,0.16301,0.06990985709077335,0.06990985709077335,18,524,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad,velocity,velocity_u
 mousebrain,DeepVelo,Cacna1e,0.08903631414313604,0.15825,-0.06921368585686397,0.06921368585686397,4,780,0,ok,artifact://velocity/results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad,velocity,velocity_unspliced
@@ -68,6 +74,7 @@ gastrulation,MultiVelo,Gpx1,0.36548220089801875,0.41073,-0.045247799101981234,0.
 capo_pre,UniTVelo,DEK,0.1434404311059334,0.09833,0.04511043110593341,0.04511043110593341,3,618,0,ok,artifact://velocity/results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad,velocity,velocity_u
 capo_pre,Graphvelo_scv,CLSPN,0.40897895601066,0.45408,-0.045101043989340006,0.045101043989340006,3,618,0,ok,artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad,velocity_gv,velocity_u
 mousebrain,DeepVelo_scv,Adcy1,0.07479377010672478,0.02981,0.044983770106724774,0.044983770106724774,4,780,0,ok,artifact://velocity/results/deepvelo2022/deepvelo_mousebrain_recon.h5ad,velocity_reconstructed,velocity_u
+DentateGyrus_lamanno,scVelo_dyn,Nnat,0.0,-0.04488,0.04488,0.04488,10,3053,36426,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad,velocity,velocity_u
 all,veloVI,OneSidedBoost2_0,0.06515475131920397,0.02066,0.04449475131920397,0.04449475131920397,18,524,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_all.h5ad,velocity,velocity_u
 capo_pre,Graphvelo_scv,FAM111A,0.35268793607680343,0.39694,-0.04425206392319658,0.04425206392319658,3,618,0,ok,artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad,velocity_gv,velocity_u
 pancreas,Graphvelo_scv,Atp2a2,0.10667548443602229,0.06266,0.044015484436022295,0.044015484436022295,7,1294,0,ok,artifact://velocity/results/graphvelo_scv/graphveloPancreas.h5ad,velocity_gv,velocity_u
@@ -92,10 +99,3 @@ mousebrain,Graphvelo_scv,Flrt2,0.1607315298287757,0.12022,0.040511529828775705,0
 mousebrain,veloVI,Gria2,0.23923641711653243,0.19923,0.04000641711653244,0.04000641711653244,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
 pancreas,cellDancer,Nxph1,0.1252011136102454,0.08533,0.03987111361024541,0.03987111361024541,7,1294,0,ok,artifact://velocity/results/celldancer/celldancer_Pancreas.h5ad,velocity,velocity_u
 mousebrain,scVelo_dyn,Adcy1,0.006244280352731842,-0.03324,0.03948428035273184,0.03948428035273184,4,780,0,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad,velocity,velocity_u
-capo_pre,MultiVelo,ALPK2,0.21446642604123067,0.17635,0.03811642604123067,0.03811642604123067,3,618,0,ok,artifact://velocity/results/multivelo/multivelo_capo_pre.h5ad,velo_s,velo_u
-capo_pre,Graphvelo_scv,C4orf21,0.17848889332436238,0.21625,-0.03776110667563762,0.03776110667563762,3,618,0,ok,artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad,velocity_gv,velocity_u
-gastrulation,Graphvelo_scv,Dhrs11,0.01316825396030702,0.05088,-0.03771174603969298,0.03771174603969298,4,1810,49075,ok,artifact://velocity/results/graphvelo_scv/graphveloGastrulation.h5ad,velocity_gv,velocity_u
-branching,veloVI,MultiForward_1,0.13053843186075836,0.09336,0.037178431860758365,0.037178431860758365,18,535,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/velovi/veloVI_branching.h5ad,velocity,velocity_u
-branching,MultiVelo,BoostALL_5,0.5443202149109513,0.58128,-0.036959785089048736,0.036959785089048736,18,535,0,ok,artifact://velocity/indicators/gene/simulation/results_for_analyze/multivelo/multivelo_branching.h5ad,velo_s,velo_u
-DentateGyrus_lamanno,veloVI,Mmd2,-0.16465626845704862,-0.12793,-0.03672626845704863,0.03672626845704863,10,3053,0,ok,artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad,velocity,velocity_u
-gastrulation,cellDancer,Fam210b,0.20656925517158836,0.24329,-0.036720744828411644,0.036720744828411644,4,1810,0,ok,artifact://velocity/results/celldancer/celldancer_Gastrulation.h5ad,velocity,velocity_u

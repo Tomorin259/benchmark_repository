@@ -40,7 +40,7 @@ DATASETS_TO_RUN = [
     "rpe1",
     "rpe1_gen",
 ]
-MODES_TO_RUN = ["deterministic", "stochastic", "dynamical"]
+MODES_TO_RUN = ["dynamical"]
 
 # Dataset inputs, preprocessing settings and annotation mappings.
 # label_key supplies clusters; embedding_key=None uses the PCA coordinates.
@@ -152,7 +152,7 @@ def run_dataset(dataset, mode, data_root, output_root):
 
     print(f"\n=== scVelo {mode}: {dataset} ===", flush=True)
     print(f"input: {input_path}", flush=True)
-    # scVelo 0.3.3 delegates file loading to Scanpy.
+    # Load through Scanpy in both supported scVelo environments.
     adata = sc.read(input_path, cache=False)
 
     missing_layers = {"spliced", "unspliced"} - set(adata.layers)
@@ -219,16 +219,25 @@ def main():
     args = parser.parse_args()
     datasets = args.datasets or DATASETS_TO_RUN
     modes = args.modes or MODES_TO_RUN
-    if any(DATASETS[name].get("simulation") for name in datasets) and modes != ["dynamical"]:
-        raise ValueError("Simulation benchmark uses --mode dynamical")
-    if scv.__version__ != "0.3.3":
-        raise RuntimeError(f"scVelo 0.3.3 is required, found {scv.__version__}")
     unknown_datasets = set(datasets) - set(DATASETS)
     unknown_modes = set(modes) - set(OUTPUT_PREFIX)
     if unknown_datasets or unknown_modes:
         raise ValueError(
             f"unknown datasets={sorted(unknown_datasets)}; unknown modes={sorted(unknown_modes)}"
         )
+    if len(set(datasets)) != len(datasets) or len(set(modes)) != len(modes):
+        raise ValueError("Datasets and modes must not be repeated")
+    if any(DATASETS[name].get("simulation") for name in datasets) and modes != ["dynamical"]:
+        raise ValueError("Simulation benchmark uses --mode dynamical")
+    required_versions = {
+        "0.2.5" if mode == "dynamical" and not DATASETS[name].get("simulation") else "0.3.3"
+        for mode in modes for name in datasets
+    }
+    if len(required_versions) != 1:
+        raise ValueError("Selected runs require different scVelo versions; run them separately")
+    required_version = required_versions.pop()
+    if scv.__version__ != required_version:
+        raise RuntimeError(f"scVelo {required_version} is required, found {scv.__version__}")
 
     # These tutorial settings also affect the automatic scale stored by
     # velocity_embedding, so they are part of the numerical reproduction.

@@ -13,8 +13,8 @@ primary,UniTVelo,cbdir,7,-0.5867926526059929,-0.7142857142857142,5,0.71428571428
 primary,UniTVelo,batc_candidate_source_mean,7,0.07181713206363284,-0.2857142857142857,5,0.7142857142857143,exploratory_small_n
 primary,cellDancer,cbdir,7,-0.20918454508258064,0.14285714285714285,3,0.42857142857142855,exploratory_small_n
 primary,cellDancer,batc_candidate_source_mean,7,-0.23917532802654237,-0.24999999999999997,3,0.42857142857142855,exploratory_small_n
-primary,scVelo_dyn,cbdir,7,-0.06785877669950523,-0.17857142857142855,4,0.5714285714285714,exploratory_small_n
-primary,scVelo_dyn,batc_candidate_source_mean,7,0.07957096706691197,0.17857142857142855,4,0.5714285714285714,exploratory_small_n
+primary,scVelo_dyn,cbdir,7,-0.07355034505154905,0.0,4,0.5714285714285714,exploratory_small_n
+primary,scVelo_dyn,batc_candidate_source_mean,7,0.04288706296517863,0.17857142857142855,4,0.5714285714285714,exploratory_small_n
 primary,veloVI,cbdir,7,0.25132167359407287,-0.10714285714285712,5,0.7142857142857143,exploratory_small_n
 primary,veloVI,batc_candidate_source_mean,7,0.17743906301656148,-0.2857142857142857,5,0.7142857142857143,exploratory_small_n
 secondary_control,DeepVelo,cbdir,6,0.28873530519183954,0.14285714285714285,2,0.3333333333333333,exploratory_small_n
@@ -31,8 +31,8 @@ secondary_control,UniTVelo,cbdir,6,0.8460019095744161,0.7714285714285715,3,0.5,e
 secondary_control,UniTVelo,batc_candidate_source_mean,6,-0.07457771644375426,-0.08571428571428572,3,0.5,exploratory_small_n
 secondary_control,cellDancer,cbdir,6,0.3011793662326543,0.37142857142857144,4,0.6666666666666666,exploratory_small_n
 secondary_control,cellDancer,batc_candidate_source_mean,6,0.5054131769956651,0.6571428571428571,4,0.6666666666666666,exploratory_small_n
-secondary_control,scVelo_dyn,cbdir,6,0.27464831506813836,-0.2,3,0.5,exploratory_small_n
-secondary_control,scVelo_dyn,batc_candidate_source_mean,6,0.025152828841643483,-0.02857142857142857,3,0.5,exploratory_small_n
+secondary_control,scVelo_dyn,cbdir,6,0.1378581025692053,-0.37142857142857144,3,0.5,exploratory_small_n
+secondary_control,scVelo_dyn,batc_candidate_source_mean,6,-0.020716048724670987,-0.2571428571428571,3,0.5,exploratory_small_n
 secondary_control,veloVI,cbdir,6,-0.07307370486014511,0.02857142857142857,3,0.5,exploratory_small_n
 secondary_control,veloVI,batc_candidate_source_mean,6,-0.1165574877955079,-0.3142857142857143,2,0.3333333333333333,exploratory_small_n
 all_displayed,DeepVelo,cbdir,13,0.2676418979446425,-0.02197802197802198,9,0.6923076923076923,descriptive_candidate_subset
@@ -49,7 +49,7 @@ all_displayed,UniTVelo,cbdir,13,-0.19643218038357607,0.01098901098901099,8,0.615
 all_displayed,UniTVelo,batc_candidate_source_mean,13,0.052007855333525185,-0.25274725274725274,8,0.6153846153846154,descriptive_candidate_subset
 all_displayed,cellDancer,cbdir,13,-0.11509060739068491,0.1978021978021978,7,0.5384615384615384,descriptive_candidate_subset
 all_displayed,cellDancer,batc_candidate_source_mean,13,-0.003021450859643814,0.02197802197802198,7,0.5384615384615384,descriptive_candidate_subset
-all_displayed,scVelo_dyn,cbdir,13,0.07306999188213231,-0.21978021978021978,7,0.5384615384615384,descriptive_candidate_subset
-all_displayed,scVelo_dyn,batc_candidate_source_mean,13,0.04983729044814915,0.016483516483516484,7,0.5384615384615384,descriptive_candidate_subset
+all_displayed,scVelo_dyn,cbdir,13,0.008846493857118045,-0.24725274725274726,7,0.5384615384615384,descriptive_candidate_subset
+all_displayed,scVelo_dyn,batc_candidate_source_mean,13,0.010025746782901085,-0.04945054945054945,7,0.5384615384615384,descriptive_candidate_subset
 all_displayed,veloVI,cbdir,13,-0.01703931116102156,-0.2087912087912088,8,0.6153846153846154,descriptive_candidate_subset
 all_displayed,veloVI,batc_candidate_source_mean,13,-0.02484788941097836,-0.3076923076923077,7,0.5384615384615384,descriptive_candidate_subset

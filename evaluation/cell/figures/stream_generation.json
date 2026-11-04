@@ -4,7 +4,7 @@
   "source_data_arrays": {
     "main_figures/Figure_2/A_gastrulation_C01_stream.npz": "b886b7481a10e86f1d878bd63272d8d1a64100c5275089e6f9d671c233fbdf1a",
     "main_figures/Figure_2/A_gastrulation_C02_stream.npz": "8a1e0ba41fd1a21b457f152a27811044ecf896681bde7aaacbc015970ae9458f",
-    "main_figures/Figure_2/A_gastrulation_C03_stream.npz": "1000462233a46f0a41d2aa95785441f287ccfcb21456d4ad3696bf7dddb3fb15",
+    "main_figures/Figure_2/A_gastrulation_C03_stream.npz": "286cc5334db54632c0be38b28fe509e1b860ab66fcef395da8b5a37185d84089",
     "main_figures/Figure_2/A_gastrulation_C04_stream.npz": "6e2f6e28924ddb6254033c064bcdd8df41dc91b72f7a20be8f1dadb82706d7a1",
     "main_figures/Figure_2/A_gastrulation_C05_stream.npz": "237f45ec42166187f0a5cfa0c76a6b92980a0c133b12450c4ce5420b4bc6469e",
     "main_figures/Figure_2/A_gastrulation_C06_stream.npz": "f920d206468974c021d973ada13c047412dcd1038dc3d8f071e90d4a4794206d",
@@ -24,7 +24,7 @@
     "main_figures/Figure_2/A_gastrulation_C20_stream.npz": "c5d01e7bb94115ad4be286f4ffd54c134fa8d196f0c53e305070a9798faba1ca",
     "main_figures/Figure_2/B_DentateGyrus_lamanno_C01_stream.npz": "12a08131ad89d7a2a82018d18ca1ce663e27fd7a2c482251b75f401f5150773e",
     "main_figures/Figure_2/B_DentateGyrus_lamanno_C02_stream.npz": "097668d255484aaea869b516def024e6d3edd9330db178e4e30f7f7416459856",
-    "main_figures/Figure_2/B_DentateGyrus_lamanno_C03_stream.npz": "7d90b886a1727a69f522ff14190e7c454b72f38c14edeb8815b2c6b01b39610e",
+    "main_figures/Figure_2/B_DentateGyrus_lamanno_C03_stream.npz": "e2e059269234d8d0c1f024d46a545e5eccf8dcf235696e3c6a4a014f4eda078d",
     "main_figures/Figure_2/B_DentateGyrus_lamanno_C04_stream.npz": "95a928cc101e82c44af3720b442eab2e9ed34f77409b416e6371870dfadb84bd",
     "main_figures/Figure_2/B_DentateGyrus_lamanno_C05_stream.npz": "f382d14d06b6ce236c1c92eaf134c65f70dcd5a05d825af527d1cdba3505dda7",
     "main_figures/Figure_2/B_DentateGyrus_lamanno_C06_stream.npz": "73d82080f28ff0a1295e710a0b4db6cceba3e6abe5022caea7fec36e7c5c789a",
@@ -73,16 +73,16 @@
   "native_output_selection": "evaluation/cell/native_outputs.tsv",
   "native_output_selection_sha256": "65f15a0c00285894c6a6332a685941d507e5834d5548c418384ac049d860d5e2",
   "score_tables": {
-    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
     "evaluation/cell/simulation/results/cell_metrics.csv": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008"
   },
   "outputs": {
-    "gastrulation_20methods_3x7_BATC.png": "d2a46f8f1a7377d5074fc478b31217d4e8f0d8c4edfcc5f369cf678924f2f526",
-    "gastrulation_20methods_3x7_BATC.pdf": "5cdb06e5865526e2369f08908a5abb43824de4639e8ae75e97800c19c9349fc0",
-    "gastrulation_20methods_3x7_BATC.svg": "8d0665b96a3d84c6b25f5e6e8fc69a132a6649e818bddb292f1d866a53c1f03e",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.png": "1d0289c7eb8fddd377dfdd32606c37a03845480795555c1cb18d3cc4279fea7c",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.pdf": "da8bd47b04a6afe2a075bddbd68b790ec6f7264a08988de8bab3a1902c94536f",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.svg": "894a86a7597822afc4d240151d70f94000386ac6fb5ed88538570dbf8c80b863",
+    "gastrulation_20methods_3x7_BATC.png": "811e8ff7193d10de90de9a449c84e5970194dc037a68096c516627c31810e2db",
+    "gastrulation_20methods_3x7_BATC.pdf": "2d52ecae97a11ccbd8762663bf01fb31bb4a71052998fdad6131a7dd6f7c61dd",
+    "gastrulation_20methods_3x7_BATC.svg": "c0df50941eb01ae96aa891b3fc4bc59f3a2c50555942de36801574db5a56bf3b",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.png": "e7f87fc27890e2f7824833a9185357d912b61daccc730bc743e656174e9fc4e9",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.pdf": "e018f8eed22de7b6a41012606a756d000840121381485eb908cf988316c1bde8",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.svg": "cad6cc567fa7bab168f6413432079716b782d647425ee6fc904372331a7f1975",
     "A_murk_streams.png": "0da3d47936b207329119de5cf9a66e0679ef136d9a24e7379c3338a6d046cc6c",
     "A_murk_streams.pdf": "5c9eeaae32ef02cfa622223b2a757d0017b53c2dff26a3b195b5574e9c5f001b",
     "A_murk_streams.svg": "3ffff0e36d3668b76590ee5ed4ec1ef2d3ae5a5f888ad7bff4dac28138aabd51",
@@ -96,6 +96,11 @@
   "svg_serialization": "Trailing line whitespace normalized; path coordinates and text unchanged.",
   "real_montage_generation": {
     "path": "evaluation/cell/figures/fig2_montage_generation.json",
-    "sha256": "0cd3ca127ddb952082eeca336c244c13dcc3586a3fba29c911bd975ce9b623c8"
+    "sha256": "48e9228b8a251ef9a149573341ad1efa638811cfa034c42ad4b74f86365f021b"
+  },
+  "c03_update": {
+    "generator": "evaluation/cell/plot_cell_stream_panels.py",
+    "generator_sha256": "d0987b4674c914cd43338f4552fbf2d3c4b6f599cd8f3dd5501872ef80e583ce",
+    "scope": "C03 source streams and the two real montages; other streams retained"
   }
 }

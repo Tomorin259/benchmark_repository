@@ -3,30 +3,30 @@
   "figure": "Figure 2",
   "assembly": {
     "path": "figures/assembly/fig2/fig2.pptx",
-    "sha256": "cc01793ecce28da9c6c374722409511158c5b8483a0eaedbc327f41008c6cd98"
+    "sha256": "9bf67865c493c4cd47ac0f670849fb1fd1475605a5c6e5e48152a91aa8bae7e1"
   },
-  "pending_pdf_export": false,
+  "pending_pdf_export": true,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505"
+      "sha256": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0"
     }
   ],
   "panels": [
     {
       "panel": "A",
       "path": "evaluation/cell/figures/gastrulation_20methods_3x7_BATC.png",
-      "sha256": "d2a46f8f1a7377d5074fc478b31217d4e8f0d8c4edfcc5f369cf678924f2f526"
+      "sha256": "811e8ff7193d10de90de9a449c84e5970194dc037a68096c516627c31810e2db"
     },
     {
       "panel": "B",
       "path": "evaluation/cell/figures/DentateGyrus_lamanno_20methods_3x7_CBDir.png",
-      "sha256": "1d0289c7eb8fddd377dfdd32606c37a03845480795555c1cb18d3cc4279fea7c"
+      "sha256": "e7f87fc27890e2f7824833a9185357d912b61daccc730bc743e656174e9fc4e9"
     },
     {
       "panel": "C",
       "path": "evaluation/cell/figures/fig2_cell_metrics_5panel.png",
-      "sha256": "0b72dbacea91d1f3c4eeb63cec01ed119eeb067bdc2984ba6630054126550c92"
+      "sha256": "c681854e6841fe61fe7ce8ec2eeb6d52fc7bb3fc97ca420a46c412bd8afa95c0"
     }
   ],
   "export": {
@@ -46,7 +46,7 @@
       779.8
     ],
     "source_pdf": {
-      "filename": "\u56fe2_0909_update.pdf",
+      "filename": "图2_0909_update.pdf",
       "sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
       "page_count": 1,
       "media_box_points": [
@@ -65,13 +65,13 @@
   "output": {
     "path": "figures/figTwo.pdf",
     "sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "status": "author_exported_cropped_pdf"
+    "status": "previous_author_export_pending_refresh"
   },
   "last_pdf_verification": {
-    "filename": "\u56fe2_0909_update.pdf",
+    "filename": "图2_0909_update.pdf",
     "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
     "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_filename": "图2_0909_update.pptx",
     "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
     "crop_box_pt": [
       0.0,
@@ -86,13 +86,13 @@
   "pending_material_assembly": false,
   "montage_generation": {
     "path": "evaluation/cell/figures/fig2_montage_generation.json",
-    "sha256": "0cd3ca127ddb952082eeca336c244c13dcc3586a3fba29c911bd975ce9b623c8"
+    "sha256": "48e9228b8a251ef9a149573341ad1efa638811cfa034c42ad4b74f86365f021b"
   },
   "author_export": {
-    "filename": "\u56fe2_0909_update.pdf",
+    "filename": "图2_0909_update.pdf",
     "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
     "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_filename": "图2_0909_update.pptx",
     "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
     "crop_box_pt": [
       0.0,
@@ -102,5 +102,7 @@
     ],
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
-  }
+  },
+  "exported_from_assembly_sha256": "cc01793ecce28da9c6c374722409511158c5b8483a0eaedbc327f41008c6cd98",
+  "previous_pdf_note": "Retained PDF predates the updated editable assembly; new author export pending."
 }

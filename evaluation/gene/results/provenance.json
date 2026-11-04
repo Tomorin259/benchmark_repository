@@ -1,5 +1,6 @@
 {
   "artifact_root": "artifact://velocity",
+  "generation_scope": "Original generation metadata is retained below. Real scVelo_dyn scores use real_c03_inputs; other separately recorded updates use their own provenance.",
   "script": "evaluation/gene/run_reference30_gene_cbdir.py",
   "script_sha256": "d96df070af002247f5ac5e1b83556b8d561d310b1e3e62af97d0d123f115e477",
   "scvelo_version": "0.2.5",
@@ -454,5 +455,30 @@
   "unit_restoration": {
     "path": "evaluation/gene/results/unit_restoration/provenance.json",
     "sha256": "d7fc7534f4d1800b5172d183f3462a77cd30d0fb672e465af0cc0216f575d43a"
+  },
+  "real_c03_inputs": {
+    "method": "scVelo_dyn",
+    "method_version": "0.2.5",
+    "scoring_script": "evaluation/gene/run_reference30_gene_cbdir.py",
+    "scoring_script_sha256": "15058ad87c411a27e7bd36a242003b53d11d3d41b497c113c3570b05d15d99d6",
+    "scoring_environment": {
+      "scvelo": "0.3.1",
+      "scanpy": "1.10.3"
+    },
+    "source_sha256_by_dataset": {
+      "retina": "c05feda07d16baa5c8062b5ebe2a6610e2834bf6e4d018c28777ee1b22562f48",
+      "DentateGyrus_lamanno": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608",
+      "gastrulation": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81",
+      "capo_pre": "6ea19aa93fea9e2b0fb9d7b77e180a2df7f2f390458b449b6536d1f9ab96211a",
+      "bonemarrow": "f33685028abd0632653e9fece6f9fe08e8e49a08fdd59f45bfb67200085af286",
+      "mousebrain": "4bd63f64c7ac87462fa64241ffe9ed12fb887c5e0d433677c35063f2cc361005",
+      "pancreas": "48a50f763fb7e1b47e33d560a73feed9a33d863b5647b36acf2e96dfee9c935b"
+    },
+    "selected_gene_rows": 59,
+    "edge_rows": 297,
+    "two_axis_predictions": 52,
+    "unfitted_genes_zero_scored": 7,
+    "common_gene_rows": 35,
+    "invalid_velocity_policy": "Nonfinite predicted velocities are replaced by zero and values clipped to +/-1e10 in memory before scoring."
   }
 }

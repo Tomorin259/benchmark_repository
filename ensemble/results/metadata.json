@@ -154,7 +154,7 @@
   "result_sha256": {
     "ensemble/results/rankings_vs_20.csv": "5c7db216c4ab0787ef5c1a9a3a543ea96d5293a274899db02f69f37b9cf99368",
     "ensemble/results/scores.csv": "b0c7323bf8f8bd3b2a61695f857414588f93867746ffd29f1dc0464b3eb63453",
-    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505"
+    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0"
   },
   "schema_version": 7,
   "status": "formal-all14",

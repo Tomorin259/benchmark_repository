@@ -245,5 +245,20 @@
   },
   "edge_score_sources": [
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"
-  ]
+  ],
+  "c03_source_verification": {
+    "current": {
+      "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+      "sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81"
+    },
+    "rendered_source_sha256": "4381ad967155156281ce63d7500d1643c90645ce5387b3dcd8b5aa5e576b29df",
+    "phase_arrays_equal_to_previous": true,
+    "compared_layers": [
+      "Ms",
+      "Mu",
+      "velocity",
+      "velocity_u"
+    ],
+    "display_generation": "retained previous panel after equality verification"
+  }
 }

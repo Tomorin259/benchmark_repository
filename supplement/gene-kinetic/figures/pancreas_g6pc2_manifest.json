@@ -260,5 +260,20 @@
   },
   "edge_score_sources": [
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"
-  ]
+  ],
+  "c03_source_verification": {
+    "current": {
+      "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Pancreas.h5ad",
+      "sha256": "48a50f763fb7e1b47e33d560a73feed9a33d863b5647b36acf2e96dfee9c935b"
+    },
+    "rendered_source_sha256": "d500c5f9577022fe562c5823ac0edd57f02fd669dfdbffb67f6f7899f14af4f6",
+    "phase_arrays_equal_to_previous": true,
+    "compared_layers": [
+      "Ms",
+      "Mu",
+      "velocity",
+      "velocity_u"
+    ],
+    "display_generation": "retained previous panel after equality verification"
+  }
 }

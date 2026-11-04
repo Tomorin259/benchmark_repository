@@ -3,16 +3,16 @@
   "composite_path": "figures/suppFigNine.pdf",
   "composite_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
   "source_kind": "user_exported_pdf_cropped_by_page_boxes",
-  "verification": "The current WPS PDF was exported from the synchronized A4 portrait repository PPTX and cropped by changing MediaBox/CropBox only to [0, 478, 540, 779.8] pt. The decoded page content is unchanged. The cropped page was rendered and visually inspected; all six embedded panel hashes match the registered Cell/Gene sources.",
-  "reproduction_boundary": "The current cropped PDF was exported from the synchronized A4 portrait repository assembly. All six embedded Cell/Gene panel hashes match the registered panel sources; cropping changed page boxes only and left the content stream unchanged.",
-  "pending_pdf_export": false,
+  "verification": "Updated editable assembly; the retained PDF is the previous author export and awaits re-export.",
+  "reproduction_boundary": "Previous author PDF retained; current panels and editable assembly await author PDF export.",
+  "pending_pdf_export": true,
   "current_assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "current_assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
+  "current_assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
   "user_export": {
     "filename": "supfig9.pdf",
     "sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
-    "creator": "WPS \u6f14\u793a",
-    "producer": "macOS \u7248\u672c26.6.2\uff08\u7248\u53f725G83\uff09 Quartz PDFContext",
+    "creator": "WPS 演示",
+    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
     "creation_date": "2026-10-19 02:05:32+08:00",
     "page_count": 1,
     "source_media_box_pt": [
@@ -69,5 +69,7 @@
     ],
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
-  }
+  },
+  "exported_from_assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
+  "previous_pdf_note": "Retained PDF predates the updated editable assembly; new author export pending."
 }

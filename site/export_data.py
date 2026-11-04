@@ -526,8 +526,9 @@ def export_data(root=ROOT, output=None):
     figure = figure_manifest['output']
     if hashlib.sha256((root / figure['path']).read_bytes()).hexdigest() != figure['sha256']:
         raise ValueError('Figure 7 does not match its composite manifest')
-    entry = register_file(figure['path'])
-    downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
+    if not figure_manifest.get('pending_pdf_export', False):
+        entry = register_file(figure['path'])
+        downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
     for relative, label in [
         ('rpe1_boxplot.png', 'Expanded reference: RPE1'),
         ('organoid_branch1_boxplot.png', 'Expanded reference: organoid branch 1'),

@@ -88,6 +88,9 @@
       "cellDancer": "artifact://velocity/results/celldancer/celldancer_DentateGyrus_lamanno.h5ad",
       "scVelo_dyn": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
       "veloVI": "artifact://velocity/results/veloVI/veloVI_DentateGyrus_lamanno_all.h5ad"
+    },
+    "sha256_by_method": {
+      "scVelo_dyn": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608"
     }
   },
   "status_counts": {

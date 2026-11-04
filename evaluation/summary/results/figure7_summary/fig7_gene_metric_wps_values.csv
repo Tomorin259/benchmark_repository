@@ -1,7 +1,7 @@
 Figure7_Method,Source_Method_Key,Real_CBDir_mean_plus_1,Real_CBDir_SD,Real_CBDir_n_datasets,Real_CBDir_n_gene_rows,Sim_CBDir_mean_plus_1,Sim_CBDir_n_scenarios,Sim_CosSim_mean_plus_1,Sim_CosSim_n_scenarios,Kinetic_Spearman_alpha_mean_plus_1,Kinetic_Spearman_alpha_n_systems,Kinetic_Spearman_alpha_n_gene_rows,Kinetic_Spearman_gamma_mean_plus_1,Kinetic_Spearman_gamma_n_systems,Kinetic_Spearman_gamma_n_gene_rows
 scVelo_deterministic,,,,,,,,,,,,,,,
 scVelo_stochastic,,,,,,,,,,,,,,,
-scVelo_dynamic,scVelo_dyn,1.0425,0.0813,7.0,59.0,1.4618,3,1.6899,3,,,,,,
+scVelo_dynamic,scVelo_dyn,1.0509,0.0615,7.0,59.0,1.4618,3,1.6899,3,,,,,,
 MultiVelo (RNA_only),MultiVelo,1.0565,0.1088,7.0,59.0,1.5640,3,1.8447,3,,,,,,
 UniTVelo,UniTVelo,1.1627,0.1189,7.0,59.0,1.2751,3,1.3899,3,,,,,,
 UniTVelo(mode2),,,,,,,,,,,,,,,

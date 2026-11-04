@@ -3,13 +3,13 @@
   "figure": "Supplementary Figure 10",
   "assembly": {
     "path": "figures/assembly/suppfig10/suppfig10.pptx",
-    "sha256": "2dabe665e2edbacf6609e9b660a456281c914f5bdbaf315e4624b700f3271f0b"
+    "sha256": "fcdfca26f1db88a4b16ed1b0f74519ec8bee67d5cc439e23f1c0a3ea8bcc9be0"
   },
-  "pending_pdf_export": false,
+  "pending_pdf_export": true,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "3c04acdcce430a0b84ade82d6943de5b2499306d729ebfadfb00f05585b97453"
+      "sha256": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0"
     },
     {
       "path": "ensemble/results/scores.csv",
@@ -20,12 +20,12 @@
     {
       "panel": "A",
       "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.svg",
-      "sha256": "4ebf7b02876ab94a1e55067dfbaf60044839c0b16fc24e3a292c8d5391a78f4b"
+      "sha256": "369700c82cf87e283c6a41adbadd097b8e2f51976bb574c1c1c1d45fb8ef4634"
     },
     {
       "panel": "B",
       "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.svg",
-      "sha256": "9aeb1ec47d810cb509f4e8018b63f873949a4c40d91f58447ab83a5ce6d58ab5"
+      "sha256": "ec651193a151a2d41ef10ab54de389b1195a3d02ca14d343bbd752df175d6134"
     }
   ],
   "export": {
@@ -59,7 +59,7 @@
   },
   "verification": {
     "slide_layout_xml_unchanged": true,
-    "final_pdf_export_verified": true,
+    "final_pdf_export_verified": false,
     "cropped_pdf_content_stream_unchanged": true,
     "source_panels_checked": 2
   },
@@ -73,7 +73,7 @@
   "output": {
     "path": "figures/suppFigTen.pdf",
     "sha256": "3170531492ce26fd8faab7fefe3f5a39b0afd8d266e0e8fe4784b3f59bc8aad6",
-    "status": "author_exported_cropped_pdf"
+    "status": "previous_author_export_pending_refresh"
   },
   "pending_material_assembly": false,
   "author_export": {
@@ -90,5 +90,7 @@
     ],
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
-  }
+  },
+  "exported_from_assembly_sha256": "2dabe665e2edbacf6609e9b660a456281c914f5bdbaf315e4624b700f3271f0b",
+  "previous_pdf_note": "Retained PDF predates the updated editable assembly; new author export pending."
 }

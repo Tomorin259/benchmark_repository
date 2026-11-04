@@ -2,7 +2,7 @@
   "panels": [
     {
       "source": "figures/assembly/suppfig09/cell_panel_01_consistency.png",
-      "sha256": "32f6f6db1b838ad2641fc7b9efcc519ba069df0851aa3d3bfaf2d66afe7b74b5",
+      "sha256": "72ba8f45d8ee2864559d4963ddcbe4e5b117e61910115709fae26aef0fd38aae",
       "frame_inches": [
         0.0,
         -0.00027,
@@ -13,7 +13,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_02_iccoh.png",
-      "sha256": "86324f361f7c7184a807f6058d198cb325cd6375bb59b9ab7f7beea2d454d6ef",
+      "sha256": "4adb01d6d6ac8e91703ce103628eed81cf7312cc41482f4c445fc4af50332793",
       "frame_inches": [
         2.5,
         -0.00027,
@@ -24,7 +24,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_03_cbdir.png",
-      "sha256": "03dc35a7f5228d4edd0348b3e9fedb7bc9572eb0139e4f9cdab923072eda3ed8",
+      "sha256": "4ef11440a369e12abf833b6a3982efff2c7293b0c481c4b9df707ea4cdac928e",
       "frame_inches": [
         5.0,
         0.000279,
@@ -35,7 +35,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_04_transcosine.png",
-      "sha256": "eac7cef85605c9e9ddd0db07e32a291db620e04b7b880c6eb8db9f298fdd0e59",
+      "sha256": "1fb98155be3beebe2f27d3262837c88c1d7773ca8fbe4651e739c2e4e14e39c1",
       "frame_inches": [
         0.0,
         2.109104,
@@ -46,7 +46,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_05_batc.png",
-      "sha256": "0abcd3653e51cc11c58556589e3c6c75943eada300e2d4bb5a6ddadc0c0d7412",
+      "sha256": "3400460b04e111f7a80cdf84200eccafd7d40ad9d691a6fa428c77f64057b1e6",
       "frame_inches": [
         2.5,
         2.109104,
@@ -72,9 +72,9 @@
     7.5,
     10.830556
   ],
-  "reproduction_boundary": "The retained editable assembly and PDF identify the author export. Prepared panel sources await author assembly and PDF export.",
+  "reproduction_boundary": "Updated editable assembly contains current panels; retained previous PDF awaits author export.",
   "assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "assembly_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
   "pending_pdf_export": true,
   "user_export_pdf_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
   "user_export_source_pdf_sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
@@ -85,6 +85,6 @@
     779.8
   ],
   "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
-  "pending_ppt_assembly": true,
+  "pending_ppt_assembly": false,
   "exported_from_revision": "128e5af8b60c1793d02637a3294ccbb41f32eea5"
 }

@@ -1,15 +1,14 @@
 {
   "generator": "evaluation/cell/plot_cell_stream_panels.py",
-  "generator_sha256": "e719536b84105cc1cb3cd4a111319d304f1ed1ee8dfd990e22a96be6d12504ad",
+  "generator_sha256": "d0987b4674c914cd43338f4552fbf2d3c4b6f599cd8f3dd5501872ef80e583ce",
   "source_data_arrays": {
-    "main_figures/Figure_2/A_gastrulation_C04_stream.npz": "6e2f6e28924ddb6254033c064bcdd8df41dc91b72f7a20be8f1dadb82706d7a1",
-    "main_figures/Figure_2/B_DentateGyrus_lamanno_C04_stream.npz": "95a928cc101e82c44af3720b442eab2e9ed34f77409b416e6371870dfadb84bd"
+    "main_figures/Figure_2/A_gastrulation_C04_stream.npz": "dd9ff4fe6067b7a992655d3d15a7f8203f697494cc307c0c1e6a97285a0de20a",
+    "main_figures/Figure_2/B_DentateGyrus_lamanno_C04_stream.npz": "febd3c4be71c95f54b3fc50ba8e60dbe7483b2dc04612aaeb45ea25438262991"
   },
   "retained_real_stream_panels": {
     "evaluation/cell/figures/references/gastrulation.png": "2549a60a67975711cc6bfc25ac055f7feb32aa5a2cb77d348ce956aee1a5d774",
     "evaluation/cell/streams/gastrulation/scvelo_deterministic.png": "1645a4b8e1d07fe74ae28b5a7393bc2c02f45de65863db796d2fc660788add2e",
     "evaluation/cell/streams/gastrulation/scvelo_stochastic.png": "5031dfdfc0cf2d3ce7d6e9c3775aa59a27124b2aff00469b6e949907be9304d7",
-    "evaluation/cell/streams/gastrulation/scvelo_dynamic.png": "2d7e78d265d064e270b92c00d61efd8416056c0462608792165d13e3718c4cc4",
     "evaluation/cell/streams/gastrulation/unitvelo.png": "85a1926fa603e19ac1d89d74e813255a7b9e75d82de0f75942c20798df8ef186",
     "evaluation/cell/streams/gastrulation/unitvelo_mode2.png": "abee3c31e54ae2244b1330ac257a620a3015e70f5f927ba510c7885a056534a6",
     "evaluation/cell/streams/gastrulation/dynamo.png": "e98441ac25687a412530158f650c2690c764bf2831a27e8da651fd1de31f6b7b",
@@ -29,7 +28,6 @@
     "evaluation/cell/figures/references/DentateGyrus_lamanno.png": "852953546e032baea80638a2fea73b4236700e1f774ff84a2df026fc749a7851",
     "evaluation/cell/streams/DentateGyrus_lamanno/scvelo_deterministic.png": "04eb76a65cd71aa9b808d144ae197674a889673b994bfdb06051ad7cc46e856d",
     "evaluation/cell/streams/DentateGyrus_lamanno/scvelo_stochastic.png": "d0430da1057d3a6e7102487f11fefb9e82a672761e192642f5010131836ebe7a",
-    "evaluation/cell/streams/DentateGyrus_lamanno/scvelo_dynamic.png": "f9849fa195b3290b92c7172e15f07d99e4f192de9a7df6b959328093d9db4508",
     "evaluation/cell/streams/DentateGyrus_lamanno/unitvelo.png": "e70ab529a4fe6624f915bdeedc3270e051a2532d6d5a63ac7c6ddf3ff06e877b",
     "evaluation/cell/streams/DentateGyrus_lamanno/unitvelo_mode2.png": "c504092f3330559f41d3325594318c97f93eddf762dcb692138f4e0137fff64a",
     "evaluation/cell/streams/DentateGyrus_lamanno/dynamo.png": "885b2209aa8d3d193e2e9d9696cdd931928d91a1ef107528168263dc04c2159d",
@@ -46,6 +44,24 @@
     "evaluation/cell/streams/DentateGyrus_lamanno/deepvelo2022.png": "6981cd3aafaf295b7fad1b87335ad3ff2e06e70ff2d8e2c14329489423344c88",
     "evaluation/cell/streams/DentateGyrus_lamanno/graphvelo_scv.png": "7a7a67d6c5ae1fb463008a4afbffc13ecb3ed9bf0f2bf0f0f137a69f77a1b3c5",
     "evaluation/cell/streams/DentateGyrus_lamanno/graphvelo_dynamo.png": "dcc5ca5950272d9b96269d742a49c3e4e177efa3c8f70a4c4242aab219faf6c0"
+  },
+  "native_real_stream_sources": {
+    "gastrulation/scvelo_dynamic": {
+      "path": "velocity:results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+      "sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81"
+    },
+    "gastrulation/multivelo": {
+      "path": "velocity:results/multivelo/cell/real/multivelo_gastrulation.h5ad",
+      "sha256": "2af5534475ee328df0e7298a6a28367aafcdd09ca180c6db1341cf53c3c2a8bd"
+    },
+    "DentateGyrus_lamanno/scvelo_dynamic": {
+      "path": "velocity:results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
+      "sha256": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608"
+    },
+    "DentateGyrus_lamanno/multivelo": {
+      "path": "velocity:results/multivelo/cell/real/multivelo_DentateGyrus_lamanno.h5ad",
+      "sha256": "3f85268ecfda88946f6d47dfc400bbc1de4ea026181ca9a11ad0cad60ce38a2b"
+    }
   },
   "real_montage_geometry": {
     "gastrulation": {
@@ -71,15 +87,17 @@
   "native_output_selection": "evaluation/cell/native_outputs.tsv",
   "native_output_selection_sha256": "65f15a0c00285894c6a6332a685941d507e5834d5548c418384ac049d860d5e2",
   "score_tables": {
-    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
     "evaluation/cell/simulation/results/cell_metrics.csv": "b3d2715b1c0cf3215b94ba65dab1fc00c3ef176680a52c5900f89602d0d0c008"
   },
   "outputs": {
-    "gastrulation_20methods_3x7_BATC.png": "d2a46f8f1a7377d5074fc478b31217d4e8f0d8c4edfcc5f369cf678924f2f526",
-    "gastrulation_20methods_3x7_BATC.pdf": "5cdb06e5865526e2369f08908a5abb43824de4639e8ae75e97800c19c9349fc0",
-    "gastrulation_20methods_3x7_BATC.svg": "8d0665b96a3d84c6b25f5e6e8fc69a132a6649e818bddb292f1d866a53c1f03e",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.png": "1d0289c7eb8fddd377dfdd32606c37a03845480795555c1cb18d3cc4279fea7c",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.pdf": "da8bd47b04a6afe2a075bddbd68b790ec6f7264a08988de8bab3a1902c94536f",
-    "DentateGyrus_lamanno_20methods_3x7_CBDir.svg": "894a86a7597822afc4d240151d70f94000386ac6fb5ed88538570dbf8c80b863"
+    "gastrulation_20methods_3x7_BATC.png": "811e8ff7193d10de90de9a449c84e5970194dc037a68096c516627c31810e2db",
+    "gastrulation_20methods_3x7_BATC.pdf": "2d52ecae97a11ccbd8762663bf01fb31bb4a71052998fdad6131a7dd6f7c61dd",
+    "gastrulation_20methods_3x7_BATC.svg": "c0df50941eb01ae96aa891b3fc4bc59f3a2c50555942de36801574db5a56bf3b",
+    "gastrulation_scvelo_dynamic.png": "6e52affcea2aceeb4e914a0b3a3d51c2f8c36d7fc054d3d97718e0da02da1f43",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.png": "e7f87fc27890e2f7824833a9185357d912b61daccc730bc743e656174e9fc4e9",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.pdf": "e018f8eed22de7b6a41012606a756d000840121381485eb908cf988316c1bde8",
+    "DentateGyrus_lamanno_20methods_3x7_CBDir.svg": "cad6cc567fa7bab168f6413432079716b782d647425ee6fc904372331a7f1975",
+    "DentateGyrus_lamanno_scvelo_dynamic.png": "0b843fc0f93ca6c5bce63394d38d0e4add09b51c374a80928f2b42ed5653bf38"
   }
 }

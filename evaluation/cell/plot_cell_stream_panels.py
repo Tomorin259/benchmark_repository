@@ -73,7 +73,7 @@ def fit_font(draw, text, font_path, width, maximum):
     return ImageFont.truetype(font_path, size)
 
 
-def render_real_montage(dataset, inputs, scores, arrays, velocity, output):
+def render_real_montage(dataset, inputs, scores, arrays, velocities, output):
     """Use accepted common crops and tile geometry for the real-data examples."""
     from evaluation.cell.plots import METHOD_NAME_MAPPING
     layout = REAL_LAYOUTS[dataset]
@@ -97,17 +97,21 @@ def render_real_montage(dataset, inputs, scores, arrays, velocity, output):
     obj.obs["clusters"] = pd.Categorical(arrays["group"].astype(str), categories=palettes["categories"], ordered=True)
     obj.uns["clusters_colors"] = palettes["palette"]
     obj.obsm["X_umap"] = arrays["X_umap"]
-    ax = scv.pl.velocity_embedding_stream(obj, basis="umap", X=arrays["X_umap"], V=velocity,
-        color="clusters", palette=palettes["palette"], title="", legend_loc="none",
-        frameon=False, dpi=600, show=False)
-    buffer = io.BytesIO()
-    ax.figure.savefig(buffer, format="png", dpi=600)
-    plt.close(ax.figure)
-    buffer.seek(0)
-    native = Image.open(buffer)
-    native.load()
-    if native.size != (3600, 2400):
-        raise ValueError(f"Native stream source frame differs: {native.size}")
+    native = {}
+    for method, velocity in velocities.items():
+        ax = scv.pl.velocity_embedding_stream(obj, basis="umap", X=arrays["X_umap"], V=velocity,
+            color="clusters", palette=palettes["palette"], title="", legend_loc="none",
+            frameon=False, dpi=600, show=False)
+        buffer = io.BytesIO()
+        ax.figure.savefig(buffer, format="png", dpi=600)
+        plt.close(ax.figure)
+        buffer.seek(0)
+        native[method] = Image.open(buffer)
+        native[method].load()
+        if native[method].size != (3600, 2400):
+            raise ValueError(f"Native stream source frame differs: {method}/{native[method].size}")
+        if method == "scvelo_dynamic":
+            native[method].save(output.parent / f"{dataset}_scvelo_dynamic.png", dpi=(600, 600))
     canvas = Image.new("RGB", (layout["width"] // REAL_EXPORT_SCALE, layout["height"] // REAL_EXPORT_SCALE), "white")
     reference_path = ROOT / f"evaluation/cell/figures/references/{dataset}.png"
     with Image.open(reference_path) as reference:
@@ -131,7 +135,7 @@ def render_real_montage(dataset, inputs, scores, arrays, velocity, output):
         for i, (text, font, box) in enumerate(zip(texts, fonts, boxes)):
             draw.text(((width - box[2] + box[0]) // 2, top - box[1]), text, font=font, fill=(20, 20, 20) if i == 0 else (70, 76, 85))
             top += heights[i] + (gap if i == 0 else metric_gap)
-        source = native if row.operational_id == "multivelo" else Image.open(ROOT / f"evaluation/cell/streams/{dataset}/{row.operational_id}.png")
+        source = native[row.operational_id] if row.operational_id in native else Image.open(ROOT / f"evaluation/cell/streams/{dataset}/{row.operational_id}.png")
         if source.size != (3600, 2400):
             raise ValueError(f"Unexpected retained source frame: {row.operational_id}/{source.size}")
         cropped = source.crop(REAL_STREAM_CROP).convert("RGBA")
@@ -141,7 +145,7 @@ def render_real_montage(dataset, inputs, scores, arrays, velocity, output):
         tile.paste(panel, (0, title_height))
         canvas.paste(tile.resize((round(width / 3), round(cell_height / 3)), Image.Resampling.LANCZOS),
                      (round(positions[column] / 3), round(tile_row * (cell_height + REAL_ROW_GAP) / 3)))
-        if row.operational_id != "multivelo":
+        if row.operational_id not in native:
             source_path = ROOT / f"evaluation/cell/streams/{dataset}/{row.operational_id}.png"
             source_hashes[str(source_path.relative_to(ROOT))] = hashlib.sha256(source_path.read_bytes()).hexdigest()
             source.close()
@@ -150,7 +154,8 @@ def render_real_montage(dataset, inputs, scores, arrays, velocity, output):
     canvas.save(output.with_suffix(".pdf"), resolution=200)
     encoded = base64.b64encode(output.with_suffix(".png").read_bytes()).decode()
     output.with_suffix(".svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{canvas.width}px" height="{canvas.height}px" viewBox="0 0 {canvas.width} {canvas.height}"><image width="{canvas.width}" height="{canvas.height}" href="data:image/png;base64,{encoded}"/></svg>\n')
-    native.close()
+    for source in native.values():
+        source.close()
     del canvas, obj
     gc.collect()
     return source_hashes
@@ -189,6 +194,7 @@ def main():
     rendered = []
     sources = {}
     retained_panels = {}
+    native_sources = {}
     for dataset in args.dataset or list(CASES):
         scope, letter, folder, stem = CASES[dataset]
         module = ROOT / "evaluation/cell" / ("simulation" if scope == "simulation" else "")
@@ -196,14 +202,29 @@ def main():
         inputs = inputs[inputs.evaluation_dataset.eq(dataset)].sort_values("config_id")
         scores = pd.read_csv(module / "results/cell_metrics.csv").set_index(["dataset", "method"])
         if scope == "real":
-            row = next(r for r in inputs.itertuples(index=False) if r.operational_id == "multivelo")
             source = args.source_data_root / "main_figures/Figure_2" / f"{letter}_{dataset}_C04_stream.npz"
             sources[str(source.relative_to(args.source_data_root))] = hashlib.sha256(source.read_bytes()).hexdigest()
             with np.load(source, allow_pickle=False) as loaded:
                 arrays = {key: loaded[key] for key in loaded.files}
-            velocity = native_projection(row, arrays, args.artifact_root)
-            retained_panels.update(render_real_montage(dataset, inputs, scores, arrays, velocity, args.output_root / stem))
+            native_rows = [row for row in inputs.itertuples(index=False)
+                           if row.operational_id in {"scvelo_dynamic", "multivelo"}]
+            if len(native_rows) != 2:
+                raise ValueError(f"{dataset}: C03 and C04 native sources are required")
+            velocities = {row.operational_id: native_projection(row, arrays, args.artifact_root)
+                          for row in native_rows}
+            for row in native_rows:
+                path = args.artifact_root / row.result_path.removeprefix("velocity:")
+                digest = hashlib.sha256()
+                with path.open("rb") as handle:
+                    for block in iter(lambda: handle.read(1024 * 1024), b""):
+                        digest.update(block)
+                digest = digest.hexdigest()
+                if digest != row.sha256:
+                    raise ValueError(f"Native source changed: {dataset}/{row.operational_id}")
+                native_sources[f"{dataset}/{row.operational_id}"] = {"path": row.result_path, "sha256": digest}
+            retained_panels.update(render_real_montage(dataset, inputs, scores, arrays, velocities, args.output_root / stem))
             rendered.extend(stem + "." + suffix for suffix in ["png", "pdf", "svg"])
+            rendered.append(f"{dataset}_scvelo_dynamic.png")
             continue
         fig, axes = plt.subplots(1, 9, figsize=(18, 2.4))
         fig.subplots_adjust(left=.003, right=.997, bottom=.02, top=.78, wspace=.08)
@@ -245,6 +266,7 @@ def main():
         "generator_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "source_data_arrays": sources,
         "retained_real_stream_panels": retained_panels,
+        "native_real_stream_sources": native_sources,
         "real_montage_geometry": REAL_LAYOUTS,
         "real_shared_crop_pixels": list(REAL_STREAM_CROP),
         "real_uniform_export_scale": 1 / REAL_EXPORT_SCALE,

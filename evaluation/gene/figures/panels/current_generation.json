@@ -96,7 +96,7 @@
         "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
       },
       "phase_plot_version": "gene-phase-log1p-005-010-v1",
-      "display": "native arrays rendered afresh; no raster number overlays",
+      "display": "Historical generation identity retained for the remaining panels; C03 replacements are recorded separately.",
       "output_hashes": {
         "Anks1b_9methods_compare.png": "5341da321ac5b837518df186d9a1a29b92f18dd44d08342f44a817a2ca70f555",
         "Cacna1b_9methods_compare.png": "9a8f3bb87a54007b6327ff097cc0b883c1833d1da4aa6026a06d790b4cce81d9",
@@ -106,9 +106,12 @@
         "Rasgef1b_9methods_compare.png": "31514a28d61888cc6bf866eb4740025e9dc2cdcc7f858cb24686328aaf7cbc6a",
         "Slc17a6_9methods_compare.png": "b077bb594d37525f5552a6e4debb035d13a9130f6df08afcdd104d1e34eb4f3d",
         "Snap25_9methods_compare.png": "39c22276231bd3930f3a2d6683687972393692a5d9d58b8193bad2af836c7c08",
-        "Zfhx3_9methods_compare.png": "fd4ee31d88611e2b2463c57915d11a29568998fbc8f6c1086477def2b4576776",
-        "summary_cbdir.png": "d9a36ea27141b3a8116f2d4f3da15264690692ae91acc1a43e3cd4c3d7cf3480"
-      }
+        "Zfhx3_9methods_compare.png": "fd4ee31d88611e2b2463c57915d11a29568998fbc8f6c1086477def2b4576776"
+      },
+      "replacement_record": "evaluation/gene/figures/panels/c03_generation_retina.json",
+      "replacement_outputs": [
+        "summary_cbdir.png"
+      ]
     },
     "bonemarrow": {
       "case": "bonemarrow",
@@ -577,7 +580,7 @@
         "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
       },
       "phase_plot_version": "gene-phase-log1p-005-010-v1",
-      "display": "native arrays rendered afresh; no raster number overlays",
+      "display": "Historical generation identity retained for the remaining panels; C03 replacements are recorded separately.",
       "output_hashes": {
         "Ncald_9methods_compare.png": "b49d2942a72a19900a2180adeda5a7e70480bf852aa997738e0da37aa5e0f375",
         "Diaph3_9methods_compare.png": "61e3631cab7fb8b2c4634fa80ab616922f22436f893655ea0bcf62963c89d5e4",
@@ -586,9 +589,12 @@
         "Malat1_9methods_compare.png": "1f9fb4f1a577f6de3d96bb04c12f54c5c3138f94a57f46d23672677ef0800243",
         "Tubb3_9methods_compare.png": "5108b3481944bea16dbedf141223720c6bf904799191285e127c26a36f0bf3ff",
         "Plppr4_9methods_compare.png": "e0119755b6f52697c4accfb2035567f660518be1304299549e41d93c695f69e1",
-        "Mmd2_9methods_compare.png": "94630760b17169e6c7f7e217ad6392d33c1075a969f60dab297040e86d907ea8",
-        "summary_cbdir.png": "6061c40ccaf177a8e02cf61861451107b4f2dbbac27c7a05e8292fa0e97c73c5"
-      }
+        "Mmd2_9methods_compare.png": "94630760b17169e6c7f7e217ad6392d33c1075a969f60dab297040e86d907ea8"
+      },
+      "replacement_record": "evaluation/gene/figures/panels/c03_generation_dentate.json",
+      "replacement_outputs": [
+        "summary_cbdir.png"
+      ]
     },
     "branching": {
       "case": "branching",
@@ -916,20 +922,23 @@
         "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
       },
       "phase_plot_version": "gene-phase-log1p-005-010-v1",
-      "display": "native arrays rendered afresh; no raster number overlays",
+      "display": "Historical generation identity retained for the remaining panels; C03 replacements are recorded separately.",
       "output_hashes": {
         "Abcg2_9methods_compare.png": "811229323ea5d1b8580ea81a32f0076af441369b2712caaac449496014df4329",
         "Alas2_9methods_compare.png": "afcae952288e94c8ceda55c2c9126fb891abe0faef5cb58e5ecec493e240e32a",
         "Fech_9methods_compare.png": "824f0613cdeab49f85dcfa1d92318d72fe10032f41397f45b2aca6155221a6b0",
-        "Hba-x_9methods_compare.png": "c1f6a01bbb5c171dc00dbacf5c87b6e1dd97cfc1beadd86972e7bf4e05e46584",
-        "Hbb-bh1_9methods_compare.png": "812c71fd836ff89fbd8dfe1c493a37766e8b5bd21591310d69ef97bc40106bac",
-        "Hbb-y_9methods_compare.png": "53a219d5b7c06804b1b0e1ac864e2b97284671c59823a2062e3745d436c3e37b",
         "Hemgn_9methods_compare.png": "34c41aee9b7aa514710a52608998d8124d51cca420679503fb82035ca916e3dd",
         "Klf3_9methods_compare.png": "5dfd2e93d81e4ed1d372cd3c7b1aeea9f2e4fadd8045bc4c6fdf34fd8f70f541",
         "Mllt3_9methods_compare.png": "9ea0a5a01230a75fc198d5fd2961c1725becaa17f3b515c0f7be3994ddbabc37",
-        "Rhag_9methods_compare.png": "c8d6a17e4a3654fbcabf1c6cd5a01c351d0f085d1937fd14040c5bf0436a85a9",
-        "summary_cbdir.png": "37abd85fce9162e17dc57136afdcb4e9772e75eca04f46a507abcf6dd7e82bd4"
-      }
+        "Rhag_9methods_compare.png": "c8d6a17e4a3654fbcabf1c6cd5a01c351d0f085d1937fd14040c5bf0436a85a9"
+      },
+      "replacement_record": "evaluation/gene/figures/panels/c03_generation_gastrulation.json",
+      "replacement_outputs": [
+        "Hba-x_9methods_compare.png",
+        "Hbb-bh1_9methods_compare.png",
+        "Hbb-y_9methods_compare.png",
+        "summary_cbdir.png"
+      ]
     },
     "pancreas": {
       "case": "pancreas",
@@ -1148,5 +1157,19 @@
   },
   "selected_edges": "selected_edges/generation.json",
   "real_summaries": "real/cross_dataset/generation.json",
-  "historical_generation_retained": "provenance.json"
+  "historical_generation_retained": "provenance.json",
+  "c03_replacement_generations": {
+    "DentateGyrus_lamanno": {
+      "path": "evaluation/gene/figures/panels/c03_generation_dentate.json",
+      "sha256": "789b1e65b5212d8454cbd62ff540e673ba1227b564759f3b2cfe2f83804d8a34"
+    },
+    "retina": {
+      "path": "evaluation/gene/figures/panels/c03_generation_retina.json",
+      "sha256": "ff4426b5251aa400b67f3f3f30e49aaec1ffb90beeb054b1391b2cc7596573b0"
+    },
+    "gastrulation": {
+      "path": "evaluation/gene/figures/panels/c03_generation_gastrulation.json",
+      "sha256": "97770390e2d3ca3175c524894fc31024eee1c7f7ec30cabf293c0b2af8af51df"
+    }
+  }
 }

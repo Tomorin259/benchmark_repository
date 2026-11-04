@@ -24,7 +24,7 @@ DentateGyrus_lamanno,graphvelo_scv,transcosine,True,1.570650992599454e-08
 DentateGyrus_lamanno,scvelo_deterministic,highdim_cbdir,True,0.0
 DentateGyrus_lamanno,scvelo_deterministic,transcosine,True,2.840416207794405e-09
 DentateGyrus_lamanno,scvelo_dynamic,highdim_cbdir,True,0.0
-DentateGyrus_lamanno,scvelo_dynamic,transcosine,True,1.67787626570437e-08
+DentateGyrus_lamanno,scvelo_dynamic,transcosine,True,3.1019092572304174e-09
 DentateGyrus_lamanno,scvelo_stochastic,highdim_cbdir,True,0.0
 DentateGyrus_lamanno,scvelo_stochastic,transcosine,True,1.3302121126823607e-08
 DentateGyrus_lamanno,unitvelo,highdim_cbdir,True,0.0
@@ -60,7 +60,7 @@ bonemarrow,graphvelo_scv,transcosine,True,8.016214969597257e-09
 bonemarrow,scvelo_deterministic,highdim_cbdir,True,0.0
 bonemarrow,scvelo_deterministic,transcosine,True,1.3481298882789261e-08
 bonemarrow,scvelo_dynamic,highdim_cbdir,True,0.0
-bonemarrow,scvelo_dynamic,transcosine,True,1.3177562790955832e-09
+bonemarrow,scvelo_dynamic,transcosine,True,6.760752374601608e-10
 bonemarrow,scvelo_stochastic,highdim_cbdir,True,0.0
 bonemarrow,scvelo_stochastic,transcosine,True,5.744753964198601e-09
 bonemarrow,unitvelo,highdim_cbdir,True,0.0
@@ -132,7 +132,7 @@ dentategyrus,graphvelo_scv,transcosine,True,6.24095475298958e-09
 dentategyrus,scvelo_deterministic,highdim_cbdir,True,0.0
 dentategyrus,scvelo_deterministic,transcosine,True,2.6354863569277853e-09
 dentategyrus,scvelo_dynamic,highdim_cbdir,True,0.0
-dentategyrus,scvelo_dynamic,transcosine,True,8.301911713637367e-09
+dentategyrus,scvelo_dynamic,transcosine,True,1.5380888312988006e-08
 dentategyrus,scvelo_stochastic,highdim_cbdir,True,0.0
 dentategyrus,scvelo_stochastic,transcosine,True,5.697745122934528e-09
 dentategyrus,unitvelo,highdim_cbdir,True,0.0
@@ -168,7 +168,7 @@ forebrain,graphvelo_scv,transcosine,True,1.3144174387802465e-08
 forebrain,scvelo_deterministic,highdim_cbdir,True,0.0
 forebrain,scvelo_deterministic,transcosine,True,2.183595082527745e-09
 forebrain,scvelo_dynamic,highdim_cbdir,True,0.0
-forebrain,scvelo_dynamic,transcosine,True,1.699069329674785e-09
+forebrain,scvelo_dynamic,transcosine,True,9.046860482975205e-10
 forebrain,scvelo_stochastic,highdim_cbdir,True,0.0
 forebrain,scvelo_stochastic,transcosine,True,9.081978780134392e-09
 forebrain,unitvelo,highdim_cbdir,True,0.0
@@ -204,7 +204,7 @@ gastrulation,graphvelo_scv,transcosine,True,4.901352379516055e-10
 gastrulation,scvelo_deterministic,highdim_cbdir,True,0.0
 gastrulation,scvelo_deterministic,transcosine,True,7.930495427022066e-10
 gastrulation,scvelo_dynamic,highdim_cbdir,True,0.0
-gastrulation,scvelo_dynamic,transcosine,True,1.997873436132558e-09
+gastrulation,scvelo_dynamic,transcosine,True,3.1401308359102487e-09
 gastrulation,scvelo_stochastic,highdim_cbdir,True,0.0
 gastrulation,scvelo_stochastic,transcosine,True,9.309699233739366e-09
 gastrulation,unitvelo,highdim_cbdir,True,0.0
@@ -276,7 +276,7 @@ mousebrain,graphvelo_scv,transcosine,True,2.035026813729246e-09
 mousebrain,scvelo_deterministic,highdim_cbdir,True,0.0
 mousebrain,scvelo_deterministic,transcosine,True,8.804977580378903e-10
 mousebrain,scvelo_dynamic,highdim_cbdir,True,0.0
-mousebrain,scvelo_dynamic,transcosine,True,3.181673563501519e-09
+mousebrain,scvelo_dynamic,transcosine,True,1.222181417182e-08
 mousebrain,scvelo_stochastic,highdim_cbdir,True,0.0
 mousebrain,scvelo_stochastic,transcosine,True,3.616421703767081e-09
 mousebrain,unitvelo,highdim_cbdir,True,0.0
@@ -312,7 +312,7 @@ neuron,graphvelo_scv,transcosine,True,1.154498230349077e-08
 neuron,scvelo_deterministic,highdim_cbdir,True,0.0
 neuron,scvelo_deterministic,transcosine,True,1.045186437398371e-08
 neuron,scvelo_dynamic,highdim_cbdir,True,0.0
-neuron,scvelo_dynamic,transcosine,True,6.393729601317233e-09
+neuron,scvelo_dynamic,transcosine,True,5.067488956234101e-09
 neuron,scvelo_stochastic,highdim_cbdir,True,0.0
 neuron,scvelo_stochastic,transcosine,True,1.3132357923328897e-08
 neuron,unitvelo,highdim_cbdir,True,0.0
@@ -348,7 +348,7 @@ organoid,graphvelo_scv,transcosine,True,4.8231094673667485e-09
 organoid,scvelo_deterministic,highdim_cbdir,True,0.0
 organoid,scvelo_deterministic,transcosine,True,5.166874844642066e-10
 organoid,scvelo_dynamic,highdim_cbdir,True,0.0
-organoid,scvelo_dynamic,transcosine,True,5.9004761632230895e-09
+organoid,scvelo_dynamic,transcosine,True,2.8621643388682116e-08
 organoid,scvelo_stochastic,highdim_cbdir,True,0.0
 organoid,scvelo_stochastic,transcosine,True,3.284995053753903e-10
 organoid,unitvelo,highdim_cbdir,True,0.0
@@ -384,7 +384,7 @@ pancreas,graphvelo_scv,transcosine,True,3.623681921194333e-08
 pancreas,scvelo_deterministic,highdim_cbdir,True,0.0
 pancreas,scvelo_deterministic,transcosine,True,7.528824438884918e-09
 pancreas,scvelo_dynamic,highdim_cbdir,True,0.0
-pancreas,scvelo_dynamic,transcosine,True,1.4282582033731117e-08
+pancreas,scvelo_dynamic,transcosine,True,2.180615243929651e-09
 pancreas,scvelo_stochastic,highdim_cbdir,True,0.0
 pancreas,scvelo_stochastic,transcosine,True,1.101451502227846e-08
 pancreas,unitvelo,highdim_cbdir,True,0.0
@@ -420,7 +420,7 @@ retina,graphvelo_scv,transcosine,True,1.9226625180834844e-08
 retina,scvelo_deterministic,highdim_cbdir,True,0.0
 retina,scvelo_deterministic,transcosine,True,1.0404676564768067e-09
 retina,scvelo_dynamic,highdim_cbdir,True,0.0
-retina,scvelo_dynamic,transcosine,True,2.3650360059246367e-08
+retina,scvelo_dynamic,transcosine,True,2.4692755618005435e-09
 retina,scvelo_stochastic,highdim_cbdir,True,0.0
 retina,scvelo_stochastic,transcosine,True,4.327963182282346e-09
 retina,unitvelo,highdim_cbdir,True,0.0
@@ -456,7 +456,7 @@ rpe1,graphvelo_scv,transcosine,True,8.755861591325242e-09
 rpe1,scvelo_deterministic,highdim_cbdir,True,0.0
 rpe1,scvelo_deterministic,transcosine,True,7.839474014392778e-09
 rpe1,scvelo_dynamic,highdim_cbdir,True,0.0
-rpe1,scvelo_dynamic,transcosine,True,6.579334174694473e-09
+rpe1,scvelo_dynamic,transcosine,True,4.566420019891382e-10
 rpe1,scvelo_stochastic,highdim_cbdir,True,0.0
 rpe1,scvelo_stochastic,transcosine,True,1.6902067800916853e-09
 rpe1,unitvelo,highdim_cbdir,True,0.0

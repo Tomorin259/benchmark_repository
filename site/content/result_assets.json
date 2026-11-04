@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "sources": {
-    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
     "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
-    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "3484b0f59f834d296b87cf4017ac3acc4a76f9531d28a1a36ed6db94fa6e89b9",
+    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "34864df41a0c88a809371136e89da72bcc1514b20558a70b12d80c1d87de4b20",
     "evaluation/cell/simulation/results/cross_level_summary.csv": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6",
-    "figures/fig4_composite_manifest.json": "ba95ba1be598eb5b0daddde2b1f321d02f19044b27d2fbc83c957b506aad2141",
+    "figures/fig4_composite_manifest.json": "42e238d7f46aad0f52bd3850cf3274399816a055a2e5f6ebb517ac472dd01f92",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
@@ -15,27 +15,27 @@
     {
       "id": "cell-consistency",
       "path": "evaluation/cell/figures/fig2_cell_metric_consistency.png",
-      "sha256": "2b1e897409ad0c8f2d212d674ae01e26721876a7c85a81dc635da99bdf701986"
+      "sha256": "ae30747fa41be6536c35cb787724aff669b3caadc86daec748f1d8bab7b0f003"
     },
     {
       "id": "cell-iccoh",
       "path": "evaluation/cell/figures/fig2_cell_metric_iccoh.png",
-      "sha256": "964bf8c24070b3a10ef0739228cd095330b39c1960bed5203ca0bd6554b11e60"
+      "sha256": "f76d68a01a0bcc4f674da3c1b74c514fe5f6b2645f0820edb5efa7b697586c36"
     },
     {
       "id": "cell-cbdir",
       "path": "evaluation/cell/figures/fig2_cell_metric_cbdir.png",
-      "sha256": "ddafdf2e02c691282a3be231b38fe769d772f0a1d69072c072f2023354a17406"
+      "sha256": "7a250bb1c20643076df259f9a26f3d61518a40657cd2d22ee0e50622b82c025c"
     },
     {
       "id": "cell-transcosine",
       "path": "evaluation/cell/figures/fig2_cell_metric_transcosine.png",
-      "sha256": "34f814d0f85c344e271127de70ebd6d1d4d821826adc5b6dc74b1d8f58bbc873"
+      "sha256": "e4c35c00e4332bde69724964f084720c157568e8d8a06200692303bd443e1e95"
     },
     {
       "id": "cell-batc",
       "path": "evaluation/cell/figures/fig2_cell_metric_batc.png",
-      "sha256": "bddfd73f90874c99c6e0c64a02cb967e93df4a800bc44a5b71deb0ad21c790a5"
+      "sha256": "1413660f2690ae51d3358d2b0dd214e974dbc79c33732e2c6ca3cc358080c42f"
     },
     {
       "id": "simulation-cross-level",
@@ -52,14 +52,14 @@
     {
       "id": "case-ncald-immgranule",
       "path": "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png",
-      "sha256": "ebc06e9fcc5cca031f3927b64514a8fe3edb6923bcc1f4425916173e095e441d",
+      "sha256": "5bde89447daabbdb1d8434759b4033749fd7b2aab79810bdd48a65847cde6888",
       "figure": "fig3",
       "panel": "B"
     },
     {
       "id": "case-fech-erythroid",
       "path": "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png",
-      "sha256": "daa31fee056a6ce6fe5fe927f610ade8e062cebd36ba8d5a4b78eae10568de09",
+      "sha256": "7cda7a87b449c2ec34a5fca023ac309a10d4d95c8966152d64439bf28fefd0d1",
       "figure": "fig3",
       "panel": "C"
     },

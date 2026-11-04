@@ -4,7 +4,7 @@
       {
         "method": "scVelo_dyn",
         "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
-        "sha256": "4381ad967155156281ce63d7500d1643c90645ce5387b3dcd8b5aa5e576b29df",
+        "sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81",
         "velocity_s_key": "velocity",
         "velocity_u_key": "velocity_u",
         "label_alignment": "cell_id"
@@ -78,7 +78,7 @@
       {
         "method": "scVelo_dyn",
         "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_DentateGyrus_lamanno.h5ad",
-        "sha256": "aeca474c29b111de30e1df3a30f533f0807941f46c30580a55b06eacbb4763f5",
+        "sha256": "f26fc7c2dbfd7574c1cd4935500996792c885d68f46b6bcc95ec52b3f1247608",
         "velocity_s_key": "velocity",
         "velocity_u_key": "velocity_u",
         "label_alignment": "cell_id"
@@ -224,28 +224,110 @@
     ]
   },
   "sources": {
-    "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
-    "evaluation/gene/results/selected_edge_cell_controls.csv": "b31f62fae28434b65e0ac470a0d51cfdfaa0fa75c66839831a891b37c2f3338d",
+    "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "152a59ec43abeb72ed90e45d2cbb9e4928ee41064cc71d1b312ca603dd4300b6",
+    "evaluation/gene/results/selected_edge_cell_controls.csv": "8a3f25b9520275216d1bf74b58c47a8dea978091f6d3c2d4bca8bdf864bf2d6d",
     "evaluation/gene/plot_selected_edge_panels.py": "946b11a54cceb526f6347f30849d49da229f0a3d263ebb4d769305552e32f8a2"
   },
   "display": "native method coordinates; selected-cluster phase portraits; original six-plus-three layout",
   "scoring": "Reference-30 Gene direction and transition-specific Cell CBDir / BATC candidate means",
-  "redraw": "complete render from arrays and tables; no numerical overlays on historical images",
+  "redraw": "Fech and Ncald rendered from current arrays and score tables; FAM111A retained as recorded.",
   "outputs": {
-    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.svg": "ee207f5da5c2f238bb5bc53f789e5c14ce9c17ecff7f057efc4610a788bbc675",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.svg": "058d7185ae56023e8c2a28e56e2af6fd4e589d9110e08794c7d534bab8b86aad",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_source_data.csv": "22ba7257a4e2facc279150828673e01e9542a42d1da4439848057145afe6b88d",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_plotted_scores.csv": "5837d3eca4915e822924bc6496ad7346b562a285bd3580fb06fbd0d24bb87222",
-    "evaluation/gene/figures/panels/selected_edges/Fech_source_data.csv": "75623d79b244b219058c02647da79d528fd795eac4c31c241b5d00126915aa2c",
-    "evaluation/gene/figures/panels/selected_edges/Ncald_source_data.csv": "5f40d615a3148ed08db5bbed444ea687fadd97de30bde078e90f505d9512587e",
-    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png": "ebc06e9fcc5cca031f3927b64514a8fe3edb6923bcc1f4425916173e095e441d",
-    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.pdf": "dffc54be5218fb4be0c1bc0f77451c3d72bf37039e92699a30362deaa9c62502",
-    "evaluation/gene/figures/panels/selected_edges/Ncald_plotted_scores.csv": "a3feb1831cc09080ed130674ef52da4e3445583a19f7b25bb8717a16da25c809",
+    "evaluation/gene/figures/panels/selected_edges/Fech_source_data.csv": "231559a6a31782881c262b1949515a0e075569327bf9f0f55054a7c5d0e70028",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_source_data.csv": "c97a35a18cae01b09d176099dd5f20405eaafa1d82c933d2afb17450aa983ea9",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.png": "5bde89447daabbdb1d8434759b4033749fd7b2aab79810bdd48a65847cde6888",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.pdf": "5f01703a848dc5162d4777e69929b0d073017e8d8f1cc78cde27dbe22e2a059f",
+    "evaluation/gene/figures/panels/selected_edges/Ncald_plotted_scores.csv": "83a095b1377ec3033712e547f3064bf83c9fa0af027c8875d58e224be8d8539a",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.png": "be4577173e97c574c36628fb10fdb40f75ce73b165fac3caa47d87200739e6c9",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.pdf": "1c291ae5b8a89ab09e598df1fe86490d4e1d7730e615fd84b6bf0681f20816e8",
-    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.pdf": "e0fb6ad262a6d4a02bf0659ead21f845f1bf6dd0329a51332fc76fd9ef9e20f7",
-    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png": "daa31fee056a6ce6fe5fe927f610ade8e062cebd36ba8d5a4b78eae10568de09",
-    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.svg": "25d969de0b71247e30ea9b2f8d1f095db86ddc3f6cc177bb24be5de65e48dc75",
-    "evaluation/gene/figures/panels/selected_edges/Fech_plotted_scores.csv": "5df1248f32b9c3243b3220aa08799c8eb0ecade366936344116492c8d9405f4a",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.pdf": "c9f4a867c2b2cb538bf69192ea4ee4a5ca7fa11cd3bb1b7299bb81778b2aec46",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.png": "7cda7a87b449c2ec34a5fca023ac309a10d4d95c8966152d64439bf28fefd0d1",
+    "evaluation/gene/figures/panels/selected_edges/Fech_matched_edge.svg": "b56341ddf3554e46f9b4b6038631ac0065a337160ecda11d97f16c1045631a05",
+    "evaluation/gene/figures/panels/selected_edges/Fech_plotted_scores.csv": "db3da1f3c9555aad6a0276720e25de4be9d5fe3c74db356e2025207f93f3bfbf",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_matched_edge.svg": "2d9332ca44efd46c37037e082b19d8504a4ec74c28a8d0feb94ed989a163aa17"
+  },
+  "retained_fam111a_generation": {
+    "inputs": [
+      {
+        "method": "scVelo_dyn",
+        "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_capo_pre.h5ad",
+        "sha256": "da6cc1b99431895cdac8e924d5f6902905fd5bcda87d5ec5ba4d6b160e658471",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "MultiVelo",
+        "source": "artifact://velocity/results/multivelo/multivelo_capo_pre.h5ad",
+        "sha256": "9f96a874418ae416803dcff5f3550d29634bd9031979b846a769535dd7ab583b",
+        "velocity_s_key": "velo_s",
+        "velocity_u_key": "velo_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "UniTVelo",
+        "source": "artifact://velocity/results/unitvelo/results_with_vu/unitvelo_capo_pre_with_velocity_u_mode1.h5ad",
+        "sha256": "1487de258df7ac912148c0b6f7f2797f7c3fbd3039cdf5b3c937ee5952c762d4",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "TIvelo",
+        "source": "artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad",
+        "sha256": "7e7e74dcf6d00456bea37a32cdc7759b0dda98b3ee95b2a7c535edb9c2681ddb",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "veloVI",
+        "source": "artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad",
+        "sha256": "1285f2cd3274629a8a6457ebc45bead472e2d6d77f5335fd5b217ac8195835f9",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "cellDancer",
+        "source": "artifact://velocity/results/celldancer/celldancer_capo_pre.h5ad",
+        "sha256": "fc3352da73828b3c3997b635727cc3bf96c222639d25b0cb7f53a8542836bb04",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo",
+        "source": "artifact://velocity/results/deepvelo/results_with_vu/deepvelo_capo_pre.h5ad",
+        "sha256": "d6b55409d1a47c0c0f21e7bf4c479e7d1fe83f9e6f471b0aaa621c85acb80e37",
+        "velocity_s_key": "velocity",
+        "velocity_u_key": "velocity_unspliced",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "DeepVelo_scv",
+        "source": "artifact://velocity/results/deepvelo2022/deepvelo_capo_pre_recon.h5ad",
+        "sha256": "f7ae8ff8272d355655511b6b64d679955030f41d7bbd6faa541f24f801d235ec",
+        "velocity_s_key": "velocity_reconstructed",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      },
+      {
+        "method": "Graphvelo_scv",
+        "source": "artifact://velocity/results/graphvelo_scv/graphvelocapo_pre.h5ad",
+        "sha256": "121a1447b7d5b11363ce23c1d4c7d8a9cb94e26964344e47f5e51cdef88d1060",
+        "velocity_s_key": "velocity_gv",
+        "velocity_u_key": "velocity_u",
+        "label_alignment": "cell_id"
+      }
+    ],
+    "sources": {
+      "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv": "e206e09a96ff77a2c16d571099f7a0a9c821647a7ce96788a00740be4775522a",
+      "evaluation/gene/results/selected_edge_cell_controls.csv": "b31f62fae28434b65e0ac470a0d51cfdfaa0fa75c66839831a891b37c2f3338d",
+      "evaluation/gene/plot_selected_edge_panels.py": "946b11a54cceb526f6347f30849d49da229f0a3d263ebb4d769305552e32f8a2"
+    },
+    "note": "FAM111A panel retained; its displayed values are unchanged."
   }
 }

@@ -244,7 +244,17 @@ class SiteExportTests(unittest.TestCase):
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
         self.assertEqual(len(tables), 17)
-        self.assertEqual(len(figures), 4)
+        figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
+        figure7_path = figure_manifest['output']['path']
+        expected_figures = {
+            'evaluation/kinetics_recovery/figures/expanded_reference/rpe1_boxplot.png',
+            'evaluation/kinetics_recovery/figures/expanded_reference/organoid_branch1_boxplot.png',
+            'evaluation/kinetics_recovery/figures/expanded_reference/organoid_branch2_boxplot.png',
+        }
+        if not figure_manifest.get('pending_pdf_export', False):
+            expected_figures.add(figure7_path)
+        self.assertEqual(len(figures), len(expected_figures))
+        self.assertEqual({row['path'] for row in figures}, expected_figures)
         self.assertEqual(len(metadata), 13)
         audit = self.payload['downloads']['audit']
         analyses = self.payload['downloads']['analyses']
@@ -332,8 +342,21 @@ class SiteExportTests(unittest.TestCase):
         members = self.payload['result_members']
         self.assertEqual(len(packages), 339)
         self.assertEqual(len(members), 388)
-        self.assertEqual(sum(row['bytes'] for row in packages), 150607413075)
-        self.assertEqual(sum(row['member_bytes'] for row in members), 253295202347)
+        with (ROOT / 'data/result_package_manifest.tsv').open() as handle:
+            source_packages = {row['package_id']: row for row in csv.DictReader(handle, delimiter='\t')}
+        with (ROOT / 'data/result_member_manifest.tsv').open() as handle:
+            source_members = {row['object_id']: row for row in csv.DictReader(handle, delimiter='\t')}
+        self.assertEqual({row['package_id'] for row in packages}, set(source_packages))
+        self.assertEqual({row['object_id'] for row in members}, set(source_members))
+        for row in packages:
+            self.assertEqual(row['bytes'], int(source_packages[row['package_id']]['bytes']))
+            self.assertEqual(row['source_bytes'], int(source_packages[row['package_id']]['source_bytes']))
+        for row in members:
+            self.assertEqual(row['member_bytes'], int(source_members[row['object_id']]['member_bytes']))
+        self.assertEqual(sum(row['bytes'] for row in packages),
+                         sum(int(row['bytes']) for row in source_packages.values()))
+        self.assertEqual(sum(row['member_bytes'] for row in members),
+                         sum(int(row['member_bytes']) for row in source_members.values()))
         self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 325)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
         self.assertEqual(len({row['release_version'] for row in packages}), 1)
@@ -341,7 +364,9 @@ class SiteExportTests(unittest.TestCase):
             self.assertIn('/resolve/' + row['release_version'] + '/', row['url'])
         base = [row for row in packages if '/diagnostics/multivelo/' not in row['repository_path']]
         self.assertEqual(len(base), 338)
-        self.assertEqual(sum(row['bytes'] for row in base), 150589438514)
+        self.assertEqual(sum(row['bytes'] for row in base),
+                         sum(int(row['bytes']) for row in source_packages.values()
+                             if '/diagnostics/multivelo/' not in row['repository_path']))
         supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
         self.assertEqual(len(supplement), 1)
         self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')

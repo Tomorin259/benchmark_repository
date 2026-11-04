@@ -2,7 +2,7 @@
 
 [Hugging Face v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0)
 provides 339 download objects containing 388 scientific files: 374 H5ADs and
-14 NPZs. The 325 TAR.GZ archives and 14 NPZ files total 150.61 GB.
+14 NPZs. The 325 TAR.GZ archives and 14 NPZ files total 148.29 GB.
 [Benchmark inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs)
 are available as individual files.
 

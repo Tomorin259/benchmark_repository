@@ -260,5 +260,20 @@
   },
   "edge_score_sources": [
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"
-  ]
+  ],
+  "c03_source_verification": {
+    "current": {
+      "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_retina.h5ad",
+      "sha256": "c05feda07d16baa5c8062b5ebe2a6610e2834bf6e4d018c28777ee1b22562f48"
+    },
+    "rendered_source_sha256": "274ed17bd999e6380e75ae723d42cf1e1f871bd83c92f823ed519b86ef5e7e8c",
+    "phase_arrays_equal_to_previous": true,
+    "compared_layers": [
+      "Ms",
+      "Mu",
+      "velocity",
+      "velocity_u"
+    ],
+    "display_generation": "retained previous panel after equality verification"
+  }
 }

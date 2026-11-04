@@ -99,26 +99,26 @@ DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,ImmGranule2,Granul
 DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,Nbl2,CA,0.29122836428141785,1003,0,385
 DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,CA,CA1-Sub,-0.05377750139931775,2298,0,833
 DentateGyrus_lamanno,graphvelo_scv,batc_candidate_source_mean,CA,CA2-3-4,0.27942611868883516,2298,0,1465
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA1-Sub,-0.6552400083293312,330,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA2-3-4,-0.26126860535509,357,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,ImmAstro,0.23361000213194552,71,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,OPC,0.10172476165186951,58,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule1,ImmGranule2,0.21355663872287461,1002,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule2,Granule,0.5918136151576736,397,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl1,Nbl2,0.6331673536886394,129,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,CA,0.3892496629284202,255,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,ImmGranule1,0.7975096727138831,324,0,
-DentateGyrus_lamanno,scvelo_dynamic,cbdir,nIPC,GlialProg,-0.16315215537022412,130,0,
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,nIPC,GlialProg,0.0836425066671257,1230,0,1230
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,ImmAstro,-0.4051911632122068,229,0,61
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,OPC,0.4812235642530249,229,0,168
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl1,Nbl2,0.2597584763072617,419,0,419
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,ImmGranule1,0.898681198915738,1003,0,528
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.02517860907400551,2460,0,2460
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule2,Granule,0.5942369742569157,2099,0,2099
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,CA,0.7308880370517127,1003,0,475
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA1-Sub,-0.4225484514102884,2298,0,1109
-DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA2-3-4,-0.44159789152173734,2298,0,1189
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA1-Sub,-0.6554541206442009,330,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,CA,CA2-3-4,-0.2611865515943054,357,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,ImmAstro,0.23287860455180098,71,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,GlialProg,OPC,0.10942922288109797,58,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule1,ImmGranule2,0.21349478190454477,1002,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,ImmGranule2,Granule,0.59199086518928,397,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl1,Nbl2,0.6325492506251866,129,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,CA,0.3893177662357231,255,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,Nbl2,ImmGranule1,0.7975788548468079,324,0,
+DentateGyrus_lamanno,scvelo_dynamic,cbdir,nIPC,GlialProg,-0.16893878348837085,130,0,
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,nIPC,GlialProg,0.08197345455576087,1230,0,1230
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,ImmAstro,-0.40736744725345353,229,0,61
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,GlialProg,OPC,0.4834396795551322,229,0,168
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl1,Nbl2,0.25984670651522696,419,0,419
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,ImmGranule1,0.8986922679737208,1003,0,528
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule1,ImmGranule2,0.025045139357242025,2460,0,2460
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,ImmGranule2,Granule,0.594350787812996,2099,0,2099
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,Nbl2,CA,0.7309169107864115,1003,0,475
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA1-Sub,-0.42262826113327545,2298,0,1107
+DentateGyrus_lamanno,scvelo_dynamic,batc_candidate_source_mean,CA,CA2-3-4,-0.44151483645667416,2298,0,1191
 DentateGyrus_lamanno,unitvelo,cbdir,CA,CA1-Sub,0.6214807864974327,330,0,
 DentateGyrus_lamanno,unitvelo,cbdir,CA,CA2-3-4,0.7637321356178862,357,0,
 DentateGyrus_lamanno,unitvelo,cbdir,GlialProg,ImmAstro,-0.6583359404703569,71,0,
@@ -189,9 +189,9 @@ capofibro,graphvelo_scv,cbdir,S,G2M,0.7304050330637987,113,0,
 capofibro,graphvelo_scv,batc_candidate_source_mean,G1,S,0.21798836235997107,514,0,514
 capofibro,graphvelo_scv,batc_candidate_source_mean,S,G2M,0.7269791229430128,383,0,383
 capofibro,graphvelo_scv,batc_candidate_source_mean,G2M,G1,0.5023435814458957,325,0,325
-capofibro,scvelo_dynamic,cbdir,G1,S,0.21420442235593182,336,0,
-capofibro,scvelo_dynamic,cbdir,G2M,G1,0.2615235144573442,169,0,
-capofibro,scvelo_dynamic,cbdir,S,G2M,0.7121325567683298,113,0,
+capofibro,scvelo_dynamic,cbdir,G1,S,0.21420442235593176,336,0,
+capofibro,scvelo_dynamic,cbdir,G2M,G1,0.26152351445734423,169,0,
+capofibro,scvelo_dynamic,cbdir,S,G2M,0.7121325567683296,113,0,
 capofibro,scvelo_dynamic,batc_candidate_source_mean,G1,S,0.3269609065341096,514,0,514
 capofibro,scvelo_dynamic,batc_candidate_source_mean,S,G2M,0.6909610563429679,383,0,383
 capofibro,scvelo_dynamic,batc_candidate_source_mean,G2M,G1,0.17501096529461105,325,0,325
@@ -247,14 +247,14 @@ gastrulation,graphvelo_scv,batc_candidate_source_mean,Blood progenitors 1,Blood 
 gastrulation,graphvelo_scv,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.8323184186515948,2460,0,2460
 gastrulation,graphvelo_scv,batc_candidate_source_mean,Erythroid1,Erythroid2,0.5880779872318421,2929,0,2929
 gastrulation,graphvelo_scv,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.4742409991122752,1106,0,1106
-gastrulation,scvelo_dynamic,cbdir,Blood progenitors 1,Blood progenitors 2,-0.045980105097929595,332,0,
-gastrulation,scvelo_dynamic,cbdir,Blood progenitors 2,Erythroid1,0.648870500750959,515,0,
-gastrulation,scvelo_dynamic,cbdir,Erythroid1,Erythroid2,-0.8189390288120422,540,0,
-gastrulation,scvelo_dynamic,cbdir,Erythroid2,Erythroid3,-0.4969999973591627,423,0,
-gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,-0.08734349621957746,623,0,623
-gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.7760225088432627,2460,0,2460
-gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid1,Erythroid2,-0.3348450456011027,2929,0,2929
-gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.6223748672641072,1106,0,1106
+gastrulation,scvelo_dynamic,cbdir,Blood progenitors 1,Blood progenitors 2,-0.21343560163325145,332,0,
+gastrulation,scvelo_dynamic,cbdir,Blood progenitors 2,Erythroid1,-0.12213289819089063,515,0,
+gastrulation,scvelo_dynamic,cbdir,Erythroid1,Erythroid2,-0.7928144920849683,540,0,
+gastrulation,scvelo_dynamic,cbdir,Erythroid2,Erythroid3,-0.6701832616544936,423,0,
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 1,Blood progenitors 2,-0.10296377112657178,623,0,623
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Blood progenitors 2,Erythroid1,0.4855526956771519,2460,0,2460
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid1,Erythroid2,-0.7071209408528191,2929,0,2929
+gastrulation,scvelo_dynamic,batc_candidate_source_mean,Erythroid2,Erythroid3,-0.7409568695801896,1106,0,1106
 gastrulation,unitvelo,cbdir,Blood progenitors 1,Blood progenitors 2,0.9096519033823064,332,0,
 gastrulation,unitvelo,cbdir,Blood progenitors 2,Erythroid1,0.7817458524424347,515,0,
 gastrulation,unitvelo,cbdir,Erythroid1,Erythroid2,0.8174499599795457,540,0,
@@ -311,14 +311,14 @@ mousebrain,graphvelo_scv,batc_candidate_source_mean,"RG, Astro, OPC",IPC,0.39549
 mousebrain,graphvelo_scv,batc_candidate_source_mean,IPC,V-SVZ,0.8159760016380448,183,0,183
 mousebrain,graphvelo_scv,batc_candidate_source_mean,V-SVZ,Upper Layer,0.5911073958021398,632,0,632
 mousebrain,graphvelo_scv,batc_candidate_source_mean,Upper Layer,Deeper Layer,0.6407014879978172,999,0,999
-mousebrain,scvelo_dynamic,cbdir,IPC,V-SVZ,0.4616701207982877,97,0,
-mousebrain,scvelo_dynamic,cbdir,"RG, Astro, OPC",IPC,0.15056171796990211,124,0,
-mousebrain,scvelo_dynamic,cbdir,Upper Layer,Deeper Layer,0.3158537083484238,227,0,
-mousebrain,scvelo_dynamic,cbdir,V-SVZ,Upper Layer,0.6151195826260174,332,0,
-mousebrain,scvelo_dynamic,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.29006619761429603,501,0,501
-mousebrain,scvelo_dynamic,batc_candidate_source_mean,IPC,V-SVZ,0.7696051067649714,183,0,183
-mousebrain,scvelo_dynamic,batc_candidate_source_mean,V-SVZ,Upper Layer,0.8049532823274819,632,0,632
-mousebrain,scvelo_dynamic,batc_candidate_source_mean,Upper Layer,Deeper Layer,-0.002772527808568965,999,0,999
+mousebrain,scvelo_dynamic,cbdir,IPC,V-SVZ,0.4616709475184653,97,0,
+mousebrain,scvelo_dynamic,cbdir,"RG, Astro, OPC",IPC,0.15056478913059157,124,0,
+mousebrain,scvelo_dynamic,cbdir,Upper Layer,Deeper Layer,0.31585253411418623,227,0,
+mousebrain,scvelo_dynamic,cbdir,V-SVZ,Upper Layer,0.6151132454546722,332,0,
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,"RG, Astro, OPC",IPC,-0.29007992652695846,501,0,501
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,IPC,V-SVZ,0.7696046310290268,183,0,183
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,V-SVZ,Upper Layer,0.8049527566334892,632,0,632
+mousebrain,scvelo_dynamic,batc_candidate_source_mean,Upper Layer,Deeper Layer,-0.002764956283004685,999,0,999
 mousebrain,unitvelo,cbdir,IPC,V-SVZ,0.6315362797137863,97,0,
 mousebrain,unitvelo,cbdir,"RG, Astro, OPC",IPC,0.4481227640936166,124,0,
 mousebrain,unitvelo,cbdir,Upper Layer,Deeper Layer,0.8214141811786984,227,0,
@@ -405,20 +405,20 @@ pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Beta,0.700824442
 pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Alpha,0.7602319845327418,592,0,131
 pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Delta,0.6741651978609513,592,0,143
 pancreas,graphvelo_scv,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5449598307426843,592,0,154
-pancreas,scvelo_dynamic,cbdir,Ductal,Ngn3 low EP,0.05740280588957762,796,0,
-pancreas,scvelo_dynamic,cbdir,Ngn3 high EP,Pre-endocrine,0.69720744561232,95,0,
-pancreas,scvelo_dynamic,cbdir,Ngn3 low EP,Ngn3 high EP,0.8771137920365661,55,0,
-pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Alpha,0.6559436824761352,115,0,
-pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Beta,0.733762594751307,140,0,
-pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Delta,0.379902117480131,34,0,
-pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Epsilon,0.0013736698249832504,59,0,
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Ductal,Ngn3 low EP,-0.10032319591728558,916,0,916
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.6652494631790653,262,0,262
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.918104169282284,642,0,642
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Beta,0.7808758894244963,592,0,177
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8541681171875369,592,0,164
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Delta,0.7233529641962748,592,0,110
-pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5534749004740679,592,0,141
+pancreas,scvelo_dynamic,cbdir,Ductal,Ngn3 low EP,0.06565968606942611,796,0,
+pancreas,scvelo_dynamic,cbdir,Ngn3 high EP,Pre-endocrine,0.6793808380118088,95,0,
+pancreas,scvelo_dynamic,cbdir,Ngn3 low EP,Ngn3 high EP,0.8637494782180863,55,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Alpha,0.6837786068000082,115,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Beta,0.7204920150874361,140,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Delta,0.3413679775526552,34,0,
+pancreas,scvelo_dynamic,cbdir,Pre-endocrine,Epsilon,0.02629137925028667,59,0,
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ductal,Ngn3 low EP,-0.08510643487245957,916,0,916
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 low EP,Ngn3 high EP,0.5778423278212375,262,0,262
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Ngn3 high EP,Pre-endocrine,0.9062212278401618,642,0,642
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Beta,0.7759400317582664,592,0,179
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Alpha,0.8563979697343143,592,0,166
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Delta,0.7393487430175452,592,0,114
+pancreas,scvelo_dynamic,batc_candidate_source_mean,Pre-endocrine,Epsilon,0.5370431895616999,592,0,133
 pancreas,unitvelo,cbdir,Ductal,Ngn3 low EP,0.11259826814933312,796,0,
 pancreas,unitvelo,cbdir,Ngn3 high EP,Pre-endocrine,0.7584344058047708,95,0,
 pancreas,unitvelo,cbdir,Ngn3 low EP,Ngn3 high EP,0.8946845095555779,55,0,
@@ -487,14 +487,14 @@ retina,graphvelo_scv,batc_candidate_source_mean,Progenitor,Neuroblast,0.34832399
 retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,PR,0.8189398990938601,309,0,77
 retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,AC/HC,0.8931403867723146,309,0,155
 retina,graphvelo_scv,batc_candidate_source_mean,Neuroblast,RGC,0.7857939668232291,309,0,77
-retina,scvelo_dynamic,cbdir,Neuroblast,AC/HC,0.7287768628799366,41,0,
-retina,scvelo_dynamic,cbdir,Neuroblast,PR,-0.19143748059181964,52,0,
-retina,scvelo_dynamic,cbdir,Neuroblast,RGC,0.8590088057709516,52,0,
-retina,scvelo_dynamic,cbdir,Progenitor,Neuroblast,0.47308218743458014,122,0,
-retina,scvelo_dynamic,batc_candidate_source_mean,Progenitor,Neuroblast,0.24265312628206107,1084,0,1084
-retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,PR,0.7940365200277599,309,0,71
-retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,AC/HC,0.8726926648149805,309,0,142
-retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,RGC,0.8435969758003062,309,0,96
+retina,scvelo_dynamic,cbdir,Neuroblast,AC/HC,0.7287626515050739,41,0,
+retina,scvelo_dynamic,cbdir,Neuroblast,PR,-0.19142194614724634,52,0,
+retina,scvelo_dynamic,cbdir,Neuroblast,RGC,0.8589960078491035,52,0,
+retina,scvelo_dynamic,cbdir,Progenitor,Neuroblast,0.47313209527003186,122,0,
+retina,scvelo_dynamic,batc_candidate_source_mean,Progenitor,Neuroblast,0.24270649381158452,1084,0,1084
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,PR,0.794034882522269,309,0,71
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,AC/HC,0.8726927297242467,309,0,142
+retina,scvelo_dynamic,batc_candidate_source_mean,Neuroblast,RGC,0.8435717179325816,309,0,96
 retina,unitvelo,cbdir,Neuroblast,AC/HC,0.9450462224011763,41,0,
 retina,unitvelo,cbdir,Neuroblast,PR,0.4706563901204385,52,0,
 retina,unitvelo,cbdir,Neuroblast,RGC,0.6216546305482651,52,0,

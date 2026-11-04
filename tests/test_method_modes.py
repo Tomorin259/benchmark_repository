@@ -233,6 +233,58 @@ class VeloVIRoleTests(unittest.TestCase):
         self.workflow.sc.read.assert_not_called()
 
 
+class ScVeloEnvironmentTests(unittest.TestCase):
+    def setUp(self):
+        self.run_dataset = Mock()
+        self.scv = SimpleNamespace(
+            __version__="0.2.5", settings=SimpleNamespace(), set_figure_params=Mock(),
+        )
+        self.workflow = load_workflow(
+            "scvelo", {"main"}, argparse=argparse, Path=Path, scv=self.scv,
+            DATASETS={"real": {}, "sim": {"simulation": True}},
+            DATASETS_TO_RUN=["real"], DATA_ROOT=ROOT, OUTPUT_ROOT=ROOT,
+            run_dataset=self.run_dataset,
+        )
+
+    def invoke(self, *args):
+        with patch("sys.argv", ["scvelo.py", *args]), contextlib.redirect_stdout(io.StringIO()):
+            self.workflow.main()
+
+    def test_default_real_dynamical_uses_025(self):
+        self.assertEqual(self.workflow.MODES_TO_RUN, ["dynamical"])
+        self.invoke()
+        self.run_dataset.assert_called_once_with("real", "dynamical", ROOT, ROOT)
+
+    def test_real_steady_and_simulation_modes_use_033(self):
+        self.scv.__version__ = "0.3.3"
+        self.invoke("--mode", "deterministic", "--mode", "stochastic")
+        self.assertEqual([call.args[1] for call in self.run_dataset.call_args_list],
+                         ["deterministic", "stochastic"])
+        self.run_dataset.reset_mock()
+        self.invoke("--dataset", "sim", "--mode", "dynamical")
+        self.run_dataset.assert_called_once_with("sim", "dynamical", ROOT, ROOT)
+
+    def test_invalid_selections_stop_before_running(self):
+        for args in (("--dataset", "real", "--dataset", "real"),
+                     ("--mode", "dynamical", "--mode", "dynamical")):
+            with self.subTest(args=args), self.assertRaisesRegex(ValueError, "must not be repeated"):
+                self.invoke(*args)
+        self.workflow.main.__globals__["DATASETS_TO_RUN"] = ["unknown"]
+        with self.assertRaisesRegex(ValueError, "unknown datasets"):
+            self.invoke()
+        self.run_dataset.assert_not_called()
+
+    def test_mixed_versions_and_wrong_environment_stop_before_running(self):
+        for args in (("--mode", "deterministic", "--mode", "dynamical"),
+                     ("--dataset", "real", "--dataset", "sim")):
+            with self.subTest(args=args), self.assertRaisesRegex(ValueError, "different scVelo versions"):
+                self.invoke(*args)
+        self.scv.__version__ = "0.3.3"
+        with self.assertRaisesRegex(RuntimeError, "scVelo 0.2.5 is required"):
+            self.invoke()
+        self.run_dataset.assert_not_called()
+
+
 class NativeModeTests(unittest.TestCase):
     def test_tivelo_simulations_preprocess_at_any_gene_count(self):
         path = ROOT / "supplement/tivelo_gene/stage_audit.py"
@@ -375,7 +427,8 @@ class NativeModeTests(unittest.TestCase):
                 run = Mock()
                 workflow = load_workflow(
                     name, {"main"}, argparse=argparse, Path=Path, DATA_ROOT=root, OUTPUT_ROOT=root,
-                    scv=SimpleNamespace(__version__="0.3.3", settings=SimpleNamespace(), set_figure_params=Mock()),
+                    scv=SimpleNamespace(__version__="0.2.5" if name == "scvelo" else "0.3.3",
+                                        settings=SimpleNamespace(), set_figure_params=Mock()),
                     pkg_resources=SimpleNamespace(get_distribution=lambda name: SimpleNamespace(version="0.2.5.2")),
                     run_dataset=run,
                 )

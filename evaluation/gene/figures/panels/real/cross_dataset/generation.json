@@ -3,21 +3,21 @@
   "renderer_sha256": "713a1c928b97b0ba730e89d284258d8aeec524abdcf2f837a8ced3658fe155dc",
   "source_status": "ACTUAL_RUN",
   "source_tables": {
-    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
-    "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "af70efe3219014fcc72cb08d82515e0271036cf6a086f77b27a6224a0e691242",
+    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
     "evaluation/gene/results/common_genes/dataset_summary.csv": "93a493bc08edaf8d748f1b1415de48ea1881b0ef26a335b4034f9b6c46255a5a",
     "evaluation/gene/results/common_genes/macro_summary.csv": "4141bc1daadbddce16c6389f066b8cdc61c7963ab4b623dadee3e1cc51d4dff2",
     "evaluation/gene/results/common_genes/membership.csv": "dd644351be06ec7cad81e179adcac63619731ff0f4406a72e0321dbc22069b18"
   },
   "style_sources": {
-    "evaluation/gene/plot_gene_assets.py": "b227edaaa813e0a899932107dcf3304f07649093ce3b60656dec83cd0ff5e5af",
+    "evaluation/gene/plot_gene_assets.py": "30deff5e053895c9067e60e58d08266d183a7d0000de01340fa0f70bf4411122",
     "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
-    "methods/configurations.tsv": "fba0383283833540448cd9765f485cb24689978c7b0bdb5e61c0a7b7439d2d5e"
+    "methods/configurations.tsv": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
   },
   "software_versions": {
     "numpy": "1.26.4",
-    "pandas": "2.3.3",
-    "matplotlib": "3.9.2",
+    "pandas": "2.3.1",
+    "matplotlib": "3.9.4",
     "seaborn": "0.13.2"
   },
   "scatter_method_order": {
@@ -28,9 +28,9 @@
       "veloVI",
       "Graphvelo_scv",
       "DeepVelo",
+      "scVelo_dyn",
       "MultiVelo",
-      "DeepVelo_scv",
-      "scVelo_dyn"
+      "DeepVelo_scv"
     ],
     "Branching-two": [
       "TIvelo",
@@ -92,23 +92,34 @@
   "dpi": 600,
   "scatter_dpi": 300,
   "outputs": {
-    "branching_combined_reference30_label_order.pdf": "d419ddfe20ac29d267b2ce2d07176032d6d3284ea7d25f9007514a1d34bfa0a0",
-    "branching_combined_reference30_label_order.png": "b1b6ee87e206e441d2713914ce603ba244dead20fd2e3322b7a8f27a07da143f",
-    "branching_combined_reference30_label_order.svg": "db2e87936e2097009ee46cf93bcaa27623e72fbcfcc46077e670c41fee25e5af",
-    "branching_gene_scores.csv": "1cf61a217a0d8bb540154790f0c139ec5bc756f7396e82c4f7893f343c3a103c",
-    "branching_metric_scatter_ordered.pdf": "10662a4fdb790d53988875842d1387c91b6e41b0f9b1669db23927adac61a406",
-    "branching_metric_scatter_ordered.png": "8b4e9155fa2b2fa25df936a985443a81823dd6b3ba748ed73f1a74f06c7a39e6",
-    "branching_metric_scatter_ordered.svg": "06eb4b964ed1cc0e41f51aeb4b4b0ae3598e277eeb33042fc3df277abd3907d9",
-    "branching_pooled_means.csv": "7a4ec6e27aef6d80e5e97f5deb55e9aee8a50d8b6feedbdb2fdc69396dd10e48",
+    "branching_combined_reference30_label_order.pdf": "7a260fb48f8efbc27668699093fab11159f2f57d4df2fc1b31f02b9feec4f9db",
+    "branching_combined_reference30_label_order.png": "cc1cd572c5303b97d29d8c4c0d462298730baf1b8c539d0f0ca38f961d9f1c5c",
+    "branching_combined_reference30_label_order.svg": "070b93cd1ebd7081f50180c27586b04a1e6ed6dc5b50007527169870781fd7c4",
+    "branching_gene_scores.csv": "52071d5ecf081835ba7086b4cd4fc19035ab86c4f069d0796f6cfcfbab4f6b13",
+    "branching_metric_scatter_ordered.pdf": "fa0a60ce60a38bf85178762a25efab3792105ab84cfd39ca63d040ef01349b7f",
+    "branching_metric_scatter_ordered.png": "bfe0c1a37bcc80e0d7cdb0ff07b618b649050ae4600770c40c9a49636de78819",
+    "branching_metric_scatter_ordered.svg": "f717a7b0bffba0467dc2583be41021b9db1b33d9354873d244500cab9e962936",
+    "branching_pooled_means.csv": "c779054dd0776ca15194c1892a2728ffc1f2ad12f2ddf43068c33a25b6246328",
     "common_gene_cbdir.pdf": "4b846d0fe3d940cf1d098b3c741f9b46555de8af5d69f71d456a3b8327cfe689",
     "common_gene_cbdir.png": "44c2356f10531bef60adfb733b21cef253634a37b1171bbafbb3234d9cf1c5e3",
     "common_gene_cbdir.svg": "f83992633fa0f37846ef1c8bbadf199ad1259724002132087e39fda5549422a0",
     "common_gene_dataset_points.csv": "8892ffadbb07219a4a932062f75df6e961616e54e251bc5f1df6f99658a10a24",
     "common_gene_macro_means.csv": "fe27fcc2f90faf40fbb0bfc4f583efc5364813dfd7679234caf7ebcb0fcbffaf",
-    "cross_dataset_means.csv": "3e69a3bb29923449236b0d4ca2ac132dfc79269d60d5d0604dce456ee502ecd2",
-    "murk_metric_scatter_ordered.pdf": "8eda2b4c2f521c5f4cb3fa93da8c8ae201a81e8dda0ff2bd779051555e1b958f",
-    "murk_metric_scatter_ordered.png": "9ebd1805041539876f6b774c7ee2289830cf0676790cd8b78c6c2293718dcbe4",
-    "murk_metric_scatter_ordered.svg": "5b849338f92815873fd66294afc22d949b40eb09f279ffcf255febb7dc7c16e3",
-    "plotted_scores.csv": "8a29d6f073218ee7fbdb3544009a693b2cb545a436583bb6d967ec45817249f2"
-  }
+    "cross_dataset_means.csv": "103053bcd5b21c909e1eb45aa1793783e507fc33324a13c569675718d710bedc",
+    "murk_metric_scatter_ordered.pdf": "17c9860dae384d9169c91f5fb7783dee30e17776d4b4aa909a6bd1d69b5b0268",
+    "murk_metric_scatter_ordered.png": "1f3f965ff0384b2130eef6d023cf15e4249a4e3d3a0d839d803cd02a5e43db82",
+    "murk_metric_scatter_ordered.svg": "1764bcf1c2478cc612d5cb8f9536fadf7888ce8d24e0dbbb99b0f5031671fcd9",
+    "plotted_scores.csv": "3440f058d7d7ea3fbd40e9dd127ae629249df42caa79fb37f3062a4bdf3208d5"
+  },
+  "retained_common_gene_generation": {
+    "source_tables": {
+      "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
+      "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
+      "evaluation/gene/results/common_genes/dataset_summary.csv": "93a493bc08edaf8d748f1b1415de48ea1881b0ef26a335b4034f9b6c46255a5a",
+      "evaluation/gene/results/common_genes/macro_summary.csv": "4141bc1daadbddce16c6389f066b8cdc61c7963ab4b623dadee3e1cc51d4dff2",
+      "evaluation/gene/results/common_genes/membership.csv": "dd644351be06ec7cad81e179adcac63619731ff0f4406a72e0321dbc22069b18"
+    },
+    "note": "Common-gene panel retained; common-gene values did not change."
+  },
+  "svg_serialization": "Trailing line whitespace normalized; geometry unchanged."
 }

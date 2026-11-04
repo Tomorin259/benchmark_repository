@@ -64,6 +64,14 @@ dependencies. The public launchers import the following method interfaces:
 | `deepvelo2022.py` | Official Figure 2 AE workflow using TensorFlow/Keras and scVelo 0.2.4; C18 is distinct from C16 |
 | `tfvelo.py`, `tsvelo.py`, `deepkinet.py` | Upstream source-backed software; see [source requirements](../methods/README.md#source-backed-methods) |
 
+For real-data scVelo dynamical (C03), the recorded environment used Python
+3.7.12, scVelo 0.2.5, Scanpy 1.9.3, AnnData 0.8.0, NumPy 1.21.6,
+SciPy 1.7.3, scikit-learn 1.0.2, Numba 0.56.4, llvmlite 0.39.1,
+UMAP 0.5.3, pynndescent 0.5.13, joblib 1.3.2 and matplotlib 3.5.3.
+Real C01/C02 and simulation C03 use scVelo 0.3.3. See the
+[scVelo launch instructions](../methods/README.md#modes-and-example-commands)
+for mode selection and the observed thread state.
+
 For each method, use the package versions in the registry and the corresponding
 upstream installation instructions. The
 [method guide](../methods/README.md#source-backed-methods) provides fixed

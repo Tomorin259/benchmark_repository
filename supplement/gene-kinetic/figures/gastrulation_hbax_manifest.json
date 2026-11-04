@@ -43,8 +43,8 @@
       "Erythroid2\u2192Erythroid3: -0.908"
     ],
     "scVelo_dynamic": [
-      "Erythroid1\u2192Erythroid2: -0.859",
-      "Erythroid2\u2192Erythroid3: -0.908"
+      "Erythroid1\u2192Erythroid2: +0.000",
+      "Erythroid2\u2192Erythroid3: +0.000"
     ],
     "TIvelo": [
       "Erythroid1\u2192Erythroid2: N/A",
@@ -138,10 +138,10 @@
       "n_velocity_valid": 6732,
       "n_sampled": 180,
       "n_drawn": 180,
-      "reference_magnitude": 0.5780886210240619,
-      "display_magnitude_max": 0.064792608057468,
+      "reference_magnitude": null,
+      "display_magnitude_max": 0.0,
       "capped_fraction": 0.0,
-      "input_magnitude_max": 0.8412459835051359
+      "input_magnitude_max": 0.0
     },
     "UniTVelo": {
       "n_obs": 6732,
@@ -203,10 +203,10 @@
     "scVelo_dynamic": {
       "status": "ok",
       "n_obs": 6732,
-      "velocity_nonfinite_raw": 0,
-      "velocity_replaced_zero": 0,
-      "velocity_u_nonfinite_raw": 0,
-      "velocity_u_replaced_zero": 0
+      "velocity_nonfinite_raw": 6732,
+      "velocity_replaced_zero": 6732,
+      "velocity_u_nonfinite_raw": 6732,
+      "velocity_u_replaced_zero": 6732
     },
     "TIvelo": {
       "status": "unavailable"
@@ -230,5 +230,20 @@
   },
   "edge_score_sources": [
     "evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv"
-  ]
+  ],
+  "c03_source_verification": {
+    "current": {
+      "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_Gastrulation.h5ad",
+      "sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81"
+    },
+    "rendered_source_sha256": "3bdbafc1f9d9ed41db9ee677212b50d08c84d9c3d4a5f2123043be1b62ef3d81",
+    "phase_arrays_equal_to_previous": false,
+    "compared_layers": [
+      "Ms",
+      "Mu",
+      "velocity",
+      "velocity_u"
+    ],
+    "display_generation": "rendered from current source using the established real-data cleaning and display rule"
+  }
 }

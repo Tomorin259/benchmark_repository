@@ -100,7 +100,7 @@ def materialize(artifact_root, moments_root, cache_root, output, datasets, manif
                 raise ValueError(f'Method source changed: {dataset}/{row.operational_id}')
             existing = HERE / 'streams' / dataset / f'{row.operational_id}.png'
             provenance = 'retained_paper_panel'
-            if existing.is_file() and row.operational_id != 'multivelo':
+            if existing.is_file() and row.operational_id not in {'multivelo', 'scvelo_dynamic'}:
                 image = existing
             else:
                 image = output / row.dataset_id / f'{row.config_id}.png'
@@ -181,10 +181,11 @@ if __name__ == '__main__':
     parser.add_argument('--datasets', nargs='+')
     parser.add_argument('--method', action='append', help='Select operational method IDs')
     parser.add_argument('--manifest-root', type=Path, required=True)
+    parser.add_argument('--output-root', type=Path, default=HERE / 'streams' / 'previews')
     args = parser.parse_args()
     args.manifest_root.mkdir(parents=True,exist_ok=True)
     materialize(args.artifact_root, args.reference_moments_root, args.cache_root,
-                HERE / 'streams' / 'previews', args.datasets, args.manifest_root, args.method)
+                args.output_root, args.datasets, args.manifest_root, args.method)
 
     if args.datasets is None and args.method is None:
         fragments = [json.loads(f.read_text()) for f in sorted(args.manifest_root.glob('*.json'))]

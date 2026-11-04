@@ -55,7 +55,7 @@ their paper names; use the explicit input map when moving to an evaluator.
 
 | Method | Selection |
 | --- | --- |
-| scVelo, C01–C03 | `--mode deterministic`, `stochastic` or `dynamical`; repeat for several modes; default `MODES_TO_RUN` |
+| scVelo, C01–C03 | `--mode deterministic`, `stochastic` or `dynamical`; repeat for modes using the same environment; default `MODES_TO_RUN = ["dynamical"]` |
 | UniTVelo, C05–C06 | `--fit-option 1` or `2`; repeat for both; default `FIT_OPTIONS_TO_RUN` |
 | TFvelo / TSvelo | `--dataset <name>` or `all`; `--check-only` checks the selected source/input layout |
 | veloVI | `--evaluation-role cell` or `gene` |
@@ -74,7 +74,15 @@ python methods/deepvelo.py --evaluation-role cell \
 
 scVelo and UniTVelo accept repeated `--dataset` selections, plus `--data-root`
 and `--output-root`; modes use separate directories and reject existing H5ADs.
-scVelo dynamical results use `scvelo_dynamic/`.
+scVelo dynamical results use `scvelo_dynamic/`. Real-data dynamical runs use
+scVelo 0.2.5; real deterministic/stochastic and simulation dynamical runs use
+0.3.3. Select runs requiring different versions in separate commands and
+environments. The default selects dynamical mode and the 14 real datasets;
+`--mode` still selects the other modes explicitly. Fitting and velocity graphs
+use `N_JOBS = 8`. For the real C03 run, the default thread variables were
+unset; the execution host exposed 72 CPUs, Numba used 72 TBB threads, and
+OpenBLAS pools reported 64 and 72 threads. These are recorded observations,
+not required thread limits. The run used `PYTHONNOUSERSITE=1` and `MPLBACKEND=Agg`.
 veloVI and DeepVelo also accept `--data-root`.
 Use separate empty roots for distinct evaluation roles.
 

@@ -143,9 +143,9 @@ retina,scVelo_dyn,Anks1b,Neuroblast,RGC,-0.021347816406233046,-0.021347816406233
 retina,scVelo_dyn,Cacna1b,Neuroblast,PR,0.39190261150960387,0.39190261144101424,6.85896339724934e-11,52
 retina,scVelo_dyn,Cacna1b,Neuroblast,AC/HC,-0.36290169404515865,-0.3629016935398481,-5.05310571163875e-10,41
 retina,scVelo_dyn,Cacna1b,Neuroblast,RGC,-0.39455599746662195,-0.3945559976117591,1.45137124540895e-10,52
-retina,scVelo_dyn,Calm2,Neuroblast,PR,-0.0023109889166931046,-0.0023109889694304868,5.273738216959867e-11,52
-retina,scVelo_dyn,Calm2,Neuroblast,AC/HC,0.03188107584995112,0.03188107585289208,-2.940959975550328e-12,41
-retina,scVelo_dyn,Calm2,Neuroblast,RGC,0.18348935125191096,0.18348935173135228,-4.794413199782355e-10,52
+retina,scVelo_dyn,Calm2,Neuroblast,PR,0.0,-0.0023109889694304868,0.0023109889694304868,52
+retina,scVelo_dyn,Calm2,Neuroblast,AC/HC,0.0,0.03188107585289208,-0.03188107585289208,41
+retina,scVelo_dyn,Calm2,Neuroblast,RGC,0.0,0.18348935173135228,-0.18348935173135228,52
 retina,scVelo_dyn,Celf4,Neuroblast,PR,0.0537549291619792,0.053754929039103456,1.2287574430169812e-10,52
 retina,scVelo_dyn,Celf4,Neuroblast,AC/HC,-0.006017164014563913,-0.006017164515063357,5.004994439727906e-10,41
 retina,scVelo_dyn,Celf4,Neuroblast,RGC,-0.12326740909677911,-0.1232674088361244,-2.606547061523301e-10,52
@@ -782,16 +782,16 @@ DentateGyrus_lamanno,scVelo_dyn,Malat1,ImmGranule2,Granule,0.09401766321140469,0
 DentateGyrus_lamanno,scVelo_dyn,Malat1,Nbl2,CA,0.3041284288950973,0.3041284288950973,0.0,255
 DentateGyrus_lamanno,scVelo_dyn,Malat1,CA,CA1-Sub,-0.6264240614516257,-0.6264240614503608,-1.2648770919554408e-12,330
 DentateGyrus_lamanno,scVelo_dyn,Malat1,CA,CA2-3-4,-0.36191423934095523,-0.36191423934095523,0.0,357
-DentateGyrus_lamanno,scVelo_dyn,Nnat,nIPC,GlialProg,-0.43960552660434343,-0.4396055267906855,1.8634205289913552e-10,130
-DentateGyrus_lamanno,scVelo_dyn,Nnat,GlialProg,ImmAstro,0.2804860374484495,0.2804860368776663,5.707831984835821e-10,71
-DentateGyrus_lamanno,scVelo_dyn,Nnat,GlialProg,OPC,-0.1777461276025777,-0.17774612764009823,3.752051447314386e-11,58
-DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl1,Nbl2,0.6455868269958754,0.6455868268059656,1.8990986561107093e-10,129
-DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl2,ImmGranule1,0.03014028421984871,0.03014028421552279,4.325918095959835e-12,324
-DentateGyrus_lamanno,scVelo_dyn,Nnat,ImmGranule1,ImmGranule2,-0.1664651630738223,-0.16646516301426872,-5.955358428622048e-11,1002
-DentateGyrus_lamanno,scVelo_dyn,Nnat,ImmGranule2,Granule,0.12659297038054781,0.12659297037375036,6.7974514905699834e-12,397
-DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl2,CA,-0.2856175886480538,-0.28561758867274856,2.4694746247888588e-11,255
-DentateGyrus_lamanno,scVelo_dyn,Nnat,CA,CA1-Sub,0.003940706566624069,0.003940706582030419,-1.5406349807012276e-11,330
-DentateGyrus_lamanno,scVelo_dyn,Nnat,CA,CA2-3-4,-0.46611269221114693,-0.466112692160963,-5.018391258104771e-11,357
+DentateGyrus_lamanno,scVelo_dyn,Nnat,nIPC,GlialProg,0.0,-0.4396055267906855,0.4396055267906855,130
+DentateGyrus_lamanno,scVelo_dyn,Nnat,GlialProg,ImmAstro,0.0,0.2804860368776663,-0.2804860368776663,71
+DentateGyrus_lamanno,scVelo_dyn,Nnat,GlialProg,OPC,0.0,-0.17774612764009823,0.17774612764009823,58
+DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl1,Nbl2,0.0,0.6455868268059656,-0.6455868268059656,129
+DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl2,ImmGranule1,0.0,0.03014028421552279,-0.03014028421552279,324
+DentateGyrus_lamanno,scVelo_dyn,Nnat,ImmGranule1,ImmGranule2,0.0,-0.16646516301426872,0.16646516301426872,1002
+DentateGyrus_lamanno,scVelo_dyn,Nnat,ImmGranule2,Granule,0.0,0.12659297037375036,-0.12659297037375036,397
+DentateGyrus_lamanno,scVelo_dyn,Nnat,Nbl2,CA,0.0,-0.28561758867274856,0.28561758867274856,255
+DentateGyrus_lamanno,scVelo_dyn,Nnat,CA,CA1-Sub,0.0,0.003940706582030419,-0.003940706582030419,330
+DentateGyrus_lamanno,scVelo_dyn,Nnat,CA,CA2-3-4,0.0,-0.466112692160963,0.466112692160963,357
 DentateGyrus_lamanno,scVelo_dyn,Tubb3,nIPC,GlialProg,-0.03337034349900936,-0.03337034362366432,1.2465495996538678e-10,130
 DentateGyrus_lamanno,scVelo_dyn,Tubb3,GlialProg,ImmAstro,-0.24242471139369695,-0.24242471132944543,-6.425152077049745e-11,71
 DentateGyrus_lamanno,scVelo_dyn,Tubb3,GlialProg,OPC,0.1170389451009529,0.11703894496788741,1.3306548918290417e-10,58
@@ -11960,10 +11960,10 @@ gastrulation,scVelo_dyn,Cdc25b,Blood progenitors 1,Blood progenitors 2,-0.041893
 gastrulation,scVelo_dyn,Cdc25b,Blood progenitors 2,Erythroid1,-0.19648982633011916,-0.19648982627683445,-5.328470997767454e-11,515
 gastrulation,scVelo_dyn,Cdc25b,Erythroid1,Erythroid2,-0.1951347521479575,-0.19513475217199994,2.4042434709770077e-11,540
 gastrulation,scVelo_dyn,Cdc25b,Erythroid2,Erythroid3,-0.03235066300113231,-0.032350663040237954,3.9105642335446333e-11,423
-gastrulation,scVelo_dyn,Dhrs11,Blood progenitors 1,Blood progenitors 2,0.19431376585724783,0.1943137658888699,-3.16220660767641e-11,332
-gastrulation,scVelo_dyn,Dhrs11,Blood progenitors 2,Erythroid1,0.1269569897225091,0.12695698967446656,4.804254216672632e-11,515
-gastrulation,scVelo_dyn,Dhrs11,Erythroid1,Erythroid2,0.3526275226452676,0.35262752277905507,-1.3378748109360572e-10,540
-gastrulation,scVelo_dyn,Dhrs11,Erythroid2,Erythroid3,-0.384289030478464,-0.3842890305389957,6.053169077091525e-11,423
+gastrulation,scVelo_dyn,Dhrs11,Blood progenitors 1,Blood progenitors 2,0.0,0.1943137658888699,-0.1943137658888699,332
+gastrulation,scVelo_dyn,Dhrs11,Blood progenitors 2,Erythroid1,0.0,0.12695698967446656,-0.12695698967446656,515
+gastrulation,scVelo_dyn,Dhrs11,Erythroid1,Erythroid2,0.0,0.35262752277905507,-0.35262752277905507,540
+gastrulation,scVelo_dyn,Dhrs11,Erythroid2,Erythroid3,0.0,-0.3842890305389957,0.3842890305389957,423
 gastrulation,scVelo_dyn,Fam210b,Blood progenitors 1,Blood progenitors 2,0.32986697784644975,0.3298669778792327,-3.278294302688778e-11,332
 gastrulation,scVelo_dyn,Fam210b,Blood progenitors 2,Erythroid1,0.10477718165323616,0.10477718162283944,3.0396712924485314e-11,515
 gastrulation,scVelo_dyn,Fam210b,Erythroid1,Erythroid2,-0.09616102711529262,-0.09616102705937969,-5.5912927066081863e-11,540
@@ -11976,26 +11976,26 @@ gastrulation,scVelo_dyn,Gclm,Blood progenitors 1,Blood progenitors 2,-0.43567646
 gastrulation,scVelo_dyn,Gclm,Blood progenitors 2,Erythroid1,-0.2938832592220053,-0.2938832591757086,-4.6296688704927647e-11,515
 gastrulation,scVelo_dyn,Gclm,Erythroid1,Erythroid2,-0.17723629724978282,-0.17723629721467005,-3.5112773799639285e-11,540
 gastrulation,scVelo_dyn,Gclm,Erythroid2,Erythroid3,-0.18547001496161772,-0.1854700150552424,9.362469133300522e-11,423
-gastrulation,scVelo_dyn,Gpx1,Blood progenitors 1,Blood progenitors 2,-0.2249902655493612,-0.2249902655378194,-1.154179529727628e-11,332
-gastrulation,scVelo_dyn,Gpx1,Blood progenitors 2,Erythroid1,-0.45271586640411865,-0.45271586639858796,-5.53068701947268e-12,515
-gastrulation,scVelo_dyn,Gpx1,Erythroid1,Erythroid2,-0.5247461712455701,-0.5247461712326644,-1.290567652745267e-11,540
-gastrulation,scVelo_dyn,Gpx1,Erythroid2,Erythroid3,-0.6674045597506334,-0.6674045597583683,7.734923812563466e-12,423
+gastrulation,scVelo_dyn,Gpx1,Blood progenitors 1,Blood progenitors 2,0.0,-0.2249902655378194,0.2249902655378194,332
+gastrulation,scVelo_dyn,Gpx1,Blood progenitors 2,Erythroid1,0.0,-0.45271586639858796,0.45271586639858796,515
+gastrulation,scVelo_dyn,Gpx1,Erythroid1,Erythroid2,0.0,-0.5247461712326644,0.5247461712326644,540
+gastrulation,scVelo_dyn,Gpx1,Erythroid2,Erythroid3,0.0,-0.6674045597583683,0.6674045597583683,423
 gastrulation,scVelo_dyn,Gypa,Blood progenitors 1,Blood progenitors 2,0.1911016460818544,0.19110164607520483,6.6495697836899126e-12,332
 gastrulation,scVelo_dyn,Gypa,Blood progenitors 2,Erythroid1,-0.32855725607517405,-0.328557256067399,-7.775058374903665e-12,515
 gastrulation,scVelo_dyn,Gypa,Erythroid1,Erythroid2,-0.48402929029702035,-0.48402929030630354,9.283185331554478e-12,540
 gastrulation,scVelo_dyn,Gypa,Erythroid2,Erythroid3,-0.6039310105848553,-0.6039310105062723,-7.858302897290059e-11,423
-gastrulation,scVelo_dyn,Hba-x,Blood progenitors 1,Blood progenitors 2,0.04326012306396692,0.04326012306396692,0.0,332
-gastrulation,scVelo_dyn,Hba-x,Blood progenitors 2,Erythroid1,-0.2887738258900525,-0.28877382589249334,2.4408253196384067e-12,515
-gastrulation,scVelo_dyn,Hba-x,Erythroid1,Erythroid2,-0.8594436747219288,-0.8594436747218683,-6.050715484207103e-14,540
-gastrulation,scVelo_dyn,Hba-x,Erythroid2,Erythroid3,-0.9077133538536399,-0.907713353853702,6.206146707654625e-14,423
-gastrulation,scVelo_dyn,Hbb-bh1,Blood progenitors 1,Blood progenitors 2,0.4252625471427584,0.42526254714070033,2.058075931898884e-12,332
-gastrulation,scVelo_dyn,Hbb-bh1,Blood progenitors 2,Erythroid1,0.7586080331552828,0.7586080331570123,-1.7295054277610689e-12,515
-gastrulation,scVelo_dyn,Hbb-bh1,Erythroid1,Erythroid2,0.14758829834605214,0.1475882983461008,-4.8655524054197485e-14,540
-gastrulation,scVelo_dyn,Hbb-bh1,Erythroid2,Erythroid3,-0.7932440311761324,-0.7932440311761015,-3.086420008457935e-14,423
-gastrulation,scVelo_dyn,Hbb-y,Blood progenitors 1,Blood progenitors 2,-0.21156269347014425,-0.21156269347014425,0.0,332
-gastrulation,scVelo_dyn,Hbb-y,Blood progenitors 2,Erythroid1,-0.2266939696744879,-0.2266939696744878,-1.1102230246251565e-16,515
-gastrulation,scVelo_dyn,Hbb-y,Erythroid1,Erythroid2,-0.1278881259345491,-0.12788812594504217,1.0493078628215358e-11,540
-gastrulation,scVelo_dyn,Hbb-y,Erythroid2,Erythroid3,-0.8029631116635753,-0.8029631116635448,-3.042011087472929e-14,423
+gastrulation,scVelo_dyn,Hba-x,Blood progenitors 1,Blood progenitors 2,0.0,0.04326012306396692,-0.04326012306396692,332
+gastrulation,scVelo_dyn,Hba-x,Blood progenitors 2,Erythroid1,0.0,-0.28877382589249334,0.28877382589249334,515
+gastrulation,scVelo_dyn,Hba-x,Erythroid1,Erythroid2,0.0,-0.8594436747218683,0.8594436747218683,540
+gastrulation,scVelo_dyn,Hba-x,Erythroid2,Erythroid3,0.0,-0.907713353853702,0.907713353853702,423
+gastrulation,scVelo_dyn,Hbb-bh1,Blood progenitors 1,Blood progenitors 2,0.0,0.42526254714070033,-0.42526254714070033,332
+gastrulation,scVelo_dyn,Hbb-bh1,Blood progenitors 2,Erythroid1,0.0,0.7586080331570123,-0.7586080331570123,515
+gastrulation,scVelo_dyn,Hbb-bh1,Erythroid1,Erythroid2,0.0,0.1475882983461008,-0.1475882983461008,540
+gastrulation,scVelo_dyn,Hbb-bh1,Erythroid2,Erythroid3,0.0,-0.7932440311761015,0.7932440311761015,423
+gastrulation,scVelo_dyn,Hbb-y,Blood progenitors 1,Blood progenitors 2,0.0,-0.21156269347014425,0.21156269347014425,332
+gastrulation,scVelo_dyn,Hbb-y,Blood progenitors 2,Erythroid1,0.0,-0.2266939696744878,0.2266939696744878,515
+gastrulation,scVelo_dyn,Hbb-y,Erythroid1,Erythroid2,0.0,-0.12788812594504217,0.12788812594504217,540
+gastrulation,scVelo_dyn,Hbb-y,Erythroid2,Erythroid3,0.0,-0.8029631116635448,0.8029631116635448,423
 gastrulation,scVelo_dyn,Hemgn,Blood progenitors 1,Blood progenitors 2,-0.01436719173666567,-0.01436719173666567,0.0,332
 gastrulation,scVelo_dyn,Hemgn,Blood progenitors 2,Erythroid1,0.12942519433363087,0.1294251943036148,3.001607296049258e-11,515
 gastrulation,scVelo_dyn,Hemgn,Erythroid1,Erythroid2,-0.3406188055923703,-0.3406188055964811,4.110822793279567e-12,540
