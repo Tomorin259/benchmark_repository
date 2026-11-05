@@ -1,14 +1,15 @@
 {
   "source_type": "author_editable_powerpoint",
   "path": "figures/assembly/fig5/authoring/source.pptx",
-  "sha256": "3f30ddb5b5033b214d5e1a8e2926006dddb836cf0241cd7a37730c2f2cff2a51",
-  "author_export_identity_verified": false,
-  "verification_boundary": "Updated editable source; current PDF is the previous author export and a new export is pending.",
-  "pending_pdf_export": true,
-  "author_export_sha256": "20a33c651d442b7ef1053b5dd5742d638a9954bd30c4e0be0529e04741000588",
+  "sha256": "c5615e77b0fb624ea044cd45f0c28d56b51c2ffe42857c6d5a364cd54cc1d793",
+  "author_export_identity_verified": true,
+  "verification_boundary": "Slide content and resources match the author assembly; repository notes and document properties are retained. The cropped PDF retains the author source PDF operators and resources.",
+  "pending_pdf_export": false,
+  "author_export_sha256": "73320da358699c0d980406b4470de4cab87822b5b2b53c74eef038b7fa6b98c2",
   "current_pdf": "figures/figFive.pdf",
-  "current_pdf_sha256": "25fd950fd3f1c85175483963594cfec3d43776d1b1ad4e72d09ec9860c3a5610",
+  "current_pdf_sha256": "190e4daec6b903be66d101cdac1cf347459f4714061524c7b7ec99a3958351ea",
   "pending_ppt_assembly": false,
-  "author_assembly_sha256": "2f1c6cc1a05f745c1bedd72dcc2a5758bd70e3322f6b30405e721033d1d0ff86",
-  "exported_from_assembly_sha256": "528f6d98d5b03e75e820035135a730f9db08d10f06e4dccf15c2a6f83ec7e90d"
+  "author_assembly_sha256": "e88036a6ae3f2800dd0aaf9692f1022c29fd64903910214f83fee46c78b7d19c",
+  "exported_from_author_assembly_sha256": "e88036a6ae3f2800dd0aaf9692f1022c29fd64903910214f83fee46c78b7d19c",
+  "slide_content_synchronized_from_author": true
 }

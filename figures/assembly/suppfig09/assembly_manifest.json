@@ -72,19 +72,18 @@
     7.5,
     10.830556
   ],
-  "reproduction_boundary": "Updated editable assembly contains current panels; retained previous PDF awaits author export.",
+  "reproduction_boundary": "Current author PDF is retained; page-box crop and source identities are recorded in the composite manifest.",
   "assembly": "figures/assembly/suppfig09/supfig9.pptx",
   "assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
-  "pending_pdf_export": true,
-  "user_export_pdf_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
-  "user_export_source_pdf_sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
+  "pending_pdf_export": false,
+  "user_export_pdf_sha256": "d881fa0a7dd7df064085c48465cc2eb5662d58f4584ab00952e35bdead03b6b8",
+  "user_export_source_pdf_sha256": "d5782758cfd4fb0b7a48ea9556940bf8e2e7d843a46becc6952c5721e06814c2",
   "user_export_crop_box_pt": [
     0.0,
     478.0,
     540.0,
     779.8
   ],
-  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
-  "pending_ppt_assembly": false,
-  "exported_from_revision": "128e5af8b60c1793d02637a3294ccbb41f32eea5"
+  "user_export_source_pptx_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
+  "pending_ppt_assembly": false
 }

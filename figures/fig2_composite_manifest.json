@@ -5,7 +5,7 @@
     "path": "figures/assembly/fig2/fig2.pptx",
     "sha256": "9bf67865c493c4cd47ac0f670849fb1fd1475605a5c6e5e48152a91aa8bae7e1"
   },
-  "pending_pdf_export": true,
+  "pending_pdf_export": false,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
@@ -46,8 +46,8 @@
       779.8
     ],
     "source_pdf": {
-      "filename": "图2_0909_update.pdf",
-      "sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
+      "filename": "\u56fe2_0909_update.pdf",
+      "sha256": "230a5bfa4bdd3e6932a851afb84661ddb5455c98f5b0f356911ee2a64d6077af",
       "page_count": 1,
       "media_box_points": [
         0,
@@ -55,24 +55,24 @@
         540,
         779.8
       ],
-      "creation_date": "2026-10-27T03:32:35+08:00"
+      "creation_date": "2026-11-04T18:07:56+08:00"
     }
   },
   "verification": {
     "prepared_sources_verified": true,
-    "author_export_pending": true
+    "author_export_pending": false
   },
   "output": {
     "path": "figures/figTwo.pdf",
-    "sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "status": "previous_author_export_pending_refresh"
+    "sha256": "3c9dc18fc0f6fc4bd7a79b4df022eea9d90abacdfe02345017cbbd928ae02c48",
+    "status": "verified_author_export"
   },
   "last_pdf_verification": {
-    "filename": "图2_0909_update.pdf",
-    "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
-    "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "author_assembly_filename": "图2_0909_update.pptx",
-    "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
+    "filename": "\u56fe2_0909_update.pdf",
+    "source_pdf_sha256": "230a5bfa4bdd3e6932a851afb84661ddb5455c98f5b0f356911ee2a64d6077af",
+    "cropped_pdf_sha256": "3c9dc18fc0f6fc4bd7a79b4df022eea9d90abacdfe02345017cbbd928ae02c48",
+    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_sha256": "8230e5736c5634ac3e6fef4c7692aca9d85204bef489f096d448e0c2b6151fda",
     "crop_box_pt": [
       0.0,
       116.08,
@@ -89,11 +89,11 @@
     "sha256": "48e9228b8a251ef9a149573341ad1efa638811cfa034c42ad4b74f86365f021b"
   },
   "author_export": {
-    "filename": "图2_0909_update.pdf",
-    "source_pdf_sha256": "0c2d7af5349624884e523803109fe51e5c79b4c8b9f3ed030968ece611e40853",
-    "cropped_pdf_sha256": "e20793bee925f5431260e6e7daf022c2b9fd2d15ebbb1a846df6e9892850d1d9",
-    "author_assembly_filename": "图2_0909_update.pptx",
-    "author_assembly_sha256": "e71d4b2f51c46f2001bd11a64353e83f3d599cbb08f0b9eeb7e3e1a7ed5d4609",
+    "filename": "\u56fe2_0909_update.pdf",
+    "source_pdf_sha256": "230a5bfa4bdd3e6932a851afb84661ddb5455c98f5b0f356911ee2a64d6077af",
+    "cropped_pdf_sha256": "3c9dc18fc0f6fc4bd7a79b4df022eea9d90abacdfe02345017cbbd928ae02c48",
+    "author_assembly_filename": "\u56fe2_0909_update.pptx",
+    "author_assembly_sha256": "8230e5736c5634ac3e6fef4c7692aca9d85204bef489f096d448e0c2b6151fda",
     "crop_box_pt": [
       0.0,
       116.08,
@@ -103,6 +103,5 @@
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
   },
-  "exported_from_assembly_sha256": "cc01793ecce28da9c6c374722409511158c5b8483a0eaedbc327f41008c6cd98",
-  "previous_pdf_note": "Retained PDF predates the updated editable assembly; new author export pending."
+  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly."
 }

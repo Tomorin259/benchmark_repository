@@ -1,19 +1,19 @@
 {
   "figure": "suppfig09",
   "composite_path": "figures/suppFigNine.pdf",
-  "composite_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
+  "composite_sha256": "d881fa0a7dd7df064085c48465cc2eb5662d58f4584ab00952e35bdead03b6b8",
   "source_kind": "user_exported_pdf_cropped_by_page_boxes",
-  "verification": "Updated editable assembly; the retained PDF is the previous author export and awaits re-export.",
-  "reproduction_boundary": "Previous author PDF retained; current panels and editable assembly await author PDF export.",
-  "pending_pdf_export": true,
+  "verification": "Current author export was cropped by page boxes; page operators and resources match the source PDF.",
+  "reproduction_boundary": "Current author PDF and repository assembly share the verified slide content and resources.",
+  "pending_pdf_export": false,
   "current_assembly": "figures/assembly/suppfig09/supfig9.pptx",
   "current_assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
   "user_export": {
     "filename": "supfig9.pdf",
-    "sha256": "1beeba16e43e8b02c523a0b2ef1afb4e523d943ea035a739f2984bc943e9a1f2",
-    "creator": "WPS 演示",
-    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
-    "creation_date": "2026-10-19 02:05:32+08:00",
+    "sha256": "d5782758cfd4fb0b7a48ea9556940bf8e2e7d843a46becc6952c5721e06814c2",
+    "creator": "WPS \u6f14\u793a",
+    "producer": "macOS \u7248\u672c26.6.2\uff08\u7248\u53f725G83\uff09 Quartz PDFContext",
+    "creation_date": "2026-11-04T18:15:32+08:00",
     "page_count": 1,
     "source_media_box_pt": [
       0.0,
@@ -27,19 +27,19 @@
       540.0,
       779.8
     ],
-    "cropped_pdf_sha256": "053126d6b6d08c3580dced61ec434bf6929a4b5ab1f8c631ab1e8877c02c69a3",
+    "cropped_pdf_sha256": "d881fa0a7dd7df064085c48465cc2eb5662d58f4584ab00952e35bdead03b6b8",
     "decoded_content_stream_sha256": "dd65dd9db371e298124f32e918d940613015a1de953c3166a22b7d3e54e0155a",
     "crop_applied_by_page_boxes_only": true,
     "visual_reviewed": true,
     "source_pptx_filename": "supfig9.pptx",
-    "source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+    "source_pptx_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
     "source_pptx_slide_size_emu": [
       6858000,
       9903460
     ]
   },
-  "user_export_source_pptx_sha256": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
-  "repository_assembly_sha256_retained": "b040583f6f465c3944c44af9ec16cd60f4e4937b7c4152259cf9adb6b206178a",
+  "user_export_source_pptx_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
+  "repository_assembly_sha256_retained": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
   "numerical_sources": {
     "cell_primary": "evaluation/cell/results/cell_metrics.csv",
     "cell_gene_matched": "evaluation/cell/gene_matched/results/cell_metrics.csv",
@@ -57,10 +57,10 @@
   },
   "author_export": {
     "filename": "supfig9.pdf",
-    "source_pdf_sha256": "0fb26b297cf80ba12f89adbaa56f51764f591abe3c89dd276a2bf27c785f2436",
-    "cropped_pdf_sha256": "60d86430c747a60c82477f87a510caf4de6e13a26315ed4910501b8df5b1f013",
+    "source_pdf_sha256": "d5782758cfd4fb0b7a48ea9556940bf8e2e7d843a46becc6952c5721e06814c2",
+    "cropped_pdf_sha256": "d881fa0a7dd7df064085c48465cc2eb5662d58f4584ab00952e35bdead03b6b8",
     "author_assembly_filename": "supfig9.pptx",
-    "author_assembly_sha256": "029f55a2a2271fade67ecba5e62ee46bbfc9ecea5658cb8f1ac3478c24aa2533",
+    "author_assembly_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
     "crop_box_pt": [
       0.0,
       478.0,
@@ -70,6 +70,5 @@
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
   },
-  "exported_from_assembly_sha256": "e8f1f150d420e3ac8ce44d54f89f17a6f564fb30b80d56831f79558a901b7a5b",
-  "previous_pdf_note": "Retained PDF predates the updated editable assembly; new author export pending."
+  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly."
 }

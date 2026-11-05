@@ -15,7 +15,7 @@ Each figure/table directory describes its files and their corresponding panels.
 
 Download only the CSV, TSV or NPZ files you need; individual files require no
 ZIP extraction. For all files, use the optional
-[Source_Data_complete.zip](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/source_data/v1.0.0/Source_Data_complete.zip?download=true) (173.87 MB).
+[Source_Data_complete.zip](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/source_data/v1.0.0/Source_Data_complete.zip?download=true) (173.86 MB).
 It extracts into Source_Data/ with the same directory layout. The
 [download manifest](source_data_manifest.tsv) records every individual file
 and the optional archive, with versioned URLs, sizes and SHA-256 checksums.

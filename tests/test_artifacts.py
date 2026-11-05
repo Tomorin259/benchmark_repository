@@ -94,7 +94,7 @@ def test_assembly_manifest_materialized_panels_are_verified():
         assert row["export_path"] and not Path(row["export_path"]).is_absolute()
         assert ".." not in Path(row["export_path"]).parts
         assert hashlib.sha256(source).hexdigest() == row["sha256"], row["source_path"]
-    panels = [row for row in rows if row["figure"] == "suppfig10"]
+    panels = [row for row in rows if row["figure"] == "suppfig10" and row["status"] == "referenced_source"]
     assert len(panels) == 2
     assert all(row["status"] == "referenced_source" for row in panels)
     assert {row["panel"] for row in panels} == {"A", "B"}
@@ -157,8 +157,8 @@ def test_retained_supplementary_figures_have_current_hashes_and_scope():
 
 def test_completed_gene_figure_exports_match_their_editable_sources():
     records = json.loads((ROOT / "figures/assembly/author_exports.json").read_text())
-    expected = {"fig3", "fig4", "fig5", "fig7"} | {
-        f"suppfig{number:02d}" for number in range(1, 10)
+    expected = {"fig2", "fig3", "fig4", "fig5", "fig7"} | {
+        f"suppfig{number:02d}" for number in range(1, 11)
     }
     assert {item["figure"] for item in records["figures"]} == expected
     with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
@@ -168,6 +168,10 @@ def test_completed_gene_figure_exports_match_their_editable_sources():
         assert hashlib.sha256((ROOT / item["assembly"]).read_bytes()).hexdigest() == item["assembly_sha256"]
         pdf = ROOT / item["repository_pdf"]
         assert hashlib.sha256(pdf.read_bytes()).hexdigest() == item["cropped_or_final_pdf_sha256"]
+        if item["figure"] in {"fig2", "fig3", "fig5", "fig7", "suppfig01", "suppfig02", "suppfig03", "suppfig04", "suppfig09", "suppfig10"}:
+            assert item["pending_pdf_export"] is False
+            assert item["author_assembly_sha256"] == item["exported_from_author_assembly_sha256"]
+            assert item["source_pdf_sha256"] and item["repository_assembly_comparison"]
         if item["figure"].startswith("suppfig"):
             assert any(row["source_path"] == item["repository_pdf"]
                        and row["sha256"] == item["cropped_or_final_pdf_sha256"] for row in assembly)
