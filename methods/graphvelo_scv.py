@@ -203,6 +203,7 @@ def run_dataset(dataset):
 
     graphvelo = GraphVelo(adata, xkey="Ms", vkey="velocity")
     graphvelo.train()
+    graphvelo.write_to_adata(adata, key="gv")
     adata.layers["velocity_gv"] = graphvelo.project_velocity(adata.layers["Ms"])
     adata.obsm["gv_umap"] = graphvelo.project_velocity(adata.obsm["X_umap"])
 
@@ -222,11 +223,13 @@ def run_dataset(dataset):
     required_obsm = {"X_umap", "velocity_umap", "gv_umap"}
     missing_layers = required_layers - set(adata.layers)
     missing_obsm = required_obsm - set(adata.obsm)
-    if missing_layers or missing_obsm or "velocity_graph" not in adata.uns:
+    if (missing_layers or missing_obsm or "velocity_graph" not in adata.uns
+            or "gv" not in adata.obsp or "gv_params" not in adata.uns):
         raise RuntimeError(
             f"{dataset}: incomplete GraphVelo/scVelo result; "
             f"missing layers={sorted(missing_layers)}, obsm={sorted(missing_obsm)}, "
-            f"velocity_graph={'velocity_graph' in adata.uns}"
+            f"velocity_graph={'velocity_graph' in adata.uns}, "
+            f"phi={'gv' in adata.obsp}, phi_params={'gv_params' in adata.uns}"
         )
 
     adata.write_h5ad(output_path.as_posix())

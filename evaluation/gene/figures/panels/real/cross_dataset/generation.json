@@ -3,10 +3,10 @@
   "renderer_sha256": "713a1c928b97b0ba730e89d284258d8aeec524abdcf2f837a8ced3658fe155dc",
   "source_status": "ACTUAL_RUN",
   "source_tables": {
-    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "af70efe3219014fcc72cb08d82515e0271036cf6a086f77b27a6224a0e691242",
-    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
-    "evaluation/gene/results/common_genes/dataset_summary.csv": "93a493bc08edaf8d748f1b1415de48ea1881b0ef26a335b4034f9b6c46255a5a",
-    "evaluation/gene/results/common_genes/macro_summary.csv": "4141bc1daadbddce16c6389f066b8cdc61c7963ab4b623dadee3e1cc51d4dff2",
+    "evaluation/gene/results/gene_cbdir_reference30_all.csv": "380c031268853ca693bf08e90ec73aa5912b18a34eca7fca1b559bde6ff034ec",
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
+    "evaluation/gene/results/common_genes/dataset_summary.csv": "5932c634f93a779e1595f9132681fd1c5acd6e0090190a375af13e7d6f7c543d",
+    "evaluation/gene/results/common_genes/macro_summary.csv": "3a097535f954eb75078aaf1256a37a06e126b2d299308f2c6dac3c6529199bad",
     "evaluation/gene/results/common_genes/membership.csv": "dd644351be06ec7cad81e179adcac63619731ff0f4406a72e0321dbc22069b18"
   },
   "style_sources": {
@@ -100,18 +100,19 @@
     "branching_metric_scatter_ordered.png": "bfe0c1a37bcc80e0d7cdb0ff07b618b649050ae4600770c40c9a49636de78819",
     "branching_metric_scatter_ordered.svg": "f717a7b0bffba0467dc2583be41021b9db1b33d9354873d244500cab9e962936",
     "branching_pooled_means.csv": "c779054dd0776ca15194c1892a2728ffc1f2ad12f2ddf43068c33a25b6246328",
-    "common_gene_cbdir.pdf": "4b846d0fe3d940cf1d098b3c741f9b46555de8af5d69f71d456a3b8327cfe689",
-    "common_gene_cbdir.png": "44c2356f10531bef60adfb733b21cef253634a37b1171bbafbb3234d9cf1c5e3",
-    "common_gene_cbdir.svg": "f83992633fa0f37846ef1c8bbadf199ad1259724002132087e39fda5549422a0",
-    "common_gene_dataset_points.csv": "8892ffadbb07219a4a932062f75df6e961616e54e251bc5f1df6f99658a10a24",
-    "common_gene_macro_means.csv": "fe27fcc2f90faf40fbb0bfc4f583efc5364813dfd7679234caf7ebcb0fcbffaf",
-    "cross_dataset_means.csv": "103053bcd5b21c909e1eb45aa1793783e507fc33324a13c569675718d710bedc",
-    "murk_metric_scatter_ordered.pdf": "17c9860dae384d9169c91f5fb7783dee30e17776d4b4aa909a6bd1d69b5b0268",
-    "murk_metric_scatter_ordered.png": "1f3f965ff0384b2130eef6d023cf15e4249a4e3d3a0d839d803cd02a5e43db82",
-    "murk_metric_scatter_ordered.svg": "1764bcf1c2478cc612d5cb8f9536fadf7888ce8d24e0dbbb99b0f5031671fcd9",
-    "plotted_scores.csv": "3440f058d7d7ea3fbd40e9dd127ae629249df42caa79fb37f3062a4bdf3208d5"
+    "common_gene_cbdir.pdf": "cfff88c9f51737465fea3cbbb2a5824afd1f85205b0ee4b7b0e4692886074c11",
+    "common_gene_cbdir.png": "ab14973ba298d64527f6c38f1c4583b9073d56590039d34cd7966f61867f216b",
+    "common_gene_cbdir.svg": "50ce92b3ac7b9a7396f1b0f377f6e5f6e683e6cf7a4db498dac9e916c666d909",
+    "common_gene_dataset_points.csv": "1df1e3d7d2b4a0d09c115352b3e4b4c852923dc5bef7d9c8dfa78cc7ccc7ab8b",
+    "common_gene_macro_means.csv": "87113f9d1fd40f632f1971b65eaf53ef542ce160d5cadeda9dc3564e253533b4",
+    "cross_dataset_means.csv": "5355692bdf7f8cb742ba161023b6e5b9787be0a9fb9ec047db3ab24111ca0426",
+    "murk_metric_scatter_ordered.pdf": "aae73198d437b2c9b57d7ed3d68ba9b5ac6ec4a9ef2e47d89914b75933a8a4c1",
+    "murk_metric_scatter_ordered.png": "12159aadf65d0888305c0fbcf971c47467fc7f0ad23e63b921f1d1b2118fdf35",
+    "murk_metric_scatter_ordered.svg": "e279a145511871c38e9759237b2b8c7765b06f11874499f83d9f309bea94616c",
+    "plotted_scores.csv": "c080ade2303266550d9e90166116b6bd0a66be375e8eccbd39c626d8ab9fc3c5"
   },
-  "retained_common_gene_generation": {
+  "svg_serialization": "Trailing line whitespace normalized; geometry unchanged.",
+  "previous_common_gene_generation": {
     "source_tables": {
       "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
       "evaluation/cell/results/cell_metrics.csv": "a56e60b8212eb285e77a49814f708d0fa8eb070cbc2c1f65e7f19d7f629f1505",
@@ -121,5 +122,5 @@
     },
     "note": "Common-gene panel retained; common-gene values did not change."
   },
-  "svg_serialization": "Trailing line whitespace normalized; geometry unchanged."
+  "current_update": "Bone marrow GraphVelo-SCV result replaced; MURK scatter and common-gene panel regenerated. Unaffected branching panel assets are retained."
 }

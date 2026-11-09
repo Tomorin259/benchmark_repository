@@ -65,7 +65,7 @@ capo_pre,veloVI,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,eval
 bonemarrow,cellDancer,artifact://velocity/results/celldancer/celldancer_bonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,1.0,reference_clusters,5780,30
 bonemarrow,DeepVelo,artifact://velocity/results/deepvelo/results_with_vu/deepvelo_bonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,0.9999776760799196,reference_clusters,5780,30
 bonemarrow,DeepVelo_scv,artifact://velocity/results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,0.9999888380399599,reference_clusters,5780,30
-bonemarrow,Graphvelo_scv,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,0.5631356010148403,reference_clusters,5780,30
+bonemarrow,Graphvelo_scv,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,0.56312656262776,reference_clusters,5780,30
 bonemarrow,MultiVelo,artifact://velocity/results/multivelo/multivelo_bonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,,reference_clusters,5780,30
 bonemarrow,scVelo_dyn,artifact://velocity/results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,1.0,reference_clusters,5780,30
 bonemarrow,TIvelo,artifact://velocity/results/TIvelo/tivelo_bonemarrow.h5ad,evaluation/gene/results/reference_neighbors/bonemarrow.npz,0.9999776760799196,reference_clusters,5780,30

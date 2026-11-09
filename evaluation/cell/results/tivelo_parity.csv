@@ -56,7 +56,7 @@ bonemarrow,dynamo,transcosine,True,1.6352589681661867e-10
 bonemarrow,graphvelo_dynamo,highdim_cbdir,True,0.0
 bonemarrow,graphvelo_dynamo,transcosine,True,6.81001029179118e-09
 bonemarrow,graphvelo_scv,highdim_cbdir,True,0.0
-bonemarrow,graphvelo_scv,transcosine,True,8.016214969597257e-09
+bonemarrow,graphvelo_scv,transcosine,True,3.452174274221065e-08
 bonemarrow,scvelo_deterministic,highdim_cbdir,True,0.0
 bonemarrow,scvelo_deterministic,transcosine,True,1.3481298882789261e-08
 bonemarrow,scvelo_dynamic,highdim_cbdir,True,0.0

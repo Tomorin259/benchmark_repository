@@ -2,7 +2,7 @@
   "panels": [
     {
       "source": "figures/assembly/suppfig09/cell_panel_01_consistency.png",
-      "sha256": "72ba8f45d8ee2864559d4963ddcbe4e5b117e61910115709fae26aef0fd38aae",
+      "sha256": "06858ff7b6ac13d3a1e48ec5e98a40a06a496b4f9771201e78185fa9b78f3e08",
       "frame_inches": [
         0.0,
         -0.00027,
@@ -13,7 +13,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_02_iccoh.png",
-      "sha256": "4adb01d6d6ac8e91703ce103628eed81cf7312cc41482f4c445fc4af50332793",
+      "sha256": "720268c72f2c88437cf65008d8ac786dd428c25e9a54069d1f5befdff13c786b",
       "frame_inches": [
         2.5,
         -0.00027,
@@ -24,7 +24,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_03_cbdir.png",
-      "sha256": "4ef11440a369e12abf833b6a3982efff2c7293b0c481c4b9df707ea4cdac928e",
+      "sha256": "7322fe378287d8f89f875d9daa83b124d5933f3f4f02074864e86717c6012af9",
       "frame_inches": [
         5.0,
         0.000279,
@@ -35,7 +35,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_04_transcosine.png",
-      "sha256": "1fb98155be3beebe2f27d3262837c88c1d7773ca8fbe4651e739c2e4e14e39c1",
+      "sha256": "e39779f3e7f0c8f8b516355ccb4ad24f660fe6328d84047ffe68bcfe112c6ee8",
       "frame_inches": [
         0.0,
         2.109104,
@@ -46,7 +46,7 @@
     },
     {
       "source": "figures/assembly/suppfig09/cell_panel_05_batc.png",
-      "sha256": "3400460b04e111f7a80cdf84200eccafd7d40ad9d691a6fa428c77f64057b1e6",
+      "sha256": "336d948a94736b0118372fb77cb65810e742e6a4ff99c3c5a525d3874d4b8034",
       "frame_inches": [
         2.5,
         2.109104,
@@ -57,7 +57,7 @@
     },
     {
       "source": "evaluation/gene/figures/panels/real/common_genes/common_gene_cbdir.png",
-      "sha256": "44c2356f10531bef60adfb733b21cef253634a37b1171bbafbb3234d9cf1c5e3",
+      "sha256": "ab14973ba298d64527f6c38f1c4583b9073d56590039d34cd7966f61867f216b",
       "frame_inches": [
         5.0,
         2.109104,
@@ -72,7 +72,7 @@
     7.5,
     10.830556
   ],
-  "reproduction_boundary": "Current author PDF is retained; page-box crop and source identities are recorded in the composite manifest.",
+  "reproduction_boundary": "Panel sources are refreshed; the retained author PDF is awaiting export from the updated editable assembly.",
   "assembly": "figures/assembly/suppfig09/supfig9.pptx",
   "assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
   "pending_pdf_export": false,

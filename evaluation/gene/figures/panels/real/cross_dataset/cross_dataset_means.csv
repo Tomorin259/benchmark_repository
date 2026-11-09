@@ -10,7 +10,7 @@ DentateGyrus_lamanno,scVelo_dyn,0.07274670382223443,10.0,gene_cbdir
 DentateGyrus_lamanno,veloVI,0.05923916268195614,8.0,gene_cbdir
 bonemarrow,DeepVelo,0.24646078787425366,3.0,gene_cbdir
 bonemarrow,DeepVelo_scv,-0.0654615276969639,2.0,gene_cbdir
-bonemarrow,Graphvelo_scv,0.10499627534317,3.0,gene_cbdir
+bonemarrow,Graphvelo_scv,-0.010492995947160232,3.0,gene_cbdir
 bonemarrow,MultiVelo,-0.015958742940894128,3.0,gene_cbdir
 bonemarrow,TIvelo,0.36502910774217884,3.0,gene_cbdir
 bonemarrow,UniTVelo,0.22720123067960052,3.0,gene_cbdir
@@ -75,7 +75,7 @@ bonemarrow,TIvelo,0.1922912493485066,,cell_cbdir
 bonemarrow,cellDancer,-0.7925886826844661,,cell_cbdir
 bonemarrow,DeepVelo,-0.7772617700226849,,cell_cbdir
 bonemarrow,DeepVelo_scv,-0.8396250029078346,,cell_cbdir
-bonemarrow,Graphvelo_scv,0.5078385495166576,,cell_cbdir
+bonemarrow,Graphvelo_scv,-0.0405779509881064,,cell_cbdir
 bonemarrow,MultiVelo,-0.5149981871954755,,cell_cbdir
 bonemarrow,scVelo_dyn,-0.8392550362337489,,cell_cbdir
 bonemarrow,UniTVelo,0.7329803734511212,,cell_cbdir
@@ -138,7 +138,7 @@ bonemarrow,TIvelo,0.2963481784348383,,batc
 bonemarrow,cellDancer,-0.5848407029874179,,batc
 bonemarrow,DeepVelo,-0.5492540147718309,,batc
 bonemarrow,DeepVelo_scv,-0.5996543042706675,,batc
-bonemarrow,Graphvelo_scv,0.549337695348408,,batc
+bonemarrow,Graphvelo_scv,0.0948649487139679,,batc
 bonemarrow,MultiVelo,-0.0523165713276216,,batc
 bonemarrow,scVelo_dyn,-0.5953205704585975,,batc
 bonemarrow,UniTVelo,0.7633539366719791,,batc

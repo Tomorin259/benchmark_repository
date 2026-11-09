@@ -8,9 +8,9 @@ bonemarrow,DeepVelo,REXO2,0.20079533364961208,0.20075,4.5333649612067095e-05,4.5
 bonemarrow,DeepVelo_scv,LMNA,0.06299349090969758,0.06299,3.490909697576039e-06,3.490909697576039e-06,3,1455,0,ok,artifact://velocity/results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad,velocity_reconstructed,velocity_u
 bonemarrow,DeepVelo_scv,REXO2,-0.19391654630362534,-0.19392,3.453696374666748e-06,3.453696374666748e-06,3,1455,0,ok,artifact://velocity/results/deepvelo2022/deepvelo_bonemarrow_recon.h5ad,velocity_reconstructed,velocity_u
 bonemarrow,DeepVelo_scv,FAM178B,nan,nan,nan,nan,,,,gene_missing,,,
-bonemarrow,Graphvelo_scv,FAM178B,0.10455401287275486,0.11665,-0.012095987127245147,0.012095987127245147,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
-bonemarrow,Graphvelo_scv,LMNA,0.0691512934675582,0.0571,0.012051293467558205,0.012051293467558205,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
-bonemarrow,Graphvelo_scv,REXO2,0.14128351968919703,0.13477,0.006513519689197028,0.006513519689197028,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
+bonemarrow,Graphvelo_scv,FAM178B,-0.04410157816215817,0.11665,-0.16075157816215818,0.16075157816215818,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
+bonemarrow,Graphvelo_scv,LMNA,0.04752057896633081,0.0571,-0.00957942103366919,0.00957942103366919,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
+bonemarrow,Graphvelo_scv,REXO2,-0.03489798864565349,0.13477,-0.1696679886456535,0.1696679886456535,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
 bonemarrow,MultiVelo,FAM178B,0.24108652904870784,0.24109,-3.4709512921615726e-06,3.4709512921615726e-06,3,1455,0,ok,artifact://velocity/results/multivelo/multivelo_bonemarrow.h5ad,velo_s,velo_u
 bonemarrow,MultiVelo,LMNA,-0.09163155629501833,-0.09164,8.443704981667133e-06,8.443704981667133e-06,3,1455,0,ok,artifact://velocity/results/multivelo/multivelo_bonemarrow.h5ad,velo_s,velo_u
 bonemarrow,MultiVelo,REXO2,-0.19733120157637196,-0.19738,4.87984236280381e-05,4.87984236280381e-05,3,1455,0,ok,artifact://velocity/results/multivelo/multivelo_bonemarrow.h5ad,velo_s,velo_u

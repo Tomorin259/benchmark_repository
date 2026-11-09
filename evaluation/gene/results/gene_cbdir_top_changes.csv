@@ -7,8 +7,10 @@ capo_pre,TIvelo,DEK,0.1611410559684968,-0.05515,0.2162910559684968,0.21629105596
 gastrulation,veloVI,Alas2,0.5211685001862236,0.31148,0.20968850018622365,0.20968850018622365,4,1810,0,ok,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,velocity,velocity_u
 capo_pre,veloVI,FAM111A,0.1350562481200713,0.32752,-0.19246375187992867,0.19246375187992867,3,618,0,ok,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,velocity,velocity_u
 mousebrain,cellDancer,Gria2,0.062283379378208825,0.23408,-0.17179662062179119,0.17179662062179119,4,780,0,ok,artifact://velocity/results/celldancer/celldancer_mousebrain.h5ad,velocity,velocity_u
+bonemarrow,Graphvelo_scv,REXO2,-0.03489798864565349,0.13477,-0.1696679886456535,0.1696679886456535,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
 gastrulation,veloVI,Hbb-y,-0.11248149377569348,0.05641,-0.16889149377569349,0.16889149377569349,4,1810,0,ok,artifact://velocity/results/veloVI/veloVI_Gastrulation_all.h5ad,velocity,velocity_u
 capo_pre,TIvelo,ALPK2,0.34583580489671545,0.18468,0.16115580489671544,0.16115580489671544,3,618,0,ok,artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad,velocity,velocity_u
+bonemarrow,Graphvelo_scv,FAM178B,-0.04410157816215817,0.11665,-0.16075157816215818,0.16075157816215818,3,1455,0,ok,artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad,velocity_gv,velocity_u
 mousebrain,DeepVelo,Gria2,0.14085929764001676,0.30098,-0.16012070235998327,0.16012070235998327,4,780,0,ok,artifact://velocity/results/deepvelo/results_with_vu/deepvelo_mousebrain.h5ad,velocity,velocity_unspliced
 capo_pre,veloVI,CLSPN,0.3188478717050484,0.4748,-0.1559521282949516,0.1559521282949516,3,618,0,ok,artifact://velocity/results/veloVI/veloVI_capo_pre_all.h5ad,velocity,velocity_u
 capo_pre,TIvelo,FAM111A,0.280819577281848,0.13785,0.14296957728184798,0.14296957728184798,3,618,0,ok,artifact://velocity/results/TIvelo/tivelo_capo_pre.h5ad,velocity,velocity_u
@@ -97,5 +99,3 @@ gastrulation,cellDancer,Mllt3,0.35678481400503625,0.39749,-0.040705185994963755,
 mousebrain,cellDancer,Flrt2,-0.009483996636242359,0.03113,-0.040613996636242364,0.040613996636242364,4,780,0,ok,artifact://velocity/results/celldancer/celldancer_mousebrain.h5ad,velocity,velocity_u
 mousebrain,Graphvelo_scv,Flrt2,0.1607315298287757,0.12022,0.040511529828775705,0.040511529828775705,4,780,0,ok,artifact://velocity/results/graphvelo_scv/graphvelomousebrain.h5ad,velocity_gv,velocity_u
 mousebrain,veloVI,Gria2,0.23923641711653243,0.19923,0.04000641711653244,0.04000641711653244,4,780,0,ok,artifact://velocity/results/veloVI/veloVI_mousebrain_all.h5ad,velocity,velocity_u
-pancreas,cellDancer,Nxph1,0.1252011136102454,0.08533,0.03987111361024541,0.03987111361024541,7,1294,0,ok,artifact://velocity/results/celldancer/celldancer_Pancreas.h5ad,velocity,velocity_u
-mousebrain,scVelo_dyn,Adcy1,0.006244280352731842,-0.03324,0.03948428035273184,0.03948428035273184,4,780,0,ok,artifact://velocity/results/scvelo_dynamic/scv_dynamic_mousebrain.h5ad,velocity,velocity_u

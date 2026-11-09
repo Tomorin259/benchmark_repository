@@ -8,9 +8,9 @@ bonemarrow,DeepVelo,REXO2,0.200795333649612,,DeepVelo,Human bone marrow
 bonemarrow,DeepVelo_scv,LMNA,0.0629934909096975,,DeepVelo_scv,Human bone marrow
 bonemarrow,DeepVelo_scv,REXO2,-0.1939165463036253,,DeepVelo_scv,Human bone marrow
 bonemarrow,DeepVelo_scv,FAM178B,,,DeepVelo_scv,Human bone marrow
-bonemarrow,Graphvelo_scv,FAM178B,0.1045540128727548,,GraphVelo_scv,Human bone marrow
-bonemarrow,Graphvelo_scv,LMNA,0.0691512934675582,,GraphVelo_scv,Human bone marrow
-bonemarrow,Graphvelo_scv,REXO2,0.141283519689197,,GraphVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,FAM178B,-0.0441015781621581,,GraphVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,LMNA,0.0475205789663308,,GraphVelo_scv,Human bone marrow
+bonemarrow,Graphvelo_scv,REXO2,-0.0348979886456534,,GraphVelo_scv,Human bone marrow
 bonemarrow,MultiVelo,FAM178B,0.2410865290487078,,MultiVelo (RNA_only),Human bone marrow
 bonemarrow,MultiVelo,LMNA,-0.0916315562950183,,MultiVelo (RNA_only),Human bone marrow
 bonemarrow,MultiVelo,REXO2,-0.1973312015763719,,MultiVelo (RNA_only),Human bone marrow

@@ -1,6 +1,6 @@
 {
   "artifact_root": "artifact://velocity",
-  "generation_scope": "Original generation metadata is retained below. Real scVelo_dyn scores use real_c03_inputs; other separately recorded updates use their own provenance.",
+  "generation_scope": "Original generation metadata is retained below. Real scVelo_dyn and bone-marrow GraphVelo_scv updates use separately recorded inputs.",
   "script": "evaluation/gene/run_reference30_gene_cbdir.py",
   "script_sha256": "d96df070af002247f5ac5e1b83556b8d561d310b1e3e62af97d0d123f115e477",
   "scvelo_version": "0.2.5",
@@ -480,5 +480,21 @@
     "unfitted_genes_zero_scored": 7,
     "common_gene_rows": 35,
     "invalid_velocity_policy": "Nonfinite predicted velocities are replaced by zero and values clipped to +/-1e10 in memory before scoring."
+  },
+  "real_graphvelo_bonemarrow": {
+    "method": "Graphvelo_scv",
+    "dataset": "bonemarrow",
+    "source": "artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad",
+    "source_sha256": "17412e969c7d5dee660b38e8dc4575355a29343d50fae4f17a9a64a793658af7",
+    "source_bytes": 718338308,
+    "scoring_script": "evaluation/gene/run_reference30_gene_cbdir.py",
+    "neighbor_mode": "reference",
+    "n_score_rows": 3,
+    "n_edge_rows": 9,
+    "n_neighbors": 30,
+    "scoring_environment": {
+      "scvelo": "0.3.1",
+      "scanpy": "1.10.3"
+    }
   }
 }

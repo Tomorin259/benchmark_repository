@@ -3,13 +3,13 @@
   "figure": "Supplementary Figure 10",
   "assembly": {
     "path": "figures/assembly/suppfig10/suppfig10.pptx",
-    "sha256": "fcdfca26f1db88a4b16ed1b0f74519ec8bee67d5cc439e23f1c0a3ea8bcc9be0"
+    "sha256": "68cd73708974905d33b99ee3418e7c8874412fa7666f268acf7d9c542baa52bd"
   },
-  "pending_pdf_export": false,
+  "pending_pdf_export": true,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0"
+      "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
     },
     {
       "path": "ensemble/results/scores.csv",
@@ -20,12 +20,12 @@
     {
       "panel": "A",
       "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.svg",
-      "sha256": "369700c82cf87e283c6a41adbadd097b8e2f51976bb574c1c1c1d45fb8ef4634"
+      "sha256": "ec7854b6de5d1104cc263365dc9fb6562722c9b537d05d061857c4d42c1214a4"
     },
     {
       "panel": "B",
       "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.svg",
-      "sha256": "ec651193a151a2d41ef10ab54de389b1195a3d02ca14d343bbd752df175d6134"
+      "sha256": "a97f6a47e86f219476bbabd44fccab6659379d05dd4019131377ec3051da856f"
     }
   ],
   "export": {
@@ -59,10 +59,10 @@
   },
   "verification": {
     "slide_layout_xml_unchanged": true,
-    "final_pdf_export_verified": true,
+    "final_pdf_export_verified": false,
     "cropped_pdf_content_stream_unchanged": true,
     "source_panels_checked": 2,
-    "author_export_pending": false
+    "author_export_pending": true
   },
   "numerical_contract": {
     "ensemble": "GeoMedian-4",
@@ -74,7 +74,7 @@
   "output": {
     "path": "figures/suppFigTen.pdf",
     "sha256": "1693c9851628b067f23a23a4f50e4c4c21fa60ba5a1d99f92bea90bd023ade3c",
-    "status": "verified_author_export"
+    "status": "previous_author_export_pending_update"
   },
   "pending_material_assembly": false,
   "author_export": {
@@ -92,5 +92,7 @@
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
   },
-  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly."
+  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
+  "pdf_output_status": "Previous author export retained; updated assembly awaits author PDF export.",
+  "pending_author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341"
 }

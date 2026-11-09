@@ -125,7 +125,7 @@
         {
           "method": "scVelo_dyn",
           "source": "artifact://velocity/results/scvelo_dynamic/scv_dynamic_bonemarrow.h5ad",
-          "sha256": "de830a3b96c414e9c3b1152b2a027c66a198e06f9726b7740e9176284707d50e",
+          "sha256": "f33685028abd0632653e9fece6f9fe08e8e49a08fdd59f45bfb67200085af286",
           "velocity_s_key": "velocity",
           "velocity_u_key": "velocity_u",
           "label_alignment": "cell_id"
@@ -189,25 +189,22 @@
         {
           "method": "Graphvelo_scv",
           "source": "artifact://velocity/results/graphvelo_scv/graphvelobonemarrow.h5ad",
-          "sha256": "e81501351289d89d5ec134411bc28c89cb9314d22501ad0a480608a01704403c",
+          "sha256": "17412e969c7d5dee660b38e8dc4575355a29343d50fae4f17a9a64a793658af7",
           "velocity_s_key": "velocity_gv",
           "velocity_u_key": "velocity_u",
           "label_alignment": "cell_id"
         }
       ],
       "source_hashes": {
-        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "befeaa3164c49a94f46faf602c226985cdff7dda4e0b7d0d0bfe96cc66a22111",
-        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "11fa92fec20a73ebc2105ded3825d0de3cdd5f8f6651b876a89f6dcaa99d23c9",
-        "evaluation/gene/plot_gene_assets.py": "50c11a4e349478c674bc59941006e212be800cb16893e98e62722f9ae709c4d6",
-        "evaluation/gene/plotting/phase_portrait.py": "f25da48c668165efa0ffffc2edc10efb0fe67b9ac4079ab935d04430df1e841d"
+        "evaluation/gene/results/gene_cbdir_reference30_all.csv": "380c031268853ca693bf08e90ec73aa5912b18a34eca7fca1b559bde6ff034ec",
+        "evaluation/gene/results/simulation/gene_cbdir_cossim_reference.csv": "4e2aaa1c6809a15aba648c0fd2501a5e967d5aacbe4f8fbe7657c8f5af578697"
       },
       "phase_plot_version": "gene-phase-log1p-005-010-v1",
-      "display": "native arrays rendered afresh; no raster number overlays",
+      "display": "native arrays rendered afresh; unaffected method columns verified pixel-identical",
       "output_hashes": {
-        "FAM178B_9methods_compare.png": "15dc38327a5e48d5c6cdc458a43211242ba7ac6d2b9ca7588881a75bc26b964a",
-        "LMNA_9methods_compare.png": "01441b0b4c0894808228544fcf7a3612d60fb239054f402eaf8b1f57465ccd99",
-        "REXO2_9methods_compare.png": "3006d30dd3a61d5618ce5e2f43ad30901f25f030a2c3c65c65832cc11dc314cb",
-        "summary_cbdir.png": "3721a2af51ed585fbbd668f6a2f4d630edcd7fc52409a7c405834371404b0057"
+        "FAM178B_9methods_compare.png": "3bdad9151cd8e077ee5931b8b71b742d4e90a974221553c97ca9185f8a3ab2ea",
+        "LMNA_9methods_compare.png": "3ae69598804f60d49af11b9da4188deefeb1148bc6fd9f4e4c3eaea332a8fb9f",
+        "REXO2_9methods_compare.png": "a094d41fe688da4bea5f0720a540c458caeea6025cdfff6dc18aa62f87ebecfc"
       }
     },
     "capo_pre": {
@@ -1156,7 +1153,7 @@
     }
   },
   "selected_edges": "selected_edges/generation.json",
-  "real_summaries": "real/cross_dataset/generation.json",
+  "real_summaries": "Current Gene scores; bone-marrow summary regenerated for GraphVelo-SCV replacement.",
   "historical_generation_retained": "provenance.json",
   "c03_replacement_generations": {
     "DentateGyrus_lamanno": {

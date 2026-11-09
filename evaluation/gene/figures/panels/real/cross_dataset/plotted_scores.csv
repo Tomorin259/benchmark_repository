@@ -5,9 +5,9 @@ MURK-five,DeepVelo,gene_cbdir,0.11230530459517692,5,equal_dataset_weight,DeepVel
 MURK-five,DeepVelo_scv,batc,0.056101686077143144,5,equal_dataset_weight,DeepVelo_scv,8
 MURK-five,DeepVelo_scv,cell_cbdir,-0.001791490708250787,5,equal_dataset_weight,DeepVelo_scv,8
 MURK-five,DeepVelo_scv,gene_cbdir,0.010515762619501448,5,equal_dataset_weight,DeepVelo_scv,8
-MURK-five,Graphvelo_scv,batc,0.5361458310783542,5,equal_dataset_weight,GraphVelo_scv,4
-MURK-five,Graphvelo_scv,cell_cbdir,0.44087062043258046,5,equal_dataset_weight,GraphVelo_scv,4
-MURK-five,Graphvelo_scv,gene_cbdir,0.1300830918201219,5,equal_dataset_weight,GraphVelo_scv,4
+MURK-five,Graphvelo_scv,batc,0.4452512817514661,5,equal_dataset_weight,GraphVelo_scv,4
+MURK-five,Graphvelo_scv,cell_cbdir,0.3311873203316277,5,equal_dataset_weight,GraphVelo_scv,4
+MURK-five,Graphvelo_scv,gene_cbdir,0.10698523756205584,5,equal_dataset_weight,GraphVelo_scv,4
 MURK-five,MultiVelo,batc,-0.03129372541286277,5,equal_dataset_weight,MultiVelo,7
 MURK-five,MultiVelo,cell_cbdir,-0.16163656564286816,5,equal_dataset_weight,MultiVelo,7
 MURK-five,MultiVelo,gene_cbdir,0.049510938487260465,5,equal_dataset_weight,MultiVelo,7

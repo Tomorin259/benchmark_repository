@@ -5,14 +5,14 @@
   "source_kind": "user_exported_pdf_cropped_by_page_boxes",
   "verification": "Current author export was cropped by page boxes; page operators and resources match the source PDF.",
   "reproduction_boundary": "Current author PDF and repository assembly share the verified slide content and resources.",
-  "pending_pdf_export": false,
+  "pending_pdf_export": true,
   "current_assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "current_assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
+  "current_assembly_sha256": "3a66a7908541a27049cdfda8e1caaeb33fe4a14b02d640db779c5dd968537040",
   "user_export": {
     "filename": "supfig9.pdf",
     "sha256": "d5782758cfd4fb0b7a48ea9556940bf8e2e7d843a46becc6952c5721e06814c2",
-    "creator": "WPS \u6f14\u793a",
-    "producer": "macOS \u7248\u672c26.6.2\uff08\u7248\u53f725G83\uff09 Quartz PDFContext",
+    "creator": "WPS 演示",
+    "producer": "macOS 版本26.6.2（版号25G83） Quartz PDFContext",
     "creation_date": "2026-11-04T18:15:32+08:00",
     "page_count": 1,
     "source_media_box_pt": [
@@ -70,5 +70,7 @@
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
   },
-  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly."
+  "repository_assembly_comparison": "Current slide resources match the author assembly; the retained PDF predates this update.",
+  "pdf_output_status": "Previous author export retained; updated assembly awaits author PDF export.",
+  "pending_author_assembly_sha256": "efc892903241d94e7a5cdfeba86c4ec80150817b08e00aa70cd8d31814fac8e7"
 }

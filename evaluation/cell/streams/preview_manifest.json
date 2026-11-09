@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "inputs_sha256": "2c68e222ae6bff83cacff24eb34323672f1e8c2458f2c96a955d9563794cab49",
+  "inputs_sha256": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb",
   "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
   "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
   "scvelo_version": "0.2.5",
@@ -2383,9 +2383,9 @@
       "dataset": "bonemarrow",
       "method": "C19",
       "path": "evaluation/cell/streams/previews/bonemarrow/C19.png",
-      "sha256": "0a9bf8825461ce77f283f533d974a45eec17005c28ebbcc2789ddda9ec9f07ec",
+      "sha256": "1fcbb0124fd92ddcf5e5ac1664f0482f3e9a69051df624fa434233272d9d7125",
       "result_path": "velocity:results/graphvelo_scv/graphvelobonemarrow.h5ad",
-      "result_sha256": "e81501351289d89d5ec134411bc28c89cb9314d22501ad0a480608a01704403c",
+      "result_sha256": "17412e969c7d5dee660b38e8dc4575355a29343d50fae4f17a9a64a793658af7",
       "n_reference": 5780,
       "n_common": 5780,
       "projection": "saved_native_projection_in_reference_frame",
@@ -2430,7 +2430,17 @@
           "label": "Mega",
           "color": "#ff7f00"
         }
-      ]
+      ],
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
+      },
+      "render_protocol_sha256": "2e9e84e5e0a483b6097a7d9c1b141ab29238050052a5a1ec255c486167b66a45"
     },
     {
       "dataset": "bonemarrow",
@@ -12924,6 +12934,24 @@
           2
         ],
         "coordinate_sha256": "dc32de4ce6f2e9e6168dc992c91f968f3c623a791de3d6ce0d140058bdd8e1bc"
+      }
+    },
+    "bonemarrow": {
+      "renderer_sha256": "0f3c66276a8a0371053777f63049132a43be807ee2f2cf5ce77b3ab62b17101b",
+      "preparation_sha256": "9055488521dd189cb3371deee4ab760189427bcf7195df738d9136bb0dcc4c0b",
+      "frame_loader_sha256": "a500c4b89989bd69b8e91d7d1ee37ea9fe2a3d94e8ef30dfc3e097f79b95955a",
+      "config_sha256": "b2e99c25a838263f0cb51e26ed60b398895ad65ccd6df4fbe5addcada0f64721",
+      "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+      "reference_source_sha256": "4ab18ff345c2dcb39a33de4e7b9aeb468a879a65b916ca772c17fcf1d59fd37a",
+      "scvelo_version": "0.2.5",
+      "frame": {
+        "space": "umap",
+        "projection_dimensions": 2,
+        "display_components": [
+          1,
+          2
+        ],
+        "coordinate_sha256": "a67429763e43b9a77cd8a4499ecf062ee090dab4d92fb547caf7cb91e3b813ca"
       }
     }
   }

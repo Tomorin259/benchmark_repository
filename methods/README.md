@@ -189,6 +189,9 @@ PY
 
 ## Method-specific inputs and workflows
 
+- **GraphVelo-scv (C19):** the launcher stores native Phi in `obsp["gv"]`
+  and its parameters in `uns["gv_params"]` via GraphVelo `write_to_adata`.
+  Fitting uses no explicit MacK-based gene subset.
 - **cell2fate and DeepKINET:** use raw spliced/unspliced counts aligned by
   cell and gene ID.
 - **DeepKINET (C13):** the benchmark uses seed 123 with deterministic

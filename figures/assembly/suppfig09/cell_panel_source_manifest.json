@@ -2,7 +2,7 @@
   "generator": "evaluation/cell/plots.py --gene-matched",
   "generator_sha256": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
   "source_tables": {
-    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
     "evaluation/cell/gene_matched/results/cell_metrics.csv": "7e6251ee23bc41fd4c4afdd22867d99d41b1697eaa746a837bcba95e666c5412"
   },
   "scope": "Nine methods, seven datasets; each panel displays seven equally weighted dataset scores",
@@ -22,8 +22,8 @@
       "pdf": "cell_panel_01_consistency.pdf",
       "png": "cell_panel_01_consistency.png",
       "png_dpi": 600,
-      "png_sha256": "72ba8f45d8ee2864559d4963ddcbe4e5b117e61910115709fae26aef0fd38aae",
-      "pdf_sha256": "f6348c1995b7c8ceb62ceb3845598456b1f3c1a691b75ee28ac052f6e61256b5"
+      "png_sha256": "06858ff7b6ac13d3a1e48ec5e98a40a06a496b4f9771201e78185fa9b78f3e08",
+      "pdf_sha256": "9ec8ec7ef7ab0b42f027ee3d773f253faf9b20ab67cc832635e40520837dbd13"
     },
     {
       "panel": "iccoh",
@@ -36,8 +36,8 @@
       "pdf": "cell_panel_02_iccoh.pdf",
       "png": "cell_panel_02_iccoh.png",
       "png_dpi": 600,
-      "png_sha256": "4adb01d6d6ac8e91703ce103628eed81cf7312cc41482f4c445fc4af50332793",
-      "pdf_sha256": "6a0b1f8fdd88f5c330486062062ce0c76253028caa917d3d35ff2a118d1c7c48"
+      "png_sha256": "720268c72f2c88437cf65008d8ac786dd428c25e9a54069d1f5befdff13c786b",
+      "pdf_sha256": "6d6a8117ce47cb69f2ae4e2627287212b94443b94aa989918faa18c30dac0b3e"
     },
     {
       "panel": "cbdir",
@@ -50,8 +50,8 @@
       "pdf": "cell_panel_03_cbdir.pdf",
       "png": "cell_panel_03_cbdir.png",
       "png_dpi": 600,
-      "png_sha256": "4ef11440a369e12abf833b6a3982efff2c7293b0c481c4b9df707ea4cdac928e",
-      "pdf_sha256": "9cdf10effe1f8d11fffac40625da643845d130a8b1f676a50a306e7414605a93"
+      "png_sha256": "7322fe378287d8f89f875d9daa83b124d5933f3f4f02074864e86717c6012af9",
+      "pdf_sha256": "4311552babd58eef6b8fe93c36485a42a3a7f3b4642e4611a0f22a17a558c4ec"
     },
     {
       "panel": "transcosine",
@@ -64,8 +64,8 @@
       "pdf": "cell_panel_04_transcosine.pdf",
       "png": "cell_panel_04_transcosine.png",
       "png_dpi": 600,
-      "png_sha256": "1fb98155be3beebe2f27d3262837c88c1d7773ca8fbe4651e739c2e4e14e39c1",
-      "pdf_sha256": "ba845d37bc5d14238700d4bc1155131cf945515cef35f90bb9af4471b2f6ee6c"
+      "png_sha256": "e39779f3e7f0c8f8b516355ccb4ad24f660fe6328d84047ffe68bcfe112c6ee8",
+      "pdf_sha256": "a0b91a5f5c53b4aaa087f139b8cf739344186d2afc6d72a204331391ffba4763"
     },
     {
       "panel": "batc",
@@ -78,8 +78,8 @@
       "pdf": "cell_panel_05_batc.pdf",
       "png": "cell_panel_05_batc.png",
       "png_dpi": 600,
-      "png_sha256": "3400460b04e111f7a80cdf84200eccafd7d40ad9d691a6fa428c77f64057b1e6",
-      "pdf_sha256": "21974c6307b72d5ab3618409112fe96c781efee4565f5939b389d50193a163f3"
+      "png_sha256": "336d948a94736b0118372fb77cb65810e742e6a4ff99c3c5a525d3874d4b8034",
+      "pdf_sha256": "61e58cb10fb8af547f946434a82a70e6a29b51431f732123aba1531b80be4338"
     }
   ]
 }

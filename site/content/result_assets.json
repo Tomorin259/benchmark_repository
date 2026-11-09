@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "sources": {
-    "evaluation/cell/results/cell_metrics.csv": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
     "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
-    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "34864df41a0c88a809371136e89da72bcc1514b20558a70b12d80c1d87de4b20",
+    "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "30fb3c60464314637689ed43f628ca6cba54598cebaafcaba1f1bde2aadf073c",
     "evaluation/cell/simulation/results/cross_level_summary.csv": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6",
     "figures/fig4_composite_manifest.json": "42e238d7f46aad0f52bd3850cf3274399816a055a2e5f6ebb517ac472dd01f92",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
@@ -15,27 +15,27 @@
     {
       "id": "cell-consistency",
       "path": "evaluation/cell/figures/fig2_cell_metric_consistency.png",
-      "sha256": "ae30747fa41be6536c35cb787724aff669b3caadc86daec748f1d8bab7b0f003"
+      "sha256": "deb60ab302a5c3d419dda2376e011ec0ec25b60ec248d61c3c76d7cb23727fb6"
     },
     {
       "id": "cell-iccoh",
       "path": "evaluation/cell/figures/fig2_cell_metric_iccoh.png",
-      "sha256": "f76d68a01a0bcc4f674da3c1b74c514fe5f6b2645f0820edb5efa7b697586c36"
+      "sha256": "9c56ed40152b2e944e9102895ab7686d8bdbe2e09d4ffdc88fbdec538f3767c3"
     },
     {
       "id": "cell-cbdir",
       "path": "evaluation/cell/figures/fig2_cell_metric_cbdir.png",
-      "sha256": "7a250bb1c20643076df259f9a26f3d61518a40657cd2d22ee0e50622b82c025c"
+      "sha256": "c2866f149172d85070c7a553cf94614656027cee46997aaf00b42349a34efe05"
     },
     {
       "id": "cell-transcosine",
       "path": "evaluation/cell/figures/fig2_cell_metric_transcosine.png",
-      "sha256": "e4c35c00e4332bde69724964f084720c157568e8d8a06200692303bd443e1e95"
+      "sha256": "26381b1bed539a60ef774038792e0b23a89cc1876c70dab18316d4549912d328"
     },
     {
       "id": "cell-batc",
       "path": "evaluation/cell/figures/fig2_cell_metric_batc.png",
-      "sha256": "1413660f2690ae51d3358d2b0dd214e974dbc79c33732e2c6ca3cc358080c42f"
+      "sha256": "deeea2339f842ceb92797bad7205e30ebe917158c6fdfed46b9bf4891412ec3f"
     },
     {
       "id": "simulation-cross-level",
