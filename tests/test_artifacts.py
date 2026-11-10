@@ -164,11 +164,14 @@ def test_completed_gene_figure_exports_match_their_editable_sources():
     with (ROOT / "figures/assembly/assembly_manifest.tsv").open(newline="") as handle:
         assembly = list(csv.DictReader(handle, delimiter="\t"))
     for item in records["figures"]:
-        assert item["status"] == "user_exported_cropped"
+        pending = item.get("pending_pdf_export", False)
+        assert item["status"] == ("pending_user_pdf_export" if pending else "user_exported_cropped")
+        if pending:
+            assert item.get("pdf_identity") == "Previous author export retained; not yet generated from the updated assembly."
         assert hashlib.sha256((ROOT / item["assembly"]).read_bytes()).hexdigest() == item["assembly_sha256"]
         pdf = ROOT / item["repository_pdf"]
         assert hashlib.sha256(pdf.read_bytes()).hexdigest() == item["cropped_or_final_pdf_sha256"]
-        if item["figure"] in {"fig2", "fig3", "fig5", "fig7", "suppfig01", "suppfig02", "suppfig03", "suppfig04", "suppfig09", "suppfig10"}:
+        if not pending and item["figure"] in {"fig2", "fig3", "fig5", "fig7", "suppfig01", "suppfig02", "suppfig03", "suppfig04", "suppfig09", "suppfig10"}:
             assert item["pending_pdf_export"] is False
             assert item["author_assembly_sha256"] == item["exported_from_author_assembly_sha256"]
             assert item["source_pdf_sha256"] and item["repository_assembly_comparison"]

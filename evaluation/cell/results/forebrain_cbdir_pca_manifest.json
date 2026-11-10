@@ -175,13 +175,13 @@
   "edge_details_sha256": "7e4329c6f37de35f60ee45498f3205996f8327202103d19ce5599f49fa9924d1",
   "edge_rows": 120,
   "primary_table": "cell_metrics.csv",
-  "primary_table_sha256": "3efbc811a4228f1e2c52578e43399f7472f6199655eece65cca7d27fc2ee4bc0",
+  "primary_table_sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
   "randomness_policy": "Frozen coordinates/neighbor assets; no UMAP/PCA construction or training",
   "guard_tables": {
-    "cell_metrics_supplementary.csv": "abe51b23e93bb96b283261efaf17c85354115e8d9aa6efa6ae025a4690715233",
-    "cell_metrics_audit.csv": "cc4f320fe724acc024a87ccf8786ef7ee8999e639387120b183ed67a38d060af",
-    "cell_metrics_edge_details.csv": "29c9396256ddd9750d3ef89ed9987c38a93671b4130fc50463c037f5d9443b65",
-    "tivelo_parity.csv": "391733683e85a2056162e98bb41502749af688cec7b55f402c2aa692e262f287"
+    "cell_metrics_supplementary.csv": "2e11cebe77d48f09280d10f69c862663457384f369ce3f2de1b96424d3192b89",
+    "cell_metrics_audit.csv": "dda8e2aa2a6c566139aebc5c0af85d1fa4a8672dcf53f9deaa478a9afbc3ee30",
+    "cell_metrics_edge_details.csv": "9bf0a07de9fd7d0aa2fd901ea7e5ce41ac91dd916a1241759a2c33b3afc6982a",
+    "tivelo_parity.csv": "fab9ab7f5f56e9212daca9ef855f03ac736d21127dccb746d692a76f3cac30ae"
   },
   "entry_validation": {
     "methods": [

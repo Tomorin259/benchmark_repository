@@ -5,7 +5,7 @@
     "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
     "evaluation/summary/results/figure7_summary/fig7_cell_metric_summary.csv": "30fb3c60464314637689ed43f628ca6cba54598cebaafcaba1f1bde2aadf073c",
     "evaluation/cell/simulation/results/cross_level_summary.csv": "9aca1093f2cd1a2d7ba590a471182d12fe506b0afaf1c8ccf46a44f0dd0e8ef6",
-    "figures/fig4_composite_manifest.json": "42e238d7f46aad0f52bd3850cf3274399816a055a2e5f6ebb517ac472dd01f92",
+    "figures/fig4_composite_manifest.json": "26e15546aed806bf98b1e78c59948ce6cf85dd9b6cae483dcd1ab857894d7763",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
     "evaluation/kinetics_recovery/figures/fig6/plot_data/rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc",
