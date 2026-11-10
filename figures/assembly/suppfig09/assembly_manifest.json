@@ -72,12 +72,12 @@
     7.5,
     10.830556
   ],
-  "reproduction_boundary": "Panel sources are refreshed; the retained author PDF is awaiting export from the updated editable assembly.",
+  "reproduction_boundary": "Current author PDF exported from updated editable assembly; crop preserves all page operators and resources.",
   "assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "assembly_sha256": "f3f043c132519b9fe0ac0e09a058ae16b771a28cf1f9e84d923622b9a4e958f6",
+  "assembly_sha256": "3a66a7908541a27049cdfda8e1caaeb33fe4a14b02d640db779c5dd968537040",
   "pending_pdf_export": false,
-  "user_export_pdf_sha256": "d881fa0a7dd7df064085c48465cc2eb5662d58f4584ab00952e35bdead03b6b8",
-  "user_export_source_pdf_sha256": "d5782758cfd4fb0b7a48ea9556940bf8e2e7d843a46becc6952c5721e06814c2",
+  "user_export_pdf_sha256": "db99714f2b3e77cacb2f703ffc3790d302c73818041bf7c1a6f5ad4664cca9a0",
+  "user_export_source_pdf_sha256": "8e9fe243bb1b05ac1df62b221390dd80c1b8aeb41b8a331f0308550d7e924719",
   "user_export_crop_box_pt": [
     0.0,
     478.0,

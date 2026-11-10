@@ -5,7 +5,7 @@
     "path": "figures/assembly/suppfig10/suppfig10.pptx",
     "sha256": "68cd73708974905d33b99ee3418e7c8874412fa7666f268acf7d9c542baa52bd"
   },
-  "pending_pdf_export": true,
+  "pending_pdf_export": false,
   "inputs": [
     {
       "path": "evaluation/cell/results/cell_metrics.csv",
@@ -46,7 +46,7 @@
     ],
     "source_pdf": {
       "filename": "supfig10.pdf",
-      "sha256": "d2e2a73056afd5a4a8aced73b1ee25e2a624d3aae97f94a02d8c92f8d854e644",
+      "sha256": "8335bb1f94b5fecb748cfd9b272698a12f71b1e7ebe4e82357d00561db92cc58",
       "page_count": 1,
       "media_box_points": [
         0,
@@ -54,15 +54,15 @@
         540,
         779.8
       ],
-      "creation_date": "2026-11-04T18:15:23+08:00"
+      "creation_date": "2026-11-10T12:51:30+08:00"
     }
   },
   "verification": {
     "slide_layout_xml_unchanged": true,
-    "final_pdf_export_verified": false,
+    "final_pdf_export_verified": true,
     "cropped_pdf_content_stream_unchanged": true,
     "source_panels_checked": 2,
-    "author_export_pending": true
+    "author_export_pending": false
   },
   "numerical_contract": {
     "ensemble": "GeoMedian-4",
@@ -73,16 +73,16 @@
   },
   "output": {
     "path": "figures/suppFigTen.pdf",
-    "sha256": "1693c9851628b067f23a23a4f50e4c4c21fa60ba5a1d99f92bea90bd023ade3c",
+    "sha256": "0c3e3b4498c0bd8888bbed8425010ea85724c27c449b550cf0917408eeb344e6",
     "status": "previous_author_export_pending_update"
   },
   "pending_material_assembly": false,
   "author_export": {
     "filename": "supfig10.pdf",
-    "source_pdf_sha256": "d2e2a73056afd5a4a8aced73b1ee25e2a624d3aae97f94a02d8c92f8d854e644",
-    "cropped_pdf_sha256": "1693c9851628b067f23a23a4f50e4c4c21fa60ba5a1d99f92bea90bd023ade3c",
+    "source_pdf_sha256": "8335bb1f94b5fecb748cfd9b272698a12f71b1e7ebe4e82357d00561db92cc58",
+    "cropped_pdf_sha256": "0c3e3b4498c0bd8888bbed8425010ea85724c27c449b550cf0917408eeb344e6",
     "author_assembly_filename": "supfig10.pptx",
-    "author_assembly_sha256": "1bb3900799c1522f7196f16c8d640f1202fa171e220b2039fb7a10e27d1342db",
+    "author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341",
     "crop_box_pt": [
       0.0,
       451.0,
@@ -93,6 +93,5 @@
     "resource_streams_unchanged": true
   },
   "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
-  "pdf_output_status": "Previous author export retained; updated assembly awaits author PDF export.",
-  "pending_author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341"
+  "pdf_output_status": "Current author export; page-box crop verified against updated assembly."
 }

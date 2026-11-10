@@ -2,15 +2,15 @@
   "source_type": "author_editable_powerpoint",
   "path": "figures/assembly/fig5/authoring/source.pptx",
   "sha256": "4e433233d7d21f2a65c25a45841b4007c8b50ef284ee4614e46624cbfeff4eb0",
-  "author_export_identity_verified": false,
+  "author_export_identity_verified": true,
   "verification_boundary": "Slide content and resources match the author assembly; repository notes and document properties are retained. The cropped PDF retains the author source PDF operators and resources.",
-  "pending_pdf_export": true,
-  "author_export_sha256": "73320da358699c0d980406b4470de4cab87822b5b2b53c74eef038b7fa6b98c2",
+  "pending_pdf_export": false,
+  "author_export_sha256": "8f3b3d986cf849a1d0977438aed40a18ebb0a1cde700674fd6a82cc8f4b53de4",
   "current_pdf": "figures/figFive.pdf",
-  "current_pdf_sha256": "190e4daec6b903be66d101cdac1cf347459f4714061524c7b7ec99a3958351ea",
+  "current_pdf_sha256": "a2f29c95229ccfa204fcada8a0299d6b332ce22221dc4004dd137d17ffe395dd",
   "pending_ppt_assembly": false,
   "author_assembly_sha256": "77eb862e0c078068a6ab392efd0679160a78a543baf55f5b9b9def0429c8a955",
-  "exported_from_author_assembly_sha256": "e88036a6ae3f2800dd0aaf9692f1022c29fd64903910214f83fee46c78b7d19c",
+  "exported_from_author_assembly_sha256": "77eb862e0c078068a6ab392efd0679160a78a543baf55f5b9b9def0429c8a955",
   "slide_content_synchronized_from_author": true,
-  "current_pdf_status": "Previous author export retained; updated assembly awaits export."
+  "current_pdf_status": "Current author PDF verified against updated assembly."
 }

@@ -7,7 +7,7 @@
   },
   "output": {
     "path": "figures/figSeven.pdf",
-    "sha256": "8e613ad487e6d71e6a96e7503b36bfac55d2311a5e0b49a807ea6a896b1b23f1",
+    "sha256": "6ff600675fbc32fde5c3826c53a917aba69055fccbaa505b4e2579d8e39da688",
     "status": "previous_author_export_pending_update"
   },
   "inputs": [
@@ -54,7 +54,7 @@
     "assembly_mode": "The author re-exported the updated native editable PowerPoint. Only the blank lower slide area is cropped; vector content, chart geometry, colors and text are preserved.",
     "source_pdf": {
       "filename": "图7.pdf",
-      "sha256": "71bb170cfca491f5805446608c227d5b1a66bf3e0d11d286010181b232d0546d",
+      "sha256": "b02a4307a049bf4c4a04a058af4581cb6caba555b4ce286859b4f638033ea34a",
       "page_count": 1,
       "media_box_points": [
         0,
@@ -62,7 +62,7 @@
         540,
         779.8
       ],
-      "creation_date": "2026-11-04T18:10:05+08:00"
+      "creation_date": "2026-11-10T12:49:59+08:00"
     }
   },
   "embedded_workbooks": [
@@ -169,16 +169,16 @@
   "verification": {
     "native_chart_count": 10,
     "chart_cache_values_checked": 352,
-    "current_pdf_crop_verified": false,
-    "current_pdf_content_stream_unchanged": false,
-    "author_export_pending": true
+    "current_pdf_crop_verified": true,
+    "current_pdf_content_stream_unchanged": true,
+    "author_export_pending": false
   },
   "last_pdf_verification": {
     "filename": "图7.pdf",
-    "source_pdf_sha256": "71bb170cfca491f5805446608c227d5b1a66bf3e0d11d286010181b232d0546d",
-    "cropped_pdf_sha256": "8e613ad487e6d71e6a96e7503b36bfac55d2311a5e0b49a807ea6a896b1b23f1",
+    "source_pdf_sha256": "b02a4307a049bf4c4a04a058af4581cb6caba555b4ce286859b4f638033ea34a",
+    "cropped_pdf_sha256": "6ff600675fbc32fde5c3826c53a917aba69055fccbaa505b4e2579d8e39da688",
     "author_assembly_filename": "图7.pptx",
-    "author_assembly_sha256": "bdb3a980e6b8c4df36e3c907285df0892a7d3ce241e094cde9f86e03918a4520",
+    "author_assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa",
     "crop_box_pt": [
       0.0,
       315.395,
@@ -188,16 +188,16 @@
     "page_operators_unchanged": true,
     "resource_streams_unchanged": true
   },
-  "pending_pdf_export": true,
+  "pending_pdf_export": false,
   "pending_shared_assembly": false,
   "input_role": "Current numerical materials and editable assembly; current author export is retained.",
   "pending_material_assembly": false,
   "author_export": {
     "filename": "图7.pdf",
-    "source_pdf_sha256": "71bb170cfca491f5805446608c227d5b1a66bf3e0d11d286010181b232d0546d",
-    "cropped_pdf_sha256": "8e613ad487e6d71e6a96e7503b36bfac55d2311a5e0b49a807ea6a896b1b23f1",
+    "source_pdf_sha256": "b02a4307a049bf4c4a04a058af4581cb6caba555b4ce286859b4f638033ea34a",
+    "cropped_pdf_sha256": "6ff600675fbc32fde5c3826c53a917aba69055fccbaa505b4e2579d8e39da688",
     "author_assembly_filename": "图7.pptx",
-    "author_assembly_sha256": "bdb3a980e6b8c4df36e3c907285df0892a7d3ce241e094cde9f86e03918a4520",
+    "author_assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa",
     "crop_box_pt": [
       0.0,
       315.395,
@@ -208,6 +208,5 @@
     "resource_streams_unchanged": true
   },
   "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
-  "pdf_output_status": "Previous author export retained; updated assembly awaits author PDF export.",
-  "pending_author_assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa"
+  "pdf_output_status": "Current author export; page-box crop verified against updated assembly."
 }
