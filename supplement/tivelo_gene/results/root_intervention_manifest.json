@@ -24,7 +24,7 @@
   },
   "score_outputs_sha256": {
     "root_intervention_summary.csv": "19a5765318836cc789a9e039c6d3a20f4a639a1e6264ef62f9c8fbb1af361083",
-    "real_method_context.csv": "7eeb6a9725452e9a46d08b34da68a5479797699c86caf99f0d6143766ea7b99d",
+    "real_method_context.csv": "afc3c941a75a9500edd6b9082db40d641f68e8b28646040fc8f220198a8df4be",
     "root_intervention_neighbor_pairs.csv": "6fc502760c85375564173565df901d95fc7b75a4d1793bbb01c715a141fdd772",
     "path_summary.csv": "0fc97f1cfe0f534ac4c9482c7908e0dbc4df2fef14c6fb4272bb99e73e4b5118",
     "root_intervention_gene_scores.csv": "ba29a6afd1d1c9cbbd02c139724074a52305ec1da10eee18254e8a04dc7277cb",
@@ -35,5 +35,10 @@
     "inferred_path_edges.csv": "a3df9639ce11ca3deb64ac212e4f4a740e1fe538d6e89535f31e175b7f6e841b",
     "directed_neighbor_cluster_edges.csv": "cf2b2913041582d9585f2a9fa8ce14f923efd996ac97a19eaddc49f3e8de5a55",
     "tivelo_simulation_gene_scores.csv": "ec9348c12cdb9a309ea5b6f2d0e085f37ef484d9a8383317a87ddf3d10d0379c"
+  },
+  "real_method_context_source": {
+    "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
+    "sha256": "380c031268853ca693bf08e90ec73aa5912b18a34eca7fca1b559bde6ff034ec",
+    "scope": "Current real-data method context; retained intervention experiments are unchanged."
   }
 }
