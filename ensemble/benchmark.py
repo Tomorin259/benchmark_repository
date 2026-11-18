@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the four-method signed-transition ensemble on selected datasets."""
+"""Replay GeoMedian-5 by default; --legacy-four builds four-method operators from H5ADs."""
 
 from __future__ import annotations
 
@@ -280,8 +280,8 @@ def write_summary(path: Path, rows: list[dict], datasets: list[str]) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+def legacy_main(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(description="Build historical four-member signed-transition operators from method H5ADs.")
     parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
@@ -309,6 +309,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--save-streams", action="store_true")
     args = parser.parse_args(argv)
+    published = Path(__file__).resolve().parent / "results"
+    for destination in (args.output_root, args.h5ad_root):
+        if destination is not None and destination.resolve().is_relative_to(published):
+            parser.error("choose an output outside ensemble/results for a historical build")
 
     config = load_config(args.config)
     datasets = args.dataset or list(config["datasets"])
@@ -359,6 +363,19 @@ def main(argv: list[str] | None = None) -> int:
     write_summary(output_root / "summary.md", rows, datasets)
     if set(datasets) == set(config["datasets"]) and DEFAULT_CELL_METRICS.is_file():
         write_rankings(output_root / "scores.csv", DEFAULT_CELL_METRICS, args.config, output_root / "rankings_vs_20.csv", output_root / "ranking_summary.md")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = list(sys.argv[1:] if argv is None else argv)
+    if "--legacy-four" in args:
+        args.remove("--legacy-four")
+        return legacy_main(args)
+    # The pre-five-member CLI required --artifact-root for every H5AD build.
+    if any(arg.split("=", 1)[0] == "--artifact-root" for arg in args):
+        return legacy_main(args)
+    from ensemble.replay_selected import main as replay
+    replay(args)
     return 0
 
 

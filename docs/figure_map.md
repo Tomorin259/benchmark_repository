@@ -21,7 +21,7 @@ layout and PDF export.
 | 2 — Cell benchmark | [figTwo.pdf](../figures/figTwo.pdf) | [Cell tables and plots](../evaluation/cell/README.md) | [Editable assembly](../figures/assembly/fig2/fig2.pptx); author PDF export |
 | 3 — selected gene–transition cases | [figThree.pdf](../figures/figThree.pdf) | [Selected-edge panels](../evaluation/gene/figures/panels/selected_edges/) and [Gene guide](../evaluation/gene/README.md) | [Editable assembly](../figures/assembly/fig3/authoring/source.pptx); author PDF export |
 | 4 — simulated velocity evaluation | [figFour.pdf](../figures/figFour.pdf) | [Gene panels](../evaluation/gene/README.md); final D uses [paired Cell/Gene results](../evaluation/cell/simulation/README.md) | [Author source](../figures/assembly/fig4/authoring/source.pptx); author PDF export |
-| 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
+| 5 — real-data Gene evaluation | [figFive.pdf](../figures/figFive.pdf) | [Gene results and panels](../evaluation/gene/README.md); [matched cross-level comparison and S9 panels](../evaluation/gene/results/crosslevel/) | [Author source](../figures/assembly/fig5/authoring/source.pptx); D overview sources follow the assembly manifest |
 | 6 — scEU-seq parameter recovery | [figSix.pdf](../figures/figSix.pdf) | [Kinetics guide](../evaluation/kinetics_recovery/README.md); [exact plotted rows](../evaluation/kinetics_recovery/figures/fig6/plot_data/); [Source Data](../data/SOURCE_DATA.md) includes saved velocity-field arrays | Quantitative panels and all five RPE1 streams are scripted; the labelled organoid Dynamo image follows the composite manifest |
 | 7 — integrated comparison | [figSeven.pdf](../figures/figSeven.pdf) | [Summary tables and refresh commands](../evaluation/summary/README.md) | [Editable charts](../figures/assembly/fig7/fig7.pptx); manual WPS export and crop |
 
@@ -41,12 +41,12 @@ remains in the manuscript project.
 | S6 | Human bone marrow MURK genes | [Final PDF](../figures/suppFigSix.pdf); [editable assembly](../figures/assembly/suppfig06/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/bonemarrow/), [renderer](../evaluation/gene/README.md) |
 | S7 | mousebrain MURK genes | [Final PDF](../figures/suppFigSeven.pdf); [editable assembly](../figures/assembly/suppfig07/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/mousebrain/), [renderer](../evaluation/gene/README.md) |
 | S8 | Pancreas MURK genes | [Final PDF](../figures/suppFigEight.pdf); [editable assembly](../figures/assembly/suppfig08/authoring/source.pptx); [Gene panels](../evaluation/gene/figures/panels/real/pancreas/), [renderer](../evaluation/gene/README.md) |
-| S9 | Matched Cell/Gene comparison | [Final PDF](../figures/suppFigNine.pdf); [editable assembly](../figures/assembly/suppfig09/supfig9.pptx); [matched Cell comparison](../evaluation/cell/README.md#gene-output-matched-cell-comparison) and [Gene scores](../evaluation/gene/README.md); the assembly retains five Cell panels and the source-rendered common-gene panel |
-| S10 | GeoMedian-4 Cell evaluation | [Retained PDF](../figures/suppFigTen.pdf); [ensemble renderer](../ensemble/README.md), [editable assembly](../figures/assembly/suppfig10/suppfig10.pptx) |
+| S9 | Matched cell- and gene-level comparison | [Eight-panel editable assembly](../figures/assembly/suppfig09/supfig9.pptx); [approved layout and plot data](../figures/assembly/suppfig09/assembly_manifest.json); [current author PDF](../figures/suppFigNine.pdf).; [reproduce a–h](../evaluation/gene/reproduce_crosslevel.py) from registered Gene/Cell data |
+| S10 | Normalized GeoMedian-5 and method-screening bootstrap | [Replay plot data](../ensemble/results/selected/s10/) and [three-panel editable assembly](../figures/assembly/suppfig10/). [Current author PDF](../figures/suppFigTen.pdf). |
 | S11 | veloAE representation diagnostics | [Final author PDF](../figures/suppFigEleven.pdf); [PCA inputs and panel renderers](../supplement/veloae/README.md); [final PDF identity](../figures/suppfig11_composite_manifest.json) |
 | S12 | Cell evaluation on three simulations | [Retained PDF](../figures/suppFigTwelve.pdf); [scores, plots and table](../evaluation/cell/simulation/README.md) |
 | S13 | TIvelo root and ordering controls | [Retained PDF](../figures/assembly/suppfig13/suppFigThirteen.pdf); [diagnostics](../supplement/tivelo_gene/README.md), [editable assembly](../figures/assembly/suppfig13/README.md) |
-| S14 | Expanded reference-gene parameter recovery | [Expanded scores](../evaluation/kinetics_recovery/results/expanded_reference/README.md), [renderers](../evaluation/kinetics_recovery/plotting/README.md) |
+| S14 | Expanded reference-gene parameter recovery | [Expanded scores](../evaluation/kinetics_recovery/results/expanded_reference/README.md), [renderers](../evaluation/kinetics_recovery/plotting/README.md); [jointly scorable α/γ comparison](../evaluation/kinetics_recovery/results/joint_recovery/) |
 | S15 | RNA-only MultiVelo phase constraints | [Retained PDF](../figures/suppFigFifteen.pdf); [controls and table](../supplement/multivelo/README.md), [assembly](../figures/assembly/suppfig15/) |
 
 ## Supplementary tables
@@ -57,11 +57,12 @@ remains in the manuscript project.
 | S2 | Dataset descriptions | [Dataset registry](../data/datasets.tsv), [simulation configuration](../evaluation/gene/simulation/config.json) |
 | S3 | Cell scores, continued across parts | [Primary Cell table](../evaluation/cell/results/cell_metrics.csv) |
 | S4 | Cross-dataset Cell summaries | [Summary guide](../evaluation/summary/README.md) |
-| S5 | Signed-transition ensemble | [Scores and per-dataset ranking](../ensemble/README.md) |
+| S5 | Normalized GeoMedian-5 and matched ablations | [Eight-configuration comparison](../ensemble/results/selected/Table_S5_A.csv) and [selected per-dataset scores](../ensemble/results/selected/Table_S5_B.csv) |
 | S6 | veloVI coordinate sensitivity | [CSV, transformation and table export](../supplement/velovi/README.md) |
 | S7 | Cell scores on simulations | [Simulation Cell table exporter](../evaluation/cell/simulation/README.md) |
-| S8 | Gene sets, coverage and scores | [Selected genes and screening evidence](../evaluation/gene/selection/README.md), [Gene scores](../evaluation/gene/results/README.md) |
+| S8 | Gene sets, coverage and scores | [Selected genes and screening evidence](../evaluation/gene/selection/README.md), [Gene scores](../evaluation/gene/results/README.md); [S9 matched gene scope and S10B omnibus tests](../evaluation/cell/results/statistics/s10b.csv) |
 | S9 | scVelo/MultiVelo phase controls | [Full-precision summary and LaTeX table](../supplement/multivelo/README.md) |
+| S10 | Overall statistical comparisons across real datasets | [A: 14 datasets, 20 Cell configurations](../evaluation/cell/results/statistics/s10a.csv), [B: seven matched datasets, nine configurations](../evaluation/cell/results/statistics/s10b.csv). [BATC within-dataset ranks](../evaluation/cell/results/statistics/batc_dataset_ranks.csv) and [leave-one-dataset-out ranks](../evaluation/cell/results/statistics/batc_leave_one_out.csv) support the accompanying supplementary results. |
 
 ## Source identity and manual assembly
 

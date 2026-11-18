@@ -386,66 +386,78 @@
     {
       "figure": "suppfig09",
       "assembly": "figures/assembly/suppfig09/supfig9.pptx",
-      "assembly_sha256": "3a66a7908541a27049cdfda8e1caaeb33fe4a14b02d640db779c5dd968537040",
+      "assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
       "status": "user_exported_cropped",
-      "cropped_or_final_pdf_sha256": "db99714f2b3e77cacb2f703ffc3790d302c73818041bf7c1a6f5ad4664cca9a0",
+      "cropped_or_final_pdf_sha256": "4dedd9e6b49c276d4dd2ff3d9a41ccb02fe3db41b00b8f136aa88bbd0f19ab92",
       "source_media_box_pt": [
         0.0,
         0.0,
-        540.0,
-        779.8
+        451.25,
+        583.9
       ],
       "final_page_box_pt": [
-        0.0,
-        478.0,
-        540.0,
-        779.8
+        0,
+        4,
+        451.25,
+        583.9
       ],
       "crop_applied": true,
       "repository_pdf": "figures/suppFigNine.pdf",
-      "decoded_content_stream_sha256": "dd65dd9db371e298124f32e918d940613015a1de953c3166a22b7d3e54e0155a",
-      "source_pdf_sha256": "8e9fe243bb1b05ac1df62b221390dd80c1b8aeb41b8a331f0308550d7e924719",
+      "decoded_content_stream_sha256": "f2291019b3a44d3ec60850c0829d2c8e17b51de0118f3f380703d00464260a33",
+      "source_pdf_sha256": "70d8c3050d812f624acac69b8af8f109a7bed965c7f7eac07cf9999ac5d66ef3",
       "pending_material_assembly": false,
       "pending_pdf_export": false,
       "author_assembly_filename": "supfig9.pptx",
-      "author_assembly_sha256": "efc892903241d94e7a5cdfeba86c4ec80150817b08e00aa70cd8d31814fac8e7",
-      "exported_from_author_assembly_sha256": "efc892903241d94e7a5cdfeba86c4ec80150817b08e00aa70cd8d31814fac8e7",
-      "pdf_identity": "Current author export; page-box crop verified against updated assembly.",
+      "author_assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+      "exported_from_author_assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+      "pdf_identity": "Current 8-panel author export. Cropping preserved page content and resource streams.",
       "source_pdf_filename": "supfig9.pdf",
-      "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
-      "crop_verification": "Page operators and raw and decoded resource streams match the author source PDF."
+      "repository_assembly_comparison": "Current 8-panel author export. Cropping preserved page content and resource streams.",
+      "crop_verification": "Page operators and raw and decoded resource streams match the author source PDF.",
+      "exported_from_revision": {
+        "assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+        "author_assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+        "source_pdf_sha256": "70d8c3050d812f624acac69b8af8f109a7bed965c7f7eac07cf9999ac5d66ef3",
+        "pdf_sha256": "4dedd9e6b49c276d4dd2ff3d9a41ccb02fe3db41b00b8f136aa88bbd0f19ab92"
+      }
     },
     {
       "figure": "suppfig10",
       "assembly": "figures/assembly/suppfig10/suppfig10.pptx",
-      "assembly_sha256": "68cd73708974905d33b99ee3418e7c8874412fa7666f268acf7d9c542baa52bd",
+      "assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
       "status": "user_exported_cropped",
-      "cropped_or_final_pdf_sha256": "0c3e3b4498c0bd8888bbed8425010ea85724c27c449b550cf0917408eeb344e6",
+      "cropped_or_final_pdf_sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d",
       "source_media_box_pt": [
         0.0,
         0.0,
         540.0,
-        779.8
+        576.05
       ],
       "final_page_box_pt": [
-        0.0,
-        451.0,
+        0,
+        7,
         540.0,
-        779.8
+        576.05
       ],
       "crop_applied": true,
       "repository_pdf": "figures/suppFigTen.pdf",
-      "decoded_content_stream_sha256": "8f65ac537dfba3daf7ac28ccb3bc39e77a1b6c39a45c8a90402c19bfe296a2ad",
+      "decoded_content_stream_sha256": "33475e87260b0505ca4e597257e9b3a96e23d95e74044b52f7a3e080a78cf8b6",
       "source_pdf_filename": "supfig10.pdf",
-      "source_pdf_sha256": "8335bb1f94b5fecb748cfd9b272698a12f71b1e7ebe4e82357d00561db92cc58",
+      "source_pdf_sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
       "pending_material_assembly": false,
       "pending_pdf_export": false,
       "author_assembly_filename": "supfig10.pptx",
-      "author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341",
-      "exported_from_author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341",
-      "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
+      "author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+      "exported_from_author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+      "repository_assembly_comparison": "Current 3-panel author export. Cropping preserved page content and resource streams.",
       "crop_verification": "Page operators and raw and decoded resource streams match the author source PDF.",
-      "pdf_identity": "Current author export; page-box crop verified against updated assembly."
+      "pdf_identity": "Current 3-panel author export. Cropping preserved page content and resource streams.",
+      "exported_from_revision": {
+        "assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+        "author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+        "source_pdf_sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
+        "pdf_sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d"
+      }
     }
   ]
 }

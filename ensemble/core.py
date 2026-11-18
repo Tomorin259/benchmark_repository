@@ -477,10 +477,12 @@ def row_l1_norm(matrix) -> np.ndarray:
 
 def align_method_values(
     matrices: list[sparse.spmatrix],
+    *,
+    n_methods: int = len(METHOD_NAMES),
 ) -> tuple[sparse.csr_matrix, np.ndarray]:
-    """Align four sparse operators on the deterministic union edge support."""
-    if len(matrices) != len(METHOD_NAMES):
-        raise ValueError("exactly four transition matrices are required")
+    """Align the requested operators on the deterministic union edge support."""
+    if n_methods < 2 or len(matrices) != n_methods:
+        raise ValueError(f"exactly {n_methods} transition matrices are required")
     normalized = []
     shape = None
     for matrix in matrices:

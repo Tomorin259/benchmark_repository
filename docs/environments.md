@@ -38,7 +38,7 @@ the AnnData/Scanpy/scVelo stack and method-specific dependencies.
 | Official TIvelo Cell metrics | Python 3.9.23; TIvelo 0.1.4, scVelo 0.3.1, Scanpy 1.10.3, AnnData 0.10.8, NumPy 1.26.4, SciPy 1.13.1, pandas 2.3.1 | [Official scorer](../evaluation/cell/score_tivelo_metrics.py) |
 | Gene coordinate restoration and score replay | Python 3.9.24; scVelo 0.3.1, Scanpy 1.10.3, NumPy 1.26.4, SciPy 1.13.1, scikit-learn 1.1.3; AnnData and pandas for H5AD/CSV input | [Recorded replay environment](../evaluation/gene/results/unit_restoration/verification.json); [Gene instructions](../evaluation/gene/README.md) |
 | Kinetic-parameter evaluation | Python 3.9+; recorded packages NumPy 1.26.4, pandas 2.3.1, SciPy 1.13.1, AnnData 0.10.8; h5py for H5AD input | [Evaluation manifest](../evaluation/kinetics_recovery/results/central_results/manifest.json), `evaluator_versions`; [kinetics instructions](../evaluation/kinetics_recovery/README.md) |
-| Signed-transition ensemble | scVelo 0.3.4 with AnnData, Scanpy, NumPy, pandas, SciPy, scikit-learn and UniTVelo | [Protocol](../ensemble/config.json) and [ensemble instructions](../ensemble/README.md) |
+| Signed-transition ensemble | scVelo 0.3.4 with AnnData, Scanpy, NumPy, pandas, SciPy, scikit-learn and UniTVelo | [Frozen five-member protocol](../ensemble/results/selected/protocol.json) and [ensemble instructions](../ensemble/README.md) |
 
 The Cell controller uses the standard library and starts its two workers
 through the Python executables supplied to `--indicators-python` and

@@ -200,3 +200,29 @@ The two real-data reference panels retain their annotated prior geometry in
 [figures/references/](figures/references/).
 Forebrain uses the reference-30 projection; other previews reuse the selected
 native velocities and reference coordinates.
+
+## Table S10 and variation in BATC rankings
+
+Rebuild the two omnibus panels and the BATC sensitivity tables with Python,
+pandas, NumPy and SciPy, from the repository root:
+
+```bash
+python evaluation/cell/omnibus.py --output outputs/s10-statistics
+```
+
+[S10A](results/statistics/s10a.csv) uses the [primary Cell scores](results/cell_metrics.csv).
+[S10B](results/statistics/s10b.csv) uses the seven-dataset, nine-configuration
+[matched Gene/Cell scores](../gene/results/crosslevel/dataset_scores.csv).
+Each metric uses datasets as blocks and configurations as repeated treatments.
+SciPy's Friedman statistic accounts for within-dataset ties. For `n` datasets
+and `k` configurations, Kendall's W is Q / [n(k−1)], and the Iman–Davenport
+F statistic is (n−1)Q / [n(k−1)−Q], with k−1 and (k−1)(n−1) degrees of
+freedom. Holm adjustment applies to the F-test p-values separately within
+the five-metric and three-metric panels.
+
+[Dataset BATC ranks](results/statistics/batc_dataset_ranks.csv) retain each
+unrounded score and descending rank (average for ties).
+[Leave-one-dataset-out results](results/statistics/batc_leave_one_out.csv)
+rank all 20 configurations by the equally weighted mean BATC on the remaining
+13 datasets for each omission. The method identifiers match the primary table.
+The required `--output` names a new directory. All four tables are published together.

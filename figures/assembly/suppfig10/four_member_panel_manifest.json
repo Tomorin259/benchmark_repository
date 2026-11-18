@@ -1,0 +1,84 @@
+{
+  "base_configurations": 20,
+  "datasets": 14,
+  "ensemble": "GeoMedian-4",
+  "ensemble_macro_means": {
+    "batc": 0.5102428371101154,
+    "cbdir": 0.4767412923319481
+  },
+  "ensemble_source_metadata": {
+    "path": "ensemble/results/legacy_geomedian4_graphvelo/metadata.json",
+    "sha256": "751e5410e9dd2364f00f95dc97508161a0c8e77d13d9493816ab994cfc16f418"
+  },
+  "figure": "Supplementary Figure 10 (historical two-panel source)",
+  "generator": "ensemble/plot_supfig10.py",
+  "generator_sha256": "25392978fa29f9382e6836bcb396a05ae63b3e1092713d48e96b0013dfc6071a",
+  "inputs": [
+    {
+      "path": "evaluation/cell/results/cell_metrics.csv",
+      "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
+    },
+    {
+      "path": "ensemble/results/legacy_geomedian4_graphvelo/scores.csv",
+      "sha256": "6789882655b4b9cb848ec80b437b5e8fa5900272ee3b2bd0e99ba469f6503338"
+    }
+  ],
+  "jitter_seed": 123,
+  "layout": {
+    "figure_inches": [
+      13.8,
+      15.2
+    ],
+    "method_order": "descending macro mean",
+    "png_dpi": 300,
+    "score_limits": [
+      -1.05,
+      1.05
+    ]
+  },
+  "metric_rows": 588,
+  "metrics": [
+    "cbdir",
+    "batc"
+  ],
+  "outputs": [
+    {
+      "file": "A_row_geometric_median4_cbdir.svg",
+      "sha256": "56557597d27998a7ec751da7b271a7172c6aaad207f03b4240763dad3b411992"
+    },
+    {
+      "file": "A_row_geometric_median4_cbdir.png",
+      "sha256": "2d703e7f437004ff2a68f84b6cd7fff926da6e00ef047a9fe856c2fbbfdb9ff4"
+    },
+    {
+      "file": "A_row_geometric_median4_cbdir.pdf",
+      "sha256": "908d8371271ae63aa6723730e905bcdc94cc8758ee58250adfcbbcd5a7710c0f"
+    },
+    {
+      "file": "B_row_geometric_median4_batc.svg",
+      "sha256": "533fe376c52c6f55c00bb3a835019a0b16ff716a3261412d27ba8e096c4b0acf"
+    },
+    {
+      "file": "B_row_geometric_median4_batc.png",
+      "sha256": "9b35322abdd94d978a888cd9c68f4746b39a9409a77b598a283627f0bf1dcd90"
+    },
+    {
+      "file": "B_row_geometric_median4_batc.pdf",
+      "sha256": "17d66addf770e77393296b2de7e0f0ee41fd8351a1956263cf070222b0c2573f"
+    },
+    {
+      "file": "four_member_plot_data.csv",
+      "sha256": "578344b0fb2918e613616dd8f77ce47ca0e6c502d599fb5321e75b9a27d7a558"
+    }
+  ],
+  "projection": {
+    "external_basis": "off-diagonal of the frozen ensemble_transition_signed",
+    "formula": "sum_j T_ij * (Y_j - Y_i)",
+    "normalization": "retain signed weights and native directional mass",
+    "randomness": "none; stored operators, coordinates and neighbors",
+    "reference": "GraphVelo 0.1.11 GraphVelo.project_velocity",
+    "source_url": "https://github.com/xing-lab-pitt/GraphVelo/blob/main/graphvelo/graph_velocity.py",
+    "training": "none"
+  },
+  "variant": "signed_t_row_geometric_median4"
+}

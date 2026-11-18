@@ -1,0 +1,645 @@
+{
+  "aggregation": "row Euclidean geometric median of four signed off-diagonal rows",
+  "aggregation_variant": "signed_t_row_geometric_median4",
+  "code_sha256": {
+    "ensemble/core.py": "191e9f4c1c0795567bf5125977d677d0eeaa414fb62bbb08a9fd786d36edd174",
+    "ensemble/metrics.py": "0961e06c95cb574eea9e1b8dd0084c739848233e7b9fb6ca0e019f9f1564da95",
+    "ensemble/prepare_selected.py": "6b302c45cec163c7fe0ee63e1dee20bf91851bb0a36815a519dfc30c442d4569",
+    "ensemble/reproject.py": "cc47d5b6a8bb567e26bbc2d8866d9c342146c2d29a6515d1d9f1347f98184f59"
+  },
+  "datasets": [
+    "bonemarrow",
+    "capofibro",
+    "dentategyrus",
+    "dentate_lamanno",
+    "forebrain",
+    "gastrulation",
+    "hematopoiesis",
+    "mousebrain",
+    "neuron",
+    "organoid",
+    "pancreas",
+    "retina",
+    "rpe1",
+    "rpe1_gen"
+  ],
+  "forebrain_frames": {
+    "batc_space": "umap",
+    "cbdir_space": "pca",
+    "pca_coordinate_sha256": "b1f98d84bd0f7fbd84d2c4e36bfb3b36d1e5b0bfd4dc0585e6867c0c470baaeb",
+    "pca_dimensions": 30,
+    "pca_source": "reference_neighbors/forebrain.npz:reference_pca",
+    "umap_coordinate_sha256": "0d8448c8e6cb2d7a635f773874257a1f40e57a17720df597138364f7491fec7d",
+    "umap_dimensions": 2,
+    "umap_source": "reference_embeddings/forebrain_umap.npz:X_umap"
+  },
+  "label": "GeoMedian-4 + GraphVelo projection",
+  "methods": [
+    "TIvelo",
+    "veloVI",
+    "DeepVelo",
+    "UniTVelo"
+  ],
+  "metric_details": [
+    {
+      "dataset": "bonemarrow",
+      "metrics": {
+        "batc": 0.4705333539183276,
+        "batc_configured_edges": 3,
+        "batc_evaluable_source_cells": 1860,
+        "cbdir": 0.5431156776485379,
+        "cbdir_edge_evaluable_source_cells": {
+          "Ery_1 -> Ery_2": 291,
+          "HSC_1 -> Ery_1": 157,
+          "HSC_1 -> HSC_2": 1007
+        },
+        "cbdir_edge_scores": {
+          "Ery_1 -> Ery_2": 0.8152121459938234,
+          "HSC_1 -> Ery_1": 0.5386340010823801,
+          "HSC_1 -> HSC_2": 0.2755008858694098
+        },
+        "cbdir_evaluable_edges": 3
+      },
+      "source_projection_sha256": "240a094fbe039fd6c680e49a3a36a84f924152c8e78a3258615cd470a3378236"
+    },
+    {
+      "dataset": "capofibro",
+      "metrics": {
+        "batc": 0.4843521445642152,
+        "batc_configured_edges": 3,
+        "batc_evaluable_source_cells": 1222,
+        "cbdir": 0.4629828228745751,
+        "cbdir_edge_evaluable_source_cells": {
+          "G1 -> S": 336,
+          "G2M -> G1": 169,
+          "S -> G2M": 113
+        },
+        "cbdir_edge_scores": {
+          "G1 -> S": 0.29284744334834967,
+          "G2M -> G1": 0.29292295516389555,
+          "S -> G2M": 0.80317807011148
+        },
+        "cbdir_evaluable_edges": 3
+      },
+      "source_projection_sha256": "b6e648b93d1dde864abf0e92d846f603653f1b822e90371374ec75d634330297"
+    },
+    {
+      "dataset": "dentategyrus",
+      "metrics": {
+        "batc": 0.6996183217115922,
+        "batc_configured_edges": 5,
+        "batc_evaluable_source_cells": 1325,
+        "cbdir": 0.533024779108094,
+        "cbdir_edge_evaluable_source_cells": {
+          "Granule immature -> Granule mature": 625,
+          "Neuroblast -> Granule immature": 95,
+          "OPC -> OL": 7,
+          "Radial Glia-like -> Astrocytes": 41,
+          "nIPC -> Neuroblast": 19
+        },
+        "cbdir_edge_scores": {
+          "Granule immature -> Granule mature": 0.4955332569470883,
+          "Neuroblast -> Granule immature": 0.68338170717029,
+          "OPC -> OL": -0.27676094240015775,
+          "Radial Glia-like -> Astrocytes": 0.8356838286138663,
+          "nIPC -> Neuroblast": 0.927286045209383
+        },
+        "cbdir_evaluable_edges": 5
+      },
+      "source_projection_sha256": "f25a9811da7f9b0fdc0065e0941a917994a205aa94108f08128963e2bdb6e59e"
+    },
+    {
+      "dataset": "dentate_lamanno",
+      "metrics": {
+        "batc": 0.7246438332296381,
+        "batc_configured_edges": 10,
+        "batc_evaluable_source_cells": 9738,
+        "cbdir": 0.7248598864354142,
+        "cbdir_edge_evaluable_source_cells": {
+          "CA -> CA1-Sub": 330,
+          "CA -> CA2-3-4": 357,
+          "GlialProg -> ImmAstro": 71,
+          "GlialProg -> OPC": 58,
+          "ImmGranule1 -> ImmGranule2": 1002,
+          "ImmGranule2 -> Granule": 397,
+          "Nbl1 -> Nbl2": 129,
+          "Nbl2 -> CA": 255,
+          "Nbl2 -> ImmGranule1": 324,
+          "nIPC -> GlialProg": 130
+        },
+        "cbdir_edge_scores": {
+          "CA -> CA1-Sub": 0.6521962430524934,
+          "CA -> CA2-3-4": 0.8355982188181114,
+          "GlialProg -> ImmAstro": 0.4689698103311228,
+          "GlialProg -> OPC": 0.8889224901052761,
+          "ImmGranule1 -> ImmGranule2": 0.8216171316868591,
+          "ImmGranule2 -> Granule": 0.9054827512232547,
+          "Nbl1 -> Nbl2": 0.9397080203878747,
+          "Nbl2 -> CA": 0.3522240509263265,
+          "Nbl2 -> ImmGranule1": 0.8834233557177491,
+          "nIPC -> GlialProg": 0.5004567921050745
+        },
+        "cbdir_evaluable_edges": 10
+      },
+      "source_projection_sha256": "95bf28df798d98d96f82ae845892c54a5e64200f5615fb804ee874d536898845"
+    },
+    {
+      "dataset": "forebrain",
+      "metrics": {
+        "batc": 0.1451564020217597,
+        "batc_configured_edges": 6,
+        "batc_evaluable_source_cells": 1452,
+        "cbdir": 0.558426047160948,
+        "cbdir_edge_evaluable_source_cells": {
+          "0 -> 1": 168,
+          "1 -> 2": 41,
+          "2 -> 3": 68,
+          "3 -> 4": 188,
+          "4 -> 5": 207,
+          "5 -> 6": 142
+        },
+        "cbdir_edge_scores": {
+          "0 -> 1": 0.570768530824605,
+          "1 -> 2": 0.19012530635012526,
+          "2 -> 3": 0.5141767899578503,
+          "3 -> 4": 0.7070397589287447,
+          "4 -> 5": 0.6938762493853015,
+          "5 -> 6": 0.6745696475190616
+        },
+        "cbdir_evaluable_edges": 6
+      },
+      "source_projection_sha256": "21244cc56d45fd3acc9c6cb7be25cd290c9d367a5fe131091520d844c022d0fc"
+    },
+    {
+      "dataset": "gastrulation",
+      "metrics": {
+        "batc": 0.8757739534487599,
+        "batc_configured_edges": 4,
+        "batc_evaluable_source_cells": 7118,
+        "cbdir": 0.7866718939348541,
+        "cbdir_edge_evaluable_source_cells": {
+          "Blood progenitors 1 -> Blood progenitors 2": 332,
+          "Blood progenitors 2 -> Erythroid1": 515,
+          "Erythroid1 -> Erythroid2": 540,
+          "Erythroid2 -> Erythroid3": 423
+        },
+        "cbdir_edge_scores": {
+          "Blood progenitors 1 -> Blood progenitors 2": 0.9489866212822492,
+          "Blood progenitors 2 -> Erythroid1": 0.7870725482699635,
+          "Erythroid1 -> Erythroid2": 0.8072262257910496,
+          "Erythroid2 -> Erythroid3": 0.6034021803961543
+        },
+        "cbdir_evaluable_edges": 4
+      },
+      "source_projection_sha256": "26742096640d434dc566e86a392cdb5cb106f54e9be134738825c5f45218fc48"
+    },
+    {
+      "dataset": "hematopoiesis",
+      "metrics": {
+        "batc": 0.46965751544427287,
+        "batc_configured_edges": 7,
+        "batc_evaluable_source_cells": 927,
+        "cbdir": 0.054996126210364586,
+        "cbdir_edge_evaluable_source_cells": {
+          "GMP-like -> Mon": 132,
+          "GMP-like -> Neu": 0,
+          "HSC -> GMP-like": 278,
+          "HSC -> MEP-like": 304,
+          "MEP-like -> Bas": 155,
+          "MEP-like -> Ery": 158,
+          "MEP-like -> Meg": 33
+        },
+        "cbdir_edge_scores": {
+          "GMP-like -> Mon": -0.31308974113936666,
+          "HSC -> GMP-like": 0.09984816481614608,
+          "HSC -> MEP-like": 0.5348745935952014,
+          "MEP-like -> Bas": 0.18508478283470742,
+          "MEP-like -> Ery": 0.1590343429763547,
+          "MEP-like -> Meg": -0.3357753858208555
+        },
+        "cbdir_evaluable_edges": 6
+      },
+      "source_projection_sha256": "706790e5f082e6aacd835793373fe2d62e8524645c0afb0e3da183be785b294d"
+    },
+    {
+      "dataset": "mousebrain",
+      "metrics": {
+        "batc": 0.6172183275706099,
+        "batc_configured_edges": 4,
+        "batc_evaluable_source_cells": 2315,
+        "cbdir": 0.6233601523356849,
+        "cbdir_edge_evaluable_source_cells": {
+          "IPC -> V-SVZ": 97,
+          "RG, Astro, OPC -> IPC": 124,
+          "Upper Layer -> Deeper Layer": 227,
+          "V-SVZ -> Upper Layer": 332
+        },
+        "cbdir_edge_scores": {
+          "IPC -> V-SVZ": 0.6018850223973619,
+          "RG, Astro, OPC -> IPC": 0.47752301090050325,
+          "Upper Layer -> Deeper Layer": 0.7682489288200578,
+          "V-SVZ -> Upper Layer": 0.6457836472248164
+        },
+        "cbdir_evaluable_edges": 4
+      },
+      "source_projection_sha256": "5c5cd9c2c0bc9d129ebf564577508ba88eae261c32aa249d579c89ce8f73c00f"
+    },
+    {
+      "dataset": "neuron",
+      "metrics": {
+        "batc": 0.4061235067377303,
+        "batc_configured_edges": 4,
+        "batc_evaluable_source_cells": 2815,
+        "cbdir": 0.6152101749514767,
+        "cbdir_edge_evaluable_source_cells": {
+          "0 -> 15": 447,
+          "15 -> 30": 915,
+          "30 -> 60": 548,
+          "60 -> 120": 428
+        },
+        "cbdir_edge_scores": {
+          "0 -> 15": 0.8819271784851255,
+          "15 -> 30": 0.4881559845055178,
+          "30 -> 60": 0.5166642634597183,
+          "60 -> 120": 0.574093273355545
+        },
+        "cbdir_evaluable_edges": 4
+      },
+      "source_projection_sha256": "73a6052529fbc434615bad09337423edfc0c3406603fb0b57fcedd1c4e4a460d"
+    },
+    {
+      "dataset": "organoid",
+      "metrics": {
+        "batc": 0.6441815044769192,
+        "batc_configured_edges": 2,
+        "batc_evaluable_source_cells": 3227,
+        "cbdir": 0.004114827060151788,
+        "cbdir_edge_evaluable_source_cells": {
+          "Stem cells -> Goblet cells": 33,
+          "Stem cells -> TA cells": 252
+        },
+        "cbdir_edge_scores": {
+          "Stem cells -> Goblet cells": -0.2160692767802696,
+          "Stem cells -> TA cells": 0.22429893090057318
+        },
+        "cbdir_evaluable_edges": 2
+      },
+      "source_projection_sha256": "46c0b9ef417153eef7547d5787353f85ed1be0ed030df391e2670c96bbb9f6ed"
+    },
+    {
+      "dataset": "pancreas",
+      "metrics": {
+        "batc": 0.5970650408914414,
+        "batc_configured_edges": 7,
+        "batc_evaluable_source_cells": 2412,
+        "cbdir": 0.5971676171245359,
+        "cbdir_edge_evaluable_source_cells": {
+          "Ductal -> Ngn3 low EP": 796,
+          "Ngn3 high EP -> Pre-endocrine": 95,
+          "Ngn3 low EP -> Ngn3 high EP": 55,
+          "Pre-endocrine -> Alpha": 115,
+          "Pre-endocrine -> Beta": 140,
+          "Pre-endocrine -> Delta": 34,
+          "Pre-endocrine -> Epsilon": 59
+        },
+        "cbdir_edge_scores": {
+          "Ductal -> Ngn3 low EP": 0.24819071420158098,
+          "Ngn3 high EP -> Pre-endocrine": 0.7705382249538169,
+          "Ngn3 low EP -> Ngn3 high EP": 0.8994594789538216,
+          "Pre-endocrine -> Alpha": 0.5605740714844792,
+          "Pre-endocrine -> Beta": 0.8612338048111491,
+          "Pre-endocrine -> Delta": 0.7455082267704922,
+          "Pre-endocrine -> Epsilon": 0.09466879869641132
+        },
+        "cbdir_evaluable_edges": 7
+      },
+      "source_projection_sha256": "26b7ce7dd3e76245f56a2ae8b03b1c5ba0368b2adcd0a234ab9d9eb1ed1d4b61"
+    },
+    {
+      "dataset": "retina",
+      "metrics": {
+        "batc": 0.2292803662539341,
+        "batc_configured_edges": 4,
+        "batc_evaluable_source_cells": 1393,
+        "cbdir": 0.5482603831027161,
+        "cbdir_edge_evaluable_source_cells": {
+          "Neuroblast -> AC/HC": 41,
+          "Neuroblast -> PR": 52,
+          "Neuroblast -> RGC": 52,
+          "Progenitor -> Neuroblast": 122
+        },
+        "cbdir_edge_scores": {
+          "Neuroblast -> AC/HC": 0.910589028468906,
+          "Neuroblast -> PR": 0.5988812818784894,
+          "Neuroblast -> RGC": 0.5530456067397568,
+          "Progenitor -> Neuroblast": 0.13052561532371232
+        },
+        "cbdir_evaluable_edges": 4
+      },
+      "source_projection_sha256": "0f1c11d79eb19063050c10025433bf23e7b5c837956445ff9d5ffcd6f4b4b15b"
+    },
+    {
+      "dataset": "rpe1",
+      "metrics": {
+        "batc": 0.5940507293964402,
+        "batc_configured_edges": 4,
+        "batc_evaluable_source_cells": 2461,
+        "cbdir": 0.28144348363415167,
+        "cbdir_edge_evaluable_source_cells": {
+          "G1-S -> S": 888,
+          "M -> M-G1": 376,
+          "M-G1 -> G1-S": 538,
+          "S -> G2-M": 439
+        },
+        "cbdir_edge_scores": {
+          "G1-S -> S": 0.37302903690041944,
+          "M -> M-G1": 0.13474350355663983,
+          "M-G1 -> G1-S": 0.2362178585042172,
+          "S -> G2-M": 0.3817835355753302
+        },
+        "cbdir_evaluable_edges": 4
+      },
+      "source_projection_sha256": "5b7ff1ba22cee028804a3a9a5d19bc399cf81d89b2ceff3f1b6f5a7c9b571343"
+    },
+    {
+      "dataset": "rpe1_gen",
+      "metrics": {
+        "batc": 0.18574471987597488,
+        "batc_configured_edges": 3,
+        "batc_evaluable_source_cells": 3354,
+        "cbdir": 0.3407442210657699,
+        "cbdir_edge_evaluable_source_cells": {
+          "G1 -> S": 455,
+          "G2M -> G1": 367,
+          "S -> G2M": 503
+        },
+        "cbdir_edge_scores": {
+          "G1 -> S": 0.2812627507523546,
+          "G2M -> G1": 0.41336262306760496,
+          "S -> G2M": 0.32760728937735023
+        },
+        "cbdir_evaluable_edges": 3
+      },
+      "source_projection_sha256": "c01fb886eb1758864e9fe0b5ebfef5675dc9328131354c1007e6c6faa79527bf"
+    }
+  ],
+  "outputs_sha256": {
+    "ablation_index.tsv": "5c8b0ec78302942e52b9f57f7c7b81954c2b8ab6cd1a79f9717030885aa5adca",
+    "projections/bonemarrow.npz": "8c70a8b565665d58222d79c0fdb8ab1a53397d55f9ebed8ecd04c2995e4df455",
+    "projections/capofibro.npz": "373d51fe0c38dcffab1aaf3ca21a3bd0e7b9658e65160b7f5d02d34bc0cc0e3c",
+    "projections/dentate_lamanno.npz": "73638b219d8c0e076c4bae5f7fa6a11901621a98b28a9c54de916aaa8fce6e93",
+    "projections/dentategyrus.npz": "ec6741d1fbaf75570c10001c297c561503f92fa122207331791c744daa42bb4d",
+    "projections/forebrain.npz": "9cf3ba38c0174487d08384019bf17c0e3c646f7765f9ed07dcafde89679380a5",
+    "projections/gastrulation.npz": "8b15c900ec99fcd866bbaebed62740145b91047768692133102c4a44df8c7e9b",
+    "projections/hematopoiesis.npz": "5f56e8fd4999d1247f1fc2a06a110b66f2ca9bf511a113b73ce09fba22ec3d7e",
+    "projections/mousebrain.npz": "48f5c664a551d932f5deda7d022d5459df4847191e0dabd9376434cd7428d5a7",
+    "projections/neuron.npz": "69c4b295327a684b7fd7ba745728fa08e8ed37de7e6903265c40bfebc6376dc8",
+    "projections/organoid.npz": "731ff6cb6bf983ecbd979bf43e86d9dde8b372644197786601f9d3ae22389cfa",
+    "projections/pancreas.npz": "2778c6534e78c8070c64e6d224a33df252baf7433d15703598a504061a38fc7a",
+    "projections/retina.npz": "c92330fbec2fc3d9eb2c21898cdc450c1ee0c1da323eb1ed4a10839f577a97b6",
+    "projections/rpe1.npz": "68a4f6f7723956acab29afa14ec24dd4f0b389c9527900f88b19fb0f99b29e06",
+    "projections/rpe1_gen.npz": "35f90792fb88c4d9269a71036d9157c4b6091902d35da16ae230c4f809028533",
+    "scores.csv": "6789882655b4b9cb848ec80b437b5e8fa5900272ee3b2bd0e99ba469f6503338",
+    "streams.pdf": "c72803ddcfca9b21f1d2264f5b50d307f6161bd3f37cffca5d0713932f68d549",
+    "streams/bonemarrow_umap.png": "0cb5a0bab27f7d4da105ed667305ef0195ab2c8badee31a0102a8760b27c3952",
+    "streams/capofibro_umap.png": "8a82edc2eacf4e0318d26eb03858326911b019f8565b5e6992cb801bcac19fba",
+    "streams/dentate_lamanno_umap.png": "146db3e44892fe40256e0489ff21140f083cb0c0dff46bd07d49652832c1a740",
+    "streams/dentategyrus_umap.png": "0223bf7c80ea91c9a7940b3d026a12960a58d014cf1e2ccf99b257a869d95719",
+    "streams/forebrain_pca.png": "6157902fd0d17085634adff7d421a2d8df23da2a2f63979b8fb09b3d93cdf4c3",
+    "streams/forebrain_umap.png": "9cc992810944926d3f76277ea832f5fcb3620cafbffeb8c7f7563ad696821041",
+    "streams/gastrulation_umap.png": "0eea88f48102fa0892c07d9a02f72a5cd637a5b071c8de0afff24c3346e9646d",
+    "streams/hematopoiesis_umap.png": "5e55b06abbbd2b049c0b6771018d97e7abbd265b9e6ef1abab65df6a93e0a553",
+    "streams/mousebrain_umap.png": "60b654d11f238859bf191cb3abdc5a2064c9c4aafa935f854a9dc77befa23ef3",
+    "streams/neuron_umap.png": "1b0ec4f7322846ba121e3224b7c23712ce90def5cfbaf5384ec870cee31c315d",
+    "streams/organoid_umap.png": "16504bb4ab2c8475b3a4bcc14da30c50d43976e94d2b22b732fdb5c9e9f2e520",
+    "streams/pancreas_umap.png": "d0a6a7c9d697c99a2ad15d56bfb3494410f497c0206cdd0d8437cd50f99501b3",
+    "streams/retina_umap.png": "263f0843cb34111abfac335e18b60c2f7670dc1d829d9bfd7beb3e14a38c45ea",
+    "streams/rpe1_gen_umap.png": "2da451f818d2f4688864fa8efcd9c0efbb6f78666c9b6f1802d68e622d1251cd",
+    "streams/rpe1_umap.png": "6f3cfba49e04366afe443c8aa0cd81169d1d03c8378ecedb12315dccf5c03633",
+    "summary.csv": "cb34c02ea1edfaed367718371bba2d26792b0b7d82d7dfd4b46a7cf8b6428dae"
+  },
+  "pages": [
+    {
+      "basis": "umap",
+      "dataset": "bonemarrow",
+      "png": "streams/bonemarrow_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "capofibro",
+      "png": "streams/capofibro_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "dentategyrus",
+      "png": "streams/dentategyrus_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "dentate_lamanno",
+      "png": "streams/dentate_lamanno_umap.png"
+    },
+    {
+      "basis": "pca",
+      "dataset": "forebrain",
+      "png": "streams/forebrain_pca.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "forebrain",
+      "png": "streams/forebrain_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "gastrulation",
+      "png": "streams/gastrulation_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "hematopoiesis",
+      "png": "streams/hematopoiesis_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "mousebrain",
+      "png": "streams/mousebrain_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "neuron",
+      "png": "streams/neuron_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "organoid",
+      "png": "streams/organoid_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "pancreas",
+      "png": "streams/pancreas_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "retina",
+      "png": "streams/retina_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "rpe1",
+      "png": "streams/rpe1_umap.png"
+    },
+    {
+      "basis": "umap",
+      "dataset": "rpe1_gen",
+      "png": "streams/rpe1_gen_umap.png"
+    }
+  ],
+  "palette_sha256": "43bffe20bab1d192ea310c14646683227820725db5341f9a8e5df7c2b7f5645c",
+  "plotting": {
+    "density": 2,
+    "scvelo": "0.3.4"
+  },
+  "projection": {
+    "external_basis": "off-diagonal of the frozen ensemble_transition_signed",
+    "formula": "sum_j T_ij * (Y_j - Y_i)",
+    "normalization": "retain signed weights and native directional mass",
+    "randomness": "none; stored operators, coordinates and neighbors",
+    "reference": "GraphVelo 0.1.11 GraphVelo.project_velocity",
+    "source_url": "https://github.com/xing-lab-pitt/GraphVelo/blob/main/graphvelo/graph_velocity.py",
+    "training": "none"
+  },
+  "repository_head": "7af09e74b8fbec89bca0b7cf9aefd1259850f2c4",
+  "role": "selected_primary",
+  "source_inputs": [
+    {
+      "dataset": "bonemarrow",
+      "neighbor_sha256": "dd42d081ba1fecff923b4ce6fc1edb5b1ed15b17bb43809d18e3322d9f94ad32",
+      "relative_path": "row_geometric_median4/bonemarrow.h5ad",
+      "schema_version": 6,
+      "sha256": "8ecb11d3981215d9dc9a49770db15aa77bfde1c870642063f96064a1ddd981fe",
+      "size_bytes": 311721604,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "capofibro",
+      "neighbor_sha256": "61e6110eda842b345dd333f0019d91d0c28487dbf1aea1cc04703e8d84416940",
+      "relative_path": "row_geometric_median4/capofibro.h5ad",
+      "schema_version": 6,
+      "sha256": "10bdad6af4e52660aed4999f5f1eca6ef9569b91d8f0dc387b59deb28de62d13",
+      "size_bytes": 87118786,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "dentategyrus",
+      "neighbor_sha256": "6e1e15b063a0457faf2e3cbdf417990c9d596aed3531efd51f2bdb4d0f4fbf12",
+      "relative_path": "row_geometric_median4/dentategyrus.h5ad",
+      "schema_version": 6,
+      "sha256": "06909cde7264f01dc933c2763c8b7b7bf3adca481f750ad621d86d8f0d77e5e4",
+      "size_bytes": 161405246,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "dentate_lamanno",
+      "neighbor_sha256": "c7510097f03fb51a64abbee9328e0dc5001840b5b8bd4538b7cc28417803981a",
+      "relative_path": "row_geometric_median4/dentate_lamanno.h5ad",
+      "schema_version": 6,
+      "sha256": "6261c9c71607623c06942d293e4ec52a8584780c9e0c289b738e0a5f2b9689d5",
+      "size_bytes": 1097756384,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "forebrain",
+      "neighbor_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
+      "relative_path": "row_geometric_median4/forebrain.h5ad",
+      "schema_version": 6,
+      "sha256": "052d2069750efcb6433506332d3543920abdf798a027f97dd2ff3b08ff1b8f27",
+      "size_bytes": 122473888,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "gastrulation",
+      "neighbor_sha256": "ec31841b736d7beb56063261aa91f8fc60652de7837df89c5c246f69fe9ef4d2",
+      "relative_path": "row_geometric_median4/gastrulation.h5ad",
+      "schema_version": 6,
+      "sha256": "1ed148ae8a801216c9748675d32616d0573b1057311ecd865f1b0c6fe27753fd",
+      "size_bytes": 593448060,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "hematopoiesis",
+      "neighbor_sha256": "0de5c1c8e5172626aee8c02995ded5e1319be0af6e9593a8e4db7a7c4e92b5b1",
+      "relative_path": "row_geometric_median4/hematopoiesis.h5ad",
+      "schema_version": 6,
+      "sha256": "1bc912b433d7ed045c9b1746d7eb93da0c39a9b9e08cd029520ccde48e726383",
+      "size_bytes": 115871872,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "mousebrain",
+      "neighbor_sha256": "884e272cfa322e8906935ecd27109daceefb1c8a58e1a09e952383607baa521e",
+      "relative_path": "row_geometric_median4/mousebrain.h5ad",
+      "schema_version": 6,
+      "sha256": "fc7d7db7d4e1354d0e2948df0cc3640254f85ce6f751b27fe7d6c7a04939b4e1",
+      "size_bytes": 102272540,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "neuron",
+      "neighbor_sha256": "488450751b61abb85ba69034f2af33f6fbbaddd9c28c43bf13f8bbc22c362467",
+      "relative_path": "row_geometric_median4/neuron.h5ad",
+      "schema_version": 6,
+      "sha256": "fbf524225396288f0539a0c34188697638daad80edb5bdf6645397dee8b3f209",
+      "size_bytes": 188248492,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "organoid",
+      "neighbor_sha256": "8b6e8d636b42acb37f199bd1a4de92cc73bc12966c4b2d681079972ae3b1b95d",
+      "relative_path": "row_geometric_median4/organoid.h5ad",
+      "schema_version": 6,
+      "sha256": "172ffaafa372dc99b563373169e4a77214549e97edf4a1f02c096c357cf08d15",
+      "size_bytes": 224376674,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "pancreas",
+      "neighbor_sha256": "30b7e3a2a35ab2c88310d54fc986159b57d9dddedfd647822053f0a9806d91a0",
+      "relative_path": "row_geometric_median4/pancreas.h5ad",
+      "schema_version": 6,
+      "sha256": "0e06b8e22b7afc8a847ca287379c63e8e35c01c93481494f2c03d18e386b7fcb",
+      "size_bytes": 201160944,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "retina",
+      "neighbor_sha256": "6639001e9fe6e87708cc502e15c5b87692929379be9f8f1a6c792dd855f20ccc",
+      "relative_path": "row_geometric_median4/retina.h5ad",
+      "schema_version": 6,
+      "sha256": "36f867230c3bce4f7939d68d0b7e95046c2053d56efdc3f5d5dde4aa8d59e3b8",
+      "size_bytes": 159277870,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "rpe1",
+      "neighbor_sha256": "e5ec16a652c68a503d0e7c9b1497fe213e78a83074093eaadca7a4c8958a00c0",
+      "relative_path": "row_geometric_median4/rpe1.h5ad",
+      "schema_version": 6,
+      "sha256": "fa584d0320beada84f87b378bcf6b8887df8dbba05af65cdb55e214c8a6652a8",
+      "size_bytes": 229631393,
+      "variant": "signed_t_row_geometric_median4"
+    },
+    {
+      "dataset": "rpe1_gen",
+      "neighbor_sha256": "9f79f9bf521340f3695a9d1afd0a3bed290ab4390bb69899eb15ae95d4162062",
+      "relative_path": "row_geometric_median4/rpe1_gen.h5ad",
+      "schema_version": 6,
+      "sha256": "2b53521301a3c1183d2b2d95ab086cbd5bf96640230e526b95c9cdd246063951",
+      "size_bytes": 276212058,
+      "variant": "signed_t_row_geometric_median4"
+    }
+  ],
+  "source_metadata_sha256": "63e72178970a1c6978670ce99ccff31b7af3f0c0e5cf2eb63c20abc6eb325bd1",
+  "stream_caption": "Selected four-method ensemble using row geometric-median aggregation and GraphVelo weighted-displacement projection. Points retain the frozen coordinates and registered cell-label colors. Forebrain is shown separately in PCA PC1/PC2 and UMAP2; its CBDir is evaluated in all 30 PCs and BATC in UMAP2. All other datasets use UMAP2 for both scores. Stream smoothing is for display.",
+  "validation_scope": "exploratory on the same 14 benchmark datasets"
+}

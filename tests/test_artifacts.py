@@ -94,16 +94,35 @@ def test_assembly_manifest_materialized_panels_are_verified():
         assert row["export_path"] and not Path(row["export_path"]).is_absolute()
         assert ".." not in Path(row["export_path"]).parts
         assert hashlib.sha256(source).hexdigest() == row["sha256"], row["source_path"]
-    panels = [row for row in rows if row["figure"] == "suppfig10" and row["status"] == "referenced_source"]
-    assert len(panels) == 2
-    assert all(row["status"] == "referenced_source" for row in panels)
-    assert {row["panel"] for row in panels} == {"A", "B"}
-    assert not any("workflow schematic" in row["role"] for row in panels)
-    expected = {
-        "suppfig10/A_row_geometric_median4_cbdir.svg",
-        "suppfig10/B_row_geometric_median4_batc.svg",
-    }
-    assert {row["export_path"] for row in panels} == expected
+    materials = [row for row in rows if row["figure"] == "suppfig10" and row["status"] == "referenced_source"]
+    assert {Path(row["source_path"]).name for row in materials} == {
+        "approved_layout.svg", "panel_a_data.csv", "plot_data.csv", "macro_means.csv"}
+    source = ROOT / "figures/assembly/suppfig10"
+    manifest = json.loads((source / "panel_manifest.json").read_text())
+    assert [row["panel"] for row in manifest["panels"]] == ["A", "B", "C"]
+    assert manifest["numerical_contract"]["ensemble"] == "normalized GeoMedian-5"
+    with (source / "plot_data.csv").open(newline="") as handle:
+        constituent_members = {row["method_label"] for row in csv.DictReader(handle)
+                               if row["constituent"] == "True"}
+    assert set(manifest["numerical_contract"]["members"]) == constituent_members
+
+    with (source / "macro_means.csv").open(newline="") as handle:
+        means = list(csv.DictReader(handle))
+    with (source / "plot_data.csv").open(newline="") as handle:
+        scores = list(csv.DictReader(handle))
+    for metric in ("cbdir", "batc"):
+        ranked = sorted(means, key=lambda row: float(row[metric]), reverse=True)
+        expected_rows = {row["method"]: i for i, row in enumerate(ranked)}
+        assert all(int(row["plot_row"]) == expected_rows[row["method"]]
+                   for row in scores if row["metric"] == metric)
+
+    assert manifest["pending_pdf_export"] is False
+    for name, count in (("panel_a_data.csv", 20), ("plot_data.csv", 588), ("macro_means.csv", 21)):
+        with (source / name).open(newline="") as handle:
+            assert len(list(csv.DictReader(handle))) == count
+    composite = json.loads((ROOT / "figures/suppfig10_composite_manifest.json").read_text())
+    assert composite["exported_from_revision"]["pdf_sha256"] == composite["output"]["sha256"]
+    assert composite["historical_source_materials"]["numerical_contract"]["ensemble"] == "GeoMedian-4"
 
 
 def test_supplementary_figures_12_and_13_are_registered():
@@ -297,3 +316,26 @@ def test_figure1_current_author_export_and_overview_agree():
         sources = [row for row in csv.DictReader(handle, delimiter='\t') if row['figure'] == 'fig1' and row['panel'] == 'whole']
     assert len(sources) == 1
     assert sources[0]['sha256'] == current
+
+
+
+def test_s9_eight_panel_source_and_retained_author_export_identity():
+    assembly = json.loads((ROOT / "figures/assembly/suppfig09/assembly_manifest.json").read_text())
+    composite = json.loads((ROOT / "figures/suppfig09_composite_manifest.json").read_text())
+    assert [panel["panel"] for panel in assembly["panels"]] == list("ABCDEFGH")
+    assert assembly["numerical_contract"]["common_gene_dataset_pairs"] == 35
+    assert assembly["numerical_contract"]["bootstrap_ordered_draws"] == 7 ** 7
+    assert assembly["numerical_contract"]["multiVelo_cell_layer"] == "velo_s_norm"
+    assert hashlib.sha256((ROOT / assembly["assembly"]).read_bytes()).hexdigest() == assembly["assembly_sha256"]
+    assert composite["current_assembly_sha256"] == assembly["assembly_sha256"]
+    for material in assembly["materials"].values():
+        assert hashlib.sha256((ROOT / material["path"]).read_bytes()).hexdigest() == material["sha256"]
+    with (ROOT / assembly["materials"]["plot_data.csv"]["path"]).open(newline="") as handle:
+        plotted = list(csv.DictReader(handle))
+    assert len(plotted) == 423
+    assert {label: sum(row["panel"] == label for row in plotted) for label in "abcdefgh"} == {
+        **dict.fromkeys("abcdef", 63), "g": 27, "h": 18}
+    assert hashlib.sha256((ROOT / composite["composite_path"]).read_bytes()).hexdigest() == composite["composite_sha256"]
+    if composite["pending_pdf_export"]:
+        assert composite["exported_from_revision"]["pdf_sha256"] == composite["composite_sha256"]
+        assert assembly["pending_pdf_export"] and not assembly["pending_material_assembly"]

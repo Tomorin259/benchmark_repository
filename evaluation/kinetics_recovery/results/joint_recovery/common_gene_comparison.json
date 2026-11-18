@@ -1,0 +1,85 @@
+{
+  "source_file": "evaluation/kinetics_recovery/results/central_results/gene_metrics.csv",
+  "source_sha256": "fe548433b018820a6218baf3ce379f9459a1a04f01d99e8733166ba230321088",
+  "scope": "Within each system or branch, require finite Spearman scores for alpha and gamma in both methods.",
+  "aggregation": "Average genes equally within each component and the two organoid branch means equally.",
+  "comparison": "Descriptive Pareto dominance on system-mean alpha and gamma Spearman correlations.",
+  "results": {
+    "rpe1": {
+      "components": [
+        {
+          "branch": "",
+          "common_genes": 249,
+          "means": {
+            "cellDancer": {
+              "alpha": -0.0274729819687907,
+              "gamma": -0.27546792584291435
+            },
+            "DeepVelo": {
+              "alpha": 0.30105253338728594,
+              "gamma": 0.06740098068058518
+            }
+          }
+        }
+      ],
+      "means": {
+        "cellDancer": {
+          "alpha": -0.0274729819687907,
+          "gamma": -0.27546792584291435
+        },
+        "DeepVelo": {
+          "alpha": 0.30105253338728594,
+          "gamma": 0.06740098068058518
+        }
+      },
+      "front": [
+        "DeepVelo"
+      ]
+    },
+    "organoid": {
+      "components": [
+        {
+          "branch": "1",
+          "common_genes": 270,
+          "means": {
+            "cellDancer": {
+              "alpha": -0.00693920911668931,
+              "gamma": 0.002682017773452865
+            },
+            "DeepVelo": {
+              "alpha": 0.13915773132554354,
+              "gamma": 0.05806578678948942
+            }
+          }
+        },
+        {
+          "branch": "2",
+          "common_genes": 270,
+          "means": {
+            "cellDancer": {
+              "alpha": -0.008031084098273949,
+              "gamma": -0.015563380528037608
+            },
+            "DeepVelo": {
+              "alpha": 0.5152335569263665,
+              "gamma": 0.060269629720453556
+            }
+          }
+        }
+      ],
+      "means": {
+        "cellDancer": {
+          "alpha": -0.007485146607481629,
+          "gamma": -0.006440681377292371
+        },
+        "DeepVelo": {
+          "alpha": 0.32719564412595503,
+          "gamma": 0.05916770825497149
+        }
+      },
+      "front": [
+        "DeepVelo"
+      ]
+    }
+  }
+}

@@ -1,9 +1,7 @@
-"""Row-wise Euclidean geometric median for four signed transition operators.
+"""Row-wise Euclidean geometric medians of signed off-diagonal operators.
 
-The four input methods are treated symmetrically.  For every source cell, this
-module finds the geometric median of the four complete signed off-diagonal
-transition rows.  The result remains in their convex hull and is not
-renormalized after aggregation.
+Each source cell's method rows are treated symmetrically. The result remains
+in their convex hull and retains its directional mass after aggregation.
 """
 
 from __future__ import annotations
@@ -40,15 +38,14 @@ def _distribution_summary(values):
 
 
 def _row_gram_matrices(template, method_values):
-    """Compute one 4 x 4 Gram matrix for every sparse source-cell row."""
+    """Compute the method-row Gram matrix for every source cell."""
     template = sparse.csr_matrix(template)
     values = np.asarray(method_values, dtype=np.float64)
     if template.shape[0] != template.shape[1]:
         raise ValueError("row aggregation requires a square template")
-    if values.ndim != 2 or values.shape != (N_INPUT_ROWS, template.nnz):
-        raise ValueError(
-            "row geometric median requires a 4 x template.nnz value array"
-        )
+    if values.ndim != 2 or values.shape[0] < 2 or values.shape[1] != template.nnz:
+        raise ValueError("method values must have shape (n_methods >= 2, template.nnz)")
+    n_methods = values.shape[0]
     if not np.isfinite(values).all():
         raise ValueError("method_values contains NaN or infinity")
 
@@ -57,9 +54,9 @@ def _row_gram_matrices(template, method_values):
     if np.any(row_ids == template.indices):
         raise ValueError("row geometric median expects off-diagonal support")
 
-    gram = np.zeros((n_obs, N_INPUT_ROWS, N_INPUT_ROWS), dtype=np.float64)
-    for left in range(N_INPUT_ROWS):
-        for right in range(left, N_INPUT_ROWS):
+    gram = np.zeros((n_obs, n_methods, n_methods), dtype=np.float64)
+    for left in range(n_methods):
+        for right in range(left, n_methods):
             products = values[left] * values[right]
             row_dot = np.bincount(
                 row_ids,
@@ -72,7 +69,7 @@ def _row_gram_matrices(template, method_values):
 
 
 def _distances_from_row_coefficients(gram, coefficients):
-    """Return distances from a convex row combination to all four rows."""
+    """Return distances from a convex row combination to all method rows."""
     gram_times_coefficients = np.einsum("nij,nj->ni", gram, coefficients)
     center_squared_norm = np.einsum(
         "ni,ni->n", coefficients, gram_times_coefficients
@@ -86,8 +83,9 @@ def _distances_from_row_coefficients(gram, coefficients):
 
 
 def _slsqp_geometric_median_coefficient_fallback(row_gram, initial):
-    """Finish one slow four-point row on the simplex with a convex solver."""
+    """Finish one slow row on the method simplex with a convex solver."""
     row_gram = np.asarray(row_gram, dtype=np.float64)
+    n_methods = row_gram.shape[0]
     diagonal = np.diag(row_gram)
 
     def distances(coefficients):
@@ -109,11 +107,11 @@ def _slsqp_geometric_median_coefficient_fallback(row_gram, initial):
         np.asarray(initial, dtype=np.float64),
         jac=gradient,
         method="SLSQP",
-        bounds=[(0.0, 1.0)] * N_INPUT_ROWS,
+        bounds=[(0.0, 1.0)] * n_methods,
         constraints={
             "type": "eq",
             "fun": lambda coefficients: float(coefficients.sum() - 1.0),
-            "jac": lambda coefficients: np.ones(N_INPUT_ROWS, dtype=np.float64),
+            "jac": lambda coefficients: np.ones(n_methods, dtype=np.float64),
         },
         options={"ftol": 1e-14, "maxiter": 1000, "disp": False},
     )
@@ -136,19 +134,13 @@ def _row_geometric_median_coefficients(
     absolute_tolerance=ABSOLUTE_TOLERANCE,
     max_iterations=MAX_ITERATIONS,
 ):
-    """Solve all four-point row medians with modified Weiszfeld updates.
-
-    Every iterate is represented as four convex coefficients.  Distances and
-    updates therefore use only each row's 4 x 4 Gram matrix, rather than
-    repeatedly traversing its potentially large neighbor support.
-    """
+    """Solve row medians using modified Weiszfeld updates in Gram geometry."""
     gram = np.asarray(gram, dtype=np.float64)
-    if gram.ndim != 3 or gram.shape[1:] != (N_INPUT_ROWS, N_INPUT_ROWS):
-        raise ValueError("gram must have shape (n_obs, 4, 4)")
-
-    n_obs = gram.shape[0]
+    if gram.ndim != 3 or gram.shape[1] < 2 or gram.shape[1] != gram.shape[2]:
+        raise ValueError("gram must have shape (n_obs, n_methods >= 2, n_methods)")
+    n_obs, n_methods = gram.shape[:2]
     coefficients = np.full(
-        (n_obs, N_INPUT_ROWS), 1.0 / N_INPUT_ROWS, dtype=np.float64
+        (n_obs, n_methods), 1.0 / n_methods, dtype=np.float64
     )
     diagonal = np.diagonal(gram, axis1=1, axis2=2)
     pairwise_squared = (
@@ -162,8 +154,8 @@ def _row_geometric_median_coefficients(
     # A geometric median can coincide exactly with an input row.  Detect that
     # case from the convex subgradient condition before Weiszfeld iteration;
     # otherwise convergence toward such a point can be arbitrarily slow.
-    input_row_is_median = np.zeros((n_obs, N_INPUT_ROWS), dtype=bool)
-    for candidate in range(N_INPUT_ROWS):
+    input_row_is_median = np.zeros((n_obs, n_methods), dtype=bool)
+    for candidate in range(n_methods):
         distances = pairwise_distances[:, candidate, :]
         coincident = distances <= singular_tolerance[:, None]
         noncoincident = ~coincident
@@ -304,21 +296,17 @@ def _row_geometric_median_coefficients(
     )
 
 
-def row_geometric_median4(
+def row_geometric_median(
     template,
     method_values,
     *,
     return_cell_diagnostics=False,
 ):
-    """Aggregate each source cell's four complete signed-T rows robustly.
+    """Aggregate signed off-diagonal method rows while retaining native mass."""
 
-    The output is the Euclidean geometric median of the four native
-    off-diagonal rows.  It is not L1-renormalized: loss of directional mass is
-    retained as an interpretable consequence of row-level disagreement and is
-    completed to the diagonal by ``ensemble.core.complete_signed_operator``.
-    """
     values = np.asarray(method_values, dtype=np.float64)
     gram, row_ids = _row_gram_matrices(template, values)
+    n_methods = values.shape[0]
     (
         coefficients,
         iterations,
@@ -329,11 +317,11 @@ def row_geometric_median4(
     ) = _row_geometric_median_coefficients(gram)
 
     aggregate = np.zeros(values.shape[1], dtype=np.float64)
-    for method_id in range(N_INPUT_ROWS):
+    for method_id in range(n_methods):
         aggregate += values[method_id] * coefficients[row_ids, method_id]
 
-    mean4 = values.mean(axis=0)
-    difference = aggregate - mean4
+    mean = values.mean(axis=0)
+    difference = aggregate - mean
     difference_l2 = np.sqrt(
         np.bincount(
             row_ids,
@@ -342,7 +330,7 @@ def row_geometric_median4(
         )
     )
     final_distances = _distances_from_row_coefficients(gram, coefficients)
-    mean_coefficients = np.full_like(coefficients, 1.0 / N_INPUT_ROWS)
+    mean_coefficients = np.full_like(coefficients, 1.0 / n_methods)
     mean_distances = _distances_from_row_coefficients(gram, mean_coefficients)
     final_objective = final_distances.sum(axis=1)
     mean_objective = mean_distances.sum(axis=1)
@@ -350,15 +338,16 @@ def row_geometric_median4(
     objective_tolerance = RELATIVE_TOLERANCE * np.maximum(1.0, mean_objective)
     if np.any(objective_increase > objective_tolerance):
         raise AssertionError(
-            "row geometric median has a larger objective than Mean-4"
+            "row geometric median has a larger objective than the arithmetic mean"
         )
 
     diagnostics = {
-        "solver": "modified Weiszfeld in the four-row Gram geometry",
+        "solver": f"modified Weiszfeld in the {n_methods}-row Gram geometry",
         "relative_tolerance": RELATIVE_TOLERANCE,
         "absolute_tolerance": ABSOLUTE_TOLERANCE,
         "max_iterations": MAX_ITERATIONS,
         "n_rows": int(template.shape[0]),
+        "n_methods": n_methods,
         "n_identical_input_rows": int(identical.sum()),
         "n_medians_at_input_rows": int(input_row_median.sum()),
         "n_slsqp_fallback_rows": int(np.count_nonzero(fallback_iterations)),
@@ -368,13 +357,13 @@ def row_geometric_median4(
         "n_converged_rows": int(template.shape[0]),
         "max_iterations_used": int(iterations.max(initial=0)),
         "mean_iterations_used": float(iterations.mean()),
-        "max_objective_increase_vs_mean4": float(
+        "max_objective_increase_vs_mean": float(
             objective_increase.max(initial=0.0)
         ),
-        "mean_objective_reduction_vs_mean4": float(
+        "mean_objective_reduction_vs_mean": float(
             np.mean(mean_objective - final_objective)
         ),
-        "row_l2_difference_vs_mean4": _distribution_summary(difference_l2),
+        "row_l2_difference_vs_mean": _distribution_summary(difference_l2),
         "row_input_diameter": _distribution_summary(row_scale),
         "mean_implicit_convex_coefficient_by_method": [
             float(value) for value in coefficients.mean(axis=0)
@@ -395,6 +384,22 @@ def row_geometric_median4(
         }
         return aggregate, diagnostics, cell_diagnostics
     return aggregate, diagnostics
+
+
+def row_geometric_median4(template, method_values, *, return_cell_diagnostics=False):
+    """Retain the frozen four-method API and diagnostic field names."""
+    values = np.asarray(method_values, dtype=np.float64)
+    if values.ndim != 2 or values.shape[0] != N_INPUT_ROWS:
+        raise ValueError("row geometric median requires four method rows")
+    result = row_geometric_median(
+        template, values, return_cell_diagnostics=return_cell_diagnostics
+    )
+    diagnostics = result[1]
+    diagnostics["solver"] = "modified Weiszfeld in the four-row Gram geometry"
+    diagnostics.pop("n_methods")
+    for key in ("max_objective_increase", "mean_objective_reduction", "row_l2_difference"):
+        diagnostics[key + "_vs_mean4"] = diagnostics.pop(key + "_vs_mean")
+    return result
 
 
 def validate_row_geometric_median4():

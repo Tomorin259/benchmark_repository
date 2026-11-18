@@ -12,6 +12,7 @@ method training is a separate step.
 | [figures/fig6/plot_data/](figures/fig6/plot_data/) | Exact selected rows plotted in Figure 6 |
 | [figures/fig6/](figures/fig6/) | Current parameter panels and saved velocity fields |
 | [results/expanded_reference/](results/expanded_reference/README.md) | Sensitivity analysis on 250 RPE1 and 270 organoid reference genes per branch |
+| [results/joint_recovery/](results/joint_recovery/) | Common-gene alpha and gamma comparison for cellDancer and DeepVelo |
 
 Figure 6B/C displays 19 RPE1 genes surviving evaluator intersection from the
 configured 32. Figure 6F displays six branch-1 and eight branch-2 genes.
@@ -22,6 +23,37 @@ Panel D classifies 250 matched genes with both parameters, separately from the
 Expanded-reference results preserve their own scope, coverage and common-valid
 sets. Isolated TSvelo organoid alpha scores do not add selected-gene Figure 6F
 scores or change canonical Figure 7 aggregation.
+
+## Joint alpha and gamma recovery
+
+The comparison starts from the public
+[per-gene Spearman scores](results/central_results/gene_metrics.csv). Within
+RPE1 and each organoid branch, a gene enters the comparison when both
+cellDancer and DeepVelo have finite scores for both parameters. This gives
+249 RPE1 genes and 270 genes per organoid branch. Each row in
+[joint scores](results/joint_recovery/common_gene_scores.csv) contains both
+parameter scores for one method and one gene in a system or branch, for
+1,578 rows total.
+
+The [comparison summary](results/joint_recovery/common_gene_comparison.json)
+records the input SHA-256, common gene counts, component means, system means,
+and the descriptive Pareto front for each system. For each method and
+parameter, genes contribute equally to the component mean. The organoid
+system mean gives its two branch means equal weight. A method dominates when
+it has at least as high a mean Spearman correlation on both parameters and a
+strictly higher mean on at least one. DeepVelo has higher mean alpha and
+gamma correlations for both RPE1 and organoid.
+
+The expanded-reference analysis defines its common finite gene sets
+separately for each parameter and each configured method group. The joint
+comparison uses one gene set per component for all four method–parameter
+pairs.
+
+Run from the repository root with Python 3.8 or later and a new output directory.
+
+```bash
+python -m evaluation.kinetics_recovery.joint_recovery --output outputs/kinetics-joint-recovery
+```
 
 ## Evaluate and render
 

@@ -1,0 +1,223 @@
+{
+  "figure": "Supplementary Figure 10",
+  "assembly": {
+    "path": "figures/assembly/suppfig10/suppfig10.pptx",
+    "sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8"
+  },
+  "panels": [
+    {
+      "panel": "A",
+      "metric": "bootstrap_front_inclusion",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_1",
+      "plot_data": "figures/assembly/suppfig10/panel_a_data.csv",
+      "plot_rows": 20
+    },
+    {
+      "panel": "B",
+      "metric": "cbdir",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_2",
+      "plot_data": "figures/assembly/suppfig10/plot_data.csv",
+      "plot_rows": 294,
+      "order": "Descending 14-dataset macro mean for this metric.",
+      "renderer": {
+        "path": "ensemble/plot_supfig10.py",
+        "commit": "e9d6147",
+        "sha256": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382",
+        "functions": [
+          "metric_order",
+          "plot_metric"
+        ]
+      }
+    },
+    {
+      "panel": "C",
+      "metric": "batc",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_3",
+      "plot_data": "figures/assembly/suppfig10/plot_data.csv",
+      "plot_rows": 294,
+      "order": "Descending 14-dataset macro mean for this metric.",
+      "renderer": {
+        "path": "ensemble/plot_supfig10.py",
+        "commit": "e9d6147",
+        "sha256": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382",
+        "functions": [
+          "metric_order",
+          "plot_metric"
+        ]
+      }
+    }
+  ],
+  "materials": {
+    "approved_layout.svg": {
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947"
+    },
+    "plot_data.csv": {
+      "path": "figures/assembly/suppfig10/plot_data.csv",
+      "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5"
+    },
+    "panel_a_data.csv": {
+      "path": "figures/assembly/suppfig10/panel_a_data.csv",
+      "sha256": "2673ae3321dac2434be919c814f36662dafec50a33ebfc38f4a7db5037db298a"
+    },
+    "macro_means.csv": {
+      "path": "figures/assembly/suppfig10/macro_means.csv",
+      "sha256": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a"
+    },
+    "approved_layout_manifest.json": {
+      "path": "figures/assembly/suppfig10/approved_layout_manifest.json",
+      "sha256": "f3884c41476ee3e2620809fc1e404ce630172e2abc41878b41cf0dadee6e3abb"
+    }
+  },
+  "inputs": [
+    {
+      "path": "ensemble/results/selected/Table_S5_B.csv",
+      "sha256": "39fc00de1d69855b0fa6ec2cf122d0ecec1603c64ebd1811c763b62310c0995d",
+      "scope": "Current five-member ensemble replay"
+    },
+    {
+      "path": "ensemble/results/selected/s10/panel_a_data.csv",
+      "sha256": "de905ab767c6221123dbb743f2ac36c723c9ab91dfc9b01a0585577f8e34febb",
+      "scope": "Current five-member ensemble replay"
+    },
+    {
+      "path": "ensemble/results/selected/s10/plot_data.csv",
+      "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5",
+      "scope": "Current five-member ensemble replay"
+    },
+    {
+      "path": "ensemble/results/selected/s10/macro_means.csv",
+      "sha256": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a",
+      "scope": "Current five-member ensemble replay"
+    }
+  ],
+  "numerical_contract": {
+    "ensemble": "normalized GeoMedian-5",
+    "members": [
+      "DeepVelo",
+      "GraphVelo_scv",
+      "TIvelo",
+      "UniTVelo",
+      "veloVI"
+    ],
+    "datasets": 14,
+    "base_configurations": 20,
+    "score_rows": 588,
+    "bootstrap_resamples": 10000,
+    "ensemble_macro_means": {
+      "cbdir": 0.4712175537963527,
+      "batc": 0.5147455431894143
+    },
+    "forebrain_metric_spaces": {
+      "cbdir": "PCA30",
+      "batc": "UMAP2"
+    },
+    "normalization": "Each member off-diagonal signed row divided by its absolute-weight sum before geometric median; no centering or post-aggregation rescaling.",
+    "projection": "GraphVelo weighted displacement: sum_j T_ij (Y_j-Y_i); no fitting"
+  },
+  "layout": {
+    "figure_size_mm": [
+      190.5,
+      203.22295081967212
+    ],
+    "font": "Arial",
+    "layout": "content-sized; original CBDir/BATC panel proportions",
+    "bc_axes_size_mm": [
+      52.0,
+      84.22295081967214
+    ],
+    "panel_a_axes_size_mm": [
+      145,
+      73
+    ],
+    "score_panels": {
+      "font_sizes_pt": {
+        "method_labels": 6.5,
+        "tick_labels": 6.0,
+        "axis_labels": 7.5
+      },
+      "last_row_center_to_axis_mm": 2.0053083555273656,
+      "last_row_center_to_axis_row_units": 0.5,
+      "order": "independent descending 14-dataset macro mean for each metric"
+    }
+  },
+  "approved_preview_manifest": {
+    "path": "figures/assembly/suppfig10/approved_layout_manifest.json",
+    "sha256": "f3884c41476ee3e2620809fc1e404ce630172e2abc41878b41cf0dadee6e3abb"
+  },
+  "source_status": "Approved artwork binds the frozen plotted data in materials. Scientific reproduction uses the selected normalized GeoMedian-5 dataset scores in Table S5B.",
+  "pending_pdf_export": false,
+  "pending_material_assembly": false,
+  "pdf_output_status": "Current 3-panel author export. Cropping preserved page content and resource streams.",
+  "exported_from_revision": {
+    "assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+    "author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+    "source_pdf_sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
+    "pdf_sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d"
+  },
+  "scientific_reproduction": {
+    "generator": {
+      "path": "ensemble/supfig10_data.py",
+      "sha256": "d5452b4950d0480f1c67f0b29915de554ee8b77e56a96337655fd3f66837b820"
+    },
+    "input": {
+      "path": "ensemble/results/selected/Table_S5_B.csv",
+      "sha256": "39fc00de1d69855b0fa6ec2cf122d0ecec1603c64ebd1811c763b62310c0995d"
+    },
+    "selected_metadata": {
+      "path": "ensemble/results/selected/metadata.json",
+      "sha256": "9e6b47dacceb33427dad7d5af27e7e79a0371173d2d90fdb074ce36353bc5a45"
+    },
+    "other_inputs": [
+      {
+        "path": "evaluation/cell/results/cell_metrics.csv",
+        "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
+      },
+      {
+        "path": "evaluation/cell/inputs.tsv",
+        "sha256": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb"
+      },
+      {
+        "path": "evaluation/cell/results/cell_metrics_audit.csv",
+        "sha256": "dda8e2aa2a6c566139aebc5c0af85d1fa4a8672dcf53f9deaa478a9afbc3ee30"
+      },
+      {
+        "path": "methods/configurations.tsv",
+        "sha256": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
+      },
+      {
+        "path": "ensemble/config.json",
+        "sha256": "e663477bbad059859a2ae5232d407da8920a3e45af2fa3b85977b7b1d8cb2580"
+      }
+    ],
+    "bootstrap": {
+      "generator": {
+        "path": "ensemble/pareto_bootstrap.py",
+        "sha256": "a8c1459ec5b1cfdb58c416f6d77ee3c13b0d22742e7d0c8772748ef5d128d45f"
+      },
+      "resamples": 10000,
+      "seed": 20261109
+    },
+    "outputs": [
+      {
+        "path": "ensemble/results/selected/s10/panel_a_data.csv",
+        "sha256": "de905ab767c6221123dbb743f2ac36c723c9ab91dfc9b01a0585577f8e34febb"
+      },
+      {
+        "path": "ensemble/results/selected/s10/plot_data.csv",
+        "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5"
+      },
+      {
+        "path": "ensemble/results/selected/s10/macro_means.csv",
+        "sha256": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a"
+      }
+    ],
+    "approved_artwork_comparison": "Replayed plot data and macro means are byte-identical to the approved materials. Panel A has identical ranks, front counts and indicators; floating-point columns agree within absolute tolerance 1e-12."
+  }
+}

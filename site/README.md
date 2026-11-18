@@ -1,7 +1,12 @@
 # Website source
 
 Source for the [published benchmark results website](https://tomorin259.github.io/benchmark_repository/).
-The site displays the saved scores and figure materials from the evaluation modules.
+The default ensemble page shows GeoMedian-5, its eight matched ablations,
+the 14 dataset scores and the three-panel Supplementary Figure S10.
+The [historical page](https://tomorin259.github.io/benchmark_repository/#ensemble-legacy)
+retains the older four-member scVelo-projected scores and streams.
+The [matched comparisons](https://tomorin259.github.io/benchmark_repository/#comparisons)
+cover Supplementary Figure S9, Table S10, BATC sensitivity and joint rate recovery.
 
 Diagnostics includes MultiVelo's RNA-only phase-assignment controls at
 `#diagnostics?method=multivelo`: the retained phase portraits and paired-score

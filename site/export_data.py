@@ -338,7 +338,7 @@ def export_data(root=ROOT, output=None):
     input_manifest = {r['artifact_id']: r for r in read('data/input_release_manifest.tsv', download=False)}
     file_rows = read('data/input_file_manifest.tsv', download=False)
     upstream_references = read('data/upstream_references.tsv', download=False)
-    by_artifact = {r['artifact_id']: r for r in artifacts}
+    by_artifact = {r['artifact_id']: r for r in artifact_rows}
     input_files = []
     for entry in file_rows:
         identifier = entry['artifact_id']
@@ -367,8 +367,8 @@ def export_data(root=ROOT, output=None):
     packages_by_id = keyed(result_packages, ['package_id'])
     keyed(result_packages, ['repository_path'])
     keyed(result_members, ['object_id'])
-    if len(result_packages) != 339 or len(result_members) != 388:
-        raise ValueError('Result release must cover 339 packages and 388 original files')
+    if not packages_by_id or not result_members:
+        raise ValueError('The result release requires registered packages and members')
     for package in result_packages:
         if not package['url'].startswith('https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/' + package['release_version'] + '/'):
             raise ValueError('Result package URL and release version differ')
@@ -380,7 +380,10 @@ def export_data(root=ROOT, output=None):
         packages_by_id[(member['package_id'],)]
         member['member_bytes'] = int(member['member_bytes'])
         for identifier in member['registered_artifact_ids'].split(';') if member['registered_artifact_ids'] else []:
-            if by_artifact[identifier]['sha256'] != member['member_sha256'] or release[identifier]['source_locator'] != member['source_locator']:
+            registered = by_artifact[identifier]
+            locator = (registered['path'] if registered['status'] == 'available'
+                       else release[identifier]['source_locator'])
+            if registered['sha256'] != member['member_sha256'] or locator != member['source_locator']:
                 raise ValueError('Result member changed its registered scientific identity')
     for entry in kinetics + summary:
         by_dataset[entry["dataset"]]
@@ -431,7 +434,7 @@ def export_data(root=ROOT, output=None):
                                   "out_of": int(row["out_of"]), "tie_count": int(row["tie_count"])})
     if set(keyed(ensemble_rankings, ["dataset", "variant", "metric"])) != {(*key, metric) for key in expected for metric in ["cbdir", "batc"]}:
         raise ValueError("Ensemble rankings must cover both metrics for all frozen scores")
-    ensemble = {"scores": ensemble_scores, "rankings": ensemble_rankings,
+    legacy_ensemble = {"scores": ensemble_scores, "rankings": ensemble_rankings,
                 "macro_average": ensemble_metadata["macro_average"], "variants": variants,
                 "methods": ensemble_metadata["methods"]}
     # Frozen post-hoc stream panels are separate from the 20 Cell configurations.
@@ -445,7 +448,64 @@ def export_data(root=ROOT, output=None):
                                      **media_asset(relative, registered["sha256"])})
     if set(keyed(ensemble_streams, ["dataset", "variant"])) != expected:
         raise ValueError("Ensemble images and scores must have identical keys")
-    ensemble["streams"] = ensemble_streams
+    legacy_ensemble["streams"] = ensemble_streams
+
+
+    selected_root = "ensemble/results/selected/"
+    selected_meta = selected_root + "metadata.json"
+    manifest = json.loads((root / selected_meta).read_text())
+    register_file(selected_meta, download=False)
+    if manifest["selected"] != "full5" or manifest["n_datasets"] != 14:
+        raise ValueError("Selected ensemble must be the normalized five-member result on 14 datasets")
+    for relative in ("Table_S5_A.csv", "Table_S5_B.csv", "dataset_scores.csv", "protocol.json",
+                     "s10/panel_a_data.csv", "s10/plot_data.csv", "s10/macro_means.csv"):
+        digest = manifest["outputs_sha256"][relative]
+        if register_file(selected_root + relative, download=False)["sha256"] != digest:
+            raise ValueError(f"Selected ensemble output changed: {relative}")
+
+    ablations = read(selected_root + "Table_S5_A.csv", download=False)
+    dataset_scores = read(selected_root + "Table_S5_B.csv", download=False)
+    ensemble_summary, = [row for row in dataset_scores if row["dataset"] == "macro_average"]
+    dataset_scores = [row for row in dataset_scores if row["dataset"] != "macro_average"]
+    members = json.loads((root / (selected_root + "protocol.json")).read_text())["methods"]
+    ensemble = {
+        "methods": members,
+        "ablations": ablations,
+        "scores": [{**row, "dataset": ensemble_dataset_ids[row["dataset"]]} for row in dataset_scores],
+        "summary": ensemble_summary,
+        "screening": read(selected_root + "s10/panel_a_data.csv", download=False),
+    }
+    if (len(keyed(ablations, ["id"])) != 8 or len(keyed(ensemble["scores"], ["dataset"])) != 14
+            or len(keyed(ensemble["screening"], ["config_id"])) != len(methods)
+            or len(members) != 5 or not set(members) <= {row["manuscript_name"] for row in methods}):
+        raise ValueError("Incomplete selected ensemble score, candidate or constituent grid")
+    for metric in ("cbdir", "batc"):
+        expected = float(keyed(ablations, ["id"])[("full5",)][metric])
+        if not math.isclose(float(ensemble_summary[metric]), expected, rel_tol=0, abs_tol=1e-12):
+            raise ValueError(f"Ensemble S5A/S5B macro-average differs for {metric}")
+
+    stats_root = "evaluation/cell/results/statistics/"
+    matched_root = "evaluation/gene/results/crosslevel/"
+    rates_root = "evaluation/kinetics_recovery/results/joint_recovery/"
+    rates_path = rates_root + "common_gene_comparison.json"
+    register_file(rates_path, download=False)
+    batc_dataset = read(stats_root + "batc_dataset_ranks.csv", download=False)
+    batc_omitted = read(stats_root + "batc_leave_one_out.csv", download=False)
+    velovi_ranks = [float(row["rank"]) for row in batc_omitted if row["method"] == "veloVI"]
+    if len(velovi_ranks) != len(dataset_scores):
+        raise ValueError("BATC omission runs must cover each real dataset")
+    comparisons = {
+        "batc": {"comparisons": len(velovi_ranks), "velovi_worst": max(velovi_ranks),
+                 "velovi_first": velovi_ranks.count(1.0),
+                 "dataset_winners": len({r["method"] for r in batc_dataset if float(r["rank"]) == 1})},
+        "fronts": read(matched_root + "frontiers.csv", download=False),
+        "omnibus": [read(stats_root + name + ".csv", download=False) for name in ("s10a", "s10b")],
+        "kinetics": json.loads((root / rates_path).read_text())["results"],
+    }
+    artwork = keyed(artifact_rows, ["artifact_id"])
+    for section, number in [(comparisons, '09'), (ensemble, '10')]:
+        entry = artwork[(f'figure-suppfig{number}-layout',)]
+        section['figure'] = media_asset(entry['path'], entry['sha256'])
 
     commit = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
     build_state = "working-tree-preview" if subprocess.check_output(["git","-C",str(root),"status","--porcelain"],text=True).strip() else "committed"
@@ -463,8 +523,25 @@ def export_data(root=ROOT, output=None):
         (EXPANDED + 'common_gene_summary.csv', 'Expanded reference: common-gene means'),
         (EXPANDED + 'tsvelo_organoid_gene_metrics.csv', 'Expanded reference: TSvelo organoid alpha'),
     ]
+    table_downloads += [
+        (selected_root + "Table_S5_A.csv", "S5A · Ensemble ablations"),
+        (selected_root + "Table_S5_B.csv", "S5B · GeoMedian-5 dataset scores"),
+        (selected_root + "dataset_scores.csv", "S5 · All dataset and configuration scores"),
+        (selected_root + "s10/panel_a_data.csv", "Figure S10a · Candidate screening"),
+        (selected_root + "s10/plot_data.csv", "Figure S10b,c · Scores"),
+        (selected_root + "s10/macro_means.csv", "Figure S10b,c · Macro-averages"),
+        (matched_root + "dataset_scores.csv", "Figure S9 · Matched Gene/Cell scores"),
+        (matched_root + "frontiers.csv", "Figure S9 · Pareto-front memberships"),
+        (matched_root + "leave_one_out.csv", "Figure S9 · Fronts after dataset omission"),
+        (matched_root + "plot_data.csv", "Figure S9 · Eight-panel data"),
+        (stats_root + "s10a.csv", "Table S10A · Cell-level omnibus tests"),
+        (stats_root + "s10b.csv", "Table S10B · Matched Gene/Cell omnibus tests"),
+        (stats_root + "batc_dataset_ranks.csv", "BATC · Dataset ranks"),
+        (stats_root + "batc_leave_one_out.csv", "BATC · Leave-one-dataset-out ranks"),
+        (rates_root + "common_gene_scores.csv", "Joint rate recovery · Common-gene scores"),
+    ]
     for relative, label in table_downloads:
-        entry = next(s for s in sources if s['path'] == relative)
+        entry = register_file(relative)
         entry['download'] = f'data/files/{relative}'
         downloads['tables'].append({'label': label, **entry})
     metadata_downloads = [
@@ -475,9 +552,9 @@ def export_data(root=ROOT, output=None):
         ('data/RESULT_DOWNLOADS.md', 'Native result download guide',
          'Versioned output releases, TAR.GZ extraction and separate archive/member checksums.'),
         ('data/result_package_manifest.tsv', 'Result package download manifest',
-         '339 public TAR.GZ/NPZ objects with version-pinned URLs, sizes and package SHA-256 values.'),
+         'Versioned method outputs and ensemble replay packages, with sizes and checksums.'),
         ('data/result_member_manifest.tsv', 'Original result member manifest',
-         '388 original H5AD/NPZ files with package mapping, member hashes and logical artifact aliases.'),
+         'Archive members, checksums, and logical artifact aliases.'),
         ('data/input_release_manifest.tsv', 'Input release manifest',
          '28 logical dependencies: 25 mirrored files and three upstream-only reference tables.'),
         ('data/input_file_manifest.tsv', 'Input file download manifest',
@@ -500,17 +577,19 @@ def export_data(root=ROOT, output=None):
         entry['download'] = f'data/files/{relative}'
         downloads['metadata'].append({'label': label, 'description': description, **entry})
     audit_downloads = [
+        (rates_path, 'Joint rate recovery', 'Transcription and degradation correlations on jointly scorable genes.'),
+        (selected_root + 'protocol.json', 'GeoMedian-5 protocol', 'Frozen inputs, normalization, aggregation and scoring settings.'),
         ("evaluation/cell/results/cell_metrics_supplementary.csv", "Cell supplementary metrics and evaluability counts", "Supplementary Cell metrics and metric-specific valid-sample counts."),
         ("evaluation/cell/results/cell_metrics_edge_details.csv", "Cell edge-level audit", "Edge-level Cell evaluation details under the fixed reference contract."),
         ("evaluation/gene/results/gene_cbdir_edge_details_reference30_all.csv", "Gene edge-level audit", "Gene-level edge details underlying the reference-30 CBDir rows."),
         ("evaluation/gene/results/neighbor_audit_all.csv", "Gene neighbor audit", "Neighbor-set provenance and overlap checks for Gene-level evaluation."),
-        ("ensemble/results/scores.csv", "Post-hoc ensemble scores", "Mean-4 and RowGeometricMedian-4 scores across the 14 real datasets."),
-        ("ensemble/results/rankings_vs_20.csv", "Post-hoc ensemble rankings", "Per-dataset CBDir/BATC rankings against the 20 registered configurations."),
+        ("ensemble/results/scores.csv", "Historical four-member ensemble scores", "Mean-4 and RowGeometricMedian-4 scores across the 14 real datasets."),
+        ("ensemble/results/rankings_vs_20.csv", "Historical four-member ensemble rankings", "Per-dataset CBDir/BATC rankings against the 20 registered configurations."),
         ("supplement/velovi/results/table_s6.csv", "veloVI coordinate-sensitivity summary", "A/B/C coordinate diagnostics and C − B differences across 14 datasets; primary Cell scoring is condition B."),
         ("evaluation/cell/results/cell_metrics_audit.csv", "Cell source and status audit", "Logical source identity, velocity layers, invalid-value handling and status for each method/dataset."),
         ("evaluation/cell/reference_neighbors/manifest.json", "Cell reference-neighbor manifest", "Hashes and construction settings for the frozen dataset-level neighbor assets."),
         ("evaluation/gene/results/provenance.json", "Gene result provenance", "Input and neighbor contracts for the frozen Gene evaluation."),
-        ("ensemble/results/metadata.json", "Ensemble protocol and provenance", "Frozen input roles, transition settings and macro averages for both variants."),
+        ("ensemble/results/metadata.json", "Historical four-member protocol", "Frozen input roles, transition settings and macro averages for both variants."),
         ("supplement/velovi/results/full_dataset_three_condition.csv", "veloVI coordinate diagnostic: full values", "42 rows comparing three post-hoc coordinate conditions across 14 datasets."),
         ("supplement/velovi/results/manifest.json", "veloVI coordinate diagnostic manifest", "Conditions, input hashes and output hashes for the coordinate-sensitivity analysis."),
     ]
@@ -529,6 +608,18 @@ def export_data(root=ROOT, output=None):
     if not figure_manifest.get('pending_pdf_export', False):
         entry = register_file(figure['path'])
         downloads['figures'].append({'label': 'Benchmark summary (Figure 7)', **entry})
+    for number, name, label in [('09', 'suppFigNine', 'Matched Gene/Cell comparison (Figure S9)'),
+                                ('10', 'suppFigTen', 'GeoMedian-5 screening and performance (Figure S10)')]:
+        manifest_path = f'figures/suppfig{number}_composite_manifest.json'
+        register_file(manifest_path, download=False)
+        binding = json.loads((root / manifest_path).read_text())
+        if not binding['pending_pdf_export']:
+            relative = f'figures/{name}.pdf'
+            entry = register_file(relative)
+            if entry['sha256'] != next(r['sha256'] for r in artifact_rows if r['path'] == relative):
+                raise ValueError(f'Figure PDF differs from its registered export: {relative}')
+            entry['download'] = f'data/files/{relative}'
+            downloads['figures'].append({'label': label, **entry})
     for relative, label in [
         ('rpe1_boxplot.png', 'Expanded reference: RPE1'),
         ('organoid_branch1_boxplot.png', 'Expanded reference: organoid branch 1'),
@@ -630,9 +721,10 @@ def export_data(root=ROOT, output=None):
         EXPANDED+'tsvelo_organoid_gene_metrics.csv':('TSvelo organoid transcription scores','Extended-reference alpha scores; undefined constant predictions remain missing.'),
     }
     for item in downloads['tables']:
-        item['label'],item['description'] = labels[item['path']]
+        if item['path'] in labels:
+            item['label'],item['description'] = labels[item['path']]
     for item in downloads['figures']:
-        item['description'] = 'Published cross-task summary.' if item['path'].endswith('figSeven.pdf') else 'Distribution of finite kinetic scores across the extended reference-gene set.'
+        item['description'] = item['label'] if item['path'].endswith('.pdf') else 'Distribution of finite kinetic scores across the extended reference-gene set.'
     # Diagnostic scores remain outside the primary Cell/Gene/Kinetics arrays.
     asset_path = "site/content/diagnostic_assets.json"
     asset_binding = json.loads((root / asset_path).read_text())
@@ -901,7 +993,7 @@ def export_data(root=ROOT, output=None):
     for directory, label, description in [
         ('main_figures', 'Main figures', 'Figures 1–7: numerical tables, saved plotting inputs and the Figure 1 schematic.'),
         ('supplementary_figures', 'Supplementary figures', 'Figures S1–S15: numerical tables and saved plotting inputs.'),
-        ('supplementary_tables', 'Supplementary tables', 'Tables S1–S9: full-precision source values and metadata.'),
+        ('supplementary_tables', 'Supplementary tables', 'Full-precision source values and metadata for the supplementary tables.'),
         ('metadata/simulation_truth', 'Simulation velocity references', 'Paired clean states and ODE velocities for the evaluated genes.'),
     ]:
         files = [row for row in source_data_files if row['path'].startswith(directory + '/')]
@@ -909,7 +1001,7 @@ def export_data(root=ROOT, output=None):
                                    'files': len(files), 'bytes': sum(row['bytes'] for row in files),
                                    'url': source_data_root + '/' + directory})
     payload = {"schema_version": 1, "source_commit": commit, "build_state": build_state, "methods": methods, "datasets": datasets,
-               "content": content, "ensemble": ensemble, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
+               "content": content, "ensemble": ensemble, "legacy_ensemble": legacy_ensemble, "comparisons": comparisons, "diagnostics": diagnostics, "dataset_descriptions": descriptions, "streams": streams, "cell": cell, "gene": gene, "gene_summary": gene_summary, "visuals": visuals, 'downloads': downloads,
                "transition_references": transition_references,
                "kinetics": kinetics, "kinetics_summary": summary,
                "kinetics_common_membership": common_membership, "kinetics_method_order": kinetics_order,

@@ -1,0 +1,112 @@
+{
+  "selected": "full5",
+  "methods": [
+    "TIvelo",
+    "veloVI",
+    "DeepVelo",
+    "UniTVelo",
+    "GraphVelo_scv"
+  ],
+  "member_operators": [
+    "T",
+    "T",
+    "T",
+    "T",
+    "native Phi"
+  ],
+  "configurations": {
+    "full5": [
+      "TIvelo",
+      "veloVI",
+      "DeepVelo",
+      "UniTVelo",
+      "GraphVelo_scv"
+    ],
+    "pair2": [
+      "TIvelo",
+      "veloVI"
+    ],
+    "without_tivelo": [
+      "veloVI",
+      "DeepVelo",
+      "UniTVelo",
+      "GraphVelo_scv"
+    ],
+    "without_velovi": [
+      "TIvelo",
+      "DeepVelo",
+      "UniTVelo",
+      "GraphVelo_scv"
+    ],
+    "without_deepvelo": [
+      "TIvelo",
+      "veloVI",
+      "UniTVelo",
+      "GraphVelo_scv"
+    ],
+    "without_unitvelo": [
+      "TIvelo",
+      "veloVI",
+      "DeepVelo",
+      "GraphVelo_scv"
+    ],
+    "without_graphvelo": [
+      "TIvelo",
+      "veloVI",
+      "DeepVelo",
+      "UniTVelo"
+    ],
+    "mean5": [
+      "TIvelo",
+      "veloVI",
+      "DeepVelo",
+      "UniTVelo",
+      "GraphVelo_scv"
+    ]
+  },
+  "normalization": "Off-diagonal signed L1 per member row; mass <= 1e-12 becomes zero",
+  "aggregation": "Equal-weight Euclidean geometric median on union support; mean5 uses arithmetic mean",
+  "projection": "Raw weighted displacements; no centering or post-aggregation normalization",
+  "evaluation": "Forebrain PCA30 CBDir and UMAP2 BATC; UMAP2 for both metrics elsewhere",
+  "summary": "Equal dataset weights; signed delta = variant minus full5; comparison tolerance 1e-12",
+  "randomness": "Deterministic S5; S10a uses 10000 paired dataset bootstraps with seed 20261109",
+  "jobs": 3,
+  "input_manifest_sha256": "b0c111dfcadf2be37d11ccfd843dba7a7e0f0c7779dd423a6fa1792ec848fbcc",
+  "config_sha256": "e663477bbad059859a2ae5232d407da8920a3e45af2fa3b85977b7b1d8cb2580",
+  "registry_sha256": {
+    "data/datasets.tsv": "d5190f6218854c7e1fad8fc6452fff56fe5859d01e51017015360bdb4011495d",
+    "evaluation/cell/inputs.tsv": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb"
+  },
+  "panel_source_sha256": {
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
+    "evaluation/cell/inputs.tsv": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb",
+    "evaluation/cell/results/cell_metrics_audit.csv": "dda8e2aa2a6c566139aebc5c0af85d1fa4a8672dcf53f9deaa478a9afbc3ee30",
+    "methods/configurations.tsv": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
+  },
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1"
+  },
+  "code_sha256": {
+    "ensemble/__main__.py": "877e2db5017a1010d8bd8202380b2587c89942fc5c6cd28f5e0c01153c038530",
+    "ensemble/supfig10_data.py": "d5452b4950d0480f1c67f0b29915de554ee8b77e56a96337655fd3f66837b820",
+    "ensemble/pareto_bootstrap.py": "a8c1459ec5b1cfdb58c416f6d77ee3c13b0d22742e7d0c8772748ef5d128d45f",
+    "ensemble/replay_selected.py": "d4b50bf8a33d38a7af0f67ac319ec4fb9d4b94aaf3cb15c3796a0c988dee89cb",
+    "ensemble/benchmark_normalization.py": "fa4d3d6668de0489ec8d5c88bef2e327694226f3ecb8308caa63ad48e210e94d",
+    "ensemble/core.py": "191e9f4c1c0795567bf5125977d677d0eeaa414fb62bbb08a9fd786d36edd174",
+    "ensemble/geometric_median.py": "ccbc639fd0e4d1e17f9c3f393e9c4ed2d0870235fb8434c5a1c97f2efcec7386",
+    "ensemble/reproject.py": "cc47d5b6a8bb567e26bbc2d8866d9c342146c2d29a6515d1d9f1347f98184f59",
+    "ensemble/pareto_members.py": "b845fd346c74e15804f7e384197f96664af81c830ebbf8db72440ed0bf9a82a8",
+    "ensemble/metrics.py": "0961e06c95cb574eea9e1b8dd0084c739848233e7b9fb6ca0e019f9f1564da95"
+  },
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "2.3.3",
+    "anndata": "0.11.4",
+    "scvelo": "0.3.4",
+    "scikit-learn": "1.7.2"
+  }
+}

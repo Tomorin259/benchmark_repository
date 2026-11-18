@@ -1,0 +1,15 @@
+dataset,variant,label,n_cells,cbdir,batc,cbdir_basis,batc_basis
+bonemarrow,normalized_geomedian5,GeoMedian-5,5780,0.5325590554077001,0.4546035318894723,umap,umap
+capofibro,normalized_geomedian5,GeoMedian-5,1222,0.4668722132565278,0.49385542014823314,umap,umap
+dentategyrus,normalized_geomedian5,GeoMedian-5,2930,0.5032828908665686,0.7003161510597443,umap,umap
+dentate_lamanno,normalized_geomedian5,GeoMedian-5,18213,0.7262253215413541,0.7266535512516096,umap,umap
+forebrain,normalized_geomedian5,GeoMedian-5,1720,0.5555387729542289,0.14728787330420204,pca,umap
+gastrulation,normalized_geomedian5,GeoMedian-5,9815,0.728485223596045,0.8597183907326518,umap,umap
+hematopoiesis,normalized_geomedian5,GeoMedian-5,1947,0.06643080319219988,0.46477234689621044,umap,umap
+mousebrain,normalized_geomedian5,GeoMedian-5,3365,0.6331784344569534,0.6354175339149275,umap,umap
+neuron,normalized_geomedian5,GeoMedian-5,3066,0.6228087031137385,0.4420577162247022,umap,umap
+organoid,normalized_geomedian5,GeoMedian-5,3831,-0.017777557784311726,0.6453563440509916,umap,umap
+pancreas,normalized_geomedian5,GeoMedian-5,3696,0.595619823375145,0.6031092749976235,umap,umap
+retina,normalized_geomedian5,GeoMedian-5,2726,0.5649654949803187,0.25066467054090313,umap,umap
+rpe1,normalized_geomedian5,GeoMedian-5,2793,0.2825846835164386,0.6083876048061043,umap,umap
+rpe1_gen,normalized_geomedian5,GeoMedian-5,3354,0.33627189067603136,0.17423719483442546,umap,umap

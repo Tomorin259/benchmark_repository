@@ -32,11 +32,193 @@ from ensemble.core import (
     protocol_metadata,
     validate_signed_operator,
 )
-from ensemble.geometric_median import validate_row_geometric_median4
+from ensemble.geometric_median import row_geometric_median, validate_row_geometric_median4
 from ensemble.metrics import build_rankings, score_global_metrics, write_rankings
 
 
 class EnsembleTests(unittest.TestCase):
+    def test_supfig10_uses_selected_projection_and_preserves_single_method_points(self):
+        import pandas as pd
+        from ensemble.plot_supfig10 import ENSEMBLE_ID, build_parser, load_values
+
+        root = Path(__file__).resolve().parents[1]
+        scores = root / "ensemble/results/legacy_geomedian4_graphvelo/scores.csv"
+        args = build_parser().parse_args(["--ensemble-csv", str(scores), "--output-dir", "unused"])
+        self.assertEqual(args.ensemble_csv, scores)
+        selected = load_values(args.base_csv, args.ensemble_csv)
+        legacy = load_values(args.base_csv, root / "ensemble/results/scores.csv")
+        self.assertEqual(len(selected), 14 * 21 * 2)
+        key = ["metric", "dataset_key", "method"]
+        pd.testing.assert_frame_equal(
+            selected[selected.method != ENSEMBLE_ID].sort_values(key).reset_index(drop=True),
+            legacy[legacy.method != ENSEMBLE_ID].sort_values(key).reset_index(drop=True),
+        )
+        expected = pd.read_csv(args.ensemble_csv).set_index("dataset")
+        for metric in ("cbdir", "batc"):
+            actual = selected[(selected.method == ENSEMBLE_ID)
+                              & (selected.metric == metric)].set_index("dataset_key").score
+            pd.testing.assert_series_equal(actual.sort_index(), expected[metric].sort_index(),
+                                           check_names=False)
+
+    def test_graphvelo_projection_preserves_signed_raw_displacements(self):
+        from ensemble.reproject import project_graphvelo
+
+        operator = sparse.csr_matrix([
+            [.2, .5, -.3], [-.2, .8, 0.0], [.1, -.4, .5],
+        ])
+        before = operator.copy()
+        coordinates = np.asarray([[0.0, 0.0], [2.0, 0.0], [0.0, 3.0]])
+        actual = project_graphvelo(operator, coordinates)
+        np.testing.assert_allclose(actual, [[1.0, -.9], [.4, 0.0], [-.8, .9]], atol=1e-15)
+        np.testing.assert_array_equal(operator.toarray(), before.toarray())
+
+    def test_all_method_pareto_join_uses_registered_ids_ignoring_case(self):
+        import pandas as pd
+        from ensemble.pareto_all_methods import registered_score_matrix
+
+        registry = pd.DataFrame({"operational_id": ["velovi", "tsvelo"]})
+        table = pd.DataFrame([
+            {"dataset": "d1", "method": "TSvelo", "cbdir": .2, "batc": .8},
+            {"dataset": "d1", "method": "veloVI", "cbdir": .7, "batc": .5},
+        ])
+        result = registered_score_matrix(registry, table, ["d1"])
+        np.testing.assert_array_equal(result, [[[.7, .5], [.2, .8]]])
+
+    def test_all_method_pareto_rejects_omitted_or_duplicate_pairs(self):
+        import pandas as pd
+        from ensemble.pareto_all_methods import registered_score_matrix
+
+        registry = pd.DataFrame({"operational_id": ["a", "b"]})
+        table = pd.DataFrame([{"dataset": "d", "method": "a", "cbdir": .5, "batc": .5}])
+        with self.assertRaisesRegex(ValueError, "every registered"):
+            registered_score_matrix(registry, table, ["d"])
+        table = pd.concat([table, table], ignore_index=True)
+        with self.assertRaisesRegex(ValueError, "every registered"):
+            registered_score_matrix(registry, table, ["d"])
+
+    def test_pareto_front_preserves_tradeoffs_and_ties(self):
+        from ensemble.pareto_members import pareto_front
+
+        points = [[.6, .3], [.5, .5], [.6, .3], [.4, .2], [.5, .3]]
+        front, dominates = pareto_front(points)
+        np.testing.assert_array_equal(front, [True, True, True, False, False])
+        self.assertTrue(dominates[0, 3])
+        self.assertFalse(dominates[0, 2])
+        with self.assertRaisesRegex(ValueError, "nonfinite"):
+            pareto_front([[np.nan, .1]])
+
+    def test_minimum_pareto_cover_returns_every_smallest_subset(self):
+        from ensemble.pareto_members import minimum_front_covers
+
+        fronts = [[True, True, False], [False, False, True]]
+        self.assertEqual(minimum_front_covers(fronts), [(0, 2), (1, 2)])
+        self.assertEqual(minimum_front_covers([[False, True, False]]), [(1,)])
+        with self.assertRaisesRegex(ValueError, "at least one"):
+            minimum_front_covers([[False, False]])
+
+    def test_tsvelo_comparison_adds_the_requested_members(self):
+        from ensemble.benchmark_graphvelo import METHODS, member_selections
+
+        methods = (*METHODS, "TSvelo")
+        selections = member_selections(include_tsvelo=True)
+        self.assertEqual(set(methods[i] for i in selections["four"]), set(METHOD_NAMES))
+        self.assertEqual(tuple(methods[i] for i in selections["five"]), METHODS)
+        self.assertEqual(
+            set(methods[i] for i in selections["tsvelo_five"]),
+            set(METHOD_NAMES) | {"TSvelo"},
+        )
+        self.assertEqual(
+            tuple(methods[i] for i in selections["tsvelo_graphvelo_six"]), methods
+        )
+
+    def test_native_velocity_mask_excludes_unpredicted_tsvelo_genes(self):
+        from ensemble.core import align_method
+
+        reference = ad.AnnData(np.zeros((3, 3)))
+        reference.obs_names = ["c0", "c1", "c2"]
+        reference.var_names = ["g0", "g1", "g2"]
+        reference.layers["Ms"] = np.ones((3, 3))
+        reference.obsm["X_pca"] = np.zeros((3, 30))
+        reference.obsm["X_umap"] = np.zeros((3, 2))
+        reference.obsp["distances"] = sparse.eye(3, format="csr")
+        reference.obsp["connectivities"] = sparse.eye(3, format="csr")
+        reference.uns["neighbors"] = {"indices": np.tile(np.arange(3), (3, 1))}
+        native = reference.copy()
+        native.layers["velocity"] = np.asarray([
+            [1.0, np.nan, 0.0], [2.0, np.nan, 0.0], [3.0, np.nan, 0.0],
+        ])
+        aligned = align_method(reference, native, "TSvelo")
+        np.testing.assert_array_equal(aligned.var["velocity_genes"], [True, False, False])
+        self.assertTrue(np.isnan(native.layers["velocity"][:, 1]).all())
+
+    def test_graphvelo_replacements_exchange_exactly_one_member(self):
+        from ensemble.benchmark_graphvelo import METHODS, member_selections
+
+        original = tuple(METHOD_NAMES)
+        selections = member_selections(replace_each=True)
+        self.assertEqual(tuple(METHODS[index] for index in selections["four"]), original)
+        self.assertEqual(tuple(METHODS[index] for index in selections["five"]), METHODS)
+        for removed in original:
+            indices = selections["replace_" + removed]
+            members = tuple(METHODS[index] for index in indices)
+            self.assertEqual(len(members), 4)
+            self.assertEqual(len(set(members)), 4)
+            self.assertEqual(set(members), (set(original) - {removed}) | {"GraphVelo_scv"})
+
+    def test_five_method_median_preserves_a_three_method_majority(self):
+        template = sparse.csr_matrix(([1.0, 1.0], ([0, 0], [1, 2])), shape=(3, 3))
+        values = np.asarray([
+            [0.2, -0.1], [0.2, -0.1], [0.2, -0.1], [-0.5, 0.2], [0.1, -0.4],
+        ])
+        result, detail = row_geometric_median(template, values)
+        permuted, _ = row_geometric_median(template, values[[4, 2, 0, 3, 1]])
+        reversed_sign, _ = row_geometric_median(template, -values)
+        np.testing.assert_allclose(result, [0.2, -0.1], atol=1e-10)
+        np.testing.assert_allclose(permuted, result, atol=1e-10)
+        np.testing.assert_allclose(reversed_sign, -result, atol=1e-10)
+        self.assertEqual(detail["n_methods"], 5)
+
+    def test_regular_method_polygons_have_zero_geometric_median(self):
+        template = sparse.csr_matrix(([1.0, 1.0], ([0, 0], [1, 2])), shape=(3, 3))
+        for count in (5, 6):
+            angles = 2 * np.pi * np.arange(count) / count
+            values = 0.3 * np.column_stack((np.cos(angles), np.sin(angles)))
+            result, _ = row_geometric_median(template, values)
+            np.testing.assert_allclose(result, [0.0, 0.0], atol=1e-10)
+
+    def test_five_method_union_retains_signed_edges(self):
+        matrices = [
+            sparse.csr_matrix(([value], ([0], [1])), shape=(3, 3))
+            for value in (0.2, -0.3, 0.0, 0.5, -0.7)
+        ]
+        template, values = align_method_values(matrices, n_methods=5)
+        self.assertEqual(template.nnz, 1)
+        np.testing.assert_allclose(values[:, 0], [0.2, -0.3, 0.0, 0.5, -0.7])
+
+    def test_graphvelo_projection_uses_signed_neighbor_displacements(self):
+        from ensemble.reproject import project_graphvelo
+
+        operator = sparse.csr_matrix(np.asarray([
+            [0.3, 0.5, -0.2, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [-0.1, 0.3, 0.6, 0.0],
+            [0.2, -0.4, 0.1, 0.3],
+        ]))
+        coordinates = np.asarray([
+            [1.0, 2.0], [3.0, 1.0], [2.0, 4.0], [5.0, 3.0],
+        ])
+        expected = np.asarray([
+            [0.8, -0.9], [0.0, 0.0], [0.4, -0.7], [-0.3, 0.7],
+        ])
+        before = operator.toarray().copy()
+        np.testing.assert_allclose(project_graphvelo(operator, coordinates), expected)
+        np.testing.assert_allclose(
+            project_graphvelo(operator, coordinates + [10.0, -7.0]), expected
+        )
+        np.testing.assert_array_equal(operator.toarray(), before)
+        operator.setdiag(0.0)
+        np.testing.assert_allclose(project_graphvelo(operator, coordinates), expected)
+
     def test_degenerate_transition_rows_fall_back_to_identity(self):
         operator = sparse.csr_matrix(
             np.asarray([

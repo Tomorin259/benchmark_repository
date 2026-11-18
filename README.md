@@ -14,8 +14,10 @@ and kinetic-parameter recovery against two scEU-seq reference systems.
 | Goal | Entry |
 | --- | --- |
 | Inspect scores without running methods | [Cell](evaluation/cell/results/cell_metrics.csv), [Gene](evaluation/gene/results/README.md), [kinetic parameters](evaluation/kinetics_recovery/README.md#results-and-scope) and [Figure 7 summaries](evaluation/summary/README.md) |
+| Inspect the real-data comparisons | [Matched Gene/Cell scores and fronts](evaluation/gene/results/crosslevel/), [Table S10 omnibus tests and BATC ranks](evaluation/cell/results/statistics/), [paired transcription/degradation recovery](evaluation/kinetics_recovery/results/joint_recovery/) |
 | Download figure and table source data | [Source Data](data/SOURCE_DATA.md): tables and saved plot inputs |
 | Recalculate metrics from saved method outputs | [Cell evaluation](evaluation/cell/README.md), [Gene evaluation](evaluation/gene/README.md), [kinetics recovery](evaluation/kinetics_recovery/README.md) |
+| Replay GeoMedian-5 and its S5/S10 data | [Ensemble inputs and command](ensemble/README.md#reproduce-the-selected-bundle) |
 | Run a velocity method | [Method launchers](methods/README.md) and [environment requirements](docs/environments.md) |
 | Reproduce plots or assemble paper figures | [Figure map](docs/figure_map.md) |
 | Generate a new simulation realization | [Simulation generator](evaluation/gene/simulation/README.md) |
@@ -38,8 +40,8 @@ Run commands from the repository root and use a fresh output directory.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
 - [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark)
-  are available as `v1.0.0`: 339 download objects totaling 150.61 GB,
-  including the MultiVelo diagnostic outputs. Select packages from the
+  are available as 341 version-pinned download objects totaling 148.92 GB,
+  including the MultiVelo diagnostic outputs and the v1.1.0 GeoMedian-5 frozen inputs and projections. Select packages from the
   [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ
   files through the [member manifest](data/result_member_manifest.tsv), and follow the
   [download and extraction guide](data/RESULT_DOWNLOADS.md).
@@ -59,7 +61,7 @@ Run commands from the repository root and use a fresh output directory.
 | `data/` | Dataset identities, downloads and input layouts |
 | `methods/` | Registered configurations and method launchers |
 | `evaluation/` | Cell, Gene and kinetics metrics, results and plots |
-| `ensemble/` | Mean-4 and GeoMedian-4 post-hoc comparisons |
+| `ensemble/` | Selected normalized five-member geometric median, Table S5 and Figure S10 source data, and retained four-member controls |
 | `supplement/` | Method diagnostics and additional analyses |
 | `figures/` | Paper composites and editable assembly sources |
 | `site/` | Static results website |

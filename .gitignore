@@ -44,3 +44,6 @@ data/processed/
 site/node_modules/
 site/dist/
 site/public/data/
+
+# External frozen weights and geometry; the small input manifest stays in Git.
+/ensemble/frozen_inputs/*/*.npz

@@ -1,0 +1,257 @@
+{
+  "status": "review_preview_not_formal_figure",
+  "ensemble": "normalized GeoMedian-5",
+  "n_datasets": 14,
+  "panel_a": "20-method paired-bootstrap front frequency with full-data front markers",
+  "bootstrap_resamples": 10000,
+  "panel_a_front_members": [
+    "TIvelo",
+    "veloVI"
+  ],
+  "n_native_configurations": 20,
+  "plotted_score_rows": 588,
+  "figure_size_mm": [
+    190.5,
+    203.22295081967212
+  ],
+  "font": "Arial",
+  "layout": "content-sized; original CBDir/BATC panel proportions",
+  "original_panel_size_pt": [
+    606.096,
+    981.6768
+  ],
+  "original_panel_width_height_ratio": 0.6174089068825911,
+  "bc_axes_size_mm": [
+    52.0,
+    84.22295081967214
+  ],
+  "panel_a_axes_size_mm": [
+    145,
+    73
+  ],
+  "previous_preview": "original_proportions",
+  "font_sizes_pt": {
+    "panel_a_method_labels": 7.25,
+    "panel_a_tick_labels": 7.2,
+    "panel_letters": 11,
+    "panel_titles": 9,
+    "bc_source_method_labels": 14,
+    "bc_source_tick_labels": 11,
+    "bc_source_axis_labels": 14,
+    "bc_method_labels": 6.5,
+    "bc_tick_labels": 6.0,
+    "bc_axis_labels": 7.5
+  },
+  "ensemble_color": "#CC6677",
+  "method_colors_source": "evaluation/cell/plots.py",
+  "single_method_front": [
+    "TIvelo",
+    "veloVI"
+  ],
+  "overall_front": [
+    "GeoMedian-5"
+  ],
+  "ensemble_macro_means": {
+    "cbdir": 0.4712175537963527,
+    "batc": 0.5147455431894143
+  },
+  "inputs_sha256": {
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
+    "outputs/member_normalization_20261115/results/scores.csv": "aa52bd2b3b3881469297a4ff8288ede1a6ad981db8ac9ad1f54dd20b3e1e7564",
+    "evaluation/cell/plots.py": "1694bde4d425553363d2e019ca988205d7cbc23b529db81e4ede17a139c3ecba",
+    "ensemble/results/pareto_cbdir_batc_bootstrap/ranking.csv": "de905ab767c6221123dbb743f2ac36c723c9ab91dfc9b01a0585577f8e34febb",
+    "ensemble/results/pareto_cbdir_batc_bootstrap/manifest.json": "9a9bc8143306ad5d8607073890b4d5bdd7694ecdf0c7a5852ed3e36299b89e14"
+  },
+  "generator_sha256": "3c9981cffa5897b30cdba2bcfa7f6bbeb7b5ca2f2794a6944c719644c245c6ce",
+  "font_files_sha256": {
+    "Arial Bold.ttf": "d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0",
+    "Arial Italic.ttf": "ce1d2f1ab89db45f9796100eee960f5702a40e84c225c2b48c3ec3e81d153f98",
+    "Arial.ttf": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9"
+  },
+  "text_within_page": true,
+  "outputs_sha256": {
+    "caption.txt": "517e3a04288b51e1fe5d899f3be0e5ea3448885aa4da7c0c125396420833fcac",
+    "dominance_matrix.csv": "232851af28b413c59229df252dd0488d1b6f5d989bb62f0bda370f97ec45289a",
+    "ensemble_main_preview.pdf": "dd44424e91db547feae924385fe339b3b33269b9de2ae14bff197970368ed848",
+    "ensemble_main_preview.png": "cd31ff83bc7a21f24806d01610a6784e432817011837616697439d98944a840e",
+    "ensemble_main_preview.svg": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+    "legacy_batc.svg": "bdaa1a91a79fd1894d2c559314ab1b1da2aa8712a0a2322fcba44146b538014f",
+    "legacy_cbdir.svg": "565a4d9180b3e5b463682a47a5f34c17737a0e387c8e157b53f0a07b30862959",
+    "macro_means.csv": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a",
+    "panel_a_data.csv": "2673ae3321dac2434be919c814f36662dafec50a33ebfc38f4a7db5037db298a",
+    "plot_data.csv": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5",
+    "source/build_legacy_figure.py": "3c9981cffa5897b30cdba2bcfa7f6bbeb7b5ca2f2794a6944c719644c245c6ce",
+    "source/export_vectors.sh": "22f0b9c6dc087753e7ded07433b533a21d0e3a93fd20bc989fddc86ff0dea5fe",
+    "source/finalize_manifest.py": "d0c7df47394d5947b36fd2baa2c32d87fec96f264480afda32c2828fd08ee685",
+    "source/legacy_plot_supfig10_e9d6147.py": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382"
+  },
+  "orders": {
+    "cbdir": [
+      "GeoMedian-5",
+      "TIvelo",
+      "veloVI",
+      "deepvelo",
+      "graphvelo_scv",
+      "TSvelo",
+      "unitvelo",
+      "unitvelo_mode2",
+      "scvelo_stochastic",
+      "cell2fate",
+      "dynamo",
+      "scvelo_deterministic",
+      "DeepKINET",
+      "graphvelo_dynamo",
+      "celldancer",
+      "TFvelo",
+      "veloae",
+      "SDEvelo",
+      "scvelo_dynamic",
+      "deepvelo2022",
+      "multivelo"
+    ],
+    "batc": [
+      "GeoMedian-5",
+      "veloVI",
+      "TSvelo",
+      "graphvelo_scv",
+      "TIvelo",
+      "deepvelo",
+      "DeepKINET",
+      "unitvelo",
+      "dynamo",
+      "unitvelo_mode2",
+      "scvelo_stochastic",
+      "TFvelo",
+      "scvelo_deterministic",
+      "graphvelo_dynamo",
+      "SDEvelo",
+      "multivelo",
+      "celldancer",
+      "deepvelo2022",
+      "scvelo_dynamic",
+      "veloae",
+      "cell2fate"
+    ]
+  },
+  "method_order": "independent descending 14-dataset macro mean for each metric",
+  "generator": "source/build_legacy_figure.py",
+  "bc_layout_measurements": {
+    "cbdir": {
+      "fonts_before_pt": {
+        "method_labels": 3.4047775434914604,
+        "tick_labels": 2.675182355600433,
+        "axis_labels": 3.4047775434914604
+      },
+      "fonts_after_pt": {
+        "method_labels": 6.5,
+        "tick_labels": 6.0,
+        "axis_labels": 7.5
+      },
+      "y_limits_before": [
+        21.235,
+        -1.535
+      ],
+      "y_limits_after": [
+        20.5,
+        -0.5
+      ],
+      "last_row_to_axis_before_pt": 14.164900435976532,
+      "box_bottom_to_axis_before_pt": 12.067911212307195,
+      "box_bottom_to_axis_after_pt": 3.41060318735363,
+      "box_bottom_to_axis_before_mm": 4.25729089989726,
+      "box_bottom_to_axis_after_mm": 1.2031850133164195,
+      "last_row_to_axis_after_pt": 5.684338645589383,
+      "last_row_to_axis_before_mm": 4.997062098247277,
+      "last_row_to_axis_after_mm": 2.0053083555273656,
+      "row_spacing_before_pt": 10.484946118346688,
+      "row_spacing_after_pt": 11.368677291178766,
+      "last_row_to_axis_before_row_units": 1.3509750337381912,
+      "last_row_to_axis_after_row_units": 0.5,
+      "source_bottom_spine_offset_before_pt": 5,
+      "source_bottom_spine_offset_after_pt": 0
+    },
+    "batc": {
+      "fonts_before_pt": {
+        "method_labels": 3.4047775434914604,
+        "tick_labels": 2.675182355600433,
+        "axis_labels": 3.4047775434914604
+      },
+      "fonts_after_pt": {
+        "method_labels": 6.5,
+        "tick_labels": 6.0,
+        "axis_labels": 7.5
+      },
+      "y_limits_before": [
+        21.235,
+        -1.535
+      ],
+      "y_limits_after": [
+        20.5,
+        -0.5
+      ],
+      "last_row_to_axis_before_pt": 14.164900435976532,
+      "box_bottom_to_axis_before_pt": 12.067911212307195,
+      "box_bottom_to_axis_after_pt": 3.41060318735363,
+      "box_bottom_to_axis_before_mm": 4.25729089989726,
+      "box_bottom_to_axis_after_mm": 1.2031850133164195,
+      "last_row_to_axis_after_pt": 5.684338645589383,
+      "last_row_to_axis_before_mm": 4.997062098247277,
+      "last_row_to_axis_after_mm": 2.0053083555273656,
+      "row_spacing_before_pt": 10.484946118346688,
+      "row_spacing_after_pt": 11.368677291178766,
+      "last_row_to_axis_before_row_units": 1.3509750337381912,
+      "last_row_to_axis_after_row_units": 0.5,
+      "source_bottom_spine_offset_before_pt": 5,
+      "source_bottom_spine_offset_after_pt": 0
+    }
+  },
+  "rendering_adaptations": [
+    "Five-member ensemble constants; historical source function bodies unchanged",
+    "Scoped pre-save real-Axes formatting hook adjusts only fonts, y limits and bottom-spine offset",
+    "Remove duplicate standalone title during SVG assembly; retain page title",
+    "Share one figure legend"
+  ],
+  "legacy_generator_source": {
+    "repository_path": "ensemble/plot_supfig10.py",
+    "commit": "e9d6147",
+    "source_file": "source/legacy_plot_supfig10_e9d6147.py",
+    "sha256": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382",
+    "metric_order_lines": [
+      83,
+      86
+    ],
+    "plot_metric_lines": [
+      89,
+      195
+    ],
+    "called_functions": [
+      "metric_order",
+      "plot_metric"
+    ],
+    "adaptations": [
+      "GeoMedian-5 and five constituent IDs via module constants",
+      "Original mathtext star labels retained; no plotting-function edits",
+      "Original markers, boxes, scatter, grid and stroke styles retained; font sizes and y limits adjusted in real Axes before save",
+      "Shared three-item vector legend"
+    ]
+  },
+  "svg_panel_groups": {
+    "a": "axes_1",
+    "b": "axes_2",
+    "c": "axes_3"
+  },
+  "panel_a_unchanged_svg_group": true,
+  "panel_a_group_sha256": "f60f7a810d873b26f72569445b2e2d45da8a5d44d63d4ab01b6c45aab1dd7195",
+  "legacy_axes_geometry_pt": [
+    168.912,
+    58.0032,
+    606.096,
+    981.6768
+  ],
+  "legacy_axes_final_size_mm": [
+    52,
+    84.22295081967214
+  ],
+  "output_has_raster_images": false,
+  "export_renderer": "librsvg rsvg-convert (SVG generated on remote; PDF/PNG converted locally)"
+}

@@ -1,0 +1,19 @@
+setting,method,on_front,bootstrap_front_hits,bootstrap_ordered_draws,bootstrap_frequency
+gene,cellDancer,False,0,823543,0.0
+joint,cellDancer,False,2514,823543,0.0030526639167596592
+gene,DeepVelo,False,0,823543,0.0
+joint,DeepVelo,False,71185,823543,0.08643750235263975
+gene,DeepVelo_scv,False,0,823543,0.0
+joint,DeepVelo_scv,False,0,823543,0.0
+gene,GraphVelo_scv,False,0,823543,0.0
+joint,GraphVelo_scv,False,109406,823543,0.13284795086595358
+gene,MultiVelo (RNA_only),False,0,823543,0.0
+joint,MultiVelo (RNA_only),False,203,823543,0.0002464959328171085
+gene,scVelo_dyn,False,0,823543,0.0
+joint,scVelo_dyn,False,0,823543,0.0
+gene,TIvelo,True,823542,823543,0.9999987857343211
+joint,TIvelo,True,822394,823543,0.9986048087349416
+gene,UniTVelo,True,543607,823543,0.6600833229108862
+joint,UniTVelo,True,819740,823543,0.9953821476231356
+gene,veloVI,False,0,823543,0.0
+joint,veloVI,False,69197,823543,0.08402354218298255

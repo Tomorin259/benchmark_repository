@@ -1,0 +1,424 @@
+panel,method,dataset,field,value
+a,TIvelo,Dentategyrus_lamanno,consistency,0.650627779641955
+a,cellDancer,Dentategyrus_lamanno,consistency,0.5882792047082285
+a,DeepVelo,Dentategyrus_lamanno,consistency,0.9473605689859784
+a,DeepVelo_scv,Dentategyrus_lamanno,consistency,0.9303796479719032
+a,GraphVelo_scv,Dentategyrus_lamanno,consistency,0.6483400580842426
+a,MultiVelo (RNA_only),Dentategyrus_lamanno,consistency,0.9242241103447548
+a,scVelo_dyn,Dentategyrus_lamanno,consistency,0.8530071903514616
+a,UniTVelo,Dentategyrus_lamanno,consistency,0.9869219148600624
+a,veloVI,Dentategyrus_lamanno,consistency,0.9129899547413128
+a,TIvelo,Human bone marrow,consistency,0.5636429678172438
+a,cellDancer,Human bone marrow,consistency,0.9373907462120228
+a,DeepVelo,Human bone marrow,consistency,0.9266756313688888
+a,DeepVelo_scv,Human bone marrow,consistency,0.9378116138183916
+a,GraphVelo_scv,Human bone marrow,consistency,0.6476327891301686
+a,MultiVelo (RNA_only),Human bone marrow,consistency,0.9580993409508756
+a,scVelo_dyn,Human bone marrow,consistency,0.8581381904109171
+a,UniTVelo,Human bone marrow,consistency,0.9686606300764647
+a,veloVI,Human bone marrow,consistency,0.89338896505603
+a,TIvelo,capofibro (VeloCycle),consistency,0.2576625206811099
+a,cellDancer,capofibro (VeloCycle),consistency,0.9024345984998288
+a,DeepVelo,capofibro (VeloCycle),consistency,0.7255289349405087
+a,DeepVelo_scv,capofibro (VeloCycle),consistency,0.8717304862771172
+a,GraphVelo_scv,capofibro (VeloCycle),consistency,0.6412823156122943
+a,MultiVelo (RNA_only),capofibro (VeloCycle),consistency,0.8435471970633105
+a,scVelo_dyn,capofibro (VeloCycle),consistency,0.8043962383202217
+a,UniTVelo,capofibro (VeloCycle),consistency,0.9217413159807418
+a,veloVI,capofibro (VeloCycle),consistency,0.8134427033668262
+a,TIvelo,Gastrulation,consistency,0.6244864235914839
+a,cellDancer,Gastrulation,consistency,0.6277657877560614
+a,DeepVelo,Gastrulation,consistency,0.8871405472138647
+a,DeepVelo_scv,Gastrulation,consistency,0.926606968182792
+a,GraphVelo_scv,Gastrulation,consistency,0.7061977444553066
+a,MultiVelo (RNA_only),Gastrulation,consistency,0.951202414753633
+a,scVelo_dyn,Gastrulation,consistency,0.8552883828144493
+a,UniTVelo,Gastrulation,consistency,0.9544229312704838
+a,veloVI,Gastrulation,consistency,0.9095172872022907
+a,TIvelo,mousebrain,consistency,0.6409597960910918
+a,cellDancer,mousebrain,consistency,0.9492483145555936
+a,DeepVelo,mousebrain,consistency,0.878111786370558
+a,DeepVelo_scv,mousebrain,consistency,0.871029354425154
+a,GraphVelo_scv,mousebrain,consistency,0.6216957520509111
+a,MultiVelo (RNA_only),mousebrain,consistency,0.811009928192809
+a,scVelo_dyn,mousebrain,consistency,0.7852867980591167
+a,UniTVelo,mousebrain,consistency,0.9160197634249542
+a,veloVI,mousebrain,consistency,0.8497131917430378
+a,TIvelo,Pancreas,consistency,0.6266115773489881
+a,cellDancer,Pancreas,consistency,0.8696634191633988
+a,DeepVelo,Pancreas,consistency,0.9278845987973204
+a,DeepVelo_scv,Pancreas,consistency,0.9096820023546308
+a,GraphVelo_scv,Pancreas,consistency,0.7249835391666267
+a,MultiVelo (RNA_only),Pancreas,consistency,0.9115389277230744
+a,scVelo_dyn,Pancreas,consistency,0.8155226338430046
+a,UniTVelo,Pancreas,consistency,0.9873293649874324
+a,veloVI,Pancreas,consistency,0.8888532097387953
+a,TIvelo,Mouse retina,consistency,0.7134341602682747
+a,cellDancer,Mouse retina,consistency,0.8281815870287288
+a,DeepVelo,Mouse retina,consistency,0.8914611433042373
+a,DeepVelo_scv,Mouse retina,consistency,0.8935404322291675
+a,GraphVelo_scv,Mouse retina,consistency,0.6608364209307018
+a,MultiVelo (RNA_only),Mouse retina,consistency,0.9343600161073206
+a,scVelo_dyn,Mouse retina,consistency,0.8383139365830775
+a,UniTVelo,Mouse retina,consistency,0.978401199455194
+a,veloVI,Mouse retina,consistency,0.8624835044769419
+b,TIvelo,Dentategyrus_lamanno,iccoh,0.6579123571112995
+b,cellDancer,Dentategyrus_lamanno,iccoh,0.6033305221604864
+b,DeepVelo,Dentategyrus_lamanno,iccoh,0.94870878514627
+b,DeepVelo_scv,Dentategyrus_lamanno,iccoh,0.9394933125345272
+b,GraphVelo_scv,Dentategyrus_lamanno,iccoh,0.6825204064716824
+b,MultiVelo (RNA_only),Dentategyrus_lamanno,iccoh,0.9310682035262492
+b,scVelo_dyn,Dentategyrus_lamanno,iccoh,0.8730071976905558
+b,UniTVelo,Dentategyrus_lamanno,iccoh,0.9821477369607756
+b,veloVI,Dentategyrus_lamanno,iccoh,0.9139829601431404
+b,TIvelo,Human bone marrow,iccoh,0.6136481737354653
+b,cellDancer,Human bone marrow,iccoh,0.9451635612370152
+b,DeepVelo,Human bone marrow,iccoh,0.9394265567650684
+b,DeepVelo_scv,Human bone marrow,iccoh,0.9441489163815244
+b,GraphVelo_scv,Human bone marrow,iccoh,0.7352770019970213
+b,MultiVelo (RNA_only),Human bone marrow,iccoh,0.9621850522664908
+b,scVelo_dyn,Human bone marrow,iccoh,0.8867075009162619
+b,UniTVelo,Human bone marrow,iccoh,0.9759661430301249
+b,veloVI,Human bone marrow,iccoh,0.905697887813268
+b,TIvelo,capofibro (VeloCycle),iccoh,0.2993484383247418
+b,cellDancer,capofibro (VeloCycle),iccoh,0.9066382979026344
+b,DeepVelo,capofibro (VeloCycle),iccoh,0.7347422566632051
+b,DeepVelo_scv,capofibro (VeloCycle),iccoh,0.8778646579975633
+b,GraphVelo_scv,capofibro (VeloCycle),iccoh,0.6704276766420918
+b,MultiVelo (RNA_only),capofibro (VeloCycle),iccoh,0.8548492272705331
+b,scVelo_dyn,capofibro (VeloCycle),iccoh,0.8108413544591401
+b,UniTVelo,capofibro (VeloCycle),iccoh,0.932768290064199
+b,veloVI,capofibro (VeloCycle),iccoh,0.8252749554164094
+b,TIvelo,Gastrulation,iccoh,0.6263081609645814
+b,cellDancer,Gastrulation,iccoh,0.644914603730905
+b,DeepVelo,Gastrulation,iccoh,0.9058969854828428
+b,DeepVelo_scv,Gastrulation,iccoh,0.9306017297679092
+b,GraphVelo_scv,Gastrulation,iccoh,0.6924708253767933
+b,MultiVelo (RNA_only),Gastrulation,iccoh,0.9530596075949712
+b,scVelo_dyn,Gastrulation,iccoh,0.8612514630922838
+b,UniTVelo,Gastrulation,iccoh,0.9710665028771148
+b,veloVI,Gastrulation,iccoh,0.9061073403564002
+b,TIvelo,mousebrain,iccoh,0.6795797522484032
+b,cellDancer,mousebrain,iccoh,0.9516429675367204
+b,DeepVelo,mousebrain,iccoh,0.8949443776411787
+b,DeepVelo_scv,mousebrain,iccoh,0.8687064416612572
+b,GraphVelo_scv,mousebrain,iccoh,0.6434328011097403
+b,MultiVelo (RNA_only),mousebrain,iccoh,0.8285233312009677
+b,scVelo_dyn,mousebrain,iccoh,0.809175820288836
+b,UniTVelo,mousebrain,iccoh,0.923869989120024
+b,veloVI,mousebrain,iccoh,0.855074148003084
+b,TIvelo,Pancreas,iccoh,0.6348117411974934
+b,cellDancer,Pancreas,iccoh,0.8975188102448101
+b,DeepVelo,Pancreas,iccoh,0.9203867137413896
+b,DeepVelo_scv,Pancreas,iccoh,0.9189353758460574
+b,GraphVelo_scv,Pancreas,iccoh,0.7181274150544195
+b,MultiVelo (RNA_only),Pancreas,iccoh,0.9211923303416922
+b,scVelo_dyn,Pancreas,iccoh,0.8202690184059782
+b,UniTVelo,Pancreas,iccoh,0.9873475972873264
+b,veloVI,Pancreas,iccoh,0.895900874249219
+b,TIvelo,Mouse retina,iccoh,0.72608330751364
+b,cellDancer,Mouse retina,iccoh,0.8507324490292841
+b,DeepVelo,Mouse retina,iccoh,0.8964360742214629
+b,DeepVelo_scv,Mouse retina,iccoh,0.8952122363394933
+b,GraphVelo_scv,Mouse retina,iccoh,0.6926481371453763
+b,MultiVelo (RNA_only),Mouse retina,iccoh,0.9378888852881048
+b,scVelo_dyn,Mouse retina,iccoh,0.8455900448550366
+b,UniTVelo,Mouse retina,iccoh,0.9805396892469952
+b,veloVI,Mouse retina,iccoh,0.8697952330765263
+c,TIvelo,Dentategyrus_lamanno,cbdir,0.674755664831255
+c,cellDancer,Dentategyrus_lamanno,cbdir,0.2482865696819138
+c,DeepVelo,Dentategyrus_lamanno,cbdir,0.577378766152686
+c,DeepVelo_scv,Dentategyrus_lamanno,cbdir,0.1457488944203644
+c,GraphVelo_scv,Dentategyrus_lamanno,cbdir,0.3593058855220187
+c,MultiVelo (RNA_only),Dentategyrus_lamanno,cbdir,0.3753293352302484
+c,scVelo_dyn,Dentategyrus_lamanno,cbdir,0.1881659890507563
+c,UniTVelo,Dentategyrus_lamanno,cbdir,0.5099564108484648
+c,veloVI,Dentategyrus_lamanno,cbdir,0.671107982619217
+c,TIvelo,Human bone marrow,cbdir,0.1922912493485066
+c,cellDancer,Human bone marrow,cbdir,-0.7925886826844661
+c,DeepVelo,Human bone marrow,cbdir,-0.6718151921285229
+c,DeepVelo_scv,Human bone marrow,cbdir,-0.8396250029078346
+c,GraphVelo_scv,Human bone marrow,cbdir,-0.0405779509881064
+c,MultiVelo (RNA_only),Human bone marrow,cbdir,-0.5149981871954755
+c,scVelo_dyn,Human bone marrow,cbdir,-0.8392550362337489
+c,UniTVelo,Human bone marrow,cbdir,0.7329803734511212
+c,veloVI,Human bone marrow,cbdir,-0.5929390561631204
+c,TIvelo,capofibro (VeloCycle),cbdir,0.0604825633590622
+c,cellDancer,capofibro (VeloCycle),cbdir,-0.0673429604047642
+c,DeepVelo,capofibro (VeloCycle),cbdir,0.3310101013608008
+c,DeepVelo_scv,capofibro (VeloCycle),cbdir,0.3986683223765913
+c,GraphVelo_scv,capofibro (VeloCycle),cbdir,0.4300901190760934
+c,MultiVelo (RNA_only),capofibro (VeloCycle),cbdir,-0.5094038266952993
+c,scVelo_dyn,capofibro (VeloCycle),cbdir,0.3959534978605352
+c,UniTVelo,capofibro (VeloCycle),cbdir,0.1412689866678591
+c,veloVI,capofibro (VeloCycle),cbdir,0.4375722286988575
+c,TIvelo,Gastrulation,cbdir,0.7201882382585115
+c,cellDancer,Gastrulation,cbdir,0.6691701687640763
+c,DeepVelo,Gastrulation,cbdir,0.4108523902454065
+c,DeepVelo_scv,Gastrulation,cbdir,-0.4447555043087796
+c,GraphVelo_scv,Gastrulation,cbdir,0.2664116122937067
+c,MultiVelo (RNA_only),Gastrulation,cbdir,-0.6683684139873194
+c,scVelo_dyn,Gastrulation,cbdir,-0.449641563390901
+c,UniTVelo,Gastrulation,cbdir,0.8361920582206784
+c,veloVI,Gastrulation,cbdir,-0.0382015349322337
+c,TIvelo,mousebrain,cbdir,0.5414019438203848
+c,cellDancer,mousebrain,cbdir,0.149323476523822
+c,DeepVelo,mousebrain,cbdir,0.342197988060915
+c,DeepVelo_scv,mousebrain,cbdir,0.3895512417929038
+c,GraphVelo_scv,mousebrain,cbdir,0.5300688319681865
+c,MultiVelo (RNA_only),mousebrain,cbdir,0.3435411233396056
+c,scVelo_dyn,mousebrain,cbdir,0.3858003790544788
+c,UniTVelo,mousebrain,cbdir,0.6039506791827005
+c,veloVI,mousebrain,cbdir,0.4475168918724883
+c,TIvelo,Pancreas,cbdir,0.5172182180730728
+c,cellDancer,Pancreas,cbdir,0.4560370369540037
+c,DeepVelo,Pancreas,cbdir,0.5653923145364957
+c,DeepVelo_scv,Pancreas,cbdir,0.4872034895058652
+c,GraphVelo_scv,Pancreas,cbdir,0.4699439893082579
+c,MultiVelo (RNA_only),Pancreas,cbdir,0.5410464763241477
+c,scVelo_dyn,Pancreas,cbdir,0.4829599972842439
+c,UniTVelo,Pancreas,cbdir,0.5420330134165275
+c,veloVI,Pancreas,cbdir,0.5368120656827097
+c,TIvelo,Mouse retina,cbdir,0.3938435425466916
+c,cellDancer,Mouse retina,cbdir,0.4006793938040004
+c,DeepVelo,Mouse retina,cbdir,0.6190634979840658
+c,DeepVelo_scv,Mouse retina,cbdir,0.4602525591852933
+c,GraphVelo_scv,Mouse retina,cbdir,0.6620911552697988
+c,MultiVelo (RNA_only),Mouse retina,cbdir,0.5437886327967041
+c,scVelo_dyn,Mouse retina,cbdir,0.4673672021192407
+c,UniTVelo,Mouse retina,cbdir,0.4492882925711127
+c,veloVI,Mouse retina,cbdir,0.5717794540114386
+d,TIvelo,Dentategyrus_lamanno,batc,0.8134920297516854
+d,cellDancer,Dentategyrus_lamanno,batc,0.0879454810326346
+d,DeepVelo,Dentategyrus_lamanno,batc,0.6852122857461307
+d,DeepVelo_scv,Dentategyrus_lamanno,batc,0.2039345211894488
+d,GraphVelo_scv,Dentategyrus_lamanno,batc,0.4106280207882955
+d,MultiVelo (RNA_only),Dentategyrus_lamanno,batc,0.6097245269451608
+d,scVelo_dyn,Dentategyrus_lamanno,batc,0.2278657002700035
+d,UniTVelo,Dentategyrus_lamanno,batc,0.6879207175100388
+d,veloVI,Dentategyrus_lamanno,batc,0.7602989044540319
+d,TIvelo,Human bone marrow,batc,0.2963481784348383
+d,cellDancer,Human bone marrow,batc,-0.5848407029874179
+d,DeepVelo,Human bone marrow,batc,-0.4930774473141487
+d,DeepVelo_scv,Human bone marrow,batc,-0.5996543042706675
+d,GraphVelo_scv,Human bone marrow,batc,0.0948649487139679
+d,MultiVelo (RNA_only),Human bone marrow,batc,-0.0523165713276216
+d,scVelo_dyn,Human bone marrow,batc,-0.5953205704585975
+d,UniTVelo,Human bone marrow,batc,0.7633539366719791
+d,veloVI,Human bone marrow,batc,-0.3768025219277323
+d,TIvelo,capofibro (VeloCycle),batc,-0.2637083484263005
+d,cellDancer,capofibro (VeloCycle),batc,-0.3606881543261594
+d,DeepVelo,capofibro (VeloCycle),batc,0.2781934925967925
+d,DeepVelo_scv,capofibro (VeloCycle),batc,0.4015147121654975
+d,GraphVelo_scv,capofibro (VeloCycle),batc,0.4531429511539405
+d,MultiVelo (RNA_only),capofibro (VeloCycle),batc,-0.5987533255426297
+d,scVelo_dyn,capofibro (VeloCycle),batc,0.4006338414555135
+d,UniTVelo,capofibro (VeloCycle),batc,0.4169322382854936
+d,veloVI,capofibro (VeloCycle),batc,0.4741250467799419
+d,TIvelo,Gastrulation,batc,0.90160839435035
+d,cellDancer,Gastrulation,batc,0.7616628851553089
+d,DeepVelo,Gastrulation,batc,0.7694665810583703
+d,DeepVelo_scv,Gastrulation,batc,-0.2568079391886628
+d,GraphVelo_scv,Gastrulation,batc,0.5044119901948294
+d,MultiVelo (RNA_only),Gastrulation,batc,-0.4830213163361073
+d,scVelo_dyn,Gastrulation,batc,-0.2473085602078754
+d,UniTVelo,Gastrulation,batc,0.9569085943880188
+d,veloVI,Gastrulation,batc,0.1417435662072694
+d,TIvelo,mousebrain,batc,0.4767279013046259
+d,cellDancer,mousebrain,batc,0.1425336630915946
+d,DeepVelo,mousebrain,batc,0.330896333641134
+d,DeepVelo_scv,mousebrain,batc,0.2173966639589364
+d,GraphVelo_scv,mousebrain,batc,0.5879520177703205
+d,MultiVelo (RNA_only),mousebrain,batc,0.3868257246176071
+d,scVelo_dyn,mousebrain,batc,0.2166201102176886
+d,UniTVelo,mousebrain,batc,0.7595751399703475
+d,veloVI,mousebrain,batc,0.4984975379558636
+d,TIvelo,Pancreas,batc,0.2952465540554302
+d,cellDancer,Pancreas,batc,0.7082521858814216
+d,DeepVelo,Pancreas,batc,0.7532055084176613
+d,DeepVelo_scv,Pancreas,batc,0.5180592977206121
+d,GraphVelo_scv,Pancreas,batc,0.5858845009242724
+d,MultiVelo (RNA_only),Pancreas,batc,0.5907968615244377
+d,scVelo_dyn,Pancreas,batc,0.5097860714471568
+d,UniTVelo,Pancreas,batc,0.8118445964901301
+d,veloVI,Pancreas,batc,0.5020490523227918
+d,TIvelo,Mouse retina,batc,0.0440195308289583
+d,cellDancer,Mouse retina,batc,0.3765422453650128
+d,DeepVelo,Mouse retina,batc,0.1741030819786475
+d,DeepVelo_scv,Mouse retina,batc,0.4135432602692256
+d,GraphVelo_scv,Mouse retina,batc,0.4764857325530167
+d,MultiVelo (RNA_only),Mouse retina,batc,0.2818880529015335
+d,scVelo_dyn,Mouse retina,batc,0.3995800272003442
+d,UniTVelo,Mouse retina,batc,0.0806257924502089
+d,veloVI,Mouse retina,batc,0.3399464665932451
+e,TIvelo,Dentategyrus_lamanno,transcosine,0.3638203740119934
+e,cellDancer,Dentategyrus_lamanno,transcosine,0.1270947456359863
+e,DeepVelo,Dentategyrus_lamanno,transcosine,0.1138062626123428
+e,DeepVelo_scv,Dentategyrus_lamanno,transcosine,0.2310384809970855
+e,GraphVelo_scv,Dentategyrus_lamanno,transcosine,0.3278972208499908
+e,MultiVelo (RNA_only),Dentategyrus_lamanno,transcosine,0.0290310941636562
+e,scVelo_dyn,Dentategyrus_lamanno,transcosine,0.2264133989810943
+e,UniTVelo,Dentategyrus_lamanno,transcosine,0.0916843116283416
+e,veloVI,Dentategyrus_lamanno,transcosine,0.0530754327774047
+e,TIvelo,Human bone marrow,transcosine,0.3313276469707489
+e,cellDancer,Human bone marrow,transcosine,0.0864181593060493
+e,DeepVelo,Human bone marrow,transcosine,0.0311467200517654
+e,DeepVelo_scv,Human bone marrow,transcosine,0.1115513071417808
+e,GraphVelo_scv,Human bone marrow,transcosine,0.3360900580883026
+e,MultiVelo (RNA_only),Human bone marrow,transcosine,0.0279531870037317
+e,scVelo_dyn,Human bone marrow,transcosine,0.1129274740815162
+e,UniTVelo,Human bone marrow,transcosine,0.4214693009853363
+e,veloVI,Human bone marrow,transcosine,0.0368950851261615
+e,TIvelo,capofibro (VeloCycle),transcosine,0.3090002536773681
+e,cellDancer,capofibro (VeloCycle),transcosine,0.1261478662490844
+e,DeepVelo,capofibro (VeloCycle),transcosine,0.1210769787430763
+e,DeepVelo_scv,capofibro (VeloCycle),transcosine,0.1940960139036178
+e,GraphVelo_scv,capofibro (VeloCycle),transcosine,0.3455476760864258
+e,MultiVelo (RNA_only),capofibro (VeloCycle),transcosine,0.0029412659350782
+e,scVelo_dyn,capofibro (VeloCycle),transcosine,0.1893517524003982
+e,UniTVelo,capofibro (VeloCycle),transcosine,0.2002982050180435
+e,veloVI,capofibro (VeloCycle),transcosine,0.0627025961875915
+e,TIvelo,Gastrulation,transcosine,0.4434054493904114
+e,cellDancer,Gastrulation,transcosine,0.3608710765838623
+e,DeepVelo,Gastrulation,transcosine,0.1813201457262039
+e,DeepVelo_scv,Gastrulation,transcosine,0.0366337373852729
+e,GraphVelo_scv,Gastrulation,transcosine,0.19709113240242
+e,MultiVelo (RNA_only),Gastrulation,transcosine,0.0078484239056706
+e,scVelo_dyn,Gastrulation,transcosine,0.0352292992174625
+e,UniTVelo,Gastrulation,transcosine,0.3473254740238189
+e,veloVI,Gastrulation,transcosine,0.0520693585276603
+e,TIvelo,mousebrain,transcosine,0.4015549719333648
+e,cellDancer,mousebrain,transcosine,0.1017939075827598
+e,DeepVelo,mousebrain,transcosine,0.0291790273040533
+e,DeepVelo_scv,mousebrain,transcosine,0.2060467898845672
+e,GraphVelo_scv,mousebrain,transcosine,0.4634345173835754
+e,MultiVelo (RNA_only),mousebrain,transcosine,0.0486884601414203
+e,scVelo_dyn,mousebrain,transcosine,0.2068359851837158
+e,UniTVelo,mousebrain,transcosine,0.2798017263412475
+e,veloVI,mousebrain,transcosine,0.0996563211083412
+e,TIvelo,Pancreas,transcosine,0.4469084739685058
+e,cellDancer,Pancreas,transcosine,0.1886484920978546
+e,DeepVelo,Pancreas,transcosine,0.1277187168598175
+e,DeepVelo_scv,Pancreas,transcosine,0.2202832996845245
+e,GraphVelo_scv,Pancreas,transcosine,0.3970304429531097
+e,MultiVelo (RNA_only),Pancreas,transcosine,0.0642406865954399
+e,scVelo_dyn,Pancreas,transcosine,0.2170160114765167
+e,UniTVelo,Pancreas,transcosine,0.2475169897079467
+e,veloVI,Pancreas,transcosine,0.0660473629832267
+e,TIvelo,Mouse retina,transcosine,0.4672418236732483
+e,cellDancer,Mouse retina,transcosine,0.1847454905509948
+e,DeepVelo,Mouse retina,transcosine,0.1772857308387756
+e,DeepVelo_scv,Mouse retina,transcosine,0.2841639518737793
+e,GraphVelo_scv,Mouse retina,transcosine,0.57541823387146
+e,MultiVelo (RNA_only),Mouse retina,transcosine,0.0804352834820747
+e,scVelo_dyn,Mouse retina,transcosine,0.2849324643611908
+e,UniTVelo,Mouse retina,transcosine,0.3218728899955749
+e,veloVI,Mouse retina,transcosine,0.1248598247766494
+f,TIvelo,DentateGyrus_lamanno,gene_cbdir,0.3507125264517008
+f,TIvelo,bonemarrow,gene_cbdir,0.3522829896670376
+f,TIvelo,capo_pre,gene_cbdir,0.260469825098421
+f,TIvelo,gastrulation,gene_cbdir,0.342849425420227
+f,TIvelo,mousebrain,gene_cbdir,0.412863845512637
+f,TIvelo,pancreas,gene_cbdir,0.2508444006769075
+f,TIvelo,retina,gene_cbdir,0.2850118867736037
+f,UniTVelo,DentateGyrus_lamanno,gene_cbdir,0.1346815237917556
+f,UniTVelo,bonemarrow,gene_cbdir,0.1467829455695623
+f,UniTVelo,capo_pre,gene_cbdir,0.3500935225761867
+f,UniTVelo,gastrulation,gene_cbdir,0.2607311103103041
+f,UniTVelo,mousebrain,gene_cbdir,0.2642997268190163
+f,UniTVelo,pancreas,gene_cbdir,0.079646369396666
+f,UniTVelo,retina,gene_cbdir,0.145661330910008
+f,DeepVelo,DentateGyrus_lamanno,gene_cbdir,0.1028582362670858
+f,DeepVelo,bonemarrow,gene_cbdir,0.219155446200978
+f,DeepVelo,capo_pre,gene_cbdir,0.0427026694660717
+f,DeepVelo,gastrulation,gene_cbdir,0.0219191218240267
+f,DeepVelo,mousebrain,gene_cbdir,0.1260134275627515
+f,DeepVelo,pancreas,gene_cbdir,0.1421620564075302
+f,DeepVelo,retina,gene_cbdir,0.2098455706096596
+f,GraphVelo_scv,DentateGyrus_lamanno,gene_cbdir,0.1061553650372564
+f,GraphVelo_scv,bonemarrow,gene_cbdir,0.0063112951603386
+f,GraphVelo_scv,capo_pre,gene_cbdir,0.2524102734001817
+f,GraphVelo_scv,gastrulation,gene_cbdir,-0.0203195147888611
+f,GraphVelo_scv,mousebrain,gene_cbdir,0.1411171734262817
+f,GraphVelo_scv,pancreas,gene_cbdir,0.1639070128655854
+f,GraphVelo_scv,retina,gene_cbdir,0.1020734922802861
+f,veloVI,DentateGyrus_lamanno,gene_cbdir,0.043365131012315
+f,veloVI,bonemarrow,gene_cbdir,0.1292924297897625
+f,veloVI,capo_pre,gene_cbdir,0.2048061810676928
+f,veloVI,gastrulation,gene_cbdir,0.0496870672353379
+f,veloVI,mousebrain,gene_cbdir,0.0619488799020433
+f,veloVI,pancreas,gene_cbdir,0.0332313672537965
+f,veloVI,retina,gene_cbdir,0.1502506173956948
+f,MultiVelo (RNA_only),DentateGyrus_lamanno,gene_cbdir,0.0981641125840594
+f,MultiVelo (RNA_only),bonemarrow,gene_cbdir,-0.1444813789356951
+f,MultiVelo (RNA_only),capo_pre,gene_cbdir,0.2663786386033031
+f,MultiVelo (RNA_only),gastrulation,gene_cbdir,-0.0176658794215328
+f,MultiVelo (RNA_only),mousebrain,gene_cbdir,-0.0083197676256353
+f,MultiVelo (RNA_only),pancreas,gene_cbdir,0.0644856722635572
+f,MultiVelo (RNA_only),retina,gene_cbdir,0.1361512448286929
+f,cellDancer,DentateGyrus_lamanno,gene_cbdir,0.0297092377745229
+f,cellDancer,bonemarrow,gene_cbdir,-0.050298780199575
+f,cellDancer,capo_pre,gene_cbdir,-0.0287936600020442
+f,cellDancer,gastrulation,gene_cbdir,0.1151780606388532
+f,cellDancer,mousebrain,gene_cbdir,0.038473624301484
+f,cellDancer,pancreas,gene_cbdir,0.1123209087370437
+f,cellDancer,retina,gene_cbdir,0.1778612731023465
+f,scVelo_dyn,DentateGyrus_lamanno,gene_cbdir,0.0851830230539252
+f,scVelo_dyn,bonemarrow,gene_cbdir,-0.0631961796579683
+f,scVelo_dyn,capo_pre,gene_cbdir,0.0996007517450891
+f,scVelo_dyn,gastrulation,gene_cbdir,0.0081390674312213
+f,scVelo_dyn,mousebrain,gene_cbdir,0.1207509572111022
+f,scVelo_dyn,pancreas,gene_cbdir,-0.0048340018427591
+f,scVelo_dyn,retina,gene_cbdir,0.0622125761130971
+f,DeepVelo_scv,DentateGyrus_lamanno,gene_cbdir,0.0864101835360097
+f,DeepVelo_scv,bonemarrow,gene_cbdir,-0.0654615276969638
+f,DeepVelo_scv,capo_pre,gene_cbdir,0.0997960648415763
+f,DeepVelo_scv,gastrulation,gene_cbdir,-0.0010481039452293
+f,DeepVelo_scv,mousebrain,gene_cbdir,0.1326258395746174
+f,DeepVelo_scv,pancreas,gene_cbdir,-0.0450476913051053
+f,DeepVelo_scv,retina,gene_cbdir,0.0626883412944904
+g,TIvelo,macro,mean_gene_cbdir,0.32214784280007636
+g,UniTVelo,macro,mean_gene_cbdir,0.1974137899104999
+g,GraphVelo_scv,macro,mean_gene_cbdir,0.107379299625867
+g,DeepVelo,macro,mean_gene_cbdir,0.1235223611911577
+g,veloVI,macro,mean_gene_cbdir,0.0960830962366633
+g,cellDancer,macro,mean_gene_cbdir,0.05635009490751875
+g,MultiVelo (RNA_only),macro,mean_gene_cbdir,0.056387520328107045
+g,scVelo_dyn,macro,mean_gene_cbdir,0.043979456293386794
+g,DeepVelo_scv,macro,mean_gene_cbdir,0.03856615804277077
+g,TIvelo,macro,mean_cell_cbdir,0.44288306003392636
+g,UniTVelo,macro,mean_cell_cbdir,0.5450956877654949
+g,GraphVelo_scv,macro,mean_cell_cbdir,0.38247623463570796
+g,DeepVelo,macro,mean_cell_cbdir,0.3105828380302639
+g,veloVI,macro,mean_cell_cbdir,0.29052114739847956
+g,cellDancer,macro,mean_cell_cbdir,0.15193785751979796
+g,MultiVelo (RNA_only),macro,mean_cell_cbdir,0.015847877116087372
+g,scVelo_dyn,macro,mean_cell_cbdir,0.09019292367780073
+g,DeepVelo_scv,macro,mean_cell_cbdir,0.08529200000920056
+g,TIvelo,macro,mean_batc,0.3662477486142268
+g,UniTVelo,macro,mean_batc,0.6395944308237452
+g,GraphVelo_scv,macro,mean_batc,0.44476716601409183
+g,DeepVelo,macro,mean_batc,0.35685711944636966
+g,veloVI,macro,mean_batc,0.33426543605505876
+g,cellDancer,macro,mean_batc,0.16162965760177075
+g,MultiVelo (RNA_only),macro,mean_batc,0.10502056468319722
+g,scVelo_dyn,macro,mean_batc,0.13026523141774768
+g,DeepVelo_scv,macro,mean_batc,0.12828374454919858
+h,TIvelo,bootstrap,gene_front_percent,99.99987857343211
+h,UniTVelo,bootstrap,gene_front_percent,66.00833229108862
+h,GraphVelo_scv,bootstrap,gene_front_percent,0.0
+h,DeepVelo,bootstrap,gene_front_percent,0.0
+h,veloVI,bootstrap,gene_front_percent,0.0
+h,cellDancer,bootstrap,gene_front_percent,0.0
+h,MultiVelo (RNA_only),bootstrap,gene_front_percent,0.0
+h,scVelo_dyn,bootstrap,gene_front_percent,0.0
+h,DeepVelo_scv,bootstrap,gene_front_percent,0.0
+h,TIvelo,bootstrap,joint_front_percent,99.86048087349417
+h,UniTVelo,bootstrap,joint_front_percent,99.53821476231356
+h,GraphVelo_scv,bootstrap,joint_front_percent,13.284795086595357
+h,DeepVelo,bootstrap,joint_front_percent,8.643750235263974
+h,veloVI,bootstrap,joint_front_percent,8.402354218298255
+h,cellDancer,bootstrap,joint_front_percent,0.3052663916759659
+h,MultiVelo (RNA_only),bootstrap,joint_front_percent,0.02464959328171085
+h,scVelo_dyn,bootstrap,joint_front_percent,0.0
+h,DeepVelo_scv,bootstrap,joint_front_percent,0.0

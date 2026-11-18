@@ -1,0 +1,55 @@
+panel,method,field,mean
+a,cellDancer,consistency,0.8147090939891232
+b,cellDancer,iccoh,0.8285630302631223
+c,cellDancer,cbdir,0.15193785751979796
+d,cellDancer,batc,0.16162965760177075
+e,cellDancer,transcosine,0.16795996257237025
+f,cellDancer,gene_cbdir,0.05635009490751875
+a,DeepVelo,consistency,0.8834518872830509
+b,DeepVelo,iccoh,0.8915059642373454
+c,DeepVelo,cbdir,0.3105828380302639
+d,DeepVelo,batc,0.35685711944636966
+e,DeepVelo,transcosine,0.11164765459086214
+f,DeepVelo,gene_cbdir,0.1235223611911577
+a,DeepVelo_scv,consistency,0.9058257864655938
+b,DeepVelo_scv,iccoh,0.9107089529326189
+c,DeepVelo_scv,cbdir,0.08529200000920055
+d,DeepVelo_scv,batc,0.12828374454919858
+e,DeepVelo_scv,transcosine,0.18340194012437547
+f,DeepVelo_scv,gene_cbdir,0.03856615804277077
+a,GraphVelo_scv,consistency,0.664424088490036
+b,GraphVelo_scv,iccoh,0.690700609113875
+c,GraphVelo_scv,cbdir,0.38247623463570796
+d,GraphVelo_scv,batc,0.44476716601409183
+e,GraphVelo_scv,transcosine,0.37750132594789776
+f,GraphVelo_scv,gene_cbdir,0.107379299625867
+a,MultiVelo (RNA_only),consistency,0.904854562162254
+b,MultiVelo (RNA_only),iccoh,0.9126809482127155
+c,MultiVelo (RNA_only),cbdir,0.01584787711608738
+d,MultiVelo (RNA_only),batc,0.1050205646831972
+e,MultiVelo (RNA_only),transcosine,0.0373054858895817
+f,MultiVelo (RNA_only),gene_cbdir,0.05638752032810704
+a,scVelo_dyn,consistency,0.8299933386260355
+b,scVelo_dyn,iccoh,0.8438346285297275
+c,scVelo_dyn,cbdir,0.09019292367780073
+d,scVelo_dyn,batc,0.13026523141774768
+e,scVelo_dyn,transcosine,0.18181519795741355
+f,scVelo_dyn,gene_cbdir,0.043979456293386794
+a,TIvelo,consistency,0.582489317920021
+b,TIvelo,iccoh,0.6053845615850892
+c,TIvelo,cbdir,0.44288306003392636
+d,TIvelo,batc,0.3662477486142268
+e,TIvelo,transcosine,0.394751284803663
+f,TIvelo,gene_cbdir,0.32214784280007636
+a,UniTVelo,consistency,0.9590710171507619
+b,UniTVelo,iccoh,0.9648151355123658
+c,UniTVelo,cbdir,0.5450956877654949
+d,UniTVelo,batc,0.6395944308237452
+e,UniTVelo,transcosine,0.2728526996714728
+f,UniTVelo,gene_cbdir,0.1974137899104999
+a,veloVI,consistency,0.8757698309036049
+b,veloVI,iccoh,0.8816904855797211
+c,veloVI,cbdir,0.29052114739847956
+d,veloVI,batc,0.33426543605505876
+e,veloVI,transcosine,0.07075799735529083
+f,veloVI,gene_cbdir,0.0960830962366633

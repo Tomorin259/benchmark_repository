@@ -1,0 +1,15 @@
+dataset,variant,label,n_cells,cbdir,batc,cbdir_basis,batc_basis
+bonemarrow,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,5780,0.5431156776485379,0.4705333539183276,umap,umap
+capofibro,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,1222,0.4629828228745751,0.4843521445642152,umap,umap
+dentategyrus,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,2930,0.533024779108094,0.6996183217115922,umap,umap
+dentate_lamanno,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,18213,0.7248598864354142,0.7246438332296381,umap,umap
+forebrain,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,1720,0.558426047160948,0.1451564020217597,pca,umap
+gastrulation,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,9815,0.7866718939348541,0.8757739534487599,umap,umap
+hematopoiesis,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,1947,0.054996126210364586,0.46965751544427287,umap,umap
+mousebrain,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,3365,0.6233601523356849,0.6172183275706099,umap,umap
+neuron,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,3066,0.6152101749514767,0.4061235067377303,umap,umap
+organoid,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,3831,0.004114827060151788,0.6441815044769192,umap,umap
+pancreas,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,3696,0.5971676171245359,0.5970650408914414,umap,umap
+retina,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,2726,0.5482603831027161,0.2292803662539341,umap,umap
+rpe1,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,2793,0.28144348363415167,0.5940507293964402,umap,umap
+rpe1_gen,signed_t_row_geometric_median4,GeoMedian-4 + GraphVelo projection,3354,0.3407442210657699,0.18574471987597488,umap,umap

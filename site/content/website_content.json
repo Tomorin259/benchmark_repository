@@ -449,10 +449,12 @@
       "TIvelo",
       "veloVI",
       "DeepVelo",
-      "UniTVelo"
+      "UniTVelo",
+      "GraphVelo_scv"
     ],
-    "note": "We evaluated an exploratory post-hoc signed-transition ensemble of TIvelo, veloVI, DeepVelo and UniTVelo. These methods were selected for their complementary strengths in cell-level evaluation and their compatible outputs for constructing signed-transition operators.",
-    "ranking_note": "Each variant is ranked separately against the 20 registered configurations for the same dataset and metric. Rank is 1 + the number of configuration scores strictly above the ensemble score; exact ties use competition rank."
+    "note": "Normalized GeoMedian-5 combines TIvelo, veloVI, DeepVelo, UniTVelo and GraphVelo_scv; mean CBDir and BATC are reported over 14 equally weighted datasets.",
+    "ranking_note": "Each variant is ranked separately against the 20 registered configurations for the same dataset and metric. Rank is 1 + the number of configuration scores strictly above the ensemble score; exact ties use competition rank.",
+    "legacy_note": "We evaluated an exploratory post-hoc signed-transition ensemble of TIvelo, veloVI, DeepVelo and UniTVelo. These methods were selected for their complementary strengths in cell-level evaluation and their compatible outputs for constructing signed-transition operators."
   },
   "provenance": {
     "manuscript": {
@@ -474,7 +476,7 @@
     "model_characteristics": "figures/assembly/fig7/fig7.pptx: retained text table",
     "gene_components": "evaluation/gene/config.py: VELOCITY_KEYS",
     "simulation": "evaluation/gene/simulation/config.json",
-    "ensemble": "ensemble/results/metadata.json"
+    "ensemble": "ensemble/results/selected/metadata.json"
   },
   "protocol": [
     {

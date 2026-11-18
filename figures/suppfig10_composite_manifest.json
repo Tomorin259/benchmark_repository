@@ -3,95 +3,254 @@
   "figure": "Supplementary Figure 10",
   "assembly": {
     "path": "figures/assembly/suppfig10/suppfig10.pptx",
-    "sha256": "68cd73708974905d33b99ee3418e7c8874412fa7666f268acf7d9c542baa52bd"
+    "sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8"
   },
   "pending_pdf_export": false,
   "inputs": [
     {
-      "path": "evaluation/cell/results/cell_metrics.csv",
-      "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
+      "path": "ensemble/results/selected/Table_S5_B.csv",
+      "sha256": "39fc00de1d69855b0fa6ec2cf122d0ecec1603c64ebd1811c763b62310c0995d",
+      "scope": "Current five-member ensemble replay"
     },
     {
-      "path": "ensemble/results/scores.csv",
-      "sha256": "b0c7323bf8f8bd3b2a61695f857414588f93867746ffd29f1dc0464b3eb63453"
+      "path": "ensemble/results/selected/s10/panel_a_data.csv",
+      "sha256": "de905ab767c6221123dbb743f2ac36c723c9ab91dfc9b01a0585577f8e34febb",
+      "scope": "Current five-member ensemble replay"
+    },
+    {
+      "path": "ensemble/results/selected/s10/plot_data.csv",
+      "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5",
+      "scope": "Current five-member ensemble replay"
+    },
+    {
+      "path": "ensemble/results/selected/s10/macro_means.csv",
+      "sha256": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a",
+      "scope": "Current five-member ensemble replay"
     }
   ],
   "panels": [
     {
       "panel": "A",
-      "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.svg",
-      "sha256": "ec7854b6de5d1104cc263365dc9fb6562722c9b537d05d061857c4d42c1214a4"
+      "metric": "bootstrap_front_inclusion",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_1",
+      "plot_data": "figures/assembly/suppfig10/panel_a_data.csv",
+      "plot_rows": 20
     },
     {
       "panel": "B",
-      "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.svg",
-      "sha256": "a97f6a47e86f219476bbabd44fccab6659379d05dd4019131377ec3051da856f"
+      "metric": "cbdir",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_2",
+      "plot_data": "figures/assembly/suppfig10/plot_data.csv",
+      "plot_rows": 294,
+      "order": "Descending 14-dataset macro mean for this metric.",
+      "renderer": {
+        "path": "ensemble/plot_supfig10.py",
+        "commit": "e9d6147",
+        "sha256": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382",
+        "functions": [
+          "metric_order",
+          "plot_metric"
+        ]
+      }
+    },
+    {
+      "panel": "C",
+      "metric": "batc",
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947",
+      "svg_group": "axes_3",
+      "plot_data": "figures/assembly/suppfig10/plot_data.csv",
+      "plot_rows": 294,
+      "order": "Descending 14-dataset macro mean for this metric.",
+      "renderer": {
+        "path": "ensemble/plot_supfig10.py",
+        "commit": "e9d6147",
+        "sha256": "d45da653e4a34ee08e9508957a729bf3f44733d043abe0a5f37fc72ddc70f382",
+        "functions": [
+          "metric_order",
+          "plot_metric"
+        ]
+      }
     }
   ],
   "export": {
     "application": "WPS Office",
     "format": "author PDF; page content and resources retained",
-    "status": "verified",
+    "status": "user_exported_cropped",
     "crop_box_points": [
-      0.0,
-      451.0,
+      0,
+      7,
       540.0,
-      779.8
+      576.05
     ],
     "media_box_points": [
-      0.0,
-      451.0,
+      0,
+      7,
       540.0,
-      779.8
+      576.05
     ],
     "source_pdf": {
       "filename": "supfig10.pdf",
-      "sha256": "8335bb1f94b5fecb748cfd9b272698a12f71b1e7ebe4e82357d00561db92cc58",
+      "sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
       "page_count": 1,
       "media_box_points": [
-        0,
-        0,
-        540,
-        779.8
+        0.0,
+        0.0,
+        540.0,
+        576.05
       ],
-      "creation_date": "2026-11-10T12:51:30+08:00"
+      "creation_date": "2026-11-18T23:05:16+08:00"
     }
   },
   "verification": {
-    "slide_layout_xml_unchanged": true,
+    "native_vector_and_text_objects": true,
+    "source_panels_checked": 3,
     "final_pdf_export_verified": true,
-    "cropped_pdf_content_stream_unchanged": true,
-    "source_panels_checked": 2,
-    "author_export_pending": false
+    "author_export_pending": false,
+    "render_pixels_equal_source_region": true
   },
   "numerical_contract": {
-    "ensemble": "GeoMedian-4",
+    "ensemble": "normalized GeoMedian-5",
+    "members": [
+      "DeepVelo",
+      "GraphVelo_scv",
+      "TIvelo",
+      "UniTVelo",
+      "veloVI"
+    ],
     "datasets": 14,
     "base_configurations": 20,
-    "scores": "canonical result tables",
-    "random_seed": 123
+    "score_rows": 588,
+    "bootstrap_resamples": 10000,
+    "ensemble_macro_means": {
+      "cbdir": 0.4712175537963527,
+      "batc": 0.5147455431894143
+    },
+    "forebrain_metric_spaces": {
+      "cbdir": "PCA30",
+      "batc": "UMAP2"
+    },
+    "normalization": "Each member off-diagonal signed row divided by its absolute-weight sum before geometric median; no centering or post-aggregation rescaling.",
+    "projection": "GraphVelo weighted displacement: sum_j T_ij (Y_j-Y_i); no fitting"
   },
   "output": {
     "path": "figures/suppFigTen.pdf",
-    "sha256": "0c3e3b4498c0bd8888bbed8425010ea85724c27c449b550cf0917408eeb344e6",
-    "status": "previous_author_export_pending_update"
+    "sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d",
+    "status": "author_exported_cropped"
   },
   "pending_material_assembly": false,
   "author_export": {
     "filename": "supfig10.pdf",
-    "source_pdf_sha256": "8335bb1f94b5fecb748cfd9b272698a12f71b1e7ebe4e82357d00561db92cc58",
-    "cropped_pdf_sha256": "0c3e3b4498c0bd8888bbed8425010ea85724c27c449b550cf0917408eeb344e6",
+    "source_pdf_sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
+    "cropped_pdf_sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d",
     "author_assembly_filename": "supfig10.pptx",
-    "author_assembly_sha256": "92f51378761b067c6297227c8bd5642907ca424a8b6e57da2d420b7c8a518341",
+    "author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
     "crop_box_pt": [
-      0.0,
-      451.0,
+      0,
+      7,
       540.0,
-      779.8
+      576.05
     ],
     "page_operators_unchanged": true,
-    "resource_streams_unchanged": true
+    "resource_streams_unchanged": true,
+    "render_pixels_equal_source_region": true,
+    "scope": "Current author PDF from the registered editable assembly."
   },
-  "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
-  "pdf_output_status": "Current author export; page-box crop verified against updated assembly."
+  "repository_assembly_comparison": "Current 3-panel author export. Cropping preserved page content and resource streams.",
+  "pdf_output_status": "Current 3-panel author export. Cropping preserved page content and resource streams.",
+  "exported_from_revision": {
+    "assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+    "author_assembly_sha256": "62c35596e531aa1f9f2807157273ce6acf3fa1a5a9749b5007e97f74257284e8",
+    "source_pdf_sha256": "669767491eff7b02e4b2ab8fdcb8397e690a09f9761934f462555f47d7fd6798",
+    "pdf_sha256": "35b45480e58eb184a1217996f4a96202bf32723aa52561e6a15baa379ef7a42d"
+  },
+  "panel_manifest": {
+    "path": "figures/assembly/suppfig10/panel_manifest.json",
+    "sha256": "65e5f8a0e6078c82349fe0732d434364db977f42120c30652cd43a57e14549b1"
+  },
+  "plot_data": {
+    "path": "figures/assembly/suppfig10/plot_data.csv",
+    "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5"
+  },
+  "materials": {
+    "approved_layout.svg": {
+      "path": "figures/assembly/suppfig10/approved_layout.svg",
+      "sha256": "59e1e8b48aee846b14229ca895d389cc1ecaedf75a62089a7499dfcd500a8947"
+    },
+    "plot_data.csv": {
+      "path": "figures/assembly/suppfig10/plot_data.csv",
+      "sha256": "b5eeebb648d08d098a9c5b975b158b82c67b84be046ba96b7974963aa61666d5"
+    },
+    "panel_a_data.csv": {
+      "path": "figures/assembly/suppfig10/panel_a_data.csv",
+      "sha256": "2673ae3321dac2434be919c814f36662dafec50a33ebfc38f4a7db5037db298a"
+    },
+    "macro_means.csv": {
+      "path": "figures/assembly/suppfig10/macro_means.csv",
+      "sha256": "b9ac3cd48411b7a244ff3c775a836de93c64ab5efb5eccec2048e8cdd88c0b7a"
+    },
+    "approved_layout_manifest.json": {
+      "path": "figures/assembly/suppfig10/approved_layout_manifest.json",
+      "sha256": "f3884c41476ee3e2620809fc1e404ce630172e2abc41878b41cf0dadee6e3abb"
+    }
+  },
+  "historical_source_materials": {
+    "scope": "Retained two-panel artwork and source data for the historical four-member GeoMedian-4 GraphVelo-projection result.",
+    "panel_manifest": {
+      "path": "figures/assembly/suppfig10/four_member_panel_manifest.json",
+      "sha256": "ab339eac97f42a871156ba8d14a8d6de7eaa6cbd5ae7b19c98d0eb1248192dd0"
+    },
+    "plot_data": {
+      "path": "figures/assembly/suppfig10/four_member_plot_data.csv",
+      "sha256": "578344b0fb2918e613616dd8f77ce47ca0e6c502d599fb5321e75b9a27d7a558"
+    },
+    "panels": [
+      {
+        "panel": "A",
+        "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.svg",
+        "sha256": "56557597d27998a7ec751da7b271a7172c6aaad207f03b4240763dad3b411992",
+        "raster": {
+          "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.png",
+          "sha256": "2d703e7f437004ff2a68f84b6cd7fff926da6e00ef047a9fe856c2fbbfdb9ff4"
+        },
+        "vector_pdf": {
+          "path": "figures/assembly/suppfig10/A_row_geometric_median4_cbdir.pdf",
+          "sha256": "908d8371271ae63aa6723730e905bcdc94cc8758ee58250adfcbbcd5a7710c0f"
+        }
+      },
+      {
+        "panel": "B",
+        "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.svg",
+        "sha256": "533fe376c52c6f55c00bb3a835019a0b16ff716a3261412d27ba8e096c4b0acf",
+        "raster": {
+          "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.png",
+          "sha256": "9b35322abdd94d978a888cd9c68f4746b39a9409a77b598a283627f0bf1dcd90"
+        },
+        "vector_pdf": {
+          "path": "figures/assembly/suppfig10/B_row_geometric_median4_batc.pdf",
+          "sha256": "17d66addf770e77393296b2de7e0f0ee41fd8351a1956263cf070222b0c2573f"
+        }
+      }
+    ],
+    "numerical_contract": {
+      "ensemble": "GeoMedian-4",
+      "datasets": 14,
+      "base_configurations": 20,
+      "scores": "ensemble/results/legacy_geomedian4_graphvelo/scores.csv",
+      "random_seed": 123,
+      "projection": "GraphVelo weighted displacement: sum_j T_ij (Y_j-Y_i); no fitting",
+      "ensemble_macro_means": {
+        "batc": 0.5102428371101154,
+        "cbdir": 0.4767412923319481
+      },
+      "forebrain_metric_spaces": {
+        "cbdir": "PCA30",
+        "batc": "UMAP2"
+      }
+    }
+  }
 }

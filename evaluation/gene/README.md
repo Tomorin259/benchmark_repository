@@ -197,3 +197,36 @@ Each export includes plotted score rows.
 The Figure 5 scatters weight dataset means equally; the adjacent branching
 boxplot and heatmap retain their pooled-gene distribution. The S9 panel uses
 the finite nine-method intersection in `results/common_genes/`.
+
+### Reproduce Supplementary Figure S9
+
+From the repository root, recompute the numerical inputs for panels a–h using
+Python 3.9+ and the standard library:
+
+```bash
+python evaluation/gene/reproduce_crosslevel.py --repository-root . \
+  --output-root outputs/s9-reproduction
+```
+
+Supply a new output directory. The five CSVs are written to a temporary directory
+on the same filesystem and published together after successful writing. The
+script computes Gene CBDir from
+the canonical reference-30 scores and the finite nine-method intersection on
+each dataset. It joins the primary and Gene-matched Cell metric CSVs through
+the method registry, input manifests and score audits. C04, C05, C12 and C16
+use the Gene-matched Cell route. C04 additionally checks the normalized Cell
+output against its native fit in `evaluation/cell/native_outputs.tsv`.
+
+The [formal tables](results/crosslevel/) include the 63 dataset–method rows
+with score routes and native input identities (`dataset_scores.csv`). For
+the Gene frontier, the seven dataset-specific Gene CBDir scores are separate
+objectives. The joint frontier uses three equally dataset-weighted means
+(Gene CBDir, Cell CBDir and BATC). For both frontiers, a method dominates
+another if it scores at least as highly on every objective and strictly higher
+on at least one. Exact paired resampling enumerates the 1,716 size-seven
+multisets of datasets, weighted by their multiplicity among 823,543 ordered
+draws. Repeating a dataset repeats its Gene objective and increases its
+weight in each joint mean. `frontiers.csv` gives original membership, exact
+hit counts and inclusion frequencies. `leave_one_out.csv` gives frontier
+membership after omitting each dataset. `plot_data.csv` contains all 423
+panel values (a–h), and `upper_means.csv` contains 54 panel a–f means.

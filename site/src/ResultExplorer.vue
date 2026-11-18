@@ -163,6 +163,7 @@ onMounted(async()=>{
 
 <template>
   <div class="page-heading"><h1>Results</h1><button class="button secondary" @click="copyLink">{{ copied?'Link copied':'Share this view' }}</button></div>
+  <div class="guide-links"><a href="#comparisons">Matched Gene/Cell scores, omnibus tests and joint rate recovery →</a></div>
   <div class="tabs" aria-label="Evaluation tasks"><button v-for="[key,label] in [['cell','Cell-level'],['gene','Gene-level'],['kinetics','Kinetic-parameter recovery'],['cross','Cross-level'],['overall','Overall']]" :key="key" :class="{active:mode===key}" :aria-pressed="mode===key" @click="mode=key">{{ label }}</button></div>
   <OverallResults v-if="mode==='overall'" :data="data" v-model:task="summaryTask" v-model:statistic="summaryStatistic" v-model:view="summaryView"/>
   <CrossLevel v-else-if="mode==='cross'" :data="data" v-model:case-id="crossCase"/>

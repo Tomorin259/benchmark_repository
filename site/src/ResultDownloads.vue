@@ -5,7 +5,7 @@ const props = defineProps({ data: { type: Object, required: true } })
 const dataset = ref('all'), method = ref('all'), kind = ref('all'), page = ref(1)
 const kinds = [
   ['method_outputs', 'Native method outputs'], ['kinetics_outputs', 'Kinetics outputs'],
-  ['simulation_outputs', 'Simulation outputs'], ['ensemble_outputs', 'Ensemble outputs'],
+  ['simulation_outputs', 'Simulation outputs'], ['ensemble_outputs', 'Ensemble results and replay inputs'],
   ['diagnostics', 'TIvelo / MultiVelo controls'], ['evaluation_assets', 'Reference moments'],
 ]
 const packages = computed(() => props.data.result_packages.map(item => ({
@@ -16,6 +16,7 @@ const packages = computed(() => props.data.result_packages.map(item => ({
   datasetLabel: item.dataset_ids.split(';').map(id => props.data.datasets.find(d => d.dataset_id === id)?.paper_name || id).join(', '),
   methodLabel: item.config_ids.split(';').filter(Boolean).map(id => props.data.methods.find(m => m.config_id === id)?.manuscript_name || id).join(', '),
 })))
+const derived = computed(() => packages.value.filter(p => p.kind === 'ensemble_outputs' && p.release_version === props.data.source_data_archive.release_version && p.repository_path.includes('/geomedian5_')))
 const filtered = computed(() => packages.value.filter(item =>
   (dataset.value === 'all' || item.datasetIds.includes(dataset.value)) &&
   (method.value === 'all' || item.methodIds.includes(method.value)) &&
@@ -30,14 +31,15 @@ watch([dataset, method, kind], () => { page.value = 1 })
 
 <template>
   <section class="panel downloads-section" aria-labelledby="result-download-heading">
-    <h2 id="result-download-heading">Full method outputs</h2>
-    <p class="small muted">{{packages[0].release_version}} · {{packages.length}} packages · {{size(totalBytes)}}. Native H5AD outputs are grouped in lossless TAR.GZ archives; reference moments are provided as NPZ files.</p>
+    <h2 id="result-download-heading">Method and ensemble downloads</h2>
+    <p class="small muted">{{packages.length}} packages · {{size(totalBytes)}}. Each download is pinned to its source release.</p>
     <div class="guide-links">
-      <a :href="`https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/${packages[0].release_version}`" target="_blank" rel="noopener">Hugging Face release ↗</a>
+      <a :href="`https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/${data.source_data_archive.release_version}`" target="_blank" rel="noopener">Active data release ↗</a>
       <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction guide</a>
       <a href="./data/files/data/result_package_manifest.tsv" download>Package manifest</a>
       <a href="./data/files/data/result_member_manifest.tsv" download>Original file manifest</a>
     </div>
+    <div v-for="file in derived" :key="file.package_id" class="download-row"><div><strong>{{file.repository_path.includes('frozen_inputs')?'GeoMedian-5 frozen inputs':'GeoMedian-5 projected fields'}}</strong><span class="small muted">{{file.release_version}} · {{size(file.bytes)}}</span></div><a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download TAR.GZ</a></div>
     <div class="classification-filters">
       <label>Dataset<select v-model="dataset" aria-label="Result download dataset"><option value="all">All datasets</option><option v-for="d in data.datasets" :key="d.dataset_id" :value="d.dataset_id">{{d.paper_name}}</option></select></label>
       <label>Method<select v-model="method" aria-label="Result download method"><option value="all">All methods</option><option v-for="m in data.methods" :key="m.config_id" :value="m.config_id">{{m.manuscript_name}}</option></select></label>
@@ -46,8 +48,8 @@ watch([dataset, method, kind], () => { page.value = 1 })
     <p class="small muted" aria-live="polite">{{filtered.length}} matching {{filtered.length === 1 ? 'package' : 'packages'}}. Download the dataset and method outputs you need.</p>
     <div v-for="file in visible" :key="file.package_id" class="download-row result-package-row">
       <div>
-        <strong>{{file.datasetLabel}} · {{file.methodLabel || kindName(file.kind)}}</strong>
-        <span class="small muted">{{kindName(file.kind)}} · {{file.format.toUpperCase()}} · {{size(file.bytes)}} · {{file.scientific_files}} original {{file.scientific_files === 1 ? 'file' : 'files'}}</span>
+        <strong>{{file.datasetIds.length > 3 ? file.datasetIds.length + ' datasets' : file.datasetLabel}} · {{file.methodLabel || kindName(file.kind)}}</strong>
+        <span class="small muted">{{file.release_version}} · {{kindName(file.kind)}} · {{file.format.toUpperCase()}} · {{size(file.bytes)}} · {{file.scientific_files}} original {{file.scientific_files === 1 ? 'file' : 'files'}}</span>
         <span class="small package-path">{{file.repository_path.split('/').slice(1).join('/')}}</span>
       </div>
       <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download {{file.format.toUpperCase()}}</a>

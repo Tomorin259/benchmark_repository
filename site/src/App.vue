@@ -2,6 +2,8 @@
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import ResultExplorer from './ResultExplorer.vue'
 import EnsembleResults from './EnsembleResults.vue'
+import LegacyEnsemble from './LegacyEnsemble.vue'
+import MatchedComparisons from './MatchedComparisons.vue'
 import Diagnostics from './Diagnostics.vue'
 import ResultDownloads from './ResultDownloads.vue'
 
@@ -28,6 +30,7 @@ async function navigate(){
   const id=location.hash.slice(1).split('?')[0]||'home'
   if(['datasets','methods','simulation'].includes(id))directoryTab.value=id==='methods'?'methods':'datasets'
   page.value=['datasets','methods','simulation'].includes(id)?'directory':id==='reproduce'?'documentation':id
+  if (id==='ensemble' && ['dataset','rank'].some(k => new URLSearchParams(location.hash.split('?')[1]).has(k))) page.value='ensemble-legacy'
   initialLevel.value=new URLSearchParams(location.hash.split('?')[1]).get('level')||'cell'
   routeKey.value=location.hash;search.value='';window.scrollTo(0,0)
   await nextTick()
@@ -52,7 +55,7 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
   <a class="skip" href="#main" @click.prevent="focusMain">Skip to content</a>
   <header class="site-header"><div class="header-inner">
     <a href="#home" class="brand"><img :src="'./mark.svg'" width="36" height="36" alt=""><span>RNA velocity benchmark</span></a>
-    <nav aria-label="Main navigation"><a v-for="[id,label] in navigation" :key="id" :href="`#${id}`" :class="{active:page===id}" :aria-current="page===id?'page':undefined">{{label}}</a></nav>
+    <nav aria-label="Main navigation"><a v-for="[id,label] in navigation" :key="id" :href="`#${id}`" :class="{active:page===id||(id==='ensemble'&&page==='ensemble-legacy')||(id==='results'&&page==='comparisons')}" :aria-current="page===id?'page':undefined">{{label}}</a></nav>
     <a class="code-link" :href="repository" target="_blank" rel="noopener">Code ↗</a>
   </div></header>
   <main id="main" class="container" tabindex="-1">
@@ -61,12 +64,14 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
     <template v-else>
       <template v-if="page==='home'">
         <section class="overview-header"><h1>RNA velocity benchmarking</h1><p>20 method configurations · 14 real datasets · 3 simulations</p></section>
-        <div class="guide-links overview-links"><a href="#results?level=overall">Benchmark summary →</a><a href="#results?level=cross">Cell / Gene comparisons →</a></div>
+        <div class="guide-links overview-links"><a href="#results?level=overall">Benchmark summary →</a><a href="#results?level=cross">Cell / Gene cases →</a><a href="#comparisons">Matched comparisons and statistics →</a></div>
         <section class="cards overview-results" aria-label="Evaluation tasks"><a v-for="task in data.content.scope.tasks" :key="task.id" class="question-card" :href="`#results?level=${task.id}`"><h2>{{task.label}}</h2><p>{{task.object}}</p><span class="text-link">Explore results →</span></a></section>
         <section class="framework panel"><h2>Benchmarking framework</h2><img :src="'./overview.png'" alt="RNA velocity benchmarking framework" loading="lazy"></section>
       </template>
       <ResultExplorer v-else-if="page==='results'" :key="routeKey" :data="data" :initial-level="initialLevel"/>
       <EnsembleResults v-else-if="page==='ensemble'" :key="routeKey" :data="data"/>
+      <LegacyEnsemble v-else-if="page==='ensemble-legacy'" :key="routeKey" :data="data"/>
+      <MatchedComparisons v-else-if="page==='comparisons'" :data="data"/>
       <Diagnostics v-else-if="page==='diagnostics'" :key="routeKey" :data="data"/>
       <template v-else-if="page==='directory'">
         <div class="page-heading"><h1>Datasets & Methods</h1></div>
@@ -110,9 +115,12 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
             <a class="button secondary" :href="data.source_data_archive.url" target="_blank" rel="noopener">Download complete ZIP</a>
           </div>
         </section>
-        <section class="panel downloads-section"><h2>Benchmark input files</h2><p class="small muted">25 original-format files for 17 datasets: 22 H5AD, one loom and two CSVs. Download the files you need and use them directly.</p>
+        <section class="panel downloads-section"><h2>Benchmark input files</h2><p class="small muted">{{data.input_files.length}} original-format input files across {{data.datasets.length}} datasets.</p>
           <div v-for="file in data.input_files" :key="file.artifact_id" class="download-row"><div><strong>{{file.label}}</strong><span class="small muted">{{file.format}} · {{size(file.bytes)}} · {{file.role.replaceAll('_',' ')}}</span><span class="small">{{file.path.split('/').at(-1)}}</span></div><a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download file</a></div>
           <p class="small muted">Kinetic-reference Tables S1, S3 and S4 are obtained from the original study. <a :href="sourceLink('data/UPSTREAM_REFERENCES.md')" target="_blank" rel="noopener">Acquisition and verification instructions ↗</a></p>
+        </section>
+        <section class="panel downloads-section"><h2>Revised benchmark results</h2><div class="guide-links"><a href="#ensemble">Five-member ensemble and ablations →</a><a href="#comparisons">Matched comparisons and statistics →</a></div>
+          <div v-for="f in data.downloads.figures.filter(f => ['figures/suppFigNine.pdf','figures/suppFigTen.pdf'].includes(f.path))" :key="f.path" class="download-row"><strong>{{f.label}}</strong><a class="button secondary" :href="'./'+f.download" download>Download PDF</a></div>
         </section>
         <ResultDownloads :data="data"/>
         <details class="panel downloads-section"><summary>Technical resources <span>{{technicalFiles.length}} files</span></summary><p class="small"><a :href="repository" target="_blank" rel="noopener">Repository files ↗</a></p><div v-for="s in technicalFiles" :key="s.path" class="download-row"><div><strong>{{s.label}}</strong><span class="small muted">{{s.path.split('.').at(-1).toUpperCase()}} · {{size(s.bytes)}}</span></div><a class="button secondary" :href="`./${s.download}`" download>Download</a></div></details>

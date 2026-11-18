@@ -7,6 +7,7 @@ settings live in the linked module guides.
 | --- | --- | --- |
 | Inspect scores or render CSV-only summaries | Committed compact tables and plotting dependencies | [Evaluation index](../evaluation/README.md) |
 | Recalculate metrics | Frozen method H5ADs, references and evaluation environments | [Cell](../evaluation/cell/README.md), [Gene](../evaluation/gene/README.md), [kinetics](../evaluation/kinetics_recovery/README.md) |
+| Replay the selected ensemble and S5/S10 data | Frozen member operators, fixed geometry and the evaluation environment | [Ensemble](../ensemble/README.md#reproduce-the-selected-bundle) |
 | Retrain a method | Canonical inputs, registered method configuration and upstream software | [Methods](../methods/README.md) |
 | Generate new simulations | Simulator and scenario configuration | [Simulation](../evaluation/gene/simulation/README.md) |
 | Assemble a paper figure | Plot-data, source panels and any editable author source | [Figure map](figure_map.md) |
@@ -19,9 +20,10 @@ Map extracted archive members to the logical input paths expected by the
 selected evaluator.
 
 The [local-root table](../data/README.md#local-data-roots) defines those
-layouts. Cell takes the parent of `velocity/`; Gene and ensemble take the
-velocity directory; kinetics takes a root containing its reference and
-method-result aliases. Python interpreter paths and environment names belong
+layouts. Cell takes the parent of `velocity/`. Gene evaluation and the
+historical ensemble H5AD builder take the velocity directory. Kinetics
+takes a root containing its reference and method-result aliases. The
+selected ensemble replay takes the frozen operator and geometry bundle. Python interpreter paths and environment names belong
 to your installation; [environment roles](environments.md#evaluation)
 identify the required software.
 

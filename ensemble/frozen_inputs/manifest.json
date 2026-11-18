@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "methods": [
+    "TIvelo",
+    "veloVI",
+    "DeepVelo",
+    "UniTVelo",
+    "GraphVelo_scv"
+  ],
+  "member_configuration_ids": [
+    "C08",
+    "C12",
+    "C16",
+    "C05",
+    "C19"
+  ],
+  "config_sha256": "e663477bbad059859a2ae5232d407da8920a3e45af2fa3b85977b7b1d8cb2580",
+  "frozen_source_metadata_sha256": "e95c860b0b6e7bf13269ecb5a6965fc6623d2be4691ea2f07380c0463cf2cb35",
+  "operator_representation": "Registered cell order; signed off-diagonal member weights before the common row normalization. The GraphVelo member is aligned native Phi with its off-diagonal active rows L1-normalized.",
+  "datasets": {
+    "bonemarrow": {
+      "n_cells": 5780,
+      "sha256": {
+        "geometry.npz": "7c40a45677991299a65df9bd1290d119d43c2270773779ee1043571ba22ede65",
+        "operator_input_TIvelo.npz": "19bb1d78fbe65f293ded15946f8d604624e690e077dfafec781b7efd8cc7224d",
+        "operator_input_veloVI.npz": "50cff3b741f02df03ad5b49b52b664c140f10d3bd2e257678c8d5e28bc72954a",
+        "operator_input_DeepVelo.npz": "33b4ffe996dae722376aaeee666561bbf30c52f844fe870ccfb27ace10d5d3f0",
+        "operator_input_UniTVelo.npz": "8b37e349409cbb110bea246e57f2b23aa871e94c571ab2451e0bb55cfc42dcbc",
+        "operator_input_GraphVelo_scv.npz": "8e1659a39e2802fcf78ec361c579a4a0b8d817d0cd5e5edaeff2b7d6dfbc9a60"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "d0e7498c2cc18272866a8b82e3ffa0b16f52b16165f8b5fe9bad4a1d1b37feef",
+        "veloVI": "4b323e1a268ccdb1ada50ccf6f709717564ebae3291b87c5394ae3973b6ea564",
+        "DeepVelo": "067ca3be9ca549af1d22e3b32c5b307a831168fd42e100ef0cb672c377cc2ee6",
+        "UniTVelo": "3a53621b7e47dac019b6af581833860fb814d8e6d3ae2b2bf0d0db85e363f38a",
+        "GraphVelo_scv": "17412e969c7d5dee660b38e8dc4575355a29343d50fae4f17a9a64a793658af7"
+      },
+      "reference_h5ad_sha256": "f7ec3aed8c0e1eed09197bba2edc6d1b024ed006bb3df8036e1c2ca474a24511",
+      "reference_neighbor_sha256": "dd42d081ba1fecff923b4ce6fc1edb5b1ed15b17bb43809d18e3322d9f94ad32",
+      "graphvelo_phi_source": "stored_obsp_gv"
+    },
+    "capofibro": {
+      "n_cells": 1222,
+      "sha256": {
+        "geometry.npz": "4ad8ea3088f06b89ae86cfb32b6515d42355182e459d5c73540a20829e0ab837",
+        "operator_input_TIvelo.npz": "765df933982fe3415f0bde5f1fedfe4bc6f6ffb9ee571a76bb62067e6ad44425",
+        "operator_input_veloVI.npz": "ace5fc351a0bdd2850b96e5cc7a08ebbe7edbd39fa77400d4d6055897a1ccfcb",
+        "operator_input_DeepVelo.npz": "81d9af5f182c47b36b299ffee20ff68a6ac4e0214402a27d6d61b89a830cb4a3",
+        "operator_input_UniTVelo.npz": "b97601280d7ab9ee3a48b8c96b4f137281679b1f785dae972e20ff881d1e3016",
+        "operator_input_GraphVelo_scv.npz": "fd8205a49c3210dd833b88ad7448acea712e3f8fb8608636bf9473d0e7a23e23"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "7e7e74dcf6d00456bea37a32cdc7759b0dda98b3ee95b2a7c535edb9c2681ddb",
+        "veloVI": "f1a4a03cb455150819d7eca0208d581fc68bc7aff1283512ab9456f7b2baae06",
+        "DeepVelo": "93443fde201550a52a237409099ed6b9cfe8ee88503762e6ab253d6701a2dc55",
+        "UniTVelo": "f3651687ce6f48aa89919a8645d3ec97ae3a8b982a005be9be276950ef04765f",
+        "GraphVelo_scv": "121a1447b7d5b11363ce23c1d4c7d8a9cb94e26964344e47f5e51cdef88d1060"
+      },
+      "reference_h5ad_sha256": "6727349da34d602954f97440f5f5af0982ca9f596e19e648407e755455c0a1cd",
+      "reference_neighbor_sha256": "61e6110eda842b345dd333f0019d91d0c28487dbf1aea1cc04703e8d84416940",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "768ed92ec31b1f893c1993b0d50c648125f7e2ce57b3c3c2176c60edc3adab2b"
+    },
+    "dentategyrus": {
+      "n_cells": 2930,
+      "sha256": {
+        "geometry.npz": "a7c6594b19ded5a9ac919f05159127799dbe5a03f4df6b26e34b8b1aada87d8e",
+        "operator_input_TIvelo.npz": "4267f3a091435eae2b730d7375eceed45b01482ee7eb58f63bf19033da3eade1",
+        "operator_input_veloVI.npz": "7f671cd29d5d0dcfffaf0436ff7163eac640aa04e8a3402677ef8c1cad34a922",
+        "operator_input_DeepVelo.npz": "15a2da4a73e544323394c2372df864ac856119308b94d0e2073361136d0af432",
+        "operator_input_UniTVelo.npz": "d0128f5a1c9cc9aa39d65276f7c8c4cce97940ec0a2650a77397b70ab6229a7f",
+        "operator_input_GraphVelo_scv.npz": "66cc0f0d2913645ee6c4bb20c4708c5332ce82755cea32b37c92397445474b4c"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "e800f7dcb317a7905c43468d42947131cd0e3909b8641d0f7723cf93fa46ff03",
+        "veloVI": "0b12971dcd2fd9a8c08875d3f6d484da0c92b78473d91d1506915b0dde80c6e4",
+        "DeepVelo": "1c0312efcf833b85052ce97fbf22e9a94b14355ed0bea84d922b6cc8931a5289",
+        "UniTVelo": "b9ac0bf7735178f470d43fe81ba27deaf51efe0d6eb4af2d782549a7aa4e0769",
+        "GraphVelo_scv": "b054a47ad50c6df377bbcec99e7d9c1f57dca3659bef45635aa2aa03486be207"
+      },
+      "reference_h5ad_sha256": "43857b57a8c7d76b2c6cd1a1400673baa08d361002a0843192e8d1a0c38159b7",
+      "reference_neighbor_sha256": "6e1e15b063a0457faf2e3cbdf417990c9d596aed3531efd51f2bdb4d0f4fbf12",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "b55bde329f726a7ff7d9e129ea4910cf426b90ca1d446bb2a2fb6c08526d6e5c"
+    },
+    "dentate_lamanno": {
+      "n_cells": 18213,
+      "sha256": {
+        "geometry.npz": "e2f4fff17e67b41d2e79492aefeda51aa1081ca1078fd3dde34c9e02e63ca635",
+        "operator_input_TIvelo.npz": "54e37a102d4c1aceaa18753adb1d1be762139c9d63f396aae700b9aad1daac23",
+        "operator_input_veloVI.npz": "315db82312e259f1097ded0c1f6a37804c7ba65dc81ed9912d5cdb5950c7c937",
+        "operator_input_DeepVelo.npz": "8e3c26d9a51480572313453cf5299789a9f16025162a0f3a54ea1e7475f6a383",
+        "operator_input_UniTVelo.npz": "55afc0e041e07351b8196f91a25080cd85b5d9e31008a7231bf27f93abdc34be",
+        "operator_input_GraphVelo_scv.npz": "b8c7710e0544298cfca814b4ec106bbce441012771398d4501ec9a7c40462d3c"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "b6bb0deeb3a79f4c429037ba6b38598f2c8efc1d6c8a9a8e418ce6eedd8d6859",
+        "veloVI": "2cf19a540a7b810d44c78e146bbc25eaf2635175993c0e57c22143c0a68a0d62",
+        "DeepVelo": "ade003bdde101698dd2eb0311fbdfbf055678ac23188cd816cc3aded03825459",
+        "UniTVelo": "7c53787df3e1546150a93ea6c22ae188c8c3250c2da1a8389f00ab16f1f5bced",
+        "GraphVelo_scv": "6ebfe5129de5461f781bbae0233c6017a88c278b563dd06c4f3206db0676fc77"
+      },
+      "reference_h5ad_sha256": "84430424ceb231c62647502804e88c68e28ac8b8c3d913b1736ff979d3e63dda",
+      "reference_neighbor_sha256": "c7510097f03fb51a64abbee9328e0dc5001840b5b8bd4538b7cc28417803981a",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "9c7fadfa1bd5466628b8b7d18e701859c8ca5d5824fb1fe1af89f14f7442fff4"
+    },
+    "forebrain": {
+      "n_cells": 1720,
+      "sha256": {
+        "geometry.npz": "eb9418b8705a1409dd92ce00088e684ee14e3642dffa9e0bde3ebb1b95a71118",
+        "operator_input_TIvelo.npz": "90d8bbef61298b0832f65b025461066fe064ae95957498e6aa67eb7a4b6778dc",
+        "operator_input_veloVI.npz": "fb41c0b512974e3d2154f2d77ab9669a5f3767d5b080cb17a8d0467a5ae8c239",
+        "operator_input_DeepVelo.npz": "9bd9144f31ad25c2ceb17dcdc6c2e897fb7d2795e972f11d3535602a98cc6b80",
+        "operator_input_UniTVelo.npz": "83bacc9a03aae97d97edace63e6f608fabf048baa112d43d5992de0cdc9f0e00",
+        "operator_input_GraphVelo_scv.npz": "ebc760f11b3e87b1cf299631c66a212d6925eadd7e549565bd1cf8cf7cc2174c"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "b8a8a4a6c72d8f1164d1e02da10aecafc5eb4ca0b7bab180d49d96f891469b14",
+        "veloVI": "7eb24cc5462f0020c4002df89105393ce3475526e3cee2d96d2081dbb137d633",
+        "DeepVelo": "04eeec72c6c7278eaa16b439c4489e5b37bd052c7487853d3d7bcf0a27c08043",
+        "UniTVelo": "d7aa1aea0fef024802dfa77d4a6824f63ff7eda06a24c5e6cd87cc690c9aede1",
+        "GraphVelo_scv": "4f195533ae03606da8ec21dbe5ec860b208a6a517ac23bca84f37b12e2ac338c"
+      },
+      "reference_h5ad_sha256": "2046315f96f7c50619502558a1d74647abb67dbf611cdc47f2dc5f140fb9e413",
+      "reference_neighbor_sha256": "b973d2b1d68d2e1b913790387c7149311b2de5ec511f63701f8a04fdea0e9fb2",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "c553c8d9a027bb9c343cd619a2c2f3369b4d6abc0e33e113a9039f3e34e195e7"
+    },
+    "gastrulation": {
+      "n_cells": 9815,
+      "sha256": {
+        "geometry.npz": "8f80b00c3337b17d34f0017de8a18f1fe78e7802c9ace729e62cec5c000c6f27",
+        "operator_input_TIvelo.npz": "1c474ff688bedc325eb7a58e04132d8e953ea3d60c3503d79979723f0dbc2f1b",
+        "operator_input_veloVI.npz": "6e286ab281dc8545b85093d467e0057385b56e72cd1a63ca18cdae4b04a234b1",
+        "operator_input_DeepVelo.npz": "afbab9a9124da487958f7aa46dacc8b42382a4680ef901a07a9d58b7cfe3203c",
+        "operator_input_UniTVelo.npz": "e9487332878433c7ad21801315f4b000f8ec4c19639e83720950e22e13899916",
+        "operator_input_GraphVelo_scv.npz": "79716887373e5544a3855ac1aa6d140541b912efe6c071792b5cdc40e46b821d"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "82f4ad0cb1b7873f5f9d890fa9da262fd8ed6600fe35a7ceba83e2b69b0cad51",
+        "veloVI": "9f379e46a02e1db2bb85b5a11165cd6d014f8f743925014374863360ea5af7ab",
+        "DeepVelo": "1d04f02d56997bf9c7a6c108d1e995f8f3d799fc17347217170ffaa2e81fcb89",
+        "UniTVelo": "8f6e9542bd770fca58a4ee559af0849c3ff167e59f6d9fe78fd92bc68fb28734",
+        "GraphVelo_scv": "0584fc72ba846a9df9f90aaa4fa22970e0c51758ac92c28d496a5f0c792a8313"
+      },
+      "reference_h5ad_sha256": "fe16938478e70419c4e997e3ba8130e3a2596b73aa6b038228d4a02d9289b8ae",
+      "reference_neighbor_sha256": "ec31841b736d7beb56063261aa91f8fc60652de7837df89c5c246f69fe9ef4d2",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "f39d707b9b3eea1a3365c4228de53c5da233cdce79351f56a08270c85fcca992"
+    },
+    "hematopoiesis": {
+      "n_cells": 1947,
+      "sha256": {
+        "geometry.npz": "8afeab441f5eb647c755dbd7392ce41c8fd6ade4b5aa697106dc4c73fa029416",
+        "operator_input_TIvelo.npz": "d79ba8079311a3fab20433ad2a30fdc57b88d1d364754b71f12df47b5176ee3e",
+        "operator_input_veloVI.npz": "48a4b87bd7787b5460fb5ae98d17889b420d4c311c36e3ebc6df8de31f887314",
+        "operator_input_DeepVelo.npz": "faa1248da0b0473c9bf53e60b0d56a0944bd8dca08aaffce1e297fc8868b5f7f",
+        "operator_input_UniTVelo.npz": "33993d222eda20aeb091aeb1ba95f88e3755a567c631f4839ef5ffdc97a08fd9",
+        "operator_input_GraphVelo_scv.npz": "23a60e205cc0d7661a529ea92e635e16c112324c2c89b0b3a35c4ce03f213b26"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "d5349ec161af60769d78a666f554dd007dd8bd0c45d8c534a846daa57887696e",
+        "veloVI": "b4c78e3c57b82e59c45d78aa44b126f7d3c4c9fde91ef5f19065787348278dc7",
+        "DeepVelo": "cdc508b1da1533ea06a6bdf57d71a5ead8da50eed545259f966e9f7ac0389288",
+        "UniTVelo": "cdf9a454d9c208ac7d5a53808b13b72fbf6eacc40bb54f0ce572cb124fe327f0",
+        "GraphVelo_scv": "5d292db4bb9da8ed3c9edcd48ffe0fe6ce2360a474f90877f65fe623e1c5c720"
+      },
+      "reference_h5ad_sha256": "a883cfb821614ee7d90f3a4971bc998c8782671f651481c40d2aa871ed78248f",
+      "reference_neighbor_sha256": "0de5c1c8e5172626aee8c02995ded5e1319be0af6e9593a8e4db7a7c4e92b5b1",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "eacd25629dd5fa940169a6f67e1debeb24cf6ae8914cc248360ee6bd78df4fad"
+    },
+    "mousebrain": {
+      "n_cells": 3365,
+      "sha256": {
+        "geometry.npz": "1fb08652b40d47e962dcf0908e933dda11653e766579695d8b93c5b0264d2dfc",
+        "operator_input_TIvelo.npz": "893b962746d8a2e0513320233f24737735eb297778106fdfb7901ed7b638a87a",
+        "operator_input_veloVI.npz": "1352e7abf441922fb4497427c04c8a49b8a69a78b0a43075454e5c28598cbc9e",
+        "operator_input_DeepVelo.npz": "293f1565422e01d80c8080f1ae3f45c3356f40bf9bac5eeb99e7afc702a4fb22",
+        "operator_input_UniTVelo.npz": "bb311738154d3cfcb17d4902ca99465bc6c161cbf7f55c5007e2aa8a602d5558",
+        "operator_input_GraphVelo_scv.npz": "183005ef6781bff6718a8bfbe88f5045eb18efcb73282627762e4aaf93632e0f"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "4fe056c528ea5a33a366fc502b5cc932e51a629e7531efe612ccc05875db34de",
+        "veloVI": "cad73683e68ed887431a4401f7c24196346694e1e38b1f6fd9da4950461e4c78",
+        "DeepVelo": "8f2fc58ee00055c6b7e7bf3529eed5c7cb39e73f9fc05ca4ccf7115e46fdf0c8",
+        "UniTVelo": "33f7b81cc48066cb1ff562bcb7fb5d51c0fe83629d8845e677c3680d55bed02d",
+        "GraphVelo_scv": "96babdca143780394a3c314642969c58fab275ff796cb4e167620ed2a43b52ba"
+      },
+      "reference_h5ad_sha256": "d941b1ed4f187c72c6e2edfbe1129d3debe7241dd175f11152fe04be8259af4a",
+      "reference_neighbor_sha256": "884e272cfa322e8906935ecd27109daceefb1c8a58e1a09e952383607baa521e",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "8ccc14327af09079a7ce2257291a0459038322895698a62d457f5f42da1b68c4"
+    },
+    "neuron": {
+      "n_cells": 3066,
+      "sha256": {
+        "geometry.npz": "c927741a7cf019e2bceeb85f1837db10e79509aecf6ca903939543cf2440b6df",
+        "operator_input_TIvelo.npz": "5fd7c38434aa09d60a649f940894bc272498e57f5fed0e7ed16312dde9f98fa7",
+        "operator_input_veloVI.npz": "666f8d70911f3770f5e5508c6c7480cac6063a06a75a5a695b18e27b041d3c2b",
+        "operator_input_DeepVelo.npz": "9a560c0c29891403585b2af217cf3ee3f5430fc9331f224e0b7b6db7dca627d2",
+        "operator_input_UniTVelo.npz": "75b0212fe898b7432c54beed2198fe72a899eb4d39c97e0f06ab02ec9c8c7331",
+        "operator_input_GraphVelo_scv.npz": "5e3e93b78fd73d97a2da126432f78f5fb31c2bb9e1cbd4c142fb729335f9d81f"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "2f5ad87d5cf453ec7a80fb28e4986f2c4b1404e540f1838b5effd6f149003af2",
+        "veloVI": "8920ab26814a81c24e407ebb47eed5b4f53a33031d3c0ff5122384ba4d5c2b62",
+        "DeepVelo": "23b9f13760344861c20415e967859c82c130a444c87978bbbc204c2f38b4491c",
+        "UniTVelo": "5b1c6612c575c9706c48cd29db08f06b816ce111103ec2a3ddf060960ea84469",
+        "GraphVelo_scv": "8408cbf9eda59255b2c4699160b0bb3cfd8e1fef5ec86e7b2578603524cc2d3a"
+      },
+      "reference_h5ad_sha256": "0e943a3f62f201ea3723721c516cddfc534ed654dc7e1b89bd97558de004f23f",
+      "reference_neighbor_sha256": "488450751b61abb85ba69034f2af33f6fbbaddd9c28c43bf13f8bbc22c362467",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "638d36e33608613ef45e02a612f64480b334fea174e0c82929549eb76a04b6c2"
+    },
+    "organoid": {
+      "n_cells": 3831,
+      "sha256": {
+        "geometry.npz": "8d70d2445bc43ed7b5db1c7f3a64e2081b3e2504698bcacdef746964fdb3b51b",
+        "operator_input_TIvelo.npz": "5d0048d23319b0f9e94e12b2b2f14b8de3d54e7b8271cf2383342455f8f9b742",
+        "operator_input_veloVI.npz": "5217379891de80fa8bb59c7a1e9ca94a4bc56360160c810520a9771a793f8c3a",
+        "operator_input_DeepVelo.npz": "7afa044980276e862ab96cf65fc66e10ed9dfd944c701d761de94d318b38d5a3",
+        "operator_input_UniTVelo.npz": "1c85febe0fb791ce126f2a41e84bade49ee0ab23d002357af5fd71404367eef8",
+        "operator_input_GraphVelo_scv.npz": "67ca210e473b4591197f8708404254d3371c332eda8daac60d1eb37708ff23d0"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "9d9c0c8bcb32ef74508dd6a5541681b6c9881e1051d2722931f39b91a7801759",
+        "veloVI": "81cd614ca4c9ae0a9bbfa679cca417864ba4f59c0fdb7ff0ff8dce57c0cfce36",
+        "DeepVelo": "c23b1404ef65f7717fe52becd7864a7b8cd56f7a457ea4677e5ab6af43dd7d8f",
+        "UniTVelo": "2920510983085a2c692192b07d642e04cee0e44c4373f3e2a353c80cd23a6d4e",
+        "GraphVelo_scv": "98b7e75c182e3a25468a18cac85b31f543f1d48495a010aba3895f7f0534578f"
+      },
+      "reference_h5ad_sha256": "9da4a4e029d1c69287dc54e99794999d80ebfcdfe7fcf92752f7dc824aeeaae4",
+      "reference_neighbor_sha256": "8b6e8d636b42acb37f199bd1a4de92cc73bc12966c4b2d681079972ae3b1b95d",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "1a75cf2a7cee7a52e0251f4b37e36fdfd0f0e04eda7fb9ce51459cabf4f99199"
+    },
+    "pancreas": {
+      "n_cells": 3696,
+      "sha256": {
+        "geometry.npz": "170faa8818bd303a24b3e24cfd8a90b5c8fe9506ce0d5ee907210647b38d61ed",
+        "operator_input_TIvelo.npz": "e9df190bdb7fd9c80969d7f974fb14d5314ac0ea5c79ada5f3c75c6339e4bee8",
+        "operator_input_veloVI.npz": "acee0ce98dfa8f87c2386635a1586052211e4174488434c9a49a67d4ccf7cb0e",
+        "operator_input_DeepVelo.npz": "4dc642ba4c0130b0d42f35c19e0e3cfdd4de26b7ce6920d2e3afeb8a54395228",
+        "operator_input_UniTVelo.npz": "c6e2e98db298025e055f88ac826726bde3b679abe3a6a9d4b072edf9cdaa321f",
+        "operator_input_GraphVelo_scv.npz": "e598682f2909f9b995fa7fc19a547fe1938d53dc7286dd335357198e157a669e"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "6130f6163e861dcb6eeb5ddc4ca991f7f67e4c8abedb35396adeea89b9a57c4c",
+        "veloVI": "149bd8cfca26993a78d48fdcb613fd1138d665f09ece1713c28ffa81d350f7e2",
+        "DeepVelo": "5847458a2a5cf38b8b18733f52789edf4596f7a5417fd1935e2bfd1af8480d33",
+        "UniTVelo": "e370160df055e0d60757478ecbb3d5420eaf8ae2ca55c0ffa35178a885fb26a3",
+        "GraphVelo_scv": "264d289d513273d81f92ffdc516572ebbac0927b776d62a2391e20b5317bb3ea"
+      },
+      "reference_h5ad_sha256": "c91c6ba14a77d48c1a3369265e9d135c4a28dfc82d702a4f2b14c1ec96029cc1",
+      "reference_neighbor_sha256": "30b7e3a2a35ab2c88310d54fc986159b57d9dddedfd647822053f0a9806d91a0",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "8f0aa74dfb55f22ea4c360d8d80960bdb0a78cad120b4824ea5a8e6c66a5fbe8"
+    },
+    "retina": {
+      "n_cells": 2726,
+      "sha256": {
+        "geometry.npz": "62d2020f0c831cd57354d96f4b71bcf0b158ae47d0befeaf578f611f7b2aac0a",
+        "operator_input_TIvelo.npz": "2f68d393e6191ba413bc8342d5a5898b48e08af121ce1623d514857e7af6fd9a",
+        "operator_input_veloVI.npz": "7d888c9f0cec827cb28df9f1cba5ae9b9d8262f577395fcb0beb9af047d9f84f",
+        "operator_input_DeepVelo.npz": "3d301f5ab75adfa73d12bb7ded652386fd8604c32d0730141b4965da5dc8ca63",
+        "operator_input_UniTVelo.npz": "e0e7a3e75b54f03292ccb80c2147d312a17055dd7f47c8ac9c9c70bd8e631746",
+        "operator_input_GraphVelo_scv.npz": "7abf5003799fbc4fc4096eb24216bcd6998990abd4753daa69ed82cb56635cee"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "7c0c3369e38a3671c0b67df543942a0fb2feb1f500db6e9bc00120a913e8e100",
+        "veloVI": "4575c6b54e905b7e2825d1f92223c32cc872ffb6a05ed6a9e4cf6ef0b993e239",
+        "DeepVelo": "c3b1d91e590d3d3dda2ad55f8275015a64d0964dbc10656cdd4a0cd592732ca4",
+        "UniTVelo": "6fa1229fee71bee65df29295c4d6205655b8d731faf0ea6db54c3b43053543e9",
+        "GraphVelo_scv": "d197a076ba7e24efcebd8caa3e4d96426e76b51e67a24e62323ef5e4de4fa348"
+      },
+      "reference_h5ad_sha256": "76228f408e2bc43649617fc503522eadf876718823f05c4e37dfca96ce5947e1",
+      "reference_neighbor_sha256": "6639001e9fe6e87708cc502e15c5b87692929379be9f8f1a6c792dd855f20ccc",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "a0b3be30700b8225e32d0a3ac94fd70ba9a94384262e9019f287325d59a8538d"
+    },
+    "rpe1": {
+      "n_cells": 2793,
+      "sha256": {
+        "geometry.npz": "805911891f003990d88c45ebdd9b475393fff9179f7e2c31f6a2ab444de7e8e4",
+        "operator_input_TIvelo.npz": "6a9ad7b366f68f9d2eb4210267d7ea38898f6fc184b064094da334bc745300a7",
+        "operator_input_veloVI.npz": "977b00fc6d1d40d995f78fdc9490b163fa2c80c580a40179a3c05adeedf42683",
+        "operator_input_DeepVelo.npz": "4851062dda3be939b74577dbe112de8f870e1578b045e55f3600658a4af2badd",
+        "operator_input_UniTVelo.npz": "7db6090063a123f37bfa34cef6b1567145b8dc9ee6854ec75c65869a011b86fa",
+        "operator_input_GraphVelo_scv.npz": "a901262103df34536db580c4f7e240e01f3041556cded2b46df2253117d51c7c"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "b4f99eb6532f9bb4a3c87e96e05ddc60d50866f784f80431ed8b7239259b509e",
+        "veloVI": "63fe2f14fa03465fbfe016e77d217e0e8dcec63ac91cb7cec04bdb8bc9c51622",
+        "DeepVelo": "2c77556c9cb955ad2b7e95e3bbe47879c914646db6f2be29aa9736a3877503e4",
+        "UniTVelo": "1d06affd9109a92fb1336a099aac8982edb9e0c1fbef3c920e79674dec7e8348",
+        "GraphVelo_scv": "bbaef25cda1677d897f6a91497fbbee34bca58cdfdc3f0df4d8073b64e6ffc87"
+      },
+      "reference_h5ad_sha256": "f309161a86f0025319c625ab325da73c6a312a04e6dc8656ac1dd58f13b5404c",
+      "reference_neighbor_sha256": "e5ec16a652c68a503d0e7c9b1497fe213e78a83074093eaadca7a4c8958a00c0",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "4326ef8ef3c7eb64fa859be8c4a6e39727fdd2a2e203339a86005fe5975aba95"
+    },
+    "rpe1_gen": {
+      "n_cells": 3354,
+      "sha256": {
+        "geometry.npz": "2865424b069cfc24bf5fd89f446e7353482f271b2efef9f2a604f5ed3800e0ec",
+        "operator_input_TIvelo.npz": "e811afee835ac20e8dbdb51c7ce3035ec3d65cd3e330d19efb575174233c9164",
+        "operator_input_veloVI.npz": "eede85a0224238f6151b87eae33413b734fa94185ecfe9a02ec549613d8e4569",
+        "operator_input_DeepVelo.npz": "bf169df883ce2a202fecd09998b8dab5decd9b6736e54f4e4ecc2600ef37a86f",
+        "operator_input_UniTVelo.npz": "31b919c7798189d20d402f94ccfa871068365f2456c8a693f871aff11a6a7eb9",
+        "operator_input_GraphVelo_scv.npz": "29402c7d8d0a0c19bd17c0f0936a31ef3b414faa751f34d84146b263ec4a0a4f"
+      },
+      "member_native_h5ad_sha256": {
+        "TIvelo": "89e0d0d033f1194abc3cfcbd0bed29e119e1773c403396a418083a0d8ab45864",
+        "veloVI": "c2e85233115cbce911f3d4541d3eef06d3f04e6bd142c474bfdcdbe36dda92a9",
+        "DeepVelo": "8b9d68e3ba2d8fa00fa8cec228bf93c97243be9089bb57f4aafa0c5cf56bdd6a",
+        "UniTVelo": "4c33ce35104becfbaeab9fadc43119076da9a4adf77ad6e47c507015cd3ffae4",
+        "GraphVelo_scv": "2fae93ae5cad0bde53cdccea66e37031420dbe830a80ccb9e6b60c47950113dd"
+      },
+      "reference_h5ad_sha256": "e1ceb5df82701ad6fcf50c56d22e3009409257bbd98e1dde12764928055c952f",
+      "reference_neighbor_sha256": "9f79f9bf521340f3695a9d1afd0a3bed290ab4390bb69899eb15ae95d4162062",
+      "graphvelo_phi_source": "verified_sidecar",
+      "native_phi_sha256": "416b6a3fd275ffc1c9f510ff936d1c48c5744ab1019fc5f8244b0d2e3fefb6f1"
+    }
+  }
+}

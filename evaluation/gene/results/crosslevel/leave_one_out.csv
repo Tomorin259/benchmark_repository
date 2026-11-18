@@ -1,0 +1,127 @@
+setting,omitted_dataset,method,on_front
+gene,retina,cellDancer,False
+gene,retina,DeepVelo,False
+gene,retina,DeepVelo_scv,False
+gene,retina,GraphVelo_scv,False
+gene,retina,MultiVelo (RNA_only),False
+gene,retina,scVelo_dyn,False
+gene,retina,TIvelo,True
+gene,retina,UniTVelo,True
+gene,retina,veloVI,False
+joint,retina,cellDancer,False
+joint,retina,DeepVelo,False
+joint,retina,DeepVelo_scv,False
+joint,retina,GraphVelo_scv,False
+joint,retina,MultiVelo (RNA_only),False
+joint,retina,scVelo_dyn,False
+joint,retina,TIvelo,True
+joint,retina,UniTVelo,True
+joint,retina,veloVI,False
+gene,DentateGyrus_lamanno,cellDancer,False
+gene,DentateGyrus_lamanno,DeepVelo,False
+gene,DentateGyrus_lamanno,DeepVelo_scv,False
+gene,DentateGyrus_lamanno,GraphVelo_scv,False
+gene,DentateGyrus_lamanno,MultiVelo (RNA_only),False
+gene,DentateGyrus_lamanno,scVelo_dyn,False
+gene,DentateGyrus_lamanno,TIvelo,True
+gene,DentateGyrus_lamanno,UniTVelo,True
+gene,DentateGyrus_lamanno,veloVI,False
+joint,DentateGyrus_lamanno,cellDancer,False
+joint,DentateGyrus_lamanno,DeepVelo,False
+joint,DentateGyrus_lamanno,DeepVelo_scv,False
+joint,DentateGyrus_lamanno,GraphVelo_scv,False
+joint,DentateGyrus_lamanno,MultiVelo (RNA_only),False
+joint,DentateGyrus_lamanno,scVelo_dyn,False
+joint,DentateGyrus_lamanno,TIvelo,True
+joint,DentateGyrus_lamanno,UniTVelo,True
+joint,DentateGyrus_lamanno,veloVI,False
+gene,gastrulation,cellDancer,False
+gene,gastrulation,DeepVelo,False
+gene,gastrulation,DeepVelo_scv,False
+gene,gastrulation,GraphVelo_scv,False
+gene,gastrulation,MultiVelo (RNA_only),False
+gene,gastrulation,scVelo_dyn,False
+gene,gastrulation,TIvelo,True
+gene,gastrulation,UniTVelo,True
+gene,gastrulation,veloVI,False
+joint,gastrulation,cellDancer,False
+joint,gastrulation,DeepVelo,False
+joint,gastrulation,DeepVelo_scv,False
+joint,gastrulation,GraphVelo_scv,False
+joint,gastrulation,MultiVelo (RNA_only),False
+joint,gastrulation,scVelo_dyn,False
+joint,gastrulation,TIvelo,True
+joint,gastrulation,UniTVelo,True
+joint,gastrulation,veloVI,False
+gene,capo_pre,cellDancer,False
+gene,capo_pre,DeepVelo,False
+gene,capo_pre,DeepVelo_scv,False
+gene,capo_pre,GraphVelo_scv,False
+gene,capo_pre,MultiVelo (RNA_only),False
+gene,capo_pre,scVelo_dyn,False
+gene,capo_pre,TIvelo,True
+gene,capo_pre,UniTVelo,False
+gene,capo_pre,veloVI,False
+joint,capo_pre,cellDancer,False
+joint,capo_pre,DeepVelo,False
+joint,capo_pre,DeepVelo_scv,False
+joint,capo_pre,GraphVelo_scv,False
+joint,capo_pre,MultiVelo (RNA_only),False
+joint,capo_pre,scVelo_dyn,False
+joint,capo_pre,TIvelo,True
+joint,capo_pre,UniTVelo,True
+joint,capo_pre,veloVI,False
+gene,bonemarrow,cellDancer,False
+gene,bonemarrow,DeepVelo,False
+gene,bonemarrow,DeepVelo_scv,False
+gene,bonemarrow,GraphVelo_scv,False
+gene,bonemarrow,MultiVelo (RNA_only),False
+gene,bonemarrow,scVelo_dyn,False
+gene,bonemarrow,TIvelo,True
+gene,bonemarrow,UniTVelo,True
+gene,bonemarrow,veloVI,False
+joint,bonemarrow,cellDancer,False
+joint,bonemarrow,DeepVelo,False
+joint,bonemarrow,DeepVelo_scv,False
+joint,bonemarrow,GraphVelo_scv,False
+joint,bonemarrow,MultiVelo (RNA_only),False
+joint,bonemarrow,scVelo_dyn,False
+joint,bonemarrow,TIvelo,True
+joint,bonemarrow,UniTVelo,True
+joint,bonemarrow,veloVI,False
+gene,mousebrain,cellDancer,False
+gene,mousebrain,DeepVelo,False
+gene,mousebrain,DeepVelo_scv,False
+gene,mousebrain,GraphVelo_scv,False
+gene,mousebrain,MultiVelo (RNA_only),False
+gene,mousebrain,scVelo_dyn,False
+gene,mousebrain,TIvelo,True
+gene,mousebrain,UniTVelo,True
+gene,mousebrain,veloVI,False
+joint,mousebrain,cellDancer,False
+joint,mousebrain,DeepVelo,False
+joint,mousebrain,DeepVelo_scv,False
+joint,mousebrain,GraphVelo_scv,False
+joint,mousebrain,MultiVelo (RNA_only),False
+joint,mousebrain,scVelo_dyn,False
+joint,mousebrain,TIvelo,True
+joint,mousebrain,UniTVelo,True
+joint,mousebrain,veloVI,False
+gene,pancreas,cellDancer,False
+gene,pancreas,DeepVelo,False
+gene,pancreas,DeepVelo_scv,False
+gene,pancreas,GraphVelo_scv,False
+gene,pancreas,MultiVelo (RNA_only),False
+gene,pancreas,scVelo_dyn,False
+gene,pancreas,TIvelo,True
+gene,pancreas,UniTVelo,True
+gene,pancreas,veloVI,False
+joint,pancreas,cellDancer,False
+joint,pancreas,DeepVelo,False
+joint,pancreas,DeepVelo_scv,False
+joint,pancreas,GraphVelo_scv,False
+joint,pancreas,MultiVelo (RNA_only),False
+joint,pancreas,scVelo_dyn,False
+joint,pancreas,TIvelo,True
+joint,pancreas,UniTVelo,True
+joint,pancreas,veloVI,False

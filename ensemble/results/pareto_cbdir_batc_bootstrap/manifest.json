@@ -1,0 +1,38 @@
+{
+  "batch_size": 250,
+  "bootstrap_unit": "dataset",
+  "caption": "Methods ranked by inclusion frequency in the Pareto front of macro-mean CBDir and BATC over 10,000 paired dataset-bootstrap draws. Each draw samples 14 of the observed datasets with replacement and retains all methods and both metrics together. Blue bars denote methods on the original mean front. Percentages need not sum to 100 because multiple methods can share a front. Frequencies describe stability on these observed datasets.",
+  "dataset_weighting": "equal within each draw",
+  "directions": "maximize both",
+  "dominance": "all A >= B and at least one A > B; full precision; epsilon=0",
+  "draw_size": 14,
+  "front_size_mean": 1.8355,
+  "generator_sha256": "c92b8bb554737c0c9abf288a6864f5c62117e50366025458cd359eacbacc92a3",
+  "interpretation": "empirical dataset-reweighting stability, not probability of being correct",
+  "metrics": [
+    "cbdir",
+    "batc"
+  ],
+  "numpy_version": "1.26.4",
+  "outputs_sha256": {
+    "bootstrap.npz": "5bdecd8fa532700369967bff194976c7438e3ab3fc7cda0978e1d9ab9ab935a7",
+    "ranking.csv": "de905ab767c6221123dbb743f2ac36c723c9ab91dfc9b01a0585577f8e34febb",
+    "ranking.pdf": "c7bea50f1866e8879f6c2323a65f287f020ed4e0dc4ee7450bb7be3e8e710461",
+    "ranking.png": "e20bbc45dd8b29f289696320fa2578f581522154af9b6090e9480c358625fb2f"
+  },
+  "pairing": "every draw uses the same dataset indices for all 20 methods and both metrics",
+  "replacement": true,
+  "repository_head": "7af09e74b8fbec89bca0b7cf9aefd1259850f2c4",
+  "resamples": 10000,
+  "rng": "default_rng / PCG64",
+  "score_space": "current formal method-native Cell scores, including updated GraphVelo bone marrow",
+  "seed": 20261109,
+  "sources_sha256": {
+    "evaluation/cell/inputs.tsv": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb",
+    "evaluation/cell/results/cell_metrics.csv": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649",
+    "evaluation/cell/results/cell_metrics_audit.csv": "dda8e2aa2a6c566139aebc5c0af85d1fa4a8672dcf53f9deaa478a9afbc3ee30",
+    "methods/configurations.tsv": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
+  },
+  "statistic": "percentage of bootstrap macro-mean pairs on the nondominated front",
+  "status": "complete"
+}

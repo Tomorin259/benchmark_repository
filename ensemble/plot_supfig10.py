@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -18,6 +19,7 @@ import seaborn as sns
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from evaluation.cell.plots import BENCHMARK_COLORS, METHOD_NAME_MAPPING
+from ensemble.core import sha256
 
 SEED = 123
 ENSEMBLE_ID = "signed_t_row_geometric_median4"
@@ -188,6 +190,8 @@ def plot_metric(values: pd.DataFrame, metric: str, output_dir: Path) -> None:
         facecolor="white",
         metadata={"Date": None},
     )
+    fig.savefig(stem.with_suffix(".png"), dpi=300, facecolor="white")
+    fig.savefig(stem.with_suffix(".pdf"), facecolor="white", metadata={"CreationDate": None})
     plt.close(fig)
     svg_path.write_text(
         "\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n",
@@ -199,20 +203,59 @@ def build_parser() -> argparse.ArgumentParser:
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-csv", type=Path, default=root / "evaluation/cell/results/cell_metrics.csv")
-    parser.add_argument("--ensemble-csv", type=Path, default=root / "ensemble/results/scores.csv")
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=root / "figures/assembly/suppfig10",
-    )
+    parser.add_argument("--ensemble-csv", type=Path, required=True,
+                        help="CSV containing signed_t_row_geometric_median4 scores")
+    parser.add_argument("--output-dir", type=Path, required=True,
+                        help="new output directory outside the figure assembly")
     return parser
 
 
 def main() -> int:
-    args = build_parser().parse_args()
+    parser = build_parser()
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parents[1]
+    args.output_dir = args.output_dir.resolve()
+    if args.output_dir.is_relative_to(root / "figures/assembly") or args.output_dir.exists():
+        parser.error("--output-dir must be a new directory outside the figure assembly")
     values = load_values(args.base_csv, args.ensemble_csv)
+    args.output_dir.mkdir(parents=True)
     for metric in METRICS:
         plot_metric(values, metric, args.output_dir)
+    values.to_csv(args.output_dir / "plot_data.csv", index=False)
+    def logical_path(path):
+        path = path.resolve()
+        return str(path.relative_to(root)) if path.is_relative_to(root) else path.name
+    source_metadata = args.ensemble_csv.parent / "metadata.json"
+    projection = None
+    if source_metadata.is_file():
+        projection = json.loads(source_metadata.read_text()).get("projection")
+    outputs = [args.output_dir / (stem + extension) for stem in PANEL_STEMS.values()
+               for extension in (".svg", ".png", ".pdf")]
+    outputs.append(args.output_dir / "plot_data.csv")
+    manifest = {
+        "figure": "Supplementary Figure 10",
+        "ensemble": ENSEMBLE_LABEL, "variant": ENSEMBLE_ID,
+        "datasets": 14, "base_configurations": 20, "metric_rows": len(values),
+        "metrics": list(METRICS), "projection": projection,
+        "generator": "ensemble/plot_supfig10.py",
+        "generator_sha256": sha256(Path(__file__)), "jitter_seed": SEED,
+        "inputs": [{"path": logical_path(path), "sha256": sha256(path)}
+                   for path in (args.base_csv, args.ensemble_csv)],
+        "ensemble_source_metadata": (
+            {"path": logical_path(source_metadata), "sha256": sha256(source_metadata)}
+            if source_metadata.is_file() else None
+        ),
+        "ensemble_macro_means": {
+            metric: float(values.loc[(values.method == ENSEMBLE_ID)
+                                     & (values.metric == metric), "score"].mean())
+            for metric in METRICS
+        },
+        "layout": {"figure_inches": [13.8, 15.2], "png_dpi": 300,
+                   "score_limits": [-1.05, 1.05], "method_order": "descending macro mean"},
+        "outputs": [{"file": path.name, "sha256": sha256(path)} for path in outputs],
+    }
+    (args.output_dir / "panel_manifest.json").write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     return 0
 
 

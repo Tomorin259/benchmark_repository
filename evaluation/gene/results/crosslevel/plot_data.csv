@@ -1,0 +1,424 @@
+panel,method,dataset,field,value
+a,cellDancer,Mouse retina,consistency,0.8281815870287288
+a,cellDancer,Dentategyrus_lamanno,consistency,0.5882792047082285
+a,cellDancer,Gastrulation,consistency,0.6277657877560614
+a,cellDancer,capofibro (VeloCycle),consistency,0.9024345984998287
+a,cellDancer,Human bone marrow,consistency,0.9373907462120227
+a,cellDancer,mousebrain,consistency,0.9492483145555936
+a,cellDancer,Pancreas,consistency,0.8696634191633988
+b,cellDancer,Mouse retina,iccoh,0.8507324490292841
+b,cellDancer,Dentategyrus_lamanno,iccoh,0.6033305221604864
+b,cellDancer,Gastrulation,iccoh,0.644914603730905
+b,cellDancer,capofibro (VeloCycle),iccoh,0.9066382979026345
+b,cellDancer,Human bone marrow,iccoh,0.9451635612370151
+b,cellDancer,mousebrain,iccoh,0.9516429675367205
+b,cellDancer,Pancreas,iccoh,0.8975188102448101
+c,cellDancer,Mouse retina,cbdir,0.4006793938040004
+c,cellDancer,Dentategyrus_lamanno,cbdir,0.2482865696819138
+c,cellDancer,Gastrulation,cbdir,0.6691701687640763
+c,cellDancer,capofibro (VeloCycle),cbdir,-0.06734296040476426
+c,cellDancer,Human bone marrow,cbdir,-0.7925886826844661
+c,cellDancer,mousebrain,cbdir,0.149323476523822
+c,cellDancer,Pancreas,cbdir,0.4560370369540037
+d,cellDancer,Mouse retina,batc,0.3765422453650128
+d,cellDancer,Dentategyrus_lamanno,batc,0.08794548103263468
+d,cellDancer,Gastrulation,batc,0.7616628851553089
+d,cellDancer,capofibro (VeloCycle),batc,-0.36068815432615947
+d,cellDancer,Human bone marrow,batc,-0.5848407029874179
+d,cellDancer,mousebrain,batc,0.14253366309159468
+d,cellDancer,Pancreas,batc,0.7082521858814216
+e,cellDancer,Mouse retina,transcosine,0.18474549055099487
+e,cellDancer,Dentategyrus_lamanno,transcosine,0.12709474563598633
+e,cellDancer,Gastrulation,transcosine,0.3608710765838623
+e,cellDancer,capofibro (VeloCycle),transcosine,0.12614786624908447
+e,cellDancer,Human bone marrow,transcosine,0.08641815930604935
+e,cellDancer,mousebrain,transcosine,0.10179390758275986
+e,cellDancer,Pancreas,transcosine,0.18864849209785461
+f,cellDancer,retina,gene_cbdir,0.1778612731023465
+f,cellDancer,DentateGyrus_lamanno,gene_cbdir,0.029709237774522987
+f,cellDancer,gastrulation,gene_cbdir,0.11517806063885327
+f,cellDancer,capo_pre,gene_cbdir,-0.02879366000204425
+f,cellDancer,bonemarrow,gene_cbdir,-0.05029878019957509
+f,cellDancer,mousebrain,gene_cbdir,0.03847362430148406
+f,cellDancer,pancreas,gene_cbdir,0.11232090873704377
+g,cellDancer,macro,mean_gene_cbdir,0.05635009490751875
+g,cellDancer,macro,mean_cell_cbdir,0.15193785751979796
+g,cellDancer,macro,mean_batc,0.16162965760177075
+h,cellDancer,bootstrap,gene_front_percent,0.0
+h,cellDancer,bootstrap,joint_front_percent,0.3052663916759659
+a,DeepVelo,Mouse retina,consistency,0.8914611433042373
+a,DeepVelo,Dentategyrus_lamanno,consistency,0.9473605689859785
+a,DeepVelo,Gastrulation,consistency,0.8871405472138647
+a,DeepVelo,capofibro (VeloCycle),consistency,0.7255289349405087
+a,DeepVelo,Human bone marrow,consistency,0.9266756313688888
+a,DeepVelo,mousebrain,consistency,0.878111786370558
+a,DeepVelo,Pancreas,consistency,0.9278845987973204
+b,DeepVelo,Mouse retina,iccoh,0.8964360742214629
+b,DeepVelo,Dentategyrus_lamanno,iccoh,0.94870878514627
+b,DeepVelo,Gastrulation,iccoh,0.9058969854828428
+b,DeepVelo,capofibro (VeloCycle),iccoh,0.7347422566632051
+b,DeepVelo,Human bone marrow,iccoh,0.9394265567650685
+b,DeepVelo,mousebrain,iccoh,0.8949443776411787
+b,DeepVelo,Pancreas,iccoh,0.9203867137413895
+c,DeepVelo,Mouse retina,cbdir,0.6190634979840658
+c,DeepVelo,Dentategyrus_lamanno,cbdir,0.577378766152686
+c,DeepVelo,Gastrulation,cbdir,0.41085239024540654
+c,DeepVelo,capofibro (VeloCycle),cbdir,0.33101010136080083
+c,DeepVelo,Human bone marrow,cbdir,-0.6718151921285229
+c,DeepVelo,mousebrain,cbdir,0.34219798806091506
+c,DeepVelo,Pancreas,cbdir,0.5653923145364957
+d,DeepVelo,Mouse retina,batc,0.1741030819786475
+d,DeepVelo,Dentategyrus_lamanno,batc,0.6852122857461307
+d,DeepVelo,Gastrulation,batc,0.7694665810583703
+d,DeepVelo,capofibro (VeloCycle),batc,0.27819349259679255
+d,DeepVelo,Human bone marrow,batc,-0.4930774473141487
+d,DeepVelo,mousebrain,batc,0.330896333641134
+d,DeepVelo,Pancreas,batc,0.7532055084176613
+e,DeepVelo,Mouse retina,transcosine,0.17728573083877563
+e,DeepVelo,Dentategyrus_lamanno,transcosine,0.11380626261234283
+e,DeepVelo,Gastrulation,transcosine,0.18132014572620392
+e,DeepVelo,capofibro (VeloCycle),transcosine,0.12107697874307632
+e,DeepVelo,Human bone marrow,transcosine,0.031146720051765442
+e,DeepVelo,mousebrain,transcosine,0.029179027304053307
+e,DeepVelo,Pancreas,transcosine,0.1277187168598175
+f,DeepVelo,retina,gene_cbdir,0.2098455706096596
+f,DeepVelo,DentateGyrus_lamanno,gene_cbdir,0.10285823626708589
+f,DeepVelo,gastrulation,gene_cbdir,0.02191912182402679
+f,DeepVelo,capo_pre,gene_cbdir,0.04270266946607175
+f,DeepVelo,bonemarrow,gene_cbdir,0.21915544620097802
+f,DeepVelo,mousebrain,gene_cbdir,0.12601342756275158
+f,DeepVelo,pancreas,gene_cbdir,0.14216205640753024
+g,DeepVelo,macro,mean_gene_cbdir,0.1235223611911577
+g,DeepVelo,macro,mean_cell_cbdir,0.3105828380302639
+g,DeepVelo,macro,mean_batc,0.35685711944636966
+h,DeepVelo,bootstrap,gene_front_percent,0.0
+h,DeepVelo,bootstrap,joint_front_percent,8.643750235263974
+a,DeepVelo_scv,Mouse retina,consistency,0.8935404322291675
+a,DeepVelo_scv,Dentategyrus_lamanno,consistency,0.9303796479719032
+a,DeepVelo_scv,Gastrulation,consistency,0.926606968182792
+a,DeepVelo_scv,capofibro (VeloCycle),consistency,0.8717304862771172
+a,DeepVelo_scv,Human bone marrow,consistency,0.9378116138183916
+a,DeepVelo_scv,mousebrain,consistency,0.871029354425154
+a,DeepVelo_scv,Pancreas,consistency,0.9096820023546309
+b,DeepVelo_scv,Mouse retina,iccoh,0.8952122363394933
+b,DeepVelo_scv,Dentategyrus_lamanno,iccoh,0.9394933125345272
+b,DeepVelo_scv,Gastrulation,iccoh,0.9306017297679091
+b,DeepVelo_scv,capofibro (VeloCycle),iccoh,0.8778646579975633
+b,DeepVelo_scv,Human bone marrow,iccoh,0.9441489163815244
+b,DeepVelo_scv,mousebrain,iccoh,0.8687064416612572
+b,DeepVelo_scv,Pancreas,iccoh,0.9189353758460574
+c,DeepVelo_scv,Mouse retina,cbdir,0.4602525591852933
+c,DeepVelo_scv,Dentategyrus_lamanno,cbdir,0.14574889442036443
+c,DeepVelo_scv,Gastrulation,cbdir,-0.4447555043087796
+c,DeepVelo_scv,capofibro (VeloCycle),cbdir,0.3986683223765913
+c,DeepVelo_scv,Human bone marrow,cbdir,-0.8396250029078346
+c,DeepVelo_scv,mousebrain,cbdir,0.38955124179290385
+c,DeepVelo_scv,Pancreas,cbdir,0.48720348950586523
+d,DeepVelo_scv,Mouse retina,batc,0.4135432602692256
+d,DeepVelo_scv,Dentategyrus_lamanno,batc,0.20393452118944883
+d,DeepVelo_scv,Gastrulation,batc,-0.25680793918866285
+d,DeepVelo_scv,capofibro (VeloCycle),batc,0.4015147121654975
+d,DeepVelo_scv,Human bone marrow,batc,-0.5996543042706675
+d,DeepVelo_scv,mousebrain,batc,0.21739666395893642
+d,DeepVelo_scv,Pancreas,batc,0.5180592977206121
+e,DeepVelo_scv,Mouse retina,transcosine,0.2841639518737793
+e,DeepVelo_scv,Dentategyrus_lamanno,transcosine,0.23103848099708557
+e,DeepVelo_scv,Gastrulation,transcosine,0.03663373738527298
+e,DeepVelo_scv,capofibro (VeloCycle),transcosine,0.19409601390361786
+e,DeepVelo_scv,Human bone marrow,transcosine,0.11155130714178085
+e,DeepVelo_scv,mousebrain,transcosine,0.20604678988456726
+e,DeepVelo_scv,Pancreas,transcosine,0.22028329968452454
+f,DeepVelo_scv,retina,gene_cbdir,0.06268834129449048
+f,DeepVelo_scv,DentateGyrus_lamanno,gene_cbdir,0.08641018353600972
+f,DeepVelo_scv,gastrulation,gene_cbdir,-0.001048103945229308
+f,DeepVelo_scv,capo_pre,gene_cbdir,0.09979606484157633
+f,DeepVelo_scv,bonemarrow,gene_cbdir,-0.06546152769696388
+f,DeepVelo_scv,mousebrain,gene_cbdir,0.1326258395746174
+f,DeepVelo_scv,pancreas,gene_cbdir,-0.04504769130510537
+g,DeepVelo_scv,macro,mean_gene_cbdir,0.03856615804277077
+g,DeepVelo_scv,macro,mean_cell_cbdir,0.08529200000920055
+g,DeepVelo_scv,macro,mean_batc,0.12828374454919858
+h,DeepVelo_scv,bootstrap,gene_front_percent,0.0
+h,DeepVelo_scv,bootstrap,joint_front_percent,0.0
+a,GraphVelo_scv,Mouse retina,consistency,0.6608364209307018
+a,GraphVelo_scv,Dentategyrus_lamanno,consistency,0.6483400580842426
+a,GraphVelo_scv,Gastrulation,consistency,0.7061977444553066
+a,GraphVelo_scv,capofibro (VeloCycle),consistency,0.6412823156122943
+a,GraphVelo_scv,Human bone marrow,consistency,0.6476327891301686
+a,GraphVelo_scv,mousebrain,consistency,0.6216957520509111
+a,GraphVelo_scv,Pancreas,consistency,0.7249835391666267
+b,GraphVelo_scv,Mouse retina,iccoh,0.6926481371453763
+b,GraphVelo_scv,Dentategyrus_lamanno,iccoh,0.6825204064716824
+b,GraphVelo_scv,Gastrulation,iccoh,0.6924708253767933
+b,GraphVelo_scv,capofibro (VeloCycle),iccoh,0.6704276766420918
+b,GraphVelo_scv,Human bone marrow,iccoh,0.7352770019970213
+b,GraphVelo_scv,mousebrain,iccoh,0.6434328011097403
+b,GraphVelo_scv,Pancreas,iccoh,0.7181274150544195
+c,GraphVelo_scv,Mouse retina,cbdir,0.6620911552697988
+c,GraphVelo_scv,Dentategyrus_lamanno,cbdir,0.3593058855220187
+c,GraphVelo_scv,Gastrulation,cbdir,0.2664116122937067
+c,GraphVelo_scv,capofibro (VeloCycle),cbdir,0.43009011907609346
+c,GraphVelo_scv,Human bone marrow,cbdir,-0.04057795098810646
+c,GraphVelo_scv,mousebrain,cbdir,0.5300688319681865
+c,GraphVelo_scv,Pancreas,cbdir,0.4699439893082579
+d,GraphVelo_scv,Mouse retina,batc,0.47648573255301674
+d,GraphVelo_scv,Dentategyrus_lamanno,batc,0.4106280207882955
+d,GraphVelo_scv,Gastrulation,batc,0.5044119901948294
+d,GraphVelo_scv,capofibro (VeloCycle),batc,0.4531429511539405
+d,GraphVelo_scv,Human bone marrow,batc,0.09486494871396796
+d,GraphVelo_scv,mousebrain,batc,0.5879520177703205
+d,GraphVelo_scv,Pancreas,batc,0.5858845009242724
+e,GraphVelo_scv,Mouse retina,transcosine,0.57541823387146
+e,GraphVelo_scv,Dentategyrus_lamanno,transcosine,0.32789722084999084
+e,GraphVelo_scv,Gastrulation,transcosine,0.19709113240242004
+e,GraphVelo_scv,capofibro (VeloCycle),transcosine,0.3455476760864258
+e,GraphVelo_scv,Human bone marrow,transcosine,0.3360900580883026
+e,GraphVelo_scv,mousebrain,transcosine,0.46343451738357544
+e,GraphVelo_scv,Pancreas,transcosine,0.39703044295310974
+f,GraphVelo_scv,retina,gene_cbdir,0.1020734922802861
+f,GraphVelo_scv,DentateGyrus_lamanno,gene_cbdir,0.10615536503725645
+f,GraphVelo_scv,gastrulation,gene_cbdir,-0.020319514788861143
+f,GraphVelo_scv,capo_pre,gene_cbdir,0.25241027340018174
+f,GraphVelo_scv,bonemarrow,gene_cbdir,0.0063112951603386605
+f,GraphVelo_scv,mousebrain,gene_cbdir,0.14111717342628174
+f,GraphVelo_scv,pancreas,gene_cbdir,0.1639070128655854
+g,GraphVelo_scv,macro,mean_gene_cbdir,0.107379299625867
+g,GraphVelo_scv,macro,mean_cell_cbdir,0.38247623463570796
+g,GraphVelo_scv,macro,mean_batc,0.44476716601409183
+h,GraphVelo_scv,bootstrap,gene_front_percent,0.0
+h,GraphVelo_scv,bootstrap,joint_front_percent,13.284795086595357
+a,MultiVelo (RNA_only),Mouse retina,consistency,0.9343600161073206
+a,MultiVelo (RNA_only),Dentategyrus_lamanno,consistency,0.9242241103447547
+a,MultiVelo (RNA_only),Gastrulation,consistency,0.951202414753633
+a,MultiVelo (RNA_only),capofibro (VeloCycle),consistency,0.8435471970633105
+a,MultiVelo (RNA_only),Human bone marrow,consistency,0.9580993409508756
+a,MultiVelo (RNA_only),mousebrain,consistency,0.811009928192809
+a,MultiVelo (RNA_only),Pancreas,consistency,0.9115389277230745
+b,MultiVelo (RNA_only),Mouse retina,iccoh,0.9378888852881048
+b,MultiVelo (RNA_only),Dentategyrus_lamanno,iccoh,0.9310682035262491
+b,MultiVelo (RNA_only),Gastrulation,iccoh,0.9530596075949711
+b,MultiVelo (RNA_only),capofibro (VeloCycle),iccoh,0.8548492272705331
+b,MultiVelo (RNA_only),Human bone marrow,iccoh,0.9621850522664909
+b,MultiVelo (RNA_only),mousebrain,iccoh,0.8285233312009677
+b,MultiVelo (RNA_only),Pancreas,iccoh,0.9211923303416922
+c,MultiVelo (RNA_only),Mouse retina,cbdir,0.5437886327967041
+c,MultiVelo (RNA_only),Dentategyrus_lamanno,cbdir,0.3753293352302484
+c,MultiVelo (RNA_only),Gastrulation,cbdir,-0.6683684139873194
+c,MultiVelo (RNA_only),capofibro (VeloCycle),cbdir,-0.5094038266952993
+c,MultiVelo (RNA_only),Human bone marrow,cbdir,-0.5149981871954755
+c,MultiVelo (RNA_only),mousebrain,cbdir,0.3435411233396056
+c,MultiVelo (RNA_only),Pancreas,cbdir,0.5410464763241477
+d,MultiVelo (RNA_only),Mouse retina,batc,0.28188805290153357
+d,MultiVelo (RNA_only),Dentategyrus_lamanno,batc,0.6097245269451608
+d,MultiVelo (RNA_only),Gastrulation,batc,-0.48302131633610734
+d,MultiVelo (RNA_only),capofibro (VeloCycle),batc,-0.5987533255426297
+d,MultiVelo (RNA_only),Human bone marrow,batc,-0.0523165713276216
+d,MultiVelo (RNA_only),mousebrain,batc,0.3868257246176071
+d,MultiVelo (RNA_only),Pancreas,batc,0.5907968615244377
+e,MultiVelo (RNA_only),Mouse retina,transcosine,0.08043528348207474
+e,MultiVelo (RNA_only),Dentategyrus_lamanno,transcosine,0.029031094163656235
+e,MultiVelo (RNA_only),Gastrulation,transcosine,0.007848423905670643
+e,MultiVelo (RNA_only),capofibro (VeloCycle),transcosine,0.0029412659350782633
+e,MultiVelo (RNA_only),Human bone marrow,transcosine,0.027953187003731728
+e,MultiVelo (RNA_only),mousebrain,transcosine,0.048688460141420364
+e,MultiVelo (RNA_only),Pancreas,transcosine,0.06424068659543991
+f,MultiVelo (RNA_only),retina,gene_cbdir,0.13615124482869292
+f,MultiVelo (RNA_only),DentateGyrus_lamanno,gene_cbdir,0.09816411258405942
+f,MultiVelo (RNA_only),gastrulation,gene_cbdir,-0.017665879421532884
+f,MultiVelo (RNA_only),capo_pre,gene_cbdir,0.2663786386033031
+f,MultiVelo (RNA_only),bonemarrow,gene_cbdir,-0.14448137893569515
+f,MultiVelo (RNA_only),mousebrain,gene_cbdir,-0.008319767625635313
+f,MultiVelo (RNA_only),pancreas,gene_cbdir,0.0644856722635572
+g,MultiVelo (RNA_only),macro,mean_gene_cbdir,0.05638752032810704
+g,MultiVelo (RNA_only),macro,mean_cell_cbdir,0.01584787711608738
+g,MultiVelo (RNA_only),macro,mean_batc,0.1050205646831972
+h,MultiVelo (RNA_only),bootstrap,gene_front_percent,0.0
+h,MultiVelo (RNA_only),bootstrap,joint_front_percent,0.02464959328171085
+a,scVelo_dyn,Mouse retina,consistency,0.8383139365830775
+a,scVelo_dyn,Dentategyrus_lamanno,consistency,0.8530071903514616
+a,scVelo_dyn,Gastrulation,consistency,0.8552883828144493
+a,scVelo_dyn,capofibro (VeloCycle),consistency,0.8043962383202217
+a,scVelo_dyn,Human bone marrow,consistency,0.8581381904109171
+a,scVelo_dyn,mousebrain,consistency,0.7852867980591167
+a,scVelo_dyn,Pancreas,consistency,0.8155226338430046
+b,scVelo_dyn,Mouse retina,iccoh,0.8455900448550366
+b,scVelo_dyn,Dentategyrus_lamanno,iccoh,0.8730071976905558
+b,scVelo_dyn,Gastrulation,iccoh,0.8612514630922838
+b,scVelo_dyn,capofibro (VeloCycle),iccoh,0.8108413544591401
+b,scVelo_dyn,Human bone marrow,iccoh,0.8867075009162619
+b,scVelo_dyn,mousebrain,iccoh,0.809175820288836
+b,scVelo_dyn,Pancreas,iccoh,0.8202690184059782
+c,scVelo_dyn,Mouse retina,cbdir,0.46736720211924077
+c,scVelo_dyn,Dentategyrus_lamanno,cbdir,0.18816598905075638
+c,scVelo_dyn,Gastrulation,cbdir,-0.44964156339090106
+c,scVelo_dyn,capofibro (VeloCycle),cbdir,0.3959534978605352
+c,scVelo_dyn,Human bone marrow,cbdir,-0.8392550362337489
+c,scVelo_dyn,mousebrain,cbdir,0.38580037905447884
+c,scVelo_dyn,Pancreas,cbdir,0.4829599972842439
+d,scVelo_dyn,Mouse retina,batc,0.3995800272003442
+d,scVelo_dyn,Dentategyrus_lamanno,batc,0.2278657002700035
+d,scVelo_dyn,Gastrulation,batc,-0.24730856020787542
+d,scVelo_dyn,capofibro (VeloCycle),batc,0.40063384145551356
+d,scVelo_dyn,Human bone marrow,batc,-0.5953205704585975
+d,scVelo_dyn,mousebrain,batc,0.21662011021768865
+d,scVelo_dyn,Pancreas,batc,0.5097860714471568
+e,scVelo_dyn,Mouse retina,transcosine,0.2849324643611908
+e,scVelo_dyn,Dentategyrus_lamanno,transcosine,0.22641339898109436
+e,scVelo_dyn,Gastrulation,transcosine,0.03522929921746254
+e,scVelo_dyn,capofibro (VeloCycle),transcosine,0.18935175240039825
+e,scVelo_dyn,Human bone marrow,transcosine,0.11292747408151627
+e,scVelo_dyn,mousebrain,transcosine,0.20683598518371582
+e,scVelo_dyn,Pancreas,transcosine,0.21701601147651672
+f,scVelo_dyn,retina,gene_cbdir,0.06221257611309713
+f,scVelo_dyn,DentateGyrus_lamanno,gene_cbdir,0.08518302305392529
+f,scVelo_dyn,gastrulation,gene_cbdir,0.008139067431221308
+f,scVelo_dyn,capo_pre,gene_cbdir,0.09960075174508913
+f,scVelo_dyn,bonemarrow,gene_cbdir,-0.06319617965796834
+f,scVelo_dyn,mousebrain,gene_cbdir,0.12075095721110223
+f,scVelo_dyn,pancreas,gene_cbdir,-0.004834001842759178
+g,scVelo_dyn,macro,mean_gene_cbdir,0.043979456293386794
+g,scVelo_dyn,macro,mean_cell_cbdir,0.09019292367780073
+g,scVelo_dyn,macro,mean_batc,0.13026523141774768
+h,scVelo_dyn,bootstrap,gene_front_percent,0.0
+h,scVelo_dyn,bootstrap,joint_front_percent,0.0
+a,TIvelo,Mouse retina,consistency,0.7134341602682747
+a,TIvelo,Dentategyrus_lamanno,consistency,0.650627779641955
+a,TIvelo,Gastrulation,consistency,0.6244864235914839
+a,TIvelo,capofibro (VeloCycle),consistency,0.25766252068110995
+a,TIvelo,Human bone marrow,consistency,0.5636429678172438
+a,TIvelo,mousebrain,consistency,0.6409597960910918
+a,TIvelo,Pancreas,consistency,0.6266115773489881
+b,TIvelo,Mouse retina,iccoh,0.72608330751364
+b,TIvelo,Dentategyrus_lamanno,iccoh,0.6579123571112995
+b,TIvelo,Gastrulation,iccoh,0.6263081609645814
+b,TIvelo,capofibro (VeloCycle),iccoh,0.2993484383247418
+b,TIvelo,Human bone marrow,iccoh,0.6136481737354653
+b,TIvelo,mousebrain,iccoh,0.6795797522484032
+b,TIvelo,Pancreas,iccoh,0.6348117411974934
+c,TIvelo,Mouse retina,cbdir,0.3938435425466916
+c,TIvelo,Dentategyrus_lamanno,cbdir,0.674755664831255
+c,TIvelo,Gastrulation,cbdir,0.7201882382585115
+c,TIvelo,capofibro (VeloCycle),cbdir,0.06048256335906224
+c,TIvelo,Human bone marrow,cbdir,0.19229124934850664
+c,TIvelo,mousebrain,cbdir,0.5414019438203848
+c,TIvelo,Pancreas,cbdir,0.5172182180730728
+d,TIvelo,Mouse retina,batc,0.04401953082895833
+d,TIvelo,Dentategyrus_lamanno,batc,0.8134920297516854
+d,TIvelo,Gastrulation,batc,0.9016083943503501
+d,TIvelo,capofibro (VeloCycle),batc,-0.2637083484263005
+d,TIvelo,Human bone marrow,batc,0.2963481784348383
+d,TIvelo,mousebrain,batc,0.47672790130462595
+d,TIvelo,Pancreas,batc,0.2952465540554302
+e,TIvelo,Mouse retina,transcosine,0.4672418236732483
+e,TIvelo,Dentategyrus_lamanno,transcosine,0.3638203740119934
+e,TIvelo,Gastrulation,transcosine,0.4434054493904114
+e,TIvelo,capofibro (VeloCycle),transcosine,0.30900025367736816
+e,TIvelo,Human bone marrow,transcosine,0.3313276469707489
+e,TIvelo,mousebrain,transcosine,0.40155497193336487
+e,TIvelo,Pancreas,transcosine,0.44690847396850586
+f,TIvelo,retina,gene_cbdir,0.2850118867736037
+f,TIvelo,DentateGyrus_lamanno,gene_cbdir,0.3507125264517008
+f,TIvelo,gastrulation,gene_cbdir,0.342849425420227
+f,TIvelo,capo_pre,gene_cbdir,0.26046982509842104
+f,TIvelo,bonemarrow,gene_cbdir,0.35228298966703764
+f,TIvelo,mousebrain,gene_cbdir,0.412863845512637
+f,TIvelo,pancreas,gene_cbdir,0.2508444006769075
+g,TIvelo,macro,mean_gene_cbdir,0.32214784280007636
+g,TIvelo,macro,mean_cell_cbdir,0.44288306003392636
+g,TIvelo,macro,mean_batc,0.3662477486142268
+h,TIvelo,bootstrap,gene_front_percent,99.99987857343211
+h,TIvelo,bootstrap,joint_front_percent,99.86048087349417
+a,UniTVelo,Mouse retina,consistency,0.9784011994551939
+a,UniTVelo,Dentategyrus_lamanno,consistency,0.9869219148600624
+a,UniTVelo,Gastrulation,consistency,0.9544229312704838
+a,UniTVelo,capofibro (VeloCycle),consistency,0.9217413159807418
+a,UniTVelo,Human bone marrow,consistency,0.9686606300764649
+a,UniTVelo,mousebrain,consistency,0.9160197634249542
+a,UniTVelo,Pancreas,consistency,0.9873293649874324
+b,UniTVelo,Mouse retina,iccoh,0.9805396892469951
+b,UniTVelo,Dentategyrus_lamanno,iccoh,0.9821477369607757
+b,UniTVelo,Gastrulation,iccoh,0.9710665028771148
+b,UniTVelo,capofibro (VeloCycle),iccoh,0.932768290064199
+b,UniTVelo,Human bone marrow,iccoh,0.9759661430301249
+b,UniTVelo,mousebrain,iccoh,0.9238699891200239
+b,UniTVelo,Pancreas,iccoh,0.9873475972873265
+c,UniTVelo,Mouse retina,cbdir,0.44928829257111275
+c,UniTVelo,Dentategyrus_lamanno,cbdir,0.5099564108484648
+c,UniTVelo,Gastrulation,cbdir,0.8361920582206784
+c,UniTVelo,capofibro (VeloCycle),cbdir,0.14126898666785914
+c,UniTVelo,Human bone marrow,cbdir,0.7329803734511212
+c,UniTVelo,mousebrain,cbdir,0.6039506791827005
+c,UniTVelo,Pancreas,cbdir,0.5420330134165275
+d,UniTVelo,Mouse retina,batc,0.08062579245020896
+d,UniTVelo,Dentategyrus_lamanno,batc,0.6879207175100388
+d,UniTVelo,Gastrulation,batc,0.9569085943880188
+d,UniTVelo,capofibro (VeloCycle),batc,0.41693223828549364
+d,UniTVelo,Human bone marrow,batc,0.7633539366719791
+d,UniTVelo,mousebrain,batc,0.7595751399703475
+d,UniTVelo,Pancreas,batc,0.8118445964901301
+e,UniTVelo,Mouse retina,transcosine,0.32187288999557495
+e,UniTVelo,Dentategyrus_lamanno,transcosine,0.09168431162834167
+e,UniTVelo,Gastrulation,transcosine,0.34732547402381897
+e,UniTVelo,capofibro (VeloCycle),transcosine,0.20029820501804352
+e,UniTVelo,Human bone marrow,transcosine,0.4214693009853363
+e,UniTVelo,mousebrain,transcosine,0.27980172634124756
+e,UniTVelo,Pancreas,transcosine,0.24751698970794678
+f,UniTVelo,retina,gene_cbdir,0.14566133091000805
+f,UniTVelo,DentateGyrus_lamanno,gene_cbdir,0.1346815237917556
+f,UniTVelo,gastrulation,gene_cbdir,0.26073111031030416
+f,UniTVelo,capo_pre,gene_cbdir,0.3500935225761867
+f,UniTVelo,bonemarrow,gene_cbdir,0.14678294556956234
+f,UniTVelo,mousebrain,gene_cbdir,0.26429972681901637
+f,UniTVelo,pancreas,gene_cbdir,0.07964636939666607
+g,UniTVelo,macro,mean_gene_cbdir,0.1974137899104999
+g,UniTVelo,macro,mean_cell_cbdir,0.5450956877654949
+g,UniTVelo,macro,mean_batc,0.6395944308237452
+h,UniTVelo,bootstrap,gene_front_percent,66.00833229108862
+h,UniTVelo,bootstrap,joint_front_percent,99.53821476231356
+a,veloVI,Mouse retina,consistency,0.8624835044769419
+a,veloVI,Dentategyrus_lamanno,consistency,0.9129899547413128
+a,veloVI,Gastrulation,consistency,0.9095172872022907
+a,veloVI,capofibro (VeloCycle),consistency,0.8134427033668262
+a,veloVI,Human bone marrow,consistency,0.89338896505603
+a,veloVI,mousebrain,consistency,0.8497131917430378
+a,veloVI,Pancreas,consistency,0.8888532097387953
+b,veloVI,Mouse retina,iccoh,0.8697952330765263
+b,veloVI,Dentategyrus_lamanno,iccoh,0.9139829601431403
+b,veloVI,Gastrulation,iccoh,0.9061073403564002
+b,veloVI,capofibro (VeloCycle),iccoh,0.8252749554164094
+b,veloVI,Human bone marrow,iccoh,0.905697887813268
+b,veloVI,mousebrain,iccoh,0.855074148003084
+b,veloVI,Pancreas,iccoh,0.895900874249219
+c,veloVI,Mouse retina,cbdir,0.5717794540114386
+c,veloVI,Dentategyrus_lamanno,cbdir,0.671107982619217
+c,veloVI,Gastrulation,cbdir,-0.038201534932233744
+c,veloVI,capofibro (VeloCycle),cbdir,0.4375722286988575
+c,veloVI,Human bone marrow,cbdir,-0.5929390561631204
+c,veloVI,mousebrain,cbdir,0.44751689187248833
+c,veloVI,Pancreas,cbdir,0.5368120656827097
+d,veloVI,Mouse retina,batc,0.3399464665932451
+d,veloVI,Dentategyrus_lamanno,batc,0.7602989044540319
+d,veloVI,Gastrulation,batc,0.14174356620726944
+d,veloVI,capofibro (VeloCycle),batc,0.4741250467799419
+d,veloVI,Human bone marrow,batc,-0.37680252192773234
+d,veloVI,mousebrain,batc,0.4984975379558636
+d,veloVI,Pancreas,batc,0.5020490523227918
+e,veloVI,Mouse retina,transcosine,0.12485982477664948
+e,veloVI,Dentategyrus_lamanno,transcosine,0.053075432777404785
+e,veloVI,Gastrulation,transcosine,0.05206935852766037
+e,veloVI,capofibro (VeloCycle),transcosine,0.06270259618759155
+e,veloVI,Human bone marrow,transcosine,0.036895085126161575
+e,veloVI,mousebrain,transcosine,0.09965632110834122
+e,veloVI,Pancreas,transcosine,0.06604736298322678
+f,veloVI,retina,gene_cbdir,0.15025061739569487
+f,veloVI,DentateGyrus_lamanno,gene_cbdir,0.043365131012315
+f,veloVI,gastrulation,gene_cbdir,0.04968706723533792
+f,veloVI,capo_pre,gene_cbdir,0.20480618106769286
+f,veloVI,bonemarrow,gene_cbdir,0.12929242978976258
+f,veloVI,mousebrain,gene_cbdir,0.061948879902043376
+f,veloVI,pancreas,gene_cbdir,0.03323136725379655
+g,veloVI,macro,mean_gene_cbdir,0.0960830962366633
+g,veloVI,macro,mean_cell_cbdir,0.29052114739847956
+g,veloVI,macro,mean_batc,0.33426543605505876
+h,veloVI,bootstrap,gene_front_percent,0.0
+h,veloVI,bootstrap,joint_front_percent,8.402354218298255

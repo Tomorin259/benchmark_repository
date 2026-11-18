@@ -1,0 +1,55 @@
+panel,method,field,mean
+a,UniTVelo,consistency,0.9590710171507618
+a,DeepVelo_scv,consistency,0.9058257864655938
+a,MultiVelo (RNA_only),consistency,0.904854562162254
+a,DeepVelo,consistency,0.8834518872830509
+a,veloVI,consistency,0.8757698309036049
+a,scVelo_dyn,consistency,0.8299933386260355
+a,cellDancer,consistency,0.8147090939891232
+a,GraphVelo_scv,consistency,0.664424088490036
+a,TIvelo,consistency,0.582489317920021
+b,UniTVelo,iccoh,0.9648151355123656
+b,MultiVelo (RNA_only),iccoh,0.9126809482127155
+b,DeepVelo_scv,iccoh,0.9107089529326189
+b,DeepVelo,iccoh,0.8915059642373454
+b,veloVI,iccoh,0.8816904855797211
+b,scVelo_dyn,iccoh,0.8438346285297275
+b,cellDancer,iccoh,0.8285630302631223
+b,GraphVelo_scv,iccoh,0.6907006091138749
+b,TIvelo,iccoh,0.6053845615850892
+c,UniTVelo,cbdir,0.5450956877654949
+c,TIvelo,cbdir,0.44288306003392636
+c,GraphVelo_scv,cbdir,0.3824762346357079
+c,DeepVelo,cbdir,0.3105828380302639
+c,veloVI,cbdir,0.29052114739847956
+c,cellDancer,cbdir,0.151937857519798
+c,scVelo_dyn,cbdir,0.09019292367780071
+c,DeepVelo_scv,cbdir,0.08529200000920054
+c,MultiVelo (RNA_only),cbdir,0.015847877116087372
+d,UniTVelo,batc,0.6395944308237452
+d,GraphVelo_scv,batc,0.44476716601409183
+d,TIvelo,batc,0.36624774861422676
+d,DeepVelo,batc,0.3568571194463696
+d,veloVI,batc,0.3342654360550588
+d,cellDancer,batc,0.16162965760177075
+d,scVelo_dyn,batc,0.13026523141774768
+d,DeepVelo_scv,batc,0.12828374454919858
+d,MultiVelo (RNA_only),batc,0.1050205646831972
+e,TIvelo,transcosine,0.394751284803663
+e,GraphVelo_scv,transcosine,0.37750132594789776
+e,UniTVelo,transcosine,0.27285269967147274
+e,DeepVelo_scv,transcosine,0.1834019401243754
+e,scVelo_dyn,transcosine,0.1818151979574135
+e,cellDancer,transcosine,0.1679599625723702
+e,DeepVelo,transcosine,0.11164765459086212
+e,veloVI,transcosine,0.07075799735529076
+e,MultiVelo (RNA_only),transcosine,0.03730548588958166
+f,TIvelo,gene_cbdir,0.3221478428000763
+f,UniTVelo,gene_cbdir,0.1974137899104999
+f,DeepVelo,gene_cbdir,0.1235223611911577
+f,GraphVelo_scv,gene_cbdir,0.107379299625867
+f,veloVI,gene_cbdir,0.0960830962366633
+f,MultiVelo (RNA_only),gene_cbdir,0.056387520328107
+f,cellDancer,gene_cbdir,0.0563500949075187
+f,scVelo_dyn,gene_cbdir,0.0439794562933867
+f,DeepVelo_scv,gene_cbdir,0.0385661580427707

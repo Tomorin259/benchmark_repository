@@ -1,89 +1,247 @@
 {
+  "assembly": "figures/assembly/suppfig09/supfig9.pptx",
+  "assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+  "slides": 1,
+  "slide_size_mm": [
+    159.2,
+    206
+  ],
+  "slide_size_inches": [
+    6.26771653543307,
+    8.11023622047244
+  ],
   "panels": [
     {
-      "source": "figures/assembly/suppfig09/cell_panel_01_consistency.png",
-      "sha256": "06858ff7b6ac13d3a1e48ec5e98a40a06a496b4f9771201e78185fa9b78f3e08",
-      "frame_inches": [
-        0.0,
-        -0.00027,
-        2.5,
-        2.109376
-      ],
-      "scope": "CSV-derived Cell metric panel from primary and Gene-output-matched inputs"
+      "panel": "A",
+      "metric": "consistency",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_1",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
     },
     {
-      "source": "figures/assembly/suppfig09/cell_panel_02_iccoh.png",
-      "sha256": "720268c72f2c88437cf65008d8ac786dd428c25e9a54069d1f5befdff13c786b",
-      "frame_inches": [
-        2.5,
-        -0.00027,
-        2.5,
-        2.109376
-      ],
-      "scope": "CSV-derived Cell metric panel from primary and Gene-output-matched inputs"
+      "panel": "B",
+      "metric": "iccoh",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_2",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
     },
     {
-      "source": "figures/assembly/suppfig09/cell_panel_03_cbdir.png",
-      "sha256": "7322fe378287d8f89f875d9daa83b124d5933f3f4f02074864e86717c6012af9",
-      "frame_inches": [
-        5.0,
-        0.000279,
-        2.5,
-        2.108278
-      ],
-      "scope": "CSV-derived Cell metric panel from primary and Gene-output-matched inputs"
+      "panel": "C",
+      "metric": "cbdir",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_3",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
     },
     {
-      "source": "figures/assembly/suppfig09/cell_panel_04_transcosine.png",
-      "sha256": "e39779f3e7f0c8f8b516355ccb4ad24f660fe6328d84047ffe68bcfe112c6ee8",
-      "frame_inches": [
-        0.0,
-        2.109104,
-        2.5,
-        2.109376
-      ],
-      "scope": "CSV-derived Cell metric panel from primary and Gene-output-matched inputs"
+      "panel": "D",
+      "metric": "batc",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_4",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
     },
     {
-      "source": "figures/assembly/suppfig09/cell_panel_05_batc.png",
-      "sha256": "336d948a94736b0118372fb77cb65810e742e6a4ff99c3c5a525d3874d4b8034",
-      "frame_inches": [
-        2.5,
-        2.109104,
-        2.5,
-        2.109376
-      ],
-      "scope": "CSV-derived Cell metric panel from primary and Gene-output-matched inputs"
+      "panel": "E",
+      "metric": "transcosine",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_5",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
     },
     {
-      "source": "evaluation/gene/figures/panels/real/common_genes/common_gene_cbdir.png",
-      "sha256": "ab14973ba298d64527f6c38f1c4583b9073d56590039d34cd7966f61867f216b",
-      "frame_inches": [
-        5.0,
-        2.109104,
-        2.5,
-        2.109376
-      ],
-      "scope": "new numerical plot from canonical common-gene tables"
+      "panel": "F",
+      "metric": "gene_cbdir",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_6",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 63
+    },
+    {
+      "panel": "G",
+      "metric": "metric_means",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_7",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 27
+    },
+    {
+      "panel": "H",
+      "metric": "pareto_front_inclusion",
+      "source": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31",
+      "svg_group": "axes_8",
+      "plot_data": "figures/assembly/suppfig09/plot_data.csv",
+      "plot_rows": 18
     }
   ],
-  "slides": 1,
-  "slide_size_inches": [
-    7.5,
-    10.830556
+  "materials": {
+    "approved_layout.svg": {
+      "path": "figures/assembly/suppfig09/approved_layout.svg",
+      "sha256": "ffddb684698cb1ee497f02eca3561513bdcbbb2c572bd3ace2be10345b1e8a31"
+    },
+    "plot_data.csv": {
+      "path": "figures/assembly/suppfig09/plot_data.csv",
+      "sha256": "0735d31d466d2490facdf3a78a7333200aae184122f641fc4772e4b73fa733e4"
+    },
+    "upper_means.csv": {
+      "path": "figures/assembly/suppfig09/upper_means.csv",
+      "sha256": "fef6fac652bf4b85d2de79460a27ce6442236cc49ab8a9a2dce81eb1cfcedae1"
+    }
+  },
+  "inputs": [
+    {
+      "path": "evaluation/cell/results/cell_metrics.csv",
+      "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
+    },
+    {
+      "path": "evaluation/cell/gene_matched/results/cell_metrics.csv",
+      "sha256": "7e6251ee23bc41fd4c4afdd22867d99d41b1697eaa746a837bcba95e666c5412"
+    },
+    {
+      "path": "evaluation/cell/gene_matched/inputs.tsv",
+      "sha256": "ff66416bd17e332e8c863e77f1021d10095f940f599fcfda8d4a4a89454753fb"
+    },
+    {
+      "path": "evaluation/cell/native_outputs.tsv",
+      "sha256": "65f15a0c00285894c6a6332a685941d507e5834d5548c418384ac049d860d5e2"
+    },
+    {
+      "path": "evaluation/gene/results/common_genes/dataset_summary.csv",
+      "sha256": "5932c634f93a779e1595f9132681fd1c5acd6e0090190a375af13e7d6f7c543d"
+    },
+    {
+      "path": "evaluation/gene/results/common_genes/membership.csv",
+      "sha256": "dd644351be06ec7cad81e179adcac63619731ff0f4406a72e0321dbc22069b18"
+    },
+    {
+      "path": "methods/configurations.tsv",
+      "sha256": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
+    },
+    {
+      "path": "data/datasets.tsv",
+      "sha256": "d5190f6218854c7e1fad8fc6452fff56fe5859d01e51017015360bdb4011495d"
+    }
   ],
-  "reproduction_boundary": "Current author PDF exported from updated editable assembly; crop preserves all page operators and resources.",
-  "assembly": "figures/assembly/suppfig09/supfig9.pptx",
-  "assembly_sha256": "3a66a7908541a27049cdfda8e1caaeb33fe4a14b02d640db779c5dd968537040",
+  "numerical_contract": {
+    "configurations": 9,
+    "real_datasets": 7,
+    "common_gene_dataset_pairs": 35,
+    "cell_score_selection": "S9 Gene-output-matched four-method rows plus the other five primary Cell methods",
+    "gene_scope": "Nine-configuration finite scorable gene intersection within each dataset",
+    "bootstrap_ordered_draws": 823543,
+    "bootstrap_compositions": 1716,
+    "gene_level_objectives": "Seven separate dataset-specific Gene CBDir objectives",
+    "joint_objectives": "Equal-dataset means of Gene CBDir, Cell CBDir and BATC",
+    "panel_order": {
+      "A": "consistency",
+      "B": "iccoh",
+      "C": "cbdir",
+      "D": "batc",
+      "E": "transcosine",
+      "F": "gene_cbdir",
+      "G": "metric_means",
+      "H": "pareto_front_inclusion"
+    },
+    "multiVelo_cell_layer": "velo_s_norm"
+  },
   "pending_pdf_export": false,
-  "user_export_pdf_sha256": "db99714f2b3e77cacb2f703ffc3790d302c73818041bf7c1a6f5ad4664cca9a0",
-  "user_export_source_pdf_sha256": "8e9fe243bb1b05ac1df62b221390dd80c1b8aeb41b8a331f0308550d7e924719",
-  "user_export_crop_box_pt": [
-    0.0,
-    478.0,
-    540.0,
-    779.8
-  ],
-  "user_export_source_pptx_sha256": "433bb4c4741941731f5fa485dce9253d9b5b1abf75f40ecc07484789c9974bdd",
-  "pending_ppt_assembly": false
+  "pending_material_assembly": false,
+  "pending_ppt_assembly": false,
+  "pdf_output_status": "Current 8-panel author export. Cropping preserved page content and resource streams.",
+  "exported_from_revision": {
+    "assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+    "author_assembly_sha256": "8dcc322d5f964ef5a3257d43f1cd6a68bc291b0d11d7f149a4e7ce801803ba13",
+    "source_pdf_sha256": "70d8c3050d812f624acac69b8af8f109a7bed965c7f7eac07cf9999ac5d66ef3",
+    "pdf_sha256": "4dedd9e6b49c276d4dd2ff3d9a41ccb02fe3db41b00b8f136aa88bbd0f19ab92"
+  },
+  "reproduction_boundary": "Current 8-panel author export. Cropping preserved page content and resource streams.",
+  "scientific_reproduction": {
+    "entry": {
+      "path": "evaluation/gene/reproduce_crosslevel.py",
+      "sha256": "d37ce2389279220430a45a74d0a084b094b0d4e6fee009d4472954084a24e30a"
+    },
+    "inputs": [
+      {
+        "path": "methods/configurations.tsv",
+        "sha256": "6bf7b1f5c80b65620a8f4003afb9832f9fb50194231ad798328103f6062504c9"
+      },
+      {
+        "path": "data/datasets.tsv",
+        "sha256": "d5190f6218854c7e1fad8fc6452fff56fe5859d01e51017015360bdb4011495d"
+      },
+      {
+        "path": "evaluation/gene/config.py",
+        "sha256": "dbe5d19b47e154cfc08142f122bca1283d9c04fd57935b6ae3d53cd237263b5b"
+      },
+      {
+        "path": "evaluation/gene/results/gene_cbdir_reference30_all.csv",
+        "sha256": "380c031268853ca693bf08e90ec73aa5912b18a34eca7fca1b559bde6ff034ec"
+      },
+      {
+        "path": "evaluation/gene/refresh_common_gene_summary.py",
+        "sha256": "bf86914a1df509b05eb5b1a69b4fd92449b81cb7ac5d642b1460384c9a684597"
+      },
+      {
+        "path": "evaluation/cell/inputs.tsv",
+        "sha256": "efad535cb2906552608092b18f24617d1b951bf825d8eb075861dea0bfd723eb"
+      },
+      {
+        "path": "evaluation/cell/gene_matched/inputs.tsv",
+        "sha256": "ff66416bd17e332e8c863e77f1021d10095f940f599fcfda8d4a4a89454753fb"
+      },
+      {
+        "path": "evaluation/cell/native_outputs.tsv",
+        "sha256": "65f15a0c00285894c6a6332a685941d507e5834d5548c418384ac049d860d5e2"
+      },
+      {
+        "path": "evaluation/cell/results/cell_metrics.csv",
+        "sha256": "6f27fcc74c3a654da2f38b83cd0bb076901d09a3cb428405fb716b4b73278649"
+      },
+      {
+        "path": "evaluation/cell/results/cell_metrics_audit.csv",
+        "sha256": "dda8e2aa2a6c566139aebc5c0af85d1fa4a8672dcf53f9deaa478a9afbc3ee30"
+      },
+      {
+        "path": "evaluation/cell/gene_matched/results/cell_metrics.csv",
+        "sha256": "7e6251ee23bc41fd4c4afdd22867d99d41b1697eaa746a837bcba95e666c5412"
+      },
+      {
+        "path": "evaluation/cell/gene_matched/results/cell_metrics_audit.csv",
+        "sha256": "7870402136eba972dd0cd2c405392a9025b69a5c9e04a6f44d5d3e82fabe1021"
+      }
+    ],
+    "outputs": {
+      "dataset_scores": {
+        "path": "evaluation/gene/results/crosslevel/dataset_scores.csv",
+        "sha256": "de8e93aa3e29e26e53f5c998dd08859c4461d63c3d9548586f91bb620a468848"
+      },
+      "frontiers": {
+        "path": "evaluation/gene/results/crosslevel/frontiers.csv",
+        "sha256": "931d9f1dc447614fea771c2937604106e3cb53dcfc6c931a6d2a55acb31e7ad2"
+      },
+      "leave_one_out": {
+        "path": "evaluation/gene/results/crosslevel/leave_one_out.csv",
+        "sha256": "597247f871a22f94d482025e4fd0472d60299b17b803a73afaa5ed35695b628b"
+      },
+      "plot_data": {
+        "path": "evaluation/gene/results/crosslevel/plot_data.csv",
+        "sha256": "9d23f7d91833ad38a9b5bc278cc5cab91846cbb954d7b2aa7104db93574ca72a"
+      },
+      "upper_means": {
+        "path": "evaluation/gene/results/crosslevel/upper_means.csv",
+        "sha256": "eb6bf2967316139e6fc520b43114da177d7e448b835a63d31d273fabbc251a7c"
+      }
+    },
+    "comparison": "All 423 values in panels a–h and 54 mean markers in panels a–f match the approved assembly by scientific key with absolute tolerance 1e-12."
+  }
 }

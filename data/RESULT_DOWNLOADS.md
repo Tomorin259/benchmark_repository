@@ -1,8 +1,8 @@
-# Native result downloads
+# Native and derived result downloads
 
-[Hugging Face v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0)
-provides 339 download objects containing 388 scientific files: 374 H5ADs and
-14 NPZs. The 325 TAR.GZ archives and 14 NPZ files total 148.29 GB.
+The [v1.1.0 ensemble release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.1.0/v1.1.0/ensemble_outputs) adds the reproducible five-member inputs and the resulting projections. Extract the frozen-input archive into a new directory and pass that directory to the [ensemble replay](../ensemble/README.md#reproduce-the-selected-bundle).
+
+The result catalog contains 341 packages and 490 members (148.92 GB in compressed/downloadable objects). It includes the 339 previously published packages and their 388 members, which retain their [v1.0.0 download URLs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0).
 [Benchmark inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs)
 are available as individual files.
 
@@ -46,7 +46,7 @@ and kinetics layouts. Files shared across evaluations have multiple logical
 aliases in the member manifest.
 
 Hugging Face also provides `available_files.tsv` for all download objects,
-`v1.0.0/metadata/SHA256SUMS.txt` and the package/member manifests.
+`v1.1.0/metadata/SHA256SUMS.txt` and the package/member manifests.
 Dataset and method attribution is recorded in `SOURCE_TERMS.md` and
 `CITATION.cff`. Obtain the Battich kinetic-reference tables through the
 [reference access guide](UPSTREAM_REFERENCES.md).

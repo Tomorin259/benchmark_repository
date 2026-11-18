@@ -243,7 +243,7 @@ class SiteExportTests(unittest.TestCase):
         tables = self.payload['downloads']['tables']
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
-        self.assertEqual(len(tables), 17)
+        self.assertEqual(len(tables), 32)
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         figure7_path = figure_manifest['output']['path']
         expected_figures = {
@@ -253,6 +253,10 @@ class SiteExportTests(unittest.TestCase):
         }
         if not figure_manifest.get('pending_pdf_export', False):
             expected_figures.add(figure7_path)
+        for num, name in [('09', 'suppFigNine'), ('10', 'suppFigTen')]:
+            binding = json.loads((ROOT / f'figures/suppfig{num}_composite_manifest.json').read_text())
+            if not binding['pending_pdf_export']:
+                expected_figures.add(f'figures/{name}.pdf')
         self.assertEqual(len(figures), len(expected_figures))
         self.assertEqual({row['path'] for row in figures}, expected_figures)
         self.assertEqual(len(metadata), 13)
@@ -278,8 +282,8 @@ class SiteExportTests(unittest.TestCase):
             'data/kinetics_reference_gene_usage/rpe1_reference_gene_usage.csv',
             'data/kinetics_reference_gene_usage/organoid_reference_gene_usage.csv',
         })
-        self.assertEqual(len(audit), 13)
-        self.assertEqual(len(self.payload['ensemble']['scores']), 28)
+        self.assertEqual(len(audit), 15)
+        self.assertEqual(len(self.payload['legacy_ensemble']['scores']), 28)
         self.assertEqual(self.payload['content']['schema_version'], 1)
         self.assertEqual(len(self.payload['content']['datasets']), 17)
         self.assertFalse(any('/trajectories/' in p or p.endswith(('.svg', '.zip')) for p in exposed))
@@ -340,8 +344,6 @@ class SiteExportTests(unittest.TestCase):
     def test_result_packages_preserve_archive_and_member_identities(self):
         packages = self.payload['result_packages']
         members = self.payload['result_members']
-        self.assertEqual(len(packages), 339)
-        self.assertEqual(len(members), 388)
         with (ROOT / 'data/result_package_manifest.tsv').open() as handle:
             source_packages = {row['package_id']: row for row in csv.DictReader(handle, delimiter='\t')}
         with (ROOT / 'data/result_member_manifest.tsv').open() as handle:
@@ -357,16 +359,16 @@ class SiteExportTests(unittest.TestCase):
                          sum(int(row['bytes']) for row in source_packages.values()))
         self.assertEqual(sum(row['member_bytes'] for row in members),
                          sum(int(row['member_bytes']) for row in source_members.values()))
-        self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 325)
-        self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
-        self.assertEqual(len({row['release_version'] for row in packages}), 1)
+        historical = [row for row in packages if row['release_version'] == 'v1.0.0']
+        self.assertEqual(sum(r['format'] == 'tar.gz' for r in historical), 325)
+        self.assertEqual(sum(r['format'] == 'npz' for r in historical), 14)
         for row in packages:
             self.assertIn('/resolve/' + row['release_version'] + '/', row['url'])
-        base = [row for row in packages if '/diagnostics/multivelo/' not in row['repository_path']]
+        base = [row for row in historical if '/diagnostics/multivelo/' not in row['repository_path']]
         self.assertEqual(len(base), 338)
         self.assertEqual(sum(row['bytes'] for row in base),
                          sum(int(row['bytes']) for row in source_packages.values()
-                             if '/diagnostics/multivelo/' not in row['repository_path']))
+                             if row['release_version'] == 'v1.0.0' and '/diagnostics/multivelo/' not in row['repository_path']))
         supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
         self.assertEqual(len(supplement), 1)
         self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')
@@ -376,7 +378,8 @@ class SiteExportTests(unittest.TestCase):
             selected = [row for row in members if row['package_id'] == package['package_id']]
             self.assertEqual(len(selected), package['scientific_files'])
             self.assertEqual(sum(row['member_bytes'] for row in selected), package['source_bytes'])
-        registry = {row['artifact_id']: row for row in self.payload['artifacts']}
+        with (ROOT / 'artifacts.tsv').open() as handle:
+            registry = {row['artifact_id']: row for row in csv.DictReader(handle, delimiter='\t')}
         for member in members:
             self.assertIn(member['package_id'], indexed)
             self.assertNotIn('..', Path(member['archive_member']).parts)
@@ -426,8 +429,30 @@ class SiteExportTests(unittest.TestCase):
         self.assertNotIn('dynamo_labelled', methods)
         self.assertNotIn('C07', {r['method'] for r in self.payload['kinetics']})
 
+    def test_selected_ensemble_and_matched_results(self):
+        table = self.payload['ensemble']
+        self.assertEqual(len(table['scores']), 14)
+        self.assertEqual(len(table['ablations']), 8)
+        self.assertEqual(len(table['screening']), 20)
+        self.assertEqual(table['methods'], self.payload['content']['ensembles']['methods'])
+        with (ROOT / 'ensemble/results/selected/Table_S5_A.csv').open() as handle:
+            self.assertEqual(table['ablations'], list(csv.DictReader(handle)))
+        self.assertAlmostEqual(float(table['summary']['cbdir']), 0.4712175538, places=9)
+        self.assertAlmostEqual(float(table['summary']['batc']), 0.5147455432, places=9)
+        for row in table['scores']:
+            self.assertIn(row['dataset'], {d['dataset_id'] for d in self.payload['datasets']})
+        results = self.payload['comparisons']
+        self.assertEqual([len(part) for part in results['omnibus']], [5, 3])
+        self.assertAlmostEqual(float(results['omnibus'][0][-1]['p_holm']), 0.3526229369, places=9)
+        self.assertEqual({r['method'] for r in results['fronts'] if r['setting'] == 'joint'
+                          and r['on_front'] == 'True'}, {'TIvelo', 'UniTVelo'})
+        self.assertEqual([c['common_genes'] for c in results['kinetics']['organoid']['components']], [270, 270])
+        for asset in [table['figure'], results['figure']]:
+            self.assertEqual((self.output / asset['path'].removeprefix('data/')).read_bytes(),
+                             (ROOT / asset['source']).read_bytes())
+
     def test_ensemble_projection_preserves_scores_ranks_and_macro_averages(self):
-        ensemble = self.payload['ensemble']
+        ensemble = self.payload['legacy_ensemble']
         aliases = {'capofibro': 'capo_pre', 'dentate_lamanno': 'dentategyrus_lamanno',
                    'neuron': 'scnt_neuron', 'organoid': 'sceu_organoid', 'rpe1': 'sceu_rpe1'}
         actual = EXPORT.keyed(ensemble['scores'], ['dataset', 'variant'])
@@ -455,8 +480,8 @@ class SiteExportTests(unittest.TestCase):
         self.assertTrue(all(r['method'] in {m['config_id'] for m in self.payload['methods']} for r in self.payload['cell']))
 
     def test_ensemble_images_cover_and_preserve_all_frozen_results(self):
-        scores = EXPORT.keyed(self.payload['ensemble']['scores'], ['dataset', 'variant'])
-        images = EXPORT.keyed(self.payload['ensemble']['streams'], ['dataset', 'variant'])
+        scores = EXPORT.keyed(self.payload['legacy_ensemble']['scores'], ['dataset', 'variant'])
+        images = EXPORT.keyed(self.payload['legacy_ensemble']['streams'], ['dataset', 'variant'])
         self.assertEqual(set(images), set(scores))
         self.assertEqual(len(images), 28)
         with (ROOT / 'artifacts.tsv').open() as handle:
