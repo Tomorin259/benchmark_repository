@@ -1,7 +1,7 @@
 # Source Data
 
 [Browse Source Data v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0) for the main and supplementary figures
-and tables. Files are available individually: 101 numerical tables and two summary/protocol JSON files,
+and tables. Files are available individually: 104 numerical tables and two summary/protocol JSON files,
 243 saved NPZ plot inputs, three simulation-reference NPZs, and the Figure 1 framework schematic PDF.
 Each figure/table directory describes its files and their corresponding panels.
 
@@ -50,7 +50,7 @@ Native method outputs are available through the [result download guide](RESULT_D
 
 - [Supplementary Figure 9](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_9) includes the matched seven-dataset scores and the two Pareto-front comparisons for panels g/h.
 - [Supplementary Figure 10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_10) contains 20 screening frequencies and the 588 CBDir/BATC values used in the three-panel assembly. [Table S5](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_5) reports the eight matched ensemble configurations and the selected five-member scores.
-- [Table S10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_10) includes both omnibus panels and the dataset-level BATC ranking analyses. [Supplementary Figure 14](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_14) includes the expanded paired transcription/degradation recovery comparison for cellDancer and DeepVelo.
+- [Table S10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_10) includes panels A–C, the full five-test Holm calibration for the simulation panel, and the dataset-level BATC ranking analyses. [Table S8E](../evaluation/gene/results/simulation/statistics/s8e_six_objective_front.csv) gives the six-objective simulation front and all inclusion counts. [Supplementary Figure 14](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_14) includes the expanded paired transcription/degradation recovery comparison for cellDancer and DeepVelo.
 
 ### Simulation velocity references
 

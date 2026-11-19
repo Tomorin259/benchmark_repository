@@ -376,7 +376,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 327)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
         self.assertEqual(len(members), 490)
-        self.assertEqual(len(self.payload['source_data_files']), 393)
+        self.assertEqual(len(self.payload['source_data_files']), 396)
         self.assertTrue(all(row['url'].startswith(self.payload['input_data_root'].replace('/tree/', '/resolve/') + '/')
                             for row in self.payload['input_files']))
         for row in packages:
