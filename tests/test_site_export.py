@@ -359,16 +359,22 @@ class SiteExportTests(unittest.TestCase):
                          sum(int(row['bytes']) for row in source_packages.values()))
         self.assertEqual(sum(row['member_bytes'] for row in members),
                          sum(int(row['member_bytes']) for row in source_members.values()))
-        historical = [row for row in packages if row['release_version'] == 'v1.0.0']
-        self.assertEqual(sum(r['format'] == 'tar.gz' for r in historical), 325)
-        self.assertEqual(sum(r['format'] == 'npz' for r in historical), 14)
+        version = self.payload['source_data_archive']['release_version']
+        self.assertEqual({row['release_version'] for row in packages}, {version})
+        self.assertEqual({row['release_version'] for row in self.payload['source_data_files']}, {version})
+        self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 327)
+        self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
+        self.assertEqual(len(members), 490)
+        self.assertEqual(len(self.payload['source_data_files']), 393)
+        self.assertTrue(all(row['url'].startswith(self.payload['input_data_root'].replace('/tree/', '/resolve/') + '/')
+                            for row in self.payload['input_files']))
         for row in packages:
-            self.assertIn('/resolve/' + row['release_version'] + '/', row['url'])
-        base = [row for row in historical if '/diagnostics/multivelo/' not in row['repository_path']]
-        self.assertEqual(len(base), 338)
-        self.assertEqual(sum(row['bytes'] for row in base),
-                         sum(int(row['bytes']) for row in source_packages.values()
-                             if row['release_version'] == 'v1.0.0' and '/diagnostics/multivelo/' not in row['repository_path']))
+            self.assertIn('/resolve/' + version + '/' + version + '/', row['url'])
+        ensemble = [row for row in packages if '/ensemble_outputs/' in row['repository_path']]
+        historical = [row for row in ensemble if row['scopes'] == 'Historical four-member ensemble']
+        self.assertEqual(len(historical), 14)
+        self.assertEqual({Path(row['repository_path']).name for row in ensemble if row not in historical},
+                         {'geomedian5_frozen_inputs.tar.gz', 'geomedian5_projections.tar.gz'})
         supplement = [row for row in packages if '/diagnostics/multivelo/' in row['repository_path']]
         self.assertEqual(len(supplement), 1)
         self.assertEqual(supplement[0]['sha256'], '34ea57fb9f11c7b7dfa60bae78ebccfe2f2eaf680fe3c8fe9b92abfe3b962fcf')

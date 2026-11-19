@@ -39,9 +39,10 @@ Run commands from the repository root and use a fresh output directory.
   provide 25 H5AD, loom and CSV files at distribution `v1.0.0`.
   Three Battich reference tables are obtained separately; see
   [reference access and format requirements](data/UPSTREAM_REFERENCES.md).
-- [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark)
+- [Method outputs and evaluation assets](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0)
   are available as 341 version-pinned download objects totaling 148.92 GB,
-  including the MultiVelo diagnostic outputs and the v1.1.0 GeoMedian-5 frozen inputs and projections. Select packages from the
+  including the MultiVelo diagnostic outputs and the GeoMedian-5 frozen inputs
+  and projections. Select packages from the
   [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ
   files through the [member manifest](data/result_member_manifest.tsv), and follow the
   [download and extraction guide](data/RESULT_DOWNLOADS.md).

@@ -988,7 +988,21 @@ def export_data(root=ROOT, output=None):
         if (row['sha256'], row['url']) != (artifact['sha256'], artifact['uri']):
             raise ValueError('Source Data identity differs from the artifact registry')
     source_data_archive, = [row for row in source_data_files if row['path'].endswith('.zip')]
-    source_data_root = source_data_archive['url'].rsplit('/', 1)[0].replace('/resolve/', '/tree/')
+    version = source_data_archive['release_version']
+    release_root = 'https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark'
+    ref_prefix = f'{release_root}/resolve/{version}/'
+    input_prefix = f'{ref_prefix}{version}/inputs/'
+    source_prefix = f'{ref_prefix}source_data/{version}/'
+    if any(row['release_version'] != version or not row['repository_path'].startswith(version + '/')
+           for row in result_packages):
+        raise ValueError('Result packages must use the active release version')
+    if any(not row['url'].startswith(input_prefix) for row in input_files):
+        raise ValueError('Benchmark input URLs must use the active release version')
+    if any(row['release_version'] != version or row['url'] != source_prefix + row['path'] + '?download=true'
+           for row in source_data_files):
+        raise ValueError('Source Data URLs must use the active release version and registered paths')
+    input_data_root = f'{release_root}/tree/{version}/{version}/inputs'
+    source_data_root = f'{release_root}/tree/{version}/source_data/{version}'
     source_data_groups = []
     for directory, label, description in [
         ('main_figures', 'Main figures', 'Figures 1–7: numerical tables, saved plotting inputs and the Figure 1 schematic.'),
@@ -1011,7 +1025,7 @@ def export_data(root=ROOT, output=None):
                "result_images": result_images,
                "real_cases": real_cases, "kinetics_streams": kinetics_streams, "kinetics_strategy": kinetics_strategy,
                "kinetics_expanded_scope": {"sceu_rpe1": len(universe["rpe1"]), "sceu_organoid": len(universe["organoid"])},
-               "artifacts": artifacts, 'h5ad': h5ad, "input_files": input_files,
+               "artifacts": artifacts, 'h5ad': h5ad, "input_files": input_files, "input_data_root": input_data_root,
                "result_packages": result_packages, "result_members": result_members,
                "source_data_files": source_data_files, "source_data_groups": source_data_groups,
                "source_data_archive": source_data_archive, "source_data_root": source_data_root,

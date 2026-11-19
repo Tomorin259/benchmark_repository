@@ -32,9 +32,9 @@ watch([dataset, method, kind], () => { page.value = 1 })
 <template>
   <section class="panel downloads-section" aria-labelledby="result-download-heading">
     <h2 id="result-download-heading">Method and ensemble downloads</h2>
-    <p class="small muted">{{packages.length}} packages · {{size(totalBytes)}}. Each download is pinned to its source release.</p>
+    <p class="small muted">{{data.source_data_archive.release_version}} · {{packages.length}} packages · {{size(totalBytes)}}.</p>
     <div class="guide-links">
-      <a :href="`https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/${data.source_data_archive.release_version}`" target="_blank" rel="noopener">Active data release ↗</a>
+      <a :href="`https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/${data.source_data_archive.release_version}`" target="_blank" rel="noopener">Browse result packages ↗</a>
       <a href="./data/files/data/RESULT_DOWNLOADS.md" download>Extraction guide</a>
       <a href="./data/files/data/result_package_manifest.tsv" download>Package manifest</a>
       <a href="./data/files/data/result_member_manifest.tsv" download>Original file manifest</a>
@@ -49,7 +49,7 @@ watch([dataset, method, kind], () => { page.value = 1 })
     <div v-for="file in visible" :key="file.package_id" class="download-row result-package-row">
       <div>
         <strong>{{file.datasetIds.length > 3 ? file.datasetIds.length + ' datasets' : file.datasetLabel}} · {{file.methodLabel || kindName(file.kind)}}</strong>
-        <span class="small muted">{{file.release_version}} · {{kindName(file.kind)}} · {{file.format.toUpperCase()}} · {{size(file.bytes)}} · {{file.scientific_files}} original {{file.scientific_files === 1 ? 'file' : 'files'}}</span>
+        <span class="small muted">{{file.release_version}} · {{file.kind === 'ensemble_outputs' ? file.scopes : kindName(file.kind)}} · {{file.format.toUpperCase()}} · {{size(file.bytes)}} · {{file.scientific_files}} original {{file.scientific_files === 1 ? 'file' : 'files'}}</span>
         <span class="small package-path">{{file.repository_path.split('/').slice(1).join('/')}}</span>
       </div>
       <a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download {{file.format.toUpperCase()}}</a>

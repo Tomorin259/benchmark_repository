@@ -1,10 +1,10 @@
 # Native and derived result downloads
 
-The [v1.1.0 ensemble release](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.1.0/v1.1.0/ensemble_outputs) adds the reproducible five-member inputs and the resulting projections. Extract the frozen-input archive into a new directory and pass that directory to the [ensemble replay](../ensemble/README.md#reproduce-the-selected-bundle).
+The [v1.0.0 result catalog](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0) contains 341 packages and 490 registered members (148.92 GB of downloadable objects). The [ensemble downloads](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/ensemble_outputs) include the five-member frozen inputs and projected fields. Extract the frozen-input archive into a new directory and pass that directory to the [ensemble replay](../ensemble/README.md#reproduce-the-selected-bundle).
 
-The result catalog contains 341 packages and 490 members (148.92 GB in compressed/downloadable objects). It includes the 339 previously published packages and their 388 members, which retain their [v1.0.0 download URLs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0).
 [Benchmark inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/v1.0.0/inputs)
 are available as individual files.
+Historical four-member ensemble packages remain indexed for reproducing the retained comparisons.
 
 - [Package manifest](result_package_manifest.tsv): download URLs, sizes and archive SHA-256.
 - [Member manifest](result_member_manifest.tsv): original file paths, sizes, hashes,
@@ -46,7 +46,7 @@ and kinetics layouts. Files shared across evaluations have multiple logical
 aliases in the member manifest.
 
 Hugging Face also provides `available_files.tsv` for all download objects,
-`v1.1.0/metadata/SHA256SUMS.txt` and the package/member manifests.
+`v1.0.0/metadata/SHA256SUMS.txt` and the package/member manifests.
 Dataset and method attribution is recorded in `SOURCE_TERMS.md` and
 `CITATION.cff`. Obtain the Battich kinetic-reference tables through the
 [reference access guide](UPSTREAM_REFERENCES.md).

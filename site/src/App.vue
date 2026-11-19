@@ -111,11 +111,12 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
             <a class="button secondary" :href="group.url" target="_blank" rel="noopener">Browse files ↗</a>
           </div>
           <div class="download-row source-data-row">
-            <div><strong>Complete Source Data</strong><span class="small muted">Optional: all tables, plotting inputs, scripts and retained images · {{size(data.source_data_archive.bytes)}}</span></div>
+            <div><strong>Complete Source Data</strong><span class="small muted">Optional: all figure and table source files · {{size(data.source_data_archive.bytes)}}</span></div>
             <a class="button secondary" :href="data.source_data_archive.url" target="_blank" rel="noopener">Download complete ZIP</a>
           </div>
         </section>
         <section class="panel downloads-section"><h2>Benchmark input files</h2><p class="small muted">{{data.input_files.length}} original-format input files across {{data.datasets.length}} datasets.</p>
+          <div class="guide-links"><a :href="data.input_data_root" target="_blank" rel="noopener">Browse benchmark inputs ↗</a></div>
           <div v-for="file in data.input_files" :key="file.artifact_id" class="download-row"><div><strong>{{file.label}}</strong><span class="small muted">{{file.format}} · {{size(file.bytes)}} · {{file.role.replaceAll('_',' ')}}</span><span class="small">{{file.path.split('/').at(-1)}}</span></div><a class="button secondary" :href="file.url" target="_blank" rel="noopener">Download file</a></div>
           <p class="small muted">Kinetic-reference Tables S1, S3 and S4 are obtained from the original study. <a :href="sourceLink('data/UPSTREAM_REFERENCES.md')" target="_blank" rel="noopener">Acquisition and verification instructions ↗</a></p>
         </section>

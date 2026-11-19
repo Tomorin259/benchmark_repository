@@ -54,7 +54,7 @@ PYTHONNOUSERSITE=1 python -m ensemble --jobs 3 --output-root outputs/geomedian5
 The replay reads `ensemble/frozen_inputs/` by default. Use `--input-root`
 to point to another copy of the frozen bundle, which must include
 `manifest.json` and one geometry archive and five sparse operator archives
-per dataset. Download [the frozen five-member inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.1.0/v1.1.0/ensemble_outputs/geomedian5_frozen_inputs.tar.gz?download=true), extract the archive into a new directory, and use that directory as `--input-root`. The [result-package manifest](../data/result_package_manifest.tsv) records its SHA-256. The command consumes
+per dataset. Download [the frozen five-member inputs](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/v1.0.0/ensemble_outputs/geomedian5_frozen_inputs.tar.gz?download=true), extract the archive into a new directory, and use that directory as `--input-root`. The [result-package manifest](../data/result_package_manifest.tsv) records its SHA-256. The command consumes
 local files and performs no downloads or method training. It writes the selected results, Table S5 and the Figure
 S10 source tables. The replay produces tabular data and projected arrays.
 
