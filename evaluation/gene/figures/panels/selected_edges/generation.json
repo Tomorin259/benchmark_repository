@@ -233,7 +233,7 @@
   "redraw": "Fech and Ncald rendered from current arrays and score tables; FAM111A retained as recorded.",
   "outputs": {
     "evaluation/gene/figures/panels/selected_edges/Ncald_matched_edge.svg": "058d7185ae56023e8c2a28e56e2af6fd4e589d9110e08794c7d534bab8b86aad",
-    "evaluation/gene/figures/panels/selected_edges/FAM111A_source_data.csv": "22ba7257a4e2facc279150828673e01e9542a42d1da4439848057145afe6b88d",
+    "evaluation/gene/figures/panels/selected_edges/FAM111A_source_data.csv": "bc100712c7e67b51c56500345f1dda8d9aed33177fb6d071a75833b7615c1b2a",
     "evaluation/gene/figures/panels/selected_edges/FAM111A_plotted_scores.csv": "5837d3eca4915e822924bc6496ad7346b562a285bd3580fb06fbd0d24bb87222",
     "evaluation/gene/figures/panels/selected_edges/Fech_source_data.csv": "231559a6a31782881c262b1949515a0e075569327bf9f0f55054a7c5d0e70028",
     "evaluation/gene/figures/panels/selected_edges/Ncald_source_data.csv": "c97a35a18cae01b09d176099dd5f20405eaafa1d82c933d2afb17450aa983ea9",

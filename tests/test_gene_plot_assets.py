@@ -26,12 +26,16 @@ class GeneAssetTests(unittest.TestCase):
         folder = ROOT / "evaluation/gene/figures/panels/selected_edges"
         for gene in ("Fech", "FAM111A", "Ncald"):
             source = pd.read_csv(folder / f"{gene}_source_data.csv")
+            self.assertNotIn("cell", source.columns)
+            self.assertNotIn("batc", source.columns)
             actual = metric_rows(source, gene)
             saved = pd.read_csv(folder / f"{gene}_plotted_scores.csv")
             self.assertEqual(actual.gene.tolist(), [gene] * len(METHODS))
             self.assertEqual(saved.gene.tolist(), actual.gene.tolist())
             self.assertEqual(actual.method.tolist(), METHODS)
             np.testing.assert_allclose(saved.gene_cbdir, actual.gene_cbdir, rtol=0, atol=1e-15)
+            np.testing.assert_allclose(saved.cell, actual.cell_cbdir, rtol=0, atol=1e-15)
+            np.testing.assert_allclose(saved.batc, actual.selected_edge_batc_candidate_mean, rtol=0, atol=1e-15)
             fig, ax = plt.subplots()
             try:
                 draw_metric(ax, actual)
