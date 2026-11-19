@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "module_sources_ready_composite_not_registered",
+  "status": "expanded_reference_scores_and_coverage_available",
   "scope": {
     "rpe1": 250,
     "organoid_each_branch": 270
@@ -57,8 +57,8 @@
   ],
   "policies": {
     "canonical_scores_modified": false,
-    "figure7_aggregation_modified": false,
-    "tsvelo_organoid": "isolated supplementary alpha evaluation; not canonical",
+    "figure7_components": "evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv",
+    "tsvelo_organoid": "lineage-specific alpha scores for the expanded reference gene sets",
     "duplicate_cells": "mean alpha; metadata must be identical",
     "gene_mapping": "case normalization checked against original mouse gene IDs; no species conversion",
     "missing_scores": "undefined/unavailable omitted from means, never zero",

@@ -517,8 +517,8 @@ def export_data(root=ROOT, output=None):
         (CELL, 'Cell-level scores'), (GENE, 'Gene-level CBDir (reference 30-NN)'),
         (COSINE, 'Simulation CosSim (frozen table)'),
         (gene_summary_path, 'Gene-level dataset means'),
-        (KINETICS + 'gene_metrics.csv', 'Canonical kinetic-parameter scores'),
-        (KINETICS + 'component_means.csv', 'Canonical kinetic-parameter means'),
+        (KINETICS + 'gene_metrics.csv', 'Original canonical kinetic-parameter scores'),
+        (KINETICS + 'component_means.csv', 'Original canonical kinetic-parameter means'),
         (EXPANDED + 'coverage_summary.csv', 'Expanded reference: coverage and means'),
         (EXPANDED + 'common_gene_summary.csv', 'Expanded reference: common-gene means'),
         (EXPANDED + 'tsvelo_organoid_gene_metrics.csv', 'Expanded reference: TSvelo organoid alpha'),
@@ -883,7 +883,7 @@ def export_data(root=ROOT, output=None):
     }
     for relative, label in [
         (SUMMARY + "fig7_cell_metric_summary.csv", "Cell-level overall statistics"),
-        (SUMMARY + "fig7_gene_metric_summary.csv", "Cross-task benchmark summaries"),
+        (SUMMARY + "fig7_gene_metric_summary.csv", "Figure 7 Gene and expanded-reference kinetics summary"),
         (SIM_CELL + "results/cell_metrics.csv", "Simulation Cell scores"),
         (SIM_CELL + "results/cross_level_summary.csv", "Simulation Cell/Gene comparisons"),
     ]:

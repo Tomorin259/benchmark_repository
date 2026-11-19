@@ -121,7 +121,7 @@ onUnmounted(()=>window.removeEventListener('hashchange',navigate))
           <p class="small muted">Kinetic-reference Tables S1, S3 and S4 are obtained from the original study. <a :href="sourceLink('data/UPSTREAM_REFERENCES.md')" target="_blank" rel="noopener">Acquisition and verification instructions ↗</a></p>
         </section>
         <section class="panel downloads-section"><h2>Revised benchmark results</h2><div class="guide-links"><a href="#ensemble">Five-member ensemble and ablations →</a><a href="#comparisons">Matched comparisons and statistics →</a></div>
-          <div v-for="f in data.downloads.figures.filter(f => ['figures/suppFigNine.pdf','figures/suppFigTen.pdf'].includes(f.path))" :key="f.path" class="download-row"><strong>{{f.label}}</strong><a class="button secondary" :href="'./'+f.download" download>Download PDF</a></div>
+          <div v-for="f in data.downloads.figures.filter(f => ['figures/figSeven.pdf','figures/suppFigNine.pdf','figures/suppFigTen.pdf'].includes(f.path))" :key="f.path" class="download-row"><strong>{{f.label}}</strong><a class="button secondary" :href="'./'+f.download" download>Download PDF</a></div>
         </section>
         <ResultDownloads :data="data"/>
         <details class="panel downloads-section"><summary>Technical resources <span>{{technicalFiles.length}} files</span></summary><p class="small"><a :href="repository" target="_blank" rel="noopener">Repository files ↗</a></p><div v-for="s in technicalFiles" :key="s.path" class="download-row"><div><strong>{{s.label}}</strong><span class="small muted">{{s.path.split('.').at(-1).toUpperCase()}} · {{size(s.bytes)}}</span></div><a class="button secondary" :href="`./${s.download}`" download>Download</a></div></details>

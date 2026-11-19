@@ -1,20 +1,22 @@
 Method,Component,Mean,N,Path
-DeepVelo,organoid_branch1_alpha,0.13915773132554354,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepVelo,organoid_branch2_alpha,0.5152335569263665,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepVelo,rpe1_alpha,0.30281838416272233,250,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-Dynamo(label data),organoid_branch1_alpha,0.3341469455294646,211,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-Dynamo(label data),organoid_branch2_alpha,0.6489433840189076,208,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-Dynamo(label data),rpe1_alpha,0.7970731475417073,116,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-TSvelo,rpe1_alpha,0.49267118761885603,65,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,organoid_branch1_alpha,-0.00693920911668931,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,organoid_branch2_alpha,-0.008031084098273949,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,rpe1_alpha,-0.02529368449923829,250,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepKINET,organoid_branch1_gamma,-0.0735892883087739,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepKINET,organoid_branch2_gamma,0.0031547779436840516,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepKINET,rpe1_gamma,-0.041495230780220146,250,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepVelo,organoid_branch1_gamma,0.058065786789489426,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepVelo,organoid_branch2_gamma,0.060269629720453556,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-DeepVelo,rpe1_gamma,0.06740098068058517,249,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,organoid_branch1_gamma,0.002682017773452865,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,organoid_branch2_gamma,-0.015563380528037608,270,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
-cellDancer,rpe1_gamma,-0.2741982659553725,250,evaluation/kinetics_recovery/results/central_results/gene_metrics.csv
+DeepVelo,organoid_branch1_alpha,0.13915773132554354,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepVelo,organoid_branch2_alpha,0.5152335569263664,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepVelo,rpe1_alpha,0.30281838416272233,250,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+Dynamo(label data),organoid_branch1_alpha,0.33078197878318166,200,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+Dynamo(label data),organoid_branch2_alpha,0.653732156146636,197,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+Dynamo(label data),rpe1_alpha,0.7970731475417075,116,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+TSvelo,organoid_branch1_alpha,0.09711947450027074,20,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+TSvelo,organoid_branch2_alpha,0.2228012553949407,20,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+TSvelo,rpe1_alpha,0.4926711876188559,65,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,organoid_branch1_alpha,-0.0069392091166893075,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,organoid_branch2_alpha,-0.008031084098273952,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,rpe1_alpha,-0.025293684499238297,250,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepKINET,organoid_branch1_gamma,-0.0735892883087739,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepKINET,organoid_branch2_gamma,0.0031547779436840438,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepKINET,rpe1_gamma,-0.04149523078022015,250,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepVelo,organoid_branch1_gamma,0.058065786789489426,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepVelo,organoid_branch2_gamma,0.060269629720453556,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+DeepVelo,rpe1_gamma,0.06740098068058517,249,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,organoid_branch1_gamma,0.0026820177734528674,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,organoid_branch2_gamma,-0.015563380528037598,270,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv
+cellDancer,rpe1_gamma,-0.27419826595537244,250,evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv

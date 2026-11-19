@@ -8,21 +8,23 @@ method training is a separate step.
 
 | Material | Purpose |
 | --- | --- |
-| [results/central_results/](results/central_results/) | Current per-gene scores and component/system/method summaries |
+| [results/central_results/](results/central_results/) | Canonical per-gene scores and summaries on the original evaluation scope |
 | [figures/fig6/plot_data/](figures/fig6/plot_data/) | Exact selected rows plotted in Figure 6 |
 | [figures/fig6/](figures/fig6/) | Current parameter panels and saved velocity fields |
-| [results/expanded_reference/](results/expanded_reference/README.md) | Sensitivity analysis on 250 RPE1 and 270 organoid reference genes per branch |
+| [results/expanded_reference/](results/expanded_reference/README.md) | Expanded reference scores for Figure 7 and Supplementary Figure 14 |
 | [results/joint_recovery/](results/joint_recovery/) | Common-gene alpha and gamma comparison for cellDancer and DeepVelo |
 
 Figure 6B/C displays 19 RPE1 genes surviving evaluator intersection from the
 configured 32. Figure 6F displays six branch-1 and eight branch-2 genes.
 Panel D classifies 250 matched genes with both parameters, separately from the
 19-gene display. A/E are cell-level velocity fields.
-[Figure 7](../summary/README.md) uses all canonical finite per-gene scores.
-
-Expanded-reference results preserve their own scope, coverage and common-valid
-sets. Isolated TSvelo organoid alpha scores do not add selected-gene Figure 6F
-scores or change canonical Figure 7 aggregation.
+[Figure 7](../summary/README.md) uses each method’s finite scores within the
+expanded reference sets of Supplementary Figure 14 (250 RPE1 genes and 270
+organoid genes per branch). Both organoid branches and both biological systems
+are equally weighted at their respective aggregation steps. The expanded
+TSvelo organoid alpha scores come from the lineage-specific outputs.
+Per-method coverage and the separate common-finite-gene comparisons are
+available in the expanded-reference directory.
 
 ## Joint alpha and gamma recovery
 

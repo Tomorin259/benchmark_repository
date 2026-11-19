@@ -116,16 +116,17 @@ Sim-CosSim,scVelo_dynamic,Hybrid (normal + MURK + branching),0.6180390540379158,
 Sim-CosSim,veloVI,Normal + MURK,-0.2827207939208327,10.0,genes,,
 Sim-CosSim,veloVI,Normal + branching,0.26821282926829726,20.0,genes,,
 Sim-CosSim,veloVI,Hybrid (normal + MURK + branching),0.22118979022435786,40.0,genes,,
-Kinetic-Spearman-alpha,DeepVelo,organoid,0.32719564412595503,2,components,540,within_parameter_components
+Kinetic-Spearman-alpha,DeepVelo,organoid,0.327195644125955,2,components,540,within_parameter_components
 Kinetic-Spearman-alpha,DeepVelo,rpe1,0.30281838416272233,1,components,250,within_parameter_components
-Kinetic-Spearman-alpha,Dynamo(label data),organoid,0.4915451647741861,2,components,419,within_parameter_components
-Kinetic-Spearman-alpha,Dynamo(label data),rpe1,0.7970731475417073,1,components,116,within_parameter_components
-Kinetic-Spearman-alpha,TSvelo,rpe1,0.49267118761885603,1,components,65,within_parameter_components
-Kinetic-Spearman-alpha,cellDancer,organoid,-0.007485146607481629,2,components,540,within_parameter_components
-Kinetic-Spearman-alpha,cellDancer,rpe1,-0.02529368449923829,1,components,250,within_parameter_components
+Kinetic-Spearman-alpha,Dynamo(label data),organoid,0.4922570674649088,2,components,397,within_parameter_components
+Kinetic-Spearman-alpha,Dynamo(label data),rpe1,0.7970731475417075,1,components,116,within_parameter_components
+Kinetic-Spearman-alpha,TSvelo,organoid,0.1599603649476057,2,components,40,within_parameter_components
+Kinetic-Spearman-alpha,TSvelo,rpe1,0.4926711876188559,1,components,65,within_parameter_components
+Kinetic-Spearman-alpha,cellDancer,organoid,-0.00748514660748163,2,components,540,within_parameter_components
+Kinetic-Spearman-alpha,cellDancer,rpe1,-0.025293684499238297,1,components,250,within_parameter_components
 Kinetic-Spearman-gamma,DeepKINET,organoid,-0.035217255182544926,2,components,540,within_parameter_components
-Kinetic-Spearman-gamma,DeepKINET,rpe1,-0.041495230780220146,1,components,250,within_parameter_components
+Kinetic-Spearman-gamma,DeepKINET,rpe1,-0.04149523078022015,1,components,250,within_parameter_components
 Kinetic-Spearman-gamma,DeepVelo,organoid,0.05916770825497149,2,components,540,within_parameter_components
 Kinetic-Spearman-gamma,DeepVelo,rpe1,0.06740098068058517,1,components,249,within_parameter_components
-Kinetic-Spearman-gamma,cellDancer,organoid,-0.006440681377292371,2,components,540,within_parameter_components
-Kinetic-Spearman-gamma,cellDancer,rpe1,-0.2741982659553725,1,components,250,within_parameter_components
+Kinetic-Spearman-gamma,cellDancer,organoid,-0.006440681377292365,2,components,540,within_parameter_components
+Kinetic-Spearman-gamma,cellDancer,rpe1,-0.27419826595537244,1,components,250,within_parameter_components

@@ -1,4 +1,4 @@
-"""Refresh integrated kinetic summaries from the current full-gene scores."""
+"""Refresh integrated kinetic summaries from the expanded-reference coverage table."""
 
 import argparse
 import csv
@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = "evaluation/kinetics_recovery/results/central_results"
+SOURCE = "evaluation/kinetics_recovery/results/expanded_reference/coverage_summary.csv"
 RESULTS = ROOT / "evaluation/summary/results/figure7_summary"
 
 
@@ -22,86 +22,55 @@ def read_csv(path):
 
 
 def main(write):
-    _, genes = read_csv(ROOT / SOURCE / "gene_metrics.csv")
-    scores = defaultdict(list)
-    seen = set()
-    for row in genes:
-        key = (row["Method"], row["Dataset"], row["Branch"], row["Parameter"])
-        identity = (*key, row["Gene"])
-        if identity in seen:
-            raise ValueError(f"Duplicate gene score: {identity}")
-        seen.add(identity)
-        value = float(row["Spearman_Corr"] or "nan")
-        if math.isfinite(value):
-            scores[key].append(value)
-
-    # Validate the same aggregation boundaries used by the evaluator.
-    _, components = read_csv(ROOT / SOURCE / "component_means.csv")
-    systems = defaultdict(list)
+    _, coverage = read_csv(ROOT / SOURCE)
+    systems = defaultdict(dict)
     component_rows = []
-    component_keys = set()
-    for row in components:
-        key = (row["Method"], row["Dataset"], row["Branch"], row["Parameter"])
-        values = scores[key]
-        mean = statistics.mean(values)
-        if key in component_keys or len(values) != int(row["N"]) or not math.isclose(
-            mean, float(row["Mean"]), rel_tol=0, abs_tol=1e-12
-        ):
-            raise ValueError(f"Canonical component mismatch: {key}")
-        component_keys.add(key)
-        systems[(row["Method"], row["Parameter"], row["Dataset"])].append(
-            (mean, len(values))
-        )
-        component_rows.append(dict(Method=row["Method"], Component=row["Component"],
-                                   Mean=repr(mean), N=str(len(values)),
-                                   Path=f"{SOURCE}/gene_metrics.csv"))
-    if component_keys != set(scores):
-        raise ValueError("Gene/component coverage differs")
+    for row in sorted(coverage, key=lambda r: (r["Parameter"], r["Method"], r["Panel"])):
+        method, parameter, system = row["Method"], row["Parameter"], row["Dataset"]
+        if system == "rpe1" and not row["Branch"]:
+            component = f"rpe1_{parameter}"
+            expected_panel = f"rpe1_all_{parameter}"
+        elif system == "organoid" and row["Branch"] in ("1.0", "2.0", "1", "2"):
+            component = f"organoid_branch{int(float(row['Branch']))}_{parameter}"
+            expected_panel = component
+        else:
+            raise ValueError(f"Unknown system or branch in {row['Panel']}")
+        group = systems[(parameter, method, system)]
+        count = int(row["Valid_N"])
+        mean = float(row["Mean"])
+        if (parameter not in ("alpha", "gamma") or row["Panel"] != expected_panel
+                or component in group or not math.isfinite(mean)
+                or not 0 < count <= int(row["Candidate_N"])):
+            raise ValueError(f"Invalid coverage for {method}, {row['Panel']}")
+        group[component] = (mean, count)
+        component_rows.append(dict(Method=method, Component=component,
+                                   Mean=row["Mean"], N=str(count), Path=SOURCE))
 
-    _, canonical_systems = read_csv(ROOT / SOURCE / "system_means.csv")
-    methods = defaultdict(list)
+    # Each branch has equal weight, irrespective of its number of finite gene scores.
+    methods = defaultdict(dict)
     system_rows = []
-    system_keys = set()
-    for row in canonical_systems:
-        key = (row["Method"], row["Parameter"], row["System"])
-        values = systems[key]
-        mean = statistics.mean(value for value, _ in values)
-        count = sum(n for _, n in values)
-        if key in system_keys or len(values) != int(row["N_components"]) or count != int(
-            row["N_genes"]
-        ) or not math.isclose(mean, float(row["Mean"]), rel_tol=0, abs_tol=1e-12):
-            raise ValueError(f"Canonical system mismatch: {key}")
-        system_keys.add(key)
-        methods[key[:2]].append((mean, count))
-        system_rows.append(dict(Metric=f"Kinetic-Spearman-{row['Parameter']}",
-                               Method=row["Method"], Dataset=row["System"],
-                               Mean=repr(mean), N=str(len(values)), Unit="components",
-                               N_raw_genes_or_rows=str(count),
-                               Aggregation="within_parameter_components"))
-    if system_keys != set(systems):
-        raise ValueError("Component/system coverage differs")
+    for (parameter, method, system), components in sorted(systems.items()):
+        expected = ({f"rpe1_{parameter}"} if system == "rpe1" else
+                    {f"organoid_branch1_{parameter}", f"organoid_branch2_{parameter}"})
+        if set(components) != expected:
+            raise ValueError(f"Incomplete {system} components for {method}, {parameter}")
+        mean = statistics.mean(value for value, _ in components.values())
+        count = sum(n for _, n in components.values())
+        methods[(method, parameter)][system] = (mean, count)
+        system_rows.append(dict(Metric=f"Kinetic-Spearman-{parameter}", Method=method,
+                                Dataset=system, Mean=repr(mean), N=str(len(components)),
+                                Unit="components", N_raw_genes_or_rows=str(count),
+                                Aggregation="within_parameter_components"))
 
-    _, canonical_methods = read_csv(ROOT / SOURCE / "method_summary.csv")
     method_rows = []
-    method_keys = set()
-    for row in canonical_methods:
-        key = (row["Method"], row["Parameter"])
-        values = methods[key]
-        mean = statistics.mean(value for value, _ in values)
-        count = sum(n for _, n in values)
-        if key in method_keys or len(values) != int(row["N_systems"]) or count != int(
-            row["N_genes"]
-        ) or not math.isclose(mean, float(row["Mean"]), rel_tol=0, abs_tol=1e-12):
-            raise ValueError(f"Canonical method mismatch: {key}")
-        method_keys.add(key)
-        std = statistics.stdev(value for value, _ in values) if len(values) > 1 else None
-        method_rows.append(dict(Metric=f"Kinetic-Spearman-{row['Parameter']}",
-                               Method=row["Method"], Mean=repr(mean),
-                               Std="" if std is None else repr(std),
-                               N_dataset_or_system=str(len(values)),
-                               N_raw_genes_or_rows=str(count)))
-    if method_keys != set(methods):
-        raise ValueError("System/method coverage differs")
+    for (method, parameter), system_values in methods.items():
+        if set(system_values) != {"rpe1", "organoid"}:
+            raise ValueError(f"Missing biological system for {method}, {parameter}")
+        values = [mean for mean, _ in system_values.values()]
+        count = sum(n for _, n in system_values.values())
+        method_rows.append(dict(Metric=f"Kinetic-Spearman-{parameter}", Method=method,
+                                Mean=repr(statistics.mean(values)), Std=repr(statistics.stdev(values)),
+                                N_dataset_or_system=str(len(values)), N_raw_genes_or_rows=str(count)))
 
     updates = []
     for name, replacement in [("kinetic_component_means", component_rows),
@@ -122,7 +91,7 @@ def main(write):
             key = (row["Figure7_Method"], parameter)
             prefix = f"Kinetic_Spearman_{parameter}"
             if key in methods:
-                values = methods[key]
+                values = methods[key].values()
                 row[f"{prefix}_mean_plus_1"] = repr(statistics.mean(x for x, _ in values) + 1)
                 row[f"{prefix}_n_systems"] = str(len(values))
                 row[f"{prefix}_n_gene_rows"] = str(sum(n for _, n in values))
@@ -131,7 +100,7 @@ def main(write):
                 for suffix in ("mean_plus_1", "n_systems", "n_gene_rows"):
                     row[f"{prefix}_{suffix}"] = ""
     if mapped != set(methods):
-        raise ValueError("WPS method coverage differs from canonical results")
+        raise ValueError("WPS method coverage differs from expanded-reference results")
     updates.append((path, fields, rows))
 
     rendered = {}
@@ -162,9 +131,11 @@ def main(write):
     rendered[registry_path] = output.getvalue()
 
     for path, text in rendered.items():
+        if path.read_text() == text:
+            continue
         if write:
             path.write_text(text)
-        elif path.read_text() != text:
+        else:
             raise SystemExit(f"Outdated kinetics summary: {path}")
     print(f"Current kinetics: {len(component_rows)} components, "
           f"{len(system_rows)} systems, {len(method_rows)} method/parameter summaries")

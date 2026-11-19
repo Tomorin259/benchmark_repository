@@ -62,6 +62,8 @@ Gene results guide identifies inputs and numerical units.
 
 Kinetics uses the `central_results` inputs, the organoid differentiation
 direction and the labelled-data Dynamo control described in its module guide.
+[Figure 7](../evaluation/summary/README.md) combines the expanded-reference
+component means, including the two TSvelo organoid alpha branches.
 
 Use the [environment guide](environments.md) and fresh output directories.
 The [figure map](figure_map.md) describes panel rendering and manual assembly.

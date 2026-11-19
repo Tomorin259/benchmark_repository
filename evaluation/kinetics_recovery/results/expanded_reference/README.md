@@ -1,8 +1,9 @@
 # Expanded scEU-seq reference evaluation
 
 Supplementary Figure 14 evaluates kinetic-parameter recovery on expanded
-reference-gene sets. Figure 6 uses selected genes; Figure 7 uses the canonical
-summaries from `../central_results/`.
+reference-gene sets. Figure 6 uses selected display genes. The kinetic columns
+of [Figure 7](../../../summary/README.md) aggregate the available-gene means
+and counts in `coverage_summary.csv` across branches and systems.
 
 ## Gene universe
 

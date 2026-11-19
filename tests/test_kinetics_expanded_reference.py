@@ -74,7 +74,7 @@ class ExpandedReferenceTests(unittest.TestCase):
             self.assertFalse(Path(record["path"]).is_absolute())
             self.assertNotIn("..", Path(record["path"]).parts)
         self.assertFalse(manifest["policies"]["canonical_scores_modified"])
-        self.assertFalse(manifest["policies"]["figure7_aggregation_modified"])
+        self.assertEqual(root / manifest["policies"]["figure7_components"], RESULTS / "coverage_summary.csv")
 
     def test_trajectory_reserves_last_gene_and_complete_legend(self):
         import matplotlib.pyplot as plt

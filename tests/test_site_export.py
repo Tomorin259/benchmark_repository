@@ -253,6 +253,8 @@ class SiteExportTests(unittest.TestCase):
         }
         if not figure_manifest.get('pending_pdf_export', False):
             expected_figures.add(figure7_path)
+            figure7, = [row for row in figures if row['path'] == figure7_path]
+            self.assertEqual(figure7['sha256'], figure_manifest['output']['sha256'])
         for num, name in [('09', 'suppFigNine'), ('10', 'suppFigTen')]:
             binding = json.loads((ROOT / f'figures/suppfig{num}_composite_manifest.json').read_text())
             if not binding['pending_pdf_export']:
@@ -659,10 +661,24 @@ class SiteExportTests(unittest.TestCase):
                 for key in ['mean', 'median', 'sample_sd', 'q1', 'q3', 'iqr']:
                     self.assertEqual(row[key], float(source[key]))
                 self.assertNotIn('mean_plus_1', row)
-        summary = self.payload['overall_summary']
-        self.assertEqual(len(summary), 34)
-        self.assertTrue(any(r['method']=='dynamo_labelled' for r in summary))
-        self.assertFalse(any(r['method']=='C07' for r in summary))
+
+    def test_gene_and_kinetic_overall_use_figure7_summary(self):
+        source_path = EXPORT.SUMMARY + 'fig7_gene_metric_summary.csv'
+        by_method = {row['manuscript_name']: row['config_id'] for row in self.payload['methods']}
+        by_method.update({'scVelo_dynamic': 'C03', 'Dynamo(label data)': 'dynamo_labelled'})
+        actual = EXPORT.keyed(self.payload['overall_summary'], ['method', 'metric'])
+        with (ROOT / source_path).open() as handle:
+            expected = {
+                (by_method[row['Method']], row['Metric']): row
+                for row in csv.DictReader(handle)
+            }
+        self.assertEqual(set(actual), set(expected))
+        for key, row in actual.items():
+            self.assertEqual(row['source'], source_path)
+            self.assertEqual(row['mean'], float(expected[key]['Mean']))
+            self.assertEqual(row['sample_sd'], EXPORT.numeric(expected[key]['Std']))
+            self.assertEqual(row['n_components'], int(expected[key]['N_dataset_or_system']))
+        self.assertEqual(actual[('C14', 'Kinetic-Spearman-alpha')]['n_components'], 2)
 
     def test_simulation_cell_stays_separate_and_preserves_frozen_scores(self):
         self.assertEqual(len(self.payload['cell']), 280)

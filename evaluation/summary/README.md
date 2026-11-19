@@ -40,14 +40,21 @@ aggregation represented by each row.
 | Real Gene CBDir | [reference-30 Gene table](../gene/results/gene_cbdir_reference30_all.csv), `new_cbdir` | Available-gene means per dataset, then equal weights for seven datasets |
 | Simulated Gene CBDir | Same `new_cbdir` table | Means for 10/20/40 special genes in MURK/branching/hybrid, then equal weights for three scenarios |
 | Simulation CosSim | [Noise-free ODE CosSim table](../gene/results/simulation/gene_cbdir_cossim_reference.csv), with restored veloVI units | Same scenario weighting; historical CBDir in this table is not used |
-| Kinetic parameters | [canonical per-gene scores](../kinetics_recovery/results/central_results/gene_metrics.csv) | Finite-gene means per component, equal organoid-branch means, then equal available-system means |
+| Kinetic parameters | [expanded-reference coverage](../kinetics_recovery/results/expanded_reference/coverage_summary.csv) | Per-method finite-gene means within each component, equal organoid-branch means, then equal RPE1 and organoid means |
 
 Cell SD uses `ddof=1`; quartiles use linear interpolation
 (Excel `QUARTILE.INC`). Real Gene summaries retain sample SD across dataset
 means. Kinetics reports sample SD across systems, undefined for a single system.
 Counts are finite gene scores, not cells; unavailable parameters are not zero.
-Kinetics includes the corrected organoid reference direction and labelled
-Dynamo alpha, using the canonical finite-gene scores.
+Figure 7 uses the Supplementary Figure 14 candidates: 250 RPE1 genes and
+270 organoid genes per branch. Each method contributes its finite Spearman
+scores within that candidate set. TSvelo alpha includes both organoid
+lineage outputs, and the labelled-data Dynamo control uses the same candidate
+sets. Counts sum finite gene records across the three components.
+To rebuild the component means from the public per-gene scores, follow the
+[expanded-reference reproduction instructions](../kinetics_recovery/results/expanded_reference/README.md#reproduction)
+and compare the generated `coverage_summary.csv` with the committed input
+before running the Figure 7 summary command.
 
 Forebrain Cell CBDir uses all 30 shared PCs; BATC uses shared UMAP2.
 Real/Sim Gene validation permits absolute tolerance `1e-12` for unrounded

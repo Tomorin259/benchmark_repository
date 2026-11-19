@@ -127,9 +127,9 @@
     {
       "figure": "fig7",
       "assembly": "figures/assembly/fig7/fig7.pptx",
-      "assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa",
+      "assembly_sha256": "7dcb410dd1a801e2d3a71abc6019df729db87c09de121d30eec33dea4d6e98ee",
       "status": "user_exported_cropped",
-      "cropped_or_final_pdf_sha256": "6ff600675fbc32fde5c3826c53a917aba69055fccbaa505b4e2579d8e39da688",
+      "cropped_or_final_pdf_sha256": "43e028cbeb92df2e42c57fdbdb1b8b497e3bec4c2752cd7ab009865c969e33fa",
       "source_media_box_pt": [
         0.0,
         0.0,
@@ -144,16 +144,16 @@
       ],
       "crop_applied": true,
       "repository_pdf": "figures/figSeven.pdf",
-      "decoded_content_stream_sha256": "6f0175d6a4565e2ae8838e24eead1ac332005f71f87f544b42219bce16a37838",
-      "source_pdf_sha256": "b02a4307a049bf4c4a04a058af4581cb6caba555b4ce286859b4f638033ea34a",
+      "decoded_content_stream_sha256": "d90290b3057c7a48d3530a4e0875f893b1c18822ce7509d378621e7a7c58309f",
+      "source_pdf_sha256": "5109eca7238535e84e7d779506f9d8f4d2c83eab4b0d87c11c4f23d55c3b09aa",
       "pending_pdf_export": false,
       "pending_material_assembly": false,
       "author_assembly_filename": "图7.pptx",
-      "author_assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa",
-      "exported_from_author_assembly_sha256": "499d9aae7c107ad2489374c6e6aea778ef73e1eb37a7d02911f4f6a44012b6fa",
+      "author_assembly_sha256": "7dcb410dd1a801e2d3a71abc6019df729db87c09de121d30eec33dea4d6e98ee",
+      "exported_from_author_assembly_sha256": "7dcb410dd1a801e2d3a71abc6019df729db87c09de121d30eec33dea4d6e98ee",
       "pdf_identity": "Current author export; page-box crop verified against updated assembly.",
       "source_pdf_filename": "图7.pdf",
-      "repository_assembly_comparison": "All uncompressed OOXML members match the author assembly.",
+      "repository_assembly_comparison": "Repository copy is byte-identical to the author PPTX.",
       "crop_verification": "Page operators and raw and decoded resource streams match the author source PDF."
     },
     {
