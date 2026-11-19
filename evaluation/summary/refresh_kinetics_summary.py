@@ -68,8 +68,10 @@ def main(write):
             raise ValueError(f"Missing biological system for {method}, {parameter}")
         values = [mean for mean, _ in system_values.values()]
         count = sum(n for _, n in system_values.values())
+        # Round the sample variance to a float before taking its square root on every Python version.
+        sd = math.sqrt(statistics.variance(values))
         method_rows.append(dict(Metric=f"Kinetic-Spearman-{parameter}", Method=method,
-                                Mean=repr(statistics.mean(values)), Std=repr(statistics.stdev(values)),
+                                Mean=repr(statistics.mean(values)), Std=repr(sd),
                                 N_dataset_or_system=str(len(values)), N_raw_genes_or_rows=str(count)))
 
     updates = []

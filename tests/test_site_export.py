@@ -244,6 +244,15 @@ class SiteExportTests(unittest.TestCase):
         figures = self.payload['downloads']['figures']
         metadata = self.payload['downloads']['metadata']
         self.assertEqual(len(tables), 32)
+        table_by_path = {row["path"]: row for row in tables}
+        for name, label, description in [
+            ("gene_metrics.csv", "Original canonical kinetic-parameter scores",
+             "Per-gene Spearman scores from the original kinetic-recovery benchmark."),
+            ("component_means.csv", "Original canonical kinetic-parameter means",
+             "Finite-gene means by system, parameter and organoid branch from the original kinetic-recovery benchmark."),
+        ]:
+            resource = table_by_path[EXPORT.KINETICS + name]
+            self.assertEqual((resource["label"], resource["description"]), (label, description))
         figure_manifest = json.loads((ROOT / 'figures/fig7_composite_manifest.json').read_text())
         figure7_path = figure_manifest['output']['path']
         expected_figures = {
