@@ -75,6 +75,30 @@ including status and evaluable counts, against the corresponding formal rows.
 The configured method paths and layer keys select the result family for a
 new run; keep its output root separate from the committed results.
 
+### Simulation gene comparisons in Tables S8E and S10C
+
+[Table S8E](results/simulation/statistics/s8e_six_objective_front.csv) maximizes
+mean gene CBDir and CosSim in each of the three fixed scenarios (10 MURK genes,
+20 branching genes and 40 hybrid genes). All nine configurations share the same
+genes within each scenario. Each of the 27 ordered draws of three scenarios
+with replacement retains both metrics of each sampled scenario as objectives.
+
+[Table S10C](results/simulation/statistics/s10c.csv) reports the simulation rows
+of the [five-test calibration](results/simulation/statistics/holm5_calibration.csv).
+The five tests cover real gene CBDir, simulated gene CBDir and CosSim, and gene
+CBDir in the MURK and branching groups pooled across real and simulated datasets.
+Real blocks use the common-gene means. The pooled groups use their corresponding
+20-gene subset of the hybrid scenario. Each test ranks nine configurations within
+each block. With 5,000,000 permutations (PCG64 seed 20261114), the upper-tail
+probability is (extreme permutations + 1)/(5,000,000 + 1). Holm adjustment is
+applied to all five probabilities. S10A and S10B have separate correction families.
+
+Reproduce all three CSVs from the compact results with NumPy and pandas:
+
+```bash
+python evaluation/gene/simulation_gene_statistics.py --output-dir outputs/sim-gene-statistics
+```
+
 ### veloVI coordinate units
 
 [coordinate_units.py](coordinate_units.py) reconstructs veloVI's pre-min-max
