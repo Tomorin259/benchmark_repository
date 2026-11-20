@@ -21,6 +21,29 @@ def read_csv(path):
         return reader.fieldnames, list(reader)
 
 
+def csv_values_equivalent(current_text, refreshed_text, tolerance=1e-15):
+    """Compare CSV content while ignoring harmless float serialization drift."""
+    current = csv.DictReader(io.StringIO(current_text))
+    refreshed = csv.DictReader(io.StringIO(refreshed_text))
+    if current.fieldnames != refreshed.fieldnames:
+        return False
+    current_rows, refreshed_rows = list(current), list(refreshed)
+    if len(current_rows) != len(refreshed_rows):
+        return False
+    for left, right in zip(current_rows, refreshed_rows):
+        for field in current.fieldnames:
+            if left[field] == right[field]:
+                continue
+            try:
+                if math.isclose(float(left[field]), float(right[field]),
+                                rel_tol=0.0, abs_tol=tolerance):
+                    continue
+            except ValueError:
+                pass
+            return False
+    return True
+
+
 def main(write):
     _, coverage = read_csv(ROOT / SOURCE)
     systems = defaultdict(dict)
@@ -117,8 +140,16 @@ def main(write):
     with registry_path.open(newline="") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         registry_fields, registry_rows = reader.fieldnames, list(reader)
-    hashes = {str(path.relative_to(ROOT)): hashlib.sha256(text.encode()).hexdigest()
-              for path, text in rendered.items()}
+    equivalent_csvs = {
+        path for path, text in rendered.items()
+        if path.suffix == ".csv" and path.exists()
+        and csv_values_equivalent(path.read_text(), text)
+    }
+    hashes = {
+        str(path.relative_to(ROOT)): hashlib.sha256(text.encode()).hexdigest()
+        for path, text in rendered.items()
+        if path not in equivalent_csvs
+    }
     registered = []
     for row in registry_rows:
         if row["path"] in hashes:
@@ -133,7 +164,7 @@ def main(write):
     rendered[registry_path] = output.getvalue()
 
     for path, text in rendered.items():
-        if path.read_text() == text:
+        if path.read_text() == text or path in equivalent_csvs:
             continue
         if write:
             path.write_text(text)

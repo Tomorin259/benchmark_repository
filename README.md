@@ -46,6 +46,8 @@ Run commands from the repository root and use a fresh output directory.
   [download manifest](data/result_package_manifest.tsv), map original H5AD/NPZ
   files through the [member manifest](data/result_member_manifest.tsv), and follow the
   [download and extraction guide](data/RESULT_DOWNLOADS.md).
+  The manifest contains 341 package rows and 490 registered members. The HF
+  README's 339-package catalog excludes the two standalone diagnostic packages.
 - Committed tables support inspection and several CSV-only plotting workflows.
   Recomputing metrics requires the saved H5AD outputs and reference inputs;
   retraining additionally requires method-specific software. See the checked

@@ -4,6 +4,8 @@
 and tables. Files are available individually: 104 numerical tables and two summary/protocol JSON files,
 243 saved NPZ plot inputs, three simulation-reference NPZs, and the Figure 1 framework schematic PDF.
 Each figure/table directory describes its files and their corresponding panels.
+The source manifest contains 396 entries, including the optional complete ZIP;
+there are 395 individual Source Data files when that archive entry is excluded.
 
 | Material | Browse |
 | --- | --- |

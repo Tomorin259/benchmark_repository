@@ -73,6 +73,11 @@ their original scales. The website reads unshifted values.
 The retained chart label Dynamo refers to Dynamo(RNA_seq) in Cell panels and
 the separate Dynamo(scEU-seq) labelled-data comparator in kinetic-parameter panels.
 
+The compact `fig7_kinetic_component_means.csv` schema is retained for
+compatibility with older readers. The richer `kinetics_component_means.csv`
+Source Data export includes dataset, branch and parameter fields and is the
+detailed schema.
+
 To reproduce [figSeven.pdf](../../figures/figSeven.pdf), export the single slide
 as a vector PDF in WPS Office, retaining positions, colors and axes. Set
 MediaBox and CropBox to `[0, 315.395, 540, 779.8]` points.
