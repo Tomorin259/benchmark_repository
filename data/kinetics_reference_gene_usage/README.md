@@ -26,4 +26,4 @@ Original references: Battich et al., Science (2020), https://doi.org/10.1126/sci
 
 Repository sources: evaluation/kinetics_recovery/results/expanded_reference/gene_scope.csv; results/central_results/gene_metrics.csv; results/expanded_reference/tsvelo_organoid_gene_metrics.csv; results/expanded_reference/tsvelo_organoid_gene_mapping.csv; and figures/fig6/plot_data/ selected-gene records, all within evaluation/kinetics_recovery/.
 
-All 21 method/parameter/branch coverage rows match coverage_summary.csv exactly. All 18 finite-gene comparison memberships match common_gene_membership.csv exactly. Gene IDs and symbols are unique within each table. File checksums and source checksums are recorded in kinetics_reference_gene_usage_manifest.json.
+All 21 method/parameter/branch coverage rows match coverage_summary.csv exactly. All 18 finite-gene comparison memberships match common_gene_membership.csv exactly. Gene IDs and symbols are unique within each table. File checksums and source checksums are recorded in manifest.json.
