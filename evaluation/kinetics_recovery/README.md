@@ -13,6 +13,7 @@ method training is a separate step.
 | [figures/fig6/](figures/fig6/) | Current parameter panels and saved velocity fields |
 | [results/expanded_reference/](results/expanded_reference/README.md) | Expanded reference scores for Figure 7 and Supplementary Figure 14 |
 | [results/joint_recovery/](results/joint_recovery/) | Common-gene alpha and gamma comparison for cellDancer and DeepVelo |
+| [results/turnover/](results/turnover/) | Full-precision class F1, confidence intervals and paired tests for Supplementary Table S11 |
 
 Figure 6B/C displays 19 RPE1 genes surviving evaluator intersection from the
 configured 32. Figure 6F displays six branch-1 and eight branch-2 genes.
@@ -55,6 +56,37 @@ Run from the repository root with Python 3.8 or later and a new output directory
 
 ```bash
 python -m evaluation.kinetics_recovery.joint_recovery --output outputs/kinetics-joint-recovery
+```
+
+## RPE1 turnover classification (Supplementary Table S11)
+
+The [full-precision table](results/turnover/class_f1.csv) compares cellDancer
+and DeepVelo on the 250 matched RPE1 genes classified in Figure 6D. The script
+reads each method's gene memberships and class counts, checks the counts and
+the shared scEU-seq reference labels, then computes class F1 and the unweighted
+Macro-F1. The difference column is DeepVelo minus cellDancer.
+
+The 95% confidence intervals are the 2.5th and 97.5th percentiles from 10,000
+bootstrap resamples of genes within their scEU-seq class. Both methods use the
+same resamples. The two-sided test independently swaps the two method labels
+within each gene over 50,000 permutations. Holm adjustment covers the three
+class tests. Macro-F1 has a confidence interval and blank P-value fields.
+The bootstrap and permutation use independent streams from seed `20261111`.
+
+Run from a Git checkout with NumPy (release computation: 1.23.5) and a new
+output directory.
+
+```bash
+python -m evaluation.kinetics_recovery.turnover --output outputs/kinetics-turnover
+```
+
+For the standalone replay, pass the directory containing the four
+`D_rpe1_*_kinetic_class*.csv` files from Figure 6D. The repository filenames
+without the `D_` prefix also work. The command writes `class_f1.csv` and a
+[manifest with input and output checksums](results/turnover/manifest.json).
+
+```bash
+python turnover.py --input-dir ../../main_figures/Figure_6 --output s11-reproduction
 ```
 
 ## Evaluate and render

@@ -1,0 +1,32 @@
+{
+  "paper_table": "Supplementary Table S11",
+  "input_panel": "Figure 6D",
+  "input_sha256": {
+    "rpe1_celldancer_kinetic_class_membership.csv": "224d43602dc5e291b9579daf5cdb85c995eb4ed556d1e28f9ac0538531d32c65",
+    "rpe1_celldancer_kinetic_classes.csv": "55b47b80a3d5f42151646456c99ffa681476f39656dbc80a9e67d035d892a02b",
+    "rpe1_deepvelo_kinetic_class_membership.csv": "9e8e93d8cddbb1eac2aded9875f0db6b2a6464f72e1a7e4d0eef44467770ef5c",
+    "rpe1_deepvelo_kinetic_classes.csv": "9ce0f8735cd7e911bb0b332e3a1d51329fa4268d343dea35f44cffa67c2ef5fc"
+  },
+  "output_sha256": {
+    "class_f1.csv": "2bb707b28fd22038283ea970544bec38007ff82fbc8f80e0577310c82766f4f1"
+  },
+  "matched_genes": 250,
+  "gene_order": "lexicographic",
+  "random_streams": "NumPy SeedSequence.spawn(2), bootstrap then permutation",
+  "seed": 20261111,
+  "numpy": "1.23.5",
+  "bootstrap": {
+    "draws": 10000,
+    "strata": "scEU-seq reference class",
+    "confidence_interval": "2.5th and 97.5th percentiles"
+  },
+  "permutation": {
+    "draws": 50000,
+    "scheme": "independent paired swaps of the two methods' labels within each gene",
+    "statistic": "absolute class F1 difference",
+    "batch_size": 2000,
+    "tail_comparison_tolerance": 1e-12,
+    "p_value": "(1 + number at least as extreme) / (1 + draws)",
+    "adjustment": "Holm across the three classes"
+  }
+}
