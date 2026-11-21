@@ -1,17 +1,17 @@
 # Source Data
 
 [Browse Source Data v1.0.0](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0) for the main and supplementary figures
-and tables. Files are available individually: 104 numerical tables and two summary/protocol JSON files,
+and tables. Files are available individually: 105 numerical tables and three summary/protocol JSON files,
 243 saved NPZ plot inputs, three simulation-reference NPZs, and the Figure 1 framework schematic PDF.
 Each figure/table directory describes its files and their corresponding panels.
-The source manifest contains 396 entries, including the optional complete ZIP;
-there are 395 individual Source Data files when that archive entry is excluded.
+The source manifest contains 399 entries, including the optional complete ZIP;
+there are 398 individual Source Data files when that archive entry is excluded.
 
 | Material | Browse |
 | --- | --- |
 | Main figures | [Figures 1–7](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/main_figures), including the Figure 1 schematic |
 | Supplementary figures | [Figures S1–S15](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures) |
-| Supplementary tables | [Tables S1–S10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables) |
+| Supplementary tables | [Tables S1–S11](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables) |
 | Figure/panel-to-file index | [SOURCE_INDEX.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/source_data/v1.0.0/SOURCE_INDEX.tsv?download=true) |
 | Array field descriptions | [ARRAY_DICTIONARY.tsv](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/resolve/v1.0.0/source_data/v1.0.0/metadata/ARRAY_DICTIONARY.tsv?download=true) |
 
@@ -53,6 +53,8 @@ Native method outputs are available through the [result download guide](RESULT_D
 - [Supplementary Figure 9](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_9) includes the matched seven-dataset scores and the two Pareto-front comparisons for panels g/h.
 - [Supplementary Figure 10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_10) contains 20 screening frequencies and the 588 CBDir/BATC values used in the three-panel assembly. [Table S5](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_5) reports the eight matched ensemble configurations and the selected five-member scores.
 - [Table S10](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_10) includes panels A–C, the full five-test Holm calibration for the simulation panel, and the dataset-level BATC ranking analyses. [Table S8E](../evaluation/gene/results/simulation/statistics/s8e_six_objective_front.csv) gives the six-objective simulation front and all inclusion counts. [Supplementary Figure 14](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_figures/Supplementary_Figure_14) includes the expanded paired transcription/degradation recovery comparison for cellDancer and DeepVelo.
+
+- [Table S11](https://huggingface.co/datasets/Zelin259/rna-velocity-benchmark/tree/v1.0.0/source_data/v1.0.0/supplementary_tables/Supplementary_Table_11) reports RPE1 turnover-strategy class F1, bootstrap intervals, and paired permutation comparisons for cellDancer and DeepVelo.
 
 ### Simulation velocity references
 

@@ -319,6 +319,8 @@ class SiteExportTests(unittest.TestCase):
                              row['path'].endswith('.py') for row in actual))
         self.assertTrue({
             'metadata/ARRAY_DICTIONARY.tsv',
+            'supplementary_tables/Supplementary_Table_11/class_f1.csv',
+            'supplementary_tables/Supplementary_Table_11/manifest.json',
             'main_figures/Figure_1/Figure_1.pdf',
             'main_figures/Figure_5/Figure_5A_gastrulation_raw_phase.npz',
             'main_figures/Figure_5/Figure_5D_left_overview.npz',
@@ -376,7 +378,7 @@ class SiteExportTests(unittest.TestCase):
         self.assertEqual(sum(row['format'] == 'tar.gz' for row in packages), 327)
         self.assertEqual(sum(row['format'] == 'npz' for row in packages), 14)
         self.assertEqual(len(members), 490)
-        self.assertEqual(len(self.payload['source_data_files']), 396)
+        self.assertEqual(len(self.payload['source_data_files']), 399)
         self.assertTrue(all(row['url'].startswith(self.payload['input_data_root'].replace('/tree/', '/resolve/') + '/')
                             for row in self.payload['input_files']))
         for row in packages:
